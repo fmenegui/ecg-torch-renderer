@@ -1,0 +1,258 @@
+{
+  "schema": "ecg-raster-paired-benchmark-v1",
+  "device": "cpu",
+  "cuda_measured": false,
+  "torch_version": "2.14.1+cpu",
+  "threads": 2,
+  "legacy_zip_sha256": "9bf299cf3a73bf7b703705d3587b9a1ff14bbb8fdd520a63f9ff96560e8bb2bf",
+  "comparison": "cyclic backend order, identical public-layer seed sequences, encoding/CNN excluded",
+  "compilation_excluded_from_warm_timings": true,
+  "real_patient_records": 0,
+  "cases": [
+    {
+      "preset": "fast",
+      "width": 384,
+      "height": 256,
+      "batch_size": 1,
+      "steps": 10,
+      "warmup": 3,
+      "backends": {
+        "v021": {
+          "median_ms": 76.30159000109416,
+          "p90_ms": 84.98514240018267,
+          "images_s": 13.737661882914562,
+          "first_call_ms": 57.938816000387305,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        },
+        "eager": {
+          "median_ms": 73.79440199838427,
+          "p90_ms": 88.15333560196447,
+          "images_s": 13.481574261124416,
+          "first_call_ms": 50.30699800045113,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        },
+        "compiled": {
+          "median_ms": 71.41752549978264,
+          "p90_ms": 81.04440590032027,
+          "images_s": 15.11108605892492,
+          "first_call_ms": 3603.8478549999127,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        }
+      },
+      "max_rgb_error_vs_v021": {
+        "eager": 0.0,
+        "compiled": 0.0
+      },
+      "eager_speedup_vs_v021": 1.0339753143167252,
+      "compiled_speedup_vs_v021": 1.0683874786634322
+    },
+    {
+      "preset": "fast",
+      "width": 384,
+      "height": 256,
+      "batch_size": 4,
+      "steps": 10,
+      "warmup": 3,
+      "backends": {
+        "v021": {
+          "median_ms": 192.627464501129,
+          "p90_ms": 254.15052700227534,
+          "images_s": 19.514518958410967,
+          "first_call_ms": 252.31655500101624,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        },
+        "eager": {
+          "median_ms": 191.6149355001835,
+          "p90_ms": 220.53629550246114,
+          "images_s": 20.44117409272517,
+          "first_call_ms": 223.9503569981025,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        },
+        "compiled": {
+          "median_ms": 157.0405144993856,
+          "p90_ms": 214.25678099876677,
+          "images_s": 23.8191064062029,
+          "first_call_ms": 2655.015790998732,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        }
+      },
+      "max_rgb_error_vs_v021": {
+        "eager": 0.0,
+        "compiled": 0.0
+      },
+      "eager_speedup_vs_v021": 1.0052841862159776,
+      "compiled_speedup_vs_v021": 1.2266099937025017
+    },
+    {
+      "preset": "balanced",
+      "width": 512,
+      "height": 384,
+      "batch_size": 1,
+      "steps": 10,
+      "warmup": 3,
+      "backends": {
+        "v021": {
+          "median_ms": 143.6303645004955,
+          "p90_ms": 149.2696127981617,
+          "images_s": 7.39099111281325,
+          "first_call_ms": 127.00801399842021,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        },
+        "eager": {
+          "median_ms": 140.02271949902934,
+          "p90_ms": 177.7559898007894,
+          "images_s": 7.032381147516903,
+          "first_call_ms": 135.53503599905525,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        },
+        "compiled": {
+          "median_ms": 128.83589349803515,
+          "p90_ms": 130.69228090025717,
+          "images_s": 8.694021750063564,
+          "first_call_ms": 2819.47292300174,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        }
+      },
+      "max_rgb_error_vs_v021": {
+        "eager": 0.0,
+        "compiled": 0.0
+      },
+      "eager_speedup_vs_v021": 1.0257647117151667,
+      "compiled_speedup_vs_v021": 1.1148319043767563
+    },
+    {
+      "preset": "balanced",
+      "width": 512,
+      "height": 384,
+      "batch_size": 4,
+      "steps": 10,
+      "warmup": 3,
+      "backends": {
+        "v021": {
+          "median_ms": 522.6949725001759,
+          "p90_ms": 561.6286200009199,
+          "images_s": 7.797540459740481,
+          "first_call_ms": 557.0265799979097,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        },
+        "eager": {
+          "median_ms": 617.8758529986226,
+          "p90_ms": 731.7578915000922,
+          "images_s": 6.599540508412737,
+          "first_call_ms": 573.0083729977196,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        },
+        "compiled": {
+          "median_ms": 408.0510100011452,
+          "p90_ms": 421.7143321020558,
+          "images_s": 10.27899857980917,
+          "first_call_ms": 3441.5164130004996,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        }
+      },
+      "max_rgb_error_vs_v021": {
+        "eager": 0.0,
+        "compiled": 0.0
+      },
+      "eager_speedup_vs_v021": 0.8459546848504875,
+      "compiled_speedup_vs_v021": 1.2809549779051128
+    },
+    {
+      "preset": "full",
+      "width": 1024,
+      "height": 768,
+      "batch_size": 1,
+      "steps": 10,
+      "warmup": 3,
+      "backends": {
+        "v021": {
+          "median_ms": 637.9651155002648,
+          "p90_ms": 699.5065758990677,
+          "images_s": 1.539211605039346,
+          "first_call_ms": 670.4021679979633,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        },
+        "eager": {
+          "median_ms": 567.5729230006255,
+          "p90_ms": 715.6740643978992,
+          "images_s": 1.6593572218894002,
+          "first_call_ms": 722.9606689979846,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        },
+        "compiled": {
+          "median_ms": 451.0113505002664,
+          "p90_ms": 480.2763247018447,
+          "images_s": 2.291665899194762,
+          "first_call_ms": 3750.8902469999157,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        }
+      },
+      "max_rgb_error_vs_v021": {
+        "eager": 0.0,
+        "compiled": 0.0
+      },
+      "eager_speedup_vs_v021": 1.124023168912802,
+      "compiled_speedup_vs_v021": 1.414521197288333
+    },
+    {
+      "preset": "full",
+      "width": 1024,
+      "height": 768,
+      "batch_size": 4,
+      "steps": 10,
+      "warmup": 3,
+      "backends": {
+        "v021": {
+          "median_ms": 4862.725969998792,
+          "p90_ms": 5372.4559787988255,
+          "images_s": 0.9114749725997046,
+          "first_call_ms": 4999.157917001867,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        },
+        "eager": {
+          "median_ms": 5237.131445999694,
+          "p90_ms": 5338.695439399453,
+          "images_s": 0.9217505155127792,
+          "first_call_ms": 5517.623927997192,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        },
+        "compiled": {
+          "median_ms": 1788.6440165002568,
+          "p90_ms": 1982.5339198010624,
+          "images_s": 2.2278983064401747,
+          "first_call_ms": 5755.860478999239,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        }
+      },
+      "max_rgb_error_vs_v021": {
+        "eager": 0.0,
+        "compiled": 0.0
+      },
+      "eager_speedup_vs_v021": 0.9285094369195399,
+      "compiled_speedup_vs_v021": 2.7186661656204936
+    }
+  ],
+  "source_sha256": {
+    "gpu_renderer.py": "5bb6266c7cb7399b2644ad05cc9a1dcc661268c5d342508bba50e4a13bb307ee",
+    "gpu_raster.py": "321c9492b2e72fbe96741901203316ce48cf7c95c3a3da704d3c68bf48753db3",
+    "gpu_module.py": "f0d8436e82b960dd811a0d5f9219a110c0c0e815eef4f49549f65e8198c73f6a"
+  }
+}

@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ecg-torch-renderer"
+version = "0.3.0"
+description = "Batched on-device ECG rendering with paired physical supervision"
+requires-python = ">=3.10"
+dependencies = ["torch>=2.6", "numpy>=1.24", "Pillow>=10.1"]
+
+[project.optional-dependencies]
+wfdb = ["wfdb>=4.1"]
+
+[project.scripts]
+ecg-render = "ecg_gpu.gpu_cli:main"
+ecg-renderer-benchmark = "ecg_gpu.benchmark:main"
+ecg-renderer-gallery = "ecg_gpu.gallery:main"
+ecg-renderer-audit = "ecg_gpu.audit:main"
+ecg-renderer-compare = "ecg_gpu.compare:main"
+ecg-renderer-profile = "ecg_gpu.profile:main"
+
+[tool.setuptools.packages.find]
+include = ["ecg_gpu*"]
