@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Read measured CPU results, understand memory costs and choose cost controls."><meta name="theme-color" content="#df5548"><title>Performance · ECG Torch Renderer</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css"><script>try{document.documentElement.dataset.theme=localStorage.getItem('ecg-docs-theme')||'light'}catch{}</script><script src="app.js" defer></script></head>
+<body><a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div>
+<header class="topbar"><button id="menu-button" class="icon-button menu-button" aria-label="Toggle navigation" aria-controls="sidebar" aria-expanded="false">☰</button><a class="brand" href="index.html"><svg viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="10" fill="currentColor"/><path d="M5 19h7l3-9 4 17 3-8h9" fill="none" stroke="white" stroke-width="2.2" stroke-linejoin="round"/></svg><span>ECG<span class="brand-sub">Torch Renderer</span></span></a><span class="version">v0.4.0</span><div class="top-actions"><button id="search-button" class="search-button"><span>Search documentation</span><kbd>⌘ K</kbd></button><a class="github-link" href="https://github.com/fmenegui/ecg-torch-renderer">GitHub ↗</a><button id="theme-button" class="icon-button" aria-label="Switch color theme">◐</button></div></header>
+<div class="docs-shell"><aside id="sidebar" class="sidebar"><nav aria-label="Main documentation"><p class="nav-section">Start here</p><a  href="index.html">Welcome</a><a  href="installation.html">Installation</a><a  href="quickstart.html">Quickstart</a><p class="nav-section">Learn</p><a  href="concepts.html">How rendering works</a><a  href="layouts.html">Layouts &amp; calibration</a><a  href="parameters.html">Configure &amp; randomize</a><a  href="scenes.html">Paper, tables &amp; lighting</a><a  href="camera.html">Capture &amp; print artifacts</a><p class="nav-section">Train</p><a  href="targets.html">Advanced supervision</a><a  href="training.html">Train an image model</a><a  href="reproducibility.html">Reproducibility</a><p class="nav-section">Extend</p><a  href="assets.html">Custom assets &amp; layouts</a><p class="nav-section">Engineer</p><a aria-current="page" href="performance.html">Performance</a><a  href="profiling.html">Detailed profiling</a><a  href="validation.html">Validation &amp; testing</a><a  href="limitations.html">Scope &amp; limitations</a><p class="nav-section">Reference</p><a  href="api.html">API reference</a><a  href="gallery.html">Example gallery</a></nav><div class="sidebar-note">Built for on-device training.<br>Measured results, explicit contracts.</div></aside>
+<main id="main"><article class="document " data-page="performance"><div class="page-eyebrow">Engineer</div><h1>Performance</h1>
+<p>The hot path uses batched Torch operations with no image-file I/O, NumPy rasterization or CPU text drawing. GPU-friendly structure alone is not a measured throughput result. Benchmark your actual GPU and training objective.</p>
+<h2 id="what-is-measured">What is measured<a class="heading-anchor" href="#what-is-measured" aria-label="Link to What is measured">#</a></h2>
+<p>The paired comparison below is <strong>CPU only</strong>, Torch 2.14.1+cpu, two threads, ten timed calls after three warmup calls. It compares the immutable 0.2.1 reference with the optimized image-only raster backend introduced in 0.3.0. It does not measure the new supervision outputs in 0.4.0.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Preset</th>
+<th>B</th>
+<th>0.2.1 ms</th>
+<th>Eager ms</th>
+<th>Compiled ms</th>
+<th>Compiled images/s</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>fast (384×256)</td>
+<td>1</td>
+<td>76.3</td>
+<td>73.8</td>
+<td>71.4</td>
+<td>15.11</td>
+</tr>
+<tr>
+<td>fast (384×256)</td>
+<td>4</td>
+<td>192.6</td>
+<td>191.6</td>
+<td>157.0</td>
+<td>23.82</td>
+</tr>
+<tr>
+<td>balanced (512×384)</td>
+<td>1</td>
+<td>143.6</td>
+<td>140.0</td>
+<td>128.8</td>
+<td>8.69</td>
+</tr>
+<tr>
+<td>balanced (512×384)</td>
+<td>4</td>
+<td>522.7</td>
+<td>617.9</td>
+<td>408.1</td>
+<td>10.28</td>
+</tr>
+<tr>
+<td>full (1024×768)</td>
+<td>1</td>
+<td>638.0</td>
+<td>567.6</td>
+<td>451.0</td>
+<td>2.29</td>
+</tr>
+<tr>
+<td>full (1024×768)</td>
+<td>4</td>
+<td>4862.7</td>
+<td>5237.1</td>
+<td>1788.6</td>
+<td>2.23</td>
+</tr>
+</tbody></table></div>
+<p>All six sampled CPU RGB comparisons had maximum absolute error zero. Compiled median speedup ranged from 1.07× to 2.72× in these cases. The eager backend regressed at balanced batch 4 and full batch 4. No CUDA speedup, clinical performance or real-photograph realism result is implied.</p>
+<p>Download the <a href="PERFORMANCE_CPU.json">raw comparison JSON</a>, or inspect the <a href="https://github.com/fmenegui/ecg-torch-renderer/blob/main/PERFORMANCE.md">performance summary</a>.</p>
+<h2 id="compiled-raster">Compiled raster<a class="heading-anchor" href="#compiled-raster" aria-label="Link to Compiled raster">#</a></h2>
+<pre><code class="language-python">render = ECGImageLayer(
+    config=RenderConfig(height=384, width=512),
+    compile_raster=True,
+).to(device)
+</code></pre>
+<p>This compiles deterministic coverage blocks with <code>torch.compile(fullgraph=True, dynamic=True)</code>. RNG, camera capture and scene assembly remain outside these blocks. The first call includes compilation or cache loading. Warm up separately and preserve the compiled cache between repeated local runs when appropriate.</p>
+<p>Compiled throughput depends on image size, batch shape, driver, Torch build and hardware. Profile the steady-state workload. Compilation can use additional memory. The eager path remains available with <code>compile_raster=False</code>.</p>
+<h2 id="dense-target-memory">Dense target memory<a class="heading-anchor" href="#dense-target-memory" aria-label="Link to Dense target memory">#</a></h2>
+<p>For a float32 mask tensor <code>[B,C,H,W]</code>, storage is <code>4 × B × C × H × W</code> bytes. This is retained tensor storage, not peak memory.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Tensor at B=4, H=768, W=1024</th>
+<th>Approximate storage</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>RGB, 3 channels</td>
+<td>36 MiB</td>
+</tr>
+<tr>
+<td>Validity, 1 channel</td>
+<td>12 MiB</td>
+</tr>
+<tr>
+<td>Lead masks, 12 channels</td>
+<td>144 MiB</td>
+</tr>
+<tr>
+<td>Instance masks, 15 channels</td>
+<td>180 MiB</td>
+</tr>
+<tr>
+<td>One grayscale view, 1 channel</td>
+<td>12 MiB</td>
+</tr>
+</tbody></table></div>
+<p>Camera warping, raster intermediates, the network and optimizer increase the peak. <code>ECGSupervisionLayer</code> omits baseline maps and does not return unrequested views. Boxes-only requests still need internal trace masks. Instance boxes need internal instance coverage, even when that coverage is not returned.</p>
+<h2 id="cost-controls">Cost controls<a class="heading-anchor" href="#cost-controls" aria-label="Link to Cost controls">#</a></h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Control</th>
+<th>Tradeoff</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Resolution</td>
+<td>Smaller batches of pixels reduce raster and network cost</td>
+</tr>
+<tr>
+<td><code>antialias_samples</code></td>
+<td>More subpixel samples improve raster coverage at added work</td>
+</tr>
+<tr>
+<td><code>preserve_extrema</code></td>
+<td>Retains narrow source extrema, adds envelope work</td>
+</tr>
+<tr>
+<td><code>lead_chunk_size</code></td>
+<td>Changes temporary memory and kernel workload</td>
+</tr>
+<tr>
+<td><code>surface_resolution</code></td>
+<td>Changes relief-field resolution</td>
+</tr>
+<tr>
+<td><code>inverse_iterations</code></td>
+<td>Changes fixed inversion work</td>
+</tr>
+<tr>
+<td><code>shadow_samples</code></td>
+<td>Changes sampled shadow work</td>
+</tr>
+<tr>
+<td>Requested supervision outputs</td>
+<td>Changes dense-target storage and work</td>
+</tr>
+<tr>
+<td><code>surface_mode=&#39;off&#39;</code></td>
+<td>Bypasses procedural surface deformation when no external maps are supplied</td>
+</tr>
+</tbody></table></div>
+<p>Start with a modest resolution and the outputs your loss needs. Measure renderer-only latency and the full training step separately. More images per second only helps when the generated distribution and raster resolution remain useful for the task.</p>
+<nav class="pagination" aria-label="Documentation pages"><a href="assets.html"><small>Previous</small>Custom assets &amp; layouts</a><a href="profiling.html"><small>Next</small>Detailed profiling <span aria-hidden="true">→</span></a></nav><footer>ECG Torch Renderer · MIT · <a href="https://github.com/fmenegui/ecg-torch-renderer/blob/main/documentation/pages/performance.md">Edit this page ↗</a><span>v0.4.0</span></footer></article></main>
+<aside class="toc" aria-label="On this page"><p>On this page</p><a href="#what-is-measured">What is measured</a><a href="#compiled-raster">Compiled raster</a><a href="#dense-target-memory">Dense target memory</a><a href="#cost-controls">Cost controls</a><a class="toc-top" href="#main">Back to top ↑</a></aside></div>
+<dialog id="search-dialog" class="search-dialog"><div class="dialog-top"><label for="search-input">Search the guide</label><button class="icon-button" data-close-dialog="search-dialog" aria-label="Close search">×</button></div><input id="search-input" type="search" placeholder="Masks, layouts, profiling…" autocomplete="off"><p id="search-status" class="search-status" aria-live="polite">Type to search all pages.</p><div id="search-results"></div></dialog>
+<dialog id="figure-dialog" class="figure-dialog"><div class="dialog-top"><h2 id="figure-title">Example</h2><button class="icon-button" data-close-dialog="figure-dialog" aria-label="Close figure">×</button></div><img id="figure-image" alt=""><p id="figure-description"></p><div class="recipe-top"><strong>Rendering recipe</strong><button id="copy-recipe" class="button secondary">Copy JSON</button></div><pre id="figure-recipe"></pre><a id="figure-download" href="gallery.json">Open full image ↗</a></dialog>
+<p id="copy-status" class="sr-only" aria-live="polite"></p></body></html>

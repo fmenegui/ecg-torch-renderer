@@ -1,0 +1,893 @@
+{
+  "version": "0.4.0",
+  "render_config": {
+    "height": 768,
+    "width": 1024,
+    "profile": "mixed",
+    "severity": 0.6,
+    "antialias_samples": 4,
+    "lead_chunk_size": 3,
+    "max_duration_s": 10.0,
+    "jpeg_probability": 0.65,
+    "preserve_extrema": true,
+    "validate_inputs": true,
+    "surface_mode": "mixed",
+    "surface_resolution": 96,
+    "inverse_iterations": 5,
+    "shadow_samples": 8
+  },
+  "supervision_config": {
+    "outputs": [
+      "lead_masks"
+    ],
+    "leads": [
+      "I",
+      "II",
+      "III",
+      "aVR",
+      "aVL",
+      "aVF",
+      "V1",
+      "V2",
+      "V3",
+      "V4",
+      "V5",
+      "V6"
+    ],
+    "binary": false,
+    "threshold": 0.05,
+    "visible_only": true
+  },
+  "parameter_shapes": {
+    "layout": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.int64"
+    },
+    "speed_index": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.int64"
+    },
+    "gain_index": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.int64"
+    },
+    "font": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.int64"
+    },
+    "palette": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.int64"
+    },
+    "sequential": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.bool"
+    },
+    "quarter": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.int64"
+    },
+    "photo": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "line_width": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "grid_width": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "grid_strength": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "minor_strength": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "grid_style": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.int64"
+    },
+    "grid_present": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "grid_phase_x": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "grid_phase_y": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "header_present": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "label_present": {
+      "shape": [
+        "B",
+        15
+      ],
+      "dtype": "torch.float32"
+    },
+    "lead_present": {
+      "shape": [
+        "B",
+        15
+      ],
+      "dtype": "torch.float32"
+    },
+    "pulse_present": {
+      "shape": [
+        "B",
+        15
+      ],
+      "dtype": "torch.float32"
+    },
+    "label_below": {
+      "shape": [
+        "B",
+        15
+      ],
+      "dtype": "torch.bool"
+    },
+    "rhythm_leads": {
+      "shape": [
+        "B",
+        3
+      ],
+      "dtype": "torch.int64"
+    },
+    "font_size": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "paper_tint": {
+      "shape": [
+        "B",
+        3
+      ],
+      "dtype": "torch.float32"
+    },
+    "paper_age": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "paper_noise": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "ink_density": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "ink_color": {
+      "shape": [
+        "B",
+        3
+      ],
+      "dtype": "torch.float32"
+    },
+    "thermal_fade": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "fade_position": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "fade_width": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "band_strength": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "band_frequency": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "stain_x": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "stain_y": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "stain_strength": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "coffee_strength": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "coffee_radius": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "bleed_strength": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "angle": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "zoom": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "translate_x": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "translate_y": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "perspective_x": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "perspective_y": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "radial": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "curl_x": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "curl_y": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "curl_phase": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "crease_position": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "crease_cos": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "crease_sin": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "crease_warp": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "crease_strength": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "exposure": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "light_x": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "light_y": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "vignette": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "shadow_cos": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "shadow_sin": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "shadow_position": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "shadow_strength": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "white_balance": {
+      "shape": [
+        "B",
+        3
+      ],
+      "dtype": "torch.float32"
+    },
+    "blur": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "motion": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "motion_angle": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "sensor_active": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "read_noise": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "shot_noise": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "gamma": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "jpeg_quality": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "jpeg_active": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "occlusion_active": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "occlusion_x": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "occlusion_y": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "occlusion_w": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "occlusion_h": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "occlusion_color": {
+      "shape": [
+        "B",
+        3
+      ],
+      "dtype": "torch.float32"
+    },
+    "pen_active": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "pen_x": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "pen_y": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "pen_phase": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "artifact_font": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.int64"
+    },
+    "artifact_text": {
+      "shape": [
+        "B",
+        4
+      ],
+      "dtype": "torch.int64"
+    },
+    "artifact_present": {
+      "shape": [
+        "B",
+        4
+      ],
+      "dtype": "torch.float32"
+    },
+    "artifact_x": {
+      "shape": [
+        "B",
+        4
+      ],
+      "dtype": "torch.float32"
+    },
+    "artifact_y": {
+      "shape": [
+        "B",
+        4
+      ],
+      "dtype": "torch.float32"
+    },
+    "artifact_size": {
+      "shape": [
+        "B",
+        4
+      ],
+      "dtype": "torch.float32"
+    },
+    "artifact_angle": {
+      "shape": [
+        "B",
+        4
+      ],
+      "dtype": "torch.float32"
+    },
+    "artifact_color": {
+      "shape": [
+        "B",
+        3
+      ],
+      "dtype": "torch.float32"
+    },
+    "surface_mode": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.int64"
+    },
+    "surface_strength": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "surface_axis": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "surface_phase": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "surface_frequency": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "relief_view": {
+      "shape": [
+        "B",
+        2
+      ],
+      "dtype": "torch.float32"
+    },
+    "fold_angle": {
+      "shape": [
+        "B",
+        8
+      ],
+      "dtype": "torch.float32"
+    },
+    "fold_position": {
+      "shape": [
+        "B",
+        8
+      ],
+      "dtype": "torch.float32"
+    },
+    "fold_amplitude": {
+      "shape": [
+        "B",
+        8
+      ],
+      "dtype": "torch.float32"
+    },
+    "fold_width": {
+      "shape": [
+        "B",
+        8
+      ],
+      "dtype": "torch.float32"
+    },
+    "corner_position": {
+      "shape": [
+        "B",
+        2
+      ],
+      "dtype": "torch.float32"
+    },
+    "corner_size": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "paper_palette": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.int64"
+    },
+    "paper_color": {
+      "shape": [
+        "B",
+        3
+      ],
+      "dtype": "torch.float32"
+    },
+    "background_type": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.int64"
+    },
+    "background_angle": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "background_scale": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "background_tint": {
+      "shape": [
+        "B",
+        3
+      ],
+      "dtype": "torch.float32"
+    },
+    "light_direction": {
+      "shape": [
+        "B",
+        3,
+        3
+      ],
+      "dtype": "torch.float32"
+    },
+    "light_color": {
+      "shape": [
+        "B",
+        3,
+        3
+      ],
+      "dtype": "torch.float32"
+    },
+    "light_energy": {
+      "shape": [
+        "B",
+        3
+      ],
+      "dtype": "torch.float32"
+    },
+    "ambient_light": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "specular_strength": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "roughness": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "flash_strength": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "flash_position": {
+      "shape": [
+        "B",
+        2
+      ],
+      "dtype": "torch.float32"
+    },
+    "ambient_occlusion": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "cast_shadow_strength": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "cast_shadow_softness": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "object_shadow": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.int64"
+    },
+    "object_shadow_strength": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "object_shadow_position": {
+      "shape": [
+        "B",
+        2
+      ],
+      "dtype": "torch.float32"
+    },
+    "object_shadow_angle": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "object_shadow_size": {
+      "shape": [
+        "B",
+        2
+      ],
+      "dtype": "torch.float32"
+    },
+    "object_shadow_softness": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "tear_active": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "tear_side": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.int64"
+    },
+    "tear_position": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "tear_size": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "asset_active": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "asset_index": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.int64"
+    }
+  },
+  "source_sha256": {
+    "__init__.py": "da0de6202a701035925c484c78942b8f4b6224545776e6443801644bd6012d81",
+    "audit.py": "fe11b61a8b52d7582363e4b6041d190e0d858038e752e8bde3de2d0a069ebf7f",
+    "benchmark.py": "efbe9785260751f524df16613d47f9119cd44cf471d5d031de958672461c843d",
+    "compare.py": "14816cb9e5ffb5521fb5409edc942df0c3ccb966c6cda7cb8dc49ce9e7c7cab1",
+    "demo.py": "efb4040cebba58ee5442c79570c2068928255d7a7e00deba7776d988559e73d9",
+    "gallery.py": "805bff0d042c60b3d9ac9bf1e3e2ea7dcae688d19a2fd6d0880c48655a9531c4",
+    "gpu_appearance.py": "b85382d8be5b307155e38e1c05b2e33bf5a1cfb929cc71695faf0093adbc92c0",
+    "gpu_cli.py": "9a938545283f00bd8ded7ebc71cc14041ac38538ad4d1019fca61f69ba0603fe",
+    "gpu_document.py": "85a632457df38a40f12cd79aaebaf871a92668e7ee55db6e853298982854f060",
+    "gpu_layouts.py": "68909bacee35ad8e8cf69a4b882927bbbd7c1af2f6b091312af8ebbeccf42d0b",
+    "gpu_module.py": "f0d8436e82b960dd811a0d5f9219a110c0c0e815eef4f49549f65e8198c73f6a",
+    "gpu_parameters.py": "195ebe0edec2fdf577bec36ba628d9242ae56c0be56bb3ac7be81dfee2c1eb17",
+    "gpu_profiling.py": "f6ca5f99c398ee7a68dc7265c0f46aa63344f04a86e516dc86be48661ee85fa6",
+    "gpu_raster.py": "321c9492b2e72fbe96741901203316ce48cf7c95c3a3da704d3c68bf48753db3",
+    "gpu_renderer.py": "3cf512704a6ec0b0a4b7e36223d937b06bd83080005716e24e4fa6a8cbaf96d2",
+    "gpu_supervision.py": "5f127cd49659962547a0030482bf36d27c545c4cc40e5a718f7059974b9e535a",
+    "models_v05.py": "b60aae5d2e583558195f067702e9759f404411025772d00c78a4d50cd0e233e2",
+    "profile.py": "2fa74d21bcdfcca044ebea74a0a7e66307a0d4367f651e225c9208c7bc290f8f",
+    "schema_v05.py": "8710d69398b35673b19f6129feb75a919eab485b7b6111cf024444234ab52c37"
+  },
+  "signatures": {
+    "ECGImageLayer": "(fs=500.0, *, config=None, parameters=None, seed=1973, randomize=True, renderer=None, **renderer_options)",
+    "ECGImageLayer.forward": "(self, signals, fs=None, *, lengths=None, parameters=None, generator=None)",
+    "ECGImageLayer.render_batch": "(self, signals, fs=None, *, lengths=None, parameters=None, generator=None, stage='all', photo=True, **options)",
+    "ECGSupervisionLayer": "(fs=500.0, *, supervision=None, photo=True, **options)",
+    "ECGSupervisionLayer.forward": "(self, signals, fs=None, *, lengths=None, parameters=None, generator=None)",
+    "ECGSupervisionLayer.supervise": "(self, rendered)",
+    "ECGRenderer": "(config=None, *, fonts=None, paper_textures=None, backgrounds=None, layouts=None, document_assets=None, artifact_texts=('COPY', 'TEST ECG', 'CHECK', 'ARCHIVE', 'SAMPLE'), compile_raster=False)",
+    "ECGRenderer.forward": "(self, signals, fs, *, lengths=None, stage='all', photo=True, generator=None, parameters: Optional[Mapping] = None, severity=None, return_field=False, return_canonical=False, return_scene=False, return_instances=False, return_baselines=True, return_instance_boxes=True)",
+    "profile_layer": "(layer, signals, out, *, steps=20, warmup=5, profile_steps=3, with_stack=False, memory_timeline=False, workload=None, workload_name='ECGImageLayer.forward')"
+  }
+}

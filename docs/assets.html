@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Add authorized textures, fonts, layouts and externally rendered 3D maps."><meta name="theme-color" content="#df5548"><title>Custom assets &amp; layouts · ECG Torch Renderer</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css"><script>try{document.documentElement.dataset.theme=localStorage.getItem('ecg-docs-theme')||'light'}catch{}</script><script src="app.js" defer></script></head>
+<body><a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div>
+<header class="topbar"><button id="menu-button" class="icon-button menu-button" aria-label="Toggle navigation" aria-controls="sidebar" aria-expanded="false">☰</button><a class="brand" href="index.html"><svg viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="10" fill="currentColor"/><path d="M5 19h7l3-9 4 17 3-8h9" fill="none" stroke="white" stroke-width="2.2" stroke-linejoin="round"/></svg><span>ECG<span class="brand-sub">Torch Renderer</span></span></a><span class="version">v0.4.0</span><div class="top-actions"><button id="search-button" class="search-button"><span>Search documentation</span><kbd>⌘ K</kbd></button><a class="github-link" href="https://github.com/fmenegui/ecg-torch-renderer">GitHub ↗</a><button id="theme-button" class="icon-button" aria-label="Switch color theme">◐</button></div></header>
+<div class="docs-shell"><aside id="sidebar" class="sidebar"><nav aria-label="Main documentation"><p class="nav-section">Start here</p><a  href="index.html">Welcome</a><a  href="installation.html">Installation</a><a  href="quickstart.html">Quickstart</a><p class="nav-section">Learn</p><a  href="concepts.html">How rendering works</a><a  href="layouts.html">Layouts &amp; calibration</a><a  href="parameters.html">Configure &amp; randomize</a><a  href="scenes.html">Paper, tables &amp; lighting</a><a  href="camera.html">Capture &amp; print artifacts</a><p class="nav-section">Train</p><a  href="targets.html">Advanced supervision</a><a  href="training.html">Train an image model</a><a  href="reproducibility.html">Reproducibility</a><p class="nav-section">Extend</p><a aria-current="page" href="assets.html">Custom assets &amp; layouts</a><p class="nav-section">Engineer</p><a  href="performance.html">Performance</a><a  href="profiling.html">Detailed profiling</a><a  href="validation.html">Validation &amp; testing</a><a  href="limitations.html">Scope &amp; limitations</a><p class="nav-section">Reference</p><a  href="api.html">API reference</a><a  href="gallery.html">Example gallery</a></nav><div class="sidebar-note">Built for on-device training.<br>Measured results, explicit contracts.</div></aside>
+<main id="main"><article class="document " data-page="assets"><div class="page-eyebrow">Extend</div><h1>Custom assets &amp; layouts</h1>
+<p>Extend the generator at construction time. Banks are registered as module buffers, hashed for provenance, then used on-device during rendering.</p>
+<h2 id="custom-layout">Custom layout<a class="heading-anchor" href="#custom-layout" aria-label="Link to Custom layout">#</a></h2>
+<pre><code class="language-python">from ecg_gpu import ECGRenderer, LayoutSpec, RenderConfig
+
+layout = LayoutSpec(
+    name=&quot;focused&quot;,
+    rows=((&quot;I&quot;, &quot;II&quot;, &quot;III&quot;), (&quot;V1&quot;, &quot;V2&quot;), (&quot;V3&quot;, &quot;V4&quot;, &quot;V5&quot;, &quot;V6&quot;)),
+    rhythm=(&quot;II&quot;, &quot;V1&quot;),
+)
+renderer = ECGRenderer(RenderConfig(), layouts=[layout])
+</code></pre>
+<p>Rows can have different column counts. Short rows require unique standard leads. Rhythm strips can repeat leads, up to three strips. <code>-aVR</code> prints inverted aVR with canonical identity metadata.</p>
+<h2 id="photo-and-texture-banks">Photo and texture banks<a class="heading-anchor" href="#photo-and-texture-banks" aria-label="Link to Photo and texture banks">#</a></h2>
+<pre><code class="language-python"># Supply authorized RGB textures with values in [0,1].
+paper_bank = torch.rand(4, 3, 128, 128)
+table_bank = torch.rand(4, 3, 128, 128)
+renderer = ECGRenderer(
+    paper_textures=paper_bank,
+    backgrounds=table_bank,
+)
+</code></pre>
+<p>These random tensors only illustrate the bank format. In an experiment, use authorized texture images without patient information. Load and resize the bank before training. Large banks consume device memory after <code>.to(device)</code>.</p>
+<h2 id="fonts-and-annotations">Fonts and annotations<a class="heading-anchor" href="#fonts-and-annotations" aria-label="Link to Fonts and annotations">#</a></h2>
+<pre><code class="language-python">renderer = ECGRenderer(
+    fonts=[&quot;/path/to/authorized-font.ttf&quot;],
+    artifact_texts=(&quot;COPY&quot;, &quot;ARCHIVE&quot;, &quot;TEST ECG&quot;),
+)
+</code></pre>
+<p>Glyph rasterization happens once during construction with Pillow. The generated atlas becomes a device buffer. Default annotations are printed text and procedural scribbles. Handwriting styles require a suitable supplied font or a richer custom augmentation.</p>
+<h2 id="externally-rendered-document-geometry">Externally rendered document geometry<a class="heading-anchor" href="#externally-rendered-document-geometry" aria-label="Link to Externally rendered document geometry">#</a></h2>
+<p>For fully 3D paper, self-overlap or offline path-traced shading, provide a bank of camera-consistent inverse maps. Every map must describe the same camera and paper coordinates.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Asset</th>
+<th>Shape</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>inverse_field</code></td>
+<td><code>[K,H,W,2]</code></td>
+<td>Output pixel → paper UV, normalized for <code>align_corners=False</code></td>
+</tr>
+<tr>
+<td><code>mask</code></td>
+<td><code>[K,1,H,W]</code></td>
+<td>Visible paper support in <code>[0,1]</code></td>
+</tr>
+<tr>
+<td><code>normals</code></td>
+<td><code>[K,3,H,W]</code></td>
+<td>Camera-frame normal vectors</td>
+</tr>
+<tr>
+<td><code>height</code></td>
+<td><code>[K,1,H,W]</code></td>
+<td>Nonnegative relief in half-page-width units</td>
+</tr>
+<tr>
+<td><code>shading</code></td>
+<td><code>[K,1,H,W]</code></td>
+<td>Optional nonnegative illumination multiplier</td>
+</tr>
+</tbody></table></div>
+<pre><code class="language-python">from ecg_gpu import DocumentAssets
+
+assets = DocumentAssets.from_npz(&quot;authorized-paper-maps.npz&quot;)
+renderer = ECGRenderer(document_assets=assets)
+</code></pre>
+<p>The NPZ requires <code>schema=&quot;ecg-document-assets-v1&quot;</code>. Generate UV and visibility offline with your own geometry tool, then package them together. The library resamples their maps on-device. It does not run Blender, simulate cloth or generate a 3D mesh bank for you.</p>
+<p>Normals must be nonzero on visible paper and are normalized at construction. Shapes, finite values, visibility range and nonnegative height/shading are validated. Do not include document text or patient information in these assets.</p>
+<nav class="pagination" aria-label="Documentation pages"><a href="reproducibility.html"><small>Previous</small>Reproducibility</a><a href="performance.html"><small>Next</small>Performance <span aria-hidden="true">→</span></a></nav><footer>ECG Torch Renderer · MIT · <a href="https://github.com/fmenegui/ecg-torch-renderer/blob/main/documentation/pages/assets.md">Edit this page ↗</a><span>v0.4.0</span></footer></article></main>
+<aside class="toc" aria-label="On this page"><p>On this page</p><a href="#custom-layout">Custom layout</a><a href="#photo-and-texture-banks">Photo and texture banks</a><a href="#fonts-and-annotations">Fonts and annotations</a><a href="#externally-rendered-document-geometry">Externally rendered document geometry</a><a class="toc-top" href="#main">Back to top ↑</a></aside></div>
+<dialog id="search-dialog" class="search-dialog"><div class="dialog-top"><label for="search-input">Search the guide</label><button class="icon-button" data-close-dialog="search-dialog" aria-label="Close search">×</button></div><input id="search-input" type="search" placeholder="Masks, layouts, profiling…" autocomplete="off"><p id="search-status" class="search-status" aria-live="polite">Type to search all pages.</p><div id="search-results"></div></dialog>
+<dialog id="figure-dialog" class="figure-dialog"><div class="dialog-top"><h2 id="figure-title">Example</h2><button class="icon-button" data-close-dialog="figure-dialog" aria-label="Close figure">×</button></div><img id="figure-image" alt=""><p id="figure-description"></p><div class="recipe-top"><strong>Rendering recipe</strong><button id="copy-recipe" class="button secondary">Copy JSON</button></div><pre id="figure-recipe"></pre><a id="figure-download" href="gallery.json">Open full image ↗</a></dialog>
+<p id="copy-status" class="sr-only" aria-live="polite"></p></body></html>

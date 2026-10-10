@@ -1,26 +1,34 @@
 {
   "schema": "ecg-replot-gpu-renderer-verification-v2",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "status": "cpu_verified_cuda_not_executed",
   "source_sha256": {
+    "__init__.py": "da0de6202a701035925c484c78942b8f4b6224545776e6443801644bd6012d81",
+    "audit.py": "fe11b61a8b52d7582363e4b6041d190e0d858038e752e8bde3de2d0a069ebf7f",
+    "benchmark.py": "efbe9785260751f524df16613d47f9119cd44cf471d5d031de958672461c843d",
+    "compare.py": "14816cb9e5ffb5521fb5409edc942df0c3ccb966c6cda7cb8dc49ce9e7c7cab1",
+    "demo.py": "efb4040cebba58ee5442c79570c2068928255d7a7e00deba7776d988559e73d9",
+    "gallery.py": "805bff0d042c60b3d9ac9bf1e3e2ea7dcae688d19a2fd6d0880c48655a9531c4",
     "gpu_appearance.py": "b85382d8be5b307155e38e1c05b2e33bf5a1cfb929cc71695faf0093adbc92c0",
-    "gpu_cli.py": "fdd3d353fb05e46ee096883e30bbd15d8532d61d4eaa8a1a33fab493c1d4b86e",
+    "gpu_cli.py": "9a938545283f00bd8ded7ebc71cc14041ac38538ad4d1019fca61f69ba0603fe",
     "gpu_document.py": "85a632457df38a40f12cd79aaebaf871a92668e7ee55db6e853298982854f060",
     "gpu_layouts.py": "68909bacee35ad8e8cf69a4b882927bbbd7c1af2f6b091312af8ebbeccf42d0b",
     "gpu_module.py": "f0d8436e82b960dd811a0d5f9219a110c0c0e815eef4f49549f65e8198c73f6a",
     "gpu_parameters.py": "195ebe0edec2fdf577bec36ba628d9242ae56c0be56bb3ac7be81dfee2c1eb17",
-    "gpu_profiling.py": "de71fbaa28d32b57b820a33960aef988f6111a37dcf789fafee6f0ff6609c58a",
+    "gpu_profiling.py": "f6ca5f99c398ee7a68dc7265c0f46aa63344f04a86e516dc86be48661ee85fa6",
     "gpu_raster.py": "321c9492b2e72fbe96741901203316ce48cf7c95c3a3da704d3c68bf48753db3",
-    "gpu_renderer.py": "5bb6266c7cb7399b2644ad05cc9a1dcc661268c5d342508bba50e4a13bb307ee",
-    "schema_v05.py": "8710d69398b35673b19f6129feb75a919eab485b7b6111cf024444234ab52c37",
-    "models_v05.py": "b60aae5d2e583558195f067702e9759f404411025772d00c78a4d50cd0e233e2"
+    "gpu_renderer.py": "3cf512704a6ec0b0a4b7e36223d937b06bd83080005716e24e4fa6a8cbaf96d2",
+    "gpu_supervision.py": "5f127cd49659962547a0030482bf36d27c545c4cc40e5a718f7059974b9e535a",
+    "models_v05.py": "b60aae5d2e583558195f067702e9759f404411025772d00c78a4d50cd0e233e2",
+    "profile.py": "2fa74d21bcdfcca044ebea74a0a7e66307a0d4367f651e225c9208c7bc290f8f",
+    "schema_v05.py": "8710d69398b35673b19f6129feb75a919eab485b7b6111cf024444234ab52c37"
   },
   "software_tests": {
-    "python_total": 73,
-    "python_passed": 72,
+    "python_total": 84,
+    "python_passed": 82,
     "python_failed": 0,
-    "cuda_test_skipped": 1,
-    "elapsed_seconds": 31.474,
+    "cuda_test_skipped": 2,
+    "elapsed_seconds": 35.939,
     "command": "PYTHONPATH=<torch-runtime>:. python -m unittest discover -s tests -p 'test_*.py' -v"
   },
   "on_the_fly_amp_train_step": {
@@ -43,23 +51,22 @@
   },
   "standalone_package": {
     "status": "passed",
-    "version": "0.3.0",
-    "tests_total": 43,
-    "tests_passed": 42,
+    "version": "0.4.0",
+    "tests_total": 54,
+    "tests_passed": 52,
     "tests_failed": 0,
-    "cuda_test_skipped": 1,
-    "elapsed_seconds": 15.291,
+    "cuda_test_skipped": 2,
+    "elapsed_seconds": 17.076,
     "outside_project": true,
     "project_training_namespace_visible": false,
+    "console_entrypoint": "ecg-render --help",
+    "device": "cpu",
+    "wfdb_reader": "simulated reader with per-channel units, no real WFDB record",
     "wheel_built_offline_without_dependencies": true,
     "wheel_installed_in_isolated_target": true,
     "console_entrypoint_executed": true,
-    "console_entrypoint": "ecg-renderer-profile",
-    "profiling_compiled_train_step_completed": true,
     "source_matches_installed_wheel": true,
-    "device": "cpu",
-    "wheel_sha256": "f87ada5d31879359a03228ff5bfdf3c518a0e8b5bc200fe4bb28cda848fe308b",
-    "wfdb_reader": "simulated reader with per-channel units, no real WFDB record"
+    "wheel_sha256": "5f3066fb5b97bf9f49a450cd0f06f7f5d203894031b75c282e3e1bc7c160fffc"
   },
   "performance_audit": {
     "path": "GPU_RASTER_COMPARISON.json",
@@ -186,9 +193,9 @@
     "compile_raster": true
   },
   "example_gallery": {
-    "images": 6,
-    "path": "ecg-gpu-examples-v021.zip",
-    "generated_this_audit": true,
+    "figures": 125,
+    "path": "docs/gallery.json",
+    "source": "artificial waveforms",
     "real_patient_records": 0
   },
   "changes": [
@@ -202,7 +209,7 @@
   "realism_comparison_executed": false,
   "cuda_training_executed": false,
   "gpu_performance_estimated_only": true,
-  "created_at": "2026-10-10T19:21:11.129203+00:00",
+  "created_at": "2026-10-10T20:53:41.628159+00:00",
   "detailed_profiling": {
     "status": "passed",
     "device": "cpu",
@@ -230,5 +237,36 @@
     "executed_in_colab": false,
     "gpu_runtime_measured": false,
     "named_example_parameters_rendered_cpu": 3
+  },
+  "release_version": "0.4.0",
+  "historical_raster_validation_version": "0.3.0",
+  "release_validation": {
+    "portable_tests": "54 total, 52 passed, 2 CUDA skipped",
+    "portable_elapsed_seconds": 17.076,
+    "full_tests": "84 total, 82 passed, 2 CUDA skipped",
+    "full_elapsed_seconds": 35.939,
+    "unet_cpu_compiled_steps": 3,
+    "unet_output_shape": [
+      2,
+      12,
+      128,
+      192
+    ],
+    "unet_finite_loss": true,
+    "unet_weights_changed": true,
+    "supervision_cli_exports_verified": true,
+    "one_observation_targets_verified": true,
+    "real_patient_records": 0,
+    "cuda_executed": false,
+    "detailed_supervision_profiling": "passed, CPU, compiled raster, shapes/config exported",
+    "documentation": {
+      "pages": 18,
+      "figures": 125,
+      "local_links": 1060,
+      "python_snippets": 30,
+      "hashes_verified": true,
+      "browser_visual_qa": false
+    },
+    "historical_measurements": "Image-only raster benchmark and full trainer resume record were executed on 0.3.0, before the additional supervision API. They are retained as historical evidence."
   }
 }

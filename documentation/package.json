@@ -1,0 +1,7 @@
+{
+  "name": "ecg-torch-renderer-docs",
+  "private": true,
+  "type": "module",
+  "scripts": {"build": "python build.py"},
+  "devDependencies": {"marked": "17.0.5"}
+}

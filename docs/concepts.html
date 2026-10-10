@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Understand units, recording windows, paper geometry and aligned supervision."><meta name="theme-color" content="#df5548"><title>How rendering works · ECG Torch Renderer</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css"><script>try{document.documentElement.dataset.theme=localStorage.getItem('ecg-docs-theme')||'light'}catch{}</script><script src="app.js" defer></script></head>
+<body><a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div>
+<header class="topbar"><button id="menu-button" class="icon-button menu-button" aria-label="Toggle navigation" aria-controls="sidebar" aria-expanded="false">☰</button><a class="brand" href="index.html"><svg viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="10" fill="currentColor"/><path d="M5 19h7l3-9 4 17 3-8h9" fill="none" stroke="white" stroke-width="2.2" stroke-linejoin="round"/></svg><span>ECG<span class="brand-sub">Torch Renderer</span></span></a><span class="version">v0.4.0</span><div class="top-actions"><button id="search-button" class="search-button"><span>Search documentation</span><kbd>⌘ K</kbd></button><a class="github-link" href="https://github.com/fmenegui/ecg-torch-renderer">GitHub ↗</a><button id="theme-button" class="icon-button" aria-label="Switch color theme">◐</button></div></header>
+<div class="docs-shell"><aside id="sidebar" class="sidebar"><nav aria-label="Main documentation"><p class="nav-section">Start here</p><a  href="index.html">Welcome</a><a  href="installation.html">Installation</a><a  href="quickstart.html">Quickstart</a><p class="nav-section">Learn</p><a aria-current="page" href="concepts.html">How rendering works</a><a  href="layouts.html">Layouts &amp; calibration</a><a  href="parameters.html">Configure &amp; randomize</a><a  href="scenes.html">Paper, tables &amp; lighting</a><a  href="camera.html">Capture &amp; print artifacts</a><p class="nav-section">Train</p><a  href="targets.html">Advanced supervision</a><a  href="training.html">Train an image model</a><a  href="reproducibility.html">Reproducibility</a><p class="nav-section">Extend</p><a  href="assets.html">Custom assets &amp; layouts</a><p class="nav-section">Engineer</p><a  href="performance.html">Performance</a><a  href="profiling.html">Detailed profiling</a><a  href="validation.html">Validation &amp; testing</a><a  href="limitations.html">Scope &amp; limitations</a><p class="nav-section">Reference</p><a  href="api.html">API reference</a><a  href="gallery.html">Example gallery</a></nav><div class="sidebar-note">Built for on-device training.<br>Measured results, explicit contracts.</div></aside>
+<main id="main"><article class="document " data-page="concepts"><div class="page-eyebrow">Learn</div><h1>How rendering works</h1>
+<p>A waveform remains a waveform throughout rendering. The library changes how it is printed and photographed, and provides the mapping needed to supervise the resulting image.</p>
+<h2 id="input-contract">Input contract<a class="heading-anchor" href="#input-contract" aria-label="Link to Input contract">#</a></h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Quantity</th>
+<th>Contract</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Signals</td>
+<td>Floating tensor <code>[B,12,T]</code>, in mV</td>
+</tr>
+<tr>
+<td>Lead order</td>
+<td><code>I, II, III, aVR, aVL, aVF, V1, V2, V3, V4, V5, V6</code></td>
+</tr>
+<tr>
+<td>Sample rate</td>
+<td>Positive scalar or <code>[B]</code> rates, in Hz</td>
+</tr>
+<tr>
+<td>Padded lengths</td>
+<td>Optional <code>[B]</code> valid source lengths, each ≥2</td>
+</tr>
+<tr>
+<td>RGB</td>
+<td>Float32 <code>[B,3,H,W]</code>, values in <code>[0,1]</code></td>
+</tr>
+<tr>
+<td>Device</td>
+<td>Signals and module on the same device</td>
+</tr>
+</tbody></table></div>
+<p>The default maximum printed duration is 10 seconds. Duration uses <code>(length-1)/fs</code>, then is capped by <code>max_duration_s</code>. Rendering does not create physiological variation or infer absent samples.</p>
+<h2 id="signal-to-physical-paper">Signal to physical paper<a class="heading-anchor" href="#signal-to-physical-paper" aria-label="Link to Signal to physical paper">#</a></h2>
+<p>The page uses one pixels/mm scale for both axes. Paper speed turns time into horizontal distance. Gain turns mV into vertical distance. Calibration pulses share that scale. Changing resolution changes pixel density, while keeping the physical relationship consistent.</p>
+<p>Trace coverage combines bounded subpixel line segments with an envelope of every valid source sample. The envelope helps preserve narrow extrema when many source samples fall into a single image column. It is a rasterization guarantee, not a guarantee that a blurred photograph is invertible.</p>
+<h2 id="paper-to-observed-image">Paper to observed image<a class="heading-anchor" href="#paper-to-observed-image" aria-label="Link to Paper to observed image">#</a></h2>
+<p>The canonical page combines texture, grid, traces, pulses and text. A sampling field maps each observed pixel back to paper coordinates. Perspective, lens distortion and the paper surface affect this field. The same field resamples the dense targets.</p>
+<figure class="doc-figure"><img src="assets/gallery/target-canonical.jpg" alt="Canonical paper before capture"></figure>
+<figure class="doc-figure"><img src="assets/gallery/target-rgb.jpg" alt="The captured crumpled-paper observation"></figure>
+<h2 id="image-space-targets">Image-space targets<a class="heading-anchor" href="#image-space-targets" aria-label="Link to Image-space targets">#</a></h2>
+<p>Targets describe geometric trace coverage in the observed image. Noise, JPEG artifacts, defocus and motion blur affect RGB. They do not corrupt the reference masks. Visibility removes explicitly hidden pixels when requested.</p>
+<p>The source signal is retained as <code>RenderBatch.reference</code>. It contains the full input, including portions that may not be printed or visible. For waveform recovery, construct a loss over the appropriate observed time windows. Do not treat every source sample as recoverable from every layout.</p>
+<h2 id="gradients">Gradients<a class="heading-anchor" href="#gradients" aria-label="Link to Gradients">#</a></h2>
+<p>Rendering runs under <code>torch.no_grad()</code>. Gradients train the image model. They do not flow from an image loss back to the source signal or to rendering parameters. This is a data transformation module, not an inverse solver.</p>
+<nav class="pagination" aria-label="Documentation pages"><a href="quickstart.html"><small>Previous</small>Quickstart</a><a href="layouts.html"><small>Next</small>Layouts &amp; calibration <span aria-hidden="true">→</span></a></nav><footer>ECG Torch Renderer · MIT · <a href="https://github.com/fmenegui/ecg-torch-renderer/blob/main/documentation/pages/concepts.md">Edit this page ↗</a><span>v0.4.0</span></footer></article></main>
+<aside class="toc" aria-label="On this page"><p>On this page</p><a href="#input-contract">Input contract</a><a href="#signal-to-physical-paper">Signal to physical paper</a><a href="#paper-to-observed-image">Paper to observed image</a><a href="#image-space-targets">Image-space targets</a><a href="#gradients">Gradients</a><a class="toc-top" href="#main">Back to top ↑</a></aside></div>
+<dialog id="search-dialog" class="search-dialog"><div class="dialog-top"><label for="search-input">Search the guide</label><button class="icon-button" data-close-dialog="search-dialog" aria-label="Close search">×</button></div><input id="search-input" type="search" placeholder="Masks, layouts, profiling…" autocomplete="off"><p id="search-status" class="search-status" aria-live="polite">Type to search all pages.</p><div id="search-results"></div></dialog>
+<dialog id="figure-dialog" class="figure-dialog"><div class="dialog-top"><h2 id="figure-title">Example</h2><button class="icon-button" data-close-dialog="figure-dialog" aria-label="Close figure">×</button></div><img id="figure-image" alt=""><p id="figure-description"></p><div class="recipe-top"><strong>Rendering recipe</strong><button id="copy-recipe" class="button secondary">Copy JSON</button></div><pre id="figure-recipe"></pre><a id="figure-download" href="gallery.json">Open full image ↗</a></dialog>
+<p id="copy-status" class="sr-only" aria-live="polite"></p></body></html>

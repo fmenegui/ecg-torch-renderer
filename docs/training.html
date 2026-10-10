@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Integrate rendering into classification, U-Net and distributed training loops."><meta name="theme-color" content="#df5548"><title>Train an image model · ECG Torch Renderer</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css"><script>try{document.documentElement.dataset.theme=localStorage.getItem('ecg-docs-theme')||'light'}catch{}</script><script src="app.js" defer></script></head>
+<body><a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div>
+<header class="topbar"><button id="menu-button" class="icon-button menu-button" aria-label="Toggle navigation" aria-controls="sidebar" aria-expanded="false">☰</button><a class="brand" href="index.html"><svg viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="10" fill="currentColor"/><path d="M5 19h7l3-9 4 17 3-8h9" fill="none" stroke="white" stroke-width="2.2" stroke-linejoin="round"/></svg><span>ECG<span class="brand-sub">Torch Renderer</span></span></a><span class="version">v0.4.0</span><div class="top-actions"><button id="search-button" class="search-button"><span>Search documentation</span><kbd>⌘ K</kbd></button><a class="github-link" href="https://github.com/fmenegui/ecg-torch-renderer">GitHub ↗</a><button id="theme-button" class="icon-button" aria-label="Switch color theme">◐</button></div></header>
+<div class="docs-shell"><aside id="sidebar" class="sidebar"><nav aria-label="Main documentation"><p class="nav-section">Start here</p><a  href="index.html">Welcome</a><a  href="installation.html">Installation</a><a  href="quickstart.html">Quickstart</a><p class="nav-section">Learn</p><a  href="concepts.html">How rendering works</a><a  href="layouts.html">Layouts &amp; calibration</a><a  href="parameters.html">Configure &amp; randomize</a><a  href="scenes.html">Paper, tables &amp; lighting</a><a  href="camera.html">Capture &amp; print artifacts</a><p class="nav-section">Train</p><a  href="targets.html">Advanced supervision</a><a aria-current="page" href="training.html">Train an image model</a><a  href="reproducibility.html">Reproducibility</a><p class="nav-section">Extend</p><a  href="assets.html">Custom assets &amp; layouts</a><p class="nav-section">Engineer</p><a  href="performance.html">Performance</a><a  href="profiling.html">Detailed profiling</a><a  href="validation.html">Validation &amp; testing</a><a  href="limitations.html">Scope &amp; limitations</a><p class="nav-section">Reference</p><a  href="api.html">API reference</a><a  href="gallery.html">Example gallery</a></nav><div class="sidebar-note">Built for on-device training.<br>Measured results, explicit contracts.</div></aside>
+<main id="main"><article class="document " data-page="training"><div class="page-eyebrow">Train</div><h1>Train an image model</h1>
+<p>Load signals, move them to the training device, render there, then pass RGB to your network. DataLoader workers can read and preprocess source files. Keep CUDA rendering in the training process.</p>
+<h2 id="u-net-segmentation">U-Net segmentation<a class="heading-anchor" href="#u-net-segmentation" aria-label="Link to U-Net segmentation">#</a></h2>
+<pre><code class="language-python">import torch
+from torch.nn import functional as F
+from ecg_gpu import ECGSupervisionLayer, RenderConfig
+
+synth = ECGSupervisionLayer(
+    fs=500, config=RenderConfig(height=384, width=512)
+).to(device)
+optimizer = torch.optim.AdamW(unet.parameters(), lr=3e-4)
+
+for signals in signal_loader:
+    signals = signals.to(device, non_blocking=True)
+    batch = synth(signals)
+    optimizer.zero_grad(set_to_none=True)
+    logits = unet(batch[&quot;image&quot;])       # [B,12,H,W]
+    loss_map = F.binary_cross_entropy_with_logits(
+        logits, batch[&quot;lead_masks&quot;], reduction=&quot;none&quot;
+    )
+    support = batch[&quot;valid&quot;]
+    loss = (loss_map * support).sum() / (
+        support.sum() * logits.shape[1]
+    ).clamp_min(1)
+    loss.backward()
+    optimizer.step()
+</code></pre>
+<p>Every lead is an independent output channel. Keep logits unbounded during training and use <code>.sigmoid()</code> for predicted probabilities at evaluation. Trace pixels are sparse, so tune class weighting or an additional Dice objective against validation data. A finite loss and a successful backward step do not establish good digitization performance.</p>
+<h2 id="run-the-included-u-net-example">Run the included U-Net example<a class="heading-anchor" href="#run-the-included-u-net-example" aria-label="Link to Run the included U-Net example">#</a></h2>
+<pre><code class="language-bash">python examples/segmentation.py --steps 3
+python examples/segmentation.py --device cuda --compile-raster --steps 20
+</code></pre>
+<p>The complete example defines a small encoder, bottleneck, upsampling path and skip connection. It verifies that a 12-channel output receives gradients and that optimization changes network weights. It uses artificial waveforms.</p>
+<h2 id="classification-with-nn-sequential">Classification with nn.Sequential<a class="heading-anchor" href="#classification-with-nn-sequential" aria-label="Link to Classification with nn.Sequential">#</a></h2>
+<pre><code class="language-python">from torch import nn
+from ecg_gpu import ECGImageLayer
+
+pipeline = nn.Sequential(
+    ECGImageLayer(fs=500, config=RenderConfig(height=384, width=512)),
+    image_network,
+).to(device)
+logits = pipeline(signals)
+</code></pre>
+<p>Use the RGB-only layer when your model does not need masks. It avoids allocating dense supervision targets.</p>
+<h2 id="mixed-precision">Mixed precision<a class="heading-anchor" href="#mixed-precision" aria-label="Link to Mixed precision">#</a></h2>
+<pre><code class="language-python">synth = synth.to(device)              # preserve float32 renderer buffers
+with torch.autocast(device_type=&quot;cuda&quot;, dtype=torch.float16):
+    batch = synth(signals)
+    logits = unet(batch[&quot;image&quot;])
+    loss_map = F.binary_cross_entropy_with_logits(logits, batch[&quot;lead_masks&quot;], reduction=&quot;none&quot;)
+</code></pre>
+<p>The renderer disables autocast internally and returns float32 geometry and pixels. The network can still use AMP. In a full fp16 training loop, use <code>torch.amp.GradScaler(&quot;cuda&quot;)</code> for backward and optimizer stepping. Do not call <code>.half()</code> on the renderer or on a Sequential pipeline containing it.</p>
+<h2 id="detection-and-waveform-recovery">Detection and waveform recovery<a class="heading-anchor" href="#detection-and-waveform-recovery" aria-label="Link to Detection and waveform recovery">#</a></h2>
+<p>Use instance boxes and IDs to train a detector. Use <code>instance_windows_s</code> and <code>instance_amplitude_sign</code> to associate detected printed windows with source samples. Aggregate per-lead masks only when repeated occurrences should share one output channel.</p>
+<p>The reference signal is not automatically a waveform-regression target for every crop. Supervise only the source windows that your image/task definition makes observable.</p>
+<h2 id="distributed-training">Distributed training<a class="heading-anchor" href="#distributed-training" aria-label="Link to Distributed training">#</a></h2>
+<p>Create one synthesizer per rank, on that rank&#39;s device. Give each rank a distinct seed, for example <code>base_seed + 1009 * rank</code>. Save renderer state alongside model and optimizer state. Restore per-rank randomization counters when exact continuation matters.</p>
+<p>DDP can wrap the trainable image network. The synthesizer has buffers and no trainable parameters. For data loading, use pinned memory and nonblocking transfers when appropriate. Measure the full training step before selecting renderer batch size or resolution.</p>
+<nav class="pagination" aria-label="Documentation pages"><a href="targets.html"><small>Previous</small>Advanced supervision</a><a href="reproducibility.html"><small>Next</small>Reproducibility <span aria-hidden="true">→</span></a></nav><footer>ECG Torch Renderer · MIT · <a href="https://github.com/fmenegui/ecg-torch-renderer/blob/main/documentation/pages/training.md">Edit this page ↗</a><span>v0.4.0</span></footer></article></main>
+<aside class="toc" aria-label="On this page"><p>On this page</p><a href="#u-net-segmentation">U-Net segmentation</a><a href="#run-the-included-u-net-example">Run the included U-Net example</a><a href="#classification-with-nn-sequential">Classification with nn.Sequential</a><a href="#mixed-precision">Mixed precision</a><a href="#detection-and-waveform-recovery">Detection and waveform recovery</a><a href="#distributed-training">Distributed training</a><a class="toc-top" href="#main">Back to top ↑</a></aside></div>
+<dialog id="search-dialog" class="search-dialog"><div class="dialog-top"><label for="search-input">Search the guide</label><button class="icon-button" data-close-dialog="search-dialog" aria-label="Close search">×</button></div><input id="search-input" type="search" placeholder="Masks, layouts, profiling…" autocomplete="off"><p id="search-status" class="search-status" aria-live="polite">Type to search all pages.</p><div id="search-results"></div></dialog>
+<dialog id="figure-dialog" class="figure-dialog"><div class="dialog-top"><h2 id="figure-title">Example</h2><button class="icon-button" data-close-dialog="figure-dialog" aria-label="Close figure">×</button></div><img id="figure-image" alt=""><p id="figure-description"></p><div class="recipe-top"><strong>Rendering recipe</strong><button id="copy-recipe" class="button secondary">Copy JSON</button></div><pre id="figure-recipe"></pre><a id="figure-download" href="gallery.json">Open full image ↗</a></dialog>
+<p id="copy-status" class="sr-only" aria-live="polite"></p></body></html>

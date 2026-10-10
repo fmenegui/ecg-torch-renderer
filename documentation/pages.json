@@ -1,0 +1,20 @@
+[
+  {"id":"index","title":"Welcome","section":"Start here","description":"Render ECG photographs and aligned training targets directly from signals."},
+  {"id":"installation","title":"Installation","section":"Start here","description":"Set up the package, choose your Torch runtime and run a first check."},
+  {"id":"quickstart","title":"Quickstart","section":"Start here","description":"Go from a 12-lead signal to RGB, segmentation masks and detection boxes."},
+  {"id":"concepts","title":"How rendering works","section":"Learn","description":"Understand units, recording windows, paper geometry and aligned supervision."},
+  {"id":"layouts","title":"Layouts & calibration","section":"Learn","description":"Explore 30 layouts, rhythm strips, Cabrera ordering and physical calibration."},
+  {"id":"parameters","title":"Configure & randomize","section":"Learn","description":"Use fixed values, GPU distributions and batched overrides."},
+  {"id":"scenes","title":"Paper, tables & lighting","section":"Learn","description":"Build coherent scenes with paper surfaces, material backgrounds and shadows."},
+  {"id":"camera","title":"Capture & print artifacts","section":"Learn","description":"Control perspective, crops, noise, blur, print variations and occluders."},
+  {"id":"targets","title":"Advanced supervision","section":"Train","description":"Generate black/white views, independent lead channels and pixel bounding boxes."},
+  {"id":"training","title":"Train an image model","section":"Train","description":"Integrate rendering into classification, U-Net and distributed training loops."},
+  {"id":"reproducibility","title":"Reproducibility","section":"Train","description":"Manage seeds, checkpoints, validation captures and patient splits."},
+  {"id":"assets","title":"Custom assets & layouts","section":"Extend","description":"Add authorized textures, fonts, layouts and externally rendered 3D maps."},
+  {"id":"performance","title":"Performance","section":"Engineer","description":"Read measured CPU results, understand memory costs and choose cost controls."},
+  {"id":"profiling","title":"Detailed profiling","section":"Engineer","description":"Export timings, operators, kernels, memory and a Perfetto trace."},
+  {"id":"validation","title":"Validation & testing","section":"Engineer","description":"Inspect numerical regression, software checks and reproducible integration tests."},
+  {"id":"limitations","title":"Scope & limitations","section":"Engineer","description":"Understand geometric approximations and what has not been demonstrated."},
+  {"id":"api","title":"API reference","section":"Reference","description":"Inspect public signatures, configuration defaults and actual parameter shapes."},
+  {"id":"gallery","title":"Example gallery","section":"Reference","description":"Explore generated figures and copy their exact rendering recipes."}
+]

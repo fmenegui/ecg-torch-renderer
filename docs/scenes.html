@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Build coherent scenes with paper surfaces, material backgrounds and shadows."><meta name="theme-color" content="#df5548"><title>Paper, tables &amp; lighting · ECG Torch Renderer</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css"><script>try{document.documentElement.dataset.theme=localStorage.getItem('ecg-docs-theme')||'light'}catch{}</script><script src="app.js" defer></script></head>
+<body><a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div>
+<header class="topbar"><button id="menu-button" class="icon-button menu-button" aria-label="Toggle navigation" aria-controls="sidebar" aria-expanded="false">☰</button><a class="brand" href="index.html"><svg viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="10" fill="currentColor"/><path d="M5 19h7l3-9 4 17 3-8h9" fill="none" stroke="white" stroke-width="2.2" stroke-linejoin="round"/></svg><span>ECG<span class="brand-sub">Torch Renderer</span></span></a><span class="version">v0.4.0</span><div class="top-actions"><button id="search-button" class="search-button"><span>Search documentation</span><kbd>⌘ K</kbd></button><a class="github-link" href="https://github.com/fmenegui/ecg-torch-renderer">GitHub ↗</a><button id="theme-button" class="icon-button" aria-label="Switch color theme">◐</button></div></header>
+<div class="docs-shell"><aside id="sidebar" class="sidebar"><nav aria-label="Main documentation"><p class="nav-section">Start here</p><a  href="index.html">Welcome</a><a  href="installation.html">Installation</a><a  href="quickstart.html">Quickstart</a><p class="nav-section">Learn</p><a  href="concepts.html">How rendering works</a><a  href="layouts.html">Layouts &amp; calibration</a><a  href="parameters.html">Configure &amp; randomize</a><a aria-current="page" href="scenes.html">Paper, tables &amp; lighting</a><a  href="camera.html">Capture &amp; print artifacts</a><p class="nav-section">Train</p><a  href="targets.html">Advanced supervision</a><a  href="training.html">Train an image model</a><a  href="reproducibility.html">Reproducibility</a><p class="nav-section">Extend</p><a  href="assets.html">Custom assets &amp; layouts</a><p class="nav-section">Engineer</p><a  href="performance.html">Performance</a><a  href="profiling.html">Detailed profiling</a><a  href="validation.html">Validation &amp; testing</a><a  href="limitations.html">Scope &amp; limitations</a><p class="nav-section">Reference</p><a  href="api.html">API reference</a><a  href="gallery.html">Example gallery</a></nav><div class="sidebar-note">Built for on-device training.<br>Measured results, explicit contracts.</div></aside>
+<main id="main"><article class="document " data-page="scenes"><div class="page-eyebrow">Learn</div><h1>Paper, tables &amp; lighting</h1>
+<p>The procedural scene keeps geometry, normals, illumination and visibility together. A paper deformation changes both the photographed trace and its target mask.</p>
+<h2 id="eight-paper-surfaces">Eight paper surfaces<a class="heading-anchor" href="#eight-paper-surfaces" aria-label="Link to Eight paper surfaces">#</a></h2>
+<p><code>flat</code>, <code>curl</code>, <code>fold</code>, <code>accordion</code>, <code>crumpled</code>, <code>wrinkled</code>, <code>rolled</code> and <code>corner</code> use a 2.5D height-field model. Select one surface or let <code>surface_mode=&#39;mixed&#39;</code> sample the family.</p>
+<pre><code class="language-python">render = ECGImageLayer(parameters={
+    &quot;surface_mode&quot;: Choice([&quot;flat&quot;, &quot;fold&quot;, &quot;crumpled&quot;]),
+    &quot;surface_strength&quot;: Uniform(.2, .8),
+    &quot;relief_view&quot;: [.4, -.3],
+})
+</code></pre>
+<figure class="doc-figure"><img src="assets/gallery/paper-crumpled.jpg" alt="A crumpled paper surface"></figure>
+<figure class="doc-figure"><img src="assets/gallery/paper-rolled.jpg" alt="A rolled paper surface"></figure>
+<p>Browse the <a href="gallery.html?category=Paper">paper gallery</a> for the full set of surfaces and palettes. These are procedural approximations. They do not solve cloth dynamics or arbitrary sheet self-overlap.</p>
+<h2 id="tables-and-paper-colors">Tables and paper colors<a class="heading-anchor" href="#tables-and-paper-colors" aria-label="Link to Tables and paper colors">#</a></h2>
+<p>Built-in table families are wood, marble, laminate, fabric, metal, clinical, plain and leather. Paper has eight palettes. Grid ink has five independent palettes.</p>
+<pre><code class="language-python">render = ECGImageLayer(parameters={
+    &quot;background_type&quot;: Choice([&quot;wood&quot;, &quot;marble&quot;, &quot;clinical&quot;]),
+    &quot;paper_palette&quot;: Choice([0, 1, 2, 4]),
+    &quot;palette&quot;: 0,                     # red grid
+})
+</code></pre>
+<figure class="doc-figure"><img src="assets/gallery/table-marble.jpg" alt="Procedural marble table behind ECG paper"></figure>
+<h2 id="lighting-and-shadows">Lighting and shadows<a class="heading-anchor" href="#lighting-and-shadows" aria-label="Link to Lighting and shadows">#</a></h2>
+<p>Three colored lights, ambient illumination, diffuse/specular shading, a flash term and approximate ambient occlusion affect the paper. The scene also supports sampled height-field shadows and paper cast/contact shadows.</p>
+<p>Foreground shadow families are <code>none</code>, <code>edge</code>, <code>phone</code>, <code>hand</code>, <code>blinds</code>, <code>window</code> and <code>ellipse</code>. They are analytic silhouettes. They do not contain full 3D hand or phone geometry.</p>
+<figure class="doc-figure"><img src="assets/gallery/shadow-blinds.jpg" alt="A blinds-like foreground shadow"></figure>
+<pre><code class="language-python">render = ECGImageLayer(parameters={
+    &quot;object_shadow&quot;: &quot;blinds&quot;,
+    &quot;object_shadow_strength&quot;: .5,
+    &quot;ambient_light&quot;: .65,
+})
+</code></pre>
+<h2 id="inspect-the-scene">Inspect the scene<a class="heading-anchor" href="#inspect-the-scene" aria-label="Link to Inspect the scene">#</a></h2>
+<pre><code class="language-python">batch = render.render_batch(signals, stage=&quot;all&quot;, return_scene=True,
+                            return_field=True, return_canonical=True)
+normals = batch.scene[&quot;normals&quot;]
+height = batch.scene[&quot;height&quot;]
+visibility = batch.targets[&quot;valid&quot;]
+</code></pre>
+<p>Scene maps are opt-in inspection outputs. Avoid retaining them when a training step only needs RGB or trace masks. <a href="assets.html">External document assets</a> can supply pre-rendered 3D visibility maps for shapes outside the procedural model.</p>
+<nav class="pagination" aria-label="Documentation pages"><a href="parameters.html"><small>Previous</small>Configure &amp; randomize</a><a href="camera.html"><small>Next</small>Capture &amp; print artifacts <span aria-hidden="true">→</span></a></nav><footer>ECG Torch Renderer · MIT · <a href="https://github.com/fmenegui/ecg-torch-renderer/blob/main/documentation/pages/scenes.md">Edit this page ↗</a><span>v0.4.0</span></footer></article></main>
+<aside class="toc" aria-label="On this page"><p>On this page</p><a href="#eight-paper-surfaces">Eight paper surfaces</a><a href="#tables-and-paper-colors">Tables and paper colors</a><a href="#lighting-and-shadows">Lighting and shadows</a><a href="#inspect-the-scene">Inspect the scene</a><a class="toc-top" href="#main">Back to top ↑</a></aside></div>
+<dialog id="search-dialog" class="search-dialog"><div class="dialog-top"><label for="search-input">Search the guide</label><button class="icon-button" data-close-dialog="search-dialog" aria-label="Close search">×</button></div><input id="search-input" type="search" placeholder="Masks, layouts, profiling…" autocomplete="off"><p id="search-status" class="search-status" aria-live="polite">Type to search all pages.</p><div id="search-results"></div></dialog>
+<dialog id="figure-dialog" class="figure-dialog"><div class="dialog-top"><h2 id="figure-title">Example</h2><button class="icon-button" data-close-dialog="figure-dialog" aria-label="Close figure">×</button></div><img id="figure-image" alt=""><p id="figure-description"></p><div class="recipe-top"><strong>Rendering recipe</strong><button id="copy-recipe" class="button secondary">Copy JSON</button></div><pre id="figure-recipe"></pre><a id="figure-download" href="gallery.json">Open full image ↗</a></dialog>
+<p id="copy-status" class="sr-only" aria-live="polite"></p></body></html>

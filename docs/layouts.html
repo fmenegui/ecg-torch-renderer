@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Explore 30 layouts, rhythm strips, Cabrera ordering and physical calibration."><meta name="theme-color" content="#df5548"><title>Layouts &amp; calibration · ECG Torch Renderer</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css"><script>try{document.documentElement.dataset.theme=localStorage.getItem('ecg-docs-theme')||'light'}catch{}</script><script src="app.js" defer></script></head>
+<body><a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div>
+<header class="topbar"><button id="menu-button" class="icon-button menu-button" aria-label="Toggle navigation" aria-controls="sidebar" aria-expanded="false">☰</button><a class="brand" href="index.html"><svg viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="10" fill="currentColor"/><path d="M5 19h7l3-9 4 17 3-8h9" fill="none" stroke="white" stroke-width="2.2" stroke-linejoin="round"/></svg><span>ECG<span class="brand-sub">Torch Renderer</span></span></a><span class="version">v0.4.0</span><div class="top-actions"><button id="search-button" class="search-button"><span>Search documentation</span><kbd>⌘ K</kbd></button><a class="github-link" href="https://github.com/fmenegui/ecg-torch-renderer">GitHub ↗</a><button id="theme-button" class="icon-button" aria-label="Switch color theme">◐</button></div></header>
+<div class="docs-shell"><aside id="sidebar" class="sidebar"><nav aria-label="Main documentation"><p class="nav-section">Start here</p><a  href="index.html">Welcome</a><a  href="installation.html">Installation</a><a  href="quickstart.html">Quickstart</a><p class="nav-section">Learn</p><a  href="concepts.html">How rendering works</a><a aria-current="page" href="layouts.html">Layouts &amp; calibration</a><a  href="parameters.html">Configure &amp; randomize</a><a  href="scenes.html">Paper, tables &amp; lighting</a><a  href="camera.html">Capture &amp; print artifacts</a><p class="nav-section">Train</p><a  href="targets.html">Advanced supervision</a><a  href="training.html">Train an image model</a><a  href="reproducibility.html">Reproducibility</a><p class="nav-section">Extend</p><a  href="assets.html">Custom assets &amp; layouts</a><p class="nav-section">Engineer</p><a  href="performance.html">Performance</a><a  href="profiling.html">Detailed profiling</a><a  href="validation.html">Validation &amp; testing</a><a  href="limitations.html">Scope &amp; limitations</a><p class="nav-section">Reference</p><a  href="api.html">API reference</a><a  href="gallery.html">Example gallery</a></nav><div class="sidebar-note">Built for on-device training.<br>Measured results, explicit contracts.</div></aside>
+<main id="main"><article class="document " data-page="layouts"><div class="page-eyebrow">Learn</div><h1>Layouts &amp; calibration</h1>
+<p>Layout names count <strong>rows × columns</strong>. Thus <code>12x1</code> prints twelve full-duration rows, while <code>6x2</code> prints six rows with two lead windows each. <code>+r1</code>, <code>+r2</code> and <code>+r3</code> add full-duration rhythm strips.</p>
+<h2 id="pick-a-layout">Pick a layout<a class="heading-anchor" href="#pick-a-layout" aria-label="Link to Pick a layout">#</a></h2>
+<pre><code class="language-python">from ecg_gpu import ECGImageLayer, Choice
+
+render = ECGImageLayer(parameters={
+    &quot;layout&quot;: Choice([&quot;3x4&quot;, &quot;3x4+r3&quot;, &quot;6x2&quot;, &quot;12x1&quot;]),
+    &quot;rhythm_leads&quot;: [&quot;II&quot;, &quot;V1&quot;, &quot;V5&quot;],
+})
+</code></pre>
+<figure class="doc-figure"><img src="assets/gallery/layout-3x4-r3.jpg" alt="Three rows, four columns and three full-duration rhythm strips"></figure>
+<p>The standard library has 30 layouts. Inspect all of them in the <a href="gallery.html?category=Layouts">gallery</a>.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Layout</th>
+<th>Short rows</th>
+<th>Rhythm strips</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>3x4</code></td>
+<td>4, 4, 4</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>6x2</code></td>
+<td>2, 2, 2, 2, 2, 2</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>12x1</code></td>
+<td>1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>2x6</code></td>
+<td>6, 6</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>3x4+r1</code></td>
+<td>4, 4, 4</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>3x4+r2</code></td>
+<td>4, 4, 4</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>3x4+r3</code></td>
+<td>4, 4, 4</td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>6x2+r1</code></td>
+<td>2, 2, 2, 2, 2, 2</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>6x2+r2</code></td>
+<td>2, 2, 2, 2, 2, 2</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>6x2+r3</code></td>
+<td>2, 2, 2, 2, 2, 2</td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>12x1+r1</code></td>
+<td>1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>12x1+r2</code></td>
+<td>1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>12x1+r3</code></td>
+<td>1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1</td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>2x6+r1</code></td>
+<td>6, 6</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>2x6+r2</code></td>
+<td>6, 6</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>2x6+r3</code></td>
+<td>6, 6</td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>4x3</code></td>
+<td>3, 3, 3, 3</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>4x3+r1</code></td>
+<td>3, 3, 3, 3</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>4x3+r2</code></td>
+<td>3, 3, 3, 3</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>4x3+r3</code></td>
+<td>3, 3, 3, 3</td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>3x4-cabrera</code></td>
+<td>4, 4, 4</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>3x4-cabrera+r1</code></td>
+<td>4, 4, 4</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>3x4-cabrera+r2</code></td>
+<td>4, 4, 4</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>3x4-cabrera+r3</code></td>
+<td>4, 4, 4</td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>6x2-cabrera</code></td>
+<td>2, 2, 2, 2, 2, 2</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>12x1-cabrera</code></td>
+<td>1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>2x1-long</code></td>
+<td>1, 1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>3x1-long</code></td>
+<td>1, 1, 1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>1x1-long</code></td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>1x12</code></td>
+<td>12</td>
+<td>0</td>
+</tr>
+</tbody></table></div>
+<h2 id="sequential-and-simultaneous-windows">Sequential and simultaneous windows<a class="heading-anchor" href="#sequential-and-simultaneous-windows" aria-label="Link to Sequential and simultaneous windows">#</a></h2>
+<p>With <code>sequential=True</code>, each short-row column covers a successive part of the recording. With <code>sequential=False</code>, each column starts at time zero. Rhythm strips span the full printed duration in both modes.</p>
+<p>Check <code>metadata[&#39;start_s&#39;]</code>, <code>metadata[&#39;end_s&#39;]</code>, <code>metadata[&#39;lead_id&#39;]</code> and <code>metadata[&#39;active&#39;]</code> when supervising waveform recovery. A repeated lead can occur in several printed slots.</p>
+<h2 id="cabrera-ordering">Cabrera ordering<a class="heading-anchor" href="#cabrera-ordering" aria-label="Link to Cabrera ordering">#</a></h2>
+<p>Cabrera layouts print <code>-aVR</code>. The output channel retains canonical aVR identity, and <code>instance_amplitude_sign</code> is <code>-1</code> for the inverted printed occurrence. The source waveform remains in standard lead order.</p>
+<figure class="doc-figure"><img src="assets/gallery/layout-3x4-cabrera.jpg" alt="Cabrera ordering with the explicitly inverted aVR lead"></figure>
+<h2 id="speed-gain-and-pulses">Speed, gain and pulses<a class="heading-anchor" href="#speed-gain-and-pulses" aria-label="Link to Speed, gain and pulses">#</a></h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Index 0</th>
+<th>Index 1</th>
+<th>Index 2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>speed_index</code></td>
+<td>12.5 mm/s</td>
+<td>25 mm/s</td>
+<td>50 mm/s</td>
+</tr>
+<tr>
+<td><code>gain_index</code></td>
+<td>5 mm/mV</td>
+<td>10 mm/mV</td>
+<td>20 mm/mV</td>
+</tr>
+</tbody></table></div>
+<pre><code class="language-python">render = ECGImageLayer(parameters={
+    &quot;speed_index&quot;: 1, &quot;gain_index&quot;: 1, &quot;pulse_present&quot;: 1.0,
+})
+</code></pre>
+<p><code>pulse_present</code> controls the 1 mV, 0.2 s calibration mark. Headers and labels can be hidden independently. For classification targets, unknown units are represented when explicit unit-text support is unavailable. This support test measures geometry, not OCR readability.</p>
+<p>Long and dense arrangements need an appropriate aspect ratio. Use a tall page for <code>12x1</code> and a wide page for <code>1x12</code>. The layout does not automatically increase image resolution.</p>
+<nav class="pagination" aria-label="Documentation pages"><a href="concepts.html"><small>Previous</small>How rendering works</a><a href="parameters.html"><small>Next</small>Configure &amp; randomize <span aria-hidden="true">→</span></a></nav><footer>ECG Torch Renderer · MIT · <a href="https://github.com/fmenegui/ecg-torch-renderer/blob/main/documentation/pages/layouts.md">Edit this page ↗</a><span>v0.4.0</span></footer></article></main>
+<aside class="toc" aria-label="On this page"><p>On this page</p><a href="#pick-a-layout">Pick a layout</a><a href="#sequential-and-simultaneous-windows">Sequential and simultaneous windows</a><a href="#cabrera-ordering">Cabrera ordering</a><a href="#speed-gain-and-pulses">Speed, gain and pulses</a><a class="toc-top" href="#main">Back to top ↑</a></aside></div>
+<dialog id="search-dialog" class="search-dialog"><div class="dialog-top"><label for="search-input">Search the guide</label><button class="icon-button" data-close-dialog="search-dialog" aria-label="Close search">×</button></div><input id="search-input" type="search" placeholder="Masks, layouts, profiling…" autocomplete="off"><p id="search-status" class="search-status" aria-live="polite">Type to search all pages.</p><div id="search-results"></div></dialog>
+<dialog id="figure-dialog" class="figure-dialog"><div class="dialog-top"><h2 id="figure-title">Example</h2><button class="icon-button" data-close-dialog="figure-dialog" aria-label="Close figure">×</button></div><img id="figure-image" alt=""><p id="figure-description"></p><div class="recipe-top"><strong>Rendering recipe</strong><button id="copy-recipe" class="button secondary">Copy JSON</button></div><pre id="figure-recipe"></pre><a id="figure-download" href="gallery.json">Open full image ↗</a></dialog>
+<p id="copy-status" class="sr-only" aria-live="polite"></p></body></html>

@@ -10,6 +10,7 @@ from PIL import Image
 
 from .gpu_renderer import RenderConfig, DocumentAssets
 from .gpu_module import ECGImageLayer
+from .gpu_supervision import ECGSupervisionLayer, SupervisionConfig
 from .gpu_parameters import parameters_from_json
 from .schema_v05 import LEADS, SPEEDS, GAINS
 
@@ -85,19 +86,25 @@ def plain(value):
 
 
 def render_file(input_path,output_path,*,fs=None,units=None,device='auto',config=None,
-                parameters=None,seed=1973,metadata_path=None,document_assets=None,fonts=None,compile_raster=False):
+                parameters=None,seed=1973,metadata_path=None,document_assets=None,fonts=None,compile_raster=False,
+                targets_dir=None,supervision=None):
     signals,rates,lengths=load_signals(input_path,fs,units)
     device=torch.device('cuda' if torch.cuda.is_available() else 'cpu') if device=='auto' else torch.device(device)
     if device.type=='cuda' and not torch.cuda.is_available():
         raise ValueError('CUDA unavailable. Choose cpu or install a suitable CUDA build/hardware')
-    layer=ECGImageLayer(config=config or RenderConfig(),parameters=parameters,seed=seed,randomize=False,
-                        document_assets=document_assets,fonts=fonts,compile_raster=compile_raster).to(device)
+    layer_type = ECGSupervisionLayer if targets_dir is not None else ECGImageLayer
+    layer_options = {'supervision': supervision or SupervisionConfig()} if targets_dir is not None else {}
+    layer=layer_type(config=config or RenderConfig(),parameters=parameters,seed=seed,randomize=False,
+                        document_assets=document_assets,fonts=fonts,compile_raster=compile_raster,**layer_options).to(device)
     renderer=layer.renderer
     value=torch.from_numpy(signals)
     if device.type=='cuda':
         value=value.pin_memory()
     value=value.to(device,non_blocking=True)
-    batch=layer.render_batch(value,torch.as_tensor(rates,device=device),lengths=lengths,stage='image')
+    needs_instances = targets_dir is not None and bool({'instance_masks','instance_boxes'} & set(layer.supervision.outputs))
+    batch=layer.render_batch(value,torch.as_tensor(rates,device=device),lengths=lengths,
+                            stage='trace' if targets_dir is not None else 'image',
+                            return_baselines=False,return_instances=needs_instances,return_instance_boxes=False)
     output=Path(output_path)
     if output.suffix.lower() in {'.png','.jpg','.jpeg'}:
         if len(signals)!=1:
@@ -115,6 +122,22 @@ def render_file(input_path,output_path,*,fs=None,units=None,device='auto',config
             'seed':seed,'outputs':[str(path.resolve()) for path in paths],
             'image_shape':list(batch.image.shape),'signal_units':'mV','configuration':renderer.specification(),
             'compile_raster':compile_raster,'metadata':plain(batch.metadata)}
+    if targets_dir is not None:
+        target_output=Path(targets_dir)
+        target_output.mkdir(parents=True,exist_ok=True)
+        paired=layer.supervise(batch)
+        encoded={key:tensor.detach().cpu().numpy() for key,tensor in paired.items() if key!='image'}
+        np.savez_compressed(target_output/'targets.npz',**encoded)
+        boxes={key:plain(tensor) for key,tensor in paired.items() if 'box' in key or key.endswith('_ids') or key.startswith('instance_') and 'masks' not in key}
+        (target_output/'boxes.json').write_text(json.dumps({'coordinate_format':'xyxy_pixels_exclusive',
+            'empty_box':-1,'lead_names':list(layer.supervision.leads),'batch':boxes},indent=2)+'\n')
+        for name in ['bw','wb','trace_mask']:
+            if name in paired:
+                arrays=(paired[name].detach().cpu().numpy()[:,0]*255).round().clip(0,255).astype(np.uint8)
+                for index,array in enumerate(arrays):
+                    Image.fromarray(array).save(target_output/f'{name}-{index:05d}.png')
+        report['targets_directory']=str(target_output.resolve())
+        report['target_shapes']={key:list(tensor.shape) for key,tensor in paired.items() if key!='image'}
     if metadata_path:
         path=Path(metadata_path)
         path.parent.mkdir(parents=True,exist_ok=True)
@@ -147,6 +170,12 @@ def main():
     parser.add_argument('--document-assets',type=Path)
     parser.add_argument('--font',action='append')
     parser.add_argument('--compile-raster',action='store_true')
+    parser.add_argument('--targets-dir',type=Path,help='Optional aligned targets.npz, boxes.json and BW/WB PNG exports')
+    parser.add_argument('--targets',default='lead_masks,bw,wb,lead_boxes,instance_boxes',help='Comma-separated advanced supervision outputs')
+    parser.add_argument('--target-leads',default=','.join(LEADS),help='Comma-separated canonical lead names in output channel order')
+    parser.add_argument('--binary-targets',action='store_true')
+    parser.add_argument('--target-threshold',type=float,default=.05)
+    parser.add_argument('--projected-targets',action='store_true',help='Retain projected masks behind explicit opaque occluders')
     args=parser.parse_args()
     if args.threads<1 or args.seed<0 or not isinstance(args.parameters,dict):
         parser.error('Positive threads, nonnegative seed and parameter object required')
@@ -164,7 +193,12 @@ def main():
                             shadow_samples=args.shadow_samples,antialias_samples=args.antialias)
         assets=DocumentAssets.from_npz(args.document_assets) if args.document_assets else None
         report=render_file(args.input,args.output,fs=args.fs,units=args.units,device=args.device,config=config,
-                           parameters=parameters_from_json(overrides),seed=args.seed,metadata_path=args.metadata,document_assets=assets,fonts=args.font,compile_raster=args.compile_raster)
+                           parameters=parameters_from_json(overrides),seed=args.seed,metadata_path=args.metadata,document_assets=assets,fonts=args.font,compile_raster=args.compile_raster,
+                           targets_dir=args.targets_dir,supervision=SupervisionConfig(
+                               outputs=tuple(item.strip() for item in args.targets.split(',') if item.strip()),
+                               leads=tuple(item.strip() for item in args.target_leads.split(',') if item.strip()),
+                               binary=args.binary_targets,threshold=args.target_threshold,visible_only=not args.projected_targets)
+                           if args.targets_dir is not None else None)
     except (ValueError,RuntimeError,OSError,KeyError,TypeError) as error:
         parser.error(str(error))
     print(json.dumps({key:report[key] for key in ['device','outputs','image_shape','signal_units','seed']}))

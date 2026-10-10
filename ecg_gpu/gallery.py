@@ -59,23 +59,23 @@ def export_gallery(out,device,height=768,width=1024,image_format='jpeg'):
            'object_shadow_strength':.48,'cast_shadow_strength':.42,'cast_shadow_softness':.018,
            'tear_active':0.,'occlusion_active':0.,'pen_active':0.,'artifact_present':0.}
     cases=[
-        ('wood-flat','Papel plano sobre madeira',{}),
-        ('wood-crumpled','Papel amassado sobre madeira',{'surface_mode':'crumpled','layout':'3x4+r3','surface_strength':1.}),
-        ('marble-fold','Dobra sobre marmore',{'surface_mode':'fold','background_type':'marble','paper_palette':1,'surface_axis':.45}),
-        ('laminate-curl','Curvatura sobre laminado',{'surface_mode':'curl','background_type':'laminate','layout':'6x2+r2','paper_palette':2}),
-        ('fabric-accordion','Sanfona sobre tecido',{'surface_mode':'accordion','background_type':'fabric','layout':'3x4+r2','surface_frequency':3.8}),
-        ('metal-wrinkles','Rugas finas sobre metal',{'surface_mode':'wrinkled','background_type':'metal','paper_palette':4,'palette':1}),
-        ('clinical-corner','Canto levantado sobre bancada',{'surface_mode':'corner','background_type':'clinical','paper_palette':5,'corner_position':[1.,1.],'corner_size':.45}),
-        ('leather-roll','Papel enrolado sobre couro',{'surface_mode':'rolled','background_type':'leather','surface_axis':-.30,'paper_palette':3}),
-        ('hand-shadow','Sombra de mao',{'object_shadow':'hand','object_shadow_position':[-.35,.20],'object_shadow_size':[.95,.90],'object_shadow_angle':.20,'object_shadow_softness':.02}),
-        ('phone-shadow','Sombra de celular',{'object_shadow':'phone','object_shadow_position':[.60,-.15],'object_shadow_size':[.60,.85],'object_shadow_angle':.25,'object_shadow_softness':.035,'paper_palette':6}),
-        ('blinds-shadow','Sombra de persiana',{'object_shadow':'blinds','object_shadow_angle':.32,'object_shadow_size':[.60,.65],'object_shadow_softness':.023,'paper_palette':2}),
-        ('window-shadow','Sombra de janela',{'object_shadow':'window','object_shadow_angle':.1,'object_shadow_size':[1.1,.95],'object_shadow_softness':.04,'background_type':'plain'}),
-        ('cabrera-aged','Cabrera e papel envelhecido',{'layout':'3x4-cabrera+r3','surface_mode':'wrinkled','paper_palette':7,'palette':3,'paper_age':.08,'thermal_fade':.30}),
-        ('tear-annotation','Rasgo e anotacao',{'surface_mode':'curl','tear_active':1.,'tear_side':0,'tear_position':.2,'tear_size':.15,
+        ('wood-flat','Flat paper on wood',{}),
+        ('wood-crumpled','Crumpled paper on wood',{'surface_mode':'crumpled','layout':'3x4+r3','surface_strength':1.}),
+        ('marble-fold','Fold on marble',{'surface_mode':'fold','background_type':'marble','paper_palette':1,'surface_axis':.45}),
+        ('laminate-curl','Curl on laminate',{'surface_mode':'curl','background_type':'laminate','layout':'6x2+r2','paper_palette':2}),
+        ('fabric-accordion','Accordion on fabric',{'surface_mode':'accordion','background_type':'fabric','layout':'3x4+r2','surface_frequency':3.8}),
+        ('metal-wrinkles','Fine wrinkles on metal',{'surface_mode':'wrinkled','background_type':'metal','paper_palette':4,'palette':1}),
+        ('clinical-corner','Raised corner on a clinical table',{'surface_mode':'corner','background_type':'clinical','paper_palette':5,'corner_position':[1.,1.],'corner_size':.45}),
+        ('leather-roll','Rolled paper on leather',{'surface_mode':'rolled','background_type':'leather','surface_axis':-.30,'paper_palette':3}),
+        ('hand-shadow','Hand silhouette shadow',{'object_shadow':'hand','object_shadow_position':[-.35,.20],'object_shadow_size':[.95,.90],'object_shadow_angle':.20,'object_shadow_softness':.02}),
+        ('phone-shadow','Phone silhouette shadow',{'object_shadow':'phone','object_shadow_position':[.60,-.15],'object_shadow_size':[.60,.85],'object_shadow_angle':.25,'object_shadow_softness':.035,'paper_palette':6}),
+        ('blinds-shadow','Blinds shadow',{'object_shadow':'blinds','object_shadow_angle':.32,'object_shadow_size':[.60,.65],'object_shadow_softness':.023,'paper_palette':2}),
+        ('window-shadow','Window shadow',{'object_shadow':'window','object_shadow_angle':.1,'object_shadow_size':[1.1,.95],'object_shadow_softness':.04,'background_type':'plain'}),
+        ('cabrera-aged','Cabrera on aged paper',{'layout':'3x4-cabrera+r3','surface_mode':'wrinkled','paper_palette':7,'palette':3,'paper_age':.08,'thermal_fade':.30}),
+        ('tear-annotation','Tear and annotation',{'surface_mode':'curl','tear_active':1.,'tear_side':0,'tear_position':.2,'tear_size':.15,
                                             'artifact_present':[1.,0.,0.,0.],'artifact_x':.65,'artifact_y':.44,'artifact_angle':-.25,'artifact_text':0}),
-        ('two-long','Duas derivacoes longas',{'layout':'2x1-long','surface_mode':'fold','paper_palette':1,'background_type':'laminate'}),
-        ('three-long','Tres derivacoes longas',{'layout':'3x1-long','surface_mode':'crumpled','paper_palette':0,'background_type':'wood'})]
+        ('two-long','Two long leads',{'layout':'2x1-long','surface_mode':'fold','paper_palette':1,'background_type':'laminate'}),
+        ('three-long','Three long leads',{'layout':'3x1-long','surface_mode':'crumpled','paper_palette':0,'background_type':'wood'})]
     thumb_w=384
     thumb_h=round(height*thumb_w/width)
     mosaic=Image.new('RGB',(thumb_w*4,(thumb_h+32)*4),'white')

@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Generate black/white views, independent lead channels and pixel bounding boxes."><meta name="theme-color" content="#df5548"><title>Advanced supervision · ECG Torch Renderer</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css"><script>try{document.documentElement.dataset.theme=localStorage.getItem('ecg-docs-theme')||'light'}catch{}</script><script src="app.js" defer></script></head>
+<body><a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div>
+<header class="topbar"><button id="menu-button" class="icon-button menu-button" aria-label="Toggle navigation" aria-controls="sidebar" aria-expanded="false">☰</button><a class="brand" href="index.html"><svg viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="10" fill="currentColor"/><path d="M5 19h7l3-9 4 17 3-8h9" fill="none" stroke="white" stroke-width="2.2" stroke-linejoin="round"/></svg><span>ECG<span class="brand-sub">Torch Renderer</span></span></a><span class="version">v0.4.0</span><div class="top-actions"><button id="search-button" class="search-button"><span>Search documentation</span><kbd>⌘ K</kbd></button><a class="github-link" href="https://github.com/fmenegui/ecg-torch-renderer">GitHub ↗</a><button id="theme-button" class="icon-button" aria-label="Switch color theme">◐</button></div></header>
+<div class="docs-shell"><aside id="sidebar" class="sidebar"><nav aria-label="Main documentation"><p class="nav-section">Start here</p><a  href="index.html">Welcome</a><a  href="installation.html">Installation</a><a  href="quickstart.html">Quickstart</a><p class="nav-section">Learn</p><a  href="concepts.html">How rendering works</a><a  href="layouts.html">Layouts &amp; calibration</a><a  href="parameters.html">Configure &amp; randomize</a><a  href="scenes.html">Paper, tables &amp; lighting</a><a  href="camera.html">Capture &amp; print artifacts</a><p class="nav-section">Train</p><a aria-current="page" href="targets.html">Advanced supervision</a><a  href="training.html">Train an image model</a><a  href="reproducibility.html">Reproducibility</a><p class="nav-section">Extend</p><a  href="assets.html">Custom assets &amp; layouts</a><p class="nav-section">Engineer</p><a  href="performance.html">Performance</a><a  href="profiling.html">Detailed profiling</a><a  href="validation.html">Validation &amp; testing</a><a  href="limitations.html">Scope &amp; limitations</a><p class="nav-section">Reference</p><a  href="api.html">API reference</a><a  href="gallery.html">Example gallery</a></nav><div class="sidebar-note">Built for on-device training.<br>Measured results, explicit contracts.</div></aside>
+<main id="main"><article class="document " data-page="targets"><div class="page-eyebrow">Train</div><h1>Advanced supervision</h1>
+<p>Use <code>ECGSupervisionLayer</code> when your network needs an input image and aligned segmentation or detection targets. All requested outputs come from one render and remain on the input device.</p>
+<h2 id="request-just-what-you-need">Request just what you need<a class="heading-anchor" href="#request-just-what-you-need" aria-label="Link to Request just what you need">#</a></h2>
+<pre><code class="language-python">from ecg_gpu import ECGSupervisionLayer, SupervisionConfig, RenderConfig
+
+synth = ECGSupervisionLayer(
+    fs=500,
+    config=RenderConfig(height=384, width=512),
+    supervision=SupervisionConfig(
+        outputs=(&quot;lead_masks&quot;, &quot;bw&quot;, &quot;wb&quot;, &quot;lead_boxes&quot;, &quot;instance_boxes&quot;),
+        binary=False, threshold=.05, visible_only=True,
+    ),
+).to(device)
+batch = synth(signals)
+</code></pre>
+<p>The default requests only <code>lead_masks</code>. RGB and the visibility mask are always returned. Baseline targets, scene maps and instance masks are not generated unless required by the selected interface.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Output</th>
+<th>Shape</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>image</code></td>
+<td><code>[B,3,H,W]</code></td>
+<td>Photographed RGB, float32 in <code>[0,1]</code></td>
+</tr>
+<tr>
+<td><code>valid</code></td>
+<td><code>[B,1,H,W]</code></td>
+<td>Paper and explicit visibility support</td>
+</tr>
+<tr>
+<td><code>lead_masks</code></td>
+<td><code>[B,C,H,W]</code></td>
+<td>Independent lead trace coverage, default C=12</td>
+</tr>
+<tr>
+<td><code>lead_ids</code></td>
+<td><code>[B,C]</code></td>
+<td>Canonical lead IDs in output channel order</td>
+</tr>
+<tr>
+<td><code>trace_mask</code></td>
+<td><code>[B,1,H,W]</code></td>
+<td>Maximum coverage across selected lead channels</td>
+</tr>
+<tr>
+<td><code>bw</code></td>
+<td><code>[B,1,H,W]</code></td>
+<td><code>1 - trace_mask</code>, black traces on white</td>
+</tr>
+<tr>
+<td><code>wb</code></td>
+<td><code>[B,1,H,W]</code></td>
+<td><code>trace_mask</code>, white traces on black</td>
+</tr>
+<tr>
+<td><code>lead_boxes</code></td>
+<td><code>[B,C,4]</code></td>
+<td>One envelope per selected lead, including repetitions</td>
+</tr>
+<tr>
+<td><code>lead_box_valid</code></td>
+<td><code>[B,C]</code></td>
+<td>Whether that lead box contains any target pixels</td>
+</tr>
+<tr>
+<td><code>instance_masks</code></td>
+<td><code>[B,15,H,W]</code></td>
+<td>Separate coverage for each printed occurrence</td>
+</tr>
+<tr>
+<td><code>instance_boxes</code></td>
+<td><code>[B,15,4]</code></td>
+<td>One box for each printed slot</td>
+</tr>
+<tr>
+<td><code>instance_box_valid</code></td>
+<td><code>[B,15]</code></td>
+<td>Whether that slot has visible target pixels</td>
+</tr>
+<tr>
+<td><code>instance_lead_ids</code></td>
+<td><code>[B,15]</code></td>
+<td>Canonical identity of each printed slot</td>
+</tr>
+<tr>
+<td><code>instance_active</code></td>
+<td><code>[B,15]</code></td>
+<td>Whether the layout/slot is enabled before capture</td>
+</tr>
+<tr>
+<td><code>instance_windows_s</code></td>
+<td><code>[B,15,2]</code></td>
+<td>Printed source window <code>[start_s,end_s]</code></td>
+</tr>
+<tr>
+<td><code>instance_amplitude_sign</code></td>
+<td><code>[B,15]</code></td>
+<td>Printed polarity, including inverted aVR</td>
+</tr>
+</tbody></table></div>
+<p>Instance metadata is returned when you request instance masks or boxes. Slots have fixed shapes for batching. Unused or invisible slots have false box-valid flags and boxes filled with <code>-1</code>.</p>
+<h2 id="two-grayscale-polarities">Two grayscale polarities<a class="heading-anchor" href="#two-grayscale-polarities" aria-label="Link to Two grayscale polarities">#</a></h2>
+<div class="figure-pair"><figure><img src="assets/gallery/supervision-bw.jpg" alt="Black traces on white background"><figcaption>BW: white background, black traces.</figcaption></figure><figure><img src="assets/gallery/supervision-wb.jpg" alt="White traces on black background"><figcaption>WB: black background, white traces.</figcaption></figure></div>
+
+<p>These views contain only the chosen leads. Grid, labels, pulses, table texture and capture shadows are excluded. Soft coverage gives anti-aliased edges. Set <code>binary=True</code> for masks containing exactly zero and one.</p>
+<h2 id="independent-channels">Independent channels<a class="heading-anchor" href="#independent-channels" aria-label="Link to Independent channels">#</a></h2>
+<pre><code class="language-python">supervision = SupervisionConfig(
+    outputs=(&quot;lead_masks&quot;, &quot;wb&quot;),
+    leads=(&quot;V6&quot;, &quot;II&quot;, &quot;V1&quot;),       # choose and reorder channels
+    binary=True,
+    threshold=.3,
+)
+</code></pre>
+<p>The default order is <code>I, II, III, aVR, aVL, aVF, V1, V2, V3, V4, V5, V6</code>. <code>leads</code> can select a subset or reorder channels. It also selects which leads contribute to BW/WB and the union mask. Instance outputs still describe all printed slots.</p>
+<figure class="doc-figure"><img src="assets/gallery/supervision-channels.jpg" alt="Color visualization of twelve independent channels"></figure>
+<p>Colors visualize the masks. The actual target is a tensor of separate channels. At crossings, more than one channel may be positive. Use sigmoid/BCE or another multilabel objective. A mutually exclusive softmax target loses this information.</p>
+<h2 id="lead-boxes-and-printed-instance-boxes">Lead boxes and printed-instance boxes<a class="heading-anchor" href="#lead-boxes-and-printed-instance-boxes" aria-label="Link to Lead boxes and printed-instance boxes">#</a></h2>
+<figure class="doc-figure"><img src="assets/gallery/supervision-instance-boxes.jpg" alt="Bounding boxes around each separate printed occurrence"></figure>
+<p><code>lead_boxes</code> merge all visible occurrences of one canonical lead into one envelope. A long rhythm strip can make that envelope much larger than its short-row box. Use <code>instance_boxes</code> when training detection of individual printed traces.</p>
+<p>Boxes use <strong>integer pixel-edge xyxy coordinates</strong>. The right and bottom edges are exclusive. For example, <code>[3,2,7,5]</code> covers columns 3–6 and rows 2–4. Box extraction uses pixels whose coverage is <code>&gt; threshold</code>. The default threshold is <code>.05</code> so thin anti-aliased edges can contribute. Increase it if your target definition requires stronger coverage.</p>
+<h2 id="visibility-and-camera-degradation">Visibility and camera degradation<a class="heading-anchor" href="#visibility-and-camera-degradation" aria-label="Link to Visibility and camera degradation">#</a></h2>
+<p><code>visible_only=True</code> excludes torn paper, out-of-frame content and explicit opaque occlusion. <code>valid</code> can contain soft visibility values. It does not measure OCR readability, contrast or recovery confidence.</p>
+<p><code>visible_only=False</code> retains projected traces behind explicit occluders where the projection exists. Out-of-frame pixels still do not exist in an image-space target. This option can support amodal objectives, but it does not make invisible signal segments observable.</p>
+<p>Noise, blur and JPEG degradation affect RGB, while target masks remain geometric. They are a clean target under the same capture geometry, not a thresholded copy of the noisy RGB.</p>
+<h2 id="reuse-a-richer-render">Reuse a richer render<a class="heading-anchor" href="#reuse-a-richer-render" aria-label="Link to Reuse a richer render">#</a></h2>
+<pre><code class="language-python">rendered = synth.render_batch(
+    signals, stage=&quot;all&quot;, return_scene=True, return_instances=True,
+    return_baselines=False, return_instance_boxes=False,
+)
+batch = synth.supervise(rendered)       # no second render
+</code></pre>
+<p>This lets you retain scene maps or provenance while using the same advanced target format. Match the requested instance outputs by rendering with <code>return_instances=True</code>.</p>
+<h2 id="export-targets">Export targets<a class="heading-anchor" href="#export-targets" aria-label="Link to Export targets">#</a></h2>
+<pre><code class="language-bash">ecg-render --input signal.npz --output ecg.png \
+  --targets-dir targets \
+  --targets lead_masks,bw,wb,lead_boxes,instance_masks,instance_boxes \
+  --binary-targets --target-threshold 0.3
+</code></pre>
+<p><code>targets.npz</code> preserves tensor arrays. <code>boxes.json</code> includes channel names and the coordinate convention. BW/WB PNGs are lossless grayscale exports. Add <code>--target-leads II,V1,V5</code> to choose channel order, or <code>--projected-targets</code> for targets behind explicit occluders.</p>
+<p>Inside training, use tensors directly. File export, NumPy conversion and JSON serialization belong outside the hot path.</p>
+<nav class="pagination" aria-label="Documentation pages"><a href="camera.html"><small>Previous</small>Capture &amp; print artifacts</a><a href="training.html"><small>Next</small>Train an image model <span aria-hidden="true">→</span></a></nav><footer>ECG Torch Renderer · MIT · <a href="https://github.com/fmenegui/ecg-torch-renderer/blob/main/documentation/pages/targets.md">Edit this page ↗</a><span>v0.4.0</span></footer></article></main>
+<aside class="toc" aria-label="On this page"><p>On this page</p><a href="#request-just-what-you-need">Request just what you need</a><a href="#two-grayscale-polarities">Two grayscale polarities</a><a href="#independent-channels">Independent channels</a><a href="#lead-boxes-and-printed-instance-boxes">Lead boxes and printed-instance boxes</a><a href="#visibility-and-camera-degradation">Visibility and camera degradation</a><a href="#reuse-a-richer-render">Reuse a richer render</a><a href="#export-targets">Export targets</a><a class="toc-top" href="#main">Back to top ↑</a></aside></div>
+<dialog id="search-dialog" class="search-dialog"><div class="dialog-top"><label for="search-input">Search the guide</label><button class="icon-button" data-close-dialog="search-dialog" aria-label="Close search">×</button></div><input id="search-input" type="search" placeholder="Masks, layouts, profiling…" autocomplete="off"><p id="search-status" class="search-status" aria-live="polite">Type to search all pages.</p><div id="search-results"></div></dialog>
+<dialog id="figure-dialog" class="figure-dialog"><div class="dialog-top"><h2 id="figure-title">Example</h2><button class="icon-button" data-close-dialog="figure-dialog" aria-label="Close figure">×</button></div><img id="figure-image" alt=""><p id="figure-description"></p><div class="recipe-top"><strong>Rendering recipe</strong><button id="copy-recipe" class="button secondary">Copy JSON</button></div><pre id="figure-recipe"></pre><a id="figure-download" href="gallery.json">Open full image ↗</a></dialog>
+<p id="copy-status" class="sr-only" aria-live="polite"></p></body></html>

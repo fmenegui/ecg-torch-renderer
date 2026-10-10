@@ -334,11 +334,12 @@ class ECGRenderer(nn.Module):
         high = torch.minimum(low + 1, (lengths - 1)[:, None, None])
         return torch.lerp(signals.gather(2, low), signals.gather(2, high), index - low)
 
-    def _curves(self, signals, rates, lengths, instances, p, stage, return_instances=False):
+    def _curves(self, signals, rates, lengths, instances, p, stage, return_instances=False,
+                return_baselines=True):
         b, _, n = signals.shape
         h, w, samples = self.config.height, self.config.width, self.config.antialias_samples
         trace_target = torch.zeros(b, 12, h, w, device=self.device) if stage in {'trace', 'all'} else None
-        baseline_target = torch.zeros_like(trace_target) if trace_target is not None else None
+        baseline_target = torch.zeros_like(trace_target) if trace_target is not None and return_baselines else None
         ink = torch.zeros(b, 1, h, w, device=self.device)
         calibration = torch.zeros_like(ink)
         instance_target = torch.zeros(b,self.instance_count,h,w,device=self.device) if return_instances else None
@@ -383,14 +384,17 @@ class ECGRenderer(nn.Module):
             if instance_target is not None:
                 instance_target[:,first:last]=mask
             if trace_target is not None:
-                baselines=(1-(self.yy-base[:,:,None,None]).abs()).clamp(0,1)*within
                 index=ids[:,:,None,None].expand_as(mask)
                 trace_target.scatter_reduce_(1,index,mask,reduce='amax',include_self=True)
-                baseline_target.scatter_reduce_(1,index,baselines,reduce='amax',include_self=True)
+                if baseline_target is not None:
+                    baselines=(1-(self.yy-base[:,:,None,None]).abs()).clamp(0,1)*within
+                    baseline_target.scatter_reduce_(1,index,baselines,reduce='amax',include_self=True)
             pulse=self._calibration_kernel(base,scale,instances['left'],instances['ppm'],instances['speed'],
                     thickness,p['pulse_present'][:,first:last],active&(instances['column'][:,first:last]==0),self.xx,self.yy)
             calibration=torch.maximum(calibration,pulse)
-        targets={} if trace_target is None else {'traces':trace_target,'baselines':baseline_target}
+        targets={} if trace_target is None else {'traces':trace_target}
+        if baseline_target is not None:
+            targets['baselines']=baseline_target
         if instance_target is not None:
             targets['instances']=instance_target
         return ink,calibration,targets
@@ -515,7 +519,8 @@ class ECGRenderer(nn.Module):
     @torch.no_grad()
     def forward(self, signals, fs, *, lengths=None, stage='all', photo=True, generator=None,
                 parameters: Optional[Mapping] = None, severity=None, return_field=False, return_canonical=False,
-                return_scene=False, return_instances=False):
+                return_scene=False, return_instances=False, return_baselines=True,
+                return_instance_boxes=True):
         # Keep geometric inversion, glyphs and radiometry in float32 even when
         # the caller trains its image network inside an AMP context.
         if self.atlas.dtype!=torch.float32:
@@ -523,11 +528,13 @@ class ECGRenderer(nn.Module):
         with torch.autocast(device_type=signals.device.type,enabled=False):
             return self._render(signals,fs,lengths=lengths,stage=stage,photo=photo,generator=generator,
                                 parameters=parameters,severity=severity,return_field=return_field,
-                                return_canonical=return_canonical,return_scene=return_scene,return_instances=return_instances)
+                                return_canonical=return_canonical,return_scene=return_scene,return_instances=return_instances,
+                                return_baselines=return_baselines,return_instance_boxes=return_instance_boxes)
 
     def _render(self, signals, fs, *, lengths=None, stage='all', photo=True, generator=None,
                 parameters: Optional[Mapping] = None, severity=None, return_field=False, return_canonical=False,
-                return_scene=False, return_instances=False):
+                return_scene=False, return_instances=False, return_baselines=True,
+                return_instance_boxes=True):
         if stage not in {'image','geometry', 'trace', 'metadata', 'all'}:
             raise ValueError('stage must be image, geometry, trace, metadata or all')
         if signals.ndim != 3 or signals.shape[0] < 1 or signals.shape[1] != 12 or signals.shape[2] < 2:
@@ -580,7 +587,7 @@ class ECGRenderer(nn.Module):
             p['asset_active'] = torch.zeros_like(p['asset_active'])
         duration = ((lengths - 1) / rates).clamp(max=self.config.max_duration_s)
         instances = self._instances(p, duration)
-        ink, pulse, targets = self._curves(signals.float(), rates, lengths, instances, p, stage,return_instances)
+        ink, pulse, targets = self._curves(signals.float(), rates, lengths, instances, p, stage,return_instances,return_baselines)
         grid, grid_alpha, vertices = self._grid(instances, p, stage in {'geometry', 'all'})
         text, labels, unit_mask = self._text(instances, p, stage in {'metadata', 'all'},stage!='image')
         paper, paper_id = self._texture(self.paper_textures, b, generator, True)
@@ -687,7 +694,7 @@ class ECGRenderer(nn.Module):
                     'paper_texture_id': paper_id, 'background_id': background_id,
                     'document_asset_id':scene['asset_id'] if scene else torch.full((b,),-1,device=self.device,dtype=torch.long),
                     'parameters': p}
-        if return_instances:
+        if return_instances and return_instance_boxes:
             visible = targets['instances']*valid
             columns = (visible>.05).any(-2)
             rows = (visible>.05).any(-1)

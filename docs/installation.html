@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Set up the package, choose your Torch runtime and run a first check."><meta name="theme-color" content="#df5548"><title>Installation · ECG Torch Renderer</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css"><script>try{document.documentElement.dataset.theme=localStorage.getItem('ecg-docs-theme')||'light'}catch{}</script><script src="app.js" defer></script></head>
+<body><a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div>
+<header class="topbar"><button id="menu-button" class="icon-button menu-button" aria-label="Toggle navigation" aria-controls="sidebar" aria-expanded="false">☰</button><a class="brand" href="index.html"><svg viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="10" fill="currentColor"/><path d="M5 19h7l3-9 4 17 3-8h9" fill="none" stroke="white" stroke-width="2.2" stroke-linejoin="round"/></svg><span>ECG<span class="brand-sub">Torch Renderer</span></span></a><span class="version">v0.4.0</span><div class="top-actions"><button id="search-button" class="search-button"><span>Search documentation</span><kbd>⌘ K</kbd></button><a class="github-link" href="https://github.com/fmenegui/ecg-torch-renderer">GitHub ↗</a><button id="theme-button" class="icon-button" aria-label="Switch color theme">◐</button></div></header>
+<div class="docs-shell"><aside id="sidebar" class="sidebar"><nav aria-label="Main documentation"><p class="nav-section">Start here</p><a  href="index.html">Welcome</a><a aria-current="page" href="installation.html">Installation</a><a  href="quickstart.html">Quickstart</a><p class="nav-section">Learn</p><a  href="concepts.html">How rendering works</a><a  href="layouts.html">Layouts &amp; calibration</a><a  href="parameters.html">Configure &amp; randomize</a><a  href="scenes.html">Paper, tables &amp; lighting</a><a  href="camera.html">Capture &amp; print artifacts</a><p class="nav-section">Train</p><a  href="targets.html">Advanced supervision</a><a  href="training.html">Train an image model</a><a  href="reproducibility.html">Reproducibility</a><p class="nav-section">Extend</p><a  href="assets.html">Custom assets &amp; layouts</a><p class="nav-section">Engineer</p><a  href="performance.html">Performance</a><a  href="profiling.html">Detailed profiling</a><a  href="validation.html">Validation &amp; testing</a><a  href="limitations.html">Scope &amp; limitations</a><p class="nav-section">Reference</p><a  href="api.html">API reference</a><a  href="gallery.html">Example gallery</a></nav><div class="sidebar-note">Built for on-device training.<br>Measured results, explicit contracts.</div></aside>
+<main id="main"><article class="document " data-page="installation"><div class="page-eyebrow">Start here</div><h1>Installation</h1>
+<p>Install a PyTorch distribution appropriate for your environment first. CPU and CUDA builds have different runtime requirements. Follow the <a href="https://pytorch.org/get-started/locally/">official PyTorch installation selector</a>.</p>
+<h2 id="install-from-source">Install from source<a class="heading-anchor" href="#install-from-source" aria-label="Link to Install from source">#</a></h2>
+<pre><code class="language-bash">git clone https://github.com/fmenegui/ecg-torch-renderer.git
+cd ecg-torch-renderer
+python -m pip install -e .
+</code></pre>
+<p>Python 3.10 or newer is required. The runtime dependencies are Torch ≥2.6, NumPy ≥1.24 and Pillow ≥10.1. Optional WFDB input is available with:</p>
+<pre><code class="language-bash">python -m pip install -e &#39;.[wfdb]&#39;
+</code></pre>
+<h2 id="verify-the-device">Verify the device<a class="heading-anchor" href="#verify-the-device" aria-label="Link to Verify the device">#</a></h2>
+<pre><code class="language-python">import torch
+import ecg_gpu
+
+print(ecg_gpu.__version__)
+print(torch.__version__)
+print(torch.cuda.is_available())
+device = torch.device(&quot;cuda&quot; if torch.cuda.is_available() else &quot;cpu&quot;)
+</code></pre>
+<p>Move the module once with <code>.to(device)</code>. Move every input batch to the same device. Keep the renderer buffers in float32. Use AMP around the downstream network.</p>
+<h2 id="run-a-working-example">Run a working example<a class="heading-anchor" href="#run-a-working-example" aria-label="Link to Run a working example">#</a></h2>
+<pre><code class="language-bash">python examples/sequential.py
+python examples/segmentation.py --steps 3
+python -m unittest discover -s tests -v
+</code></pre>
+<p>The examples use artificial signals and work on CPU. The segmentation example accepts <code>--device cuda --compile-raster</code> for your GPU run.</p>
+<h2 id="google-colab">Google Colab<a class="heading-anchor" href="#google-colab" aria-label="Link to Google Colab">#</a></h2>
+<p>Open the <a href="https://colab.research.google.com/github/fmenegui/ecg-torch-renderer/blob/main/notebooks/colab_gpu_profile.ipynb">GPU profiling notebook</a>, choose a GPU runtime, then run all cells. The notebook checks the selected runtime, generates images, benchmarks the backends and exports a results ZIP. Hardware availability and performance depend on the assigned runtime.</p>
+<h2 id="build-this-documentation">Build this documentation<a class="heading-anchor" href="#build-this-documentation" aria-label="Link to Build this documentation">#</a></h2>
+<pre><code class="language-bash">cd documentation
+npm install
+cd ..
+python documentation/build.py
+python documentation/validate.py
+python -m http.server 8000 --directory docs
+</code></pre>
+<p>The site is static. It can be served from the generated <code>docs/</code> directory. Search, figure inspection and code copying run locally in the browser, with no telemetry or image uploads.</p>
+<nav class="pagination" aria-label="Documentation pages"><a href="index.html"><small>Previous</small>Welcome</a><a href="quickstart.html"><small>Next</small>Quickstart <span aria-hidden="true">→</span></a></nav><footer>ECG Torch Renderer · MIT · <a href="https://github.com/fmenegui/ecg-torch-renderer/blob/main/documentation/pages/installation.md">Edit this page ↗</a><span>v0.4.0</span></footer></article></main>
+<aside class="toc" aria-label="On this page"><p>On this page</p><a href="#install-from-source">Install from source</a><a href="#verify-the-device">Verify the device</a><a href="#run-a-working-example">Run a working example</a><a href="#google-colab">Google Colab</a><a href="#build-this-documentation">Build this documentation</a><a class="toc-top" href="#main">Back to top ↑</a></aside></div>
+<dialog id="search-dialog" class="search-dialog"><div class="dialog-top"><label for="search-input">Search the guide</label><button class="icon-button" data-close-dialog="search-dialog" aria-label="Close search">×</button></div><input id="search-input" type="search" placeholder="Masks, layouts, profiling…" autocomplete="off"><p id="search-status" class="search-status" aria-live="polite">Type to search all pages.</p><div id="search-results"></div></dialog>
+<dialog id="figure-dialog" class="figure-dialog"><div class="dialog-top"><h2 id="figure-title">Example</h2><button class="icon-button" data-close-dialog="figure-dialog" aria-label="Close figure">×</button></div><img id="figure-image" alt=""><p id="figure-description"></p><div class="recipe-top"><strong>Rendering recipe</strong><button id="copy-recipe" class="button secondary">Copy JSON</button></div><pre id="figure-recipe"></pre><a id="figure-download" href="gallery.json">Open full image ↗</a></dialog>
+<p id="copy-status" class="sr-only" aria-live="polite"></p></body></html>

@@ -29,7 +29,9 @@
     "supervision": "geometry, trace, labels, classes, valid, optional 15 instances and visible pixel boxes",
     "scene_outputs": "inverse field, normals, height, lighting, paper visibility and shadows",
     "training": "raw-signal CSV, patient disjointness, main-process rendering, fixed validation and reproducible resume",
-    "cost_controls": "image-only path without dense task masks, surface resolution, Newton iterations, shadow samples, antialiasing, lead chunks and selected targets"
+    "cost_controls": "image-only path without dense task masks, surface resolution, Newton iterations, shadow samples, antialiasing, lead chunks and selected targets",
+    "advanced_supervision": "ECGSupervisionLayer: selected lead channels, union/BW/WB, visible/projected and soft/binary targets, lead/instance boxes, CLI NPZ/JSON/PNG export",
+    "documentation": "English static guide, local search, generated API reference and 125 actual renderer figures"
   },
   "approximations": {
     "gradient": "Rendering is preprocessing without gradients to the source ECG. The downstream image network remains trainable",
@@ -80,5 +82,6 @@
   ],
   "reference_source_code_copied": false,
   "default_pipeline_needs_external_assets": false,
-  "clinical_validation": false
+  "clinical_validation": false,
+  "version": "0.4.0"
 }

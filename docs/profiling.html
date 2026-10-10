@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Export timings, operators, kernels, memory and a Perfetto trace."><meta name="theme-color" content="#df5548"><title>Detailed profiling · ECG Torch Renderer</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css"><script>try{document.documentElement.dataset.theme=localStorage.getItem('ecg-docs-theme')||'light'}catch{}</script><script src="app.js" defer></script></head>
+<body><a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div>
+<header class="topbar"><button id="menu-button" class="icon-button menu-button" aria-label="Toggle navigation" aria-controls="sidebar" aria-expanded="false">☰</button><a class="brand" href="index.html"><svg viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="10" fill="currentColor"/><path d="M5 19h7l3-9 4 17 3-8h9" fill="none" stroke="white" stroke-width="2.2" stroke-linejoin="round"/></svg><span>ECG<span class="brand-sub">Torch Renderer</span></span></a><span class="version">v0.4.0</span><div class="top-actions"><button id="search-button" class="search-button"><span>Search documentation</span><kbd>⌘ K</kbd></button><a class="github-link" href="https://github.com/fmenegui/ecg-torch-renderer">GitHub ↗</a><button id="theme-button" class="icon-button" aria-label="Switch color theme">◐</button></div></header>
+<div class="docs-shell"><aside id="sidebar" class="sidebar"><nav aria-label="Main documentation"><p class="nav-section">Start here</p><a  href="index.html">Welcome</a><a  href="installation.html">Installation</a><a  href="quickstart.html">Quickstart</a><p class="nav-section">Learn</p><a  href="concepts.html">How rendering works</a><a  href="layouts.html">Layouts &amp; calibration</a><a  href="parameters.html">Configure &amp; randomize</a><a  href="scenes.html">Paper, tables &amp; lighting</a><a  href="camera.html">Capture &amp; print artifacts</a><p class="nav-section">Train</p><a  href="targets.html">Advanced supervision</a><a  href="training.html">Train an image model</a><a  href="reproducibility.html">Reproducibility</a><p class="nav-section">Extend</p><a  href="assets.html">Custom assets &amp; layouts</a><p class="nav-section">Engineer</p><a  href="performance.html">Performance</a><a aria-current="page" href="profiling.html">Detailed profiling</a><a  href="validation.html">Validation &amp; testing</a><a  href="limitations.html">Scope &amp; limitations</a><p class="nav-section">Reference</p><a  href="api.html">API reference</a><a  href="gallery.html">Example gallery</a></nav><div class="sidebar-note">Built for on-device training.<br>Measured results, explicit contracts.</div></aside>
+<main id="main"><article class="document " data-page="profiling"><div class="page-eyebrow">Engineer</div><h1>Detailed profiling</h1>
+<p>One command exports a benchmark report, operator tables, CUDA kernel events when available, allocator peaks and a compressed trace. Instrumented profile passes are separate from timed benchmark passes.</p>
+<h2 id="profile-the-renderer">Profile the renderer<a class="heading-anchor" href="#profile-the-renderer" aria-label="Link to Profile the renderer">#</a></h2>
+<pre><code class="language-bash">ecg-renderer-profile --device cuda --preset balanced --batch-size 4 \
+  --compile-raster --warmup 5 --steps 30 --profile-steps 3 \
+  --out profile-renderer
+</code></pre>
+<h2 id="profile-a-complete-training-step">Profile a complete training step<a class="heading-anchor" href="#profile-a-complete-training-step" aria-label="Link to Profile a complete training step">#</a></h2>
+<pre><code class="language-bash">ecg-renderer-profile --device cuda --preset balanced --batch-size 4 \
+  --compile-raster --train-step --stacks --memory-timeline \
+  --out profile-train
+</code></pre>
+<p>The CLI training workload includes a small artificial CNN, forward, loss, backward and AdamW. Use the Python API below for your actual U-Net or other production model.</p>
+<h2 id="profile-your-own-workload">Profile your own workload<a class="heading-anchor" href="#profile-your-own-workload" aria-label="Link to Profile your own workload">#</a></h2>
+<pre><code class="language-python">from ecg_gpu import profile_layer
+
+def train_step():
+    batch = synth(signals)
+    optimizer.zero_grad(set_to_none=True)
+    logits = unet(batch[&quot;image&quot;])
+    loss_map = F.binary_cross_entropy_with_logits(logits, batch[&quot;lead_masks&quot;], reduction=&quot;none&quot;)
+    loss = (loss_map * batch[&quot;valid&quot;]).sum() / (batch[&quot;valid&quot;].sum() * logits.shape[1]).clamp_min(1)
+    loss.backward()
+    optimizer.step()
+    return loss.detach()
+
+report = profile_layer(
+    synth, signals, &quot;profile-unet&quot;,
+    workload=train_step,
+    workload_name=&quot;ECGSupervisionLayer + U-Net + backward + AdamW&quot;,
+    steps=30, warmup=5, profile_steps=3,
+)
+</code></pre>
+<p>Use a disposable model/optimizer/renderer instance when profiling. Warmup, timing and profiling all execute the workload and advance its state. The output directory must be empty.</p>
+<h2 id="read-the-artifacts">Read the artifacts<a class="heading-anchor" href="#read-the-artifacts" aria-label="Link to Read the artifacts">#</a></h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>report.json</code></td>
+<td>Runtime, source hashes, config, median/p90 latency, throughput and memory peaks</td>
+</tr>
+<tr>
+<td><code>operators.csv</code></td>
+<td>Operator calls, shapes, host/device time and allocation information</td>
+</tr>
+<tr>
+<td><code>kernels.csv</code></td>
+<td>Captured CUDA kernel names, call counts and event totals</td>
+</tr>
+<tr>
+<td><code>tables.txt</code></td>
+<td>Readable top-operator tables</td>
+</tr>
+<tr>
+<td><code>trace.json.gz</code></td>
+<td>Compressed Chrome/Perfetto trace</td>
+</tr>
+<tr>
+<td><code>memory-timeline.json.gz</code></td>
+<td>Optional allocation timeline, when supported</td>
+</tr>
+<tr>
+<td><code>&lt;output-directory&gt;.zip</code></td>
+<td>Portable results bundle</td>
+</tr>
+</tbody></table></div>
+<p>Decompress the trace and open it in <a href="https://ui.perfetto.dev/">Perfetto</a>. Parent and child region totals overlap. Concurrent GPU events can overlap. Do not add these totals to estimate wall latency.</p>
+<h2 id="measurement-boundaries">Measurement boundaries<a class="heading-anchor" href="#measurement-boundaries" aria-label="Link to Measurement boundaries">#</a></h2>
+<p>The first call is recorded separately. Warm benchmark calls exclude profiler instrumentation, encoding and DataLoader work unless your custom workload includes them. CUDA timing uses events and synchronization. CPU reports keep CUDA measurements null.</p>
+<p>Allocator peaks are not DRAM traffic or total process GPU memory. Hardware bandwidth, SM occupancy and utilization counters are not collected. CUDA kernel activity needs a working CUPTI/runtime profiler setup. The report records whether events were actually captured.</p>
+<p>Signals and patient metadata are not exported by the profiler. Your own workload remains responsible for any additional logging or files it writes.</p>
+<nav class="pagination" aria-label="Documentation pages"><a href="performance.html"><small>Previous</small>Performance</a><a href="validation.html"><small>Next</small>Validation &amp; testing <span aria-hidden="true">→</span></a></nav><footer>ECG Torch Renderer · MIT · <a href="https://github.com/fmenegui/ecg-torch-renderer/blob/main/documentation/pages/profiling.md">Edit this page ↗</a><span>v0.4.0</span></footer></article></main>
+<aside class="toc" aria-label="On this page"><p>On this page</p><a href="#profile-the-renderer">Profile the renderer</a><a href="#profile-a-complete-training-step">Profile a complete training step</a><a href="#profile-your-own-workload">Profile your own workload</a><a href="#read-the-artifacts">Read the artifacts</a><a href="#measurement-boundaries">Measurement boundaries</a><a class="toc-top" href="#main">Back to top ↑</a></aside></div>
+<dialog id="search-dialog" class="search-dialog"><div class="dialog-top"><label for="search-input">Search the guide</label><button class="icon-button" data-close-dialog="search-dialog" aria-label="Close search">×</button></div><input id="search-input" type="search" placeholder="Masks, layouts, profiling…" autocomplete="off"><p id="search-status" class="search-status" aria-live="polite">Type to search all pages.</p><div id="search-results"></div></dialog>
+<dialog id="figure-dialog" class="figure-dialog"><div class="dialog-top"><h2 id="figure-title">Example</h2><button class="icon-button" data-close-dialog="figure-dialog" aria-label="Close figure">×</button></div><img id="figure-image" alt=""><p id="figure-description"></p><div class="recipe-top"><strong>Rendering recipe</strong><button id="copy-recipe" class="button secondary">Copy JSON</button></div><pre id="figure-recipe"></pre><a id="figure-download" href="gallery.json">Open full image ↗</a></dialog>
+<p id="copy-status" class="sr-only" aria-live="polite"></p></body></html>
