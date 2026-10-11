@@ -56,13 +56,16 @@ class ECGImageLayer(nn.Module):
 
     def get_extra_state(self):
         return {'schema':'ecg-image-layer-state-v1','signature':self._signature,
-                'calls':self._calls,'seed':self.seed,'randomize':self.randomize,'compile_raster':self.renderer.compile_raster}
+                'calls':self._calls,'seed':self.seed,'randomize':self.randomize,'compile_raster':self.renderer.compile_raster,
+                'compile_scene':self.renderer.compile_scene}
 
     def set_extra_state(self,state):
         if state.get('schema')!='ecg-image-layer-state-v1' or state.get('signature')!=self._signature:
             raise ValueError('Image layer configuration/assets changed. Recreate the same layer before resuming')
         if state.get('compile_raster',False)!=self.renderer.compile_raster:
             raise ValueError('Rasterizer backend changed. Recreate the same compile_raster setting before resuming')
+        if state.get('compile_scene',False)!=self.renderer.compile_scene:
+            raise ValueError('Scene backend changed. Recreate the same compile_scene setting before resuming')
         if not isinstance(state['calls'],int) or state['calls']<0:
             raise ValueError('Invalid image-layer RNG state')
         self._calls=state['calls']

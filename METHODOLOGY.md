@@ -1,6 +1,6 @@
 # Methodology
 
-The independent library renders calibrated ECG paper and camera captures from 12-lead signals. It is a data-generation component without a trained clinical inverse model.
+Material-paper-v1 in ECG Torch Renderer 0.5.0. Signals keep their physiological reference and all paired maps share one capture field.
 
 # How rendering works
 
@@ -61,9 +61,9 @@ render = ECGImageLayer(parameters={
 
 ![Three rows, four columns and three full-duration rhythm strips](docs/assets/gallery/layout-3x4-r3.jpg)
 
-The standard library has 30 layouts. Inspect all of them in the [gallery](docs/gallery.html?category=Layouts).
+The standard library has {{layout_count}} layouts. Inspect all of them in the [gallery](docs/gallery.html?category=Layouts).
 
-See the generated API/layout reference for the full table.
+{{layout_table}}
 
 ## Sequential and simultaneous windows
 
@@ -101,7 +101,7 @@ The procedural scene keeps geometry, normals, illumination and visibility togeth
 
 ## Eight paper surfaces
 
-`flat`, `curl`, `fold`, `accordion`, `crumpled`, `wrinkled`, `rolled` and `corner` use a 2.5D height-field model. Select one surface or let `surface_mode='mixed'` sample the family.
+`flat`, `curl`, `fold`, `accordion`, `crumpled`, `wrinkled`, `rolled` and `corner` use a material-coordinate 2.5D model. Curl, fold, accordion, rolled edges and lifted corners integrate unit tangents along a bend. The sheet shortens in projection while its printed material keeps its length. Crumples use finite signed creases and a bounded in-plane shortening approximation. Select one surface or let `surface_mode='mixed'` sample the family.
 
 ```python
 render = ECGImageLayer(parameters={
@@ -116,6 +116,44 @@ render = ECGImageLayer(parameters={
 ![A rolled paper surface](docs/assets/gallery/paper-rolled.jpg)
 
 Browse the [paper gallery](docs/gallery.html?category=Paper) for the full set of surfaces and palettes. These are procedural approximations. They do not solve cloth dynamics or arbitrary sheet self-overlap.
+
+## Material geometry in 0.5.0
+
+![Matched fold, crumple and roll controls, 0.4.0 on the left and 0.5.0 on the right](assets/paper-revision.jpg)
+
+The comparison keeps source waveform, layout, camera and three-light controls fixed. Default surface detail and tabletop algorithms intentionally differ. [Comparison provenance](PAPER_VISUAL_COMPARISON.json).
+
+The previous default combined arbitrary image-plane sine warps, a relief surface and an independently painted crease stripe. Version 0.5.0 generates the large shape from the material mesh. Illumination follows its normals and height. Legacy `curl_x`, `curl_y` and `crease_warp` remain explicit overrides and default to zero.
+
+For bend angle `theta(s)`, the cross-section integrates `dX/ds = cos(theta)` and `dZ/ds = sin(theta)`. The squared tangent length is therefore one before discretization. Sharp-fold integration, sampled derivatives and localized crumples have measurable approximation error.
+
+| Parameter | Meaning |
+| --- | --- |
+| `surface_strength` | Overall bend strength, 0..1 |
+| `surface_axis` | Main bend orientation in radians |
+| `fold_width` | Rounded crease width, in half-page-width units |
+| `fold_span` | Width of the neighboring crease facet |
+| `fold_length` | Finite crease length |
+| `fold_amplitude` | Crease relief in half-page-width units |
+| `fold_sign` | Positive or negative crease direction |
+| `crease_count` | Number of active local creases, 0..8 |
+| `paper_gap` | Sheet/table clearance, in half-page-width units |
+
+`fold_*` values have eight entries per sample. The first position and width also control the single-fold family. Corner bends use a diagonal hinge and preserve material length like the cylindrical families. Creases approximate worn paper with angular facets and rounded ridges, rather than soft Gaussian bumps.
+
+## Faster inverse mapping
+
+The default `geometry_solver="coarse_to_fine"` solves on the small material grid and performs two output-resolution Newton refinements. `geometry_solver="dense"` retains the output-resolution solver as a numerical reference. Both reject nonpositive/near-singular projections and excessive residuals. Pixel-center coordinates match `grid_sample(align_corners=False)`.
+
+```python
+render = ECGImageLayer(
+    config=RenderConfig(geometry_solver="coarse_to_fine"),
+    compile_raster=True,
+    compile_scene=True,
+)
+```
+
+`compile_scene=True` fuses deterministic material geometry, lighting and Newton arithmetic. Random draws and the caller's generator stream stay outside compiled regions. It is opt-in and its first call compiles. [Performance](docs/performance.html) separates cold and warm calls.
 
 ## Tables and paper colors
 
@@ -133,7 +171,7 @@ render = ECGImageLayer(parameters={
 
 ## Lighting and shadows
 
-Three colored lights, ambient illumination, diffuse/specular shading, a flash term and approximate ambient occlusion affect the paper. The scene also supports sampled height-field shadows and paper cast/contact shadows.
+Three colored lights, energy-normalized matte diffuse shading, a bounded roughness-dependent specular term, flash and approximate ambient occlusion affect the paper. Height-field shadow rays process all three lights together in bounded chunks. Nonintersecting rays leave flat paper unshadowed, including at grazing angles. Cast shadows use local paper height and sampled light directions, with controlled softness. A narrow contact shadow joins the sheet to the table. Sheet edges use fractional coverage for smoother silhouettes.
 
 Foreground shadow families are `none`, `edge`, `phone`, `hand`, `blinds`, `window` and `ellipse`. They are analytic silhouettes. They do not contain full 3D hand or phone geometry.
 
@@ -154,64 +192,20 @@ batch = render.render_batch(signals, stage="all", return_scene=True,
                             return_field=True, return_canonical=True)
 normals = batch.scene["normals"]
 height = batch.scene["height"]
+metric_error = batch.scene["metric_strain"]
+residual = batch.scene["projection_residual"]
 visibility = batch.targets["valid"]
 ```
 
 Scene maps are opt-in inspection outputs. Avoid retaining them when a training step only needs RGB or trace masks. [External document assets](docs/assets.html) can supply pre-rendered 3D visibility maps for shapes outside the procedural model.
 
+## Numerical paper audit
 
-# Capture & print artifacts
-
-Printing, geometry and capture are independently configurable. Their default distributions are a starting point, then should be adapted to the images you expect to digitize.
-
-## Geometry
-
-Perspective, small rotations, quarter turns, zoom, translation, crops, radial lens distortion, curl and creases alter the sampling field. Targets use the same field.
-
-![A partially cropped ECG page](docs/assets/gallery/crop.jpg)
-
-```python
-render = ECGImageLayer(parameters={
-    "angle": Uniform(-.2, .2),
-    "quarter": Choice([0, 1, 2, 3]),
-    "perspective_x": Uniform(-.2, .2),
-    "perspective_y": Uniform(-.12, .12),
-    "radial": Uniform(-.03, .03),
-})
+```bash
+python documentation/paper_audit.py --device cpu --out paper-audit.json
 ```
 
-## Camera
-
-| Control | Effect |
-| --- | --- |
-| `blur` | Defocus component of the point-spread function |
-| `motion`, `motion_angle` | Directional motion blur |
-| `read_noise`, `shot_noise` | Additive and intensity-dependent sensor noise |
-| `exposure`, `white_balance`, `gamma` | Tone and channel response |
-| `vignette` | Spatial attenuation near the frame edge |
-| `jpeg_quality`, `jpeg_active` | 4:2:0 chroma and 8×8 DCT artifact simulation |
-
-![Directional motion blur](docs/assets/gallery/motion.jpg)
-
-![Low-quality JPEG artifact simulation](docs/assets/gallery/jpeg.jpg)
-
-JPEG here is a decoded-artifact approximation implemented in Torch. It does not write an entropy-coded JPEG file. The CLI separately encodes the final image if you choose `.jpg`.
-
-## Paper and print
-
-Control ink width, color, density, thermal fading, scan bands, grid styles, grid phase, missing lead slots, label placement, fonts, unit headers, paper tint/age/noise, stains, coffee rings and reverse-side bleed.
-
-![Local thermal fading of printed traces](docs/assets/gallery/thermal-fade.jpg)
-
-## Explicit occlusion
-
-Tears remove part of the paper. Opaque rectangles, procedural pen strokes and rotated artifact text cover the printed page. The `valid` mask accounts for these explicit visibility changes.
-
-![A torn paper edge](docs/assets/gallery/tear.jpg)
-
-Shadowed or blurred pixels remain geometrically valid. Visibility does not mean the trace is readable. Keep a separate quality criterion if your application needs it.
-
-`photo=False` produces a canonical page and disables the camera geometry, surface deformation and external document warps. It is useful for rectified training targets. It does not automatically remove every configured print artifact.
+The [recorded audit](PAPER_AUDIT_CPU.json) checks all eight families against a 12-iteration dense solve on visible interior pixels. It records material metric error and inverse-field error in pixels. External-bank entries report zero procedural metric error because their geometry is supplied, not checked by this model. These diagnostics establish numerical behavior, not agreement with photographed paper.
 
 
 # Advanced supervision
@@ -259,7 +253,7 @@ Instance metadata is returned when you request instance masks or boxes. Slots ha
 
 ## Two grayscale polarities
 
-<div class="figure-pair"><figure><img src="docs/assets/gallery/supervision-bw.jpg" alt="Black traces on white background"><figcaption>BW: white background, black traces.</figcaption></figure><figure><img src="docs/assets/gallery/supervision-wb.jpg" alt="White traces on black background"><figcaption>WB: black background, white traces.</figcaption></figure></div>
+<div class="figure-pair"><figure><img src="assets/gallery/supervision-bw.jpg" alt="Black traces on white background"><figcaption>BW: white background, black traces.</figcaption></figure><figure><img src="assets/gallery/supervision-wb.jpg" alt="White traces on black background"><figcaption>WB: black background, white traces.</figcaption></figure></div>
 
 These views contain only the chosen leads. Grid, labels, pulses, table texture and capture shadows are excluded. Soft coverage gives anti-aliased edges. Set `binary=True` for masks containing exactly zero and one.
 
@@ -398,7 +392,7 @@ This package generates ECG images and paired targets. It does not contain a trai
 
 | Feature | Implemented scope |
 | --- | --- |
-| Paper deformation | Procedural 2.5D height fields with fixed-iteration inversion |
+| Paper deformation | Developable bends and approximate local creases, 2.5D, with checked Newton inversion |
 | Self-overlap | Can be supplied through externally rendered visibility/UV banks |
 | Cloth dynamics | Not implemented |
 | Phone/hand shadows | Analytic silhouettes |
@@ -416,13 +410,12 @@ The raster preserves narrow extrema through an envelope. At low resolution, that
 
 ## Evidence boundaries
 
-The included figures and integration runs use artificial ECG waveforms. The recorded performance comparison was on CPU. CUDA throughput, real-photograph realism and clinical waveform reconstruction have not been demonstrated in this release.
+The included figures and integration runs use artificial ECG waveforms. The uploaded 0.4.0 run measured CUDA throughput on a Tesla T4. The revised 0.5.0 paper model has CPU measurements and a fresh GPU notebook, with target-GPU measurements pending. Agreement with real-photograph distributions and clinical waveform reconstruction have not been demonstrated.
 
 There is no validated claim that this generator is the most realistic in the world or that a model trained with it exceeds a commercial digitizer. Those claims require a reproducible comparative evaluation.
 
 ## Engineering boundaries
 
-The renderer has no gradients to signals or rendering parameters. Python-level orchestration and randomization remain outside the optional compiled raster blocks. Cross-version/device bitwise reproducibility is not guaranteed. File I/O and initialization use CPU outside the hot path.
+The renderer has no gradients to signals or rendering parameters. Python-level orchestration and randomization remain outside the optional compiled raster and scene blocks. Cross-version/device bitwise reproducibility is not guaranteed. File I/O and initialization use CPU outside the hot path.
 
 Use the [profiling tools](docs/profiling.html) to identify your actual bottleneck, and the [validation guide](docs/validation.html) to design evidence for your application.
-

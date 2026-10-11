@@ -1,0 +1,331 @@
+{
+  "schema": "ecg-scene-paired-benchmark-v2",
+  "device": "cpu",
+  "cuda_measured": false,
+  "torch_version": "2.14.1+cpu",
+  "threads": 2,
+  "legacy_zip_sha256": "34839b493081aa26bf9c2a1091e3e344c521021f77d1f1d9f9bd03e48b1b5276",
+  "legacy_version": "0.4.0",
+  "comparison": "cyclic backend order, identical public-layer seed sequences, encoding/CNN excluded",
+  "compilation_excluded_from_warm_timings": true,
+  "real_patient_records": 0,
+  "cases": [
+    {
+      "preset": "fast",
+      "width": 384,
+      "height": 256,
+      "batch_size": 1,
+      "steps": 10,
+      "warmup": 3,
+      "backends": {
+        "eager": {
+          "median_ms": 58.77041100393399,
+          "p90_ms": 64.00739219388925,
+          "images_s": 17.296702664751983,
+          "first_call_ms": 49.53016399667831,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        },
+        "compiled": {
+          "median_ms": 54.25078199914424,
+          "p90_ms": 57.37092169583775,
+          "images_s": 19.078124387444905,
+          "first_call_ms": 1728.5328869984369,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        },
+        "compiled_scene": {
+          "median_ms": 52.488453500700416,
+          "p90_ms": 54.40805799808004,
+          "images_s": 19.91645679749063,
+          "first_call_ms": 2521.559321998211,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        },
+        "historical": {
+          "median_ms": 77.62598249973962,
+          "p90_ms": 88.22648459681658,
+          "images_s": 12.784745593572808,
+          "first_call_ms": 76.85556300566532,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        }
+      },
+      "max_rgb_error_vs_eager": {
+        "compiled": 0.0,
+        "compiled_scene": 0.003921568393707275,
+        "historical": 0.6980392336845398
+      },
+      "fidelity_capture": "JPEG and sensor noise disabled outside timing, one 8-bit code + 2e-6 tolerance for current compiled RGB",
+      "historical_rgb_equality_expected": false,
+      "compiled_speedup_vs_eager": 1.0833099328385911,
+      "scene_speedup_vs_eager": 1.1196826555987165
+    },
+    {
+      "preset": "fast",
+      "width": 384,
+      "height": 256,
+      "batch_size": 4,
+      "steps": 10,
+      "warmup": 3,
+      "backends": {
+        "eager": {
+          "median_ms": 155.43399200032582,
+          "p90_ms": 158.89999130158685,
+          "images_s": 25.983474374992635,
+          "first_call_ms": 252.91764499706915,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        },
+        "compiled": {
+          "median_ms": 140.6995534998714,
+          "p90_ms": 144.81502139678923,
+          "images_s": 28.666374100786605,
+          "first_call_ms": 4732.400287000928,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        },
+        "compiled_scene": {
+          "median_ms": 136.1769259965513,
+          "p90_ms": 140.46054410137003,
+          "images_s": 29.60695712633647,
+          "first_call_ms": 19764.56557000347,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        },
+        "historical": {
+          "median_ms": 224.7067585012701,
+          "p90_ms": 229.9067080959503,
+          "images_s": 17.864413386283328,
+          "first_call_ms": 224.07291600393364,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        }
+      },
+      "max_rgb_error_vs_eager": {
+        "compiled": 0.0,
+        "compiled_scene": 0.003921598196029663,
+        "historical": 0.800000011920929
+      },
+      "fidelity_capture": "JPEG and sensor noise disabled outside timing, one 8-bit code + 2e-6 tolerance for current compiled RGB",
+      "historical_rgb_equality_expected": false,
+      "compiled_speedup_vs_eager": 1.1047227097310433,
+      "scene_speedup_vs_eager": 1.1414121068077436
+    },
+    {
+      "preset": "balanced",
+      "width": 512,
+      "height": 384,
+      "batch_size": 1,
+      "steps": 10,
+      "warmup": 3,
+      "backends": {
+        "eager": {
+          "median_ms": 79.11614000113332,
+          "p90_ms": 93.20765039810794,
+          "images_s": 12.279033557251257,
+          "first_call_ms": 96.27761899901088,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        },
+        "compiled": {
+          "median_ms": 78.3674090016575,
+          "p90_ms": 80.85922490281519,
+          "images_s": 13.611840852987108,
+          "first_call_ms": 2514.4286209979327,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        },
+        "compiled_scene": {
+          "median_ms": 63.07627099886304,
+          "p90_ms": 79.05510209966451,
+          "images_s": 14.722126552346694,
+          "first_call_ms": 11201.79204300075,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        },
+        "historical": {
+          "median_ms": 91.9809789993451,
+          "p90_ms": 125.01311419982812,
+          "images_s": 9.630963755048382,
+          "first_call_ms": 130.49719799892046,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        }
+      },
+      "max_rgb_error_vs_eager": {
+        "compiled": 0.0,
+        "compiled_scene": 0.003921568393707275,
+        "historical": 0.7411764860153198
+      },
+      "fidelity_capture": "JPEG and sensor noise disabled outside timing, one 8-bit code + 2e-6 tolerance for current compiled RGB",
+      "historical_rgb_equality_expected": false,
+      "compiled_speedup_vs_eager": 1.009554111958199,
+      "scene_speedup_vs_eager": 1.2542932349719818
+    },
+    {
+      "preset": "balanced",
+      "width": 512,
+      "height": 384,
+      "batch_size": 4,
+      "steps": 10,
+      "warmup": 3,
+      "backends": {
+        "eager": {
+          "median_ms": 425.0206104989047,
+          "p90_ms": 448.0604955984745,
+          "images_s": 9.677877548447867,
+          "first_call_ms": 538.1687130065984,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        },
+        "compiled": {
+          "median_ms": 264.5465175010031,
+          "p90_ms": 288.8071211971692,
+          "images_s": 15.01979513811444,
+          "first_call_ms": 3277.670349998516,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        },
+        "compiled_scene": {
+          "median_ms": 242.3043005001091,
+          "p90_ms": 257.1382458991138,
+          "images_s": 16.34269593320893,
+          "first_call_ms": 18042.299127999286,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        },
+        "historical": {
+          "median_ms": 543.5417170047003,
+          "p90_ms": 577.6493447017856,
+          "images_s": 7.758375362602466,
+          "first_call_ms": 557.7358600057778,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        }
+      },
+      "max_rgb_error_vs_eager": {
+        "compiled": 0.0,
+        "compiled_scene": 0.003921583294868469,
+        "historical": 0.800000011920929
+      },
+      "fidelity_capture": "JPEG and sensor noise disabled outside timing, one 8-bit code + 2e-6 tolerance for current compiled RGB",
+      "historical_rgb_equality_expected": false,
+      "compiled_speedup_vs_eager": 1.6066006633305734,
+      "scene_speedup_vs_eager": 1.7540778666399004
+    },
+    {
+      "preset": "full",
+      "width": 1024,
+      "height": 768,
+      "batch_size": 1,
+      "steps": 10,
+      "warmup": 3,
+      "backends": {
+        "eager": {
+          "median_ms": 460.83725549760857,
+          "p90_ms": 543.2962769991718,
+          "images_s": 2.110643406115889,
+          "first_call_ms": 605.678487001569,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        },
+        "compiled": {
+          "median_ms": 324.0054370035068,
+          "p90_ms": 358.2702351974149,
+          "images_s": 3.140213368150941,
+          "first_call_ms": 3497.461172999465,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        },
+        "compiled_scene": {
+          "median_ms": 315.2051910001319,
+          "p90_ms": 332.05540170456516,
+          "images_s": 3.2063650285737757,
+          "first_call_ms": 10856.162346994097,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        },
+        "historical": {
+          "median_ms": 595.8774005011946,
+          "p90_ms": 728.93499380516,
+          "images_s": 1.6336756861939206,
+          "first_call_ms": 603.3723879954778,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        }
+      },
+      "max_rgb_error_vs_eager": {
+        "compiled": 0.0,
+        "compiled_scene": 0.003921598196029663,
+        "historical": 0.7647058963775635
+      },
+      "fidelity_capture": "JPEG and sensor noise disabled outside timing, one 8-bit code + 2e-6 tolerance for current compiled RGB",
+      "historical_rgb_equality_expected": false,
+      "compiled_speedup_vs_eager": 1.422313340663542,
+      "scene_speedup_vs_eager": 1.462023052461137
+    },
+    {
+      "preset": "full",
+      "width": 1024,
+      "height": 768,
+      "batch_size": 4,
+      "steps": 10,
+      "warmup": 3,
+      "backends": {
+        "eager": {
+          "median_ms": 1768.0300950014498,
+          "p90_ms": 1997.3841828024888,
+          "images_s": 2.177155152297786,
+          "first_call_ms": 4989.667758003634,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        },
+        "compiled": {
+          "median_ms": 1158.113029498054,
+          "p90_ms": 1235.2287069013983,
+          "images_s": 3.492630758220623,
+          "first_call_ms": 6844.890779000707,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        },
+        "compiled_scene": {
+          "median_ms": 1130.7356675024494,
+          "p90_ms": 1264.752290598699,
+          "images_s": 3.4717241825910974,
+          "first_call_ms": 20386.261521998676,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        },
+        "historical": {
+          "median_ms": 2656.985446501494,
+          "p90_ms": 3327.2505993998493,
+          "images_s": 1.4086997516770388,
+          "first_call_ms": 3433.16497199703,
+          "cuda_event_ms_median": null,
+          "cuda_peak_additional_allocated_bytes": null
+        }
+      },
+      "max_rgb_error_vs_eager": {
+        "compiled": 0.003921568393707275,
+        "compiled_scene": 0.003921598196029663,
+        "historical": 0.800000011920929
+      },
+      "fidelity_capture": "JPEG and sensor noise disabled outside timing, one 8-bit code + 2e-6 tolerance for current compiled RGB",
+      "historical_rgb_equality_expected": false,
+      "compiled_speedup_vs_eager": 1.5266472701440414,
+      "scene_speedup_vs_eager": 1.5636104403663555
+    }
+  ],
+  "source_sha256": {
+    "gpu_renderer.py": "c4bc5eea35770c1fa736bfe8ba6498fc925d63483fc784a00abcc4ac72742b7e",
+    "gpu_raster.py": "321c9492b2e72fbe96741901203316ce48cf7c95c3a3da704d3c68bf48753db3",
+    "gpu_module.py": "39c3a4bdfe8e92825a12ae7a4ee764e235bc04e426574e41a554ab7cb29acbe5",
+    "gpu_document.py": "99ef884273ad8a5f240c26d42af36fc0ef8494c492a04de95ef268a2095839d8",
+    "gpu_paper.py": "a6a8589bc6c911e053297b5d10c14c8d2b9814f0c202a61132a0b0c7f893b6d6"
+  },
+  "version": "0.5.0",
+  "paper_model": "material-paper-v1",
+  "historical_backend": "0.4.0 eager, different paper model",
+  "hardware_scope": "CPU, two Torch threads, this workspace, no concurrent renderer jobs during timed runs"
+}

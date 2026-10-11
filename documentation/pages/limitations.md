@@ -6,7 +6,7 @@ This package generates ECG images and paired targets. It does not contain a trai
 
 | Feature | Implemented scope |
 | --- | --- |
-| Paper deformation | Procedural 2.5D height fields with fixed-iteration inversion |
+| Paper deformation | Developable bends and approximate local creases, 2.5D, with checked Newton inversion |
 | Self-overlap | Can be supplied through externally rendered visibility/UV banks |
 | Cloth dynamics | Not implemented |
 | Phone/hand shadows | Analytic silhouettes |
@@ -24,12 +24,12 @@ The raster preserves narrow extrema through an envelope. At low resolution, that
 
 ## Evidence boundaries
 
-The included figures and integration runs use artificial ECG waveforms. The recorded performance comparison was on CPU. CUDA throughput, real-photograph realism and clinical waveform reconstruction have not been demonstrated in this release.
+The included figures and integration runs use artificial ECG waveforms. The uploaded 0.4.0 run measured CUDA throughput on a Tesla T4. The revised 0.5.0 paper model has CPU measurements and a fresh GPU notebook, with target-GPU measurements pending. Agreement with real-photograph distributions and clinical waveform reconstruction have not been demonstrated.
 
 There is no validated claim that this generator is the most realistic in the world or that a model trained with it exceeds a commercial digitizer. Those claims require a reproducible comparative evaluation.
 
 ## Engineering boundaries
 
-The renderer has no gradients to signals or rendering parameters. Python-level orchestration and randomization remain outside the optional compiled raster blocks. Cross-version/device bitwise reproducibility is not guaranteed. File I/O and initialization use CPU outside the hot path.
+The renderer has no gradients to signals or rendering parameters. Python-level orchestration and randomization remain outside the optional compiled raster and scene blocks. Cross-version/device bitwise reproducibility is not guaranteed. File I/O and initialization use CPU outside the hot path.
 
 Use the [profiling tools](profiling.html) to identify your actual bottleneck, and the [validation guide](validation.html) to design evidence for your application.

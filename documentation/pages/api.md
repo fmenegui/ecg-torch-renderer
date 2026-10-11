@@ -46,7 +46,7 @@ Shapes below use B as the batch axis and show the actual sample-parameter schema
 | `ecg-renderer-benchmark` | Renderer benchmark and examples |
 | `ecg-renderer-gallery` | Procedural scene inspection gallery |
 | `ecg-renderer-audit` | Public image-layer workload audit |
-| `ecg-renderer-compare` | Frozen reference, eager and compiled comparison |
+| `ecg-renderer-compare` | Current eager/raster/scene comparison, optional historical timing reference |
 | `ecg-renderer-profile` | Detailed timing, operators, kernels and memory |
 
 Run a command with `--help` for its current arguments. The documentation gallery is generated separately by `documentation/gallery.py` and `documentation/supervision_gallery.py`.

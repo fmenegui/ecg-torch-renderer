@@ -33,6 +33,7 @@ def main():
     parser.add_argument('--device', default='cuda' if torch.cuda.is_available() else 'cpu')
     parser.add_argument('--steps', type=int, default=3)
     parser.add_argument('--compile-raster', action='store_true')
+    parser.add_argument('--compile-scene', action='store_true')
     options = parser.parse_args()
     if options.steps < 1:
         parser.error('Positive steps required')
@@ -42,7 +43,7 @@ def main():
         config=RenderConfig(height=128, width=192, surface_resolution=32, shadow_samples=0),
         parameters={'layout': Choice(['3x4+r3', '6x2', '12x1']), 'angle': Uniform(-.12, .12)},
         supervision=SupervisionConfig(outputs=('lead_masks',)),
-        compile_raster=options.compile_raster).to(device)
+        compile_raster=options.compile_raster, compile_scene=options.compile_scene).to(device)
     model = TinyUNet().to(device)
     optimizer = torch.optim.AdamW(model.parameters(), lr=1e-3)
     values, _, _ = demo_signals(fs=500, duration=10)

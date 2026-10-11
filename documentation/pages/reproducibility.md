@@ -40,10 +40,14 @@ synth.load_state_dict(saved["synth"])
 
 The layer state includes its call counter and a configuration/assets signature. Fixed buffers and distribution buffers are also stored. A changed sample rate, renderer specification, compile setting or supervision configuration is rejected rather than silently changing the next capture.
 
-The external generator's state is not owned by the layer. Save it separately if you pass `generator=`. Cross-device, cross-version and cross-platform bitwise equivalence is not promised. Record Torch, source hashes, assets and device information with experiments.
+The external generator's state is not owned by the layer. Save it separately if you pass `generator=`. Cross-device, cross-version and cross-platform bitwise equivalence is not promised, consistent with the [PyTorch reproducibility guidance](https://docs.pytorch.org/docs/stable/notes/randomness.html). Record Torch, source hashes, assets and device information with experiments.
 
 ## Patient splits
 
 Split source recordings by patient before generating images. Keep all captures of the same patient in the same partition. Derive validation seeds from recording identity, then render them consistently.
 
 The full ECG Replot trainer has additional patient-split and resume checks. This independent library gives you rendering modules and examples. It does not manage the medical dataset or its permissions.
+
+## Paper-model migration
+
+Version 0.5.0 intentionally changes the sampled paper distribution and renderer signature. An old checkpoint cannot silently resume with the new model. Keep the recorded package version to replay an old experiment, or start an explicitly new rendering experiment. Both `compile_raster` and `compile_scene` settings must match when restoring layer state.

@@ -120,9 +120,9 @@ def profile_regions(layer,signals):
              'calls':event.count} for event in sorted(events,key=lambda event:event.cpu_time_total,reverse=True)]
 
 
-def measure(preset,batch_size,device,steps,warmup,ledger=True,regions=False,compile_raster=False):
+def measure(preset,batch_size,device,steps,warmup,ledger=True,regions=False,compile_raster=False,compile_scene=False):
     configuration=RenderConfig(profile='mixed',severity=.6,**PRESETS[preset])
-    layer=ECGImageLayer(fs=500,config=configuration,seed=1973,compile_raster=compile_raster).to(device)
+    layer=ECGImageLayer(fs=500,config=configuration,seed=1973,compile_raster=compile_raster,compile_scene=compile_scene).to(device)
     values,_,_=demo_signals(fs=500,duration=10)
     signals=torch.tensor(values,dtype=torch.float32,device=device)[None].expand(batch_size,-1,-1).contiguous()
     synchronize=lambda:torch.cuda.synchronize(device) if device.type=='cuda' else None
@@ -155,7 +155,7 @@ def measure(preset,batch_size,device,steps,warmup,ledger=True,regions=False,comp
             cuda_times.append(start_event.elapsed_time(end_event))
         del image
     result={'preset':preset,'device':str(device),'batch_size':batch_size,'configuration':asdict(configuration),
-            'compile_raster':compile_raster,'first_call_ms':cold_start_ms,'first_call_includes_compilation_or_cache_loading':compile_raster,
+            'compile_raster':compile_raster,'compile_scene':compile_scene,'first_call_ms':cold_start_ms,'first_call_includes_compilation_or_cache_loading':compile_raster or compile_scene,
             'steps':steps,'warmup':warmup,'latency_ms_median':float(np.median(times)*1000),
             'latency_ms_p90':float(np.quantile(times,.9)*1000),
             'images_per_second':batch_size*steps/sum(times),
@@ -163,7 +163,7 @@ def measure(preset,batch_size,device,steps,warmup,ledger=True,regions=False,comp
             'input_bytes':signals.numel()*signals.element_size(),
             'cuda_event_ms_median':float(np.median(cuda_times)) if cuda_times else None,
             'cuda_peak_allocated_bytes':torch.cuda.max_memory_allocated(device) if device.type=='cuda' else None}
-    if ledger and compile_raster:
+    if ledger and (compile_raster or compile_scene):
         result['ledger']={'unavailable':True,'reason':'ATen interception does not establish internal fused-kernel allocations. Use CUDA allocator peak on target hardware'}
     elif ledger:
         mode=TensorLedger([signals,*layer.buffers()])
@@ -176,10 +176,10 @@ def measure(preset,batch_size,device,steps,warmup,ledger=True,regions=False,comp
     return result
 
 
-def train_step(device,compile_raster=False):
+def train_step(device,compile_raster=False,compile_scene=False):
     """Functional on-the-fly/AMP verification with a small artificial CNN."""
     torch.manual_seed(90)
-    layer=ECGImageLayer(fs=500,config=RenderConfig(height=128,width=192,surface_resolution=32,shadow_samples=0),compile_raster=compile_raster).to(device)
+    layer=ECGImageLayer(fs=500,config=RenderConfig(height=128,width=192,surface_resolution=32,shadow_samples=0),compile_raster=compile_raster,compile_scene=compile_scene).to(device)
     cnn=torch.nn.Sequential(torch.nn.Conv2d(3,8,3,stride=4),torch.nn.ReLU(),
         torch.nn.AdaptiveAvgPool2d(1),torch.nn.Flatten(),torch.nn.Linear(8,2)).to(device)
     optimizer=torch.optim.AdamW(cnn.parameters(),lr=1e-3)
@@ -197,7 +197,7 @@ def train_step(device,compile_raster=False):
     changed=any(not torch.equal(a,b) for a,b in zip(before,cnn.parameters()))
     if not gradients or not changed:
         raise AssertionError('Image network did not complete the on-the-fly AMP train step')
-    return {'device':str(device),'compile_raster':compile_raster,'input_shape':list(signals.shape),'network_output_shape':list(output.shape),
+    return {'device':str(device),'compile_raster':compile_raster,'compile_scene':compile_scene,'input_shape':list(signals.shape),'network_output_shape':list(output.shape),
             'amp_dtype':str(output.dtype),'finite_gradients':bool(gradients),'optimizer_changed_weights':changed,
             'signal_generation':'entirely artificial','cnn':'minimal functional example, not a clinical benchmark'}
 
@@ -214,6 +214,7 @@ def main():
     parser.add_argument('--ledger',action=argparse.BooleanOptionalAction,default=True)
     parser.add_argument('--regions',action='store_true')
     parser.add_argument('--compile-raster',action='store_true',help='Fuse deterministic raster blocks with torch.compile, first call may compile')
+    parser.add_argument('--compile-scene',action='store_true',help='Fuse deterministic paper geometry, lighting and Newton updates')
     args=parser.parse_args()
     if args.device=='cuda' and not torch.cuda.is_available():
         parser.error('CUDA unavailable. CPU results cannot establish GPU throughput')
@@ -230,11 +231,12 @@ def main():
             'profile_and_ledger_outside_timing':True,'compile_raster':args.compile_raster,'real_patient_records':0,'cases':[]}
     for preset in args.presets:
         for batch_size in args.batches:
-            result=measure(preset,batch_size,device,args.steps,args.warmup,args.ledger,args.regions and batch_size==1,args.compile_raster)
+            result=measure(preset,batch_size,device,args.steps,args.warmup,args.ledger,args.regions and batch_size==1,args.compile_raster,args.compile_scene)
             report['cases'].append(result)
             (args.out/'audit.json').write_text(json.dumps(report,indent=2)+'\n')
             print(json.dumps({key:result[key] for key in ['preset','batch_size','latency_ms_median','images_per_second']}),flush=True)
-    report['on_the_fly_amp_train_step']=train_step(device,args.compile_raster)
+    report['compile_scene']=args.compile_scene
+    report['on_the_fly_amp_train_step']=train_step(device,args.compile_raster,args.compile_scene)
     root=Path(__file__).resolve().parents[1]
     report['source_sha256']={name:hashlib.sha256((root/'ecg_gpu'/name).read_bytes()).hexdigest()
                              for name in ['gpu_module.py','gpu_renderer.py','gpu_raster.py','gpu_document.py','gpu_appearance.py']}

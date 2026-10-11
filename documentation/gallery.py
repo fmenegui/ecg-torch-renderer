@@ -15,7 +15,7 @@ import numpy as np
 from PIL import Image
 import torch
 
-from ecg_gpu import ECGRenderer, RenderConfig, LayoutSpec, DocumentAssets
+from ecg_gpu import ECGRenderer, RenderConfig, LayoutSpec, DocumentAssets, __version__
 from ecg_gpu.demo import demo_signals
 from ecg_gpu.gpu_document import SURFACES, BACKGROUNDS, SHADOWS
 
@@ -193,7 +193,7 @@ def generate(out, device='cpu', compile_raster=True):
                           image='assets/gallery/' + key + '.jpg', thumbnail='assets/gallery/' + key + '-thumb.jpg',
                           parameters={**BASE, 'surface_mode': 'crumpled', 'layout': '3x4+r3'},
                           configuration=asdict(configs['photo']), seed=1973, photo=True))
-    report = {'schema': 'ecg-renderer-documentation-gallery-v1', 'device': str(device),
+    report = {'schema': 'ecg-renderer-documentation-gallery-v1', 'version': __version__, 'paper_model': 'material-paper-v1', 'device': str(device),
               'torch_version': str(torch.__version__), 'compile_raster': compile_raster,
               'source': 'entirely artificial waveforms', 'real_patient_records': 0,
               'clinical_validation': False, 'figures': len(items),

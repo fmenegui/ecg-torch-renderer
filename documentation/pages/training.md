@@ -36,7 +36,7 @@ Every lead is an independent output channel. Keep logits unbounded during traini
 
 ```bash
 python examples/segmentation.py --steps 3
-python examples/segmentation.py --device cuda --compile-raster --steps 20
+python examples/segmentation.py --device cuda --compile-raster --compile-scene --steps 20
 ```
 
 The complete example defines a small encoder, bottleneck, upsampling path and skip connection. It verifies that a 12-channel output receives gradients and that optimization changes network weights. It uses artificial waveforms.

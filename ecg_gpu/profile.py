@@ -25,6 +25,8 @@ def main():
     parser.add_argument('--profile-steps', type=int, default=3)
     parser.add_argument('--threads', type=int, default=2)
     parser.add_argument('--compile-raster', action='store_true')
+    parser.add_argument('--compile-scene', action='store_true')
+    parser.add_argument('--geometry-solver', choices=['coarse_to_fine', 'dense'], default='coarse_to_fine')
     parser.add_argument('--stacks', action='store_true')
     parser.add_argument('--memory-timeline', action='store_true', help='Enable stacks and export allocation timeline. Adds profiling overhead')
     parser.add_argument('--train-step', action='store_true', help='Include a tiny artificial CNN, AMP, backward and AdamW')
@@ -53,8 +55,8 @@ def main():
     signals = torch.tensor(values, dtype=torch.float32, device=device)
     rates = torch.as_tensor(rates, dtype=torch.float32, device=device)
     lengths = torch.as_tensor(lengths, device=device) if lengths is not None else None
-    layer = ECGImageLayer(fs=500, config=RenderConfig(profile='mixed', severity=.6, **PRESETS[args.preset]),
-                          seed=1973, compile_raster=args.compile_raster).to(device)
+    layer = ECGImageLayer(fs=500, config=RenderConfig(profile='mixed', severity=.6, geometry_solver=args.geometry_solver, **PRESETS[args.preset]),
+                          seed=1973, compile_raster=args.compile_raster, compile_scene=args.compile_scene).to(device)
     image_step = lambda: layer(signals, fs=rates, lengths=lengths)
     workload, name = image_step, 'ECGImageLayer.forward, input already on device'
     if args.train_step:

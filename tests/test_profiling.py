@@ -8,11 +8,28 @@ import zipfile
 import torch
 
 from ecg_gpu.gpu_module import ECGImageLayer
-from ecg_gpu.gpu_profiling import profile_layer, region_annotations
+from ecg_gpu.gpu_profiling import profile_layer, region_annotations, _trace_kernel_rows
 from ecg_gpu.gpu_renderer import RenderConfig
 
 
 class DetailedProfilingTests(unittest.TestCase):
+    def test_kernel_counts_exclude_annotations_and_memory_transfers(self):
+        events = [
+            {'name': 'triton_coverage', 'ph': 'X', 'cat': 'kernel', 'dur': 40.},
+            {'name': 'triton_coverage', 'ph': 'X', 'cat': 'kernel', 'dur': 60.},
+            {'name': 'ecg/deform', 'ph': 'X', 'cat': 'gpu_user_annotation', 'dur': 900.},
+            {'name': 'cudaLaunchKernel', 'ph': 'X', 'cat': 'cuda_runtime', 'dur': 300.},
+            {'name': 'Memcpy DtoH', 'ph': 'X', 'cat': 'gpu_memcpy', 'dur': 100.},
+            {'name': 'Memset', 'ph': 'X', 'cat': 'gpu_memset', 'dur': 50.},
+            {'name': 'triton_coverage', 'ph': 'M', 'cat': 'kernel', 'dur': 20.},
+        ]
+        rows = _trace_kernel_rows(events)
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]['kernel'], 'triton_coverage')
+        self.assertEqual(rows[0]['calls'], 2)
+        self.assertAlmostEqual(rows[0]['total_ms'], .1)
+        self.assertEqual(_trace_kernel_rows([]), [])
+
     def setUp(self):
         torch.set_num_threads(2)
         self.layer = ECGImageLayer(fs=100, seed=19, config=RenderConfig(
@@ -27,6 +44,8 @@ class DetailedProfilingTests(unittest.TestCase):
             result = profile_layer(self.layer, self.signals, destination,
                                    steps=2, warmup=1, profile_steps=1)
             self.assertFalse(result['cuda_measured'])
+            self.assertEqual(result['profile']['cuda_kernel_events'], 0)
+            self.assertEqual(result['profile']['top_kernels'], [])
             self.assertIsNone(result['timing']['cuda_event_ms_median'])
             self.assertIsNone(result['timing']['cuda_peak_allocated_bytes'])
             self.assertGreater(result['timing']['median_ms'], 0)

@@ -1,4 +1,4 @@
-<div class="hero"><span class="eyebrow">PyTorch · signal → image → supervision</span><h1>Real signals.<br>Infinite paper.</h1><p class="hero-lead">Generate ECG prints, photographs and aligned training targets from a batch of 12-lead signals. Keep the rendering inside your training loop and on the same device as your network.</p><div class="hero-actions"><a class="button primary" href="quickstart.html">Start rendering <span aria-hidden="true">↗</span></a><a class="button secondary" href="gallery.html">Explore the gallery</a></div><div class="hero-tags"><span>nn.Module</span><span>30 layouts</span><span>12-channel targets</span><span>Optional compiled raster</span></div></div>
+<div class="hero"><span class="eyebrow">PyTorch · signal → image → supervision</span><h1>Real signals.<br>Infinite paper.</h1><p class="hero-lead">Generate ECG prints, photographs and aligned training targets from a batch of 12-lead signals. Keep the rendering inside your training loop and on the same device as your network.</p><div class="hero-actions"><a class="button primary" href="quickstart.html">Start rendering <span aria-hidden="true">↗</span></a><a class="button secondary" href="gallery.html">Explore the gallery</a></div><div class="hero-tags"><span>nn.Module</span><span>30 layouts</span><span>12-channel targets</span><span>Optional compiled scene</span></div></div>
 
 ![A synthetic ECG rendered on folded paper with a phone-like procedural shadow](assets/gallery/supervision-rgb.jpg)
 
@@ -33,4 +33,4 @@ target = batch["lead_masks"]            # soft targets: [B,12,H,W]
 
 ## Start with evidence
 
-This is an ECG **image generator**. The examples demonstrate rendering and training integration. They do not establish digitization accuracy on real ECG photographs. CPU regression and integration tests are included. CUDA performance needs measurement on your hardware. Read the [validation record](validation.html) and [performance guide](performance.html).
+This is an ECG **image generator**. The examples demonstrate rendering and training integration. They do not establish digitization accuracy on real ECG photographs. CPU regression and integration tests are included. Historical T4 results are recorded. The revised paper model needs fresh GPU measurement. Read the [validation record](validation.html) and [performance guide](performance.html).

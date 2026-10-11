@@ -1,9 +1,9 @@
 {
   "status": "passed",
   "pages": 18,
-  "local_links": 1060,
+  "local_links": 1082,
   "gallery_figures": 125,
-  "python_snippets_parsed": 30,
+  "python_snippets_parsed": 31,
   "notebook_python_cells_parse": true,
   "figure_hashes_verified": true,
   "api_source_hashes_verified": true,

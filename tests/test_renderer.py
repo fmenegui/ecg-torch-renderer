@@ -42,6 +42,12 @@ class RendererTests(unittest.TestCase):
 
     def test_raster_matches_frozen_v021_all_30_layouts(self):
         import json
+        from ecg_gpu.compare import load_legacy
+        # Compare the immutable implementation bit for bit in this runtime.
+        # Stored float32 results can differ across PyTorch/platform releases.
+        directory = tempfile.TemporaryDirectory()
+        self.addCleanup(directory.cleanup)
+        legacy = load_legacy(Path(__file__).resolve().parents[1]/'references/ecg-gpu-generator-v021.zip', directory.name)
         with np.load(Path(__file__).parent/'fixtures/raster-v021.npz',allow_pickle=False) as fixture:
             cases=json.loads(str(fixture['metadata_json']))['cases']
             for case in cases:
@@ -52,9 +58,15 @@ class RendererTests(unittest.TestCase):
                 instances=renderer._instances(p,((lengths-1)/rates).clamp(max=renderer.config.max_duration_s))
                 with torch.no_grad():
                     ink,pulse,targets=renderer._curves(signals,rates,lengths,instances,p,'all',True)
+                    original = legacy.ECGRenderer(legacy.RenderConfig(**case['configuration']))
+                    old_ink,old_pulse,old_targets=original._curves(signals,rates,lengths,instances,p,'all',True)
+                old_values={'ink':old_ink,'pulse':old_pulse,**old_targets}
                 for name,value in {'ink':ink,'pulse':pulse,**targets}.items():
-                    torch.testing.assert_close(value,torch.from_numpy(fixture[prefix+name]),rtol=0,atol=0,
-                                                msg=f"Layout group {case['layouts']}, {name}")
+                    context=f"Layout group {case['layouts']}, {name}: "
+                    torch.testing.assert_close(value,old_values[name],rtol=0,atol=0,
+                                                msg=lambda detail:context+detail)
+                    torch.testing.assert_close(value,torch.from_numpy(fixture[prefix+name]),rtol=0,atol=2e-6,
+                                                msg=lambda detail:context+detail)
 
     def test_compiled_raster_preserves_frozen_masks_and_image_union(self):
         import json
@@ -340,7 +352,10 @@ class DocumentSceneTests(unittest.TestCase):
         b=self.render({'cast_shadow_strength':.8},return_scene=True,stage='geometry')
         paper=b.scene['paper_mask']
         cast=b.scene['cast_shadow']
-        self.assertEqual(float((cast*paper).max()),0.)
+        # Fractional sheet-edge coverage blends a background fraction. Cast
+        # shadows may affect that fraction but never fully covered paper.
+        self.assertLessEqual(float(cast[paper>=1-1e-6].max()),1e-6)
+        self.assertTrue((cast<=.8*(1-paper)+1e-6).all())
         self.assertGreater(float(cast.max()),.05)
 
     def test_table_materials_and_object_shadow_families_are_distinct(self):

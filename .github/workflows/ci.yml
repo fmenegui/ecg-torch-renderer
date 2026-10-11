@@ -1,0 +1,52 @@
+name: Library contracts
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  cpu:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - python: '3.10'
+            torch: '2.6.0'
+          - python: '3.12'
+            torch: '2.11.0'
+          - python: '3.13'
+            torch: '2.14.0'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+      - name: Install CPU Torch and library
+        run: |
+          python -m pip install torch==${{ matrix.torch }} --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install -e .
+      - name: Raster, geometry, replay, supervision and profiling contracts
+        run: python -m unittest discover -s tests -v
+      - name: Training integration
+        run: python examples/segmentation.py --steps 3 --compile-raster --compile-scene
+      - name: Independent material geometry audit
+        run: python documentation/paper_audit.py --out build/paper-audit.json
+  docs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - run: python -m pip install -e .
+      - run: npm install --prefix documentation
+      - run: python documentation/build.py
+      - run: python documentation/validate.py

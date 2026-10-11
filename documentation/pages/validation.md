@@ -10,7 +10,17 @@ Inspect the [machine-readable verification](https://github.com/fmenegui/ecg-torc
 
 ## Numerical regression
 
-The frozen 0.2.1 fixture covers all 30 standard layouts. Eager masks are checked bit-for-bit against that reference. Compiled masks are checked on six representative layouts with absolute tolerance `2e-6`. The six CPU public-layer benchmark cases also compared RGB values and observed maximum error zero.
+The frozen 0.2.1 fixture covers all 30 standard layouts. Eager masks are checked bit-for-bit against the immutable 0.2.1 implementation executed in the same runtime. The stored cross-runtime float32 fixture uses absolute tolerance `2e-6`. Assertion failures retain the actual numeric difference and layout group. Compiled masks are checked on six representative layouts with absolute tolerance `2e-6`. The historical six CPU public-layer benchmark cases observed maximum RGB error zero before the paper model changed. Current paired benchmarks compare backends within 0.5.0. Camera rounding permits one 8-bit RGB code of difference. Geometry and trace-mask tests use much tighter float32 tolerances.
+
+## Paper geometry
+
+Tests cover flat identity, unit normals, bounded material strain, dense versus coarse inverse mapping, grazing-angle lighting, visibility outside an external camera bank, scene compilation, random-generator continuity and backend-safe checkpoints. Every procedural family preserves the shared inverse field between RGB and dense targets.
+
+## The uploaded T4 run
+
+The 0.4.0 Colab run executed 54 tests. 53 passed and one bit-exact stored-fixture comparison failed. The original log did not retain the numeric difference. This failure was not reproduced on the current CPU runtime. The new two-part regression check keeps exact same-runtime legacy comparison and a documented float32 fixture tolerance. A fresh Colab run must confirm the change on that Torch/CUDA build.
+
+The original U-Net smoke test completed 20 steps, with loss 0.731 to 0.319. This checks executable training, not held-out waveform accuracy. [Historical T4 evidence](PERFORMANCE_T4_V040.json) preserves measured performance and corrected profiler counts.
 
 ## Supervision contracts
 
@@ -22,7 +32,7 @@ The hot-path test rejects `.cpu()`, `.numpy()` and `.item()` during rendering an
 
 ```bash
 python -m unittest discover -s tests -v
-python examples/segmentation.py --steps 3 --compile-raster
+python examples/segmentation.py --steps 3 --compile-raster --compile-scene
 python documentation/validate.py
 ```
 

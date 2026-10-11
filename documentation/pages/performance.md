@@ -2,28 +2,46 @@
 
 The hot path uses batched Torch operations with no image-file I/O, NumPy rasterization or CPU text drawing. GPU-friendly structure alone is not a measured throughput result. Benchmark your actual GPU and training objective.
 
-## What is measured
+## Current paper model, CPU
 
-The paired comparison below is **CPU only**, Torch 2.14.1+cpu, two threads, ten timed calls after three warmup calls. It compares the immutable 0.2.1 reference with the optimized image-only raster backend introduced in 0.3.0. It does not measure the new supervision outputs in 0.4.0.
+The 0.5.0 paired benchmark uses Torch 2.14.1+cpu, two threads, ten timed calls and three warmup calls. Eager, compiled raster and compiled raster plus scene render the **same current model**. The optional historical backend is 0.4.0 eager, which renders a different paper distribution. Cold compilation is recorded separately and excluded from warm results.
 
-{{performance_table}}
+{{scene_performance_table}}
 
-All six sampled CPU RGB comparisons had maximum absolute error zero. Compiled median speedup ranged from 1.07× to 2.72× in these cases. The eager backend regressed at balanced batch 4 and full batch 4. No CUDA speedup, clinical performance or real-photograph realism result is implied.
+[Raw 0.5.0 CPU results](PERFORMANCE_SCENE_CPU.json) include median/p90, cold calls and pixel comparisons. Both current compiled backends stayed within one 8-bit RGB code in the sampled cases because of camera rounding. JPEG and sensor noise are disabled only for numerical validation outside timing. The warm benchmark includes the complete sampled capture.
 
-Download the [raw comparison JSON](PERFORMANCE_CPU.json), or inspect the [performance summary](https://github.com/fmenegui/ecg-torch-renderer/blob/main/PERFORMANCE.md).
+## Uploaded Tesla T4 results, 0.4.0
 
-## Compiled raster
+The uploaded Colab run used Torch 2.11.0+cu130 on a Tesla T4. It ran 30 timed calls after eight warmup calls with cyclic backend order. These results precede the new paper model and cannot establish its GPU performance.
+
+{{t4_performance_table}}
+
+The separate full batch-4 profile measured 122.0 ms median and approximately 840 MiB of additional peak allocated memory for the compiled renderer. The higher-quality balanced supervision workload measured 68.4 ms median. The smaller-scene renderer plus tiny-CNN training workload measured 44.6 ms median. Their scene/antialias settings differ, so these two workloads are not a direct speed comparison.
+
+The first full compiled call took about 14.7 seconds in that profile. [Historical T4 evidence](PERFORMANCE_T4_V040.json) preserves the runtime, original paired results, the one failed software test and corrected kernel-category trace counts.
+
+## Measure the new version on your GPU
+
+Use the [updated Colab notebook](https://colab.research.google.com/github/fmenegui/ecg-torch-renderer/blob/main/notebooks/colab_gpu_profile.ipynb). It compares current backends, runs the paper audit, profiles supervision and executes the U-Net example. The new paper model has not yet been timed on a GPU in this release.
+
+```bash
+ecg-renderer-compare --device cuda --presets fast balanced full \
+  --batches 1 4 --steps 30 --warmup 8 --out comparison
+```
+
+## Compiled raster and scene
 
 ```python
 render = ECGImageLayer(
     config=RenderConfig(height=384, width=512),
     compile_raster=True,
+    compile_scene=True,
 ).to(device)
 ```
 
-This compiles deterministic coverage blocks with `torch.compile(fullgraph=True, dynamic=True)`. RNG, camera capture and scene assembly remain outside these blocks. The first call includes compilation or cache loading. Warm up separately and preserve the compiled cache between repeated local runs when appropriate.
+Raster compilation fuses deterministic coverage blocks. Scene compilation additionally fuses the material geometry, illumination and Newton updates. Both use `torch.compile(fullgraph=True, dynamic=True)`. Random sampling and scene orchestration remain eager, preserving the caller's generator sequence. Compilation may use additional memory and is opt-in. The eager path remains available.
 
-Compiled throughput depends on image size, batch shape, driver, Torch build and hardware. Profile the steady-state workload. Compilation can use additional memory. The eager path remains available with `compile_raster=False`.
+Measure cold calls and steady-state throughput separately. Results depend on resolution, batch shape, Torch build, driver and hardware. A faster synthetic pipeline is useful only when its sampled distribution remains useful for the training task.
 
 ## Dense target memory
 
@@ -48,7 +66,9 @@ Camera warping, raster intermediates, the network and optimizer increase the pea
 | `preserve_extrema` | Retains narrow source extrema, adds envelope work |
 | `lead_chunk_size` | Changes temporary memory and kernel workload |
 | `surface_resolution` | Changes relief-field resolution |
-| `inverse_iterations` | Changes fixed inversion work |
+| `inverse_iterations` | Coarse iterations, or output-resolution iterations in dense mode |
+| `geometry_solver` | Coarse-to-fine uses two pixel refinements, dense provides a reference |
+| `compile_scene` | Fuses deterministic geometry/lighting arithmetic, with initial compile cost |
 | `shadow_samples` | Changes sampled shadow work |
 | Requested supervision outputs | Changes dense-target storage and work |
 | `surface_mode='off'` | Bypasses procedural surface deformation when no external maps are supplied |

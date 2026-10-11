@@ -1,0 +1,17 @@
+{
+  "schema": "ecg-paper-visual-comparison-v1",
+  "before_version": "0.4.0",
+  "after_version": "0.5.0",
+  "before_source_commit": "a123bd086d21a2baba4c60f26b05e3866d1bf435",
+  "before_source_reference_sha256": "34839b493081aa26bf9c2a1091e3e344c521021f77d1f1d9f9bd03e48b1b5276",
+  "image": "docs/assets/paper-revision.jpg",
+  "image_sha256": "4b6d0b33e5c361f328c515d117ddd845d71dbbeacf74413485b16166dee84178",
+  "shared_parameters": "Same source waveform, layout, camera, main bend axis/strength, fixed three-light directions/colors/energies. Default material detail and background models intentionally differ.",
+  "modes": [
+    "fold",
+    "crumpled",
+    "rolled"
+  ],
+  "real_patient_records": 0,
+  "real_photograph_distribution_validated": false
+}

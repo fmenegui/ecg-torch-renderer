@@ -37,6 +37,7 @@ class RenderConfig:
     surface_resolution: int = 96
     inverse_iterations: int = 5
     shadow_samples: int = 8
+    geometry_solver: str = 'coarse_to_fine'
 
     def __post_init__(self):
         if min(self.height, self.width) < 64:
@@ -51,6 +52,8 @@ class RenderConfig:
             raise ValueError('Positive finite maximum duration required')
         if self.surface_mode not in {'mixed','off',*SURFACES}:
             raise ValueError('Invalid surface mode')
+        if self.geometry_solver not in {'coarse_to_fine', 'dense'}:
+            raise ValueError('geometry_solver must be coarse_to_fine or dense')
         if not 32 <= self.surface_resolution <= 256 or not 2 <= self.inverse_iterations <= 12 or not 0 <= self.shadow_samples <= 32:
             raise ValueError('Use surface resolution 32..256, inverse iterations 2..12 and shadow samples 0..32')
 
@@ -103,11 +106,12 @@ class ECGRenderer(nn.Module):
     """
     def __init__(self, config=None, *, fonts=None, paper_textures=None, backgrounds=None,
                  layouts=None, document_assets=None, artifact_texts=('COPY','TEST ECG','CHECK','ARCHIVE','SAMPLE'),
-                 compile_raster=False):
+                 compile_raster=False, compile_scene=False):
         super().__init__()
         self.config = config or RenderConfig()
         self._curve_kernel,self._calibration_kernel=raster_kernels(compile_raster)
         self.compile_raster=compile_raster
+        self.compile_scene=compile_scene
         if not artifact_texts or any(not isinstance(value,str) or not value or len(value)>80 for value in artifact_texts):
             raise ValueError('artifact_texts must contain nonempty strings with at most 80 characters')
         self.artifact_texts = tuple(artifact_texts)
@@ -159,7 +163,7 @@ class ECGRenderer(nn.Module):
                                for name in ['paper_textures', 'backgrounds']}
         self.camera = CameraAppearance()
         self.document = DocumentScene(h,w,self.config.surface_resolution,self.config.inverse_iterations,
-                                      self.config.shadow_samples,document_assets)
+                                      self.config.shadow_samples,document_assets,self.config.geometry_solver,compile_scene)
 
     @staticmethod
     def _check_bank(bank):
@@ -177,7 +181,7 @@ class ECGRenderer(nn.Module):
         return self.xx.device
 
     def specification(self):
-        return {'schema': 'ecg-replot-torch-renderer-v2', 'config': asdict(self.config), 'fonts': self.fonts,
+        return {'schema': 'ecg-replot-torch-renderer-v3', 'config': asdict(self.config), 'fonts': self.fonts,
                 'signal_units': 'mV', 'signal_order': LEADS, 'font_initialization': 'CPU once',
                 'hot_path': 'torch on input device', 'jpeg': 'DCT simulation, not a JPEG bitstream',
                 'atlas_sha256': self.atlas_sha256,
@@ -187,7 +191,8 @@ class ECGRenderer(nn.Module):
                 'artifact_texts':self.artifact_texts,
                 'surface_modes':SURFACES,'background_types':BACKGROUNDS,'shadow_types':SHADOWS,
                 'document_asset_count':len(self.document.asset_mask), 'document_asset_sha256':self.document.asset_hashes,
-                'procedural_geometry':'2.5D height-field relief, no cloth/path tracing',
+                'paper_model':'material-paper-v1',
+                'procedural_geometry':'developable tangent integration with bounded finite creases, 2.5D',
                 'external_geometry':'optional inverse UV/visibility/normal/depth bank'}
 
     def resolve_parameter(self,key,value):
@@ -254,14 +259,14 @@ class ECGRenderer(nn.Module):
              'perspective_x': (rand() * 2 - 1) * geometry * .30,
              'perspective_y': (rand() * 2 - 1) * geometry * .30,
              'radial': (rand() * 2 - 1) * geometry * .06,
-             'curl_x': (rand() * 2 - 1) * geometry * .035,
-             'curl_y': (rand() * 2 - 1) * geometry * .035,
+             'curl_x': torch.zeros_like(geometry),
+             'curl_y': torch.zeros_like(geometry),
              'curl_phase': rand() * (2 * math.pi),
              'crease_position': (rand() * 2 - 1) * .65,
              'crease_cos': (rand() * math.pi).cos(),
              'crease_sin': torch.zeros(b, device=d),
-             'crease_warp': (rand() * 2 - 1) * geometry * .012,
-             'crease_strength': rand() * intensity * .15,
+             'crease_warp': torch.zeros_like(geometry),
+             'crease_strength': rand() * intensity * .08,
              'exposure': 1 - rand() * intensity * .18,
              'light_x': (rand() * 2 - 1) * geometry * .12,
              'light_y': (rand() * 2 - 1) * geometry * .12,
@@ -269,7 +274,7 @@ class ECGRenderer(nn.Module):
              'shadow_cos': (rand() * math.pi).cos(),
              'shadow_sin': torch.zeros(b, device=d),
              'shadow_position': (rand() * 2 - 1) * .8,
-             'shadow_strength': rand() * geometry * .24,
+             'shadow_strength': torch.zeros_like(geometry),
              'white_balance': 1 + (rand(b, 3) * 2 - 1) * intensity[:, None] * .06,
              'blur': .18 + rand() * intensity * .9,
              'motion': rand() * geometry * 2.8,
@@ -487,10 +492,10 @@ class ECGRenderer(nn.Module):
             gx = (2 * (self.xx[:, 0] + .5) / w - 1).expand(b, h, w) * crop_scale[:, None, None] + offset[:, 0, None, None]
             gy = (2 * (self.yy[:, 0] + .5) / h - 1).expand(b, h, w) * crop_scale[:, None, None] + offset[:, 1, None, None]
             return F.grid_sample(bank[ids], torch.stack([gx, gy], -1), align_corners=False), ids
-        small = torch.rand(b, 3, 24, 24, device=self.device, generator=generator)
-        texture = F.interpolate(small, size=(h, w), mode='bicubic', align_corners=False)
+        small = torch.rand(b, 1, 24, 24, device=self.device, generator=generator)
+        texture = F.interpolate(small, size=(h, w), mode='bilinear', align_corners=False).expand(-1, 3, -1, -1)
         if paper:
-            return .96+texture*.04,torch.full((b,),-1,device=self.device,dtype=torch.long)
+            return .992+(texture-.5)*.003,torch.full((b,),-1,device=self.device,dtype=torch.long)
         raise RuntimeError('Procedural backgrounds are generated by DocumentScene')
 
     def _field(self, p):
@@ -566,11 +571,13 @@ class ECGRenderer(nn.Module):
             torch._assert_async(classes_valid.all(), 'Invalid layout, units, orientation or zoom')
             torch._assert_async(torch.isfinite(torch.cat([value.reshape(-1).float() for value in p.values()])).all(), 'Nonfinite rendering parameters')
             torch._assert_async(((p['rhythm_leads']>=-1)&(p['rhythm_leads']<12)).all(),'Invalid rhythm lead IDs')
-            for key in ['fade_width','fold_width','corner_size','object_shadow_size','object_shadow_softness','background_scale']:
+            for key in ['fade_width','fold_width','fold_span','fold_length','corner_size','object_shadow_size','object_shadow_softness','background_scale']:
                 torch._assert_async((p[key]>0).all(),f'Positive {key} required')
             for key in ['paper_color','ink_color','artifact_color']:
                 torch._assert_async(((p[key]>=0)&(p[key]<=1)).all(),f'RGB {key} must be in [0,1]')
             torch._assert_async(((p['surface_strength']>=0)&(p['surface_strength']<=1)).all(),'Surface strength must be in [0,1]')
+            torch._assert_async(((p['crease_count']>=0)&(p['crease_count']<=8)).all(),'Crease count must be in 0..8')
+            torch._assert_async((p['paper_gap']>=0).all(),'Paper gap must be nonnegative')
             torch._assert_async(((p['artifact_text']>=0)&(p['artifact_text']<len(self.artifact_texts))).all(),'Invalid artifact text')
             for key,count in [('font',self.font_count),('artifact_font',self.font_count),('palette',len(self.palette)),('grid_style',4),
                               ('surface_mode',len(SURFACES)),('background_type',len(BACKGROUNDS)),
@@ -610,13 +617,8 @@ class ECGRenderer(nn.Module):
         print_alpha = torch.maximum(torch.maximum(ink, pulse), text) * fade * p['ink_density'][:, None, None, None]
         canonical = torch.lerp(canonical, p['ink_color'][:,:,None,None].expand_as(canonical), print_alpha)
         canonical += p['band_strength'][:, None, None, None] * torch.sin(self.yy / self.config.height * p['band_frequency'][:, None, None, None] * (2 * math.pi))
-        # Paper creases affect shading in paper coordinates, before the camera.
-        cx = 2 * (self.xx + .5) / self.config.width - 1
-        cy = (2 * (self.yy + .5) / self.config.height - 1) * self.config.height / self.config.width
-        crease = cx * p['crease_cos'][:, None, None, None] + cy * p['crease_sin'][:, None, None, None] - p['crease_position'][:, None, None, None]
-        crease_light = 1 - p['crease_strength'][:, None, None, None] * torch.exp(-(crease / .012).square())
-        crease_light += p['crease_strength'][:, None, None, None] * .5 * torch.exp(-((crease - .015) / .012).square())
-        canonical = (canonical * crease_light).clamp(0, 1)
+        # Crease illumination comes from the material mesh. No independent
+        # painted highlight is placed on otherwise flat paper.
         if vertices is not None:
             targets.update(vertices=vertices, grid=grid)
         if labels is not None:
@@ -625,9 +627,11 @@ class ECGRenderer(nn.Module):
         scene = None
         if photo:
             if self.config.surface_mode != 'off' or len(self.document.asset_mask):
-                scene = self.document.deform(field,p,generator)
+                scene = self.document.deform(field,p,generator,diagnostics=return_scene)
                 field = scene['field']
-            valid = F.grid_sample(torch.ones_like(ink), field, mode='nearest', align_corners=False)
+            # Fractional coverage antialiases the sheet silhouette. The same
+            # coverage gates targets, cast shadows and RGB compositing.
+            valid = F.grid_sample(torch.ones_like(ink), field, align_corners=False)
             image = F.grid_sample(canonical, field, align_corners=False, padding_mode='border')
             if scene is None:
                 scene = {'field':field,'solver_valid':torch.ones_like(valid),

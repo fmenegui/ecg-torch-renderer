@@ -131,7 +131,7 @@ outside training.
 
 ```bash
 ecg-renderer-profile --device cuda --preset balanced --batch-size 4 \
-  --compile-raster --steps 30 --warmup 5 --profile-steps 3 \
+  --compile-raster --compile-scene --steps 30 --warmup 5 --profile-steps 3 \
   --out profile-renderer
 ```
 
@@ -140,11 +140,17 @@ own U-Net training step. Reports include median/p90, images/s, CUDA events,
 allocator peaks, operator/kernel CSVs, a compressed trace and ZIP. The first
 compiled call is separate. Instrumented passes are excluded from warm timing.
 
-**Current evidence is CPU only.** The 0.3.0 image-only raster comparison showed
-compiled median speedups of 1.07×–2.72× versus 0.2.1 in six CPU cases. Eager
-performance regressed in two cases. The supervision path has CPU functional
-validation, with CUDA throughput still pending. See [PERFORMANCE.md](PERFORMANCE.md)
-and [VERIFICATION.json](VERIFICATION.json).
+Version **0.5.0** integrates material-coordinate bends and finite creases, coherent
+matte lighting, smoother sheet edges, less repetitive table textures and a
+coarse-to-fine inverse solve. `compile_scene=True` optionally fuses deterministic
+geometry, lighting and Newton updates. The source signal and shared target field
+remain unchanged in purpose. See [paper controls](documentation/pages/scenes.md).
+
+The uploaded **0.4.0 Tesla T4** run measured approximately **81 images/s at
+512×384** and **31 images/s at 1024×768**, batch 4, compiled raster. These historical
+numbers do not measure the new paper model. Current CPU results and a fresh GPU
+notebook are included in [PERFORMANCE.md](PERFORMANCE.md). The original Colab run
+had one stored-fixture failure, which remains recorded with its diagnostic limit.
 
 ## Documentation and checks
 

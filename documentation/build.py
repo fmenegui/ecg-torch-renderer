@@ -48,14 +48,17 @@ def build():
     }
     metadata['signatures'] = {name: str(inspect.signature(obj)) for name, obj in api.items()}
     perf = json.loads((ROOT / 'PERFORMANCE_CPU.json').read_text())
+    scene_perf = json.loads((ROOT / 'PERFORMANCE_SCENE_CPU.json').read_text())
+    t4 = json.loads((ROOT / 'PERFORMANCE_T4_V040.json').read_text())['paired_comparison']
     gallery = json.loads((OUTPUT / 'gallery.json').read_text())
     verified = json.loads((ROOT / 'VERIFICATION.json').read_text()) if (ROOT / 'VERIFICATION.json').exists() else {}
     config_notes = {
         'height': 'Output rows, at least 64', 'width': 'Output columns, at least 64',
         'antialias_samples': 'Subpixel samples, 1..16', 'lead_chunk_size': 'Printed slots per chunk, 1..15',
         'max_duration_s': 'Maximum printed duration in seconds',
-        'surface_resolution': 'Relief-grid width, 32..256', 'inverse_iterations': 'Fixed inversion steps, 2..12',
+        'surface_resolution': 'Relief-grid width, 32..256', 'inverse_iterations': 'Coarse-grid steps (minimum 2), or dense output steps, 2..12',
         'shadow_samples': 'Height-field shadow samples, 0..32',
+        'geometry_solver': 'coarse_to_fine with two pixel refinements, or dense reference',
     }
     summary = verified.get('release_validation', {})
     replacements = {
@@ -78,10 +81,18 @@ def build():
              f"{case['backends']['v021']['median_ms']:.1f}", f"{case['backends']['eager']['median_ms']:.1f}",
              f"{case['backends']['compiled']['median_ms']:.1f}", f"{case['backends']['compiled']['images_s']:.2f}"]
             for case in perf['cases']]),
+        'scene_performance_table': table(['Preset', 'B', 'Eager ms', 'Raster ms', 'Raster + scene ms', 'Scene images/s'], [
+            [f"{case['preset']} ({case['width']}×{case['height']})", case['batch_size'],
+             *[f"{case['backends'][name]['median_ms']:.1f}" for name in ['eager','compiled','compiled_scene']],
+             f"{case['backends']['compiled_scene']['images_s']:.2f}"] for case in scene_perf['cases']]),
+        't4_performance_table': table(['Preset', 'B', 'Eager ms', 'Compiled ms', 'Compiled images/s'], [
+            [f"{case['preset']} ({case['width']}×{case['height']})", case['batch_size'],
+             f"{case['backends']['eager']['median_ms']:.1f}", f"{case['backends']['compiled']['median_ms']:.1f}",
+             f"{case['backends']['compiled']['images_s']:.2f}"] for case in t4['cases']]),
         'verification_summary': table(['Check', 'Result'], [
             ['Portable library suite', summary.get('portable_tests', 'See VERIFICATION.json')],
-            ['Full integration suite', summary.get('full_tests', 'See VERIFICATION.json')],
-            ['U-Net example', 'CPU compiled raster, 3 optimization steps, finite loss and changed weights'],
+            ['Paper audit', 'All eight families, dense numerical reference, see PAPER_AUDIT_CPU.json'],
+            ['U-Net example', 'CPU compiled raster and scene, 3 optimization steps, finite loss and changed weights'],
             ['Real patient records used here', '0'], ['CUDA execution', 'Not executed in this CPU environment'],
         ]),
     }
@@ -91,7 +102,7 @@ def build():
     staging.mkdir(parents=True, exist_ok=True)
     (staging / 'data.json').write_text(json.dumps(payload, indent=2) + '\n')
     (OUTPUT / 'api-data.json').write_text(json.dumps(metadata, indent=2) + '\n')
-    for filename in ['PERFORMANCE_CPU.json', 'VERIFICATION.json', 'FEATURES.json']:
+    for filename in ['PERFORMANCE_CPU.json', 'PERFORMANCE_SCENE_CPU.json', 'PERFORMANCE_T4_V040.json', 'PAPER_AUDIT_CPU.json', 'PAPER_VISUAL_COMPARISON.json', 'VERIFICATION.json', 'FEATURES.json']:
         shutil.copy2(ROOT / filename, OUTPUT / filename)
     node = os.environ.get('ECG_DOCS_NODE') or shutil.which('node')
     if not node:

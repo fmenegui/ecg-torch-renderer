@@ -6,7 +6,7 @@ One command exports a benchmark report, operator tables, CUDA kernel events when
 
 ```bash
 ecg-renderer-profile --device cuda --preset balanced --batch-size 4 \
-  --compile-raster --warmup 5 --steps 30 --profile-steps 3 \
+  --compile-raster --compile-scene --warmup 5 --steps 30 --profile-steps 3 \
   --out profile-renderer
 ```
 
@@ -14,7 +14,7 @@ ecg-renderer-profile --device cuda --preset balanced --batch-size 4 \
 
 ```bash
 ecg-renderer-profile --device cuda --preset balanced --batch-size 4 \
-  --compile-raster --train-step --stacks --memory-timeline \
+  --compile-raster --compile-scene --train-step --stacks --memory-timeline \
   --out profile-train
 ```
 
@@ -57,7 +57,7 @@ Use a disposable model/optimizer/renderer instance when profiling. Warmup, timin
 | `memory-timeline.json.gz` | Optional allocation timeline, when supported |
 | `<output-directory>.zip` | Portable results bundle |
 
-Decompress the trace and open it in [Perfetto](https://ui.perfetto.dev/). Parent and child region totals overlap. Concurrent GPU events can overlap. Do not add these totals to estimate wall latency.
+Decompress the trace and open it in [Perfetto](https://ui.perfetto.dev/). Parent and child region totals overlap. CUDA kernel counts come only from complete trace events with category `kernel`. GPU user annotations, memcpy/memset events and CUDA API calls are excluded. Version 0.4.0 incorrectly included GPU annotation spans in kernel totals. Operator tables retain device type and annotation flags. Concurrent GPU events can overlap. Do not add these totals to estimate wall latency.
 
 ## Measurement boundaries
 

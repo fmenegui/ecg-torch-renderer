@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.5.0
+
+- Replace elastic-looking default camera warps with material-coordinate bends,
+  diagonal corner hinges and finite signed crease facets.
+- Couple crease appearance to geometry, normalize matte illumination and remove
+  false flat-paper self-shadows at grazing light angles.
+- Use nonperiodic multiscale table textures, subtle paper grain, local-height
+  cast shadows, controlled shadow softness and fractional sheet-edge coverage.
+- Add a coarse-to-fine inverse solve with two pixel refinements, retain a dense
+  reference and skip full-resolution normals/strain when not requested.
+- Batch three-light shadow rays in bounded chunks and add opt-in `compile_scene`
+  for deterministic geometry, lighting and Newton updates with unchanged RNG draws.
+- Fix external-bank visibility padding and illumination at differing resolutions.
+- Count only actual CUDA kernel trace events, retaining device/annotation metadata.
+- Keep exact same-runtime 0.2.1 raster regression, add float32 fixture tolerance
+  with useful failure diagnostics, and add independent paper geometry tests.
+- Preserve uploaded T4 0.4.0 evidence, regenerate the 125-figure gallery and update
+  the GPU Colab notebook to compare current backends.
+- Version the paper contract and reject incompatible checkpoint continuation.
+
 ## 0.4.0
 
 - Add `ECGSupervisionLayer` and `SupervisionConfig` for aligned RGB, lead masks,

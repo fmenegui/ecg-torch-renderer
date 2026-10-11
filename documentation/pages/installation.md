@@ -38,7 +38,7 @@ python examples/segmentation.py --steps 3
 python -m unittest discover -s tests -v
 ```
 
-The examples use artificial signals and work on CPU. The segmentation example accepts `--device cuda --compile-raster` for your GPU run.
+The examples use artificial signals and work on CPU. The segmentation example accepts `--device cuda --compile-raster --compile-scene` for your GPU run.
 
 ## Google Colab
 
