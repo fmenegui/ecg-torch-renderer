@@ -62,6 +62,13 @@ def build():
         'geometry_solver': 'coarse_to_fine with two pixel refinements, or dense reference',
     }
     summary = verified.get('release_validation', {})
+    current_path = ROOT / 'research/SWARM_VERIFICATION.json'
+    if current_path.exists():
+        current = json.loads(current_path.read_text())
+        if current.get('version') == ecg_gpu.__version__:
+            counts = current['tests']
+            summary = {**summary, 'portable_tests':
+                       f"{counts['passed']} passed, {counts['skipped_cuda']} CUDA skips ({counts['run']} tests run)"}
     replacements = {
         'layout_count': str(len(renderer.layout_specs)), 'figure_count': str(gallery['figures']),
         'layout_table': table(['Layout', 'Short rows', 'Rhythm strips'], [

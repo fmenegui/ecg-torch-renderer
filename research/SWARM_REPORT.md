@@ -51,7 +51,8 @@ inspection, not a blinded realism study.
 - After constructor validation changes: **13 module/CLI tests passed**.
 - Final scenario checks: **3 tests passed**, including all recipes and scale metadata.
 - Frozen legacy raster fixture and archived 0.2.1 implementation retained.
-- Wheel for 0.6.0 built successfully without dependencies bundled.
+- Wheel for 0.6.0 built successfully without dependencies bundled. Installed
+  into an isolated target and generated a finite scanner image successfully.
 - Three U-Net optimization steps with compiled raster and scene passed, with
   finite losses decreasing from 0.6870 to 0.6777 in this smoke run.
 - Eight material surface families checked against a dense inverse reference.

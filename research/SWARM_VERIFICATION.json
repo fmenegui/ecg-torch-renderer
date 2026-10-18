@@ -23,5 +23,6 @@
   "generated_scenarios": 7,
   "clinical_validation": false,
   "real_image_benchmark": false,
-  "cuda_measured": false
+  "cuda_measured": false,
+  "installed_wheel_smoke": "passed"
 }
