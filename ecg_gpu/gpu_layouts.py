@@ -18,13 +18,24 @@ class LayoutSpec:
     rhythm: tuple = ()
 
     def __post_init__(self):
-        if not self.name or not self.rows or len(self.rhythm) > 3:
+        if not isinstance(self.name, str) or not self.name.strip():
+            raise ValueError('Layout name must be a nonempty string')
+        # A frozen dataclass alone does not freeze lists supplied by a caller.
+        # Snapshot nested sequences so tables and published provenance cannot
+        # disagree after an external list is edited.
+        if not isinstance(self.rows, (tuple, list)) or not self.rows:
+            raise ValueError('Layout rows must be a nonempty sequence of rows')
+        if any(not isinstance(row, (tuple, list)) or not row for row in self.rows):
+            raise ValueError('Each layout row must be a nonempty sequence of lead names')
+        if not isinstance(self.rhythm, (tuple, list)) or len(self.rhythm) > 3:
             raise ValueError('Named nonempty layout with at most three rhythm strips required')
+        object.__setattr__(self, 'rows', tuple(tuple(row) for row in self.rows))
+        object.__setattr__(self, 'rhythm', tuple(self.rhythm))
         names = []
         for row in self.rows:
-            if not row:
-                raise ValueError('Empty layout row')
             for token in row:
+                if not isinstance(token, str):
+                    raise ValueError(f'Invalid lead: {token!r}')
                 name = token.removeprefix('-')
                 if name not in LEADS:
                     raise ValueError(f'Invalid lead: {token}')
@@ -63,3 +74,4 @@ def standard_layouts():
               LayoutSpec('3x1-long',(('II',),('V1',),('V5',))),
               LayoutSpec('1x1-long',(('II',),)), LayoutSpec('1x12',(tuple(LEADS),))]
     return specs
+

@@ -25,7 +25,7 @@ def table(headers, rows):
 def build():
     import torch
     import ecg_gpu
-    from ecg_gpu import ECGImageLayer, ECGRenderer, ECGSupervisionLayer, RenderConfig, SupervisionConfig, profile_layer
+    from ecg_gpu import ECGImageLayer, ECGRenderer, ECGSupervisionLayer, RenderConfig, SupervisionConfig, profile_layer, capture_scenario
     torch.set_num_threads(2)
     renderer = ECGRenderer(RenderConfig(height=64, width=96, surface_resolution=32, shadow_samples=0))
     parameters = renderer.sample_parameters(1, generator=torch.Generator().manual_seed(0))
@@ -45,6 +45,7 @@ def build():
         'ECGSupervisionLayer.supervise': ECGSupervisionLayer.supervise,
         'ECGRenderer': ECGRenderer, 'ECGRenderer.forward': ECGRenderer.forward,
         'profile_layer': profile_layer,
+        'capture_scenario': capture_scenario,
     }
     metadata['signatures'] = {name: str(inspect.signature(obj)) for name, obj in api.items()}
     perf = json.loads((ROOT / 'PERFORMANCE_CPU.json').read_text())

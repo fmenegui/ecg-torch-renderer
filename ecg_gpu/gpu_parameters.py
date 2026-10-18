@@ -21,6 +21,33 @@ class Bernoulli:
     probability: object
 
 
+def parameter_tensor(value,prototype,*,name='parameter'):
+    """Validate construction-time values before a potentially lossy cast.
+
+    Boolean controls accept bool or numeric zero/one. Integer controls accept
+    integral numeric values, including integral floats, without truncation.
+    Renderer-side bounds validation still checks the selected control domain.
+    """
+    raw=torch.as_tensor(value,device=prototype.device)
+    if not prototype.is_floating_point() and not isinstance(value,torch.Tensor) and raw.is_floating_point():
+        # Python float inference otherwise rounds tiny fractions to integer
+        # float32 values before the check that is meant to reject them.
+        raw=torch.as_tensor(value,device=prototype.device,dtype=torch.float64)
+    if raw.is_complex() or not torch.isfinite(raw).all():
+        raise ValueError(f'{name} must contain finite real values')
+    if prototype.dtype==torch.bool:
+        if not ((raw==0)|(raw==1)).all():
+            raise ValueError(f'{name} boolean values must be 0 or 1')
+    elif not prototype.is_floating_point():
+        if raw.is_floating_point() and not (raw==raw.trunc()).all():
+            raise ValueError(f'{name} requires integer values without truncation')
+    tensor=raw.to(dtype=prototype.dtype).detach()
+    if (prototype.is_floating_point() and not torch.isfinite(tensor).all()) or (
+            not prototype.is_floating_point() and not (tensor.to(raw.dtype)==raw).all()):
+        raise ValueError(f'{name} cannot be represented in {prototype.dtype}')
+    return tensor
+
+
 class ParameterSampler(nn.Module):
     """Compile constants to buffers once, then sample a whole batch in torch."""
     def __init__(self, distribution, prototype, resolve):
@@ -48,7 +75,7 @@ class ParameterSampler(nn.Module):
             values = list(distribution.values)
             if not values:
                 raise ValueError('Choice requires at least one value')
-            bank = torch.stack([torch.as_tensor(resolve(value), device=prototype.device, dtype=prototype.dtype)
+            bank = torch.stack([parameter_tensor(resolve(value),prototype,name='Choice value')
                                 .detach().expand_as(prototype).squeeze(0) for value in values])
             if not torch.isfinite(bank).all():
                 raise ValueError('Choice values must be finite')
@@ -87,3 +114,4 @@ def parameters_from_json(parameters):
                 raise ValueError(f'Invalid parameter distribution: {key}')
         result[key] = value
     return result
+

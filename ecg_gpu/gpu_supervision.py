@@ -125,20 +125,30 @@ class ECGSupervisionLayer(ECGImageLayer):
         if required - rendered.targets.keys():
             raise ValueError(f'RenderBatch lacks supervision targets: {sorted(required - rendered.targets.keys())}')
         valid = rendered.targets['valid']
-        traces = rendered.targets['traces']
-        if self.supervision.leads != tuple(LEADS):
-            traces = traces.index_select(1, self._lead_indices)
-        if self.supervision.visible_only:
-            traces = traces * valid
-        if self.supervision.binary:
-            traces = (traces > self.supervision.threshold).to(traces.dtype)
         batch = {'image': rendered.image, 'valid': valid}
+        lead_outputs = {'lead_masks', 'lead_boxes'} & set(requested)
+        union_outputs = {'trace_mask', 'bw', 'wb'} & set(requested)
+        traces = None
+        if lead_outputs or union_outputs:
+            traces = rendered.targets['traces']
+            if self.supervision.leads != tuple(LEADS):
+                traces = traces.index_select(1, self._lead_indices)
+            # Coverage and visibility are nonnegative. Max reduction commutes
+            # with visibility and thresholding, so union-only targets need no
+            # additional full per-lead tensor. Instance-only requests bypass
+            # lead processing altogether. Source masks remain unmodified.
+            if not lead_outputs:
+                traces = traces.amax(1, keepdim=True)
+            if self.supervision.visible_only:
+                traces = traces * valid
+            if self.supervision.binary:
+                traces = (traces > self.supervision.threshold).to(traces.dtype)
         if 'lead_masks' in requested:
             batch['lead_masks'] = traces
             batch['lead_ids'] = self._lead_indices[None].expand(rendered.image.shape[0], -1)
         union = None
-        if {'trace_mask', 'bw', 'wb'} & set(requested):
-            union = traces.amax(1, keepdim=True)
+        if union_outputs:
+            union = traces.amax(1, keepdim=True) if lead_outputs else traces
         if 'trace_mask' in requested:
             batch['trace_mask'] = union
         if 'bw' in requested:
@@ -164,3 +174,4 @@ class ECGSupervisionLayer(ECGImageLayer):
             batch['instance_windows_s'] = torch.stack((info['start_s'], info['end_s']), -1)
             batch['instance_amplitude_sign'] = info['amplitude_sign']
         return batch
+

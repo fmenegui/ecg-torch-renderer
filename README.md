@@ -115,6 +115,37 @@ python examples/segmentation.py --device cuda --compile-raster
 These features include procedural approximations. See [METHODOLOGY.md](METHODOLOGY.md)
 and the [scope guide](documentation/pages/limitations.md).
 
+## Reproducible adverse captures
+
+Version **0.6.0** adds seven coherent scenarios: clean print, flatbed scan,
+aged scan, phone photograph, low-light phone photograph, folded paper and
+damaged archive. All recipes keep twelve leads active. Tears and annotations
+can hide content, reflected in the usual visibility targets.
+
+```python
+from ecg_gpu import capture_scenario, ECGImageLayer
+
+config, parameters = capture_scenario("low_light_phone", severity=.8)
+parameters["layout"] = "3x4+r1"
+layer = ECGImageLayer(fs=500, config=config, parameters=parameters, seed=42)
+rgb = layer(signals)
+```
+
+Export an auditable gallery with entirely artificial signals:
+
+```bash
+python examples/capture_scenarios.py --out build/scenarios
+```
+
+![Seven actual renderer capture scenarios](research/assets/scenarios.jpg)
+
+The camera now integrates a finite shutter path and adds independent sensor
+noise variances. Resolution metadata describes the canonical page before
+perspective, not the source sampling rate. See the [engineering review](research/SWARM_REPORT.md)
+for test results, measured target-postprocessing performance and outstanding
+real-image validation. These scenarios are engineering stress recipes rather
+than calibrated models of named scanner or camera hardware.
+
 ## CLI export
 
 ```bash
@@ -170,3 +201,4 @@ generated pages and images are public here and can be hosted from `docs/`.
 This is an image/target generator. It does not include a trained clinical
 digitizer or demonstrate superiority to a commercial system. Examples use
 artificial signals. [Contributing](CONTRIBUTING.md) · [Changelog](CHANGELOG.md) · MIT.
+

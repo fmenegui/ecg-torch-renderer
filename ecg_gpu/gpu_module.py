@@ -7,7 +7,7 @@ import torch
 from torch import nn
 
 from .gpu_renderer import ECGRenderer, RenderConfig
-from .gpu_parameters import Uniform, Choice, Bernoulli, ParameterSampler
+from .gpu_parameters import Uniform, Choice, Bernoulli, ParameterSampler, parameter_tensor
 
 
 class ECGImageLayer(nn.Module):
@@ -45,7 +45,7 @@ class ECGImageLayer(nn.Module):
                 self.samplers[key]=ParameterSampler(value,prototypes[key],lambda item: self.renderer.resolve_parameter(key,item))
                 continue
             value=self.renderer.resolve_parameter(key,value)
-            tensor=torch.as_tensor(value,dtype=prototypes[key].dtype,device=self.renderer.device).detach().clone()
+            tensor=parameter_tensor(value,prototypes[key],name=key).clone()
             tensor.expand_as(prototypes[key])
             name='fixed_'+key
             self.register_buffer(name,tensor)
@@ -99,3 +99,4 @@ class ECGImageLayer(nn.Module):
     def forward(self,signals,fs=None,*,lengths=None,parameters=None,generator=None):
         return self.render_batch(signals,fs,lengths=lengths,parameters=parameters,
                                  generator=generator,stage='image').image
+

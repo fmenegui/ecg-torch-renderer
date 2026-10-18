@@ -184,6 +184,8 @@ class ECGRenderer(nn.Module):
         return {'schema': 'ecg-replot-torch-renderer-v3', 'config': asdict(self.config), 'fonts': self.fonts,
                 'signal_units': 'mV', 'signal_order': LEADS, 'font_initialization': 'CPU once',
                 'hot_path': 'torch on input device', 'jpeg': 'DCT simulation, not a JPEG bitstream',
+                'optical_model': 'finite-shutter-gaussian-v1',
+                'sensor_noise': 'independent-read-shot-variance-v1',
                 'atlas_sha256': self.atlas_sha256,
                 'texture_sha256': self.texture_sha256,
                 'paper_texture_count': len(self.paper_textures), 'background_count': len(self.backgrounds),
@@ -547,29 +549,61 @@ class ECGRenderer(nn.Module):
         if signals.device != self.device or not signals.is_floating_point():
             raise ValueError('Floating signals and renderer must be on the same device')
         b, _, n = signals.shape
-        rates = torch.as_tensor(fs, device=self.device, dtype=torch.float32).expand(b)
-        lengths = torch.full((b,), n, device=self.device, dtype=torch.long) if lengths is None else torch.as_tensor(lengths, device=self.device, dtype=torch.long)
+        rates = torch.as_tensor(fs, device=self.device, dtype=torch.float32)
+        if rates.ndim > 1 or rates.numel() not in (1, b):
+            raise ValueError('fs must be a scalar or a vector with one sample rate per record')
+        rates = rates.reshape(-1).expand(b)
+        raw_lengths = lengths
+        lengths = torch.full((b,), n, device=self.device, dtype=torch.long) if lengths is None else torch.as_tensor(lengths, device=self.device)
+        if not isinstance(raw_lengths, torch.Tensor) and lengths.is_floating_point():
+            # Validate Python float fractions before default float32 inference
+            # can round them to an apparently integral source length.
+            lengths = torch.as_tensor(raw_lengths, device=self.device, dtype=torch.float64)
         if lengths.shape != (b,):
             raise ValueError('lengths must have shape [B]')
+        if lengths.is_complex():
+            raise ValueError('lengths must contain real integer sample counts')
+        working_signals = signals.float()
         if self.config.validate_inputs:
             # CUDA assertion stays on device, without a per-batch .item() sync.
             torch._assert_async(torch.isfinite(signals).all(), 'Nonfinite ECG signals')
+            torch._assert_async(torch.isfinite(working_signals).all(),
+                                'ECG signals must be finite in float32 working precision')
             torch._assert_async((torch.isfinite(rates) & (rates > 0)).all(), 'Positive finite sample rates required')
-            torch._assert_async(((lengths >= 2) & (lengths <= n)).all(), 'Invalid source lengths')
+            torch._assert_async(((lengths >= 2) & (lengths <= n) & (lengths == lengths.long())).all(),
+                                'Invalid source lengths: finite integer sample counts required')
+        lengths = lengths.long()
         p = self.sample_parameters(b, generator=generator, photo=photo, severity=severity)
         if parameters:
             unknown = set(parameters) - p.keys()
             if unknown:
                 raise ValueError(f'Unknown rendering parameters: {sorted(unknown)}')
             for key, value in parameters.items():
-                value = self.resolve_parameter(key,value)
-                p[key] = torch.as_tensor(value, device=self.device, dtype=p[key].dtype).expand_as(p[key])
+                raw_value = self.resolve_parameter(key,value)
+                value = torch.as_tensor(raw_value, device=self.device)
+                if not p[key].is_floating_point() and not isinstance(raw_value, torch.Tensor) and value.is_floating_point():
+                    value = torch.as_tensor(raw_value, device=self.device, dtype=torch.float64)
+                if value.is_complex():
+                    raise ValueError(f'Real rendering parameter required: {key}')
+                if p[key].dtype == torch.bool:
+                    torch._assert_async(((value == 0) | (value == 1)).all(),
+                                        f'Boolean rendering parameter must be 0 or 1: {key}')
+                if not p[key].is_floating_point() and p[key].dtype != torch.bool and value.is_floating_point():
+                    torch._assert_async((torch.isfinite(value) & (value == value.round())).all(),
+                                        f'Integer rendering parameter required: {key}')
+                p[key] = value.to(dtype=p[key].dtype).expand_as(p[key])
             classes_valid = ((p['layout'] >= 0) & (p['layout'] < len(self.layout_specs))
                              & (p['speed_index'] >= 0) & (p['speed_index'] < 3)
                              & (p['gain_index'] >= 0) & (p['gain_index'] < 3)
                              & (p['quarter'] >= 0) & (p['quarter'] < 4) & (p['zoom'] > 0))
             torch._assert_async(classes_valid.all(), 'Invalid layout, units, orientation or zoom')
             torch._assert_async(torch.isfinite(torch.cat([value.reshape(-1).float() for value in p.values()])).all(), 'Nonfinite rendering parameters')
+            alpha_keys = ['lead_present', 'label_present', 'pulse_present', 'header_present', 'grid_present',
+                          'grid_strength', 'minor_strength', 'ink_density', 'thermal_fade', 'sensor_active',
+                          'jpeg_active', 'occlusion_active', 'pen_active', 'artifact_present']
+            alpha = torch.cat([p[key].reshape(-1) for key in alpha_keys])
+            torch._assert_async(((alpha >= 0) & (alpha <= 1)).all(),
+                                'Rendering presence, opacity and ink density must be in [0,1]')
             torch._assert_async(((p['rhythm_leads']>=-1)&(p['rhythm_leads']<12)).all(),'Invalid rhythm lead IDs')
             for key in ['fade_width','fold_width','fold_span','fold_length','corner_size','object_shadow_size','object_shadow_softness','background_scale']:
                 torch._assert_async((p[key]>0).all(),f'Positive {key} required')
@@ -594,7 +628,15 @@ class ECGRenderer(nn.Module):
             p['asset_active'] = torch.zeros_like(p['asset_active'])
         duration = ((lengths - 1) / rates).clamp(max=self.config.max_duration_s)
         instances = self._instances(p, duration)
-        ink, pulse, targets = self._curves(signals.float(), rates, lengths, instances, p, stage,return_instances,return_baselines)
+        if self.config.validate_inputs:
+            # Raster distances and segment projections square pixel offsets.
+            # Bound arithmetic by working precision, without imposing a clinical
+            # amplitude cap or silently clipping the supplied physiological data.
+            pixel_extent = (working_signals.abs().amax((1, 2)) * instances['gain'] * instances['ppm']
+                            + max(self.config.height, self.config.width))
+            torch._assert_async((pixel_extent < math.sqrt(torch.finfo(torch.float32).max / 16)).all(),
+                                'ECG pixel coordinates exceed safe float32 raster precision')
+        ink, pulse, targets = self._curves(working_signals, rates, lengths, instances, p, stage,return_instances,return_baselines)
         grid, grid_alpha, vertices = self._grid(instances, p, stage in {'geometry', 'all'})
         text, labels, unit_mask = self._text(instances, p, stage in {'metadata', 'all'},stage!='image')
         paper, paper_id = self._texture(self.paper_textures, b, generator, True)
@@ -693,6 +735,9 @@ class ECGRenderer(nn.Module):
         else:
             image = self.camera(image, p, generator)
         metadata = {**instances, 'sample_rate_hz': rates, 'source_length': lengths, 'duration_s': duration,
+                    'canonical_pixels_per_second': instances['ppm'] * instances['speed'],
+                    'canonical_millivolts_per_pixel': (instances['ppm'] * instances['gain']).reciprocal(),
+                    'source_samples_per_canonical_pixel': rates / (instances['ppm'] * instances['speed']),
                     'layout_class': self.class_table[p['layout'].long()], 'orientation_class': p['quarter'].long(),
                     'sequential': p['sequential'], 'unit_text_visible': unit_evidence,
                     'paper_texture_id': paper_id, 'background_id': background_id,
@@ -700,8 +745,9 @@ class ECGRenderer(nn.Module):
                     'parameters': p}
         if return_instances and return_instance_boxes:
             visible = targets['instances']*valid
-            columns = (visible>.05).any(-2)
-            rows = (visible>.05).any(-1)
+            occupied = visible>.05
+            columns = occupied.any(-2)
+            rows = occupied.any(-1)
             xs = torch.arange(self.config.width,device=self.device)[None,None]
             ys = torch.arange(self.config.height,device=self.device)[None,None]
             x0 = torch.where(columns,xs,self.config.width).amin(-1)
@@ -714,3 +760,4 @@ class ECGRenderer(nn.Module):
             metadata['instance_visible'] = has_pixels
         return RenderBatch(image, targets, metadata, signals, field if return_field else None,
                            canonical if return_canonical else None,scene if return_scene else None)
+

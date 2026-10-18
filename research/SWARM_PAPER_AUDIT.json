@@ -1,0 +1,100 @@
+{
+  "schema": "ecg-material-paper-audit-v1",
+  "version": "0.6.0",
+  "device": "cpu",
+  "torch_version": "2.14.1+cpu",
+  "cuda_measured": false,
+  "configuration": {
+    "height": 384,
+    "width": 512,
+    "profile": "photo",
+    "severity": 0.8,
+    "antialias_samples": 2,
+    "lead_chunk_size": 3,
+    "max_duration_s": 10.0,
+    "jpeg_probability": 0.65,
+    "preserve_extrema": true,
+    "validate_inputs": true,
+    "surface_mode": "mixed",
+    "surface_resolution": 96,
+    "inverse_iterations": 5,
+    "shadow_samples": 8,
+    "geometry_solver": "coarse_to_fine"
+  },
+  "dense_reference_iterations": 12,
+  "seed": 7103,
+  "detail_seed": 13,
+  "real_photograph_validation": false,
+  "strain_definition": "|du|-1, |dv|-1 and dot(du,dv), material coordinates",
+  "source_sha256": {
+    "gpu_paper.py": "a6a8589bc6c911e053297b5d10c14c8d2b9814f0c202a61132a0b0c7f893b6d6",
+    "gpu_document.py": "99ef884273ad8a5f240c26d42af36fc0ef8494c492a04de95ef268a2095839d8",
+    "gpu_renderer.py": "574a7ba2cfe8dfc5eb0db512036069239ab4a75c7af90472c48efdb7902c3576"
+  },
+  "surfaces": [
+    {
+      "surface": "flat",
+      "mesh_mean_abs_metric_error": 5.943907694927475e-07,
+      "mesh_p99_abs_metric_error": 1.9073486328125e-06,
+      "max_uv_error_pixels_vs_dense": 2.288818359375e-05,
+      "max_projection_residual_pixels": 1.52587890625e-05,
+      "interior_visible_fraction": 0.7090098261833191
+    },
+    {
+      "surface": "curl",
+      "mesh_mean_abs_metric_error": 1.293138848268427e-05,
+      "mesh_p99_abs_metric_error": 3.224611282348633e-05,
+      "max_uv_error_pixels_vs_dense": 4.57763671875e-05,
+      "max_projection_residual_pixels": 3.1456798751605675e-05,
+      "interior_visible_fraction": 0.6163787841796875
+    },
+    {
+      "surface": "fold",
+      "mesh_mean_abs_metric_error": 0.00018753414042294025,
+      "mesh_p99_abs_metric_error": 0.005816611927002668,
+      "max_uv_error_pixels_vs_dense": 0.000194549560546875,
+      "max_projection_residual_pixels": 0.0002031483018072322,
+      "interior_visible_fraction": 0.621337890625
+    },
+    {
+      "surface": "accordion",
+      "mesh_mean_abs_metric_error": 0.0007074179011397064,
+      "mesh_p99_abs_metric_error": 0.011695879511535168,
+      "max_uv_error_pixels_vs_dense": 0.0010833740234375,
+      "max_projection_residual_pixels": 0.0010923630325123668,
+      "interior_visible_fraction": 0.7010345458984375
+    },
+    {
+      "surface": "crumpled",
+      "mesh_mean_abs_metric_error": 0.002449100837111473,
+      "mesh_p99_abs_metric_error": 0.03811497241258621,
+      "max_uv_error_pixels_vs_dense": 0.00067138671875,
+      "max_projection_residual_pixels": 0.0007514082244597375,
+      "interior_visible_fraction": 0.701446533203125
+    },
+    {
+      "surface": "wrinkled",
+      "mesh_mean_abs_metric_error": 0.0001760962331900373,
+      "mesh_p99_abs_metric_error": 0.0009040243458002806,
+      "max_uv_error_pixels_vs_dense": 2.288818359375e-05,
+      "max_projection_residual_pixels": 2.15791860682657e-05,
+      "interior_visible_fraction": 0.6951802372932434
+    },
+    {
+      "surface": "rolled",
+      "mesh_mean_abs_metric_error": 2.972498259623535e-05,
+      "mesh_p99_abs_metric_error": 0.00015925023762974888,
+      "max_uv_error_pixels_vs_dense": 6.866455078125e-05,
+      "max_projection_residual_pixels": 4.00543212890625e-05,
+      "interior_visible_fraction": 0.6095326542854309
+    },
+    {
+      "surface": "corner",
+      "mesh_mean_abs_metric_error": 1.5700608855695464e-05,
+      "mesh_p99_abs_metric_error": 0.0005201869644224644,
+      "max_uv_error_pixels_vs_dense": 0.00091552734375,
+      "max_projection_residual_pixels": 0.0007483031949959695,
+      "interior_visible_fraction": 0.6440938115119934
+    }
+  ]
+}

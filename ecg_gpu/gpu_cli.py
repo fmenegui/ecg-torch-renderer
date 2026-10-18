@@ -26,7 +26,7 @@ def load_signals(path,fs=None,units=None):
             if fs is None and 'fs' in source:
                 fs=np.asarray(source['fs'],dtype=np.float32)
             names=[name.decode() if isinstance(name,bytes) else str(name) for name in source['lead_names']] if 'lead_names' in source else None
-            lengths=np.asarray(source['lengths'],dtype=np.int64) if 'lengths' in source else None
+            lengths=np.asarray(source['lengths']) if 'lengths' in source else None
             if 'units' in source:
                 tag=source['units'].item()
                 declared_units=tag.decode() if isinstance(tag,bytes) else str(tag)
@@ -72,8 +72,16 @@ def load_signals(path,fs=None,units=None):
         raise ValueError('fs must be scalar or one rate per signal')
     if not np.isfinite(signals).all() or not np.isfinite(rates).all() or (rates<=0).any():
         raise ValueError('Finite signals and positive sample rates required')
-    if lengths is not None and (lengths.shape!=(len(signals),) or (lengths<2).any() or (lengths>signals.shape[-1]).any()):
-        raise ValueError('Invalid padded source lengths')
+    if lengths is not None:
+        if (lengths.shape!=(len(signals),)
+                or not np.issubdtype(lengths.dtype,np.number)
+                or np.iscomplexobj(lengths)
+                or not np.isfinite(lengths).all()
+                or (lengths != np.floor(lengths)).any()
+                or (lengths < 2).any()
+                or (lengths > signals.shape[-1]).any()):
+            raise ValueError('Invalid padded source lengths: finite integer sample counts required')
+        lengths=lengths.astype(np.int64)
     return signals.copy(),rates,lengths
 
 
@@ -83,6 +91,31 @@ def plain(value):
     if isinstance(value,dict):
         return {key:plain(item) for key,item in value.items()}
     return value
+
+
+def normalized_input_fingerprint(signals,rates,lengths):
+    """Hash the actual decoded input, including WFDB waveform content.
+
+    Canonical arrays use C order and explicit little-endian float32/int64.
+    The combined digest prefixes a compact schema/shape header and includes
+    sampling rates and valid lengths, so equal voltage bytes at a different
+    sampling rate do not have the same physical-input identity.
+    """
+    count,_,samples=signals.shape
+    arrays={
+        'signals':np.ascontiguousarray(signals,dtype='<f4'),
+        'rates':np.ascontiguousarray(np.broadcast_to(rates,(count,)),dtype='<f4'),
+        'lengths':np.ascontiguousarray(np.full(count,samples) if lengths is None else lengths,dtype='<i8'),
+    }
+    header={'schema':'ecg-normalized-input-v1','order':'C',
+            'arrays':{name:{'shape':list(value.shape),'dtype':value.dtype.str}
+                      for name,value in arrays.items()}}
+    digest=hashlib.sha256(json.dumps(header,sort_keys=True,separators=(',',':')).encode()+b'\0')
+    for value in arrays.values():
+        digest.update(value.tobytes(order='C'))
+    return {**header,'sha256':digest.hexdigest(),
+            'array_sha256':{name:hashlib.sha256(value.tobytes(order='C')).hexdigest()
+                            for name,value in arrays.items()}}
 
 
 def render_file(input_path,output_path,*,fs=None,units=None,device='auto',config=None,
@@ -119,6 +152,7 @@ def render_file(input_path,output_path,*,fs=None,units=None,device='auto',config
         Image.fromarray(array).save(path,**({'quality':95,'subsampling':0} if path.suffix.lower() in {'.jpg','.jpeg'} else {}))
     report={'schema':'ecg-torch-renderer-cli-v1','device':str(device),'torch_version':str(torch.__version__),
             'input_sha256':hashlib.sha256(Path(input_path).read_bytes()).hexdigest(),
+            'normalized_input':normalized_input_fingerprint(signals,rates,lengths),
             'seed':seed,'outputs':[str(path.resolve()) for path in paths],
             'image_shape':list(batch.image.shape),'signal_units':'mV','configuration':renderer.specification(),
             'compile_raster':compile_raster,'metadata':plain(batch.metadata)}
@@ -206,3 +240,4 @@ def main():
 
 if __name__=='__main__':
     main()
+

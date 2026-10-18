@@ -50,4 +50,22 @@ The full ECG Replot trainer has additional patient-split and resume checks. This
 
 ## Paper-model migration
 
+Version 0.6.0 changes the optical point-spread function and the read/shot noise
+combination. It includes their model identifiers in the renderer specification,
+so older image-layer checkpoints are rejected by the signature guard. Keep
+the earlier package to replay earlier observation pixels.
+
+CLI reports now include `normalized_input`, a SHA-256 fingerprint of decoded
+physical signals, per-record sampling rates and valid source lengths. Shapes,
+explicit little-endian dtypes and C-order array digests accompany it. This
+distinguishes different WFDB waveforms even when their header files match.
+The original input-file hash remains available.
+
+Capture metadata includes `canonical_pixels_per_second`,
+`canonical_millivolts_per_pixel` and `source_samples_per_canonical_pixel`.
+These describe the rectified page before photographic geometry. A 500 Hz
+source rendered into fewer than 500 columns per second cannot preserve
+every sample's temporal location. The extrema envelope protects narrow
+amplitude excursions, not sample chronology inside a single output column.
+
 Version 0.5.0 intentionally changes the sampled paper distribution and renderer signature. An old checkpoint cannot silently resume with the new model. Keep the recorded package version to replay an old experiment, or start an explicitly new rendering experiment. Both `compile_raster` and `compile_scene` settings must match when restoring layer state.

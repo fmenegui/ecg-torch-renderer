@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.6.0
+
+- Add seven coherent named capture scenarios, from flatbed scans to low-light
+  photographs, with reproducible multi-layout gallery export.
+- Integrate finite uniform-shutter motion with Gaussian defocus and combine
+  independent read/shot noise variances correctly. Capture appearance changes,
+  so image seeds from earlier releases are not visually interchangeable.
+- Reject fractional categorical IDs and lengths before conversion, invalid
+  opacity/presence values and input overflow in float32 raster coordinates.
+- Freeze caller-supplied layout sequences to keep tables and provenance aligned.
+- Reduce supervision postprocessing allocations for union and instance-only
+  requests, retaining bitwise output equality.
+- Export canonical resolution limits and canonical physical-input fingerprints.
+- Add independent fidelity, optical, adversarial and allocation tests, primary
+  research review and a professional multi-agent acceptance workflow.
+- Keep frozen raster fixtures, record CPU evidence and leave CUDA and external
+  real-image equivalence explicitly unverified for this release.
+
 ## 0.5.0
 
 - Replace elastic-looking default camera warps with material-coordinate bends,
@@ -44,3 +62,4 @@
 
 Frozen numerical/performance reference, retained as the immutable archive
 `references/ecg-gpu-generator-v021.zip`.
+

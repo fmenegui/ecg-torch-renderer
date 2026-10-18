@@ -1,0 +1,27 @@
+{
+  "schema": "ecg-swarm-verification-v1",
+  "version": "0.6.0",
+  "upstream_commit": "0d8cc05592763e415a7b4f2ac51fdbafa10e93ca",
+  "python": "3.12",
+  "torch": "2.14.1+cpu",
+  "tests": {
+    "run": 102,
+    "passed": 99,
+    "skipped_cuda": 3,
+    "seconds": 24.577
+  },
+  "compiled_training": {
+    "steps": 3,
+    "status": "passed"
+  },
+  "wheel_build": "passed",
+  "documentation_build": {
+    "pages": 18,
+    "status": "passed",
+    "local_asset_validation": "blocked_by_incomplete_staging_download"
+  },
+  "generated_scenarios": 7,
+  "clinical_validation": false,
+  "real_image_benchmark": false,
+  "cuda_measured": false
+}

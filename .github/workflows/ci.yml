@@ -15,9 +15,9 @@ jobs:
           - python: '3.10'
             torch: '2.6.0'
           - python: '3.12'
-            torch: '2.11.0'
+            torch: 'latest'
           - python: '3.13'
-            torch: '2.14.0'
+            torch: 'latest'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -26,7 +26,11 @@ jobs:
           cache: pip
       - name: Install CPU Torch and library
         run: |
-          python -m pip install torch==${{ matrix.torch }} --index-url https://download.pytorch.org/whl/cpu
+          if [ "${{ matrix.torch }}" = latest ]; then
+            python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+          else
+            python -m pip install torch==${{ matrix.torch }} --index-url https://download.pytorch.org/whl/cpu
+          fi
           python -m pip install -e .
       - name: Raster, geometry, replay, supervision and profiling contracts
         run: python -m unittest discover -s tests -v
@@ -50,3 +54,4 @@ jobs:
       - run: npm install --prefix documentation
       - run: python documentation/build.py
       - run: python documentation/validate.py
+

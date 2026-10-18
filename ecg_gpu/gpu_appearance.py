@@ -59,13 +59,27 @@ class CameraAppearance(nn.Module):
         return (torch.einsum('ij,bjhw->bihw', self.ycc_to_rgb, torch.cat([y, chroma], 1)) / 255).clamp(0, 1)
 
     def optical_blur(self, image, sigma, motion, angle):
+        """Defocus convolved with a finite, constant-velocity shutter path.
+
+        ``sigma`` and ``motion`` are in output pixels. The 9x9 support covers
+        the renderer's sampled range (sigma <= 1.08, motion <= 2.8). A uniform
+        exposure path has variance motion**2 / 12, rather than the unbounded
+        Gaussian tails of an elongated defocus approximation. The kernel is
+        sampled at pixel centers and normalized after its finite truncation.
+        """
         b, c, h, w = image.shape
         x, y = self.kernel_x[None], self.kernel_y[None]
         ca, sa = angle.cos()[:, None, None], angle.sin()[:, None, None]
         u, v = x * ca + y * sa, -x * sa + y * ca
-        minor = sigma[:, None, None].clamp_min(.18)
-        major = (sigma + motion / 2.4)[:, None, None].clamp_min(.18)
-        kernel = torch.exp(-.5 * ((u / major).square() + (v / minor).square()))
+        sigma = sigma[:, None, None].clamp_min(.18)
+        length = motion[:, None, None].clamp_min(0)
+        # Integrate the Gaussian along the shutter segment analytically. Near
+        # zero length use its Gaussian limit to avoid subtractive cancellation.
+        scale = math.sqrt(2) * sigma
+        along = ((u + length / 2) / scale).erf() - ((u - length / 2) / scale).erf()
+        along *= sigma * math.sqrt(math.pi / 2) / length.clamp_min(.01)
+        along = torch.where(length < .01, torch.exp(-.5 * (u / sigma).square()), along)
+        kernel = along.clamp_min(0) * torch.exp(-.5 * (v / sigma).square())
         kernel = kernel / kernel.sum((-1, -2), keepdim=True)
         kernel = kernel[:, None].expand(b, c, 9, 9).reshape(b * c, 1, 9, 9)
         padded = F.pad(image, (4, 4, 4, 4), mode='replicate').reshape(1, b * c, h + 8, w + 8)
@@ -81,13 +95,18 @@ class CameraAppearance(nn.Module):
         distance = xx * p('shadow_cos') + yy * p('shadow_sin') - p('shadow_position')
         light *= 1 - p('shadow_strength') * torch.sigmoid(-distance / .07)
         image = (image * light * parameters['white_balance'][:, :, None, None]).clamp(0, 1)
-        # A sampled anisotropic PSF combines defocus and oriented motion smearing.
+        # Finite shutter motion and defocus share a normalized optical PSF.
         blurred = self.optical_blur(image, parameters['blur'], parameters['motion'], parameters['motion_angle'])
         image = torch.lerp(image, blurred, p('sensor_active'))
         noise = torch.randn(image.shape, device=image.device, generator=generator)
-        image = image + noise * (p('read_noise') + p('shot_noise') * image.clamp_min(0).sqrt())
+        # Independent read and signal-dependent shot noise add in variance.
+        # shot_noise is a standard-deviation coefficient in observation units,
+        # not an electron count. This remains a Gaussian sensor approximation.
+        variance = p('read_noise').square() + p('shot_noise').square() * image.clamp_min(0)
+        image = image + noise * variance.sqrt()
         image = image.clamp(0, 1).pow(p('gamma'))
         compressed = self.jpeg(image, parameters['jpeg_quality'])
         image = torch.where(p('jpeg_active').bool(), compressed, image)
         # Quantization occurs only in the observation, never in signal references.
         return ((image.clamp(0, 1) * 255).round() / 255).contiguous()
+
