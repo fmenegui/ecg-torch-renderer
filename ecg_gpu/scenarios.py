@@ -12,6 +12,9 @@ from .gpu_renderer import RenderConfig
 CAPTURE_SCENARIOS = (
     'clean_print', 'flatbed_scan', 'aged_scan', 'phone_photo',
     'low_light_phone', 'folded_photo', 'damaged_archive',
+    'crumpled_photo', 'folded_archive', 'water_damage', 'coffee_spill',
+    'torn_edges', 'cut_sheet', 'missing_fragments', 'oblique_phone',
+    'thermal_damage',
 )
 
 
@@ -29,9 +32,12 @@ def capture_scenario(name, *, height=768, width=1024, severity=.6):
     if isinstance(severity, bool) or not isinstance(severity, (int, float)) or not math.isfinite(severity) or not 0 <= severity <= 1:
         raise ValueError('Scenario severity must be finite and in [0,1]')
     s = float(severity)
-    photo = name in {'phone_photo', 'low_light_phone', 'folded_photo', 'damaged_archive'}
+    photo = name not in {'clean_print', 'flatbed_scan', 'aged_scan'}
     profile = 'clean' if name == 'clean_print' else 'photo' if photo else 'scan'
-    surface = 'fold' if name == 'folded_photo' else 'wrinkled' if name == 'damaged_archive' else 'flat'
+    surface = {'folded_photo':'fold', 'folded_archive':'accordion',
+               'damaged_archive':'wrinkled', 'crumpled_photo':'crumpled',
+               'water_damage':'wrinkled', 'torn_edges':'curl',
+               'missing_fragments':'wrinkled'}.get(name, 'flat')
     config = RenderConfig(height=height, width=width, profile=profile,
                           severity=s, surface_mode=surface)
     p = {
@@ -48,6 +54,9 @@ def capture_scenario(name, *, height=768, width=1024, severity=.6):
         'occlusion_active': 0., 'tear_active': 0., 'asset_active': 0.,
         'coffee_strength': 0., 'stain_strength': 0., 'bleed_strength': 0.,
         'paper_age': 0., 'thermal_fade': 0., 'band_strength': 0.,
+        'fiber_strength': .12*s, 'foxing_strength': 0., 'water_strength': 0.,
+        'thermal_darkening_strength': 0., 'edge_wear_strength': 0.,
+        'hole_active': 0., 'cut_active': 0., 'missing_corner_active': 0.,
         'object_shadow': 'none', 'shadow_strength': 0.,
         'crease_strength': 0., 'curl_x': 0., 'curl_y': 0., 'crease_warp': 0.,
         'photo': float(photo),
@@ -86,7 +95,7 @@ def capture_scenario(name, *, height=768, width=1024, severity=.6):
                  object_shadow=Choice(['none', 'phone', 'hand']),
                  object_shadow_strength=Uniform(0., .3*s))
     if name == 'aged_scan':
-        p.update(paper_age=Uniform(.04*s, .13*s),
+        p.update(paper_age=Uniform(.12*s, .32*s), foxing_strength=Uniform(.12*s, .4*s),
                  thermal_fade=Uniform(.1*s, .5*s),
                  band_strength=Uniform(.003*s, .025*s),
                  stain_strength=Uniform(0., .15*s),
@@ -103,8 +112,60 @@ def capture_scenario(name, *, height=768, width=1024, severity=.6):
                  cast_shadow_strength=Uniform(.25*s, .55*s))
     if name == 'damaged_archive':
         p.update(surface_strength=Uniform(.2*s, .65*s),
-                 paper_age=Uniform(.04*s, .14*s), thermal_fade=Uniform(.15*s, .55*s),
-                 coffee_strength=Uniform(.1*s, .4*s), bleed_strength=Uniform(0., .07*s),
+                 paper_age=Uniform(.12*s, .30*s), thermal_fade=Uniform(.15*s, .55*s),
+                 coffee_strength=Uniform(.1*s, .4*s), foxing_strength=.35*s,
+                 edge_wear_strength=.55*s, bleed_strength=Uniform(0., .07*s),
                  tear_active=1., tear_size=Uniform(.015+.02*s, .015+.10*s),
                  artifact_present=[1., 0., 0., 0.])
+    if name == 'crumpled_photo':
+        p.update(surface_strength=Uniform(.65*s, .92*s), crease_count=4,
+                 fold_amplitude=[.032]*8, fold_span=[.30]*8,
+                 fold_width=[.04]*8, fold_length=[1.1]*8, surface_axis=.35,
+                 relief_view=[.52, -.32], ambient_occlusion=0.,
+                 cast_shadow_strength=.45*s, object_shadow='none')
+    if name == 'folded_archive':
+        p.update(surface_strength=Uniform(.5*s, .9*s), surface_frequency=2.6,
+                 paper_age=.22*s, foxing_strength=.3*s, thermal_fade=.2*s,
+                 edge_wear_strength=.5*s, cast_shadow_strength=.5*s,
+                 ambient_occlusion=.20*s, object_shadow='none')
+    if name in {'crumpled_photo','folded_archive'}:
+        # Reveal actual normals with raking light instead of increasing
+        # stretching or painting dark stripes onto a flat document.
+        p.update(ambient_light=.26,
+                 light_direction=[[-1.,.3,.28],[.2,-.1,1.],[0.,0.,1.]],
+                 light_energy=[.85,.04,.025], exposure=Uniform(.82,.92),
+                 specular_strength=.01)
+    if name == 'water_damage':
+        p.update(surface_strength=.45*s, water_strength=.8*s, stain_strength=.25*s,
+                 stain_x=.62, stain_y=.52, paper_age=.08*s,
+                 thermal_fade=.55*s, fade_position=.64, fade_width=.18,
+                 foxing_strength=.15*s, object_shadow='none')
+    if name == 'coffee_spill':
+        p.update(coffee_strength=.75*s, coffee_radius=.19, stain_strength=.18*s,
+                 stain_x=.64, stain_y=.56, water_strength=.25*s,
+                 object_shadow='none', paper_noise=0.)
+    if name == 'torn_edges':
+        p.update(surface_strength=.32*s, tear_active=1., tear_count=3,
+                 tear_size=.13*s+.01, tear_raggedness=.95,
+                 edge_wear_strength=.85*s, edge_wear_depth=.012,
+                 tear_position=-.18, object_shadow='none')
+    if name == 'cut_sheet':
+        p.update(cut_active=[1.,1.,0.], cut_center=[[-.1,-.2],[.5,.3],[0.,0.]],
+                 cut_length=[.7,.28,.1], cut_width=[.008,.004,.004],
+                 cut_angle=[.48,-.75,0.], tear_raggedness=.15,
+                 zoom=.86, object_shadow='none')
+    if name == 'missing_fragments':
+        p.update(surface_strength=.3*s, missing_corner_active=1.,
+                 missing_corner_index=2, missing_corner_size=[.35,.3],
+                 hole_active=[1.,1.,0.], hole_center=[[-.35,.1],[.4,.4],[0.,0.]],
+                 hole_radius=[[.09,.065],[.045,.035],[.03,.03]],
+                 tear_raggedness=.85, object_shadow='none')
+    if name == 'oblique_phone':
+        p.update(perspective_x=.37*s, perspective_y=-.24*s,
+                 angle=-.17*s, zoom=.72, translate_x=-.05,
+                 radial=.035*s, object_shadow='none', blur=.35)
+    if name == 'thermal_damage':
+        p.update(paper_age=.12*s, thermal_darkening_strength=.65*s,
+                 thermal_fade=.6*s, fade_position=.70, fade_width=.13,
+                 foxing_strength=.18*s, object_shadow='none')
     return config, p

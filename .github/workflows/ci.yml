@@ -72,9 +72,11 @@ jobs:
           python -m pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
           python -m pip install -e '.[pathtrace,yolo]'
       - name: Independent 3D ray, UV, visibility and physical-scale tests
-        run: python -m unittest discover -s tests -p test_pathtrace_quality.py -v
+        run: |
+          python -m unittest discover -s tests -p 'test_pathtrace*.py' -v
+          python -m unittest discover -s tests -p test_adversity_r3.py -v
       - name: Export grouped YOLO detection dataset
-        run: python examples/export_yolo.py --out build/yolo-ci --groups 4 --views 2 --width 192 --height 128
+        run: python examples/export_yolo.py --out build/yolo-ci --groups 4 --views 2 --width 192 --height 128 --scenario missing_fragments
       - name: Actual YOLO architecture training and validation without pretrained weights
         run: python examples/train_yolo.py --data build/yolo-ci/dataset.yaml --epochs 1 --imgsz 128 --batch 2 --project build/yolo-ci-training
 

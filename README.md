@@ -117,6 +117,22 @@ and the [scope guide](documentation/pages/limitations.md).
 
 ## Reproducible adverse captures
 
+Version **0.8.0** adds irregular crease networks, material-coordinate tears,
+open cuts, holes and missing corners, plus distinct oxidation, liquid deposits,
+foxing, fibers and thermal-coating damage. Sixteen capture recipes keep masks,
+boxes and source signals aligned. Optional 3D capture supports irregular sheets
+and physically absent substrate. See the [third review](research/ROUND3_REPORT.md).
+
+```bash
+python examples/capture_scenarios.py --out build/scenarios
+python examples/pathtraced_capture.py --adverse --out build/physical --spp 192
+python examples/export_yolo.py --scenario missing_fragments --out build/yolo
+```
+
+The richer material and damage paths cost more than the previous approximations.
+`RenderConfig(damage_detail="edge")` selects a cheaper first-tear-only path.
+Use `"rich"` for holes, slits, corners and multiple tears.
+
 Version **0.7.0** adds a second capture backend: optional offline Mitsuba 3D
 light transport with ray-aligned masks and boxes. The torch training renderer
 now shades and resamples in linear light, projects shadows from caster height,

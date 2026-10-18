@@ -1,0 +1,62 @@
+{
+  "schema": "ecg-round3-verification-v1",
+  "version": "0.8.0",
+  "upstream_commit": "cfad721b61c3bcee8544b9fb1967e585a2df311b",
+  "torch": "2.14.1+cpu",
+  "mitsuba": "3.9.1",
+  "tests": {
+    "run": 194,
+    "passed": 190,
+    "skipped_cuda": 4,
+    "seconds": 48.843
+  },
+  "test_phase": "final production source after clipping precision fix",
+  "capture_scenarios": 16,
+  "torch_gallery_dimensions": [
+    1280,
+    960
+  ],
+  "unet_compiled_steps": 3,
+  "wheel_isolated_smoke": "passed",
+  "all_lead_masks": 12,
+  "max_printed_instances": 15,
+  "cuda_measured": false,
+  "external_real_image_benchmark": false,
+  "realism_100_percent_established": false,
+  "pathtrace_clipping_precision_regression": "passed, exact oblique support, warning-as-error, strict JSON",
+  "wheel_final_pathtrace_source_sha256": "aa543f1f8ba06bcd75f2fd8fbadb584775a651ec3b70d397c2d35cb65ea30b5b",
+  "unet_losses": [
+    0.6819833517074585,
+    0.6783393025398254,
+    0.6735247373580933
+  ],
+  "recipe_audit": {
+    "samples": 64,
+    "maximum_sample_mean_error": 0.0015384,
+    "maximum_sample_q99_error": 0.0225361
+  },
+  "height_field_audit": {
+    "maximum_uv_error_pixels_vs_dense": 0.00079345703125
+  },
+  "pathtrace_renders": {
+    "cases": 4,
+    "width": 1024,
+    "height": 768,
+    "radiance_spp": 192,
+    "label_samples_per_axis": 2,
+    "provenance_source_hash_matches": true,
+    "strict_json": "passed"
+  },
+  "yolo_actual_epochs": 1,
+  "yolo_actual_scenario": "missing_fragments",
+  "yolo_samples": 8,
+  "yolo_groups": 4,
+  "yolo_validation_map": 0.0,
+  "training_claim": "integration on artificial data, no real-image accuracy established",
+  "artifact_sha256": {
+    "research/assets/round3-gallery.jpg": "78aff4f1a13bcb7cebcaa5680829015ad54d878a7b61864c4dec1f446680a20d",
+    "research/assets/round3-pathtraced-gallery.jpg": "0c538c46fdf5b80acd18d66daf850e4bed565b8fba4f4f02461809fb2b76da9d",
+    "research/assets/round3-targets.npz": "56b05ca5272c8405a5f31e8869be55d2c48574fabebc24f074e193d9fc572c5d",
+    "research/assets/round3-supervision-rgb.png": "8c6d825145624508b91f740aba12b2c41c1776446be06784cdb089fc0310e679"
+  }
+}

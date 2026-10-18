@@ -1,5 +1,24 @@
 # Paper, tables & lighting
 
+## Irregular paper in 0.8.0
+
+The torch surface uses finite asymmetric creases branching from displaced
+junctions, unequal accordion panels and oriented fine wrinkles. Relief and
+normals drive lighting and projection together. A large ambient contribution
+can hide real relief. Raking illumination reveals it without painting fake
+creases onto a flat page. This remains a conservative 2.5D approximation.
+
+The optional Mitsuba backend adds `multifold`, `wrinkled` and `crumpled`
+surfaces, metric-space geometry seeds, actual removed substrate and camera
+orientation through `camera_up`. Primary-ray targets share the same physical
+mesh as image and shadow rendering. Paper support can come from rectified
+`RenderBatch.targets["paper_support"]`. Run
+`python examples/pathtraced_capture.py --adverse --out build/physical --spp 192`
+for complete examples. The geometry is prescribed and relaxed, not a full
+plastic thin-shell solver with self-contact.
+
+![Actual 3D adverse captures with geometric targets](assets/round3-pathtraced-gallery.jpg)
+
 The procedural scene keeps geometry, normals, illumination and visibility together. A paper deformation changes both the photographed trace and its target mask.
 
 ## Eight paper surfaces

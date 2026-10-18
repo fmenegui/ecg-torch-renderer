@@ -1,0 +1,40 @@
+{
+  "schema": "ecg-adversity-review-v1",
+  "sources": [
+    {
+      "name": "crumpled_photo",
+      "sha256": "f40cbc70b715c2ba947e39c04c9544ef7170a91239898ffc0b9b2a0dc3fdf928"
+    },
+    {
+      "name": "folded_archive",
+      "sha256": "a60ba82cf7cb11824d54ca878343d8c0759017f04098162967b3853e3d88f0e8"
+    },
+    {
+      "name": "coffee_spill",
+      "sha256": "df55a1b977e5896451ff9be5b6b8280538469186ece93e84beeddb4a8274ace2"
+    },
+    {
+      "name": "water_damage",
+      "sha256": "0eb26a2f993b956b0265ddebd76b14af7c672486c43da0500f9e1ad80c3f32b7"
+    },
+    {
+      "name": "torn_edges",
+      "sha256": "27cc8654e8fba4622ef4953349f49460f39918521eb2e1d9bc5b2b4eebb8db2a"
+    },
+    {
+      "name": "cut_sheet",
+      "sha256": "0904a38c23c492868c08b86c52a60222e7338930eea9cc5936d3746c8bfcbbc0"
+    },
+    {
+      "name": "missing_fragments",
+      "sha256": "6ad1166fc778f1e8ed17f3be67205be5f56b0d78cb677b6241c3a9b19a02ad13"
+    },
+    {
+      "name": "thermal_damage",
+      "sha256": "ff79ca5bb485788b44072975367e648b037062bcc66a0a590d865b83b87cd7dc"
+    }
+  ],
+  "panel_resizing": "Lanczos, source PNGs retained unchanged",
+  "comparison": "same scenario seeds, revised parameter distributions and resolution",
+  "external_real_image_benchmark": false
+}

@@ -1,5 +1,45 @@
 # Capture & print artifacts
 
+## Material damage in 0.8.0
+
+Paper appearance is constructed in material coordinates before perspective or
+folding. Oxidation and fiber density affect unprinted reflectance. Deposited
+liquid absorbs linear light after printing and annotations. Thermal fading
+reduces observed print contrast, while thermal darkening develops the paper
+coating. These processes preserve geometric trace targets.
+
+| Controls | Meaning |
+| --- | --- |
+| `paper_age`, `foxing_strength` | Irregular oxidation and clustered pigment spots |
+| `stain_strength`, `water_strength` | Absorbed stain and drying front |
+| `coffee_strength`, `coffee_radius`, `stain_x`, `stain_y` | Irregular contact line and uneven dried deposit |
+| `fiber_strength` | Subtle anisotropic substrate detail |
+| `thermal_fade`, `fade_position`, `fade_width` | Mottled loss of observed thermal-print contrast |
+| `thermal_darkening_strength` | Local developed coating independent of print fading |
+| `tear_active`, `tear_count`, `tear_raggedness` | Up to four irregular open edge tears |
+| `edge_wear_strength`, `edge_wear_depth` | Shallow abrasion of outer boundaries |
+| `hole_active`, `hole_center`, `hole_radius`, `hole_angle` | Three independent irregular punctures |
+| `cut_active`, `cut_center`, `cut_length`, `cut_width`, `cut_angle` | Three finite open slits |
+| `missing_corner_active`, `missing_corner_index`, `missing_corner_size` | One removed corner |
+
+Strengths are dimensionless augmentation controls, not elapsed years or fluid
+concentration. Damage centers use sheet coordinates in `[-1,1]`, while stain
+centers use `[0,1]`. Radii, widths and
+lengths use half-page-width units in both axes, so `.01` means 1.5 mm on a
+300 mm sheet. Right and bottom box edges remain exclusive.
+
+Missing material removes the printed image, trace targets and shadow caster
+together. A stain does not become a hole. `damage_detail="edge"` evaluates only
+the first edge tear and rejects enabled advanced damage. The default
+`"rich"` supports every damage type at higher compute cost.
+
+`capture_scenario("missing_fragments")`, `"cut_sheet"`, `"water_damage"`,
+`"coffee_spill"`, `"thermal_damage"` and `"oblique_phone"` provide complete
+recipes. The perspective transform rejects a horizon crossing instead of
+silently dividing by a near-zero projective denominator.
+
+![Irregular material damage, liquid history and thermal development](assets/round3-gallery.jpg)
+
 Printing, geometry and capture are independently configurable. Their default distributions are a starting point, then should be adapted to the images you expect to digitize.
 
 ## Geometry

@@ -1,5 +1,5 @@
 {
-  "version": "0.7.0",
+  "version": "0.8.0",
   "render_config": {
     "height": 768,
     "width": 1024,
@@ -15,7 +15,8 @@
     "surface_resolution": 96,
     "inverse_iterations": 5,
     "shadow_samples": 8,
-    "geometry_solver": "coarse_to_fine"
+    "geometry_solver": "coarse_to_fine",
+    "damage_detail": "rich"
   },
   "supervision_config": {
     "outputs": [
@@ -890,10 +891,143 @@
         "B"
       ],
       "dtype": "torch.int64"
+    },
+    "tear_raggedness": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "tear_count": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.int64"
+    },
+    "edge_wear_strength": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "edge_wear_depth": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "hole_active": {
+      "shape": [
+        "B",
+        3
+      ],
+      "dtype": "torch.float32"
+    },
+    "hole_center": {
+      "shape": [
+        "B",
+        3,
+        2
+      ],
+      "dtype": "torch.float32"
+    },
+    "hole_radius": {
+      "shape": [
+        "B",
+        3,
+        2
+      ],
+      "dtype": "torch.float32"
+    },
+    "hole_angle": {
+      "shape": [
+        "B",
+        3
+      ],
+      "dtype": "torch.float32"
+    },
+    "cut_active": {
+      "shape": [
+        "B",
+        3
+      ],
+      "dtype": "torch.float32"
+    },
+    "cut_center": {
+      "shape": [
+        "B",
+        3,
+        2
+      ],
+      "dtype": "torch.float32"
+    },
+    "cut_length": {
+      "shape": [
+        "B",
+        3
+      ],
+      "dtype": "torch.float32"
+    },
+    "cut_width": {
+      "shape": [
+        "B",
+        3
+      ],
+      "dtype": "torch.float32"
+    },
+    "cut_angle": {
+      "shape": [
+        "B",
+        3
+      ],
+      "dtype": "torch.float32"
+    },
+    "missing_corner_active": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "missing_corner_index": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.int64"
+    },
+    "missing_corner_size": {
+      "shape": [
+        "B",
+        2
+      ],
+      "dtype": "torch.float32"
+    },
+    "fiber_strength": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "foxing_strength": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "water_strength": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
+    },
+    "thermal_darkening_strength": {
+      "shape": [
+        "B"
+      ],
+      "dtype": "torch.float32"
     }
   },
   "source_sha256": {
-    "__init__.py": "e9d4122d61a06cf0b1ef9c263bb7eb568edd54c8da0b1c042b7270c32170552b",
+    "__init__.py": "8153e3fcd47e779bedfcb61346b5dfb8df6dd278825efa3cd7a98e58d749cd7b",
     "assets.py": "b2c3c6ed35549af13db2b386a2e2dbf89b69ea36f3542a9618e88ac6d82819cb",
     "audit.py": "f1adcf107a8ce24a348871d928284116a8ba5ffd586ff52d6a918af0cefb47ec",
     "benchmark.py": "efbe9785260751f524df16613d47f9119cd44cf471d5d031de958672461c843d",
@@ -903,19 +1037,20 @@
     "gallery.py": "805bff0d042c60b3d9ac9bf1e3e2ea7dcae688d19a2fd6d0880c48655a9531c4",
     "gpu_appearance.py": "0faa0fb6290a04f99d39fb123f53c4cefa858000603776436ddfd7bd5066e93b",
     "gpu_cli.py": "97f1735ff2b98149546ca58350b9e5e4b5352d0845b89079edb2a6df6610098d",
-    "gpu_document.py": "1595bafa4ba6e562a9b1389f5ef07ab5a201ab77a84b587459775fd2774c80b5",
+    "gpu_document.py": "a55ed17afc1763973fbc0313f23fa7913c63a155b6eff0b0958389dfc17d07b6",
     "gpu_layouts.py": "b333425ccb5d9adce5d6ee767ea746d348673bac391d1262195ac6c014644491",
+    "gpu_material.py": "6f01cb78a33886fd0ace222c5ead5562b26d9d100cf39561ad0a12c7d33e49ca",
     "gpu_module.py": "c5882d1a08fa4c493f17dc8933236fedd4e99663cd9c4e7065a6389e01a74b78",
-    "gpu_paper.py": "a6a8589bc6c911e053297b5d10c14c8d2b9814f0c202a61132a0b0c7f893b6d6",
+    "gpu_paper.py": "5118f5bbfb41a655133bf6cbda388b9fabd7bc4fc662996c0e470851819becba",
     "gpu_parameters.py": "90ce9d4d1482f6a012b60704170d0673bace288ea32a4a70c46e15b5b72d6dfb",
     "gpu_profiling.py": "14f50d00ec6218ec3022b6e980416f323939e033b6e4739e56e2823329138ce5",
     "gpu_raster.py": "321c9492b2e72fbe96741901203316ce48cf7c95c3a3da704d3c68bf48753db3",
-    "gpu_renderer.py": "51e4b029c3f2c69a2a2ce1133e7ecb3d07d94a53b626f943eead7fa30b2b3924",
+    "gpu_renderer.py": "4fe9f8982c9b3424194684cfa9be82bb885667d8d911bb4aaa7051797fb24b5e",
     "gpu_supervision.py": "763253837fa634915f1dfcfcc1ce941b6a5fde93d9d39d2d544f68bb14ad66ed",
     "models_v05.py": "b60aae5d2e583558195f067702e9759f404411025772d00c78a4d50cd0e233e2",
-    "pathtrace.py": "7d6d0071b61049020b7807121fd88a57527885b73d58c97af10516fe3dea861a",
+    "pathtrace.py": "aa543f1f8ba06bcd75f2fd8fbadb584775a651ec3b70d397c2d35cb65ea30b5b",
     "profile.py": "662c0b5ea201c12bbfd19f7edf6aea8b5ee1b1faf4d22886f6e7501d94d6c93b",
-    "scenarios.py": "8c8e8526fcf837955508dea25bff032c61aa1266fc525077fb7ea9b930a77572",
+    "scenarios.py": "4784284fff46c63d6d72a044bc15e58f55d8361d3a6eb6236a0f3df5208ef88f",
     "schema_v05.py": "8710d69398b35673b19f6129feb75a919eab485b7b6111cf024444234ab52c37",
     "training.py": "d29e9d84d2092051d3293da4174b2d084f6e0f74ea470b6e3e79973e014f4ecb"
   },

@@ -2,7 +2,7 @@
 
 Units are half the sheet width. Cylindrical bends integrate unit tangents,
 so bending shortens the projection without stretching the printed material.
-Localized crumples use rounded, finite roof creases with a small-slope
+Localized crumples use branched, asymmetric finite creases with a small-slope
 in-plane shortening approximation. This is a bounded procedural model,
 not a general thin-shell dynamics or self-intersection solver.
 """
@@ -85,13 +85,22 @@ class PaperSurface(nn.Module):
         position = p['fold_position'][:, :1, None, None]
         width = p['fold_width'][:, :1, None, None].clamp_min(.015)
         angle = (.62 * t) * (mode == 1)
-        angle = angle + .58 * torch.tanh((t - position) / width) * (mode == 2)
-        angle = angle + .34 * torch.tanh(torch.sin(t * frequency * math.pi + phase) / .25) * (mode == 3)
-        angle = angle + (.07 * torch.sin(t * 4.7 + phase) + .035 * t) * (mode == 4)
+        # Nonuniform fold spacing is a monotonic material-coordinate remap.
+        # Integrating unit tangents afterwards still preserves arc length.
+        fold_phase = t * frequency * math.pi + phase
+        fold_phase = fold_phase + .38 * torch.sin(.61 * fold_phase + phase)
+        # A real opened fold has unequal panels and a rounded hinge. The
+        # slow angular drift changes curvature without stretching the paper.
+        hinge = (t - position) / width
+        angle = angle + (.54 * torch.tanh(hinge) + .055 * torch.sin(t * 2.3 + phase)) * (mode == 2)
+        angle = angle + .34 * torch.tanh(torch.sin(fold_phase) / (.23 + .055 * torch.cos(phase))) * (mode == 3)
+        angle = angle + (.028 * torch.sin(t * 2.3 + phase) + .020 * t) * (mode == 4)
         angle = angle + (.08 * torch.sin(t * 7.3 + phase) + .035 * torch.sin(t * 3.1 - phase)) * (mode == 5)
         angle = angle + 1.12 * torch.sigmoid((t - .20) / .16) * (mode == 6)
         corner_hinge = (1 + self.aspect - p['corner_size'][:, None, None, None]) / math.sqrt(2)
-        angle = angle + .90 * torch.sigmoid((t - corner_hinge) / width) * (mode == 7)
+        corner_curve = (.78 * torch.sigmoid((t - corner_hinge) / width)
+                        + .12 * torch.sigmoid((t - corner_hinge + .07) / (.08 + width)))
+        angle = angle + corner_curve * (mode == 7)
         angle = angle * p['surface_strength'][:, None, None, None]
         step = 2 * self.extent / self.line.shape[-1]
         bend_x = centered_integral(angle.cos(), step, -1)
@@ -102,23 +111,50 @@ class PaperSurface(nn.Module):
         base_x, base_y = bent[:, :1] * ca - v * sa, bent[:, :1] * sa + v * ca
         base_x, base_y = torch.where(mode == 0, x, base_x), torch.where(mode == 0, y, base_y)
 
-        # Finite, signed roof creases form angular facets instead of Gaussian
-        # bubbles. Width controls crease rounding, span its surrounding facet.
-        azimuth = p['fold_angle'][:, :, None, None]
+        # Each pair shares a junction. The second ridge branches from an
+        # offset point on the first instead of independently crossing the
+        # sheet center. Existing latent parameters encode all variability.
+        pair = torch.arange(8, device=x.device).div(2, rounding_mode='floor') * 2
+        parent_angle = p['fold_angle'][:, pair]
+        raw_angle = p['fold_angle']
+        branch = (self.crease_ids % 2).to(x.dtype)
+        branch_turn = (.38 + .58 * raw_angle.cos().abs()) * p['fold_sign']
+        azimuth = (parent_angle + branch[:, :, 0, 0] * branch_turn)[:, :, None, None]
         c, s = azimuth.cos(), azimuth.sin()
-        distance = x * c + y * s - p['fold_position'][:, :, None, None]
-        along = -x * s + y * c
-        span = p['fold_span'][:, :, None, None]
-        rounding = p['fold_width'][:, :, None, None]
-        roof = (torch.sqrt(span.square() + rounding.square()) - torch.sqrt(distance.square() + rounding.square())).clamp_min(0) / span
-        envelope = (1 - (along / p['fold_length'][:, :, None, None]).abs()).clamp(0, 1)
-        envelope = envelope.square() * (3 - 2 * envelope)
+        parent_c, parent_s = parent_angle.cos(), parent_angle.sin()
+        transverse = p['fold_position'][:, pair] * .74
+        longitudinal = p['fold_position'].roll(1, dims=1)[:, pair] * .54
+        junction_shift = branch[:, :, 0, 0] * p['fold_length'][:, pair] * .23 * raw_angle.sin()
+        along_center = longitudinal + junction_shift
+        center_x = (transverse * parent_c - along_center * parent_s)[:, :, None, None]
+        center_y = (transverse * parent_s + along_center * parent_c)[:, :, None, None]
+        distance = (x - center_x) * c + (y - center_y) * s
+        along = -(x - center_x) * s + (y - center_y) * c
+        # Branches inherit scale and sign but are narrower and shorter. The
+        # rounded roof returns smoothly to the neighboring facet, avoiding a
+        # second sharp crease at the support boundary.
+        scale = 1 - branch * .36
+        span = p['fold_span'][:, pair, None, None] * scale
+        rounding = p['fold_width'][:, pair, None, None] * (1 - branch * .28)
+        asymmetry = .20 * raw_angle.sin()[:, :, None, None]
+        side_span = span * (1 + asymmetry * torch.tanh(distance / rounding))
+        roof = (torch.sqrt(side_span.square() + rounding.square()) - torch.sqrt(distance.square() + rounding.square())).clamp_min(0) / side_span
+        transition = (roof / .18).clamp(0, 1)
+        roof = roof * transition.square() * (3 - 2 * transition)
+        length = p['fold_length'][:, pair, None, None] * (1 - branch * .40)
+        along_scaled = along / (length * (1 + .27 * raw_angle.cos()[:, :, None, None] * torch.tanh(along / length)))
+        envelope = (1 - along_scaled.square()).clamp(0, 1).square()
         active = self.crease_ids < p['crease_count'][:, None, None, None]
-        local = (roof * envelope * active * p['fold_amplitude'][:, :, None, None] * p['fold_sign'][:, :, None, None]).sum(1, keepdim=True)
+        amplitude = p['fold_amplitude'][:, pair, None, None] * (1 - branch * .46)
+        local = (roof * envelope * active * amplitude * p['fold_sign'][:, pair, None, None]).sum(1, keepdim=True)
         local = local * ((mode == 4) + (mode == 5) * .25)
-        # Small nonperiodic wrinkles add detail, not the large shape.
-        noise = F.interpolate(noise, size=x.shape[-2:], mode='bicubic', align_corners=False)
-        local = (local + noise * .0007 * ((mode == 4) + (mode == 5))) * p['surface_strength'][:, None, None, None]
+        # Directional microbuckles follow the ridge network, with a smooth
+        # finite support. Noise changes their phase, not isotropic height.
+        ripple_phase = noise[:, :, :1, :1]
+        micro = (torch.sin(distance / rounding * 2.1 + ripple_phase) * envelope
+                 * torch.exp(-(distance / (span * .8)).square()) * active).sum(1, keepdim=True)
+        micro = micro * ((mode == 4) + (mode == 5))
+        local = (local * .66 + micro * .00045) * p['surface_strength'][:, None, None, None]
         dzdu, dzdv = derivatives(local, self.aspect)
         shorten_x = centered_integral(torch.rsqrt(1 + dzdu.square()) - 1, 2 / x.shape[-1], -1)
         shorten_y = centered_integral(torch.rsqrt(1 + dzdv.square()) - 1, 2 * self.aspect / x.shape[-2], -2)

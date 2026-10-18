@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.8.0
+
+- Branched, finite and asymmetric creases, irregular accordion spacing and
+  oriented micro-wrinkles replace uniformly centered relief patterns.
+- Linear-light paper absorption separates oxidation, clustered foxing,
+  irregular liquid deposition, fibers, thermal fading and coating darkening.
+- Material-aligned tears, edge wear, holes, open slits and missing corners
+  share the RGB, target and shadow support. Rich and edge-only cost modes are
+  explicit. Geometric waveform ownership survives stains and fading.
+- Sixteen coherent capture scenarios include liquid damage, crumpling,
+  fragments, cuts, thermal damage and stronger projective capture.
+- Offline 3D capture adds seeded irregular sheets, real removed topology,
+  paper-support import, physical camera roll and auditable mesh metrics.
+- Independent physical/target regressions, native-resolution visual review
+  and third-round research reports accompany reproducible galleries.
+
 ## 0.7.0
 
 - Audit all 30 layouts with independent per-lead/per-instance mask and box

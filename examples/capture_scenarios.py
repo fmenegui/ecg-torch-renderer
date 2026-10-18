@@ -27,7 +27,8 @@ def export_scenarios(out, *, device='cpu', width=1024, height=768, severity=.8, 
     layouts = ['3x4+r1', '6x2', '12x1', '3x4-cabrera+r1', '3x4+r1', '6x2+r1', '3x4+r3']
     tile_w, label_h = 768, 48
     tile_h = round(height * tile_w / width)
-    sheet = Image.new('RGB', (2*tile_w, 4*(tile_h+label_h)), '#e8e7e3')
+    row_count = (len(CAPTURE_SCENARIOS)+1)//2
+    sheet = Image.new('RGB', (2*tile_w, row_count*(tile_h+label_h)+70), '#e8e7e3')
     draw = ImageDraw.Draw(sheet)
     try:
         font = ImageFont.truetype('DejaVuSans.ttf', 20)
@@ -38,7 +39,8 @@ def export_scenarios(out, *, device='cpu', width=1024, height=768, severity=.8, 
     backgrounds = load_rgb_bank(background, height=height, width=width) if background else None
     for index, name in enumerate(CAPTURE_SCENARIOS):
         config, parameters = capture_scenario(name, width=width, height=height, severity=severity)
-        parameters['layout'] = layouts[index]
+        layout = layouts[index % len(layouts)]
+        parameters['layout'] = layout
         seed = 20261018 + index
         layer = ECGImageLayer(fs=fs, config=config, parameters=parameters,
                               seed=seed, randomize=False, backgrounds=backgrounds).to(device).eval()
@@ -48,7 +50,7 @@ def export_scenarios(out, *, device='cpu', width=1024, height=768, severity=.8, 
         filename = name+'.png'
         image.save(out / filename)
         x, y = index % 2 * tile_w, index // 2 * (tile_h+label_h)
-        draw.text((x+16, y+12), name.replace('_', ' ')+' | '+layouts[index], fill='#242b31', font=font)
+        draw.text((x+16, y+12), name.replace('_', ' ')+' | '+layout, fill='#242b31', font=font)
         sheet.paste(image.resize((tile_w, tile_h), Image.Resampling.LANCZOS), (x, y+label_h))
         cases.append({'scenario': name, 'seed': seed, 'image': filename,
                       'sha256': hashlib.sha256((out/filename).read_bytes()).hexdigest(),
@@ -56,8 +58,9 @@ def export_scenarios(out, *, device='cpu', width=1024, height=768, severity=.8, 
                       'all_12_leads_active': bool(batch.metadata['active'][0, :12].all()),
                       'configuration': layer.renderer.specification(),
                       'metadata': plain(batch.metadata)})
-    draw.text((tile_w+24, 3*(tile_h+label_h)+70), 'Artificial ECG signals. Procedural captures.', fill='#242b31', font=font)
-    draw.text((tile_w+24, 3*(tile_h+label_h)+108), 'No real-image equivalence benchmark completed.', fill='#242b31', font=font)
+    draw.text((24, row_count*(tile_h+label_h)+14),
+              'Artificial ECG signals. Procedural captures. No real-image equivalence benchmark completed.',
+              fill='#242b31', font=font)
     sheet.save(out/'scenarios.jpg', quality=94, subsampling=0)
     report = {'schema': 'ecg-capture-scenarios-v1', 'device': str(device),
               'torch_version': str(torch.__version__), 'source': 'demo_signals, entirely artificial',

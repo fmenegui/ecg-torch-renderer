@@ -64,9 +64,10 @@ def build():
         'surface_resolution': 'Relief-grid width, 32..256', 'inverse_iterations': 'Coarse-grid steps (minimum 2), or dense output steps, 2..12',
         'shadow_samples': 'Height-field shadow samples, 0..32',
         'geometry_solver': 'coarse_to_fine with two pixel refinements, or dense reference',
+        'damage_detail': 'rich: all damage types, edge: first tear only and lower compute cost',
     }
     summary = verified.get('release_validation', {})
-    for current_name in ('ROUND2_VERIFICATION.json', 'SWARM_VERIFICATION.json'):
+    for current_name in ('ROUND3_VERIFICATION.json', 'ROUND2_VERIFICATION.json', 'SWARM_VERIFICATION.json'):
         current_path = ROOT / 'research' / current_name
         if current_path.exists():
             current = json.loads(current_path.read_text())
@@ -116,6 +117,11 @@ def build():
     staging.mkdir(parents=True, exist_ok=True)
     (staging / 'data.json').write_text(json.dumps(payload, indent=2) + '\n')
     (OUTPUT / 'api-data.json').write_text(json.dumps(metadata, indent=2) + '\n')
+    for name in ('round3-gallery.jpg', 'round3-pathtraced-gallery.jpg'):
+        source = ROOT / 'research' / 'assets' / name
+        if source.exists():
+            (OUTPUT / 'assets').mkdir(parents=True, exist_ok=True)
+            shutil.copy2(source, OUTPUT / 'assets' / name)
     for filename in ['PERFORMANCE_CPU.json', 'PERFORMANCE_SCENE_CPU.json', 'PERFORMANCE_T4_V040.json', 'PAPER_AUDIT_CPU.json', 'PAPER_VISUAL_COMPARISON.json', 'VERIFICATION.json', 'FEATURES.json']:
         shutil.copy2(ROOT / filename, OUTPUT / filename)
     node = os.environ.get('ECG_DOCS_NODE') or shutil.which('node')

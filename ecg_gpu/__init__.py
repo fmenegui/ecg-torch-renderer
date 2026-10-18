@@ -5,7 +5,7 @@ from .gpu_document import DocumentAssets
 from .gpu_layouts import LayoutSpec
 from .models_v05 import build_model, task_loss
 from .gpu_profiling import profile_layer
-__version__ = "0.7.0"
+__version__ = "0.8.0"
 from .gpu_supervision import ECGSupervisionLayer, SupervisionConfig, mask_bounding_boxes
 from .scenarios import CAPTURE_SCENARIOS, capture_scenario
 from .training import detection_targets, padded_detection_targets, masked_segmentation_loss

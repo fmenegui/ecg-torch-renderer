@@ -1,9 +1,81 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Control perspective, crops, noise, blur, print variations and occluders."><meta name="theme-color" content="#df5548"><title>Capture &amp; print artifacts · ECG Torch Renderer</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css"><script>try{document.documentElement.dataset.theme=localStorage.getItem('ecg-docs-theme')||'light'}catch{}</script><script src="app.js" defer></script></head>
 <body><a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div>
-<header class="topbar"><button id="menu-button" class="icon-button menu-button" aria-label="Toggle navigation" aria-controls="sidebar" aria-expanded="false">☰</button><a class="brand" href="index.html"><svg viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="10" fill="currentColor"/><path d="M5 19h7l3-9 4 17 3-8h9" fill="none" stroke="white" stroke-width="2.2" stroke-linejoin="round"/></svg><span>ECG<span class="brand-sub">Torch Renderer</span></span></a><span class="version">v0.7.0</span><div class="top-actions"><button id="search-button" class="search-button"><span>Search documentation</span><kbd>⌘ K</kbd></button><a class="github-link" href="https://github.com/fmenegui/ecg-torch-renderer">GitHub ↗</a><button id="theme-button" class="icon-button" aria-label="Switch color theme">◐</button></div></header>
+<header class="topbar"><button id="menu-button" class="icon-button menu-button" aria-label="Toggle navigation" aria-controls="sidebar" aria-expanded="false">☰</button><a class="brand" href="index.html"><svg viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="10" fill="currentColor"/><path d="M5 19h7l3-9 4 17 3-8h9" fill="none" stroke="white" stroke-width="2.2" stroke-linejoin="round"/></svg><span>ECG<span class="brand-sub">Torch Renderer</span></span></a><span class="version">v0.8.0</span><div class="top-actions"><button id="search-button" class="search-button"><span>Search documentation</span><kbd>⌘ K</kbd></button><a class="github-link" href="https://github.com/fmenegui/ecg-torch-renderer">GitHub ↗</a><button id="theme-button" class="icon-button" aria-label="Switch color theme">◐</button></div></header>
 <div class="docs-shell"><aside id="sidebar" class="sidebar"><nav aria-label="Main documentation"><p class="nav-section">Start here</p><a  href="index.html">Welcome</a><a  href="installation.html">Installation</a><a  href="quickstart.html">Quickstart</a><p class="nav-section">Learn</p><a  href="concepts.html">How rendering works</a><a  href="layouts.html">Layouts &amp; calibration</a><a  href="parameters.html">Configure &amp; randomize</a><a  href="scenes.html">Paper, tables &amp; lighting</a><a aria-current="page" href="camera.html">Capture &amp; print artifacts</a><p class="nav-section">Train</p><a  href="targets.html">Advanced supervision</a><a  href="training.html">Train an image model</a><a  href="reproducibility.html">Reproducibility</a><p class="nav-section">Extend</p><a  href="assets.html">Custom assets &amp; layouts</a><p class="nav-section">Engineer</p><a  href="performance.html">Performance</a><a  href="profiling.html">Detailed profiling</a><a  href="validation.html">Validation &amp; testing</a><a  href="limitations.html">Scope &amp; limitations</a><p class="nav-section">Reference</p><a  href="api.html">API reference</a><a  href="gallery.html">Example gallery</a></nav><div class="sidebar-note">Built for on-device training.<br>Measured results, explicit contracts.</div></aside>
 <main id="main"><article class="document " data-page="camera"><div class="page-eyebrow">Learn</div><h1>Capture &amp; print artifacts</h1>
+<h2 id="material-damage-in-0-8-0">Material damage in 0.8.0<a class="heading-anchor" href="#material-damage-in-0-8-0" aria-label="Link to Material damage in 0.8.0">#</a></h2>
+<p>Paper appearance is constructed in material coordinates before perspective or
+folding. Oxidation and fiber density affect unprinted reflectance. Deposited
+liquid absorbs linear light after printing and annotations. Thermal fading
+reduces observed print contrast, while thermal darkening develops the paper
+coating. These processes preserve geometric trace targets.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Controls</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>paper_age</code>, <code>foxing_strength</code></td>
+<td>Irregular oxidation and clustered pigment spots</td>
+</tr>
+<tr>
+<td><code>stain_strength</code>, <code>water_strength</code></td>
+<td>Absorbed stain and drying front</td>
+</tr>
+<tr>
+<td><code>coffee_strength</code>, <code>coffee_radius</code>, <code>stain_x</code>, <code>stain_y</code></td>
+<td>Irregular contact line and uneven dried deposit</td>
+</tr>
+<tr>
+<td><code>fiber_strength</code></td>
+<td>Subtle anisotropic substrate detail</td>
+</tr>
+<tr>
+<td><code>thermal_fade</code>, <code>fade_position</code>, <code>fade_width</code></td>
+<td>Mottled loss of observed thermal-print contrast</td>
+</tr>
+<tr>
+<td><code>thermal_darkening_strength</code></td>
+<td>Local developed coating independent of print fading</td>
+</tr>
+<tr>
+<td><code>tear_active</code>, <code>tear_count</code>, <code>tear_raggedness</code></td>
+<td>Up to four irregular open edge tears</td>
+</tr>
+<tr>
+<td><code>edge_wear_strength</code>, <code>edge_wear_depth</code></td>
+<td>Shallow abrasion of outer boundaries</td>
+</tr>
+<tr>
+<td><code>hole_active</code>, <code>hole_center</code>, <code>hole_radius</code>, <code>hole_angle</code></td>
+<td>Three independent irregular punctures</td>
+</tr>
+<tr>
+<td><code>cut_active</code>, <code>cut_center</code>, <code>cut_length</code>, <code>cut_width</code>, <code>cut_angle</code></td>
+<td>Three finite open slits</td>
+</tr>
+<tr>
+<td><code>missing_corner_active</code>, <code>missing_corner_index</code>, <code>missing_corner_size</code></td>
+<td>One removed corner</td>
+</tr>
+</tbody></table></div>
+<p>Strengths are dimensionless augmentation controls, not elapsed years or fluid
+concentration. Damage centers use sheet coordinates in <code>[-1,1]</code>, while stain
+centers use <code>[0,1]</code>. Radii, widths and
+lengths use half-page-width units in both axes, so <code>.01</code> means 1.5 mm on a
+300 mm sheet. Right and bottom box edges remain exclusive.</p>
+<p>Missing material removes the printed image, trace targets and shadow caster
+together. A stain does not become a hole. <code>damage_detail=&quot;edge&quot;</code> evaluates only
+the first edge tear and rejects enabled advanced damage. The default
+<code>&quot;rich&quot;</code> supports every damage type at higher compute cost.</p>
+<p><code>capture_scenario(&quot;missing_fragments&quot;)</code>, <code>&quot;cut_sheet&quot;</code>, <code>&quot;water_damage&quot;</code>,
+<code>&quot;coffee_spill&quot;</code>, <code>&quot;thermal_damage&quot;</code> and <code>&quot;oblique_phone&quot;</code> provide complete
+recipes. The perspective transform rejects a horizon crossing instead of
+silently dividing by a near-zero projective denominator.</p>
+<figure class="doc-figure"><img src="assets/round3-gallery.jpg" alt="Irregular material damage, liquid history and thermal development"></figure>
 <p>Printing, geometry and capture are independently configurable. Their default distributions are a starting point, then should be adapted to the images you expect to digitize.</p>
 <h2 id="geometry">Geometry<a class="heading-anchor" href="#geometry" aria-label="Link to Geometry">#</a></h2>
 <p>Perspective, small rotations, quarter turns, zoom, translation, crops, radial lens distortion, curl and creases alter the sampling field. Targets use the same field.</p>
@@ -91,8 +163,8 @@ layer = ECGSupervisionLayer(config=config, parameters=parameters)
 <figure class="doc-figure"><img src="assets/gallery/tear.jpg" alt="A torn paper edge"></figure>
 <p>Shadowed or blurred pixels remain geometrically valid. Visibility does not mean the trace is readable. Keep a separate quality criterion if your application needs it.</p>
 <p><code>photo=False</code> produces a canonical page and disables the camera geometry, surface deformation and external document warps. It is useful for rectified training targets. It does not automatically remove every configured print artifact.</p>
-<nav class="pagination" aria-label="Documentation pages"><a href="scenes.html"><small>Previous</small>Paper, tables &amp; lighting</a><a href="targets.html"><small>Next</small>Advanced supervision <span aria-hidden="true">→</span></a></nav><footer>ECG Torch Renderer · MIT · <a href="https://github.com/fmenegui/ecg-torch-renderer/blob/main/documentation/pages/camera.md">Edit this page ↗</a><span>v0.7.0</span></footer></article></main>
-<aside class="toc" aria-label="On this page"><p>On this page</p><a href="#geometry">Geometry</a><a href="#camera">Camera</a><a href="#paper-and-print">Paper and print</a><a href="#explicit-occlusion">Explicit occlusion</a><a class="toc-top" href="#main">Back to top ↑</a></aside></div>
+<nav class="pagination" aria-label="Documentation pages"><a href="scenes.html"><small>Previous</small>Paper, tables &amp; lighting</a><a href="targets.html"><small>Next</small>Advanced supervision <span aria-hidden="true">→</span></a></nav><footer>ECG Torch Renderer · MIT · <a href="https://github.com/fmenegui/ecg-torch-renderer/blob/main/documentation/pages/camera.md">Edit this page ↗</a><span>v0.8.0</span></footer></article></main>
+<aside class="toc" aria-label="On this page"><p>On this page</p><a href="#material-damage-in-0-8-0">Material damage in 0.8.0</a><a href="#geometry">Geometry</a><a href="#camera">Camera</a><a href="#paper-and-print">Paper and print</a><a href="#explicit-occlusion">Explicit occlusion</a><a class="toc-top" href="#main">Back to top ↑</a></aside></div>
 <dialog id="search-dialog" class="search-dialog"><div class="dialog-top"><label for="search-input">Search the guide</label><button class="icon-button" data-close-dialog="search-dialog" aria-label="Close search">×</button></div><input id="search-input" type="search" placeholder="Masks, layouts, profiling…" autocomplete="off"><p id="search-status" class="search-status" aria-live="polite">Type to search all pages.</p><div id="search-results"></div></dialog>
 <dialog id="figure-dialog" class="figure-dialog"><div class="dialog-top"><h2 id="figure-title">Example</h2><button class="icon-button" data-close-dialog="figure-dialog" aria-label="Close figure">×</button></div><img id="figure-image" alt=""><p id="figure-description"></p><div class="recipe-top"><strong>Rendering recipe</strong><button id="copy-recipe" class="button secondary">Copy JSON</button></div><pre id="figure-recipe"></pre><a id="figure-download" href="gallery.json">Open full image ↗</a></dialog>
 <p id="copy-status" class="sr-only" aria-live="polite"></p></body></html>

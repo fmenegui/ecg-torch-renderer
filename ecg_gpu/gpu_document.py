@@ -51,7 +51,8 @@ class DocumentAssets:
 
 class DocumentScene(nn.Module):
     def __init__(self, height, width, resolution=96, inverse_iterations=5,
-                 shadow_samples=8, assets=None, geometry_solver='coarse_to_fine', compile_scene=False):
+                 shadow_samples=8, assets=None, geometry_solver='coarse_to_fine', compile_scene=False,
+                 damage_detail='rich'):
         super().__init__()
         self.height, self.width, self.aspect = height, width, height / width
         self.resolution = resolution
@@ -60,6 +61,9 @@ class DocumentScene(nn.Module):
             raise ValueError('geometry_solver must be coarse_to_fine or dense')
         if not isinstance(compile_scene, bool):
             raise ValueError('compile_scene must be a boolean')
+        if damage_detail not in {'rich', 'edge'}:
+            raise ValueError('damage_detail must be rich or edge')
+        self.damage_detail = damage_detail
         self.geometry_solver = geometry_solver
         self.compile_scene = compile_scene
         self._newton_step = torch.compile(newton_step, fullgraph=True, dynamic=True) if compile_scene else newton_step
@@ -123,7 +127,7 @@ class DocumentScene(nn.Module):
         mode = integer(len(SURFACES)) if surface_mode == 'mixed' else torch.full(
             (b,), SURFACES.index(surface_mode) if surface_mode != 'off' else 0,
             device=self.device,dtype=torch.long)
-        return {'surface_mode':mode, 'surface_strength':(.25+rand()*.75)*geometry,
+        parameters = {'surface_mode':mode, 'surface_strength':(.25+rand()*.75)*geometry,
                 'surface_axis':rand()*math.pi, 'surface_phase':rand()*math.tau,
                 'surface_frequency':2+rand()*3,
                 'relief_view':(rand(b,2)*2-1)*.52*geometry[:,None],
@@ -164,6 +168,31 @@ class DocumentScene(nn.Module):
                 'tear_size':.015+rand()*.10,
                 'asset_active':(rand()<.65).float()* (geometry>0) * float(len(self.asset_mask)>0),
                 'asset_index':integer(max(1,len(self.asset_mask)))}
+        # Additional damage is opt-in. Reuse independent surface samples as
+        # seeds, without consuming RNG state or changing zero-damage captures.
+        phase = parameters['fold_angle'][:, :3]
+        positions = parameters['fold_position'][:, :3]
+        zeros = torch.zeros(b, device=self.device)
+        parameters.update(
+            tear_raggedness=torch.full_like(zeros, .65),
+            tear_count=torch.ones(b, device=self.device, dtype=torch.long),
+            edge_wear_strength=zeros.clone(),
+            edge_wear_depth=torch.full_like(zeros, .008),
+            hole_active=zeros[:, None].expand(-1, 3).clone(),
+            hole_center=torch.stack((positions * .65, phase.cos() * .55), -1),
+            hole_radius=torch.stack((.025 + phase.sin().abs() * .025,
+                                     .025 + phase.cos().abs() * .030), -1),
+            hole_angle=phase.clone(),
+            cut_active=zeros[:, None].expand(-1, 3).clone(),
+            cut_center=torch.stack((positions * .70, phase.sin() * .65), -1),
+            cut_length=.12 + phase.cos().abs() * .18,
+            cut_width=.003 + phase.sin().abs() * .003,
+            cut_angle=phase.clone(),
+            missing_corner_active=zeros.clone(),
+            missing_corner_index=parameters['tear_side'].clone(),
+            missing_corner_size=torch.stack((.12 + positions[:, 0].abs() * .12,
+                                              .12 + positions[:, 1].abs() * .12), -1))
+        return parameters
 
     def _sample_light_directions(self, b, generator):
         """One key and two weak room bounces, rather than three equal suns."""
@@ -362,17 +391,126 @@ class DocumentScene(nn.Module):
         image = (color + texture) * p['background_tint'][:, :, None, None]
         return F.interpolate(image.clamp(0,1), size=(self.height,self.width), mode='bilinear', align_corners=False).clamp(0,1)
 
-    def paper_mask(self,field,p):
-        # Ragged tears remove paper and its ground-truth visibility together.
-        x,y = field[...,0],field[...,1]
-        sides = p['tear_side'][:,None,None]
-        inward = torch.where(sides<2,1-x.abs(),1-y.abs())
-        along = torch.where(sides<2,y,x)
-        edge_side = torch.where(sides==0,x>0,torch.where(sides==1,x<0,torch.where(sides==2,y>0,y<0)))
-        notch = p['tear_size'][:,None,None]*(1-(along-p['tear_position'][:,None,None]).abs()/p['tear_size'][:,None,None]).clamp_min(0)
-        notch *= .82+.18*torch.sin(along*360).abs()
-        tear = (inward<notch)&edge_side&p['tear_active'][:,None,None].bool()
-        return (~tear)[:,None].float()
+    @staticmethod
+    def _fracture_profile(position, phase):
+        """Bounded multiscale edge variation in material half-width units.
+
+        Incommensurate spatial frequencies avoid the repeated sawtooth edge of
+        a single sine. This is a geometric damage model, not fibre mechanics.
+        """
+        result = torch.zeros_like(position)
+        for amplitude, frequency, shift in [(.53, 31., .0), (.27, 79., 1.7),
+                                             (.13, 193., 3.1), (.07, 463., 5.4)]:
+            result = result + amplitude * torch.sin(position * frequency + phase * (1 + shift) + shift)
+        return result
+
+    def paper_mask(self, field, p):
+        """Binary surviving material, shared by RGB, targets and cast shadows.
+
+        All damage follows the inverse material coordinates rather than image
+        axes. Centers use normalized sheet UV, while radii, lengths, widths and
+        depths use the same physical half-page-width unit in both directions.
+        Thus .01 is 1.5 mm on a 300 mm wide sheet. The zero-damage result is
+        exactly one. Static damage_detail='edge' evaluates only one edge tear
+        for faster training, ignoring the advanced rich-damage parameters.
+        Source-frame coverage remains the renderer's separate
+        responsibility and is never multiplied here a second time.
+        """
+        x, y = field[..., 0], field[..., 1] * self.aspect
+        phase = p['surface_phase'][:, None, None]
+        raggedness = p['tear_raggedness'][:, None, None]
+        missing = torch.zeros_like(x, dtype=torch.bool)
+
+        # Shared material fibre variation makes nearby edge defects coherent
+        # and avoids evaluating a separate full-frame noise field per defect.
+        if self.damage_detail == 'rich':
+            rough_x = self._fracture_profile(x, phase)
+            rough_y = self._fracture_profile(y, phase + 2.3)
+
+        # Up to four differently sized open edge tears. The first preserves
+        # explicit tear_side / tear_position control from previous releases.
+        for index in range(4 if self.damage_detail == 'rich' else 1):
+            side = (p['tear_side'][:, None, None] + index) % 4
+            inward = torch.where(side < 2, 1 - x.abs(), self.aspect - y.abs())
+            along = torch.where(side < 2, y, x)
+            along_scale = torch.where(side < 2, self.aspect, 1.)
+            center = (p['tear_position'][:, None, None] if index == 0
+                      else p['fold_position'][:, index, None, None]) * along_scale
+            size = p['tear_size'][:, None, None] * (1 - index * .13)
+            # Off-center flank slopes and a rough advancing tear front replace
+            # the old symmetric triangular bite with a fixed sine decoration.
+            local = (along - center) / size.clamp_min(1e-6)
+            skew = .22 * torch.sin(phase + index * 1.9) * raggedness
+            flank = torch.where(local < 0, 1 + skew, 1 - skew)
+            envelope = (1 - local.abs() / flank.clamp_min(.5)).clamp_min(0).pow(.72)
+            rough = (torch.where(side < 2, rough_y, rough_x)
+                     if self.damage_detail == 'rich' else self._fracture_profile(along, phase))
+            depth = size * envelope * (1 + .28 * rough * raggedness)
+            correct_edge = torch.where(side == 0, x > 0,
+                           torch.where(side == 1, x < 0,
+                           torch.where(side == 2, y > 0, y < 0)))
+            active = p['tear_active'][:, None, None].bool() & (p['tear_count'][:, None, None] > index)
+            missing = missing | ((inward < depth) & (envelope > 0) & correct_edge & active)
+
+        if self.damage_detail == 'edge':
+            return (~missing)[:, None].to(field.dtype)
+
+        # Distributed shallow abrasion of the outer edge. Its largest possible
+        # depth is explicitly bounded rather than removing an arbitrary page.
+        edge_strength = p['edge_wear_strength'][:, None, None]
+        edge_depth = p['edge_wear_depth'][:, None, None]
+        for axis, sign in [(0, -1.), (0, 1.), (1, -1.), (1, 1.)]:
+            inward = 1 - sign * x if axis == 0 else self.aspect - sign * y
+            along = y if axis == 0 else x
+            noise = (rough_y if axis == 0 else rough_x) * sign
+            wear = edge_depth * edge_strength * (.5 + .5 * noise).clamp(0, 1).pow(2)
+            missing = missing | ((inward >= 0) & (inward < wear))
+
+        # Internal irregular punctures and finite open slits are distinct from
+        # stains or shadows. They remove physical substrate and all trace GT.
+        for index in range(3):
+            cx = p['hole_center'][:, index, 0, None, None]
+            cy = p['hole_center'][:, index, 1, None, None] * self.aspect
+            angle = p['hole_angle'][:, index, None, None]
+            dx, dy = x - cx, y - cy
+            u, v = dx * angle.cos() + dy * angle.sin(), -dx * angle.sin() + dy * angle.cos()
+            u = u / p['hole_radius'][:, index, 0, None, None].clamp_min(1e-6)
+            v = v / p['hole_radius'][:, index, 1, None, None].clamp_min(1e-6)
+            theta = torch.atan2(v, u)
+            boundary = (1 + raggedness * (.15 * torch.sin(theta * 3 + phase)
+                       + .10 * torch.sin(theta * 7 - phase * 1.3)
+                       + .05 * torch.sin(theta * 13 + phase * 2.1)))
+            missing = missing | ((u.square() + v.square() < boundary.square())
+                                 & p['hole_active'][:, index, None, None].bool())
+
+            cx = p['cut_center'][:, index, 0, None, None]
+            cy = p['cut_center'][:, index, 1, None, None] * self.aspect
+            angle = p['cut_angle'][:, index, None, None]
+            dx, dy = x - cx, y - cy
+            u, v = dx * angle.cos() + dy * angle.sin(), -dx * angle.sin() + dy * angle.cos()
+            half_length = p['cut_length'][:, index, None, None] * .5
+            nearest = u.clamp(-half_length, half_length)
+            width = p['cut_width'][:, index, None, None]
+            bend = (torch.sin(nearest * 79 + phase + index * 1.1) * .65
+                    + torch.sin(nearest * 193 - phase * 1.7) * .35) * width * raggedness * .40
+            # A narrow capsule gives an actual kerf, with a mildly wandering
+            # centerline. It does not create a fictitious dark ink stripe.
+            distance2 = (u - nearest).square() + (v - bend).square()
+            missing = missing | ((distance2 < (width * .5).square())
+                                 & p['cut_active'][:, index, None, None].bool())
+
+        # A removed corner is an open material boundary, unlike a curled corner
+        # which remains present in the surface mesh. Order TL, TR, BR, BL.
+        corner = p['missing_corner_index'][:, None, None]
+        sx = torch.where((corner == 1) | (corner == 2), 1., -1.)
+        sy = torch.where(corner >= 2, 1., -1.)
+        dx, dy = 1 - sx * x, self.aspect - sy * y
+        span_x = p['missing_corner_size'][:, 0, None, None].clamp_min(1e-6)
+        span_y = p['missing_corner_size'][:, 1, None, None].clamp_min(1e-6)
+        front = 1 + .14 * raggedness * self._fracture_profile(dx - dy, phase + 4.2)
+        corner_missing = (dx / span_x + dy / span_y < front)
+        missing = missing | (corner_missing & p['missing_corner_active'][:, None, None].bool())
+        return (~missing)[:, None].to(field.dtype)
 
     @staticmethod
     def _project_shadow(mask, height, offsets):

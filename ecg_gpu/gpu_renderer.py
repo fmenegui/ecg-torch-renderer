@@ -15,6 +15,7 @@ from torch import nn
 from torch.nn import functional as F
 
 from .gpu_appearance import CameraAppearance, srgb_to_linear, linear_to_srgb
+from .gpu_material import PaperMaterial
 from .gpu_document import DocumentAssets, DocumentScene, SURFACES, BACKGROUNDS, SHADOWS
 from .gpu_layouts import LayoutSpec, standard_layouts
 from .gpu_raster import raster_kernels
@@ -47,6 +48,7 @@ class RenderConfig:
     inverse_iterations: int = 5
     shadow_samples: int = 8
     geometry_solver: str = 'coarse_to_fine'
+    damage_detail: str = 'rich'
 
     def __post_init__(self):
         if min(self.height, self.width) < 64:
@@ -63,6 +65,8 @@ class RenderConfig:
             raise ValueError('Invalid surface mode')
         if self.geometry_solver not in {'coarse_to_fine', 'dense'}:
             raise ValueError('geometry_solver must be coarse_to_fine or dense')
+        if self.damage_detail not in {'rich', 'edge'}:
+            raise ValueError('damage_detail must be rich or edge')
         if not 32 <= self.surface_resolution <= 256 or not 2 <= self.inverse_iterations <= 12 or not 0 <= self.shadow_samples <= 32:
             raise ValueError('Use surface resolution 32..256, inverse iterations 2..12 and shadow samples 0..32')
 
@@ -171,8 +175,10 @@ class ECGRenderer(nn.Module):
         self.texture_sha256 = {name: hashlib.sha256(getattr(self, name).detach().cpu().numpy().tobytes()).hexdigest()
                                for name in ['paper_textures', 'backgrounds']}
         self.camera = CameraAppearance()
+        self.material = PaperMaterial(h, w)
         self.document = DocumentScene(h,w,self.config.surface_resolution,self.config.inverse_iterations,
-                                      self.config.shadow_samples,document_assets,self.config.geometry_solver,compile_scene)
+                                      self.config.shadow_samples,document_assets,self.config.geometry_solver,compile_scene,
+                                      damage_detail=self.config.damage_detail)
 
     @staticmethod
     def _check_bank(bank):
@@ -202,7 +208,9 @@ class ECGRenderer(nn.Module):
                 'artifact_texts':self.artifact_texts,
                 'surface_modes':SURFACES,'background_types':BACKGROUNDS,'shadow_types':SHADOWS,
                 'document_asset_count':len(self.document.asset_mask), 'document_asset_sha256':self.document.asset_hashes,
-                'paper_model':'material-paper-v1',
+                'paper_model':'material-paper-v3-branch-creases',
+                'paper_appearance':'linear-absorption-capillary-thermal-v3',
+                'paper_damage':'material-fracture-holes-kerfs-corners-v3',
                 'scene_illumination':'linear-light-matte-v2',
                 'tabletop_shadow':'forward-caster-height-area-light-v2',
                 'material_marks':'canonical-shared-inverse-field-v2',
@@ -316,6 +324,9 @@ class ECGRenderer(nn.Module):
              'artifact_color':rand(b,3)*.25}
         p.update(self.document.sample_parameters(b,intensity,geometry,generator=generator,
                                                  surface_mode=self.config.surface_mode))
+        p.update(fiber_strength=intensity*.20, foxing_strength=torch.zeros_like(intensity),
+                 water_strength=torch.zeros_like(intensity),
+                 thermal_darkening_strength=torch.zeros_like(intensity))
         p['crease_sin'] = (1 - p['crease_cos'].square()).clamp_min(0).sqrt()
         p['shadow_sin'] = (1 - p['shadow_cos'].square()).clamp_min(0).sqrt()
         p['zoom'] = torch.where(geometry > 0, p['zoom'], torch.ones_like(p['zoom']))
@@ -523,6 +534,9 @@ class ECGRenderer(nn.Module):
         factor = 1 + p['radial'][:, None, None] * radius
         x, y = x * factor, y * factor
         denominator = 1 + p['perspective_x'][:, None, None] * x + p['perspective_y'][:, None, None] * y
+        if self.config.validate_inputs:
+            torch._assert_async((denominator > .08).all(),
+                                'Perspective crosses or approaches the camera horizon')
         x, y = x / denominator, y / denominator
         c, s = p['angle'].cos()[:, None, None], p['angle'].sin()[:, None, None]
         fit = torch.where(p['quarter'].remainder(2) == 1, torch.full_like(p['zoom'], min(h / w, w / h)), torch.ones_like(p['zoom']))
@@ -613,10 +627,23 @@ class ECGRenderer(nn.Module):
             torch._assert_async(torch.isfinite(torch.cat([value.reshape(-1).float() for value in p.values()])).all(), 'Nonfinite rendering parameters')
             alpha_keys = ['lead_present', 'label_present', 'pulse_present', 'header_present', 'grid_present',
                           'grid_strength', 'minor_strength', 'ink_density', 'thermal_fade', 'sensor_active',
-                          'jpeg_active', 'occlusion_active', 'pen_active', 'artifact_present']
+                          'jpeg_active', 'occlusion_active', 'pen_active', 'artifact_present',
+                          'paper_age', 'stain_strength', 'coffee_strength', 'fiber_strength',
+                          'foxing_strength', 'water_strength', 'thermal_darkening_strength',
+                          'edge_wear_strength', 'hole_active', 'cut_active', 'missing_corner_active',
+                          'tear_raggedness']
             alpha = torch.cat([p[key].reshape(-1) for key in alpha_keys])
             torch._assert_async(((alpha >= 0) & (alpha <= 1)).all(),
                                 'Rendering presence, opacity and ink density must be in [0,1]')
+            for key in ['tear_active','hole_active','cut_active','missing_corner_active']:
+                torch._assert_async(((p[key]==0)|(p[key]==1)).all(),f'{key} must be binary')
+            torch._assert_async(((p['coffee_radius']>=.01)&(p['coffee_radius']<=.5)).all(),
+                                'Coffee radius must be in [.01,.5]')
+            if self.config.damage_detail == 'edge':
+                advanced = torch.cat([p[key].reshape(-1) for key in
+                    ['hole_active','cut_active','missing_corner_active','edge_wear_strength']])
+                torch._assert_async((advanced==0).all() & (p['tear_count']<=1).all(),
+                                    'Advanced damage requires damage_detail=rich')
             torch._assert_async(((p['rhythm_leads']>=-1)&(p['rhythm_leads']<12)).all(),'Invalid rhythm lead IDs')
             for key in ['fade_width','fold_width','fold_span','fold_length','corner_size','object_shadow_size','object_shadow_softness','background_scale']:
                 torch._assert_async((p[key]>0).all(),f'Positive {key} required')
@@ -624,6 +651,18 @@ class ECGRenderer(nn.Module):
                 torch._assert_async(((p[key]>=0)&(p[key]<=1)).all(),f'RGB {key} must be in [0,1]')
             torch._assert_async(((p['surface_strength']>=0)&(p['surface_strength']<=1)).all(),'Surface strength must be in [0,1]')
             torch._assert_async(((p['crease_count']>=0)&(p['crease_count']<=8)).all(),'Crease count must be in 0..8')
+            for key, maximum in [('tear_count',4), ('missing_corner_index',3)]:
+                torch._assert_async(((p[key]>=0)&(p[key]<=maximum)).all(),f'{key} outside supported range')
+            for key in ['hole_center','cut_center']:
+                torch._assert_async((p[key].abs()<=1).all(),f'{key} must use normalized sheet coordinates')
+            for key, maximum, active in [
+                    ('hole_radius',.25,p['hole_active'][...,None]),
+                    ('cut_length',1.,p['cut_active']), ('cut_width',.05,p['cut_active']),
+                    ('missing_corner_size',.6,p['missing_corner_active'][:,None])]:
+                size_valid = (p[key]>=0)&(p[key]<=maximum)&((p[key]>0)|(active==0))
+                torch._assert_async(size_valid.all(),f'Invalid {key}')
+            torch._assert_async(((p['edge_wear_depth']>=0)&(p['edge_wear_depth']<=.05)).all(),
+                                'Edge wear depth must be in [0,.05]')
             torch._assert_async((p['paper_gap']>=0).all(),'Paper gap must be nonnegative')
             for key in ['read_noise','shot_noise','exposure','white_balance']:
                 torch._assert_async((p[key]>=0).all(),f'Nonnegative {key} required')
@@ -661,21 +700,16 @@ class ECGRenderer(nn.Module):
         text, labels, unit_mask = self._text(instances, p, stage in {'metadata', 'all'},stage!='image')
         paper, paper_id = self._texture(self.paper_textures, b, generator, True)
         paper *= self.document.paper_colors[p['paper_palette'].long()][:,:,None,None]*p['paper_color'][:,:,None,None]
-        paper = paper - p['paper_tint'][:, :, None, None] - p['paper_age'][:, None, None, None] * self.age_color
+        paper = paper - p['paper_tint'][:, :, None, None]
         paper += torch.randn(paper.shape, device=self.device, generator=generator) * p['paper_noise'][:, None, None, None]
-        stain = torch.exp(-(((self.xx / self.config.width - p['stain_x'][:, None, None, None]) / .22).square()
-                            + ((self.yy / self.config.height - p['stain_y'][:, None, None, None]) / .14).square()))
-        paper -= stain * p['stain_strength'][:, None, None, None] * self.age_color * 2
-        radial_x = self.xx/self.config.width-p['stain_x'][:,None,None,None]
-        radial_y = (self.yy/self.config.height-p['stain_y'][:,None,None,None])*.78
-        radius = (radial_x.square()+radial_y.square()).sqrt()
-        ring = torch.exp(-((radius-p['coffee_radius'][:,None,None,None])/.009).square())
-        paper -= ring*p['coffee_strength'][:,None,None,None]*self.age_color*2
+        material = self.material(p, generator)
+        factor = material['substrate_factor']
+        paper = torch.where(factor != 1, linear_to_srgb(srgb_to_linear(paper.clamp(0,1))*factor), paper)
         reverse_ink = F.avg_pool2d(ink.flip(-1),5,1,2)
         paper -= reverse_ink*p['bleed_strength'][:,None,None,None]
         color = self.palette[p['palette'].long()][:, :, None, None]
         canonical = torch.lerp(paper.clamp(0, 1), color, grid_alpha)
-        fade = 1 - p['thermal_fade'][:, None, None, None] * torch.exp(-((self.xx / self.config.width - p['fade_position'][:, None, None, None]) / p['fade_width'][:, None, None, None]).square())
+        fade = material['print_retention']
         print_alpha = torch.maximum(torch.maximum(ink, pulse), text) * fade * p['ink_density'][:, None, None, None]
         canonical = torch.lerp(canonical, p['ink_color'][:,:,None,None].expand_as(canonical), print_alpha)
         canonical += p['band_strength'][:, None, None, None] * torch.sin(self.yy / self.config.height * p['band_frequency'][:, None, None, None] * (2 * math.pi))
@@ -694,6 +728,11 @@ class ECGRenderer(nn.Module):
         artifacts = self._stamp(tokens,p['artifact_x']*self.config.width,p['artifact_y']*self.config.height,
                                 p['artifact_size'],p['artifact_present'],patch=(48,256),rotation=p['artifact_angle'])
         canonical = torch.lerp(canonical,p['artifact_color'][:,:,None,None].expand_as(canonical),artifacts)
+        # This chronology models liquid deposited after ECG printing and marks.
+        # Transmission changes observation contrast, never geometric ownership.
+        transmission = material['deposit_transmission']
+        canonical = torch.where(transmission != 1,
+            linear_to_srgb(srgb_to_linear(canonical.clamp(0,1))*transmission), canonical)
         material_valid = ((pen < .15) & (artifacts < .15)).float()
         # Crease illumination comes from the material mesh. No independent
         # painted highlight is placed on otherwise flat paper.
@@ -701,6 +740,10 @@ class ECGRenderer(nn.Module):
             targets.update(vertices=vertices, grid=grid)
         if labels is not None:
             targets['labels'] = labels
+        if not photo and stage != 'image':
+            # Rectified substrate support lets the offline 3D backend remove
+            # the same physical paper, independently of its printed texture.
+            targets['paper_support'] = self.document.paper_mask(self._field(p), p)
         field = self._field(p) if photo or return_field else None
         scene = None
         if photo:

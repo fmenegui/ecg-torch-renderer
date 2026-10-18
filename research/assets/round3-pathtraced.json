@@ -1,0 +1,682 @@
+{
+  "schema": "ecg-pathtrace-example-v1",
+  "source": "entirely artificial demo ECG",
+  "source_sha256": "33d09be6677133f4ed0d87f6b9c1824e6125dcc6d8e7b4394192bcdcdd5b5afb",
+  "fs": 500,
+  "clinical_validation": false,
+  "real_image_equivalence": false,
+  "source_signal_preserved": true,
+  "background": "/workspace/scratch/b3d4b6a3edd8/ecg-torch-renderer/assets/backgrounds/wood_table_001_diff_1k.jpg",
+  "cases": [
+    {
+      "name": "stored_folds",
+      "config": {
+        "width": 1024,
+        "height": 768,
+        "samples_per_pixel": 192,
+        "label_samples_per_axis": 2,
+        "surface": "multifold",
+        "bend_radians": 0.8,
+        "camera_origin": [
+          0.025,
+          -0.115,
+          0.38
+        ],
+        "camera_target": [
+          0.0,
+          0.0,
+          0.008
+        ],
+        "field_of_view": 48.0,
+        "key_radiance": 4.0,
+        "key_origin": [
+          -0.18,
+          -0.14,
+          0.38
+        ],
+        "key_target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "key_size": [
+          0.36,
+          0.22
+        ],
+        "environment_radiance": 0.12,
+        "background_extent_m": 1.5,
+        "occluder": false,
+        "geometry_seed": 41,
+        "surface_strength": 1.0,
+        "fold_count": 4,
+        "wrinkle_amplitude_m": 0.00035,
+        "missing_corner": 0.0,
+        "edge_tear": 0.0,
+        "hole_radius": 0.0,
+        "camera_up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "material_parameters": {
+        "paper_age": 0.19,
+        "foxing_strength": 0.3,
+        "thermal_fade": 0.14,
+        "fiber_strength": 0.4
+      },
+      "capture": {
+        "schema": "ecg-pathtrace-v1",
+        "mitsuba": "3.9.1",
+        "variant": "llvm_ad_rgb",
+        "configuration": {
+          "width": 1024,
+          "height": 768,
+          "samples_per_pixel": 192,
+          "label_samples_per_axis": 2,
+          "surface": "multifold",
+          "bend_radians": 0.8,
+          "camera_origin": [
+            0.025,
+            -0.115,
+            0.38
+          ],
+          "camera_target": [
+            0.0,
+            0.0,
+            0.008
+          ],
+          "field_of_view": 48.0,
+          "key_radiance": 4.0,
+          "key_origin": [
+            -0.18,
+            -0.14,
+            0.38
+          ],
+          "key_target": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "key_size": [
+            0.36,
+            0.22
+          ],
+          "environment_radiance": 0.12,
+          "background_extent_m": 1.5,
+          "occluder": false,
+          "geometry_seed": 41,
+          "surface_strength": 1.0,
+          "fold_count": 4,
+          "wrinkle_amplitude_m": 0.00035,
+          "missing_corner": 0.0,
+          "edge_tear": 0.0,
+          "hole_radius": 0.0,
+          "camera_up": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "torch_version": "2.14.1+cpu",
+        "implementation_sha256": "aa543f1f8ba06bcd75f2fd8fbadb584775a651ec3b70d397c2d35cb65ea30b5b",
+        "canonical_texture_sha256": "06f55c4235736600c58f7604ce72f9cfdd4ce7a07dca866065011d181e0aba06",
+        "canonical_targets_sha256": {
+          "traces": "7ea18d3e4ffcb17b89a9a96f3fb29a816b5622c8bc4084c7fa7fb8bc583459c8",
+          "instances": "24f054deef38201f3b6868dae9757e12446b81c9cb00e7b5ed94a1a1ece506ce",
+          "paper_support": "c92c83257ebee207e2ca7d495cd12254513713c8b8489bd5a219d14b03d81549",
+          "valid": "c92c83257ebee207e2ca7d495cd12254513713c8b8489bd5a219d14b03d81549"
+        },
+        "canonical_instance_identity_sha256": "7ca9c68ec5c51ec82525828c2145349c504e72e7dcdd6b580b11091e9fe3dc55",
+        "canonical_reference_sha256": "33d09be6677133f4ed0d87f6b9c1824e6125dcc6d8e7b4394192bcdcdd5b5afb",
+        "canonical_reference_shape": [
+          1,
+          12,
+          5000
+        ],
+        "canonical_reference_dtype": "<f4",
+        "canonical_sample_rate_hz": [
+          500.0
+        ],
+        "seed": 241000,
+        "samples_per_pixel": 192,
+        "label_samples_per_axis": 2,
+        "width_m": 0.27121486594621685,
+        "height_m": 0.20341114945966263,
+        "surface": "multifold",
+        "bend_radians": 0.8,
+        "background_sha256": "460dd08d240f4a1f02982415048c3c5c200f385db212da18dc7e2df68bf4d0be",
+        "canonical_paper_support_sha256": "c92c83257ebee207e2ca7d495cd12254513713c8b8489bd5a219d14b03d81549",
+        "mesh_sha256": "749ca5d3eef9d055e503d487c6c8501aa1128d876602af441e24728c83c76bbd",
+        "mesh_vertices": 8385,
+        "mesh_triangles": 16384,
+        "topology_grid_columns": 129,
+        "topology_grid_rows": 65,
+        "damage_boundary": "shared interpolated edge intersections, refined marching triangles",
+        "max_absolute_edge_strain": 3.3264416410272446e-06,
+        "metric_edges_evaluated": 49152,
+        "mesh_numerics": {},
+        "geometry": "prescribed developable mesh, not cloth dynamics",
+        "missing_material": "shared clipped-triangle topology, resolution-limited linear boundary segments",
+        "external_real_image_validation": false
+      },
+      "visible_leads": 12,
+      "visible_instances": 13,
+      "rgb_sha256": "63e33935d69a0b9d6e250a8606133cbc32fdb81d2e9e83f300b6b72d823385ef"
+    },
+    {
+      "name": "crumpled_torn",
+      "config": {
+        "width": 1024,
+        "height": 768,
+        "samples_per_pixel": 192,
+        "label_samples_per_axis": 2,
+        "surface": "crumpled",
+        "bend_radians": 1.1,
+        "camera_origin": [
+          0.025,
+          -0.115,
+          0.38
+        ],
+        "camera_target": [
+          0.0,
+          0.0,
+          0.008
+        ],
+        "field_of_view": 48.0,
+        "key_radiance": 12.0,
+        "key_origin": [
+          -0.24,
+          -0.09,
+          0.12
+        ],
+        "key_target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "key_size": [
+          0.16,
+          0.09
+        ],
+        "environment_radiance": 0.18,
+        "background_extent_m": 1.5,
+        "occluder": false,
+        "geometry_seed": 41,
+        "surface_strength": 1.0,
+        "fold_count": 7,
+        "wrinkle_amplitude_m": 0.00035,
+        "missing_corner": 0.2,
+        "edge_tear": 0.14,
+        "hole_radius": 0.045,
+        "camera_up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "material_parameters": {
+        "water_strength": 0.55,
+        "stain_strength": 0.2,
+        "stain_x": 0.54,
+        "stain_y": 0.46,
+        "thermal_fade": 0.23,
+        "paper_age": 0.07
+      },
+      "capture": {
+        "schema": "ecg-pathtrace-v1",
+        "mitsuba": "3.9.1",
+        "variant": "llvm_ad_rgb",
+        "configuration": {
+          "width": 1024,
+          "height": 768,
+          "samples_per_pixel": 192,
+          "label_samples_per_axis": 2,
+          "surface": "crumpled",
+          "bend_radians": 1.1,
+          "camera_origin": [
+            0.025,
+            -0.115,
+            0.38
+          ],
+          "camera_target": [
+            0.0,
+            0.0,
+            0.008
+          ],
+          "field_of_view": 48.0,
+          "key_radiance": 12.0,
+          "key_origin": [
+            -0.24,
+            -0.09,
+            0.12
+          ],
+          "key_target": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "key_size": [
+            0.16,
+            0.09
+          ],
+          "environment_radiance": 0.18,
+          "background_extent_m": 1.5,
+          "occluder": false,
+          "geometry_seed": 41,
+          "surface_strength": 1.0,
+          "fold_count": 7,
+          "wrinkle_amplitude_m": 0.00035,
+          "missing_corner": 0.2,
+          "edge_tear": 0.14,
+          "hole_radius": 0.045,
+          "camera_up": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "torch_version": "2.14.1+cpu",
+        "implementation_sha256": "aa543f1f8ba06bcd75f2fd8fbadb584775a651ec3b70d397c2d35cb65ea30b5b",
+        "canonical_texture_sha256": "60d8fe844c18984c7b3c164450cebfe077707a1be79e39eb3b916976f4b8f397",
+        "canonical_targets_sha256": {
+          "traces": "7ea18d3e4ffcb17b89a9a96f3fb29a816b5622c8bc4084c7fa7fb8bc583459c8",
+          "instances": "24f054deef38201f3b6868dae9757e12446b81c9cb00e7b5ed94a1a1ece506ce",
+          "paper_support": "c92c83257ebee207e2ca7d495cd12254513713c8b8489bd5a219d14b03d81549",
+          "valid": "c92c83257ebee207e2ca7d495cd12254513713c8b8489bd5a219d14b03d81549"
+        },
+        "canonical_instance_identity_sha256": "7ca9c68ec5c51ec82525828c2145349c504e72e7dcdd6b580b11091e9fe3dc55",
+        "canonical_reference_sha256": "33d09be6677133f4ed0d87f6b9c1824e6125dcc6d8e7b4394192bcdcdd5b5afb",
+        "canonical_reference_shape": [
+          1,
+          12,
+          5000
+        ],
+        "canonical_reference_dtype": "<f4",
+        "canonical_sample_rate_hz": [
+          500.0
+        ],
+        "seed": 241001,
+        "samples_per_pixel": 192,
+        "label_samples_per_axis": 2,
+        "width_m": 0.27121486594621685,
+        "height_m": 0.20341114945966263,
+        "surface": "crumpled",
+        "bend_radians": 1.1,
+        "background_sha256": "460dd08d240f4a1f02982415048c3c5c200f385db212da18dc7e2df68bf4d0be",
+        "canonical_paper_support_sha256": "c92c83257ebee207e2ca7d495cd12254513713c8b8489bd5a219d14b03d81549",
+        "mesh_sha256": "28d15c26e06c579974596b342780504344f6ead582426a2aca56a81108092bfe",
+        "mesh_vertices": 199279,
+        "mesh_triangles": 376641,
+        "topology_grid_columns": 513,
+        "topology_grid_rows": 385,
+        "damage_boundary": "shared interpolated edge intersections, refined marching triangles",
+        "max_absolute_edge_strain": 0.008333167200551106,
+        "metric_edges_evaluated": 1129923,
+        "mesh_numerics": {
+          "degenerate_triangles_removed": 7,
+          "minimum_resolvable_uv_edge": 7.62939453125e-06,
+          "minimum_resolvable_spatial_edge_m": 2.0691084046120523e-06,
+          "interpolation_precision": "float64 interpolation, float32 export"
+        },
+        "geometry": "seeded relief with static material-edge relaxation, not cloth dynamics",
+        "missing_material": "shared clipped-triangle topology, resolution-limited linear boundary segments",
+        "external_real_image_validation": false
+      },
+      "visible_leads": 12,
+      "visible_instances": 13,
+      "rgb_sha256": "488ee6fbb4060b3b8f0c97263dc0ba0e11156fe131139343f8e1441ba2a66d8b"
+    },
+    {
+      "name": "wrinkled_coffee",
+      "config": {
+        "width": 1024,
+        "height": 768,
+        "samples_per_pixel": 192,
+        "label_samples_per_axis": 2,
+        "surface": "wrinkled",
+        "bend_radians": 0.7,
+        "camera_origin": [
+          0.025,
+          -0.115,
+          0.38
+        ],
+        "camera_target": [
+          0.0,
+          0.0,
+          0.008
+        ],
+        "field_of_view": 48.0,
+        "key_radiance": 10.0,
+        "key_origin": [
+          -0.2,
+          -0.12,
+          0.18
+        ],
+        "key_target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "key_size": [
+          0.2,
+          0.12
+        ],
+        "environment_radiance": 0.2,
+        "background_extent_m": 1.5,
+        "occluder": false,
+        "geometry_seed": 109,
+        "surface_strength": 1.0,
+        "fold_count": 4,
+        "wrinkle_amplitude_m": 0.00035,
+        "missing_corner": 0.0,
+        "edge_tear": 0.0,
+        "hole_radius": 0.0,
+        "camera_up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "material_parameters": {
+        "coffee_strength": 0.7,
+        "coffee_radius": 0.18,
+        "stain_strength": 0.15,
+        "stain_x": 0.64,
+        "stain_y": 0.54,
+        "water_strength": 0.3
+      },
+      "capture": {
+        "schema": "ecg-pathtrace-v1",
+        "mitsuba": "3.9.1",
+        "variant": "llvm_ad_rgb",
+        "configuration": {
+          "width": 1024,
+          "height": 768,
+          "samples_per_pixel": 192,
+          "label_samples_per_axis": 2,
+          "surface": "wrinkled",
+          "bend_radians": 0.7,
+          "camera_origin": [
+            0.025,
+            -0.115,
+            0.38
+          ],
+          "camera_target": [
+            0.0,
+            0.0,
+            0.008
+          ],
+          "field_of_view": 48.0,
+          "key_radiance": 10.0,
+          "key_origin": [
+            -0.2,
+            -0.12,
+            0.18
+          ],
+          "key_target": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "key_size": [
+            0.2,
+            0.12
+          ],
+          "environment_radiance": 0.2,
+          "background_extent_m": 1.5,
+          "occluder": false,
+          "geometry_seed": 109,
+          "surface_strength": 1.0,
+          "fold_count": 4,
+          "wrinkle_amplitude_m": 0.00035,
+          "missing_corner": 0.0,
+          "edge_tear": 0.0,
+          "hole_radius": 0.0,
+          "camera_up": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "torch_version": "2.14.1+cpu",
+        "implementation_sha256": "aa543f1f8ba06bcd75f2fd8fbadb584775a651ec3b70d397c2d35cb65ea30b5b",
+        "canonical_texture_sha256": "a0c29415ba9b454cbaf0a0d19c116e0c7e5d8ff1853ba0c29874032134eba7b7",
+        "canonical_targets_sha256": {
+          "traces": "7ea18d3e4ffcb17b89a9a96f3fb29a816b5622c8bc4084c7fa7fb8bc583459c8",
+          "instances": "24f054deef38201f3b6868dae9757e12446b81c9cb00e7b5ed94a1a1ece506ce",
+          "paper_support": "c92c83257ebee207e2ca7d495cd12254513713c8b8489bd5a219d14b03d81549",
+          "valid": "c92c83257ebee207e2ca7d495cd12254513713c8b8489bd5a219d14b03d81549"
+        },
+        "canonical_instance_identity_sha256": "7ca9c68ec5c51ec82525828c2145349c504e72e7dcdd6b580b11091e9fe3dc55",
+        "canonical_reference_sha256": "33d09be6677133f4ed0d87f6b9c1824e6125dcc6d8e7b4394192bcdcdd5b5afb",
+        "canonical_reference_shape": [
+          1,
+          12,
+          5000
+        ],
+        "canonical_reference_dtype": "<f4",
+        "canonical_sample_rate_hz": [
+          500.0
+        ],
+        "seed": 241002,
+        "samples_per_pixel": 192,
+        "label_samples_per_axis": 2,
+        "width_m": 0.27121486594621685,
+        "height_m": 0.20341114945966263,
+        "surface": "wrinkled",
+        "bend_radians": 0.7,
+        "background_sha256": "460dd08d240f4a1f02982415048c3c5c200f385db212da18dc7e2df68bf4d0be",
+        "canonical_paper_support_sha256": "c92c83257ebee207e2ca7d495cd12254513713c8b8489bd5a219d14b03d81549",
+        "mesh_sha256": "909071e646fd7d60e8c63c5a052884329b7349ecc43b082a328934160aeee494",
+        "mesh_vertices": 8385,
+        "mesh_triangles": 16384,
+        "topology_grid_columns": 129,
+        "topology_grid_rows": 65,
+        "damage_boundary": "shared interpolated edge intersections, refined marching triangles",
+        "max_absolute_edge_strain": 0.0032817102625963823,
+        "metric_edges_evaluated": 49152,
+        "mesh_numerics": {},
+        "geometry": "seeded relief with static material-edge relaxation, not cloth dynamics",
+        "missing_material": "shared clipped-triangle topology, resolution-limited linear boundary segments",
+        "external_real_image_validation": false
+      },
+      "visible_leads": 12,
+      "visible_instances": 13,
+      "rgb_sha256": "73b9677f1730abace59666d358687c4b3d938728a3c7d54b60ab2d199daa4df5"
+    },
+    {
+      "name": "oblique_fragments",
+      "config": {
+        "width": 1024,
+        "height": 768,
+        "samples_per_pixel": 192,
+        "label_samples_per_axis": 2,
+        "surface": "wrinkled",
+        "bend_radians": 0.55,
+        "camera_origin": [
+          0.12,
+          -0.14,
+          0.38
+        ],
+        "camera_target": [
+          0.0,
+          0.0,
+          0.008
+        ],
+        "field_of_view": 48.0,
+        "key_radiance": 4.0,
+        "key_origin": [
+          -0.18,
+          -0.14,
+          0.38
+        ],
+        "key_target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "key_size": [
+          0.36,
+          0.22
+        ],
+        "environment_radiance": 0.12,
+        "background_extent_m": 1.5,
+        "occluder": false,
+        "geometry_seed": 83,
+        "surface_strength": 1.0,
+        "fold_count": 4,
+        "wrinkle_amplitude_m": 0.00035,
+        "missing_corner": 0.23,
+        "edge_tear": 0.12,
+        "hole_radius": 0.0,
+        "camera_up": [
+          0.18,
+          1.0,
+          0.0
+        ]
+      },
+      "material_parameters": {
+        "paper_age": 0.13,
+        "edge_wear_strength": 0.8,
+        "hole_active": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "hole_center": [
+          [
+            -0.24,
+            0.12
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "hole_radius": [
+          [
+            0.06,
+            0.05
+          ],
+          [
+            0.03,
+            0.03
+          ],
+          [
+            0.03,
+            0.03
+          ]
+        ],
+        "tear_raggedness": 0.8
+      },
+      "capture": {
+        "schema": "ecg-pathtrace-v1",
+        "mitsuba": "3.9.1",
+        "variant": "llvm_ad_rgb",
+        "configuration": {
+          "width": 1024,
+          "height": 768,
+          "samples_per_pixel": 192,
+          "label_samples_per_axis": 2,
+          "surface": "wrinkled",
+          "bend_radians": 0.55,
+          "camera_origin": [
+            0.12,
+            -0.14,
+            0.38
+          ],
+          "camera_target": [
+            0.0,
+            0.0,
+            0.008
+          ],
+          "field_of_view": 48.0,
+          "key_radiance": 4.0,
+          "key_origin": [
+            -0.18,
+            -0.14,
+            0.38
+          ],
+          "key_target": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "key_size": [
+            0.36,
+            0.22
+          ],
+          "environment_radiance": 0.12,
+          "background_extent_m": 1.5,
+          "occluder": false,
+          "geometry_seed": 83,
+          "surface_strength": 1.0,
+          "fold_count": 4,
+          "wrinkle_amplitude_m": 0.00035,
+          "missing_corner": 0.23,
+          "edge_tear": 0.12,
+          "hole_radius": 0.0,
+          "camera_up": [
+            0.18,
+            1.0,
+            0.0
+          ]
+        },
+        "torch_version": "2.14.1+cpu",
+        "implementation_sha256": "aa543f1f8ba06bcd75f2fd8fbadb584775a651ec3b70d397c2d35cb65ea30b5b",
+        "canonical_texture_sha256": "6be0a5928ba4f0c72f8d2e4240f25a9a61d524916dc05228324b8f547a81a822",
+        "canonical_targets_sha256": {
+          "traces": "7ea18d3e4ffcb17b89a9a96f3fb29a816b5622c8bc4084c7fa7fb8bc583459c8",
+          "instances": "24f054deef38201f3b6868dae9757e12446b81c9cb00e7b5ed94a1a1ece506ce",
+          "paper_support": "a4629b9ddbaa8230f27e03ca4532cbf6d0dd13c23d1fbd3c638941062fbf0db4",
+          "valid": "c92c83257ebee207e2ca7d495cd12254513713c8b8489bd5a219d14b03d81549"
+        },
+        "canonical_instance_identity_sha256": "7ca9c68ec5c51ec82525828c2145349c504e72e7dcdd6b580b11091e9fe3dc55",
+        "canonical_reference_sha256": "33d09be6677133f4ed0d87f6b9c1824e6125dcc6d8e7b4394192bcdcdd5b5afb",
+        "canonical_reference_shape": [
+          1,
+          12,
+          5000
+        ],
+        "canonical_reference_dtype": "<f4",
+        "canonical_sample_rate_hz": [
+          500.0
+        ],
+        "seed": 241003,
+        "samples_per_pixel": 192,
+        "label_samples_per_axis": 2,
+        "width_m": 0.27121486594621685,
+        "height_m": 0.20341114945966263,
+        "surface": "wrinkled",
+        "bend_radians": 0.55,
+        "background_sha256": "460dd08d240f4a1f02982415048c3c5c200f385db212da18dc7e2df68bf4d0be",
+        "canonical_paper_support_sha256": "a4629b9ddbaa8230f27e03ca4532cbf6d0dd13c23d1fbd3c638941062fbf0db4",
+        "mesh_sha256": "7314af3906c3ad14351f5c3b6fb863d8875bf17f4936d074ccbc168616900265",
+        "mesh_vertices": 203350,
+        "mesh_triangles": 375784,
+        "topology_grid_columns": 513,
+        "topology_grid_rows": 385,
+        "damage_boundary": "shared interpolated edge intersections, refined marching triangles",
+        "max_absolute_edge_strain": 0.0023224593851947084,
+        "metric_edges_evaluated": 1127352,
+        "mesh_numerics": {
+          "degenerate_triangles_removed": 877,
+          "minimum_resolvable_uv_edge": 7.62939453125e-06,
+          "minimum_resolvable_spatial_edge_m": 2.0691568352049217e-06,
+          "interpolation_precision": "float64 interpolation, float32 export"
+        },
+        "geometry": "seeded relief with static material-edge relaxation, not cloth dynamics",
+        "missing_material": "shared clipped-triangle topology, resolution-limited linear boundary segments",
+        "external_real_image_validation": false
+      },
+      "visible_leads": 12,
+      "visible_instances": 13,
+      "rgb_sha256": "e30d94a9910ac6bdfcc9482760155fcb071be2832b4e2f6a9f4ea07bdf3d0af0"
+    }
+  ]
+}

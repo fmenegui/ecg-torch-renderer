@@ -1,0 +1,54 @@
+{
+  "batch": 64,
+  "sample_seed": 20261025,
+  "detail_seed": 19,
+  "configuration": {
+    "surface_mode": "crumpled",
+    "surface_strength": 0.92,
+    "crease_count": 4,
+    "surface_axis": 0.35,
+    "fold_amplitude": [
+      0.032,
+      0.032,
+      0.032,
+      0.032,
+      0.032,
+      0.032,
+      0.032,
+      0.032
+    ],
+    "fold_span": [
+      0.3,
+      0.3,
+      0.3,
+      0.3,
+      0.3,
+      0.3,
+      0.3,
+      0.3
+    ],
+    "fold_width": [
+      0.04,
+      0.04,
+      0.04,
+      0.04,
+      0.04,
+      0.04,
+      0.04,
+      0.04
+    ],
+    "fold_length": [
+      1.1,
+      1.1,
+      1.1,
+      1.1,
+      1.1,
+      1.1,
+      1.1,
+      1.1
+    ]
+  },
+  "max_sample_mean_absolute_metric": 0.0015384043799713254,
+  "max_sample_p99_absolute_metric": 0.02253606729209423,
+  "failed": 0
+}

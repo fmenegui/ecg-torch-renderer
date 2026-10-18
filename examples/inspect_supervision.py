@@ -9,16 +9,16 @@ from PIL import Image, ImageDraw
 import torch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from ecg_gpu import ECGSupervisionLayer, SupervisionConfig, capture_scenario, load_rgb_bank
+from ecg_gpu import ECGSupervisionLayer, SupervisionConfig, capture_scenario, load_rgb_bank, CAPTURE_SCENARIOS
 from ecg_gpu.demo import demo_signals
 from ecg_gpu.gpu_cli import plain
 from ecg_gpu.schema_v05 import LEADS
 
 
-def inspect_supervision(out, background=None):
+def inspect_supervision(out, background=None, scenario='folded_photo'):
     out = Path(out)
     out.mkdir(parents=True, exist_ok=True)
-    c, p = capture_scenario('folded_photo', width=1024, height=768, severity=.8)
+    c, p = capture_scenario(scenario, width=1024, height=768, severity=.8)
     p.update(layout='3x4+r3', lead_present=1., angle=.06, zoom=.86,
              object_shadow='none', artifact_present=0., tear_active=0.)
     bank = load_rgb_bank(background) if background else None
@@ -48,7 +48,7 @@ def inspect_supervision(out, background=None):
         draw.text((x+12, y+10), lead+' | semantic waveform mask + envelope', fill='#222')
         sheet.paste(preview.resize((tile_w, tile_h), Image.Resampling.LANCZOS), (x, y+34))
     sheet.save(out/'twelve-lead-masks.jpg', quality=90, subsampling=0)
-    report = {'class_order': LEADS, 'mask_shape': list(batch['lead_masks'].shape),
+    report = {'scenario':scenario,'class_order': LEADS, 'mask_shape': list(batch['lead_masks'].shape),
         'lead_boxes': plain(batch['lead_boxes']), 'lead_box_valid': plain(batch['lead_box_valid']),
         'instance_boxes': plain(batch['instance_boxes']),
         'instance_box_valid': plain(batch['instance_box_valid']),
@@ -66,6 +66,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--out', required=True, type=Path)
     parser.add_argument('--background', type=Path)
+    parser.add_argument('--scenario', choices=CAPTURE_SCENARIOS, default='folded_photo')
     args = parser.parse_args()
     torch.set_num_threads(2)
-    inspect_supervision(args.out, args.background)
+    inspect_supervision(args.out, args.background, args.scenario)
