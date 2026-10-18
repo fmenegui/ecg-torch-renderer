@@ -21,6 +21,15 @@ from .gpu_raster import raster_kernels
 from .schema_v05 import LEADS, SPEEDS, GAINS, LAYOUTS
 
 
+def _conditional_visibility(valid, frame_coverage=None):
+    """Visibility given a sheet hit, avoiding a second silhouette alpha."""
+    if frame_coverage is None:
+        return valid
+    return torch.where(frame_coverage > 0,
+                       valid / frame_coverage.clamp_min(torch.finfo(valid.dtype).tiny),
+                       0).clamp(0, 1)
+
+
 @dataclass(frozen=True)
 class RenderConfig:
     height: int = 768
@@ -197,6 +206,7 @@ class ECGRenderer(nn.Module):
                 'scene_illumination':'linear-light-matte-v2',
                 'tabletop_shadow':'forward-caster-height-area-light-v2',
                 'material_marks':'canonical-shared-inverse-field-v2',
+                'supervision_visibility':'conditional-sheet-coverage-v2',
                 'procedural_geometry':'developable tangent integration with bounded finite creases, 2.5D',
                 'external_geometry':'optional inverse UV/visibility/normal/depth bank'}
 
@@ -700,6 +710,7 @@ class ECGRenderer(nn.Module):
             # Fractional coverage antialiases the sheet silhouette. The same
             # coverage gates targets, cast shadows and RGB compositing.
             valid = F.grid_sample(torch.ones_like(ink), field, align_corners=False)
+            frame_coverage = valid.clone() if stage != 'image' or return_instances else None
             image = F.grid_sample(srgb_to_linear(canonical), field, align_corners=False, padding_mode='border')
             if scene is None:
                 scene = {'field':field,'solver_valid':torch.ones_like(valid),
@@ -723,6 +734,8 @@ class ECGRenderer(nn.Module):
             scene['object_shadow'] = self.document.object_shadow(p)
             image = linear_to_srgb(image*(1-scene['object_shadow']))
             targets = {name: F.grid_sample(value, field, align_corners=False) for name, value in targets.items()}
+            if frame_coverage is not None:
+                targets['frame_coverage'] = frame_coverage
             unit_support = F.grid_sample(unit_mask, field, align_corners=False) if unit_mask is not None else None
             material_valid = F.grid_sample(material_valid, field, align_corners=False, padding_mode='border')
         else:
@@ -762,7 +775,7 @@ class ECGRenderer(nn.Module):
                     'document_asset_id':scene['asset_id'] if scene else torch.full((b,),-1,device=self.device,dtype=torch.long),
                     'parameters': p}
         if return_instances and return_instance_boxes:
-            visible = targets['instances']*valid
+            visible = targets['instances'] * _conditional_visibility(valid, targets.get('frame_coverage'))
             occupied = visible>.05
             columns = occupied.any(-2)
             rows = occupied.any(-1)

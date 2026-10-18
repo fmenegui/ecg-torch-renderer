@@ -56,8 +56,8 @@ test_bitmap_colors_match_target_fiducials_without_vertical_or_channel_flip (test
 test_public_occluder_branch_renders_and_removes_only_covered_paper_targets (test_pathtrace_quality.PathTraceQualityTests.test_public_occluder_branch_renders_and_removes_only_covered_paper_targets) ... ok
 test_visible_samples_match_analytic_plane_occlusion_with_actual_sensor_rays (test_pathtrace_quality.PathTraceQualityTests.test_visible_samples_match_analytic_plane_occlusion_with_actual_sensor_rays) ... ok
 test_image_and_visibility_only_preserve_identity (test_performance_contracts.SupervisionPerformanceContracts.test_image_and_visibility_only_preserve_identity) ... ok
-test_union_allocations_stay_below_a_full_lead_tensor (test_performance_contracts.SupervisionPerformanceContracts.test_union_allocations_stay_below_a_full_lead_tensor) ... USDT:2026-10-19 01:47:24 5:5 SyncActivityProfilerHandler.cpp:39] profiler_start
-USDT:2026-10-19 01:47:24 5:5 SyncActivityProfilerHandler.cpp:46] profiler_stop
+test_union_allocations_stay_below_a_full_lead_tensor (test_performance_contracts.SupervisionPerformanceContracts.test_union_allocations_stay_below_a_full_lead_tensor) ... USDT:2026-10-19 02:00:46 5:5 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-10-19 02:00:46 5:5 SyncActivityProfilerHandler.cpp:46] profiler_stop
 ok
 test_union_only_is_bitwise_equal_to_full_supervision (test_performance_contracts.SupervisionPerformanceContracts.test_union_only_is_bitwise_equal_to_full_supervision) ... ok
 test_absent_paper_marks_do_not_square_fractional_silhouette_coverage (test_physical_scene.PhysicalSceneTests.test_absent_paper_marks_do_not_square_fractional_silhouette_coverage) ... ok
@@ -72,8 +72,8 @@ test_shadow_translation_matches_ray_plane_intersection (test_physical_scene.Phys
 test_shadow_uses_each_caster_height_not_receiving_background_height (test_physical_scene.PhysicalSceneTests.test_shadow_uses_each_caster_height_not_receiving_background_height) ... ok
 test_kernel_counts_exclude_annotations_and_memory_transfers (test_profiling.DetailedProfilingTests.test_kernel_counts_exclude_annotations_and_memory_transfers) ... ok
 test_region_wrappers_restore_after_failure (test_profiling.DetailedProfilingTests.test_region_wrappers_restore_after_failure) ... ok
-test_trace_archive_and_cpu_metrics_are_consistent (test_profiling.DetailedProfilingTests.test_trace_archive_and_cpu_metrics_are_consistent) ... USDT:2026-10-19 01:47:24 5:5 SyncActivityProfilerHandler.cpp:39] profiler_start
-USDT:2026-10-19 01:47:24 5:5 SyncActivityProfilerHandler.cpp:46] profiler_stop
+test_trace_archive_and_cpu_metrics_are_consistent (test_profiling.DetailedProfilingTests.test_trace_archive_and_cpu_metrics_are_consistent) ... USDT:2026-10-19 02:00:47 5:5 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-10-19 02:00:47 5:5 SyncActivityProfilerHandler.cpp:46] profiler_stop
 ok
 test_finite_shutter_matches_independent_numerical_exposure (test_realism.OpticalRealismTests.test_finite_shutter_matches_independent_numerical_exposure) ... ok
 test_observation_degradation_preserves_signal_and_geometric_targets (test_realism.OpticalRealismTests.test_observation_degradation_preserves_signal_and_geometric_targets) ... ok
@@ -117,6 +117,7 @@ test_offline_export_groups_augmentations_and_roundtrips_boxes_and_hashes (test_r
 test_repeated_rhythm_instances_keep_identity_and_cabrera_polarity (test_round2_quality.RoundTwoQualityTests.test_repeated_rhythm_instances_keep_identity_and_cabrera_polarity) ... ok
 test_source_hash_leakage_rejected_before_any_export_is_created (test_round2_quality.RoundTwoQualityTests.test_source_hash_leakage_rejected_before_any_export_is_created) ... ok
 test_unmarked_paper_visibility_is_not_squared_at_subpixel_edges (test_round2_quality.RoundTwoQualityTests.test_unmarked_paper_visibility_is_not_squared_at_subpixel_edges) ... ok
+test_visible_trace_soft_coverage_is_not_squared_at_sheet_silhouette (test_round2_quality.RoundTwoQualityTests.test_visible_trace_soft_coverage_is_not_squared_at_sheet_silhouette) ... ok
 test_yolo_uses_normalized_xywh_and_preserves_repeated_class_instances (test_round2_quality.RoundTwoQualityTests.test_yolo_uses_normalized_xywh_and_preserves_repeated_class_instances) ... ok
 test_every_scenario_renders_and_replays_with_all_twelve_leads (test_scenarios.CaptureScenariosTest.test_every_scenario_renders_and_replays_with_all_twelve_leads) ... ok
 test_recipes_are_fresh_and_validate_name_and_severity (test_scenarios.CaptureScenariosTest.test_recipes_are_fresh_and_validate_name_and_severity) ... ok
@@ -151,6 +152,6 @@ test_torchvision_background_offset_and_pixel_exclusive_area (test_training_adapt
 test_visibility_requires_explicit_measurement (test_training_adapters.AdapterTests.test_visibility_requires_explicit_measurement) ... ok
 
 ----------------------------------------------------------------------
-Ran 147 tests in 27.668s
+Ran 148 tests in 27.351s
 
 OK (skipped=4)

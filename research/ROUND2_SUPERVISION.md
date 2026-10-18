@@ -59,8 +59,10 @@ as rhythm strips, verifying four distinct same-class detection objects.
 
 ## Visibility and geometry
 
-Visible masks equal projected waveform coverage multiplied by the same
-visibility map used for paper loss and explicit image occlusion. Tears, frame
+Projected waveform masks already contain fractional sheet-silhouette coverage.
+Visible masks multiply these by conditional visibility, `valid/frame_coverage`
+where coverage is positive, so the silhouette is applied exactly once. The full
+`valid` map remains available for loss support and explicit image occlusion. Tears, frame
 cropping, opaque blocks, pen annotations and added text can remove target
 pixels. An active printed slot may become completely invisible, leaving no
 valid box. `visible_only=False` retains projected ink behind explicit

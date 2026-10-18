@@ -137,8 +137,12 @@ class SupervisionIntegrityTests(unittest.TestCase):
                     return_instance_boxes=False)
                 original = {key: value.clone() for key, value in rendered.targets.items()}
                 batch = layer.supervise(rendered)
-                self.assertTrue(torch.equal(batch['lead_masks'], original['traces'] * original['valid']))
-                self.assertTrue(torch.equal(batch['instance_masks'], original['instances'] * original['valid']))
+                coverage = original['frame_coverage']
+                conditional = torch.zeros_like(coverage)
+                hit = coverage > 0
+                conditional[hit] = (original['valid'][hit] / coverage[hit]).clamp(0, 1)
+                self.assertTrue(torch.equal(batch['lead_masks'], original['traces'] * conditional))
+                self.assertTrue(torch.equal(batch['instance_masks'], original['instances'] * conditional))
                 self.assertTrue(all(torch.equal(value, original[key]) for key, value in rendered.targets.items()))
                 self.assertTrue((batch['lead_masks'] * (batch['valid'] == 0) == 0).all())
                 self.assertTrue((batch['instance_masks'] * (batch['valid'] == 0) == 0).all())

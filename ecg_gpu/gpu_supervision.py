@@ -9,6 +9,7 @@ import math
 import torch
 
 from .gpu_module import ECGImageLayer
+from .gpu_renderer import _conditional_visibility
 from .schema_v05 import LEADS
 
 
@@ -25,6 +26,7 @@ class SupervisionConfig:
     ``leads`` sets channel order, including optional subsets. ``binary=False``
     preserves anti-aliased coverage. Binary masks and boxes use ``> threshold``.
     ``visible_only`` removes torn, cropped and explicitly occluded pixels.
+    Fractional sheet-edge coverage is applied once, including after warping.
     Boxes are xyxy with exclusive right/bottom edges. Empty boxes are -1.
 
     Lead masks group *all occurrences* of a canonical lead. Lead boxes are
@@ -137,6 +139,9 @@ class ECGSupervisionLayer(ECGImageLayer):
         if required - rendered.targets.keys():
             raise ValueError(f'RenderBatch lacks supervision targets: {sorted(required - rendered.targets.keys())}')
         valid = rendered.targets['valid']
+        # Warped masks already contain fractional sheet silhouette coverage.
+        # Apply only conditional visibility here. Keep full valid for losses.
+        visibility = _conditional_visibility(valid, rendered.targets.get('frame_coverage'))
         batch = {'image': rendered.image, 'valid': valid}
         lead_outputs = {'lead_masks', 'lead_boxes'} & set(requested)
         union_outputs = {'trace_mask', 'bw', 'wb'} & set(requested)
@@ -152,7 +157,7 @@ class ECGSupervisionLayer(ECGImageLayer):
             if not lead_outputs:
                 traces = traces.amax(1, keepdim=True)
             if self.supervision.visible_only:
-                traces = traces * valid
+                traces = traces * visibility
             if self.supervision.binary:
                 traces = (traces > self.supervision.threshold).to(traces.dtype)
         if 'lead_masks' in requested:
@@ -173,7 +178,7 @@ class ECGSupervisionLayer(ECGImageLayer):
         if instances_needed:
             instance_masks = rendered.targets['instances']
             if self.supervision.visible_only:
-                instance_masks = instance_masks * valid
+                instance_masks = instance_masks * visibility
             if self.supervision.binary:
                 instance_masks = (instance_masks > self.supervision.threshold).to(instance_masks.dtype)
             if 'instance_masks' in requested:

@@ -87,7 +87,7 @@ for signals in signal_loader:
     optimizer.step()
 ```
 
-Every lead is an independent output channel. Keep logits unbounded during training and use `.sigmoid()` for predicted probabilities at evaluation. Trace pixels are sparse, so tune class weighting or an additional Dice objective against validation data. A finite loss and a successful backward step do not establish good digitization performance.
+Every lead is an independent output channel. Soft targets preserve fractional sheet-edge coverage exactly once. The full `valid` map supplies loss support, while visibility given a sheet hit gates the projected masks. Keep logits unbounded during training and use `.sigmoid()` for predicted probabilities at evaluation. Trace pixels are sparse, so tune class weighting or an additional Dice objective against validation data. A finite loss and a successful backward step do not establish good digitization performance.
 
 ## Run the included U-Net example
 

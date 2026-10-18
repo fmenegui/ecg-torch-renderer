@@ -10,7 +10,7 @@ import unittest
 
 import torch
 
-from ecg_gpu import ECGSupervisionLayer, SupervisionConfig, capture_scenario
+from ecg_gpu import ECGSupervisionLayer, RenderConfig, SupervisionConfig, capture_scenario
 from ecg_gpu.dataset_export import export_yolo_dataset, samples_from_batch
 from ecg_gpu.training import detection_targets
 
@@ -146,6 +146,49 @@ class RoundTwoQualityTests(unittest.TestCase):
         paper = rendered.scene['paper_mask']
         self.assertTrue(((paper > 0) & (paper < 1)).any())
         torch.testing.assert_close(rendered.targets['valid'], paper, rtol=0, atol=1e-7)
+
+    def test_visible_trace_soft_coverage_is_not_squared_at_sheet_silhouette(self):
+        config = RenderConfig(height=96, width=128, profile='clean', surface_mode='off',
+                              shadow_samples=0, antialias_samples=1)
+        parameters = {'angle': .13, 'zoom': .811, 'quarter': 0,
+            'translate_x': 0., 'translate_y': 0., 'perspective_x': 0., 'perspective_y': 0.,
+            'radial': 0., 'surface_strength': 0., 'tear_active': 0., 'occlusion_active': 0.,
+            'pen_active': 0., 'artifact_present': 0., 'lead_present': 1., 'layout': '3x4+r1'}
+        layer = ECGSupervisionLayer(fs=100, config=config, parameters=parameters,
+            randomize=False, seed=52, supervision=SupervisionConfig(outputs=(
+                'lead_masks', 'lead_boxes', 'instance_masks', 'instance_boxes')))
+        # Large but finite mV deflections clip at the source page edge and thus
+        # exercise both print and paper coverage at fractional camera pixels.
+        source = 3 * torch.sin(torch.arange(1001)[None, None] / 17).expand(1, 12, -1)
+        canonical = layer.render_batch(source, photo=False, stage='all', return_instances=True)
+        observed = layer.render_batch(source, photo=True, stage='all', return_instances=True, return_field=True)
+        supervised = layer.supervise(observed)
+        field = observed.inverse_field
+        silhouette = torch.nn.functional.grid_sample(torch.ones(1, 1, 96, 128),
+                                                       field, align_corners=False)
+        for source_key, output_key in (('traces', 'lead_masks'), ('instances', 'instance_masks')):
+            # Equivalent to border-sampling print alpha then compositing by
+            # the fractional paper silhouette exactly once, as RGB does.
+            expected = torch.nn.functional.grid_sample(canonical.targets[source_key], field,
+                padding_mode='border', align_corners=False) * silhouette
+            edge = (silhouette > 0) & (silhouette < 1) & (expected.amax(1, keepdim=True) > .05)
+            self.assertGreater(int(edge.sum()), 0)
+            torch.testing.assert_close(supervised[output_key], expected, rtol=0, atol=2e-7)
+            prefix = 'lead' if source_key == 'traces' else 'instance'
+            self.assert_tight_boxes(expected, supervised[prefix + '_boxes'],
+                                   supervised[prefix + '_box_valid'])
+            if source_key == 'instances':
+                legacy = observed.metadata['instance_boxes_xyxy']
+                legacy_valid = observed.metadata['instance_visible']
+                # Legacy metadata represents empty slots with zero, whereas
+                # the supervision adapter uses -1. Compare nonempty geometry.
+                normalized = torch.where(legacy_valid[..., None], legacy, -1)
+                self.assert_tight_boxes(expected, normalized, legacy_valid)
+                image_stage = layer.render_batch(source, photo=True, stage='image', return_instances=True)
+                image_valid = image_stage.metadata['instance_visible']
+                image_boxes = torch.where(image_valid[..., None],
+                                          image_stage.metadata['instance_boxes_xyxy'], -1)
+                self.assert_tight_boxes(expected, image_boxes, image_valid)
 
 
 if __name__ == '__main__':

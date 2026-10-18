@@ -74,7 +74,7 @@ for signals in signal_loader:
     loss.backward()
     optimizer.step()
 </code></pre>
-<p>Every lead is an independent output channel. Keep logits unbounded during training and use <code>.sigmoid()</code> for predicted probabilities at evaluation. Trace pixels are sparse, so tune class weighting or an additional Dice objective against validation data. A finite loss and a successful backward step do not establish good digitization performance.</p>
+<p>Every lead is an independent output channel. Soft targets preserve fractional sheet-edge coverage exactly once. The full <code>valid</code> map supplies loss support, while visibility given a sheet hit gates the projected masks. Keep logits unbounded during training and use <code>.sigmoid()</code> for predicted probabilities at evaluation. Trace pixels are sparse, so tune class weighting or an additional Dice objective against validation data. A finite loss and a successful backward step do not establish good digitization performance.</p>
 <h2 id="run-the-included-u-net-example">Run the included U-Net example<a class="heading-anchor" href="#run-the-included-u-net-example" aria-label="Link to Run the included U-Net example">#</a></h2>
 <pre><code class="language-bash">python examples/segmentation.py --steps 3
 python examples/segmentation.py --device cuda --compile-raster --compile-scene --steps 20

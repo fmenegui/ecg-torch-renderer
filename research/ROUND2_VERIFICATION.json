@@ -5,10 +5,10 @@
   "torch": "2.14.1+cpu",
   "mitsuba": "3.9.1",
   "tests": {
-    "run": 147,
-    "passed": 143,
+    "run": 148,
+    "passed": 144,
     "skipped_cuda": 4,
-    "seconds": 27.668
+    "seconds": 27.351
   },
   "unet_compiled_steps": 3,
   "yolo_actual_epochs": 1,
@@ -36,9 +36,10 @@
   },
   "pathtrace_provenance_matches_source": true,
   "artifact_sha256": {
-    "research/assets/supervision-targets.npz": "997293e2700c0946f3dfe6c20767a724bfaad2e48235d622ff53bf770fa765d4",
+    "research/assets/supervision-targets.npz": "72e0a6e7e9103e9ec8420a948958f2b66f353833fb16fdfead583ddd3187cc21",
     "research/assets/supervision-rgb.png": "b9940eb854d2689d8d07e5c6183901c188a2924a964f8105b5b77239b42c0182",
     "research/assets/pathtraced-gallery.jpg": "c348c7494f88afb011e90adbc1a04cb8452e29df1114011f71bad34d3a7384f6",
     "assets/backgrounds/wood_table_001_diff_1k.jpg": "460dd08d240f4a1f02982415048c3c5c200f385db212da18dc7e2df68bf4d0be"
-  }
+  },
+  "soft_sheet_coverage_regression": "passed, independent sampling and coordinate-box oracles, including legacy image stage"
 }

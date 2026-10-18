@@ -52,7 +52,10 @@ Independent tests used sparse-coordinate bounding-box oracles, all 30 layouts,
 Cabrera polarity, repeated rhythm identity, non-square images, crop, tear,
 pen/stamp coverage and exact export roundtrips. QA discovered and fixed an
 intermediate edge-coverage regression in 291 pixels rather than adjusting the
-expected image to hide it.
+expected image to hide it. A final independent high-amplitude edge case also
+caught silhouette coverage being squared in visible trace masks. The corrected
+conditional visibility preserves one coverage factor for lead masks, instance
+masks and both box paths, with an independent sampling oracle.
 
 ![All twelve independent lead masks, with semantic envelopes](assets/twelve-lead-masks.jpg)
 
@@ -121,7 +124,7 @@ training and validation patients.
 
 ## Release verification
 
-The final CPU discovery ran **147 tests: 143 passed, 4 CUDA tests skipped**.
+The final CPU discovery ran **148 tests: 144 passed, 4 CUDA tests skipped**.
 Mitsuba was installed and its real rendering tests executed. Compiled U-Net
 training and wheel packaging passed. The numerical height-field audit retained
 maximum interior UV error below 0.0011 pixel against the dense reference.

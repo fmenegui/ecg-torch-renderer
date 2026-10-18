@@ -128,8 +128,28 @@ Added `tests/test_round2_quality.py`, with six tests at review time:
 * Preservation of fractional silhouette coverage when no document marks are
   present, rather than incorrectly squaring that coverage after projection.
 
-All six passed in 0.829s on CPU after the coverage fix. The supervision owner separately provides a
+The initial six passed in 0.829s on CPU after the material-visibility coverage fix. The supervision owner separately provides a
 broader all-layout mask and occurrence audit.
+
+A final targeted audit distinguished that material-visibility fix from trace
+alpha coverage itself. Projected trace masks already contain the fractional
+paper silhouette from zero-padded resampling. Multiplying those masks by
+`valid`, which also contains that silhouette, squares edge coverage. A new
+seventh quality test compares with independently border-sampled canonical print
+alpha composited by paper coverage exactly once, matching the RGB convention.
+A 3 mV sinusoid clipped by the sheet edge produced maximum alpha error 0.199362
+in the previous implementation. This is a target-coverage error rather than
+merely a choice of loss weighting. It was reported to the integrator with a
+permanent lead/instance regression test before release.
+
+The integrator corrected this by retaining the projected frame coverage and
+applying only `valid / frame_coverage` as conditional visibility, with safe zero
+handling. The same correction is used for legacy instance boxes. The independent
+seventh check now passes, including enumeration-based tight-box checks against
+the corrected reference masks for both supervision and legacy metadata. All
+seven quality checks passed in 1.149s after the fix, including legacy boxes in
+the explicit `stage='image', return_instances=True` branch. Full `valid` remains available as a
+separate loss-support weight and is not silently changed by the target fix.
 
 Group splitting can prevent known source/patient overlap only when the caller
 supplies truthful stable group IDs. It cannot discover hidden patient identity
