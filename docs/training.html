@@ -1,9 +1,53 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Integrate rendering into classification, U-Net and distributed training loops."><meta name="theme-color" content="#df5548"><title>Train an image model · ECG Torch Renderer</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css"><script>try{document.documentElement.dataset.theme=localStorage.getItem('ecg-docs-theme')||'light'}catch{}</script><script src="app.js" defer></script></head>
 <body><a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div>
-<header class="topbar"><button id="menu-button" class="icon-button menu-button" aria-label="Toggle navigation" aria-controls="sidebar" aria-expanded="false">☰</button><a class="brand" href="index.html"><svg viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="10" fill="currentColor"/><path d="M5 19h7l3-9 4 17 3-8h9" fill="none" stroke="white" stroke-width="2.2" stroke-linejoin="round"/></svg><span>ECG<span class="brand-sub">Torch Renderer</span></span></a><span class="version">v0.6.0</span><div class="top-actions"><button id="search-button" class="search-button"><span>Search documentation</span><kbd>⌘ K</kbd></button><a class="github-link" href="https://github.com/fmenegui/ecg-torch-renderer">GitHub ↗</a><button id="theme-button" class="icon-button" aria-label="Switch color theme">◐</button></div></header>
+<header class="topbar"><button id="menu-button" class="icon-button menu-button" aria-label="Toggle navigation" aria-controls="sidebar" aria-expanded="false">☰</button><a class="brand" href="index.html"><svg viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="10" fill="currentColor"/><path d="M5 19h7l3-9 4 17 3-8h9" fill="none" stroke="white" stroke-width="2.2" stroke-linejoin="round"/></svg><span>ECG<span class="brand-sub">Torch Renderer</span></span></a><span class="version">v0.7.0</span><div class="top-actions"><button id="search-button" class="search-button"><span>Search documentation</span><kbd>⌘ K</kbd></button><a class="github-link" href="https://github.com/fmenegui/ecg-torch-renderer">GitHub ↗</a><button id="theme-button" class="icon-button" aria-label="Switch color theme">◐</button></div></header>
 <div class="docs-shell"><aside id="sidebar" class="sidebar"><nav aria-label="Main documentation"><p class="nav-section">Start here</p><a  href="index.html">Welcome</a><a  href="installation.html">Installation</a><a  href="quickstart.html">Quickstart</a><p class="nav-section">Learn</p><a  href="concepts.html">How rendering works</a><a  href="layouts.html">Layouts &amp; calibration</a><a  href="parameters.html">Configure &amp; randomize</a><a  href="scenes.html">Paper, tables &amp; lighting</a><a  href="camera.html">Capture &amp; print artifacts</a><p class="nav-section">Train</p><a  href="targets.html">Advanced supervision</a><a aria-current="page" href="training.html">Train an image model</a><a  href="reproducibility.html">Reproducibility</a><p class="nav-section">Extend</p><a  href="assets.html">Custom assets &amp; layouts</a><p class="nav-section">Engineer</p><a  href="performance.html">Performance</a><a  href="profiling.html">Detailed profiling</a><a  href="validation.html">Validation &amp; testing</a><a  href="limitations.html">Scope &amp; limitations</a><p class="nav-section">Reference</p><a  href="api.html">API reference</a><a  href="gallery.html">Example gallery</a></nav><div class="sidebar-note">Built for on-device training.<br>Measured results, explicit contracts.</div></aside>
 <main id="main"><article class="document " data-page="training"><div class="page-eyebrow">Train</div><h1>Train an image model</h1>
+<p>Version 0.7.0 includes a complete YOLO detection export/training example and
+independent U-Net loss helper. The twelve lead channels are independent waveform
+masks, not mutually exclusive classes or filled rectangular regions.</p>
+<h2 id="detection-targets">Detection targets<a class="heading-anchor" href="#detection-targets" aria-label="Link to Detection targets">#</a></h2>
+<pre><code class="language-python">from ecg_gpu import ECGSupervisionLayer, SupervisionConfig, detection_targets
+synth = ECGSupervisionLayer(supervision=SupervisionConfig(
+    outputs=(&#39;lead_masks&#39;, &#39;lead_boxes&#39;, &#39;instance_boxes&#39;))).to(signals.device)
+batch = synth(signals)
+yolo_targets = detection_targets(batch)
+torchvision_targets = detection_targets(batch, format=&#39;torchvision&#39;)
+</code></pre>
+<p>YOLO uses canonical classes 0..11 and normalized center-x, center-y, width,
+height. Torchvision defaults to 1..12 to reserve class zero for background.
+Empty and inactive slots are removed. The fixed-shape
+<code>padded_detection_targets</code> alternative avoids dynamic CUDA indexing.</p>
+<p>Use <code>instance_boxes</code> to detect each printed occurrence. A short II and repeated
+long II strip are two objects with the same class. <code>lead_boxes</code> is a semantic
+envelope and can span disconnected occurrences. All boxes enclose visible
+waveform ink, with exclusive right/bottom pixel edges. They exclude text and
+pulses and are not whole layout cells.</p>
+<pre><code class="language-bash">python examples/export_yolo.py --out build/yolo --groups 4 --views 2
+python examples/train_yolo.py --data build/yolo/dataset.yaml --epochs 1
+</code></pre>
+<p>The optional Ultralytics package requires compatible Torch/torchvision builds.
+Install both from the same CPU or CUDA index before installing <code>.[yolo]</code>.
+The example trains an architecture from YAML without pretrained weights.
+Actual one-epoch training/validation was executed on artificial data. A zero
+mAP on the tiny validation set is recorded, so this is integration evidence,
+not detector accuracy evidence.</p>
+<p>The exporter writes PNGs, YOLO text labels, <code>dataset.yaml</code> and image/label/source
+provenance. It groups recordings before splitting and rejects known source/hash
+leakage. Supply actual patient IDs as group IDs. Multiple recordings from one
+patient must share a group. Source identity is caller-supplied and cannot prove
+absence of undeclared patient overlap. Disconnected waveform masks are not
+converted into misleading YOLO segmentation polygons.</p>
+<h2 id="optional-offline-3d-data">Optional offline 3D data<a class="heading-anchor" href="#optional-offline-3d-data" aria-label="Link to Optional offline 3D data">#</a></h2>
+<p>Install <code>.[pathtrace]</code> and run <code>examples/pathtraced_capture.py</code>. This generates
+actual Mitsuba light transport with the same camera rays used for visible
+front-surface masks and boxes. It exports NPZ arrays and YOLO detection labels.
+All views of its single source deliberately stay in one partition. This route
+uses CPU/offline file work and is separate from the torch training hot path.</p>
+<p>The meshes preserve discrete material edge lengths and permit curl/fold views.
+They are prescribed developable shapes, not cloth dynamics. Pixel coverage uses
+stratified ray samples and is separate from optical readability.</p>
 <p>Load signals, move them to the training device, render there, then pass RGB to your network. DataLoader workers can read and preprocess source files. Keep CUDA rendering in the training process.</p>
 <h2 id="u-net-segmentation">U-Net segmentation<a class="heading-anchor" href="#u-net-segmentation" aria-label="Link to U-Net segmentation">#</a></h2>
 <pre><code class="language-python">import torch
@@ -61,8 +105,8 @@ with torch.autocast(device_type=&quot;cuda&quot;, dtype=torch.float16):
 <h2 id="distributed-training">Distributed training<a class="heading-anchor" href="#distributed-training" aria-label="Link to Distributed training">#</a></h2>
 <p>Create one synthesizer per rank, on that rank&#39;s device. Give each rank a distinct seed, for example <code>base_seed + 1009 * rank</code>. Save renderer state alongside model and optimizer state. Restore per-rank randomization counters when exact continuation matters.</p>
 <p>DDP can wrap the trainable image network. The synthesizer has buffers and no trainable parameters. For data loading, use pinned memory and nonblocking transfers when appropriate. Measure the full training step before selecting renderer batch size or resolution.</p>
-<nav class="pagination" aria-label="Documentation pages"><a href="targets.html"><small>Previous</small>Advanced supervision</a><a href="reproducibility.html"><small>Next</small>Reproducibility <span aria-hidden="true">→</span></a></nav><footer>ECG Torch Renderer · MIT · <a href="https://github.com/fmenegui/ecg-torch-renderer/blob/main/documentation/pages/training.md">Edit this page ↗</a><span>v0.6.0</span></footer></article></main>
-<aside class="toc" aria-label="On this page"><p>On this page</p><a href="#u-net-segmentation">U-Net segmentation</a><a href="#run-the-included-u-net-example">Run the included U-Net example</a><a href="#classification-with-nn-sequential">Classification with nn.Sequential</a><a href="#mixed-precision">Mixed precision</a><a href="#detection-and-waveform-recovery">Detection and waveform recovery</a><a href="#distributed-training">Distributed training</a><a class="toc-top" href="#main">Back to top ↑</a></aside></div>
+<nav class="pagination" aria-label="Documentation pages"><a href="targets.html"><small>Previous</small>Advanced supervision</a><a href="reproducibility.html"><small>Next</small>Reproducibility <span aria-hidden="true">→</span></a></nav><footer>ECG Torch Renderer · MIT · <a href="https://github.com/fmenegui/ecg-torch-renderer/blob/main/documentation/pages/training.md">Edit this page ↗</a><span>v0.7.0</span></footer></article></main>
+<aside class="toc" aria-label="On this page"><p>On this page</p><a href="#detection-targets">Detection targets</a><a href="#optional-offline-3d-data">Optional offline 3D data</a><a href="#u-net-segmentation">U-Net segmentation</a><a href="#run-the-included-u-net-example">Run the included U-Net example</a><a href="#classification-with-nn-sequential">Classification with nn.Sequential</a><a href="#mixed-precision">Mixed precision</a><a href="#detection-and-waveform-recovery">Detection and waveform recovery</a><a href="#distributed-training">Distributed training</a><a class="toc-top" href="#main">Back to top ↑</a></aside></div>
 <dialog id="search-dialog" class="search-dialog"><div class="dialog-top"><label for="search-input">Search the guide</label><button class="icon-button" data-close-dialog="search-dialog" aria-label="Close search">×</button></div><input id="search-input" type="search" placeholder="Masks, layouts, profiling…" autocomplete="off"><p id="search-status" class="search-status" aria-live="polite">Type to search all pages.</p><div id="search-results"></div></dialog>
 <dialog id="figure-dialog" class="figure-dialog"><div class="dialog-top"><h2 id="figure-title">Example</h2><button class="icon-button" data-close-dialog="figure-dialog" aria-label="Close figure">×</button></div><img id="figure-image" alt=""><p id="figure-description"></p><div class="recipe-top"><strong>Rendering recipe</strong><button id="copy-recipe" class="button secondary">Copy JSON</button></div><pre id="figure-recipe"></pre><a id="figure-download" href="gallery.json">Open full image ↗</a></dialog>
 <p id="copy-status" class="sr-only" aria-live="polite"></p></body></html>

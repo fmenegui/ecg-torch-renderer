@@ -117,6 +117,12 @@ and the [scope guide](documentation/pages/limitations.md).
 
 ## Reproducible adverse captures
 
+Version **0.7.0** adds a second capture backend: optional offline Mitsuba 3D
+light transport with ray-aligned masks and boxes. The torch training renderer
+now shades and resamples in linear light, projects shadows from caster height,
+and attaches paper annotations to the same material coordinates as the ECG.
+See the [second independent review](research/ROUND2_REPORT.md).
+
 Version **0.6.0** adds seven coherent scenarios: clean print, flatbed scan,
 aged scan, phone photograph, low-light phone photograph, folded paper and
 damaged archive. All recipes keep twelve leads active. Tears and annotations
@@ -137,7 +143,7 @@ Export an auditable gallery with entirely artificial signals:
 python examples/capture_scenarios.py --out build/scenarios
 ```
 
-![Seven actual renderer capture scenarios](research/assets/scenarios.jpg)
+![Seven current renderer capture scenarios](research/assets/round2-scenarios.jpg)
 
 The camera now integrates a finite shutter path and adds independent sensor
 noise variances. Resolution metadata describes the canonical page before
@@ -157,6 +163,66 @@ NPY/NPZ and optional WFDB input are supported. The CLI normalizes mV/uV/V units,
 reorders declared leads and writes PNG/JPEG. Advanced exports include
 `targets.npz`, `boxes.json` and lossless BW/WB PNGs. File I/O and encoding happen
 outside training.
+
+## Train U-Net and YOLO
+
+All twelve independent waveform masks are available as `lead_masks[B,12,H,W]`.
+`lead_boxes[B,12,4]` encloses every visible occurrence of the same lead.
+For detection, use `instance_boxes[B,15,4]` instead: a repeated long II strip
+is another object with class II. Padding, absent and fully hidden instances
+must be excluded using the returned validity flags.
+
+```python
+from ecg_gpu import ECGSupervisionLayer, SupervisionConfig, detection_targets
+
+synth = ECGSupervisionLayer(
+    supervision=SupervisionConfig(outputs=("lead_masks", "lead_boxes", "instance_boxes"))
+).to(signals.device)
+batch = synth(signals)
+yolo = detection_targets(batch)  # batch_idx, cls (0..11), normalized xywh
+masks = batch["lead_masks"]      # independent sigmoid channels for U-Net
+```
+
+These boxes enclose waveform ink. They are not full layout-cell boxes and do
+not include labels or calibration pulses. `instance_masks` also preserves
+separate masks for repeated occurrences. Overlapping leads retain independent
+ownership, so use sigmoid/BCE rather than exclusive softmax classes.
+
+```bash
+python examples/inspect_supervision.py --out build/masks
+python examples/export_yolo.py --out build/yolo --groups 4 --views 2
+python examples/train_yolo.py --data build/yolo/dataset.yaml --epochs 1
+```
+
+YOLO is optional. Install matched Torch/torchvision builds, then
+`pip install -e '.[yolo]'`. The example creates an architecture from YAML and
+trains without pretrained weights. Export writes PNGs, normalized labels,
+`dataset.yaml` and a provenance manifest. Group actual recordings by patient
+before exporting. The tiny artificial example verifies integration only.
+Disconnected waveform masks are not exported as misleading YOLO polygons.
+
+![Each of the twelve lead masks with its own envelope](research/assets/twelve-lead-masks.jpg)
+
+## Optional 3D captures
+
+```bash
+pip install -e '.[pathtrace]'
+python examples/pathtraced_capture.py --out build/pathtraced --spp 128
+```
+
+This offline route uses a developable 3D mesh, diffuse light transport,
+area-light shadows, measured CC0 tabletop texture and explicit occlusion.
+Each geometric target samples the same camera's actual visible paper rays.
+The unprinted backside receives no front-trace labels. Full camera/light
+configuration and source/content hashes accompany PNGs, NPZ targets and YOLO
+detection labels. Supply `--input recording.npz --fs 500` for your own signal.
+The torch training path remains independent of Mitsuba.
+
+![Actual 3D captures and aligned supervision](research/assets/pathtraced-gallery.jpg)
+
+This is prescribed paper geometry, not a cloth dynamics solver. The included
+wood texture is [attributed separately](assets/ATTRIBUTION.md). Neither backend
+has established photographic indistinguishability or clinical generalization.
 
 ## Detailed GPU profiling
 

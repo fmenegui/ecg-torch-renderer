@@ -4,13 +4,15 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ecg-torch-renderer"
-version = "0.6.0"
+version = "0.7.0"
 description = "Batched on-device ECG rendering with paired physical supervision"
 requires-python = ">=3.10"
 dependencies = ["torch>=2.6", "numpy>=1.24", "Pillow>=10.1"]
 
 [project.optional-dependencies]
 wfdb = ["wfdb>=4.1"]
+pathtrace = ["mitsuba>=3.9,<4"]
+yolo = ["ultralytics>=8.3,<9"]
 
 [project.scripts]
 ecg-render = "ecg_gpu.gpu_cli:main"

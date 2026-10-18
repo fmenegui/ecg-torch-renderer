@@ -1,5 +1,5 @@
 {
-  "version": "0.6.0",
+  "version": "0.7.0",
   "render_config": {
     "height": 768,
     "width": 1024,
@@ -893,27 +893,31 @@
     }
   },
   "source_sha256": {
-    "__init__.py": "4f948e678b1e59cb3b4bf57ca7f35464141d7a8174756dbb1f9235ccc789fd60",
+    "__init__.py": "e9d4122d61a06cf0b1ef9c263bb7eb568edd54c8da0b1c042b7270c32170552b",
+    "assets.py": "b2c3c6ed35549af13db2b386a2e2dbf89b69ea36f3542a9618e88ac6d82819cb",
     "audit.py": "f1adcf107a8ce24a348871d928284116a8ba5ffd586ff52d6a918af0cefb47ec",
     "benchmark.py": "efbe9785260751f524df16613d47f9119cd44cf471d5d031de958672461c843d",
     "compare.py": "e93f39f983a3b756eeea20aa2a5e876761b0171e32d71cf17a7538dd0a65d8e5",
+    "dataset_export.py": "c83affea97af673195116beaf804788709268f875bb366d2aaa8b85174cfa026",
     "demo.py": "efb4040cebba58ee5442c79570c2068928255d7a7e00deba7776d988559e73d9",
     "gallery.py": "805bff0d042c60b3d9ac9bf1e3e2ea7dcae688d19a2fd6d0880c48655a9531c4",
-    "gpu_appearance.py": "735df63d7831be6db375e2ed1b3b9beaf71592ab4790070829d95ba221a04a7c",
+    "gpu_appearance.py": "0faa0fb6290a04f99d39fb123f53c4cefa858000603776436ddfd7bd5066e93b",
     "gpu_cli.py": "97f1735ff2b98149546ca58350b9e5e4b5352d0845b89079edb2a6df6610098d",
-    "gpu_document.py": "99ef884273ad8a5f240c26d42af36fc0ef8494c492a04de95ef268a2095839d8",
+    "gpu_document.py": "1595bafa4ba6e562a9b1389f5ef07ab5a201ab77a84b587459775fd2774c80b5",
     "gpu_layouts.py": "b333425ccb5d9adce5d6ee767ea746d348673bac391d1262195ac6c014644491",
     "gpu_module.py": "c5882d1a08fa4c493f17dc8933236fedd4e99663cd9c4e7065a6389e01a74b78",
     "gpu_paper.py": "a6a8589bc6c911e053297b5d10c14c8d2b9814f0c202a61132a0b0c7f893b6d6",
     "gpu_parameters.py": "90ce9d4d1482f6a012b60704170d0673bace288ea32a4a70c46e15b5b72d6dfb",
     "gpu_profiling.py": "14f50d00ec6218ec3022b6e980416f323939e033b6e4739e56e2823329138ce5",
     "gpu_raster.py": "321c9492b2e72fbe96741901203316ce48cf7c95c3a3da704d3c68bf48753db3",
-    "gpu_renderer.py": "574a7ba2cfe8dfc5eb0db512036069239ab4a75c7af90472c48efdb7902c3576",
-    "gpu_supervision.py": "b1b4f1e4876404092877b8edb7d7d98b281ca40088dadb71627725a6f3046ac8",
+    "gpu_renderer.py": "10285a828f11e47587d47184b571fe9ec2d1d910d531f4528c3a2073abddafb6",
+    "gpu_supervision.py": "a8ee162abb34f24e59e73dd0bdd4f80db94209630e857a54574adac6fcead3c8",
     "models_v05.py": "b60aae5d2e583558195f067702e9759f404411025772d00c78a4d50cd0e233e2",
+    "pathtrace.py": "7d6d0071b61049020b7807121fd88a57527885b73d58c97af10516fe3dea861a",
     "profile.py": "662c0b5ea201c12bbfd19f7edf6aea8b5ee1b1faf4d22886f6e7501d94d6c93b",
-    "scenarios.py": "3da242234e3a15bfbdff1549be2bd7b37d4483901a5cbdefb022c811e31d7d5e",
-    "schema_v05.py": "8710d69398b35673b19f6129feb75a919eab485b7b6111cf024444234ab52c37"
+    "scenarios.py": "8c8e8526fcf837955508dea25bff032c61aa1266fc525077fb7ea9b930a77572",
+    "schema_v05.py": "8710d69398b35673b19f6129feb75a919eab485b7b6111cf024444234ab52c37",
+    "training.py": "d29e9d84d2092051d3293da4174b2d084f6e0f74ea470b6e3e79973e014f4ecb"
   },
   "signatures": {
     "ECGImageLayer": "(fs=500.0, *, config=None, parameters=None, seed=1973, randomize=True, renderer=None, **renderer_options)",
@@ -925,6 +929,10 @@
     "ECGRenderer": "(config=None, *, fonts=None, paper_textures=None, backgrounds=None, layouts=None, document_assets=None, artifact_texts=('COPY', 'TEST ECG', 'CHECK', 'ARCHIVE', 'SAMPLE'), compile_raster=False, compile_scene=False)",
     "ECGRenderer.forward": "(self, signals, fs, *, lengths=None, stage='all', photo=True, generator=None, parameters: Optional[Mapping] = None, severity=None, return_field=False, return_canonical=False, return_scene=False, return_instances=False, return_baselines=True, return_instance_boxes=True)",
     "profile_layer": "(layer, signals, out, *, steps=20, warmup=5, profile_steps=3, with_stack=False, memory_timeline=False, workload=None, workload_name='ECGImageLayer.forward')",
-    "capture_scenario": "(name, *, height=768, width=1024, severity=0.6)"
+    "capture_scenario": "(name, *, height=768, width=1024, severity=0.6)",
+    "detection_targets": "(batch, *, format='yolo', min_visible_fraction=0.0, label_offset=None)",
+    "padded_detection_targets": "(batch, *, min_visible_fraction=0.0)",
+    "masked_segmentation_loss": "(logits, targets, valid, *, channel_valid=None, pos_weight=None)",
+    "load_rgb_bank": "(paths, *, height=768, width=1024)"
   }
 }

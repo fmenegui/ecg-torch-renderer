@@ -1,0 +1,44 @@
+{
+  "schema": "ecg-round2-verification-v1",
+  "version": "0.7.0",
+  "upstream_commit": "4c4df84494821576b418ec12d5ec58ccef8d6a19",
+  "torch": "2.14.1+cpu",
+  "mitsuba": "3.9.1",
+  "tests": {
+    "run": 147,
+    "passed": 143,
+    "skipped_cuda": 4,
+    "seconds": 27.668
+  },
+  "unet_compiled_steps": 3,
+  "yolo_actual_epochs": 1,
+  "yolo_validation_map": 0.0,
+  "training_claim": "integration only, artificial data",
+  "wheel_build": "passed",
+  "pathtrace_renders": {
+    "cases": 3,
+    "width": 768,
+    "height": 576,
+    "radiance_samples_per_pixel": 128,
+    "label_samples_per_axis": 2
+  },
+  "all_lead_masks": 12,
+  "max_printed_instances": 15,
+  "cuda_measured": false,
+  "external_real_image_benchmark": false,
+  "clinical_validation": false,
+  "realism_100_percent_established": false,
+  "documentation_recipe_smoke": {
+    "rendered": 99,
+    "width": 96,
+    "height": 64,
+    "status": "passed"
+  },
+  "pathtrace_provenance_matches_source": true,
+  "artifact_sha256": {
+    "research/assets/supervision-targets.npz": "997293e2700c0946f3dfe6c20767a724bfaad2e48235d622ff53bf770fa765d4",
+    "research/assets/supervision-rgb.png": "b9940eb854d2689d8d07e5c6183901c188a2924a964f8105b5b77239b42c0182",
+    "research/assets/pathtraced-gallery.jpg": "c348c7494f88afb011e90adbc1a04cb8452e29df1114011f71bad34d3a7384f6",
+    "assets/backgrounds/wood_table_001_diff_1k.jpg": "460dd08d240f4a1f02982415048c3c5c200f385db212da18dc7e2df68bf4d0be"
+  }
+}

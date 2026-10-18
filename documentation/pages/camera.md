@@ -41,6 +41,19 @@ support. Very large user overrides are truncated by that support. Read and
 shot noise combine as variance `read_noise**2 + shot_noise**2 * intensity`.
 This is a Gaussian sensor approximation, not an electron-counting model.
 
+In 0.7.0 exposure, optical filtering, shot/read variance, geometric resampling,
+surface lighting and compositing operate in linear light. Highlights are
+retained until sensor saturation. Digital white balance follows sensor noise.
+The bounded 9×9 kernel accepts `blur` in [0,1.1] and motion in [0,3.2] output
+pixels. Larger kernels require an explicit alternative optical model.
+Paper-attached pen and stamp coverage now follow the sheet's material warp.
+The separate opaque rectangle remains a camera/scene occluder.
+
+Optional local measured backgrounds can be loaded once with `load_rgb_bank`.
+For actual 3D area-light transport and ray-visible supervision, install the
+optional Mitsuba backend and use `examples/pathtraced_capture.py`. Its CPU
+offline work is separate from rendering inside a torch training loop.
+
 Seven coherent recipes are available through `capture_scenario(name)`, returning
 a configuration and parameter dictionary for the usual image or supervision
 layer. Names are `clean_print`, `flatbed_scan`, `aged_scan`, `phone_photo`,

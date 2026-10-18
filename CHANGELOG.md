@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.7.0
+
+- Audit all 30 layouts with independent per-lead/per-instance mask and box
+  oracles, including repeated rhythm strips, Cabrera, crop, tears and marks.
+- Add on-device YOLO/torchvision target adapters and masked segmentation loss.
+- Export grouped PNG/YOLO datasets with source/provenance hashes and guards
+  against known source leakage. Verify actual U-Net and YOLO training steps.
+- Move optical integration, exposure, scene resampling and compositing into
+  linear light. Preserve HDR energy until sensor saturation.
+- Forward-project caster-height shadows, remove detached contact halos,
+  use coherent lighting and eliminate strongly periodic synthetic wood.
+- Attach pen marks and artifact text to sheet coordinates before deformation.
+- Add explicit measured RGB bank loading and an attributed CC0 wood texture.
+- Add optional offline Mitsuba 3D light transport with developable unit-edge
+  paper geometry, distinct unprinted backside, real camera ray visibility,
+  occluders, 12 lead masks, occurrence boxes and complete capture provenance.
+- Retain six independent reviews, actual renderer examples and training logs.
+- Update fingerprints for the changed camera/scene distribution. Earlier
+  checkpoints require the earlier package for observation-pixel replay.
+
 ## 0.6.0
 
 - Add seven coherent named capture scenarios, from flatbed scans to low-light

@@ -25,7 +25,7 @@ def table(headers, rows):
 def build():
     import torch
     import ecg_gpu
-    from ecg_gpu import ECGImageLayer, ECGRenderer, ECGSupervisionLayer, RenderConfig, SupervisionConfig, profile_layer, capture_scenario
+    from ecg_gpu import ECGImageLayer, ECGRenderer, ECGSupervisionLayer, RenderConfig, SupervisionConfig, profile_layer, capture_scenario, detection_targets, padded_detection_targets, masked_segmentation_loss, load_rgb_bank
     torch.set_num_threads(2)
     renderer = ECGRenderer(RenderConfig(height=64, width=96, surface_resolution=32, shadow_samples=0))
     parameters = renderer.sample_parameters(1, generator=torch.Generator().manual_seed(0))
@@ -46,6 +46,10 @@ def build():
         'ECGRenderer': ECGRenderer, 'ECGRenderer.forward': ECGRenderer.forward,
         'profile_layer': profile_layer,
         'capture_scenario': capture_scenario,
+        'detection_targets': detection_targets,
+        'padded_detection_targets': padded_detection_targets,
+        'masked_segmentation_loss': masked_segmentation_loss,
+        'load_rgb_bank': load_rgb_bank,
     }
     metadata['signatures'] = {name: str(inspect.signature(obj)) for name, obj in api.items()}
     perf = json.loads((ROOT / 'PERFORMANCE_CPU.json').read_text())
@@ -62,13 +66,15 @@ def build():
         'geometry_solver': 'coarse_to_fine with two pixel refinements, or dense reference',
     }
     summary = verified.get('release_validation', {})
-    current_path = ROOT / 'research/SWARM_VERIFICATION.json'
-    if current_path.exists():
-        current = json.loads(current_path.read_text())
-        if current.get('version') == ecg_gpu.__version__:
-            counts = current['tests']
-            summary = {**summary, 'portable_tests':
-                       f"{counts['passed']} passed, {counts['skipped_cuda']} CUDA skips ({counts['run']} tests run)"}
+    for current_name in ('ROUND2_VERIFICATION.json', 'SWARM_VERIFICATION.json'):
+        current_path = ROOT / 'research' / current_name
+        if current_path.exists():
+            current = json.loads(current_path.read_text())
+            if current.get('version') == ecg_gpu.__version__:
+                counts = current['tests']
+                summary = {**summary, 'portable_tests':
+                           f"{counts['passed']} passed, {counts['skipped_cuda']} CUDA skips ({counts['run']} tests run)"}
+                break
     replacements = {
         'layout_count': str(len(renderer.layout_specs)), 'figure_count': str(gallery['figures']),
         'layout_table': table(['Layout', 'Short rows', 'Rhythm strips'], [

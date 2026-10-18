@@ -10,6 +10,20 @@ from torch import nn
 from torch.nn import functional as F
 
 
+def srgb_to_linear(image):
+    """Decode IEC sRGB display values without discarding highlight headroom."""
+    image = image.clamp_min(0)
+    return torch.where(image <= .04045, image / 12.92,
+                       ((image + .055) / 1.055).pow(2.4))
+
+
+def linear_to_srgb(image):
+    """Encode linear RGB. Sensor saturation belongs at the camera boundary."""
+    image = image.clamp_min(0)
+    return torch.where(image <= .0031308, image * 12.92,
+                       1.055 * image.pow(1 / 2.4) - .055)
+
+
 class CameraAppearance(nn.Module):
     def __init__(self):
         super().__init__()
@@ -86,6 +100,14 @@ class CameraAppearance(nn.Module):
         return F.conv2d(padded, kernel, groups=b * c).reshape(b, c, h, w)
 
     def forward(self, image, parameters, generator=None):
+        """Observe an sRGB scene through linear optics and a simplified sensor.
+
+        ``sensor_active`` blends the captured observation with the legacy direct
+        document path. Noise coefficients in the active sensor are standard
+        deviations in normalized linear sensor units. ``gamma`` remains an
+        optional display tone adjustment after the standard sRGB transfer.
+        This is an RGB sensor approximation, without a CFA or a fitted ISP.
+        """
         b, _, h, w = image.shape
         yy = torch.linspace(-1, 1, h, device=image.device)[None, None, :, None]
         xx = torch.linspace(-1, 1, w, device=image.device)[None, None, None, :]
@@ -94,17 +116,25 @@ class CameraAppearance(nn.Module):
         light -= p('vignette') * (xx.square() + yy.square())
         distance = xx * p('shadow_cos') + yy * p('shadow_sin') - p('shadow_position')
         light *= 1 - p('shadow_strength') * torch.sigmoid(-distance / .07)
-        image = (image * light * parameters['white_balance'][:, :, None, None]).clamp(0, 1)
-        # Finite shutter motion and defocus share a normalized optical PSF.
-        blurred = self.optical_blur(image, parameters['blur'], parameters['motion'], parameters['motion_angle'])
-        image = torch.lerp(image, blurred, p('sensor_active'))
+        white_balance = parameters['white_balance'][:, :, None, None]
+        # Reflectance colors arrive display encoded. Exposure and the optical
+        # PSF act on radiance, where adding photons is a linear operation.
+        # Do not clip highlights before their energy spreads through the PSF.
+        irradiance = srgb_to_linear(image) * light.clamp_min(0)
+        sensor = self.optical_blur(irradiance, parameters['blur'], parameters['motion'], parameters['motion_angle'])
         noise = torch.randn(image.shape, device=image.device, generator=generator)
         # Independent read and signal-dependent shot noise add in variance.
-        # shot_noise is a standard-deviation coefficient in observation units,
-        # not an electron count. This remains a Gaussian sensor approximation.
-        variance = p('read_noise').square() + p('shot_noise').square() * image.clamp_min(0)
-        image = image + noise * variance.sqrt()
-        image = image.clamp(0, 1).pow(p('gamma'))
+        # Shot noise is evaluated before digital white balance, which amplifies
+        # the observed noise along with each channel's signal.
+        variance = p('read_noise').square() + p('shot_noise').square() * sensor.clamp_min(0)
+        sensor = (sensor + noise * variance.sqrt()).clamp(0, 1)
+        sensor = linear_to_srgb(sensor * white_balance).clamp(0, 1).pow(p('gamma'))
+        # Preserve canonical display-space behavior for sensor_active=0, which
+        # existing callers also use to bypass optics for clean printed pages.
+        direct = (image * light * white_balance).clamp(0, 1)
+        direct_variance = p('read_noise').square() + p('shot_noise').square() * direct
+        direct = (direct + noise * direct_variance.sqrt()).clamp(0, 1).pow(p('gamma'))
+        image = torch.lerp(direct, sensor, p('sensor_active'))
         compressed = self.jpeg(image, parameters['jpeg_quality'])
         image = torch.where(p('jpeg_active').bool(), compressed, image)
         # Quantization occurs only in the observation, never in signal references.

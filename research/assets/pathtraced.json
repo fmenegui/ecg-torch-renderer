@@ -1,0 +1,252 @@
+{
+  "schema": "ecg-pathtrace-example-v1",
+  "source": "entirely artificial demo ECG",
+  "source_sha256": "33d09be6677133f4ed0d87f6b9c1824e6125dcc6d8e7b4394192bcdcdd5b5afb",
+  "fs": 500,
+  "clinical_validation": false,
+  "real_image_equivalence": false,
+  "source_signal_preserved": true,
+  "background": "/workspace/scratch/b3d4b6a3edd8/ecg-torch-renderer/assets/backgrounds/wood_table_001_diff_1k.jpg",
+  "cases": [
+    {
+      "name": "flat",
+      "config": {
+        "width": 768,
+        "height": 576,
+        "samples_per_pixel": 128,
+        "label_samples_per_axis": 2,
+        "surface": "flat",
+        "bend_radians": 0.0,
+        "camera_origin": [
+          0.025,
+          -0.115,
+          0.38
+        ],
+        "camera_target": [
+          0.0,
+          0.0,
+          0.008
+        ],
+        "field_of_view": 48.0,
+        "key_radiance": 4.0,
+        "environment_radiance": 0.12,
+        "background_extent_m": 1.5,
+        "occluder": false
+      },
+      "capture": {
+        "schema": "ecg-pathtrace-v1",
+        "mitsuba": "3.9.1",
+        "variant": "llvm_ad_rgb",
+        "configuration": {
+          "width": 768,
+          "height": 576,
+          "samples_per_pixel": 128,
+          "label_samples_per_axis": 2,
+          "surface": "flat",
+          "bend_radians": 0.0,
+          "camera_origin": [
+            0.025,
+            -0.115,
+            0.38
+          ],
+          "camera_target": [
+            0.0,
+            0.0,
+            0.008
+          ],
+          "field_of_view": 48.0,
+          "key_radiance": 4.0,
+          "environment_radiance": 0.12,
+          "background_extent_m": 1.5,
+          "occluder": false
+        },
+        "torch_version": "2.14.1+cpu",
+        "implementation_sha256": "7d6d0071b61049020b7807121fd88a57527885b73d58c97af10516fe3dea861a",
+        "canonical_texture_sha256": "10c935baeac5f947f70b40ce0d4a53eae14a04e01e3462dc88e79c961dc89b50",
+        "canonical_reference_sha256": "33d09be6677133f4ed0d87f6b9c1824e6125dcc6d8e7b4394192bcdcdd5b5afb",
+        "canonical_reference_shape": [
+          1,
+          12,
+          5000
+        ],
+        "canonical_reference_dtype": "<f4",
+        "canonical_sample_rate_hz": [
+          500.0
+        ],
+        "seed": 241000,
+        "samples_per_pixel": 128,
+        "label_samples_per_axis": 2,
+        "width_m": 0.27121486594621685,
+        "height_m": 0.20341114945966263,
+        "surface": "flat",
+        "bend_radians": 0.0,
+        "background_sha256": "460dd08d240f4a1f02982415048c3c5c200f385db212da18dc7e2df68bf4d0be",
+        "geometry": "prescribed developable mesh, not cloth dynamics",
+        "external_real_image_validation": false
+      },
+      "visible_leads": 12,
+      "visible_instances": 13,
+      "rgb_sha256": "0aa6f61222d30b31eac2422ebdcc252db806af034916787ff5b822414edc188d"
+    },
+    {
+      "name": "curl",
+      "config": {
+        "width": 768,
+        "height": 576,
+        "samples_per_pixel": 128,
+        "label_samples_per_axis": 2,
+        "surface": "curl",
+        "bend_radians": 0.55,
+        "camera_origin": [
+          0.025,
+          -0.115,
+          0.38
+        ],
+        "camera_target": [
+          0.0,
+          0.0,
+          0.008
+        ],
+        "field_of_view": 48.0,
+        "key_radiance": 4.0,
+        "environment_radiance": 0.12,
+        "background_extent_m": 1.5,
+        "occluder": false
+      },
+      "capture": {
+        "schema": "ecg-pathtrace-v1",
+        "mitsuba": "3.9.1",
+        "variant": "llvm_ad_rgb",
+        "configuration": {
+          "width": 768,
+          "height": 576,
+          "samples_per_pixel": 128,
+          "label_samples_per_axis": 2,
+          "surface": "curl",
+          "bend_radians": 0.55,
+          "camera_origin": [
+            0.025,
+            -0.115,
+            0.38
+          ],
+          "camera_target": [
+            0.0,
+            0.0,
+            0.008
+          ],
+          "field_of_view": 48.0,
+          "key_radiance": 4.0,
+          "environment_radiance": 0.12,
+          "background_extent_m": 1.5,
+          "occluder": false
+        },
+        "torch_version": "2.14.1+cpu",
+        "implementation_sha256": "7d6d0071b61049020b7807121fd88a57527885b73d58c97af10516fe3dea861a",
+        "canonical_texture_sha256": "10c935baeac5f947f70b40ce0d4a53eae14a04e01e3462dc88e79c961dc89b50",
+        "canonical_reference_sha256": "33d09be6677133f4ed0d87f6b9c1824e6125dcc6d8e7b4394192bcdcdd5b5afb",
+        "canonical_reference_shape": [
+          1,
+          12,
+          5000
+        ],
+        "canonical_reference_dtype": "<f4",
+        "canonical_sample_rate_hz": [
+          500.0
+        ],
+        "seed": 241001,
+        "samples_per_pixel": 128,
+        "label_samples_per_axis": 2,
+        "width_m": 0.27121486594621685,
+        "height_m": 0.20341114945966263,
+        "surface": "curl",
+        "bend_radians": 0.55,
+        "background_sha256": "460dd08d240f4a1f02982415048c3c5c200f385db212da18dc7e2df68bf4d0be",
+        "geometry": "prescribed developable mesh, not cloth dynamics",
+        "external_real_image_validation": false
+      },
+      "visible_leads": 12,
+      "visible_instances": 13,
+      "rgb_sha256": "956bf3356db71030c33bb25d84dbf46287a764ab8196c265cc4bbfaf605c42b9"
+    },
+    {
+      "name": "fold",
+      "config": {
+        "width": 768,
+        "height": 576,
+        "samples_per_pixel": 128,
+        "label_samples_per_axis": 2,
+        "surface": "fold",
+        "bend_radians": 0.24,
+        "camera_origin": [
+          0.025,
+          -0.115,
+          0.38
+        ],
+        "camera_target": [
+          0.0,
+          0.0,
+          0.008
+        ],
+        "field_of_view": 48.0,
+        "key_radiance": 4.0,
+        "environment_radiance": 0.12,
+        "background_extent_m": 1.5,
+        "occluder": true
+      },
+      "capture": {
+        "schema": "ecg-pathtrace-v1",
+        "mitsuba": "3.9.1",
+        "variant": "llvm_ad_rgb",
+        "configuration": {
+          "width": 768,
+          "height": 576,
+          "samples_per_pixel": 128,
+          "label_samples_per_axis": 2,
+          "surface": "fold",
+          "bend_radians": 0.24,
+          "camera_origin": [
+            0.025,
+            -0.115,
+            0.38
+          ],
+          "camera_target": [
+            0.0,
+            0.0,
+            0.008
+          ],
+          "field_of_view": 48.0,
+          "key_radiance": 4.0,
+          "environment_radiance": 0.12,
+          "background_extent_m": 1.5,
+          "occluder": true
+        },
+        "torch_version": "2.14.1+cpu",
+        "implementation_sha256": "7d6d0071b61049020b7807121fd88a57527885b73d58c97af10516fe3dea861a",
+        "canonical_texture_sha256": "10c935baeac5f947f70b40ce0d4a53eae14a04e01e3462dc88e79c961dc89b50",
+        "canonical_reference_sha256": "33d09be6677133f4ed0d87f6b9c1824e6125dcc6d8e7b4394192bcdcdd5b5afb",
+        "canonical_reference_shape": [
+          1,
+          12,
+          5000
+        ],
+        "canonical_reference_dtype": "<f4",
+        "canonical_sample_rate_hz": [
+          500.0
+        ],
+        "seed": 241002,
+        "samples_per_pixel": 128,
+        "label_samples_per_axis": 2,
+        "width_m": 0.27121486594621685,
+        "height_m": 0.20341114945966263,
+        "surface": "fold",
+        "bend_radians": 0.24,
+        "background_sha256": "460dd08d240f4a1f02982415048c3c5c200f385db212da18dc7e2df68bf4d0be",
+        "geometry": "prescribed developable mesh, not cloth dynamics",
+        "external_real_image_validation": false
+      },
+      "visible_leads": 12,
+      "visible_instances": 13,
+      "rgb_sha256": "21fc4ae36dc8ea2fce80cfcdff667785ba80337e1c38e83bae9ff6a0db325798"
+    }
+  ]
+}

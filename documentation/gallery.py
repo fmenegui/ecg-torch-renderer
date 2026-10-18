@@ -68,7 +68,7 @@ def recipes(layout_names):
         add('shadow-' + name, 'Lighting', name.title() + ' shadow',
             'An analytic foreground silhouette. This is a procedural shadow, not a photographed hand or phone.',
             {'object_shadow': name})
-    colors = ['Ivory', 'Pink', 'Cream', 'Yellow', 'Blue', 'Green', 'Gray', 'Aged']
+    colors = ['Ivory', 'Warm white', 'Cream', 'Light aged', 'Cool white', 'Natural', 'Gray', 'Aged']
     for index, name in enumerate(colors):
         add('color-' + name.lower(), 'Paper', name + ' paper',
             'Paper palette selected independently of grid ink and table material.', {'paper_palette': index})
@@ -84,8 +84,8 @@ def recipes(layout_names):
         ('quarter-turn', 'Geometry', 'Quarter turn', 'Orientation is configurable independently of the layout.', {'quarter': 1}),
         ('crop', 'Geometry', 'Partial crop', 'Only visible paper can supervise image-space recovery.', {'zoom': 1.18, 'translate_x': .15}),
         ('radial', 'Geometry', 'Lens distortion', 'Radial displacement of the camera sampling field.', {'radial': .07}),
-        ('defocus', 'Camera', 'Defocus', 'Optical blur softens the printed line and the grid together.', {'blur': 1.8}),
-        ('motion', 'Camera', 'Motion blur', 'Directional blur from a moving capture.', {'motion': 6., 'motion_angle': .6}),
+        ('defocus', 'Camera', 'Defocus', 'Optical blur softens the printed line and the grid together.', {'blur': 1.1}),
+        ('motion', 'Camera', 'Motion blur', 'Directional blur from a moving capture.', {'motion': 3.2, 'motion_angle': .6}),
         ('noise', 'Camera', 'Sensor noise', 'Read and shot noise are applied in the camera model.', {'read_noise': .032, 'shot_noise': .025}),
         ('jpeg', 'Camera', 'JPEG artifacts', 'Block DCT quantization approximation inside Torch.', {'jpeg_quality': 25., 'jpeg_active': 1.}),
         ('exposure', 'Camera', 'Low exposure', 'Exposure and normal-based illumination combine before camera encoding.', {'exposure': .65}),

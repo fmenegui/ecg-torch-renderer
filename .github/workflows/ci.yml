@@ -54,4 +54,27 @@ jobs:
       - run: npm install --prefix documentation
       - run: python documentation/build.py
       - run: python documentation/validate.py
+  optional-integrations:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      YOLO_OFFLINE: 'true'
+      OMP_NUM_THREADS: '2'
+      MKL_NUM_THREADS: '2'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Install matched CPU image stack and optional backends
+        run: |
+          python -m pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install -e '.[pathtrace,yolo]'
+      - name: Independent 3D ray, UV, visibility and physical-scale tests
+        run: python -m unittest discover -s tests -p test_pathtrace_quality.py -v
+      - name: Export grouped YOLO detection dataset
+        run: python examples/export_yolo.py --out build/yolo-ci --groups 4 --views 2 --width 192 --height 128
+      - name: Actual YOLO architecture training and validation without pretrained weights
+        run: python examples/train_yolo.py --data build/yolo-ci/dataset.yaml --epochs 1 --imgsz 128 --batch 2 --project build/yolo-ci-training
 

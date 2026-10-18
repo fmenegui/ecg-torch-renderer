@@ -1,0 +1,78 @@
+Ultralytics 8.4.182 🚀 Python-3.12.14 torch-2.14.1+cpu CPU (AMD EPYC 9V74 80-Core Processor)
+engine/trainer: agnostic_nms=False, amp=False, angle=1.0, augment=False, auto_augment=randaugment, batch=2, bgr=0.0, box=7.5, cache=False, cfg=None, channels_last=None, classes=None, close_mosaic=10, cls=0.5, cls_pw=0.0, cls_remap=True, compile=False, conf=None, copy_paste=0.0, copy_paste_mode=flip, cos_lr=False, cutmix=0.0, data=/workspace/scratch/b3d4b6a3edd8/ecg-torch-renderer/build/round2-yolo-smoke/dataset.yaml, degrees=0.0, deterministic=True, device=cpu, dfl=1.5, dgrad=0.5, dis=6.0, distill_model=None, dlam=1.0, dlog=1.0, dnn=False, dropout=0.0, dynamic=False, embed=None, epochs=1, erasing=0.4, exist_ok=False, fliplr=0.0, flipud=0.0, format=torchscript, fraction=1.0, freeze=None, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, imgsz=128, iou=0.7, kobj=1.0, line_width=None, lr0=0.01, lrf=0.01, mask_ratio=4, max_det=300, mixup=0.0, mode=train, model=yolo11n.yaml, momentum=0.937, mosaic=0.0, multi_scale=0.0, name=ecg, nbs=64, nms=None, opset=None, optimize=False, optimizer=auto, overlap_mask=True, patience=100, perspective=0.0, plots=False, pose=12.0, pretrained=False, profile=False, project=build/round2-yolo-training-cpu, quantize=None, rect=False, resume=False, retina_masks=False, rle=1.0, save=True, save_conf=False, save_crop=False, save_dir=/workspace/scratch/b3d4b6a3edd8/ecg-torch-renderer/runs/detect/build/round2-yolo-training-cpu/ecg, save_frames=False, save_json=False, save_period=-1, save_txt=False, scale=0.5, seed=0, shear=0.0, show=False, show_boxes=True, show_conf=True, show_labels=True, simplify=True, single_cls=False, source=None, split=val, stream_buffer=False, task=detect, time=None, tracker=tracktrack.yaml, translate=0.1, val=True, verbose=True, vid_stride=1, visualize=False, warmup_bias_lr=0.1, warmup_epochs=3.0, warmup_momentum=0.8, weight_decay=0.0005, workers=0, workspace=None
+Overriding model.yaml nc=80 with nc=12
+
+                   from  n    params  module                                       arguments                     
+  0                  -1  1       464  ultralytics.nn.modules.conv.Conv             [3, 16, 3, 2]                 
+  1                  -1  1      4672  ultralytics.nn.modules.conv.Conv             [16, 32, 3, 2]                
+  2                  -1  1      6640  ultralytics.nn.modules.block.C3k2            [32, 64, 1, False, 0.25]      
+  3                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+  4                  -1  1     26080  ultralytics.nn.modules.block.C3k2            [64, 128, 1, False, 0.25]     
+  5                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+  6                  -1  1     87040  ultralytics.nn.modules.block.C3k2            [128, 128, 1, True]           
+  7                  -1  1    295424  ultralytics.nn.modules.conv.Conv             [128, 256, 3, 2]              
+  8                  -1  1    346112  ultralytics.nn.modules.block.C3k2            [256, 256, 1, True]           
+  9                  -1  1    164608  ultralytics.nn.modules.block.SPPF            [256, 256, 5]                 
+ 10                  -1  1    249728  ultralytics.nn.modules.block.C2PSA           [256, 256, 1]                 
+ 11                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 12             [-1, 6]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 13                  -1  1    111296  ultralytics.nn.modules.block.C3k2            [384, 128, 1, False]          
+ 14                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 15             [-1, 4]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 16                  -1  1     32096  ultralytics.nn.modules.block.C3k2            [256, 64, 1, False]           
+ 17                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+ 18            [-1, 13]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 19                  -1  1     86720  ultralytics.nn.modules.block.C3k2            [192, 128, 1, False]          
+ 20                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+ 21            [-1, 10]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 22                  -1  1    378880  ultralytics.nn.modules.block.C3k2            [384, 256, 1, True]           
+ 23        [16, 19, 22]  1    433012  ultralytics.nn.modules.head.Detect           [12, 16, None, [64, 128, 256]]
+YOLO11n summary: 181 layers, 2,592,180 parameters, 2,592,164 gradients, 6.5 GFLOPs
+
+Freezing layer 'model.23.dfl.conv.weight'
+train: Fast image access ✅ (ping: 0.0±0.0 ms, read: 2053.2±864.0 MB/s, size: 32.0 KB)
+
+train: Scanning /workspace/scratch/b3d4b6a3edd8/ecg-torch-renderer/build/round2-yolo-smoke/labels/train.cache... 6 images, 0 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 6/6 1.1Mit/s 0.0s
+val: Fast image access ✅ (ping: 0.0±0.0 ms, read: 2818.2±1156.5 MB/s, size: 44.8 KB)
+
+val: Scanning /workspace/scratch/b3d4b6a3edd8/ecg-torch-renderer/build/round2-yolo-smoke/labels/val.cache... 2 images, 0 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 2/2 1.2Mit/s 0.0s
+optimizer: 'optimizer=auto' found, ignoring 'lr0=0.01' and determining best 'optimizer' and 'lr0' automatically... 
+optimizer: AdamW(lr=0.000625, momentum=0.9) with parameter groups 81 weight(decay=0.0), 88 weight(decay=0.0005), 87 bias(decay=0.0)
+Using 6 train, 2 val images for fraction=1.0 at imgsz=128
+Using 0 dataloader workers
+Logging results to /workspace/scratch/b3d4b6a3edd8/ecg-torch-renderer/runs/detect/build/round2-yolo-training-cpu/ecg
+Starting training for 1 epochs...
+Closing dataloader mosaic
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+
+        1/1         0G     0.5367      1.008     0.3027         24        128: 0% ──────────── 0/3  0.3s
+        1/1         0G      4.435      3.747      2.709         23        128: 66% ━━━━━━━━──── 2/3 4.1it/s 0.4s<0.2s
+        1/1         0G      4.435      3.747      2.709         23        128: 100% ━━━━━━━━━━━━ 3/3 7.4it/s 0.4s
+
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 12.7it/s 0.1s
+                   all          2         25          0          0          0          0
+
+1 epochs completed in 0.000 hours.
+Optimizer stripped from /workspace/scratch/b3d4b6a3edd8/ecg-torch-renderer/runs/detect/build/round2-yolo-training-cpu/ecg/weights/last.pt, 5.4MB
+Optimizer stripped from /workspace/scratch/b3d4b6a3edd8/ecg-torch-renderer/runs/detect/build/round2-yolo-training-cpu/ecg/weights/best.pt, 5.4MB
+
+Validating /workspace/scratch/b3d4b6a3edd8/ecg-torch-renderer/runs/detect/build/round2-yolo-training-cpu/ecg/weights/best.pt...
+Ultralytics 8.4.182 🚀 Python-3.12.14 torch-2.14.1+cpu CPU (AMD EPYC 9V74 80-Core Processor)
+YOLO11n summary (fused): 100 layers, 2,584,492 parameters, 0 gradients, 6.4 GFLOPs
+
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 16.5it/s 0.1s
+                   all          2         25          0          0          0          0
+                     I          2          2          0          0          0          0
+                    II          2          3          0          0          0          0
+                   III          2          2          0          0          0          0
+                   aVR          2          2          0          0          0          0
+                   aVL          2          2          0          0          0          0
+                   aVF          2          2          0          0          0          0
+                    V1          2          2          0          0          0          0
+                    V2          2          2          0          0          0          0
+                    V3          2          2          0          0          0          0
+                    V4          2          2          0          0          0          0
+                    V5          2          2          0          0          0          0
+                    V6          2          2          0          0          0          0
+Speed: 0.0ms preprocess, 28.0ms inference, 0.0ms loss, 0.4ms postprocess per image

@@ -14,7 +14,7 @@ import torch
 from torch import nn
 from torch.nn import functional as F
 
-from .gpu_appearance import CameraAppearance
+from .gpu_appearance import CameraAppearance, srgb_to_linear, linear_to_srgb
 from .gpu_document import DocumentAssets, DocumentScene, SURFACES, BACKGROUNDS, SHADOWS
 from .gpu_layouts import LayoutSpec, standard_layouts
 from .gpu_raster import raster_kernels
@@ -184,8 +184,8 @@ class ECGRenderer(nn.Module):
         return {'schema': 'ecg-replot-torch-renderer-v3', 'config': asdict(self.config), 'fonts': self.fonts,
                 'signal_units': 'mV', 'signal_order': LEADS, 'font_initialization': 'CPU once',
                 'hot_path': 'torch on input device', 'jpeg': 'DCT simulation, not a JPEG bitstream',
-                'optical_model': 'finite-shutter-gaussian-v1',
-                'sensor_noise': 'independent-read-shot-variance-v1',
+                'optical_model': 'linear-light-finite-shutter-gaussian-v2',
+                'sensor_noise': 'linear-sensor-independent-read-shot-v2',
                 'atlas_sha256': self.atlas_sha256,
                 'texture_sha256': self.texture_sha256,
                 'paper_texture_count': len(self.paper_textures), 'background_count': len(self.backgrounds),
@@ -194,6 +194,9 @@ class ECGRenderer(nn.Module):
                 'surface_modes':SURFACES,'background_types':BACKGROUNDS,'shadow_types':SHADOWS,
                 'document_asset_count':len(self.document.asset_mask), 'document_asset_sha256':self.document.asset_hashes,
                 'paper_model':'material-paper-v1',
+                'scene_illumination':'linear-light-matte-v2',
+                'tabletop_shadow':'forward-caster-height-area-light-v2',
+                'material_marks':'canonical-shared-inverse-field-v2',
                 'procedural_geometry':'developable tangent integration with bounded finite creases, 2.5D',
                 'external_geometry':'optional inverse UV/visibility/normal/depth bank'}
 
@@ -612,6 +615,13 @@ class ECGRenderer(nn.Module):
             torch._assert_async(((p['surface_strength']>=0)&(p['surface_strength']<=1)).all(),'Surface strength must be in [0,1]')
             torch._assert_async(((p['crease_count']>=0)&(p['crease_count']<=8)).all(),'Crease count must be in 0..8')
             torch._assert_async((p['paper_gap']>=0).all(),'Paper gap must be nonnegative')
+            for key in ['read_noise','shot_noise','exposure','white_balance']:
+                torch._assert_async((p[key]>=0).all(),f'Nonnegative {key} required')
+            torch._assert_async((p['gamma']>0).all(),'Positive gamma required')
+            torch._assert_async(((p['blur']>=0)&(p['blur']<=1.1)).all(),
+                                'Optical blur sigma must be in [0,1.1] pixels for the finite PSF')
+            torch._assert_async(((p['motion']>=0)&(p['motion']<=3.2)).all(),
+                                'Optical motion must be in [0,3.2] pixels for the finite PSF')
             torch._assert_async(((p['artifact_text']>=0)&(p['artifact_text']<len(self.artifact_texts))).all(),'Invalid artifact text')
             for key,count in [('font',self.font_count),('artifact_font',self.font_count),('palette',len(self.palette)),('grid_style',4),
                               ('surface_mode',len(SURFACES)),('background_type',len(BACKGROUNDS)),
@@ -659,6 +669,22 @@ class ECGRenderer(nn.Module):
         print_alpha = torch.maximum(torch.maximum(ink, pulse), text) * fade * p['ink_density'][:, None, None, None]
         canonical = torch.lerp(canonical, p['ink_color'][:,:,None,None].expand_as(canonical), print_alpha)
         canonical += p['band_strength'][:, None, None, None] * torch.sin(self.yy / self.config.height * p['band_frequency'][:, None, None, None] * (2 * math.pi))
+        # Pen and printed stamps are attached to paper material coordinates.
+        # They undergo exactly the same inverse warp as the ECG and cannot
+        # float at fixed camera pixels while the page bends or rotates.
+        xx, yy = self.xx / self.config.width, self.yy / self.config.height
+        def column(name):
+            return p[name][:, None, None, None]
+        local_x = (xx - column('pen_x')) / .17
+        pen_y = column('pen_y') + .023 * torch.sin(local_x * 16 + column('pen_phase')) + .015 * local_x
+        pen = (1 - ((yy - pen_y) * self.config.height).abs() / 1.4).clamp(0, 1)
+        pen *= ((local_x >= 0) & (local_x <= 1)) * column('pen_active')
+        canonical = torch.lerp(canonical, self.pen_color, pen)
+        tokens = p['artifact_font'][:,None]*len(self.tokens)+self.artifact_offset+p['artifact_text'].long()
+        artifacts = self._stamp(tokens,p['artifact_x']*self.config.width,p['artifact_y']*self.config.height,
+                                p['artifact_size'],p['artifact_present'],patch=(48,256),rotation=p['artifact_angle'])
+        canonical = torch.lerp(canonical,p['artifact_color'][:,:,None,None].expand_as(canonical),artifacts)
+        material_valid = ((pen < .15) & (artifacts < .15)).float()
         # Crease illumination comes from the material mesh. No independent
         # painted highlight is placed on otherwise flat paper.
         if vertices is not None:
@@ -674,48 +700,40 @@ class ECGRenderer(nn.Module):
             # Fractional coverage antialiases the sheet silhouette. The same
             # coverage gates targets, cast shadows and RGB compositing.
             valid = F.grid_sample(torch.ones_like(ink), field, align_corners=False)
-            image = F.grid_sample(canonical, field, align_corners=False, padding_mode='border')
+            image = F.grid_sample(srgb_to_linear(canonical), field, align_corners=False, padding_mode='border')
             if scene is None:
                 scene = {'field':field,'solver_valid':torch.ones_like(valid),
                          'normals':torch.cat([torch.zeros_like(valid),torch.zeros_like(valid),torch.ones_like(valid)],1),
                          'height':torch.zeros_like(valid),'illumination':torch.ones_like(image),
                          'asset_id':torch.full((b,),-1,device=self.device,dtype=torch.long)}
             valid *= scene['solver_valid']*self.document.paper_mask(field,p)
-            image = (image*scene['illumination']).clamp(0,1)
+            # Material colours and imported RGB textures are encoded sRGB.
+            # Irradiance multiplies radiance, never display code values. Keep
+            # highlights until the camera sensor performs its own clipping.
+            image = image*scene['illumination']
             if len(self.backgrounds):
                 background,background_id = self._texture(self.backgrounds,b,generator,False)
             else:
                 background = self.document.background(p,generator)
                 background_id = torch.full((b,),-1,device=self.device,dtype=torch.long)
             scene['cast_shadow'] = self.document.cast_shadow(valid,scene,p)
-            background *= 1-scene['cast_shadow']
+            background = srgb_to_linear(background)*(1-scene['cast_shadow'])
             image = torch.lerp(background,image,valid.clamp(0,1))
             scene['paper_mask'] = valid.clone()
             scene['object_shadow'] = self.document.object_shadow(p)
-            image *= 1-scene['object_shadow']
+            image = linear_to_srgb(image*(1-scene['object_shadow']))
             targets = {name: F.grid_sample(value, field, align_corners=False) for name, value in targets.items()}
             unit_support = F.grid_sample(unit_mask, field, align_corners=False) if unit_mask is not None else None
+            material_valid = F.grid_sample(material_valid, field, align_corners=False, padding_mode='border')
         else:
             valid, image, unit_support = torch.ones_like(ink), canonical, unit_mask
             background_id = torch.full((b,), -1, device=self.device, dtype=torch.long)
-        # Opaque stickers/redactions and pen marks have explicit visibility masks.
-        xx, yy = self.xx / self.config.width, self.yy / self.config.height
-        def column(name):
-            return p[name][:, None, None, None]
+        # This legacy opaque rectangle represents a scene/camera occluder.
+        # Unlike pen and stamp ink, it intentionally stays in output pixels.
         cover = ((xx >= column('occlusion_x')) & (xx <= column('occlusion_x') + column('occlusion_w'))
                  & (yy >= column('occlusion_y')) & (yy <= column('occlusion_y') + column('occlusion_h'))).float() * column('occlusion_active')
         image = torch.lerp(image, p['occlusion_color'][:, :, None, None], cover)
-        local_x = (xx - column('pen_x')) / .17
-        pen_y = column('pen_y') + .023 * torch.sin(local_x * 16 + column('pen_phase')) + .015 * local_x
-        pen = (1 - ((yy - pen_y) * self.config.height).abs() / 1.4).clamp(0, 1)
-        pen *= ((local_x >= 0) & (local_x <= 1)) * column('pen_active')
-        image = torch.lerp(image, self.pen_color, pen)
-        valid *= (1 - cover) * (pen < .15)
-        tokens = p['artifact_font'][:,None]*len(self.tokens)+self.artifact_offset+p['artifact_text'].long()
-        artifacts = self._stamp(tokens,p['artifact_x']*self.config.width,p['artifact_y']*self.config.height,
-                                p['artifact_size'],p['artifact_present'],patch=(48,256),rotation=p['artifact_angle'])
-        image = torch.lerp(image,p['artifact_color'][:,:,None,None].expand_as(image),artifacts)
-        valid *= artifacts<.15
+        valid *= (1-cover)*material_valid
         if stage!='image':
             targets['valid'] = valid
         unit_evidence = None

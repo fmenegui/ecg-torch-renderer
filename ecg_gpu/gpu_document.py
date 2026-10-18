@@ -73,8 +73,8 @@ class DocumentScene(nn.Module):
                                 (torch.arange(resolution * 2) + .5) * (2 / (resolution * 2)) - 1, indexing='ij')
         self.register_buffer('background_xy',torch.stack((bx, by), 0)[None])
         self.register_buffer('paper_colors',torch.tensor([
-            [.985,.980,.970],[.995,.910,.905],[.970,.950,.840],[.970,.915,.710],
-            [.865,.940,.980],[.865,.955,.880],[.900,.905,.895],[.875,.800,.655]]))
+            [.985,.980,.970],[.990,.978,.965],[.975,.962,.935],[.970,.945,.900],
+            [.960,.960,.950],[.985,.980,.950],[.935,.930,.910],[.910,.875,.805]]))
         self.register_buffer('table_colors',torch.tensor([
             [.42,.255,.145],[.73,.73,.70],[.82,.78,.67],[.31,.37,.43],
             [.55,.59,.63],[.77,.86,.85],[.17,.19,.22],[.27,.17,.13]]))
@@ -142,9 +142,10 @@ class DocumentScene(nn.Module):
                 'background_type':integer(len(BACKGROUNDS)),
                 'background_angle':rand()*math.tau, 'background_scale':.6+rand()*1.1,
                 'background_tint':.90+rand(b,3)*.20,
-                'light_direction':torch.cat([(rand(b,3,2)*2-1)*1.1,.65+rand(b,3,1)],-1),
-                'light_color':.86+rand(b,3,3)*.14,
-                'light_energy':(.18+rand(b,3)*.32)*intensity[:,None]/2,
+                'light_direction':self._sample_light_directions(b, generator),
+                'light_color':self._sample_light_colors(b, generator),
+                'light_energy':(.18+rand(b,1)*.32)*intensity[:,None]
+                               * torch.tensor([1.,.20,.08],device=self.device)[None],
                 'ambient_light':1-intensity*(.27+rand()*.15),
                 'specular_strength':rand()*intensity*.13,
                 'roughness':.45+rand()*.50,
@@ -163,6 +164,21 @@ class DocumentScene(nn.Module):
                 'tear_size':.015+rand()*.10,
                 'asset_active':(rand()<.65).float()* (geometry>0) * float(len(self.asset_mask)>0),
                 'asset_index':integer(max(1,len(self.asset_mask)))}
+
+    def _sample_light_directions(self, b, generator):
+        """One key and two weak room bounces, rather than three equal suns."""
+        xy = torch.rand(b, 1, 2, device=self.device, generator=generator) * 2 - 1
+        z = .65 + torch.rand(b, 1, 1, device=self.device, generator=generator)
+        key = torch.cat((xy, z), -1)
+        fill = torch.cat((-xy * .40, torch.ones_like(z) * 1.4), -1)
+        overhead = torch.cat((xy * .12, torch.ones_like(z) * 2), -1)
+        return torch.cat((key, fill, overhead), 1)
+
+    def _sample_light_colors(self, b, generator):
+        # Correlated warm/cool shifts avoid random RGB theatrical lighting.
+        warmth = (torch.rand(b, 1, 1, device=self.device, generator=generator) * 2 - 1) * .045
+        channels = torch.tensor([1., .12, -1.], device=self.device)[None, None]
+        return (1 + warmth * channels).expand(-1, 3, -1)
 
     def surface(self, p, generator):
         """Material mesh, normals and observable metric error at scene scale."""
@@ -318,16 +334,28 @@ class DocumentScene(nn.Module):
             value = torch.randn(b, 1, h, w, device=self.device, generator=generator)
             noise.append(F.interpolate(value, size=x.shape[-2:], mode='bilinear', align_corners=False))
         coarse, middle, fine = noise
-        grain_coordinate = v * scale + coarse * .014 + middle * .005 + .022 * torch.sin(u * 3.8)
-        wood = .022 * torch.sin(grain_coordinate * 68) + .008 * torch.sin(grain_coordinate * 153 + middle * .18) + coarse * .010 + fine * .004
-        veins = torch.sin((u + v * .31 + coarse * .16) * scale * 7.5)
-        marble = -.068 * torch.exp(-(veins / .095).square()) + middle * .006 + fine * .003
-        laminate = wood * .28 + middle * .003
-        fabric = fine * .012 + middle * .004 + .004 * (torch.sin(u * 82) + torch.sin(v * 86))
-        metal = coarse * .011 + fine * .005 + .004 * torch.sin(v * 108 + middle * .4)
+        # Anisotropic *stochastic* fibres. The old sinusoidal wood looked
+        # like identical parallel waves at every scale and across every seed.
+        # Rotate a random elongated field into material coordinates instead.
+        grain = []
+        field = torch.stack((u[:, 0] * .70 / scale[:, 0],
+                             v[:, 0] * .70 / (self.aspect * scale[:, 0])), -1)
+        for gh, gw in [(37, 5), (131, 17)]:
+            value = torch.randn(b, 1, gh, gw, device=self.device, generator=generator)
+            grain.append(F.grid_sample(value, field, padding_mode='reflection', align_corners=False))
+        broad_grain, small_grain = grain
+        wood = coarse * .009 + middle * .004 + broad_grain * .014 + small_grain * .005
+        # Irregular nonperiodic ridge bands are only a fallback material.
+        # Real texture banks remain preferable for identifiable substrates.
+        turbulence = coarse * .55 + middle * .22 + fine * .07
+        veins = torch.exp(-((turbulence - .16) / .035).square())
+        marble = -veins * .033 + coarse * .006 + fine * .002
+        laminate = wood * .21 + middle * .002
+        fabric = fine * .010 + middle * .004 + small_grain * .002
+        metal = coarse * .008 + small_grain * .004
         clinical = coarse * .0025 + fine * .0015
         plain = coarse * .002 + fine * .001
-        leather = .012 * torch.tanh(fine * 2) + middle * .007 + coarse * .004
+        leather = .010 * torch.tanh(fine * 2) + middle * .006 + coarse * .003
         bank = torch.cat((wood, marble, laminate, fabric, metal, clinical, plain, leather), 1)
         texture = bank.gather(1, p['background_type'][:, None, None, None].expand(-1, 1, *x.shape[-2:]))
         color = self.table_colors[p['background_type'].long()][:, :, None, None]
@@ -346,8 +374,40 @@ class DocumentScene(nn.Module):
         tear = (inward<notch)&edge_side&p['tear_active'][:,None,None].bool()
         return (~tear)[:,None].float()
 
+    @staticmethod
+    def _project_shadow(mask, height, offsets):
+        """Forward-splat caster pixels onto a plane using their own depth.
+
+        Offsets are displacement in pixels per unit surface height. Unlike an
+        inverse shift using receiver depth, this preserves the correct shadow
+        for a lifted edge or an isolated elevated sheet. Four-corner splats
+        preserve subpixel translations and do not wrap around image edges.
+        """
+        b, lights, _ = offsets.shape
+        h, w = mask.shape[-2:]
+        yy, xx = torch.meshgrid(torch.arange(h, device=mask.device),
+                                torch.arange(w, device=mask.device), indexing='ij')
+        x = xx[None, None] - height[:, 0, None] * offsets[:, :, 0, None, None]
+        y = yy[None, None] - height[:, 0, None] * offsets[:, :, 1, None, None]
+        x0, y0 = x.floor(), y.floor()
+        fx, fy = x - x0, y - y0
+        result = torch.zeros(b, lights, h*w, device=mask.device)
+        for dx, dy, weight in [(0,0,(1-fx)*(1-fy)), (1,0,fx*(1-fy)),
+                               (0,1,(1-fx)*fy), (1,1,fx*fy)]:
+            ix, iy = (x0+dx).long(), (y0+dy).long()
+            inside = (ix >= 0) & (ix < w) & (iy >= 0) & (iy < h)
+            index = iy.clamp(0,h-1)*w + ix.clamp(0,w-1)
+            values = mask[:, 0, None] * weight * inside
+            result.scatter_add_(2, index.flatten(2), values.flatten(2))
+        return result.reshape(b, lights, h, w).clamp(0,1)
+
     def cast_shadow(self,paper_mask,scene,p):
-        """Local-height cast shadows and a narrow sheet/table contact shadow."""
+        """Directional area-light shadows and depth-gated contact occlusion.
+
+        Projection is a weak-perspective tabletop approximation. Source height
+        comes from the exact paper map shared by image and target geometry.
+        It is not a full 3D visibility or interreflection solver.
+        """
         b, _, h, w = paper_mask.shape
         size = self.background_xy.shape[-2:]
         mask = F.interpolate(paper_mask, size=size, mode='area')
@@ -356,23 +416,26 @@ class DocumentScene(nn.Module):
         c, s = p['angle'].cos()[:, None], p['angle'].sin()[:, None]
         lx = light[:, :, 0] * c - light[:, :, 1] * s
         ly = light[:, :, 0] * s + light[:, :, 1] * c
-        offsets = torch.stack((lx, ly / self.aspect), -1) / light[:, :, 2:].clamp_min(.25)
-        gap = height[:, None] * p['zoom'][:, None, None, None, None]
-        base = torch.stack((self.background_xy[:, 0], self.background_xy[:, 1] / self.aspect), -1)
-        field = base[:, None] + offsets[:, :, None, None] * gap.permute(0, 1, 3, 4, 2)
-        source = mask[:, None].expand(-1, 3, -1, -1, -1).reshape(b * 3, 1, *size)
-        shifted = F.grid_sample(source, field.reshape(b * 3, *size, 2), align_corners=False)
-        near = F.avg_pool2d(shifted, 3, 1, 1)
-        wide = F.avg_pool2d(shifted, 9, 1, 4)
-        softness = (p['cast_shadow_softness'] * self.resolution / 4).clamp(0, 1)
-        blend = softness[:, None].expand(-1, 3).reshape(b * 3, 1, 1, 1)
-        soft = (near * (1 - blend) + wide * blend).reshape(b, 3, 1, *size)
+        offsets = torch.stack((lx, ly), -1) / light[:, :, 2:].clamp_min(.10)
+        offsets = offsets * p['zoom'][:, None, None] * (size[1] / 2)
+        # Deterministic quadrature over a small angular emitter. Separation
+        # grows linearly with distance from the receiving plane, so an edge
+        # touching the table stays sharper than a lifted edge of the same page.
+        radius = p['cast_shadow_softness'][:, None, None] * (size[1] / 2)
+        soft = torch.zeros(b, 3, *size, device=self.device)
+        for du, dv in [(0.,0.), (1.,0.), (-1.,0.), (0.,1.), (0.,-1.)]:
+            jitter = torch.tensor([du,dv], device=self.device)[None, None] * radius
+            soft = soft + self._project_shadow(mask, height, offsets+jitter) / 5
+        soft = F.avg_pool2d(soft,3,1,1,count_include_pad=False)
         weights = p['light_energy'] / p['light_energy'].sum(1, keepdim=True).clamp_min(.001)
-        cast = (soft * weights[:, :, None, None, None]).sum(1)
+        cast = (soft * weights[:, :, None, None]).sum(1,keepdim=True)
         cast = F.interpolate(cast, size=(h, w), mode='bilinear', align_corners=False)
-        contact = F.avg_pool2d(F.max_pool2d(paper_mask, 3, 1, 1), 3, 1, 1) * .45
+        # A page at 10 mm above the receiver cannot retain an attached black
+        # outline. Only genuinely near-plane portions contribute this term.
+        proximity = torch.exp(-scene['height'].clamp_min(0) / .003) * paper_mask
+        contact = F.avg_pool2d(F.max_pool2d(proximity,3,1,1),3,1,1) * .32
         result = torch.maximum(cast, contact) * p['cast_shadow_strength'][:, None, None, None]
-        return result * (1 - paper_mask)
+        return result.clamp(0,1) * (1 - paper_mask)
 
     def object_shadow(self,p):
         b = len(p['object_shadow'])

@@ -26,6 +26,12 @@ class SupervisionConfig:
     preserves anti-aliased coverage. Binary masks and boxes use ``> threshold``.
     ``visible_only`` removes torn, cropped and explicitly occluded pixels.
     Boxes are xyxy with exclusive right/bottom edges. Empty boxes are -1.
+
+    Lead masks group *all occurrences* of a canonical lead. Lead boxes are
+    their joint envelope, so detection of individual short/rhythm strips must
+    use instance boxes instead. Instance outputs retain all 15 printed slots,
+    regardless of ``leads``. Their canonical IDs and active flags identify
+    repetitions and padded slots without changing the class vocabulary.
     """
     outputs: tuple[str, ...] = ('lead_masks',)
     leads: tuple[str, ...] = tuple(LEADS)
@@ -58,6 +64,8 @@ def mask_bounding_boxes(masks, threshold=.05):
     if not math.isfinite(threshold) or not 0 <= threshold < 1:
         raise ValueError('threshold must be finite and in [0,1)')
     h, w = masks.shape[-2:]
+    if not h or not w:
+        raise ValueError('masks must have nonempty image dimensions')
     occupied = masks > threshold
     columns = occupied.any(-2)
     rows = occupied.any(-1)
@@ -79,6 +87,10 @@ class ECGSupervisionLayer(ECGImageLayer):
     [B,3,H,W], ``batch['valid']`` is [B,1,H,W]. Requested masks are float32.
     Canonical lead identity is retained even for repeated rhythm strips and
     Cabrera's inverted aVR. Use independent sigmoid/BCE channels at crossings.
+    Masks describe waveform ink, excluding lead-name text, calibration pulses
+    and grid. Boxes tightly enclose that ink rather than an allocated cell.
+    Instance ``active`` means enabled before capture, while ``box_valid``
+    means target pixels survived visibility and the coverage threshold.
     The default returns 12 soft lead masks. Image-only networks can use
     ECGImageLayer instead to avoid all dense supervision allocations.
     """

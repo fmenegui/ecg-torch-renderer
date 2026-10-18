@@ -19,7 +19,7 @@ from ecg_gpu.demo import demo_signals
 from ecg_gpu.gpu_cli import plain
 
 
-def export_scenarios(out, *, device='cpu', width=1024, height=768, severity=.8):
+def export_scenarios(out, *, device='cpu', width=1024, height=768, severity=.8, background=None):
     out = Path(out)
     out.mkdir(parents=True, exist_ok=True)
     values, fs, _ = demo_signals(fs=500, duration=10)
@@ -34,12 +34,14 @@ def export_scenarios(out, *, device='cpu', width=1024, height=768, severity=.8):
     except OSError:
         font = ImageFont.load_default()
     cases = []
+    from ecg_gpu.assets import load_rgb_bank
+    backgrounds = load_rgb_bank(background, height=height, width=width) if background else None
     for index, name in enumerate(CAPTURE_SCENARIOS):
         config, parameters = capture_scenario(name, width=width, height=height, severity=severity)
         parameters['layout'] = layouts[index]
         seed = 20261018 + index
         layer = ECGImageLayer(fs=fs, config=config, parameters=parameters,
-                              seed=seed, randomize=False).to(device).eval()
+                              seed=seed, randomize=False, backgrounds=backgrounds).to(device).eval()
         batch = layer.render_batch(signals, stage='all', return_instances=True)
         array = (batch.image[0].cpu().permute(1, 2, 0).numpy()*255).round().clip(0, 255).astype(np.uint8)
         image = Image.fromarray(array)
@@ -74,8 +76,9 @@ if __name__ == '__main__':
     parser.add_argument('--width', type=int, default=1024)
     parser.add_argument('--height', type=int, default=768)
     parser.add_argument('--severity', type=float, default=.8)
+    parser.add_argument('--background', type=Path, help='Local measured RGB texture or photograph')
     args = parser.parse_args()
     torch.set_num_threads(2)
     report = export_scenarios(args.out, device=args.device, width=args.width,
-                              height=args.height, severity=args.severity)
+                              height=args.height, severity=args.severity, background=args.background)
     print(json.dumps({'cases': len(report['cases']), 'device': report['device'], 'out': str(args.out)}))
