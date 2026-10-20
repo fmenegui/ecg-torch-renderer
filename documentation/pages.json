@@ -60,6 +60,12 @@
     "description": "Generate black/white views, independent lead channels and pixel bounding boxes."
   },
   {
+    "id": "grid-points",
+    "title": "5 mm grid points",
+    "section": "Train",
+    "description": "Export identified major-grid intersections and point-only masks with shared capture geometry."
+  },
+  {
     "id": "training",
     "title": "Train an image model",
     "section": "Train",

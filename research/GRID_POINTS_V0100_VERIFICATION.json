@@ -1,0 +1,89 @@
+{
+  "schema": "ecg-grid-points-verification-v1",
+  "version": "0.10.0",
+  "python": "3.12.14",
+  "torch": "2.14.1+cpu",
+  "cuda_available": false,
+  "focused_tests": {
+    "discovered": 11,
+    "passed": 10,
+    "skipped": 1,
+    "skip_reason": "CUDA hardware unavailable"
+  },
+  "grid_module_coverage": {
+    "statements_percent": 100,
+    "branches_percent": 100,
+    "scope": "ecg_gpu/grid_points.py only, 11 focused tests"
+  },
+  "integration_before_two_additional_validation_tests": {
+    "discovered": 263,
+    "passed": 255,
+    "skipped": 6,
+    "errors": 2,
+    "error_reason": "Original raster-v021.npz absent from local partial checkout, unchanged upstream fixture required in CI"
+  },
+  "documentation": {
+    "pages_built": 21,
+    "local_validation": "Blocked by absent original gallery binary assets in partial checkout, full checkout CI required"
+  },
+  "lint": "strict new files and fatal-error checks passed",
+  "adverse_gallery": {
+    "cases": 16,
+    "reviewed": true,
+    "size": [
+      512,
+      384
+    ]
+  },
+  "point_gallery": [
+    {
+      "case": "online-plano",
+      "active_points": 2090,
+      "accepted_visible_points": 2090,
+      "max_round_trip_error_canonical_px": 8.63167442730628e-05,
+      "mean_round_trip_error_canonical_px": 1.5133517990761902e-05
+    },
+    {
+      "case": "online-dobra-perspectiva",
+      "active_points": 2090,
+      "accepted_visible_points": 2090,
+      "max_round_trip_error_canonical_px": 0.0036401727702468634,
+      "mean_round_trip_error_canonical_px": 8.174128015525639e-05
+    },
+    {
+      "case": "offline-dobra-caneta",
+      "active_points": 2090,
+      "accepted_visible_points": 2031,
+      "max_round_trip_error_canonical_px": 0.19386987388134003,
+      "mean_round_trip_error_canonical_px": 0.0012260088697075844
+    },
+    {
+      "case": "offline-rugas-recorte",
+      "active_points": 2090,
+      "accepted_visible_points": 2014,
+      "max_round_trip_error_canonical_px": 0.1863757222890854,
+      "mean_round_trip_error_canonical_px": 0.0006034298567101359
+    }
+  ],
+  "independent_references": [
+    "5 mm identity lattice",
+    "affine forward rotation/scale/translation",
+    "frontoparallel pinhole camera projection",
+    "occlusion removal against shared primary-ray support"
+  ],
+  "projection": "Approximate inversion of sampled UV maps with explicit material-space residual rejection, not exact mesh vertex projection",
+  "limits": [
+    "No trained detector or Dotter reproduction",
+    "No real-image detector accuracy",
+    "Geometric visibility is not optical readability",
+    "No hidden-node camera coordinate reconstruction",
+    "CUDA execution unavailable"
+  ],
+  "source_signal_sha256": "f6de13f28884aa335fc256e2b8e969b82aac6987467cb02bf67852e4c9c26ced",
+  "source_signal_preserved": true,
+  "implementation_sha256": {
+    "ecg_gpu/grid_points.py": "6ebd80a53cef71679850cf905462e85a2c61cb3c2c3e91b49e414a7a8770e834",
+    "tests/test_grid_points.py": "8ec3639776a8f4bdb125f8cd602c9a6dcd7ec751a2243ca86d4dd48517d2faa5",
+    "examples/grid_points.py": "aa6ba0a4a9d08b266ebdc182e0688f40d53a2922eac2d089043341d5007b3a73"
+  }
+}

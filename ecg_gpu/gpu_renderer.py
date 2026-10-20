@@ -26,6 +26,7 @@ from .gpu_document import DocumentAssets, DocumentScene, SURFACES, BACKGROUNDS, 
 from .gpu_layouts import LayoutSpec, standard_layouts
 from .gpu_raster import raster_kernels
 from .schema_v05 import LEADS, SPEEDS, GAINS, LAYOUTS
+from .grid_points import GridPointConfig, grid_point_targets, identity_field
 
 
 def _conditional_visibility(valid, frame_coverage=None):
@@ -679,7 +680,8 @@ class ECGRenderer(nn.Module):
     def forward(self, signals, fs, *, lengths=None, stage='all', photo=True, generator=None,
                 parameters: Optional[Mapping] = None, severity=None, return_field=False, return_canonical=False,
                 return_scene=False, return_instances=False, return_baselines=True,
-                return_instance_boxes=True, as_texture=False, return_visibility_fraction=None):
+                return_instance_boxes=True, as_texture=False, return_visibility_fraction=None,
+                return_grid_points=False, grid_point_config=None):
         # Keep geometric inversion, glyphs and radiometry in float32 even when
         # the caller trains its image network inside an AMP context.
         if self.atlas.dtype!=torch.float32:
@@ -689,12 +691,18 @@ class ECGRenderer(nn.Module):
                                 parameters=parameters,severity=severity,return_field=return_field,
                                 return_canonical=return_canonical,return_scene=return_scene,return_instances=return_instances,
                                 return_baselines=return_baselines,return_instance_boxes=return_instance_boxes,
-                                as_texture=as_texture,return_visibility_fraction=return_visibility_fraction)
+                                as_texture=as_texture,return_visibility_fraction=return_visibility_fraction,
+                                return_grid_points=return_grid_points,grid_point_config=grid_point_config)
 
     def _render(self, signals, fs, *, lengths=None, stage='all', photo=True, generator=None,
                 parameters: Optional[Mapping] = None, severity=None, return_field=False, return_canonical=False,
                 return_scene=False, return_instances=False, return_baselines=True,
-                return_instance_boxes=True, as_texture=False, return_visibility_fraction=None):
+                return_instance_boxes=True, as_texture=False, return_visibility_fraction=None,
+                return_grid_points=False, grid_point_config=None):
+        if type(return_grid_points) is not bool:
+            raise ValueError('return_grid_points must be bool')
+        if grid_point_config is not None and not isinstance(grid_point_config, GridPointConfig):
+            raise TypeError('grid_point_config must be GridPointConfig')
         if type(photo) is not bool or type(as_texture) is not bool:
             raise ValueError('photo and as_texture must be bool')
         if as_texture and photo:
@@ -993,7 +1001,7 @@ class ECGRenderer(nn.Module):
                  & (yy >= column('occlusion_y')) & (yy <= column('occlusion_y') + column('occlusion_h'))).float() * column('occlusion_active')
         image = torch.lerp(image, p['occlusion_color'][:, :, None, None], cover)
         valid *= (1-cover)*material_valid
-        if stage!='image':
+        if stage!='image' or return_grid_points:
             targets['valid'] = valid
         area = material_pixel_area(field, self.config.height, self.config.width) if photo and (
             unit_mask is not None or return_visibility_fraction) else 1.
@@ -1029,6 +1037,18 @@ class ECGRenderer(nn.Module):
                     'capture_medium': 'display' if self.display is not None else 'paper',
                     'document_asset_id':scene['asset_id'] if scene else torch.full((b,),-1,device=self.device,dtype=torch.long),
                     'parameters': p}
+        if return_grid_points:
+            point_field = field if photo else identity_field(b, self.config.height, self.config.width, device=self.device)
+            targets.update(grid_point_targets(point_field, valid,
+                canonical_size=(self.config.height, self.config.width), ppm=instances['ppm'],
+                phase_x=p['grid_phase_x'], phase_y=p['grid_phase_y'], top=instances['top'],
+                grid_present=p['grid_present']*(p['grid_strength'] > 0), config=grid_point_config))
+            metadata['grid_points'] = {'schema':'ecg-grid-points-v1', 'spacing_mm':5.,
+                'coordinate_convention':'xy pixel centers, top-left pixel is (0,0)',
+                'id_convention':'row,column in the canonical material lattice',
+                'projection':'local inverse-map solve with material-space round-trip rejection',
+                'configuration':asdict(grid_point_config or GridPointConfig()),
+                'visibility':'geometric support, not optical readability'}
         if return_instances and return_instance_boxes:
             visible = targets['instances'] * _conditional_visibility(valid, targets.get('frame_coverage'))
             occupied = visible>.05

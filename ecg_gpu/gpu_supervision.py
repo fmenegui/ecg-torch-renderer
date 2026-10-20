@@ -11,12 +11,14 @@ import torch
 from .gpu_module import ECGImageLayer
 from .gpu_renderer import _conditional_visibility
 from .schema_v05 import LEADS
+from .grid_points import GridPointConfig
 
 
 _OUTPUTS = frozenset({
     'lead_masks', 'trace_mask', 'bw', 'wb', 'lead_boxes',
     'instance_masks', 'instance_boxes',
     'instance_visible_fraction',
+    'grid_points_mask', 'grid_points',
 })
 
 
@@ -41,6 +43,7 @@ class SupervisionConfig:
     binary: bool = False
     threshold: float = .05
     visible_only: bool = True
+    grid_point_config: GridPointConfig = GridPointConfig()
 
     def __post_init__(self):
         object.__setattr__(self, 'outputs', tuple(self.outputs))
@@ -53,6 +56,10 @@ class SupervisionConfig:
             raise ValueError('threshold must be finite and in [0,1)')
         if not isinstance(self.binary, bool) or not isinstance(self.visible_only, bool):
             raise ValueError('binary and visible_only must be bool')
+        if not isinstance(self.grid_point_config, GridPointConfig):
+            raise TypeError('grid_point_config must be GridPointConfig')
+        if not self.visible_only and {'grid_points', 'grid_points_mask'} & set(self.outputs):
+            raise ValueError('Grid points require visible_only=True. Hidden points are not reconstructed')
 
 
 def mask_bounding_boxes(masks, threshold=.05):
@@ -120,10 +127,13 @@ class ECGSupervisionLayer(ECGImageLayer):
     def forward(self, signals, fs=None, *, lengths=None, parameters=None, generator=None):
         requested = self.supervision.outputs
         instances_needed = bool({'instance_masks', 'instance_boxes', 'instance_visible_fraction'} & set(requested))
+        points_only = bool(requested) and set(requested) <= {'grid_points', 'grid_points_mask'}
         rendered = self.render_batch(
             signals, fs, lengths=lengths, parameters=parameters, generator=generator,
-            stage='trace', photo=self.photo, return_instances=instances_needed,
+            stage='image' if points_only else 'trace', photo=self.photo, return_instances=instances_needed,
             return_baselines=False, return_instance_boxes=False,
+            return_grid_points=bool({'grid_points', 'grid_points_mask'} & set(requested)),
+            grid_point_config=self.supervision.grid_point_config,
         )
         return self.supervise(rendered)
 
@@ -136,7 +146,8 @@ class ECGSupervisionLayer(ECGImageLayer):
         """
         requested = self.supervision.outputs
         instances_needed = bool({'instance_masks', 'instance_boxes', 'instance_visible_fraction'} & set(requested))
-        required = {'valid', 'traces'} | ({'instances'} if instances_needed else set())
+        traces_needed = bool({'lead_masks', 'lead_boxes', 'trace_mask', 'bw', 'wb'} & set(requested))
+        required = {'valid'} | ({'traces'} if traces_needed else set()) | ({'instances'} if instances_needed else set())
         if required - rendered.targets.keys():
             raise ValueError(f'RenderBatch lacks supervision targets: {sorted(required - rendered.targets.keys())}')
         valid = rendered.targets['valid']
@@ -144,6 +155,15 @@ class ECGSupervisionLayer(ECGImageLayer):
         # Apply only conditional visibility here. Keep full valid for losses.
         visibility = _conditional_visibility(valid, rendered.targets.get('frame_coverage'))
         batch = {'image': rendered.image, 'valid': valid}
+        if {'grid_points', 'grid_points_mask'} & set(requested):
+            if 'grid_points_mask' not in rendered.targets:
+                raise ValueError('Render with return_grid_points=True for grid point supervision')
+            if 'grid_points' in requested:
+                batch.update({name: value for name, value in rendered.targets.items() if name.startswith('grid_points_')})
+            else:
+                batch['grid_points_mask'] = rendered.targets['grid_points_mask']
+            if self.supervision.binary:
+                batch['grid_points_mask'] = (batch['grid_points_mask'] > self.supervision.threshold).float()
         lead_outputs = {'lead_masks', 'lead_boxes'} & set(requested)
         union_outputs = {'trace_mask', 'bw', 'wb'} & set(requested)
         traces = None

@@ -52,12 +52,12 @@ def build():
         'load_rgb_bank': load_rgb_bank,
         'render_seed': render_seed,
     }
-    from ecg_gpu import DocumentTemplate, ThermalPrintConfig, LensConfig, SensorConfig, DisplayConfig, MaterialHistory, MeasuredPaperBank, SceneBank, PhysicalCamera
+    from ecg_gpu import DocumentTemplate, ThermalPrintConfig, LensConfig, SensorConfig, DisplayConfig, MaterialHistory, MeasuredPaperBank, SceneBank, PhysicalCamera, GridPointConfig, grid_point_targets
     from ecg_gpu.pathtrace import PathTraceConfig, capture_geometry_assets
     from ecg_gpu.paper_mechanics import SheetConfig
     api.update({obj.__name__:obj for obj in (DocumentTemplate, ThermalPrintConfig, LensConfig, SensorConfig,
         DisplayConfig, MaterialHistory, MeasuredPaperBank, SceneBank, PhysicalCamera, PathTraceConfig,
-        SheetConfig, capture_geometry_assets)})
+        SheetConfig, capture_geometry_assets, GridPointConfig, grid_point_targets)})
     metadata['signatures'] = {name: str(inspect.signature(obj)) for name, obj in api.items()}
     perf = json.loads((ROOT / 'PERFORMANCE_CPU.json').read_text())
     scene_perf = json.loads((ROOT / 'PERFORMANCE_SCENE_CPU.json').read_text())

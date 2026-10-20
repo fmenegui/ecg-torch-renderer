@@ -78,6 +78,7 @@ jobs:
       - name: Independent 3D ray, UV, visibility and physical-scale tests
         run: |
           python -m unittest discover -s tests -p 'test_pathtrace*.py' -v
+          python -m unittest discover -s tests -p test_grid_points.py -v
           python -m unittest discover -s tests -p test_adversity_r3.py -v
       - name: Export grouped YOLO detection dataset
         run: python examples/export_yolo.py --out build/yolo-ci --groups 4 --views 2 --width 192 --height 128 --scenario missing_fragments
@@ -105,12 +106,17 @@ jobs:
           ecg_gpu/document_templates.py ecg_gpu/thermal_print.py
           ecg_gpu/physical_camera.py ecg_gpu/emissive_display.py
           ecg_gpu/measured_paper.py ecg_gpu/material_history.py ecg_gpu/paper_mechanics.py
+          ecg_gpu/grid_points.py tests/test_grid_points.py examples/grid_points.py
           tests/test_realism_v090.py tests/test_pathtrace_v090.py examples/physical_realism.py
       - name: Branch-aware coverage of model contracts
         run: |
           python -m coverage run --branch -m unittest discover -s tests -p '*v090.py' -v
           python -m coverage report --fail-under=85 --include='*/ecg_gpu/document_templates.py,*/ecg_gpu/thermal_print.py,*/ecg_gpu/physical_camera.py,*/ecg_gpu/emissive_display.py,*/ecg_gpu/measured_paper.py,*/ecg_gpu/material_history.py,*/ecg_gpu/paper_mechanics.py'
           python -m coverage json -o build/model-coverage.json --include='*/ecg_gpu/document_templates.py,*/ecg_gpu/thermal_print.py,*/ecg_gpu/physical_camera.py,*/ecg_gpu/emissive_display.py,*/ecg_gpu/measured_paper.py,*/ecg_gpu/material_history.py,*/ecg_gpu/paper_mechanics.py'
+      - name: Grid-point contract coverage
+        run: |
+          python -m coverage run --branch -m unittest discover -s tests -p test_grid_points.py -v
+          python -m coverage report --fail-under=95 --include='*/ecg_gpu/grid_points.py'
       - uses: actions/upload-artifact@v4
         with:
           name: model-coverage
