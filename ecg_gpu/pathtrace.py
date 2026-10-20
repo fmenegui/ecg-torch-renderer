@@ -45,8 +45,11 @@ class PathTraceConfig:
     edge_tear: float = 0.
     hole_radius: float = 0.
     camera_up: tuple = (0., 1., 0.)
+    variant: str = 'llvm_ad_rgb'
 
     def __post_init__(self):
+        if self.variant not in ('llvm_ad_rgb', 'cuda_ad_rgb'):
+            raise ValueError('variant must be llvm_ad_rgb or cuda_ad_rgb')
         for key, low, high in [('width', 64, 4096), ('height', 64, 4096),
                                ('samples_per_pixel', 1, 4096), ('label_samples_per_axis', 1, 4)]:
             value = getattr(self, key)
@@ -415,8 +418,9 @@ def pathtrace_capture(canonical, *, config=None, background_texture=None, seed=1
         import drjit as dr
     except ImportError as error:
         raise ImportError('Offline path tracing needs the optional mitsuba dependency') from error
-    mi.set_variant('llvm_ad_rgb')
-    dr.set_thread_count(2)
+    if config.variant not in mi.variants():
+        raise ValueError(f'Mitsuba variant unavailable: {config.variant}')
+    mi.set_variant(config.variant)
     transform = mi.ScalarTransform4f
     ppm = float(canonical.metadata['ppm'][0].detach().cpu())
     if not math.isfinite(ppm) or ppm <= 0:
@@ -432,6 +436,8 @@ def pathtrace_capture(canonical, *, config=None, background_texture=None, seed=1
     mesh_columns, mesh_rows = 129, 65
     source_has_damage = ('paper_support' in canonical.targets and
                          bool((canonical.targets['paper_support'] < .5).any()))
+    if source_has_damage and canonical.metadata.get('rectified_mode') == 'document':
+        raise ValueError('Damaged 3D input must use photo=False, as_texture=True')
     has_damage = bool(config.missing_corner or config.edge_tear or config.hole_radius or source_has_damage)
     if has_damage:
         refine_x = max(1, min(6, math.ceil(config.width/256)))
@@ -598,3 +604,4 @@ def pathtrace_capture(canonical, *, config=None, background_texture=None, seed=1
                              'seeded relief with static material-edge relaxation') + ', not cloth dynamics',
                          'missing_material': 'shared clipped-triangle topology, resolution-limited linear boundary segments',
                          'external_real_image_validation': False}}
+

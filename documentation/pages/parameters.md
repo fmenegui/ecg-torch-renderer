@@ -1,5 +1,16 @@
 # Configure & randomize
 
+In 0.8.1, `angle` is absolute radians. Overriding only `quarter` recomposes
+rotation while retaining sampled angular jitter. Overriding only `angle`
+derives its nearest quarter-turn class. Contradictory explicit pairs raise.
+`parameters['photo']=0` gates photographic geometry for selected records.
+The formal `photo=False` selects a final rectified document.
+
+`lead_present` and `photo` accept only zero/one. Use a Bernoulli distribution
+for random presence rather than passing a fractional probability as a fixed
+presence value. Large custom fonts must fit the static `max_font_size` bound,
+including the header's 1.15 size multiplier.
+
 Use `RenderConfig` for structural cost and capture defaults. Use `parameters` for individual physical and appearance controls. Unspecified parameters use the built-in random sampler.
 
 ## Fixed values and distributions
@@ -62,3 +73,4 @@ ecg-render --input signal.npz --output images \
 ```
 
 JSON supports fixed values and the `uniform`, `choice` and `bernoulli` distribution forms.
+

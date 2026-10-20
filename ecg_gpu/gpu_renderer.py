@@ -31,6 +31,17 @@ def _conditional_visibility(valid, frame_coverage=None):
                        0).clamp(0, 1)
 
 
+def material_pixel_area(field, height, width):
+    """Canonical pixel area per output pixel for a continuous inverse map.
+
+    The inverse Jacobian removes perspective/relief magnification from ink
+    integrals. This is pixel quadrature, not an optical readability estimate.
+    """
+    dy, dx = torch.gradient(field, dim=(1, 2))
+    determinant = dx[..., 0] * dy[..., 1] - dx[..., 1] * dy[..., 0]
+    return determinant.abs()[:, None] * (height * width / 4)
+
+
 @dataclass(frozen=True)
 class RenderConfig:
     height: int = 768
@@ -49,8 +60,24 @@ class RenderConfig:
     shadow_samples: int = 8
     geometry_solver: str = 'coarse_to_fine'
     damage_detail: str = 'rich'
+    max_font_size: Optional[float] = None
+    camera_mode: str = 'full'
+    jpeg_enabled: bool = True
 
     def __post_init__(self):
+        for name in ('height', 'width', 'antialias_samples', 'lead_chunk_size',
+                     'surface_resolution', 'inverse_iterations', 'shadow_samples'):
+            if type(getattr(self, name)) is not int:
+                raise ValueError(f'{name} must be an integer')
+        for name in ('preserve_extrema', 'validate_inputs', 'jpeg_enabled'):
+            if type(getattr(self, name)) is not bool:
+                raise ValueError(f'{name} must be bool')
+        if self.camera_mode not in {'full', 'direct', 'sensor'}:
+            raise ValueError('camera_mode must be full, direct or sensor')
+        if self.max_font_size is not None and (
+                isinstance(self.max_font_size, bool) or not math.isfinite(self.max_font_size)
+                or self.max_font_size <= 0):
+            raise ValueError('max_font_size must be positive and finite')
         if min(self.height, self.width) < 64:
             raise ValueError('Image dimensions must be at least 64')
         if self.profile not in {'clean', 'scan', 'photo', 'mixed'}:
@@ -101,10 +128,14 @@ def _font_atlas(fonts: Optional[Sequence[str]], artifact_texts):
         found = [ImageFont.load_default(size=24)]
         descriptions = ['Pillow built-in font']
     tokens = list(LEADS) + [f'{speed:g} mm/s   {gain:g} mm/mV' for speed in SPEEDS[1:] for gain in GAINS[1:]] + ['ECG RECORD', 'RECORD SYNTHETIC'] + ['-'+name for name in LEADS] + list(artifact_texts)
+    # Atlas dimensions follow actual token lengths, including user-provided
+    # annotation text. A fixed 384px atlas silently truncated long strings.
+    atlas_width = max(384, math.ceil(max(font.getlength(token)
+                      for font in found for token in tokens)) + 4)
     rows = []
     for font in found:
         for token in tokens:
-            image = Image.new('L', (384, 40), 0)
+            image = Image.new('L', (atlas_width, 40), 0)
             ImageDraw.Draw(image).text((1, 1), token, font=font, fill=255, anchor='lt')
             rows.append(torch.from_numpy(np.asarray(image, dtype=np.float32).copy() / 255)[None])
     return torch.stack(rows), descriptions, tokens
@@ -133,6 +164,19 @@ class ECGRenderer(nn.Module):
         self.atlas_sha256 = hashlib.sha256(atlas.numpy().tobytes()).hexdigest()
         self.register_buffer('atlas', atlas)
         self.font_count = len(self.fonts)
+        self.font_limit = self.config.max_font_size or max(24., .025 * self.config.width)
+        # Static construction-time bounds keep the training path on device.
+        token_atlas = atlas.reshape(self.font_count, len(self.tokens), *atlas.shape[1:])
+        def patch_for(indices):
+            occupied = token_atlas[:, indices].amax((0, 1, 2)) > 0
+            points = occupied.nonzero()
+            if not len(points):
+                return (1, 1)
+            extent = points.amax(0) + 2
+            return tuple(math.ceil(int(value) * self.font_limit / 24) + 1 for value in extent)
+        self.lead_patch = patch_for(list(range(12)) + list(range(23, 35)))
+        self.header_patch = patch_for(list(range(12, 23)))
+        self.artifact_patch = patch_for(list(range(35, len(self.tokens))))
         h, w = self.config.height, self.config.width
         self.register_buffer('xx', torch.arange(w, dtype=torch.float32)[None, None, None, :])
         self.register_buffer('yy', torch.arange(h, dtype=torch.float32)[None, None, :, None])
@@ -174,7 +218,7 @@ class ECGRenderer(nn.Module):
         self.register_buffer('backgrounds', self._check_bank(backgrounds))
         self.texture_sha256 = {name: hashlib.sha256(getattr(self, name).detach().cpu().numpy().tobytes()).hexdigest()
                                for name in ['paper_textures', 'backgrounds']}
-        self.camera = CameraAppearance()
+        self.camera = CameraAppearance(mode=self.config.camera_mode, jpeg_enabled=self.config.jpeg_enabled)
         self.material = PaperMaterial(h, w)
         self.document = DocumentScene(h,w,self.config.surface_resolution,self.config.inverse_iterations,
                                       self.config.shadow_samples,document_assets,self.config.geometry_solver,compile_scene,
@@ -261,7 +305,7 @@ class ECGRenderer(nn.Module):
              'pulse_present':(rand(b,15)>intensity[:,None]*.16).float(),
              'label_below': rand(b, 15) < .18,
              'rhythm_leads':torch.full((b,3),-1,device=d,dtype=torch.long),
-             'font_size': .0075 * self.config.width + rand() * (.006 * self.config.width),
+             'font_size': (.0075 * self.config.width + rand() * (.006 * self.config.width)).clamp(max=self.font_limit/1.15),
              'paper_tint': rand(b, 3) * .025, 'paper_age': rand() * intensity * .13,
              'paper_noise': rand() * intensity * .012,
              'ink_density': .78 + rand() * .22,
@@ -302,12 +346,13 @@ class ECGRenderer(nn.Module):
              'blur': .18 + rand() * intensity * .9,
              'motion': rand() * geometry * 2.8,
              'motion_angle': rand() * math.pi,
-             'sensor_active': (intensity > 0).float(),
+             'sensor_active': ((intensity > 0).float() if self.config.camera_mode == 'full'
+                               else torch.full_like(intensity, float(self.config.camera_mode == 'sensor'))),
              'read_noise': rand() * intensity * .012,
              'shot_noise': rand() * intensity * .008,
              'gamma': 1 + (rand() * 2 - 1) * intensity * .20,
              'jpeg_quality': 98 - rand() * intensity * 57,
-             'jpeg_active': (rand() < intensity * self.config.jpeg_probability).float(),
+             'jpeg_active': (rand() < intensity * self.config.jpeg_probability).float() * float(self.config.jpeg_enabled),
              'occlusion_active': (rand() < intensity * .30).float(),
              'occlusion_x': rand() * .8, 'occlusion_y': .15 + rand() * .7,
              'occlusion_w': .03 + rand() * .16, 'occlusion_h': .015 + rand() * .06,
@@ -319,7 +364,7 @@ class ECGRenderer(nn.Module):
              'artifact_text':torch.randint(len(self.artifact_texts),(b,4),device=d,generator=generator),
              'artifact_present':(rand(b,4)<intensity[:,None]*.16).float(),
              'artifact_x':rand(b,4)*.72, 'artifact_y':rand(b,4)*.90,
-             'artifact_size':(.011+rand(b,4)*.010)*self.config.width,
+             'artifact_size':((.011+rand(b,4)*.010)*self.config.width).clamp(max=self.font_limit),
              'artifact_angle':(rand(b,4)*2-1)*.40,
              'artifact_color':rand(b,3)*.25}
         p.update(self.document.sample_parameters(b,intensity,geometry,generator=generator,
@@ -457,10 +502,10 @@ class ECGRenderer(nn.Module):
             vertices = torch.cat([main, secondary], 1) * visible
         return grid, alpha, vertices
 
-    def _stamp(self, tokens, x, y, size, present, channels=None, patch=(32, 96), rotation=None):
+    def _stamp(self, tokens, x, y, size, present, channels=None, patch=None, rotation=None):
         """Rasterize small glyph patches then max-splat, avoiding full-page atlases."""
         b, jobs = tokens.shape
-        ph, pw = patch
+        ph, pw = self.lead_patch if patch is None else patch
         xx = torch.arange(pw, device=self.device)[None, None, :].float()
         yy = torch.arange(ph, device=self.device)[None, :, None].float()
         scale = size.reshape(b * jobs, 1, 1) / 24
@@ -504,9 +549,9 @@ class ECGRenderer(nn.Module):
         header_y = torch.full((b, 2), self.config.height * .022, device=self.device)
         header_size = (p['font_size'] * 1.15)[:, None].expand(b, 2)
         headers = self._stamp(tokens, header_x, header_y, header_size,
-                              torch.stack([p['header_present'], torch.ones_like(p['header_present'])], 1), patch=(40, 320))
+                              torch.stack([p['header_present'], torch.ones_like(p['header_present'])], 1), patch=self.header_patch)
         # Keep the unit glyph support separately to test cropping/occlusion.
-        unit_mask = self._stamp(tokens[:, :1], header_x[:, :1], header_y[:, :1], header_size[:, :1], p['header_present'][:, None], patch=(40, 320)) if need_units else None
+        unit_mask = self._stamp(tokens[:, :1], header_x[:, :1], header_y[:, :1], header_size[:, :1], p['header_present'][:, None], patch=self.header_patch) if need_units else None
         return torch.maximum(label_ink, headers), label_masks if need_labels else None, unit_mask
 
     def _texture(self, bank, b, generator, paper):
@@ -554,7 +599,7 @@ class ECGRenderer(nn.Module):
     def forward(self, signals, fs, *, lengths=None, stage='all', photo=True, generator=None,
                 parameters: Optional[Mapping] = None, severity=None, return_field=False, return_canonical=False,
                 return_scene=False, return_instances=False, return_baselines=True,
-                return_instance_boxes=True):
+                return_instance_boxes=True, as_texture=False, return_visibility_fraction=None):
         # Keep geometric inversion, glyphs and radiometry in float32 even when
         # the caller trains its image network inside an AMP context.
         if self.atlas.dtype!=torch.float32:
@@ -563,12 +608,21 @@ class ECGRenderer(nn.Module):
             return self._render(signals,fs,lengths=lengths,stage=stage,photo=photo,generator=generator,
                                 parameters=parameters,severity=severity,return_field=return_field,
                                 return_canonical=return_canonical,return_scene=return_scene,return_instances=return_instances,
-                                return_baselines=return_baselines,return_instance_boxes=return_instance_boxes)
+                                return_baselines=return_baselines,return_instance_boxes=return_instance_boxes,
+                                as_texture=as_texture,return_visibility_fraction=return_visibility_fraction)
 
     def _render(self, signals, fs, *, lengths=None, stage='all', photo=True, generator=None,
                 parameters: Optional[Mapping] = None, severity=None, return_field=False, return_canonical=False,
                 return_scene=False, return_instances=False, return_baselines=True,
-                return_instance_boxes=True):
+                return_instance_boxes=True, as_texture=False, return_visibility_fraction=None):
+        if type(photo) is not bool or type(as_texture) is not bool:
+            raise ValueError('photo and as_texture must be bool')
+        if as_texture and photo:
+            raise ValueError('as_texture=True requires photo=False')
+        if return_visibility_fraction is None:
+            return_visibility_fraction = return_instances
+        if type(return_visibility_fraction) is not bool or (return_visibility_fraction and not return_instances):
+            raise ValueError('Visibility fractions require return_instances=True')
         if stage not in {'image','geometry', 'trace', 'metadata', 'all'}:
             raise ValueError('stage must be image, geometry, trace, metadata or all')
         if signals.ndim != 3 or signals.shape[0] < 1 or signals.shape[1] != 12 or signals.shape[2] < 2:
@@ -601,6 +655,7 @@ class ECGRenderer(nn.Module):
                                 'Invalid source lengths: finite integer sample counts required')
         lengths = lengths.long()
         p = self.sample_parameters(b, generator=generator, photo=photo, severity=severity)
+        sampled_jitter = p['angle'] + p['quarter'] * (math.pi / 2)
         if parameters:
             unknown = set(parameters) - p.keys()
             if unknown:
@@ -635,8 +690,12 @@ class ECGRenderer(nn.Module):
             alpha = torch.cat([p[key].reshape(-1) for key in alpha_keys])
             torch._assert_async(((alpha >= 0) & (alpha <= 1)).all(),
                                 'Rendering presence, opacity and ink density must be in [0,1]')
-            for key in ['tear_active','hole_active','cut_active','missing_corner_active']:
+            for key in ['lead_present','photo','tear_active','hole_active','cut_active','missing_corner_active']:
                 torch._assert_async(((p[key]==0)|(p[key]==1)).all(),f'{key} must be binary')
+            torch._assert_async(((p['font_size'] > 0) & (p['font_size'] * 1.15 <= self.font_limit)).all(),
+                                'font_size exceeds the configured max_font_size including header scale')
+            torch._assert_async(((p['artifact_size'] > 0) & (p['artifact_size'] <= self.font_limit)).all(),
+                                'artifact_size exceeds the configured max_font_size')
             torch._assert_async(((p['coffee_radius']>=.01)&(p['coffee_radius']<=.5)).all(),
                                 'Coffee radius must be in [.01,.5]')
             if self.config.damage_detail == 'edge':
@@ -677,6 +736,23 @@ class ECGRenderer(nn.Module):
                               ('object_shadow',len(SHADOWS)),('paper_palette',len(self.document.paper_colors)),
                               ('asset_index',max(1,len(self.document.asset_mask)))]:
                 torch._assert_async(((p[key]>=0)&(p[key]<count)).all(),f'Invalid {key}')
+        if parameters and 'quarter' in parameters and 'angle' not in parameters:
+            p['angle'] = -p['quarter'] * (math.pi / 2) + sampled_jitter
+        if parameters and 'angle' in parameters:
+            derived_quarter = (-p['angle'] / (math.pi / 2)).round().long().remainder(4)
+            if 'quarter' in parameters and photo:
+                torch._assert_async((derived_quarter == p['quarter']).all(),
+                                    'quarter contradicts the absolute angle')
+            p['quarter'] = derived_quarter
+        # The public photo parameter is a per-record geometric capture gate.
+        # Optical sensor controls remain independent, allowing flatbed scans.
+        if parameters and 'photo' in parameters:
+            enabled = p['photo'].bool()
+            for key in ['angle','quarter','translate_x','translate_y','perspective_x','perspective_y',
+                        'radial','curl_x','curl_y','crease_warp','surface_strength','asset_active']:
+                p[key] = torch.where(enabled, p[key], torch.zeros_like(p[key]))
+            p['zoom'] = torch.where(enabled, p['zoom'], torch.ones_like(p['zoom']))
+            p['relief_view'] = p['relief_view'] * enabled[:, None]
         if not photo:
             # Canonical trace supervision never contains residual camera warps.
             for key in ['angle', 'quarter', 'translate_x', 'translate_y', 'perspective_x', 'perspective_y', 'radial', 'curl_x', 'curl_y', 'crease_warp']:
@@ -685,6 +761,7 @@ class ECGRenderer(nn.Module):
             p['relief_view'] = torch.zeros_like(p['relief_view'])
             p['surface_strength'] = torch.zeros_like(p['surface_strength'])
             p['asset_active'] = torch.zeros_like(p['asset_active'])
+            p['photo'] = torch.zeros_like(p['photo'])
         duration = ((lengths - 1) / rates).clamp(max=self.config.max_duration_s)
         instances = self._instances(p, duration)
         if self.config.validate_inputs:
@@ -696,6 +773,7 @@ class ECGRenderer(nn.Module):
             torch._assert_async((pixel_extent < math.sqrt(torch.finfo(torch.float32).max / 16)).all(),
                                 'ECG pixel coordinates exceed safe float32 raster precision')
         ink, pulse, targets = self._curves(working_signals, rates, lengths, instances, p, stage,return_instances,return_baselines)
+        source_instance_area = targets['instances'].sum((-1, -2)) if return_visibility_fraction else None
         grid, grid_alpha, vertices = self._grid(instances, p, stage in {'geometry', 'all'})
         text, labels, unit_mask = self._text(instances, p, stage in {'metadata', 'all'},stage!='image')
         paper, paper_id = self._texture(self.paper_textures, b, generator, True)
@@ -726,7 +804,7 @@ class ECGRenderer(nn.Module):
         canonical = torch.lerp(canonical, self.pen_color, pen)
         tokens = p['artifact_font'][:,None]*len(self.tokens)+self.artifact_offset+p['artifact_text'].long()
         artifacts = self._stamp(tokens,p['artifact_x']*self.config.width,p['artifact_y']*self.config.height,
-                                p['artifact_size'],p['artifact_present'],patch=(48,256),rotation=p['artifact_angle'])
+                                p['artifact_size'],p['artifact_present'],patch=self.artifact_patch,rotation=p['artifact_angle'])
         canonical = torch.lerp(canonical,p['artifact_color'][:,:,None,None].expand_as(canonical),artifacts)
         # This chronology models liquid deposited after ECG printing and marks.
         # Transmission changes observation contrast, never geometric ownership.
@@ -783,6 +861,10 @@ class ECGRenderer(nn.Module):
             material_valid = F.grid_sample(material_valid, field, align_corners=False, padding_mode='border')
         else:
             valid, image, unit_support = torch.ones_like(ink), canonical, unit_mask
+            if not as_texture:
+                support = self.document.paper_mask(self._field(p), p)
+                valid = support.clone()
+                image = torch.lerp(torch.ones_like(canonical), canonical, support)
             background_id = torch.full((b,), -1, device=self.device, dtype=torch.long)
         # This legacy opaque rectangle represents a scene/camera occluder.
         # Unlike pen and stamp ink, it intentionally stays in output pixels.
@@ -792,13 +874,19 @@ class ECGRenderer(nn.Module):
         valid *= (1-cover)*material_valid
         if stage!='image':
             targets['valid'] = valid
+        area = material_pixel_area(field, self.config.height, self.config.width) if photo and (
+            unit_mask is not None or return_visibility_fraction) else 1.
+        visibility = _conditional_visibility(valid, targets.get('frame_coverage'))
+        if return_visibility_fraction:
+            visible_area = (targets['instances'] * visibility * area).sum((-1, -2))
+            targets['instance_visible_fraction'] = torch.where(source_instance_area > 0,
+                visible_area / source_instance_area.clamp_min(torch.finfo(torch.float32).tiny), 0).clamp(0, 1)
         unit_evidence = None
         if unit_mask is not None:
             original_units = unit_mask.sum((-1, -2, -3))
             # Compare observed and uncropped support under the same resampling field.
-            observed_units = (unit_support * valid).sum((-1, -2, -3))
-            scale = (p['zoom'] * torch.where(p['quarter'].remainder(2) == 1, min(self.config.height / self.config.width, self.config.width / self.config.height), 1.)).square()
-            unit_evidence = (observed_units / (original_units * scale).clamp_min(1)) > .75
+            observed_units = (unit_support * visibility * area).sum((-1, -2, -3))
+            unit_evidence = (observed_units / original_units.clamp_min(1)) > .75
             unit_evidence &= p['header_present'].bool()
         if stage in {'metadata', 'all'}:
             targets.update(orientation=p['quarter'].long(), layout=self.class_table[p['layout'].long()],
@@ -808,7 +896,8 @@ class ECGRenderer(nn.Module):
             image = (image.clamp(0, 1) * 255).round() / 255
         else:
             image = self.camera(image, p, generator)
-        metadata = {**instances, 'sample_rate_hz': rates, 'source_length': lengths, 'duration_s': duration,
+        metadata = {**instances, 'rectified_mode': 'texture' if as_texture else 'document',
+                    'sample_rate_hz': rates, 'source_length': lengths, 'duration_s': duration,
                     'canonical_pixels_per_second': instances['ppm'] * instances['speed'],
                     'canonical_millivolts_per_pixel': (instances['ppm'] * instances['gain']).reciprocal(),
                     'source_samples_per_canonical_pixel': rates / (instances['ppm'] * instances['speed']),
@@ -830,8 +919,9 @@ class ECGRenderer(nn.Module):
             y1 = torch.where(rows,ys+1,0).amax(-1)
             has_pixels = (x1>x0)&(y1>y0)
             boxes = torch.stack([x0,y0,x1,y1],-1)
-            metadata['instance_boxes_xyxy'] = torch.where(has_pixels[...,None],boxes,0)
+            metadata['instance_boxes_xyxy'] = torch.where(has_pixels[...,None],boxes,-1)
             metadata['instance_visible'] = has_pixels
         return RenderBatch(image, targets, metadata, signals, field if return_field else None,
                            canonical if return_canonical else None,scene if return_scene else None)
+
 

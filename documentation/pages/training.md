@@ -1,5 +1,10 @@
 # Train an image model
 
+Instance batches include geometric visible-ink fractions. Both detection
+adapters and `export_yolo_dataset` accept `min_visible_fraction`. The grouped
+export example exposes `--min-visible-fraction`. Tiny artificial training runs
+remain integration checks, not real-image accuracy benchmarks.
+
 Version 0.7.0 includes a complete YOLO detection export/training example and
 independent U-Net loss helper. The twelve lead channels are independent waveform
 masks, not mutually exclusive classes or filled rectangular regions.
@@ -136,3 +141,4 @@ The reference signal is not automatically a waveform-regression target for every
 Create one synthesizer per rank, on that rank's device. Give each rank a distinct seed, for example `base_seed + 1009 * rank`. Save renderer state alongside model and optimizer state. Restore per-rank randomization counters when exact continuation matters.
 
 DDP can wrap the trainable image network. The synthesizer has buffers and no trainable parameters. For data loading, use pinned memory and nonblocking transfers when appropriate. Measure the full training step before selecting renderer batch size or resolution.
+

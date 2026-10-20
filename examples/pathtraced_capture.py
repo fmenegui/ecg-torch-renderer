@@ -49,7 +49,7 @@ def export_pathtraced(out, *, width=1024, height=768, spp=128, input_path=None, 
     c, p = capture_scenario('clean_print', width=canonical_width, height=canonical_height)
     p.update(layout='3x4+r1', grid_strength=.38, minor_strength=.30, line_width=1.25)
     layer = ECGImageLayer(fs=fs, config=c, parameters=p, randomize=False).eval()
-    canonical = layer.render_batch(signals, stage='all', photo=False, return_instances=True)
+    canonical = layer.render_batch(signals, stage='all', photo=False, as_texture=True, return_instances=True)
     cases = [dict(name='flat',surface='flat',bend_radians=0.),
              dict(name='curl',surface='curl',bend_radians=.55),
              dict(name='fold',surface='fold',bend_radians=.24,occluder=True)]
@@ -86,7 +86,7 @@ def export_pathtraced(out, *, width=1024, height=768, spp=128, input_path=None, 
         if material:
             layer = ECGImageLayer(fs=fs, config=c, parameters={**p,**material},
                                   randomize=False,seed=781+index).eval()
-            canonical = layer.render_batch(signals, stage='all', photo=False, return_instances=True)
+            canonical = layer.render_batch(signals, stage='all', photo=False, as_texture=True, return_instances=True)
         config = PathTraceConfig(width=width, height=height, samples_per_pixel=spp,
                                  **case)
         batch = pathtrace_capture(canonical, config=config, background_texture=background,
@@ -151,3 +151,4 @@ if __name__ == '__main__':
     report = export_pathtraced(args.out, width=args.width, height=args.height, spp=args.spp,
                                input_path=args.input, fs=args.fs, background=args.background,adverse=args.adverse)
     print(json.dumps({'cases': len(report['cases']), 'signal_preserved': report['source_signal_preserved']}))
+

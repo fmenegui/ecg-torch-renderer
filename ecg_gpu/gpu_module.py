@@ -20,18 +20,23 @@ class ECGImageLayer(nn.Module):
     All parameters of the downstream image network remain trainable.
     """
     def __init__(self, fs=500., *, config=None, parameters=None, seed=1973,
-                 randomize=True, renderer=None, **renderer_options):
+                 randomize=True, renderer=None, photo=True, stream_id=0, **renderer_options):
         super().__init__()
         if not math.isfinite(float(fs)) or fs<=0:
             raise ValueError('Positive finite sampling rate required')
         if seed is not None and (not isinstance(seed,int) or seed<0):
             raise ValueError('seed must be a nonnegative integer or None')
+        if type(photo) is not bool or type(stream_id) is not int or stream_id < 0:
+            raise ValueError('photo must be bool and stream_id a nonnegative integer')
         if renderer is not None and (config is not None or renderer_options):
             raise ValueError('Pass renderer or config/renderer_options, not both')
         self.renderer=renderer or ECGRenderer(config or RenderConfig(),**renderer_options)
         self.fs=float(fs)
         self.register_buffer('_sampling_rate',torch.tensor(self.fs,device=self.renderer.device),persistent=False)
         self.seed=seed
+        self.photo=photo
+        self.stream_id=stream_id
+        self._stream_offset=self._stream_seed_offset(stream_id)
         self.randomize=bool(randomize)
         self._calls=0
         self._rng_cache={}
@@ -57,7 +62,7 @@ class ECGImageLayer(nn.Module):
     def get_extra_state(self):
         return {'schema':'ecg-image-layer-state-v1','signature':self._signature,
                 'calls':self._calls,'seed':self.seed,'randomize':self.randomize,'compile_raster':self.renderer.compile_raster,
-                'compile_scene':self.renderer.compile_scene}
+                'compile_scene':self.renderer.compile_scene,'photo':self.photo,'stream_id':self.stream_id}
 
     def set_extra_state(self,state):
         if state.get('schema')!='ecg-image-layer-state-v1' or state.get('signature')!=self._signature:
@@ -71,6 +76,18 @@ class ECGImageLayer(nn.Module):
         self._calls=state['calls']
         self.seed=state['seed']
         self.randomize=state['randomize']
+        if type(state.get('photo', True)) is not bool or type(state.get('stream_id', 0)) is not int or state.get('stream_id', 0) < 0:
+            raise ValueError('Invalid capture or RNG stream state')
+        self.photo=state.get('photo', True)
+        self.stream_id=state.get('stream_id', 0)
+        self._stream_offset=self._stream_seed_offset(self.stream_id)
+
+    @staticmethod
+    def _stream_seed_offset(stream_id):
+        if stream_id == 0:
+            return 0
+        return int.from_bytes(hashlib.blake2b(str(stream_id).encode(), digest_size=8,
+                              person=b'ecg-stream-v1').digest(), 'little') % (2**63-1)
 
     def _generator(self,generator):
         if generator is not None:
@@ -84,10 +101,11 @@ class ECGImageLayer(nn.Module):
         device=self.renderer.device
         if device not in self._rng_cache:
             self._rng_cache[device]=torch.Generator(device=device)
-        return self._rng_cache[device].manual_seed((base+1000003*offset)%(2**63-1))
+        return self._rng_cache[device].manual_seed((base+self._stream_offset+1000003*offset)%(2**63-1))
 
     def render_batch(self,signals,fs=None,*,lengths=None,parameters=None,generator=None,
-                     stage='all',photo=True,**options):
+                     stage='all',photo=None,**options):
+        photo=self.photo if photo is None else photo
         fixed={key:getattr(self,'fixed_'+key) for key in self._parameter_keys}
         rng=self._generator(generator)
         for key,sampler in self.samplers.items():
@@ -99,4 +117,5 @@ class ECGImageLayer(nn.Module):
     def forward(self,signals,fs=None,*,lengths=None,parameters=None,generator=None):
         return self.render_batch(signals,fs,lengths=lengths,parameters=parameters,
                                  generator=generator,stage='image').image
+
 

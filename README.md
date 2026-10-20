@@ -32,6 +32,12 @@ Python ≥3.10, Torch ≥2.6, NumPy ≥1.24 and Pillow ≥10.1. Optional WFDB in
 
 ## Your first image
 
+Version **0.8.1** corrects orientation overrides, perspective-based unit
+visibility and large-font clipping. Rectified final documents now remove
+missing substrate. Preparing a texture for offline 3D instead requires
+`photo=False, as_texture=True`. See the [audit fixes](research/AUDIT_FIXES.md)
+and the [photorealism proposal](research/REALISM_ROADMAP.md).
+
 ```python
 import torch
 from ecg_gpu import ECGImageLayer, RenderConfig, Choice, Uniform
@@ -117,6 +123,29 @@ and the [scope guide](documentation/pages/limitations.md).
 
 ## Reproducible adverse captures
 
+`angle` is an absolute rotation in radians. Overriding only `quarter` retains
+the sampled small angular jitter and recomposes that rotation. Overriding only
+`angle` derives its nearest quarter-turn class. Contradictory explicit pairs
+are rejected. `parameters['photo']=0` disables photographic geometry per record,
+while `sensor_active` controls optics independently. `ECGImageLayer(photo=False)`
+selects the final rectified document path for every forward call.
+
+Large custom type must fit `RenderConfig(max_font_size=...)`. The default bound
+scales with image width and covers all automatically sampled fonts. Font atlases
+and glyph patches are sized at construction rather than silently clipping ink.
+
+For a homogeneous capture, static camera settings avoid computing unused paths:
+
+```python
+config = RenderConfig(camera_mode="direct", jpeg_enabled=False)
+layer = ECGImageLayer(config=config, photo=False, stream_id=1)
+```
+
+`direct` requires `sensor_active=0`, `sensor` requires `sensor_active=1`, and
+`full` accepts heterogeneous sensor controls. Disabling JPEG requires
+`jpeg_active=0`. Sampled defaults follow these static settings. Scenario recipes
+select the appropriate specialization automatically.
+
 Version **0.8.0** adds irregular crease networks, material-coordinate tears,
 open cuts, holes and missing corners, plus distinct oxidation, liquid deposits,
 foxing, fibers and thermal-coating damage. Sixteen capture recipes keep masks,
@@ -199,6 +228,18 @@ yolo = detection_targets(batch)  # batch_idx, cls (0..11), normalized xywh
 masks = batch["lead_masks"]      # independent sigmoid channels for U-Net
 ```
 
+Instance outputs also provide `instance_visible_fraction[B,15]`, the fraction
+of canonical waveform ink surviving geometric visibility and crop. It uses
+inverse-Jacobian area quadrature, not box sparsity or optical readability:
+
+```python
+yolo = detection_targets(batch, min_visible_fraction=.25)
+```
+
+The offline exporter accepts the same `min_visible_fraction`. Fractions near
+subpixel damage boundaries are resolution-dependent. They do not estimate how
+much signal can be recovered after blur, fading or sensor noise.
+
 These boxes enclose waveform ink. They are not full layout-cell boxes and do
 not include labels or calibration pulses. `instance_masks` also preserves
 separate masks for repeated occurrences. Overlapping leads retain independent
@@ -267,6 +308,24 @@ had one stored-fixture failure, which remains recorded with its diagnostic limit
 
 ## Documentation and checks
 
+For independent workers or distributed ranks, assign distinct `stream_id`
+values. The default zero preserves a single reproducible stream and does not
+automatically inspect process state. For offline captures stable across worker
+assignment and input ordering, derive seeds before rendering:
+
+```python
+from ecg_gpu import render_seed
+
+seed = render_seed(1973, "recording-17", view_id=2)
+layer = ECGImageLayer(seed=seed, randomize=False)
+```
+
+Checkpoint state includes the stream and static photo mode. The renderer's
+signal reference is unchanged by these controls. The optional offline backend
+accepts `PathTraceConfig(variant="cuda_ad_rgb")` when supported by the installed
+Mitsuba build and hardware. CPU remains the default. This release does not
+claim a measured CUDA speedup or a real-image accuracy improvement.
+
 ```bash
 python -m unittest discover -s tests -v
 npm install --prefix documentation
@@ -283,4 +342,5 @@ generated pages and images are public here and can be hosted from `docs/`.
 This is an image/target generator. It does not include a trained clinical
 digitizer or demonstrate superiority to a commercial system. Examples use
 artificial signals. [Contributing](CONTRIBUTING.md) · [Changelog](CHANGELOG.md) · MIT.
+
 

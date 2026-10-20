@@ -1,5 +1,16 @@
 # Advanced supervision
 
+Version 0.8.1 includes `instance_visible_fraction` whenever instance outputs are
+rendered. Its denominator is canonical-page waveform ink before capture. The
+numerator uses inverse-Jacobian area quadrature after crop and geometric
+visibility. Use `detection_targets(batch, min_visible_fraction=.25)` to exclude
+nearly hidden occurrences. This is not optical readability or a fraction of
+recoverable temporal samples.
+
+`photo=False` produces a final rectified document with missing substrate
+removed from RGB and visible targets. For offline 3D input, explicitly render
+`photo=False, as_texture=True` and retain `paper_support` for mesh clipping.
+
 Use `ECGSupervisionLayer` when your network needs an input image and aligned segmentation or detection targets. All requested outputs come from one render and remain on the input device.
 
 ## Request just what you need
@@ -104,3 +115,4 @@ ecg-render --input signal.npz --output ecg.png \
 `targets.npz` preserves tensor arrays. `boxes.json` includes channel names and the coordinate convention. BW/WB PNGs are lossless grayscale exports. Add `--target-leads II,V1,V5` to choose channel order, or `--projected-targets` for targets behind explicit occluders.
 
 Inside training, use tensors directly. File export, NumPy conversion and JSON serialization belong outside the hot path.
+

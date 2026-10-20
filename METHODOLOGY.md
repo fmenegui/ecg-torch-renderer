@@ -1,5 +1,10 @@
 # Methodology
 
+For the 0.8.1 parameter, visibility, text and rectified-capture corrections,
+see [AUDIT_FIXES.md](research/AUDIT_FIXES.md). The derivation below records the
+earlier material-paper model. Current validation and proposed extensions are
+kept separate in [REALISM_ROADMAP.md](research/REALISM_ROADMAP.md).
+
 Material-paper-v1 in ECG Torch Renderer 0.5.0. Signals keep their physiological reference and all paired maps share one capture field.
 
 # How rendering works
@@ -419,3 +424,4 @@ There is no validated claim that this generator is the most realistic in the wor
 The renderer has no gradients to signals or rendering parameters. Python-level orchestration and randomization remain outside the optional compiled raster and scene blocks. Cross-version/device bitwise reproducibility is not guaranteed. File I/O and initialization use CPU outside the hot path.
 
 Use the [profiling tools](docs/profiling.html) to identify your actual bottleneck, and the [validation guide](docs/validation.html) to design evidence for your application.
+

@@ -108,7 +108,7 @@ class IrregularCaptureTests(unittest.TestCase):
             hole_radius=[[.06, .05], [.03, .03], [.03, .03]], tear_raggedness=.8)
         canonical = ECGImageLayer(fs=500, config=config, parameters=parameters,
             randomize=False, seed=784).render_batch(torch.zeros(1, 12, 5000),
-                stage='all', photo=False, return_instances=True)
+                stage='all', photo=False, as_texture=True, return_instances=True)
         settings = PathTraceConfig(width=288, height=192, samples_per_pixel=1,
             surface='wrinkled', bend_radians=.55, geometry_seed=83,
             camera_origin=(.12, -.14, .38), camera_up=(.18, 1., 0.),
@@ -164,3 +164,4 @@ class IrregularCaptureTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+

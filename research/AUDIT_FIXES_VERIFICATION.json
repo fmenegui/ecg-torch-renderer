@@ -1,0 +1,79 @@
+{
+  "schema": "ecg-audit-fixes-verification-v1",
+  "version": "0.8.1",
+  "audit_base_commit": "a4530aa0fa4b8dd6dbec47af2bbb84a3da893035",
+  "python": "3.12.14",
+  "torch": "2.14.1+cpu",
+  "device": "cpu",
+  "tests": {
+    "run": 207,
+    "passed": 201,
+    "skipped": 6,
+    "skipped_cuda": 4,
+    "skipped_unavailable_original_fixture": 2,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 46.587
+  },
+  "regression_tests": 13,
+  "unavailable_fixture": "tests/fixtures/raster-v021.npz exists upstream and was not regenerated",
+  "full_checkout_fixture_verification": "Run by GitHub Actions against this change",
+  "gallery": {
+    "cases": 16,
+    "width": 1024,
+    "height": 768,
+    "inspected": true,
+    "script": "examples/capture_scenarios.py"
+  },
+  "training": {
+    "steps": 3,
+    "compiled_raster": true,
+    "compiled_scene": true,
+    "losses": [
+      0.7003740072250366,
+      0.6976176500320435,
+      0.6942507028579712
+    ],
+    "changed_weights": true,
+    "clinical_validation": false
+  },
+  "yolo_export": {
+    "samples": 8,
+    "groups": 4,
+    "scenario": "missing_fragments",
+    "min_visible_fraction": 0.25,
+    "actual_detector_training_in_this_revision": false
+  },
+  "cuda_measured": false,
+  "real_image_benchmark": false,
+  "photographic_equivalence_established": false,
+  "source_sha256": {
+    "ecg_gpu/__init__.py": "a3251a022c3260098d6020b95bf076ce3f788b6ad13cf656d218f6a02f5eb151",
+    "ecg_gpu/assets.py": "224ae813bb95e90675103788f63e290b42ab7f5b75900b55cbd32839c8f28309",
+    "ecg_gpu/audit.py": "42f79422a25322104f1c84a7bd252cb06b189bbd836d47d4ac7590c27a286e3d",
+    "ecg_gpu/benchmark.py": "f37ebd300703843bcd42513a5dd13253a578cf57ad97a85635b74b4efed5febf",
+    "ecg_gpu/compare.py": "bc55a267568257d24b973f4b0219a4eb78655c6810028281745e299c9f9cb5cf",
+    "ecg_gpu/dataset_export.py": "d813feea1a583aa990331ada19e04d12f17971885e3b8d69aa14035224eb8e29",
+    "ecg_gpu/demo.py": "4bd8011d033c3bb1609e6c89374d24f86a8b572ef2491240b3f45e0c3a9a20fb",
+    "ecg_gpu/gallery.py": "fac9d91c13432691e74ef3c07650c5ffcaacd4bd31d7bff46620e047950cfe09",
+    "ecg_gpu/gpu_appearance.py": "e984e1ecbc120c02c19f898e2f02c4963efe948bbba4abef22428a63f80008a5",
+    "ecg_gpu/gpu_cli.py": "735fdc31c4f44fc64cda809a5616aad6398fe6550d07341c8e87cd8659e29fb7",
+    "ecg_gpu/gpu_document.py": "04333a8d22838db9e3650ed206ef308245333b60659fddcfdea283e334bafdc8",
+    "ecg_gpu/gpu_layouts.py": "c905c310ca283ce7246f016912d8f1fd2bf961a2e72ec41efb1c30b00ea63312",
+    "ecg_gpu/gpu_material.py": "615a42443b66385916795e1a1092178ae44d08b485523ac5321d36bad62510a1",
+    "ecg_gpu/gpu_module.py": "b4a91a77708e19375aca44c2d6bea254d00c9cfea5617f84be9c43cfee930bbf",
+    "ecg_gpu/gpu_paper.py": "366b23f79f9bc91f5daa5274258cb8d9acf6bf78283178ef89b702a5433ca194",
+    "ecg_gpu/gpu_parameters.py": "a8f9fc2e51eb16d75d42c12ff5bd872a0089cf56caeddd91370c899ccf745361",
+    "ecg_gpu/gpu_profiling.py": "d37ead45f8ecfa1fc10c6e114f07811dbca495c4cf495c0824340b9e714e0307",
+    "ecg_gpu/gpu_raster.py": "0911ad91dd99cc602f08defe41b2d7fe0590073719deed63b0455af84f13d87d",
+    "ecg_gpu/gpu_renderer.py": "b227fe28a3527a75bb2764e61d8a5939a635567eb2ef829a68ff8cdbd7013576",
+    "ecg_gpu/gpu_supervision.py": "22cb46b2919c2a5a6bf46cd2902afd0ac2f11175b48f56f3b604ab1e3d8b079d",
+    "ecg_gpu/models_v05.py": "858dc6db8807fa92cc9419f52e7d6bae0d18fa6d7900e32f91e3b3e32db75b71",
+    "ecg_gpu/pathtrace.py": "4dba30a6ebe9535fc0a9f208d3b355e1494c08b2f0dd2339c0c299006f10e036",
+    "ecg_gpu/profile.py": "acadf305bd9042fb52081e083968cb83aa4c2510c801f35dc28ba917523f1bfc",
+    "ecg_gpu/scenarios.py": "8c3e3c764e3a98083da205f93a80283182dcd0de4fb0204fe39a7fe15dc2fe71",
+    "ecg_gpu/schema_v05.py": "c5d708ccb9a740d3ae19b6e30ba4a725b0b270c1ce5c55024550db22e11bda66",
+    "ecg_gpu/seeding.py": "2ad0eafe5f90d2045ee33252b17f8c82e096c008db984880be3d038c77fbd678",
+    "ecg_gpu/training.py": "1b83b8e5436023990fdfa635d7114d41c907ab4d6ca03abf5d6e004d10d27b99"
+  }
+}

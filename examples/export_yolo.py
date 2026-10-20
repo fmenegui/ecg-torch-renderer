@@ -25,6 +25,7 @@ def main():
     parser.add_argument('--width', type=int, default=640)
     parser.add_argument('--height', type=int, default=480)
     parser.add_argument('--device', default='cpu')
+    parser.add_argument('--min-visible-fraction', type=float, default=0.)
     parser.add_argument('--scenario', choices=CAPTURE_SCENARIOS, help='Coherent capture recipe, including material damage')
     args = parser.parse_args()
     if args.groups < 2 or args.views < 1:
@@ -50,10 +51,11 @@ def main():
                              'view': view, 'scenario':args.scenario or 'default_mixed',
                              'render_seed': layer.seed, 'render_call': layer._calls,
                              'renderer': layer.renderer.specification()}]))
-    manifest = export_yolo_dataset(records, args.out)
+    manifest = export_yolo_dataset(records, args.out, min_visible_fraction=args.min_visible_fraction)
     print({'samples': len(manifest['samples']), 'groups': len(manifest['groups']),
            'dataset': str(args.out/'dataset.yaml'), 'clinical_validation': False})
 
 
 if __name__ == '__main__':
     main()
+
