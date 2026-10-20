@@ -611,6 +611,10 @@ class ECGRenderer(nn.Module):
         tokens = p['font'][:, None] * len(self.tokens) + torch.stack([units, torch.full_like(units, 21)], 1)
         header_x = torch.stack([instances['left'], torch.full_like(instances['left'], self.config.width * .68)], 1)
         header_y = torch.full((b, 2), self.config.height * .022, device=self.device)
+        if self.document_template:
+            # Template typography uses material millimeters throughout. The
+            # legacy height-relative position can collide with the first title.
+            header_y = (instances['ppm'] * 1.5)[:, None].expand(b, 2)
         header_size = (p['font_size'] * 1.15)[:, None].expand(b, 2)
         header_presence = torch.stack([p['header_present'], torch.ones_like(p['header_present'])], 1)
         if self.document_template:
@@ -621,7 +625,8 @@ class ECGRenderer(nn.Module):
             ids = torch.arange(count, device=self.device)[None]
             extra_tokens = p['font'][:, None] * len(self.tokens) + self.template_offset + ids
             extra_x = instances['left'][:, None].expand(b, count)
-            extra_y = instances['ppm'][:, None] * (5 + ids * self.document_template.font_mm * 1.5)
+            first_title_mm = max(5., 1.5 + self.document_template.font_mm * 1.15 + .8)
+            extra_y = instances['ppm'][:, None] * (first_title_mm + ids * self.document_template.font_mm * 1.5)
             extra_size = p['font_size'][:, None].expand(b, count)
             headers = torch.maximum(headers, self._stamp(extra_tokens, extra_x, extra_y, extra_size,
                                     torch.ones_like(extra_size), patch=self.template_patch))
