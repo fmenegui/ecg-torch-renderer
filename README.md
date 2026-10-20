@@ -32,6 +32,10 @@ Python ≥3.10, Torch ≥2.6, NumPy ≥1.24 and Pillow ≥10.1. Optional WFDB in
 
 ## Your first image
 
+Version **0.9.1** corrects a template header collision found during enlarged
+visual review. The regression covers 72 typography combinations. See the
+[header correction](research/TEMPLATE_HEADER_FIX.md).
+
 Version **0.9.0** adds physical document templates, thermal printing, scaled
 paper-scan imports, depth-dependent optics, an emissive RGB display model and
 coupled liquid/storage history. Offline sheets support compliant relaxation,

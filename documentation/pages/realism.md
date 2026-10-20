@@ -40,6 +40,10 @@ still be unreadable. Use a separate readability criterion for such training data
 
 ## Document and print
 
+Version 0.9.1 separates template speed/gain text from the first title line.
+Both blocks now use physical millimeter positions, including spacing for
+custom larger fonts. This corrects a collision discovered in enlarged renders.
+
 `DocumentTemplate` defines margins and font sizes in millimeters, fictional
 header lines and RGB colors. Built-in names are `clinical`, `archive` and
 `compact`. They are generic conventions, not replicas of commercial equipment.
