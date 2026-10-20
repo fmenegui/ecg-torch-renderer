@@ -36,6 +36,12 @@ For direct rendering, use
 `layer.render_batch(signals, return_grid_points=True)`. Grid outputs are placed
 in `RenderBatch.targets`, independently of the legacy `vertices` heatmap.
 Use `grid_point_config=GridPointConfig(...)` for custom settings.
+On `ECGSupervisionLayer`, direct rendering inherits its supervision grid
+configuration. `supervise(rendered)` checks configuration provenance and required
+targets, rejecting a differently configured or incomplete grid payload.
+Single strings such as `outputs='grid_points'` and `leads='II'` are accepted.
+When `return_offsets=True`, include `grid_points` in outputs to receive the
+offset targets. Mask-only output with requested offsets is rejected clearly.
 
 ## Offline ray-traced capture
 
@@ -75,7 +81,9 @@ Sigma controls Gaussian spread. Radius controls the disk boundary, with a
 its support without changing sigma. Without it, the Gaussian uses the existing
 square window of radius ceil(3*sigma). Sigma is positive and at most 4, and an
 explicit radius is positive and at most 16. Patch splats are chunked to bound
-temporary memory. Very small targets can miss every pixel center.
+temporary patch work to at most 2^20 entries per chunk across batch, points
+and marker offsets. This is not a bound on output tensors, allocator usage
+or total device memory. Very small targets can miss every pixel center.
 
 The center stays fractional and **does not move when mask size changes**.
 Masks are evaluated from distances to that fractional center, not to a rounded
@@ -182,6 +190,11 @@ valid_pred = points['valid']
 Offset loss uses only `grid_points_offset_valid`. Heatmap BCE includes the
 surrounding table as negative examples. Class weighting is optional and must
 be tuned on held-out data. Both masks and offsets need the SAME resolution.
+Loss reductions use float32, including half-precision inputs and support maps.
+Unsupported offset entries are masked before regression, so NaN/Inf sentinels
+outside support have zero contribution and gradient. Supervised offsets must
+be finite and within [-.5,.5]. Heatmap and support targets must be finite in
+[0,1]. Invalid tensors fail on the input device without copying them to CPU.
 For downsampled heads, transform centers with `(xy+.5)/stride-.5` and regenerate
 the targets at that resolution, including sigma/radius in output pixels.
 

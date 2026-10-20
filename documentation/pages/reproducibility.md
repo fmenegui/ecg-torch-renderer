@@ -50,6 +50,15 @@ The layer state includes its call counter and a configuration/assets signature. 
 
 The external generator's state is not owned by the layer. Save it separately if you pass `generator=`. Cross-device, cross-version and cross-platform bitwise equivalence is not promised, consistent with the [PyTorch reproducibility guidance](https://docs.pytorch.org/docs/stable/notes/randomness.html). Record Torch, source hashes, assets and device information with experiments.
 
+## Supervision checkpoint compatibility
+
+Since 0.11.1, supervision checkpoints compare only effective grid settings.
+Lead-only checkpoints accept an absent or unused `grid_point_config`, including
+states predating grid supervision. Changing that unused option does not change
+the rendered sequence. When grid outputs are enabled, the complete grid
+configuration must match. This does not bypass renderer, assets, photo or
+other supervision compatibility checks.
+
 ## Patient splits
 
 Split source recordings by patient before generating images. Keep all captures of the same patient in the same partition. Derive validation seeds from recording identity, then render them consistently.

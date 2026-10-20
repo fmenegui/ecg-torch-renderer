@@ -91,6 +91,13 @@ results. It exposed a display-aliasing defect during 0.9 development, leading to
 analytical aperture integration and a distant-panel neutrality regression test.
 Real-image generalization requires a different dataset and remains unverified.
 
+Grid geometry, target rasterization and learning helpers have separate
+responsibilities. The supervision adapter verifies target provenance before
+exposing a batch. Rasterization chunks temporary patch work over batch, points
+and offsets. Learning reductions use float32 and ignore unsupported regression
+entries before evaluating the loss. Regression contracts cover mixed precision,
+direct-render configuration, legacy lead-only replay and chunk boundaries.
+
 ## Primary references
 
 - Macklin, Müller and Chentanez, [XPBD](https://matthias-research.github.io/pages/publications/XPBD.pdf), 2016. The implementation uses compliant distance constraints with rest-shape bending proxies.
