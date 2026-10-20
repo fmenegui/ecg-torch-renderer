@@ -4,7 +4,7 @@ This is deliberately separate from the on-device training renderer. Mesh/file
 creation, CPU ray tracing and asset decoding happen here. Mitsuba is imported
 only when explicitly requested. No downloaded weights or assets are required.
 """
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, replace
 import hashlib
 import math
 from pathlib import Path
@@ -17,6 +17,7 @@ from PIL import Image
 
 from .gpu_appearance import linear_to_srgb
 from .gpu_supervision import mask_bounding_boxes
+from .paper_mechanics import SheetConfig, relax_sheet, assert_no_crossings, paper_shell, lift_cut_lips
 
 
 @dataclass(frozen=True)
@@ -46,8 +47,29 @@ class PathTraceConfig:
     hole_radius: float = 0.
     camera_up: tuple = (0., 1., 0.)
     variant: str = 'llvm_ad_rgb'
+    mesh_columns: int = 129
+    mesh_rows: int = 65
+    sheet: SheetConfig | None = None
+    paper_thickness_m: float = 0.
+    edge_fibers: int = 0
+    cut_lip_lift_m: float = 0.
 
     def __post_init__(self):
+        for key in ('mesh_columns', 'mesh_rows'):
+            if type(getattr(self, key)) is not int or not 3 <= getattr(self, key) <= 257:
+                raise ValueError(f'{key} must be an integer in [3,257]')
+        if self.sheet is not None and not isinstance(self.sheet, SheetConfig):
+            raise TypeError('sheet must be SheetConfig')
+        if self.sheet is not None and self.mesh_columns * self.mesh_rows > 2048:
+            raise ValueError('Offline sheet dynamics requires <=2048 vertices. Set mesh_columns/mesh_rows')
+        if isinstance(self.paper_thickness_m, bool) or not math.isfinite(self.paper_thickness_m) or not 0 <= self.paper_thickness_m <= .001:
+            raise ValueError('Paper thickness must be in [0,.001] meters')
+        if type(self.edge_fibers) is not int or not 0 <= self.edge_fibers <= 64:
+            raise ValueError('edge_fibers must be an integer in [0,64]')
+        if isinstance(self.cut_lip_lift_m, bool) or not math.isfinite(self.cut_lip_lift_m) or not 0 <= self.cut_lip_lift_m <= .003:
+            raise ValueError('cut_lip_lift_m must be in [0,.003] meters')
+        if self.edge_fibers and not self.paper_thickness_m:
+            raise ValueError('Edge fibers require finite paper thickness')
         if self.variant not in ('llvm_ad_rgb', 'cuda_ad_rgb'):
             raise ValueError('variant must be llvm_ad_rgb or cuda_ad_rgb')
         for key, low, high in [('width', 64, 4096), ('height', 64, 4096),
@@ -354,7 +376,7 @@ def _write_obj(path, vertices, uv, faces):
             stream.write('f '+' '.join(f'{index}/{index}' for index in face)+'\n')
 
 
-def _visible_samples(mi, scene, config, paper_shape):
+def _visible_samples(mi, scene, config, paper_shape, *, details=False):
     """Intersect actual camera rays. Never infer labels from averaged AOV IDs."""
     h, w, count = config.height, config.width, config.label_samples_per_axis
     base_y, base_x = np.mgrid[:h, :w]
@@ -371,10 +393,25 @@ def _visible_samples(mi, scene, config, paper_shape):
             uv = hit.uv.numpy().T.reshape(h, w, 2)
             # Explicit flip_tex_coords=False matches top-left bitmap indexing.
             field = torch.from_numpy(np.nan_to_num(uv*2-1, nan=2., posinf=2., neginf=2.).copy())[None]
-            yield field, torch.from_numpy(visible.astype(np.float32))[None, None]
+            mask = torch.from_numpy(visible.astype(np.float32))[None, None]
+            if not details:
+                yield field, mask
+            else:
+                direction = np.array(config.camera_target) - np.array(config.camera_origin)
+                direction /= np.linalg.norm(direction)
+                right = np.cross(direction, config.camera_up)
+                right /= np.linalg.norm(right)
+                up = np.cross(right, direction)
+                normals = hit.sh_frame.n.numpy().T.reshape(h, w, 3)
+                normals = normals @ np.stack([right, up, -direction], 1)
+                normals = np.nan_to_num(normals, nan=0., posinf=0., neginf=0.)
+                normals[~visible] = [0, 0, 1]
+                height = np.nan_to_num(hit.p.z.numpy().reshape(h, w), nan=0., posinf=0., neginf=0.)
+                height = np.where(visible, np.maximum(height, 0), 0)
+                yield field, mask, torch.from_numpy(normals.astype(np.float32)).permute(2, 0, 1)[None], torch.from_numpy(height.copy())[None, None]
 
 
-def pathtrace_capture(canonical, *, config=None, background_texture=None, seed=1973):
+def pathtrace_capture(canonical, *, config=None, background_texture=None, seed=1973, return_geometry=False):
     """Render one canonical RenderBatch with 3D light transport and targets.
 
     Canonical input must be one rectified page, including instance targets.
@@ -385,6 +422,8 @@ def pathtrace_capture(canonical, *, config=None, background_texture=None, seed=1
     readability estimates. The optional local background image is decoded as
     sRGB. No asset is downloaded by this function.
     """
+    if type(return_geometry) is not bool:
+        raise ValueError('return_geometry must be bool')
     config = config or PathTraceConfig()
     if not isinstance(config, PathTraceConfig):
         raise TypeError('config must be PathTraceConfig')
@@ -428,12 +467,20 @@ def pathtrace_capture(canonical, *, config=None, background_texture=None, seed=1
     ch, cw = canonical.image.shape[-2:]
     width_m, height_m = cw/ppm*.001, ch/ppm*.001
     vertices, uv, faces = paper_mesh(width_m, height_m, config.surface, config.bend_radians,
+        columns=config.mesh_columns, rows=config.mesh_rows,
         geometry_seed=config.geometry_seed, surface_strength=config.surface_strength,
         fold_count=config.fold_count, wrinkle_amplitude_m=config.wrinkle_amplitude_m)
     # Keep the low-resolution physical solve independent of image resolution.
     # Only damaged captures need denser material topology for clean contours.
-    contact_sheet = vertices.reshape(65, 129, 3).copy()
-    mesh_columns, mesh_rows = 129, 65
+    mesh_columns, mesh_rows = config.mesh_columns, config.mesh_rows
+    mechanics = None
+    if config.sheet is not None:
+        if config.sheet.table_clearance_m < config.paper_thickness_m:
+            raise ValueError('Sheet table clearance must cover paper thickness')
+        vertices, mechanics = relax_sheet(vertices, uv, rows=mesh_rows, columns=mesh_columns,
+            width_m=width_m, height_m=height_m, config=config.sheet)
+        assert_no_crossings(vertices, faces)
+    contact_sheet = vertices.reshape(mesh_rows, mesh_columns, 3).copy()
     source_has_damage = ('paper_support' in canonical.targets and
                          bool((canonical.targets['paper_support'] < .5).any()))
     if source_has_damage and canonical.metadata.get('rectified_mode') == 'document':
@@ -461,6 +508,13 @@ def pathtrace_capture(canonical, *, config=None, background_texture=None, seed=1
             diagnostics=mesh_numerics)
     if not len(faces):
         raise ValueError('Paper damage removed the entire triangulated sheet')
+    if config.cut_lip_lift_m:
+        vertices = lift_cut_lips(vertices, uv, faces, width_m=width_m, height_m=height_m, lift_m=config.cut_lip_lift_m)
+    shell = paper_shell(vertices, uv, faces, config.paper_thickness_m) if config.paper_thickness_m else None
+    if shell is not None and shell['back_vertices'][faces, 2].min() < -1e-8:
+        raise ValueError('Paper shell intersects table. Increase sheet clearance or reduce thickness')
+    if shell is not None and config.sheet is not None:
+        assert_no_crossings(shell['back_vertices'], shell['back_faces'])
     mesh_hash = hashlib.sha256(vertices.astype('<f4').tobytes()+uv.astype('<f4').tobytes()+
                                faces.astype('<i4').tobytes()).hexdigest()
     material_edges = (uv[faces[:, [1, 2, 0]]].astype(np.float64) -
@@ -472,6 +526,8 @@ def pathtrace_capture(canonical, *, config=None, background_texture=None, seed=1
     if not ((material_lengths > 0).all() and (spatial_lengths > 0).all()):
         raise RuntimeError('Unresolvable material or spatial mesh edge after clipping')
     metric_error = spatial_lengths/material_lengths-1
+    if config.cut_lip_lift_m and np.abs(metric_error).max() > .05:
+        raise RuntimeError('Lifted cut lip exceeds 5 percent material-edge strain')
     if not np.isfinite(metric_error).all():
         raise RuntimeError('Nonfinite paper metric after clipping')
     canonical_target_hashes = {key: hashlib.sha256(value.detach().cpu().float().numpy().astype('<f4').tobytes()).hexdigest()
@@ -520,6 +576,25 @@ def pathtrace_capture(canonical, *, config=None, background_texture=None, seed=1
                     'emitter': {'type': 'area', 'radiance': config.key_radiance}},
             'environment': {'type': 'constant', 'radiance': config.environment_radiance},
         }
+        if shell is not None:
+            _write_obj(temp/'back.obj', shell['back_vertices'], uv, shell['back_faces'])
+            _write_obj(temp/'sides.obj', shell['side_vertices'], shell['side_uv'], shell['side_faces'])
+            for name, filename, reflectance in (('paper_back', 'back.obj', .93), ('paper_edges', 'sides.obj', .77)):
+                scene_description[name] = {'type':'obj', 'filename':str(temp/filename),
+                    'bsdf':{'type':'diffuse', 'reflectance':reflectance}}
+            rng = np.random.default_rng(config.geometry_seed)
+            boundary = shell['boundary_edges']
+            for index in range(config.edge_fibers):
+                a, b = boundary[rng.integers(len(boundary))]
+                t = rng.uniform(.05, .95)
+                origin = vertices[a] * (1 - t) + vertices[b] * t
+                tangent = vertices[b] - vertices[a]
+                tangent /= np.linalg.norm(tangent)
+                outward = np.cross(tangent, [0., 0., 1.])
+                outward /= max(np.linalg.norm(outward), 1e-12)
+                tip = origin + outward * rng.uniform(.0002, .0008) + [0, 0, .00004]
+                scene_description[f'fiber_{index}'] = {'type':'cylinder', 'p0':origin.tolist(), 'p1':tip.tolist(),
+                    'radius':.000012, 'bsdf':{'type':'diffuse', 'reflectance':.87}}
         if config.occluder:
             # Rest the rigid pen above the local sheet profile. A fixed world
             # z could bury it under folded paper and erase its occlusion.
@@ -564,12 +639,19 @@ def pathtrace_capture(canonical, *, config=None, background_texture=None, seed=1
         samples = config.label_samples_per_axis**2
         masks /= samples
         paper_valid /= samples
+        geometry = None
+        if return_geometry:
+            field, mask, normals, height = next(_visible_samples(mi, scene,
+                replace(config, label_samples_per_axis=1), paper_shape, details=True))
+            field = torch.where(mask.permute(0, 2, 3, 1).bool(), field, torch.full_like(field, 2.))
+            geometry = {'inverse_field':field, 'mask':mask, 'normals':normals,
+                        'height':height / (width_m / 2)}
     valid = masks[:, -1:]
     # Preserve coverage semantics: source-valid applies once, not squared.
     lead_masks, instance_masks = masks[:, :12], masks[:, 12:-1]
     lead_boxes, lead_box_valid = mask_bounding_boxes(lead_masks)
     instance_boxes, instance_box_valid = mask_bounding_boxes(instance_masks)
-    return {'image': image, 'valid': valid, 'paper_mask': paper_valid,
+    return {'image': image, 'valid': valid, 'paper_mask': paper_valid, 'geometry':geometry,
             'lead_masks': lead_masks, 'lead_boxes': lead_boxes, 'lead_box_valid': lead_box_valid,
             'lead_ids': torch.arange(12, dtype=torch.int64)[None],
             'instance_masks': instance_masks, 'instance_boxes': instance_boxes,
@@ -579,6 +661,7 @@ def pathtrace_capture(canonical, *, config=None, background_texture=None, seed=1
             'metadata': {'schema': 'ecg-pathtrace-v1', 'mitsuba': mi.__version__, 'variant': mi.variant(),
                          'configuration': asdict(config), 'torch_version': str(torch.__version__),
                          'implementation_sha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+                         'mechanics_implementation_sha256':hashlib.sha256(Path(__file__).with_name('paper_mechanics.py').read_bytes()).hexdigest(),
                          'canonical_texture_sha256': texture_hash,
                          'canonical_targets_sha256': canonical_target_hashes,
                          'canonical_instance_identity_sha256': canonical_identity_hash,
@@ -598,10 +681,31 @@ def pathtrace_capture(canonical, *, config=None, background_texture=None, seed=1
                          'damage_boundary': 'shared interpolated edge intersections, refined marching triangles',
                          'max_absolute_edge_strain': float(np.abs(metric_error).max()),
                          'metric_edges_evaluated': int(metric_error.size),
-                         'mesh_numerics': mesh_numerics,
-                         'geometry': ('prescribed developable mesh' if config.surface in
+                         'mesh_numerics': mesh_numerics, 'mechanics':mechanics,
+                         'paper_thickness_m':config.paper_thickness_m, 'edge_fibers':config.edge_fibers,
+                         'cut_lip_lift_m':config.cut_lip_lift_m,
+                         'geometry_bank_sampling':'center rays, binary visibility, no baked text/shading' if return_geometry else None,
+                         'geometry': ('XPBD distance sheet' if config.sheet is not None else 'prescribed developable mesh' if config.surface in
                              ('flat', 'curl', 'fold', 'multifold') else
-                             'seeded relief with static material-edge relaxation') + ', not cloth dynamics',
+                             'seeded relief with static material-edge relaxation') + ', see mechanics contract',
                          'missing_material': 'shared clipped-triangle topology, resolution-limited linear boundary segments',
                          'external_real_image_validation': False}}
 
+
+
+def capture_geometry_assets(capture):
+    """Convert center-ray maps into a reusable device-resident geometry bank.
+
+    A bank contains no ECG image or patient information. It matches center-ray
+    labels, not the subpixel-averaged masks from label_samples_per_axis >1.
+    Camera perspective is baked. Additional renderer transforms compose with it.
+    """
+    from .gpu_document import DocumentAssets
+    geometry = capture.get('geometry')
+    if geometry is None:
+        raise ValueError('Capture with return_geometry=True first')
+    metadata = capture['metadata']
+    return DocumentAssets(**geometry, provenance={
+        'schema':'ecg-geometry-provenance-v1', 'mesh_sha256':metadata['mesh_sha256'],
+        'configuration':metadata['configuration'], 'seed':metadata['seed'],
+        'sampling':'center-ray', 'contains_document_content':False})

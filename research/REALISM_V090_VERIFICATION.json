@@ -1,0 +1,117 @@
+{
+  "schema": "ecg-realism-release-verification-v1",
+  "version": "0.9.0",
+  "date": "2026-10-20",
+  "tests": {
+    "run": 253,
+    "passed": 246,
+    "skipped": 7,
+    "skipped_cuda": 5,
+    "skipped_local_missing_upstream_binary": 2,
+    "new_tests": 46,
+    "new_passed": 45,
+    "new_skipped_cuda": 1,
+    "duration_s": 50.069,
+    "local_command": "python -m unittest discover -s tests -v with a local-only skip adapter for the two original binary-fixture tests",
+    "ci_command": "python -m unittest discover -s tests -v, no fixture skips or fixture modifications"
+  },
+  "coverage": {
+    "scope": "Seven new model modules only",
+    "tool": "coverage.py 7.16.2, branch-aware",
+    "totals": {
+      "covered_lines": 511,
+      "num_statements": 555,
+      "percent_covered": 88.02153432032301,
+      "percent_covered_display": "88",
+      "missing_lines": 44,
+      "excluded_lines": 0,
+      "percent_statements_covered": 92.07207207207207,
+      "percent_statements_covered_display": "92",
+      "num_branches": 188,
+      "num_partial_branches": 43,
+      "covered_branches": 143,
+      "missing_branches": 45,
+      "percent_branches_covered": 76.06382978723404,
+      "percent_branches_covered_display": "76"
+    },
+    "ci_floor_percent": 85
+  },
+  "checks": {
+    "strict_new_module_lint": "passed",
+    "fatal_error_lint_all_library_tests_examples": "passed",
+    "git_diff_check": "passed",
+    "documentation_build": {
+      "pages": 20,
+      "gallery_figures": 125
+    },
+    "full_documentation_binary_validation": "Delegated to full-checkout CI. Original gallery binaries unavailable in local snapshot.",
+    "compiled_segmentation_training": {
+      "steps": 3,
+      "losses": [
+        0.6949262023,
+        0.6919561028,
+        0.6893933415
+      ],
+      "finite_gradients": true
+    },
+    "new_optical_and_display_downstream_training": "2 Adam steps per medium, finite gradients and changed convolution weights",
+    "adverse_gallery": {
+      "cases": 16,
+      "command": "python examples/capture_scenarios.py --out build/realism-v090/scenarios"
+    },
+    "realism_gallery": {
+      "cases": 7,
+      "command": "python examples/physical_realism.py --out build/realism-v090 --pathtrace --benchmark",
+      "offline_samples_per_pixel": 64,
+      "asset_sha256": "736529e6eb166f2a51f32bf6277ca9c9961d4a67db8284832ff33023c33267bc",
+      "visual_review": "Actual outputs inspected. Point-sampled RGB aperture aliasing corrected with analytical area integration.",
+      "offline_max_edge_strain": 0.026860314359347104
+    }
+  },
+  "external_real_image_validation": false,
+  "measured_paper_or_camera_presets_shipped": false,
+  "limitations": [
+    "No CUDA hardware available locally",
+    "No general continuous self-contact response",
+    "Sheet bending uses distance rest-shape constraints, not a calibrated paper shell constitutive law",
+    "Fast defocus approximates blur disks by finite Gaussian mixtures and does not integrate lens occlusions",
+    "Display uses box footprint approximation and full-panel PWM, not LCD/OLED frame response",
+    "Material history coefficients are illustrative, not fitted chemistry"
+  ],
+  "source_sha256": {
+    "__init__.py": "131dfbe832c2e67b39f4f06d71e3ea4b085278442018f6fd2f593c5d577110e9",
+    "assets.py": "f6bf7a86e2c4951e807645bd54d2b79c6aa731f40d0d01a6fff1a1a7670f60df",
+    "audit.py": "42f79422a25322104f1c84a7bd252cb06b189bbd836d47d4ac7590c27a286e3d",
+    "benchmark.py": "f37ebd300703843bcd42513a5dd13253a578cf57ad97a85635b74b4efed5febf",
+    "compare.py": "bc55a267568257d24b973f4b0219a4eb78655c6810028281745e299c9f9cb5cf",
+    "dataset_export.py": "d813feea1a583aa990331ada19e04d12f17971885e3b8d69aa14035224eb8e29",
+    "demo.py": "4bd8011d033c3bb1609e6c89374d24f86a8b572ef2491240b3f45e0c3a9a20fb",
+    "document_templates.py": "8aec54f4c6612bfe4e4e0cf0711f0df6806281ca88fe6fbb6f155eebfdc6eeef",
+    "emissive_display.py": "bc7defac4223e3decfb69e6efdcc6db57cfaa9bc1356423cc42c227a83a1d7d4",
+    "gallery.py": "fac9d91c13432691e74ef3c07650c5ffcaacd4bd31d7bff46620e047950cfe09",
+    "gpu_appearance.py": "b331ef333670dfc0e46a5bb2b307d0c8fa29e195e911c780f1f39d783b6e98b5",
+    "gpu_cli.py": "b260f93220066ee76279af8d0d224be4df5f3ec2992698127bb667a8221eb90b",
+    "gpu_document.py": "f74f76ca62e0d73fb01f53915e4f59c3e6b0c4a3e626956fb24e04c969f4c959",
+    "gpu_layouts.py": "c905c310ca283ce7246f016912d8f1fd2bf961a2e72ec41efb1c30b00ea63312",
+    "gpu_material.py": "615a42443b66385916795e1a1092178ae44d08b485523ac5321d36bad62510a1",
+    "gpu_module.py": "b4a91a77708e19375aca44c2d6bea254d00c9cfea5617f84be9c43cfee930bbf",
+    "gpu_paper.py": "a228cde10b042b8b4a3404316b10b1b094a1d07d381727aae72276d4598ed47e",
+    "gpu_parameters.py": "a8f9fc2e51eb16d75d42c12ff5bd872a0089cf56caeddd91370c899ccf745361",
+    "gpu_profiling.py": "d37ead45f8ecfa1fc10c6e114f07811dbca495c4cf495c0824340b9e714e0307",
+    "gpu_raster.py": "0911ad91dd99cc602f08defe41b2d7fe0590073719deed63b0455af84f13d87d",
+    "gpu_renderer.py": "45abb8349e0c66a6a445e54a4c1cd224ed0b981a7cf307b20eb2435dcb93d638",
+    "gpu_supervision.py": "22cb46b2919c2a5a6bf46cd2902afd0ac2f11175b48f56f3b604ab1e3d8b079d",
+    "material_history.py": "8d14b909a33f1a06ffe7e69b6486992a52cc6278f02a892e3fe91ae6aa2c7027",
+    "measured_paper.py": "d98da597131a043f3106f7282323a8cad9110df46977f30ba53fe133b798b0a8",
+    "models_v05.py": "858dc6db8807fa92cc9419f52e7d6bae0d18fa6d7900e32f91e3b3e32db75b71",
+    "paper_mechanics.py": "a662927038c51a5d04db64ed9db47eaa75fece72949fe3785dbd3467201f487f",
+    "pathtrace.py": "fd23a44cb77148c14a3269fd9a6d42cd13de065bce9ea8b01af839a959abb721",
+    "physical_camera.py": "f0d550f8061888cebfc2d08b65ee5acf9a89de43298b3a904461c4bd3420b729",
+    "profile.py": "acadf305bd9042fb52081e083968cb83aa4c2510c801f35dc28ba917523f1bfc",
+    "scenarios.py": "8c3e3c764e3a98083da205f93a80283182dcd0de4fb0204fe39a7fe15dc2fe71",
+    "schema_v05.py": "c5d708ccb9a740d3ae19b6e30ba4a725b0b270c1ce5c55024550db22e11bda66",
+    "seeding.py": "2ad0eafe5f90d2045ee33252b17f8c82e096c008db984880be3d038c77fbd678",
+    "thermal_print.py": "b5e36660c897c450050ba7f14f9c414a1096d945477c6b1588646c7c5aabe941",
+    "training.py": "1b83b8e5436023990fdfa635d7114d41c907ab4d6ca03abf5d6e004d10d27b99"
+  }
+}

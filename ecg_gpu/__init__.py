@@ -5,12 +5,18 @@ from .gpu_document import DocumentAssets
 from .gpu_layouts import LayoutSpec
 from .models_v05 import build_model, task_loss
 from .gpu_profiling import profile_layer
-__version__ = "0.8.1"
 from .gpu_supervision import ECGSupervisionLayer, SupervisionConfig, mask_bounding_boxes
 from .scenarios import CAPTURE_SCENARIOS, capture_scenario
 from .training import detection_targets, padded_detection_targets, masked_segmentation_loss
 from .dataset_export import export_yolo_dataset, samples_from_batch
 from .assets import load_rgb_bank
 from .seeding import render_seed
+from .document_templates import DocumentTemplate, DOCUMENT_TEMPLATES
+from .thermal_print import ThermalPrint, ThermalPrintConfig
+from .physical_camera import PhysicalCamera, LensConfig, SensorConfig
+from .emissive_display import EmissiveDisplay, DisplayConfig
+from .measured_paper import MeasuredPaperBank, PaperScan
+from .material_history import MaterialHistory
+from .assets import SceneBank
 
-
+__version__ = "0.9.0"

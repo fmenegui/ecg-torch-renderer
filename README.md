@@ -32,11 +32,13 @@ Python ≥3.10, Torch ≥2.6, NumPy ≥1.24 and Pillow ≥10.1. Optional WFDB in
 
 ## Your first image
 
-Version **0.8.1** corrects orientation overrides, perspective-based unit
-visibility and large-font clipping. Rectified final documents now remove
-missing substrate. Preparing a texture for offline 3D instead requires
-`photo=False, as_texture=True`. See the [audit fixes](research/AUDIT_FIXES.md)
-and the [photorealism proposal](research/REALISM_ROADMAP.md).
+Version **0.9.0** adds physical document templates, thermal printing, scaled
+paper-scan imports, depth-dependent optics, an emissive RGB display model and
+coupled liquid/storage history. Offline sheets support compliant relaxation,
+finite thickness, cut lips, fibers and reusable primary-ray geometry banks.
+See [physical realism](documentation/pages/realism.md) and
+[architecture and quality gates](documentation/pages/architecture.md).
+Measured presets and external photographic equivalence remain unverified.
 
 ```python
 import torch

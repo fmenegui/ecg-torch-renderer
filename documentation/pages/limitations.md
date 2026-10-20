@@ -47,3 +47,12 @@ The renderer has no gradients to signals or rendering parameters. Python-level o
 
 Use the [profiling tools](profiling.html) to identify your actual bottleneck, and the [validation guide](validation.html) to design evidence for your application.
 
+
+
+## Version 0.9 optional models
+
+See [physical realism](realism.html) for the exact contracts of thin-lens blur,
+RGB/PWM displays, offline XPBD distance constraints, finite-thickness edges and
+measurement provenance. These components add mechanisms, not a measured
+real-world equivalence guarantee. Legacy approximations below still apply to
+the default fast paper path.

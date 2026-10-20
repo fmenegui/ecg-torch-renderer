@@ -16,6 +16,12 @@ from torch.nn import functional as F
 
 from .gpu_appearance import CameraAppearance, srgb_to_linear, linear_to_srgb
 from .gpu_material import PaperMaterial
+from .document_templates import DocumentTemplate, DOCUMENT_TEMPLATES
+from .thermal_print import ThermalPrint, ThermalPrintConfig
+from .material_history import MaterialHistory
+from .assets import SceneBank
+from .emissive_display import EmissiveDisplay, DisplayConfig
+from .measured_paper import MeasuredPaperBank
 from .gpu_document import DocumentAssets, DocumentScene, SURFACES, BACKGROUNDS, SHADOWS
 from .gpu_layouts import LayoutSpec, standard_layouts
 from .gpu_raster import raster_kernels
@@ -109,7 +115,7 @@ class RenderBatch:
     scene: Optional[dict] = None
 
 
-def _font_atlas(fonts: Optional[Sequence[str]], artifact_texts):
+def _font_atlas(fonts: Optional[Sequence[str]], artifact_texts, template_texts=()):
     # The CPU-only initialization is deliberately outside the training hot path.
     from PIL import Image, ImageDraw, ImageFont
     import numpy as np
@@ -127,7 +133,7 @@ def _font_atlas(fonts: Optional[Sequence[str]], artifact_texts):
     if not found:
         found = [ImageFont.load_default(size=24)]
         descriptions = ['Pillow built-in font']
-    tokens = list(LEADS) + [f'{speed:g} mm/s   {gain:g} mm/mV' for speed in SPEEDS[1:] for gain in GAINS[1:]] + ['ECG RECORD', 'RECORD SYNTHETIC'] + ['-'+name for name in LEADS] + list(artifact_texts)
+    tokens = list(LEADS) + [f'{speed:g} mm/s   {gain:g} mm/mV' for speed in SPEEDS[1:] for gain in GAINS[1:]] + ['ECG RECORD', 'RECORD SYNTHETIC'] + ['-'+name for name in LEADS] + list(artifact_texts) + list(template_texts)
     # Atlas dimensions follow actual token lengths, including user-provided
     # annotation text. A fixed 384px atlas silently truncated long strings.
     atlas_width = max(384, math.ceil(max(font.getlength(token)
@@ -150,9 +156,46 @@ class ECGRenderer(nn.Module):
     """
     def __init__(self, config=None, *, fonts=None, paper_textures=None, backgrounds=None,
                  layouts=None, document_assets=None, artifact_texts=('COPY','TEST ECG','CHECK','ARCHIVE','SAMPLE'),
-                 compile_raster=False, compile_scene=False):
+                 compile_raster=False, compile_scene=False, document_template=None,
+                 thermal_print=None, measured_paper=None, camera_model=None, display=None, material_history=None):
         super().__init__()
         self.config = config or RenderConfig()
+        if isinstance(document_template, str):
+            if document_template not in DOCUMENT_TEMPLATES:
+                raise ValueError(f'Unknown document template: {document_template}')
+            document_template = DOCUMENT_TEMPLATES[document_template]
+        if document_template is not None and not isinstance(document_template, DocumentTemplate):
+            raise TypeError('document_template must be a name or DocumentTemplate')
+        if measured_paper is not None and not isinstance(measured_paper, MeasuredPaperBank):
+            raise TypeError('measured_paper must be MeasuredPaperBank')
+        if measured_paper is not None and paper_textures is not None:
+            raise ValueError('Use measured_paper or uncalibrated paper_textures')
+        if display is not None and not isinstance(display, DisplayConfig):
+            raise TypeError('display must be DisplayConfig')
+        if display is not None and (self.config.surface_mode != 'off' or document_assets is not None
+                                    or thermal_print is not None or measured_paper is not None or paper_textures is not None):
+            raise ValueError('Display requires surface_mode=off and no paper material/geometry assets')
+        if display is not None and self.config.camera_mode != 'sensor':
+            raise ValueError('Emissive display requires camera_mode=sensor')
+        if thermal_print is not None and not isinstance(thermal_print, ThermalPrintConfig):
+            raise TypeError('thermal_print must be ThermalPrintConfig')
+        if camera_model is not None and (not isinstance(camera_model, CameraAppearance)
+                                         or not callable(getattr(camera_model, 'specification', None))):
+            raise TypeError('camera_model must extend CameraAppearance and provide specification()')
+        if camera_model is not None and (camera_model.mode != self.config.camera_mode
+                                         or camera_model.jpeg_enabled != self.config.jpeg_enabled):
+            raise ValueError('Camera configuration must match renderer camera_mode/jpeg_enabled')
+        if material_history is not None and not isinstance(material_history, MaterialHistory):
+            raise TypeError('material_history must be MaterialHistory')
+        if material_history is not None and (display is not None or self.config.surface_mode == 'off'):
+            raise ValueError('Material history requires paper geometry enabled')
+        self.material_history = material_history
+        self.scene_provenance = backgrounds.provenance if isinstance(backgrounds, SceneBank) else None
+        if isinstance(backgrounds, SceneBank):
+            backgrounds = backgrounds.images
+        self.document_template = document_template
+        self.measured_paper = measured_paper
+        self.display = EmissiveDisplay(display) if display is not None else None
         self._curve_kernel,self._calibration_kernel=raster_kernels(compile_raster)
         self.compile_raster=compile_raster
         self.compile_scene=compile_scene
@@ -160,7 +203,9 @@ class ECGRenderer(nn.Module):
             raise ValueError('artifact_texts must contain nonempty strings with at most 80 characters')
         self.artifact_texts = tuple(artifact_texts)
         self.artifact_offset = 23+len(LEADS)
-        atlas, self.fonts, self.tokens = _font_atlas(fonts,self.artifact_texts)
+        self.template_offset = self.artifact_offset + len(self.artifact_texts)
+        template_texts = document_template.header_lines if document_template else ()
+        atlas, self.fonts, self.tokens = _font_atlas(fonts,self.artifact_texts,template_texts)
         self.atlas_sha256 = hashlib.sha256(atlas.numpy().tobytes()).hexdigest()
         self.register_buffer('atlas', atlas)
         self.font_count = len(self.fonts)
@@ -176,7 +221,8 @@ class ECGRenderer(nn.Module):
             return tuple(math.ceil(int(value) * self.font_limit / 24) + 1 for value in extent)
         self.lead_patch = patch_for(list(range(12)) + list(range(23, 35)))
         self.header_patch = patch_for(list(range(12, 23)))
-        self.artifact_patch = patch_for(list(range(35, len(self.tokens))))
+        self.artifact_patch = patch_for(list(range(35, self.template_offset)))
+        self.template_patch = patch_for(list(range(self.template_offset, len(self.tokens)))) if template_texts else None
         h, w = self.config.height, self.config.width
         self.register_buffer('xx', torch.arange(w, dtype=torch.float32)[None, None, None, :])
         self.register_buffer('yy', torch.arange(h, dtype=torch.float32)[None, None, :, None])
@@ -218,8 +264,12 @@ class ECGRenderer(nn.Module):
         self.register_buffer('backgrounds', self._check_bank(backgrounds))
         self.texture_sha256 = {name: hashlib.sha256(getattr(self, name).detach().cpu().numpy().tobytes()).hexdigest()
                                for name in ['paper_textures', 'backgrounds']}
-        self.camera = CameraAppearance(mode=self.config.camera_mode, jpeg_enabled=self.config.jpeg_enabled)
+        self.camera = camera_model if camera_model is not None else CameraAppearance(mode=self.config.camera_mode, jpeg_enabled=self.config.jpeg_enabled)
         self.material = PaperMaterial(h, w)
+        self.thermal_print = ThermalPrint(h, w, thermal_print) if thermal_print is not None else None
+        if document_template:
+            for key in ('grid_rgb', 'paper_rgb', 'ink_rgb'):
+                self.register_buffer('template_' + key, torch.tensor(getattr(document_template, key))[None, :, None, None])
         self.document = DocumentScene(h,w,self.config.surface_resolution,self.config.inverse_iterations,
                                       self.config.shadow_samples,document_assets,self.config.geometry_solver,compile_scene,
                                       damage_detail=self.config.damage_detail)
@@ -251,6 +301,7 @@ class ECGRenderer(nn.Module):
                 'layouts':[asdict(spec) for spec in self.layout_specs], 'instance_count':self.instance_count,
                 'artifact_texts':self.artifact_texts,
                 'surface_modes':SURFACES,'background_types':BACKGROUNDS,'shadow_types':SHADOWS,
+                'document_asset_provenance':self.document.asset_provenance,
                 'document_asset_count':len(self.document.asset_mask), 'document_asset_sha256':self.document.asset_hashes,
                 'paper_model':'material-paper-v3-branch-creases',
                 'paper_appearance':'linear-absorption-capillary-thermal-v3',
@@ -260,7 +311,14 @@ class ECGRenderer(nn.Module):
                 'material_marks':'canonical-shared-inverse-field-v2',
                 'supervision_visibility':'conditional-sheet-coverage-v2',
                 'procedural_geometry':'developable tangent integration with bounded finite creases, 2.5D',
-                'external_geometry':'optional inverse UV/visibility/normal/depth bank'}
+                'external_geometry':'optional inverse UV/visibility/normal/depth bank',
+                'scene_provenance':self.scene_provenance,
+                'material_history':self.material_history.specification() if self.material_history else None,
+                'document_template':asdict(self.document_template) if self.document_template else None,
+                'thermal_print':self.thermal_print.specification() if self.thermal_print else None,
+                'measured_paper':self.measured_paper.specification() if self.measured_paper else None,
+                'camera_extension':self.camera.specification() if hasattr(self.camera, 'specification') else None,
+                'display':self.display.specification() if self.display else None}
 
     def resolve_parameter(self,key,value):
         """Resolve human-readable constants without reading a device tensor."""
@@ -375,17 +433,23 @@ class ECGRenderer(nn.Module):
         p['crease_sin'] = (1 - p['crease_cos'].square()).clamp_min(0).sqrt()
         p['shadow_sin'] = (1 - p['shadow_cos'].square()).clamp_min(0).sqrt()
         p['zoom'] = torch.where(geometry > 0, p['zoom'], torch.ones_like(p['zoom']))
-        return p
+        return self.material_history.parameters(p) if self.material_history else p
 
     def _instances(self, p, duration):
         b, w, h = len(duration), self.config.width, self.config.height
         layout = p['layout'].long()
         speed, gain = self.speed_values[p['speed_index'].long()], self.gain_values[p['gain_index'].long()]
         # One pixel/mm value governs both axes and the calibration pulse.
-        ppm = (w - 1) / (duration * speed + 21.)
+        template = self.document_template
+        margin_mm = template.left_mm + template.right_mm if template else 21.
+        ppm = (w - 1) / (duration * speed + margin_mm)
         left, right = ppm * 14, w - 1 - ppm * 7
         top = (ppm * 15).clamp(max=h * .17)
         bottom = h - 1 - (ppm * 6).clamp(max=h * .07)
+        if template:
+            left, right = ppm * template.left_mm, w - 1 - ppm * template.right_mm
+            top, bottom = ppm * template.top_mm, h - 1 - ppm * template.bottom_mm
+            torch._assert_async((bottom > top + 10).all(), 'Template leaves no usable ECG plot height')
         cols, rows = self.counts_table[layout], self.rows_table[layout]
         cw, ch = (right - left)[:,None] / cols, (bottom - top) / rows
         ri, ci = self.row_table[layout], self.col_table[layout]
@@ -548,8 +612,19 @@ class ECGRenderer(nn.Module):
         header_x = torch.stack([instances['left'], torch.full_like(instances['left'], self.config.width * .68)], 1)
         header_y = torch.full((b, 2), self.config.height * .022, device=self.device)
         header_size = (p['font_size'] * 1.15)[:, None].expand(b, 2)
-        headers = self._stamp(tokens, header_x, header_y, header_size,
-                              torch.stack([p['header_present'], torch.ones_like(p['header_present'])], 1), patch=self.header_patch)
+        header_presence = torch.stack([p['header_present'], torch.ones_like(p['header_present'])], 1)
+        if self.document_template:
+            header_presence[:, 1] = 0
+        headers = self._stamp(tokens, header_x, header_y, header_size, header_presence, patch=self.header_patch)
+        if self.document_template:
+            count = len(self.document_template.header_lines)
+            ids = torch.arange(count, device=self.device)[None]
+            extra_tokens = p['font'][:, None] * len(self.tokens) + self.template_offset + ids
+            extra_x = instances['left'][:, None].expand(b, count)
+            extra_y = instances['ppm'][:, None] * (5 + ids * self.document_template.font_mm * 1.5)
+            extra_size = p['font_size'][:, None].expand(b, count)
+            headers = torch.maximum(headers, self._stamp(extra_tokens, extra_x, extra_y, extra_size,
+                                    torch.ones_like(extra_size), patch=self.template_patch))
         # Keep the unit glyph support separately to test cropping/occlusion.
         unit_mask = self._stamp(tokens[:, :1], header_x[:, :1], header_y[:, :1], header_size[:, :1], p['header_present'][:, None], patch=self.header_patch) if need_units else None
         return torch.maximum(label_ink, headers), label_masks if need_labels else None, unit_mask
@@ -762,8 +837,23 @@ class ECGRenderer(nn.Module):
             p['surface_strength'] = torch.zeros_like(p['surface_strength'])
             p['asset_active'] = torch.zeros_like(p['asset_active'])
             p['photo'] = torch.zeros_like(p['photo'])
+            if 'history_warp_strength' in p:
+                p['history_warp_strength'] = torch.zeros_like(p['history_warp_strength'])
+        if 'history_warp_strength' in p:
+            p['history_warp_strength'] = p['history_warp_strength'] * p['photo']
+            torch._assert_async(((p['history_warp_strength'] >= 0) & (p['history_warp_strength'] <= .012)).all(),
+                                'History warp must be in [0,.012]')
+        if self.display is not None:
+            for key in ('curl_x', 'curl_y', 'crease_warp'):
+                if parameters and key in parameters:
+                    torch._assert_async((p[key] == 0).all(), 'Display requires a rigid flat panel')
+                p[key] = torch.zeros_like(p[key])
         duration = ((lengths - 1) / rates).clamp(max=self.config.max_duration_s)
         instances = self._instances(p, duration)
+        if self.document_template:
+            p['font_size'] = instances['ppm'] * self.document_template.font_mm
+            torch._assert_async((p['font_size'] * 1.15 <= self.font_limit).all(),
+                                'Template typography exceeds max_font_size. Increase the construction-time bound')
         if self.config.validate_inputs:
             # Raster distances and segment projections square pixel offsets.
             # Bound arithmetic by working precision, without imposing a clinical
@@ -781,16 +871,31 @@ class ECGRenderer(nn.Module):
         paper = paper - p['paper_tint'][:, :, None, None]
         paper += torch.randn(paper.shape, device=self.device, generator=generator) * p['paper_noise'][:, None, None, None]
         material = self.material(p, generator)
+        if self.measured_paper is not None:
+            paper, paper_id = self.measured_paper(instances['ppm'], self.config.height, self.config.width, phase=p['pen_phase'])
+        if self.document_template and self.measured_paper is None:
+            paper = paper * self.template_paper_rgb
+        if self.thermal_print is not None:
+            thermal = self.thermal_print(instances['ppm'], phase=p['pen_phase'])
+            material = {**material, 'substrate_factor':material['substrate_factor'] * thermal['substrate_factor'],
+                        'print_retention':material['print_retention'] * thermal['print_retention']}
+        if self.display is not None:
+            paper = torch.ones_like(paper)
+            material = {key:torch.ones_like(value) for key,value in material.items()}
         factor = material['substrate_factor']
         paper = torch.where(factor != 1, linear_to_srgb(srgb_to_linear(paper.clamp(0,1))*factor), paper)
         reverse_ink = F.avg_pool2d(ink.flip(-1),5,1,2)
-        paper -= reverse_ink*p['bleed_strength'][:,None,None,None]
-        color = self.palette[p['palette'].long()][:, :, None, None]
+        if self.display is None:
+            paper -= reverse_ink*p['bleed_strength'][:,None,None,None]
+        color = self.template_grid_rgb if self.document_template else self.palette[p['palette'].long()][:, :, None, None]
         canonical = torch.lerp(paper.clamp(0, 1), color, grid_alpha)
         fade = material['print_retention']
         print_alpha = torch.maximum(torch.maximum(ink, pulse), text) * fade * p['ink_density'][:, None, None, None]
-        canonical = torch.lerp(canonical, p['ink_color'][:,:,None,None].expand_as(canonical), print_alpha)
-        canonical += p['band_strength'][:, None, None, None] * torch.sin(self.yy / self.config.height * p['band_frequency'][:, None, None, None] * (2 * math.pi))
+        ink_color = self.template_ink_rgb if self.document_template else p['ink_color'][:,:,None,None]
+        if self.display is not None:
+            print_alpha = torch.maximum(torch.maximum(ink, pulse), text)
+        canonical = torch.lerp(canonical, ink_color.expand_as(canonical), print_alpha)
+        canonical += float(self.display is None) * p['band_strength'][:, None, None, None] * torch.sin(self.yy / self.config.height * p['band_frequency'][:, None, None, None] * (2 * math.pi))
         # Pen and printed stamps are attached to paper material coordinates.
         # They undergo exactly the same inverse warp as the ECG and cannot
         # float at fixed camera pixels while the page bends or rotates.
@@ -821,7 +926,7 @@ class ECGRenderer(nn.Module):
         if not photo and stage != 'image':
             # Rectified substrate support lets the offline 3D backend remove
             # the same physical paper, independently of its printed texture.
-            targets['paper_support'] = self.document.paper_mask(self._field(p), p)
+            targets['paper_support'] = torch.ones_like(ink) if self.display is not None else self.document.paper_mask(self._field(p), p)
         field = self._field(p) if photo or return_field else None
         scene = None
         if photo:
@@ -838,11 +943,14 @@ class ECGRenderer(nn.Module):
                          'normals':torch.cat([torch.zeros_like(valid),torch.zeros_like(valid),torch.ones_like(valid)],1),
                          'height':torch.zeros_like(valid),'illumination':torch.ones_like(image),
                          'asset_id':torch.full((b,),-1,device=self.device,dtype=torch.long)}
-            valid *= scene['solver_valid']*self.document.paper_mask(field,p)
+            valid *= scene['solver_valid'] * (1 if self.display is not None else self.document.paper_mask(field,p))
             # Material colours and imported RGB textures are encoded sRGB.
             # Irradiance multiplies radiance, never display code values. Keep
             # highlights until the camera sensor performs its own clipping.
-            image = image*scene['illumination']
+            if self.display is not None:
+                image = self.display(canonical, field)
+            else:
+                image = image * scene['illumination']
             if len(self.backgrounds):
                 background,background_id = self._texture(self.backgrounds,b,generator,False)
             else:
@@ -850,10 +958,15 @@ class ECGRenderer(nn.Module):
                 background_id = torch.full((b,),-1,device=self.device,dtype=torch.long)
             scene['cast_shadow'] = self.document.cast_shadow(valid,scene,p)
             background = srgb_to_linear(background)*(1-scene['cast_shadow'])
-            image = torch.lerp(background,image,valid.clamp(0,1))
-            scene['paper_mask'] = valid.clone()
             scene['object_shadow'] = self.document.object_shadow(p)
-            image = linear_to_srgb(image*(1-scene['object_shadow']))
+            if self.display is not None:
+                image, bezel = self.display.composite(background, image, valid, field, shadow=scene['object_shadow'])
+                scene['bezel_mask'] = bezel
+                image = linear_to_srgb(image)
+            else:
+                image = torch.lerp(background,image,valid.clamp(0,1))
+                image = linear_to_srgb(image*(1-scene['object_shadow']))
+            scene['paper_mask'] = valid.clone()
             targets = {name: F.grid_sample(value, field, align_corners=False) for name, value in targets.items()}
             if frame_coverage is not None:
                 targets['frame_coverage'] = frame_coverage
@@ -861,11 +974,14 @@ class ECGRenderer(nn.Module):
             material_valid = F.grid_sample(material_valid, field, align_corners=False, padding_mode='border')
         else:
             valid, image, unit_support = torch.ones_like(ink), canonical, unit_mask
-            if not as_texture:
+            if not as_texture and self.display is None:
                 support = self.document.paper_mask(self._field(p), p)
                 valid = support.clone()
                 image = torch.lerp(torch.ones_like(canonical), canonical, support)
             background_id = torch.full((b,), -1, device=self.device, dtype=torch.long)
+            if self.display is not None and not as_texture:
+                display_field = field if field is not None else self._field(p)
+                image = linear_to_srgb(self.display(canonical, display_field))
         # This legacy opaque rectangle represents a scene/camera occluder.
         # Unlike pen and stamp ink, it intentionally stays in output pixels.
         cover = ((xx >= column('occlusion_x')) & (xx <= column('occlusion_x') + column('occlusion_w'))
@@ -892,10 +1008,11 @@ class ECGRenderer(nn.Module):
             targets.update(orientation=p['quarter'].long(), layout=self.class_table[p['layout'].long()],
                            speed=torch.where(unit_evidence, p['speed_index'].long() + 1, 0),
                            gain=torch.where(unit_evidence, p['gain_index'].long() + 1, 0))
-        if self.config.profile == 'clean' and not parameters:
+        if self.config.profile == 'clean' and not parameters and not self.camera.requires_observation and self.display is None:
             image = (image.clamp(0, 1) * 255).round() / 255
         else:
-            image = self.camera(image, p, generator)
+            depth_m = self.camera.scene_depth(scene, instances['ppm'], self.config.width, valid)
+            image = self.camera(image, p, generator, depth_m=depth_m)
         metadata = {**instances, 'rectified_mode': 'texture' if as_texture else 'document',
                     'sample_rate_hz': rates, 'source_length': lengths, 'duration_s': duration,
                     'canonical_pixels_per_second': instances['ppm'] * instances['speed'],
@@ -904,6 +1021,7 @@ class ECGRenderer(nn.Module):
                     'layout_class': self.class_table[p['layout'].long()], 'orientation_class': p['quarter'].long(),
                     'sequential': p['sequential'], 'unit_text_visible': unit_evidence,
                     'paper_texture_id': paper_id, 'background_id': background_id,
+                    'capture_medium': 'display' if self.display is not None else 'paper',
                     'document_asset_id':scene['asset_id'] if scene else torch.full((b,),-1,device=self.device,dtype=torch.long),
                     'parameters': p}
         if return_instances and return_instance_boxes:

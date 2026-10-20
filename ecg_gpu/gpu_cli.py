@@ -10,6 +10,11 @@ from PIL import Image
 
 from .gpu_renderer import RenderConfig, DocumentAssets
 from .gpu_module import ECGImageLayer
+from .document_templates import DOCUMENT_TEMPLATES
+from .thermal_print import ThermalPrintConfig
+from .physical_camera import PhysicalCamera
+from .emissive_display import DisplayConfig
+from .measured_paper import MeasuredPaperBank
 from .gpu_supervision import ECGSupervisionLayer, SupervisionConfig
 from .gpu_parameters import parameters_from_json
 from .schema_v05 import LEADS, SPEEDS, GAINS
@@ -120,7 +125,7 @@ def normalized_input_fingerprint(signals,rates,lengths):
 
 def render_file(input_path,output_path,*,fs=None,units=None,device='auto',config=None,
                 parameters=None,seed=1973,metadata_path=None,document_assets=None,fonts=None,compile_raster=False,
-                targets_dir=None,supervision=None,photo=True,as_texture=False,stream_id=0):
+                targets_dir=None,supervision=None,photo=True,as_texture=False,stream_id=0,renderer_options=None):
     if as_texture and (photo or targets_dir is None):
         raise ValueError('Texture export requires photo=False and targets_dir to retain paper_support')
     signals,rates,lengths=load_signals(input_path,fs,units)
@@ -131,7 +136,7 @@ def render_file(input_path,output_path,*,fs=None,units=None,device='auto',config
     layer_options = {'supervision': supervision or SupervisionConfig()} if targets_dir is not None else {}
     layer=layer_type(config=config or RenderConfig(),parameters=parameters,seed=seed,randomize=False,
                         document_assets=document_assets,fonts=fonts,compile_raster=compile_raster,
-                        photo=photo,stream_id=stream_id,**layer_options).to(device)
+                        photo=photo,stream_id=stream_id,**layer_options,**(renderer_options or {})).to(device)
     renderer=layer.renderer
     value=torch.from_numpy(signals)
     if device.type=='cuda':
@@ -208,6 +213,11 @@ def main():
     parser.add_argument('--camera-mode',choices=['full','direct','sensor'],default='full')
     parser.add_argument('--no-jpeg',action='store_true',help='Omit JPEG computation through a static camera specialization')
     parser.add_argument('--max-font-size',type=float)
+    parser.add_argument('--template',choices=tuple(DOCUMENT_TEMPLATES))
+    parser.add_argument('--thermal-print',action='store_true')
+    parser.add_argument('--paper-scans',type=Path,help='Physical-scale paper scan manifest')
+    parser.add_argument('--camera-calibration',type=Path,help='ecg-camera-calibration-v1 JSON, requires --camera-mode sensor')
+    parser.add_argument('--display-profile',type=Path,help='JSON object of DisplayConfig fields, requires --surface off --camera-mode sensor')
     parser.add_argument('--layout',default=None)
     parser.add_argument('--speed',type=float,choices=SPEEDS[1:])
     parser.add_argument('--gain',type=float,choices=GAINS[1:])
@@ -238,9 +248,14 @@ def main():
                             surface_mode=args.surface,surface_resolution=args.surface_resolution,
                             shadow_samples=args.shadow_samples,antialias_samples=args.antialias,
                             camera_mode=args.camera_mode,jpeg_enabled=not args.no_jpeg,max_font_size=args.max_font_size)
+        renderer_options = {'document_template':args.template,
+            'thermal_print':ThermalPrintConfig() if args.thermal_print else None,
+            'measured_paper':MeasuredPaperBank.from_json(args.paper_scans) if args.paper_scans else None,
+            'camera_model':PhysicalCamera.from_json(args.camera_calibration, jpeg_enabled=not args.no_jpeg) if args.camera_calibration else None,
+            'display':DisplayConfig(**json.loads(args.display_profile.read_text())) if args.display_profile else None}
         assets=DocumentAssets.from_npz(args.document_assets) if args.document_assets else None
         report=render_file(args.input,args.output,fs=args.fs,units=args.units,device=args.device,config=config,
-                           photo=not args.rectified,as_texture=args.as_texture,stream_id=args.stream_id,
+                           photo=not args.rectified,as_texture=args.as_texture,stream_id=args.stream_id,renderer_options=renderer_options,
                            parameters=parameters_from_json(overrides),seed=args.seed,metadata_path=args.metadata,document_assets=assets,fonts=args.font,compile_raster=args.compile_raster,
                            targets_dir=args.targets_dir,supervision=SupervisionConfig(
                                outputs=tuple(item.strip() for item in args.targets.split(',') if item.strip()),

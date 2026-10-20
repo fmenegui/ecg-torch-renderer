@@ -1,0 +1,96 @@
+{
+  "schema": "ecg-realism-evidence-v1",
+  "torch": "2.14.1+cpu",
+  "python": "3.12.14",
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+  "device": "cpu",
+  "threads": 2,
+  "size": [
+    480,
+    640
+  ],
+  "reference_sha256": "f6de13f28884aa335fc256e2b8e969b82aac6987467cb02bf67852e4c9c26ced",
+  "real_image_validation": false,
+  "cpu_model": "AMD EPYC 9V74 80-Core Processor",
+  "hardware_caveat": "Shared virtual workspace, not a dedicated benchmark machine. No CUDA measurements.",
+  "cases": [
+    {
+      "name": "legacy",
+      "timing": {
+        "median_ms": 219.56003500235965,
+        "min_ms": 217.80102199772955,
+        "max_ms": 272.5503359979484,
+        "repeats": 7,
+        "stage": "image",
+        "batch_size": 1,
+        "warmup": 2
+      },
+      "source_preserved": true
+    },
+    {
+      "name": "clinical_thermal",
+      "timing": {
+        "median_ms": 235.9612250002101,
+        "min_ms": 219.5870149989787,
+        "max_ms": 284.67731699856813,
+        "repeats": 7,
+        "stage": "image",
+        "batch_size": 1,
+        "warmup": 2
+      },
+      "source_preserved": true
+    },
+    {
+      "name": "archive_history",
+      "timing": {
+        "median_ms": 220.00688800108037,
+        "min_ms": 208.81136699972558,
+        "max_ms": 279.46160699866596,
+        "repeats": 7,
+        "stage": "image",
+        "batch_size": 1,
+        "warmup": 2
+      },
+      "source_preserved": true
+    },
+    {
+      "name": "lens_depth",
+      "timing": {
+        "median_ms": 312.7743270015344,
+        "min_ms": 258.2026149975718,
+        "max_ms": 356.1101579980459,
+        "repeats": 7,
+        "stage": "image",
+        "batch_size": 1,
+        "warmup": 2
+      },
+      "source_preserved": true
+    },
+    {
+      "name": "display_continuous",
+      "timing": {
+        "median_ms": 347.97250099654775,
+        "min_ms": 316.186733001814,
+        "max_ms": 414.1444060005597,
+        "repeats": 7,
+        "stage": "image",
+        "batch_size": 1,
+        "warmup": 2
+      },
+      "source_preserved": true
+    },
+    {
+      "name": "display_pwm",
+      "timing": {
+        "median_ms": 340.85340700039524,
+        "min_ms": 296.4625109998451,
+        "max_ms": 388.2196299964562,
+        "repeats": 7,
+        "stage": "image",
+        "batch_size": 1,
+        "warmup": 2
+      },
+      "source_preserved": true
+    }
+  ]
+}

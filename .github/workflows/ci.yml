@@ -51,9 +51,13 @@ jobs:
           node-version: '22'
       - run: python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
       - run: python -m pip install -e .
-      - run: npm install --prefix documentation
+      - run: npm ci --prefix documentation
       - run: python documentation/build.py
       - run: python documentation/validate.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: documentation
+          path: docs
   optional-integrations:
     runs-on: ubuntu-latest
     timeout-minutes: 20
@@ -80,3 +84,34 @@ jobs:
       - name: Actual YOLO architecture training and validation without pretrained weights
         run: python examples/train_yolo.py --data build/yolo-ci/dataset.yaml --epochs 1 --imgsz 128 --batch 2 --project build/yolo-ci-training
 
+
+
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - run: python -m pip install -e '.[dev]'
+      - name: Fatal-error lint across library, tests and examples
+        run: python -m ruff check ecg_gpu tests examples --select E9,F63,F7,F82
+      - name: Strict lint for the new model boundaries
+        run: >-
+          python -m ruff check --select E,F --ignore E501
+          ecg_gpu/document_templates.py ecg_gpu/thermal_print.py
+          ecg_gpu/physical_camera.py ecg_gpu/emissive_display.py
+          ecg_gpu/measured_paper.py ecg_gpu/material_history.py ecg_gpu/paper_mechanics.py
+          tests/test_realism_v090.py tests/test_pathtrace_v090.py examples/physical_realism.py
+      - name: Branch-aware coverage of model contracts
+        run: |
+          python -m coverage run --branch -m unittest discover -s tests -p '*v090.py' -v
+          python -m coverage report --fail-under=85 --include='*/ecg_gpu/document_templates.py,*/ecg_gpu/thermal_print.py,*/ecg_gpu/physical_camera.py,*/ecg_gpu/emissive_display.py,*/ecg_gpu/measured_paper.py,*/ecg_gpu/material_history.py,*/ecg_gpu/paper_mechanics.py'
+          python -m coverage json -o build/model-coverage.json --include='*/ecg_gpu/document_templates.py,*/ecg_gpu/thermal_print.py,*/ecg_gpu/physical_camera.py,*/ecg_gpu/emissive_display.py,*/ecg_gpu/measured_paper.py,*/ecg_gpu/material_history.py,*/ecg_gpu/paper_mechanics.py'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: model-coverage
+          path: build/model-coverage.json
