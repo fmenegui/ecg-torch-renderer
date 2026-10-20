@@ -5,6 +5,8 @@ offsets at unique nearest-pixel anchors. No global soft-argmax is used: a
 page contains many independent points. Output coordinates use pixel centers.
 """
 import math
+from collections.abc import Mapping
+from numbers import Real
 
 import torch
 from torch.nn import functional as F
@@ -18,27 +20,46 @@ def grid_point_loss(logits, offsets, batch, *, offset_weight=1., pos_weight=None
     offset loss/gradients. Background negatives outside paper are included, so
     the network must also learn not to detect points on the table.
     """
+    if not isinstance(batch, Mapping):
+        raise TypeError('batch must be a mapping of grid-point targets')
+    if 'grid_points_mask' not in batch:
+        raise ValueError('Missing grid_points_mask. Request grid-point supervision first')
     target = batch['grid_points_mask']
-    if logits.ndim != 4 or logits.shape[1] != 1 or logits.shape != target.shape or logits.device != target.device:
+    if (not isinstance(logits, torch.Tensor) or not isinstance(target, torch.Tensor)
+            or logits.ndim != 4 or min(logits.shape) < 1 or logits.shape[1] != 1
+            or logits.shape != target.shape or logits.device != target.device):
         raise ValueError('logits/target must be matching [B,1,H,W] tensors on one device')
-    if not math.isfinite(offset_weight) or offset_weight < 0:
+    if not logits.is_floating_point() or target.is_complex():
+        raise ValueError('logits must be floating point and targets must be real')
+    if isinstance(offset_weight, bool) or not isinstance(offset_weight, Real) or not math.isfinite(offset_weight) or offset_weight < 0:
         raise ValueError('offset_weight must be nonnegative and finite')
     if pos_weight is not None:
-        if not math.isfinite(pos_weight) or pos_weight <= 0:
+        if isinstance(pos_weight, bool) or not isinstance(pos_weight, Real) or not math.isfinite(pos_weight) or pos_weight <= 0:
             raise ValueError('pos_weight must be positive and finite')
         pos_weight = logits.new_tensor(pos_weight, dtype=torch.float32)
+    torch._assert_async((torch.isfinite(target) & (target >= 0) & (target <= 1)).all(), 'grid_points_mask must contain finite values in [0,1]')
     center_loss = F.binary_cross_entropy_with_logits(logits.float(), target.float(), pos_weight=pos_weight)
-    offset_loss = logits.sum()*0
+    # Summing float16 logits can overflow even when BCE itself is finite.
+    offset_loss = center_loss*0
     if offsets is not None:
         if {'grid_points_offsets', 'grid_points_offset_valid'} - batch.keys():
             raise ValueError('Request return_offsets=True for offset supervision')
         truth, support = batch['grid_points_offsets'], batch['grid_points_offset_valid']
         expected = (logits.shape[0], 2, *logits.shape[-2:])
-        if offsets.shape != expected or truth.shape != expected or support.shape != logits.shape:
+        if (any(not isinstance(value, torch.Tensor) for value in (offsets, truth, support))
+                or offsets.shape != expected or truth.shape != expected or support.shape != logits.shape):
             raise ValueError('Offsets must be [B,2,H,W] and support [B,1,H,W]')
         if any(value.device != logits.device for value in (offsets, truth, support)):
             raise ValueError('All offset tensors must share the logits device')
-        error = F.smooth_l1_loss(offsets.float(), truth.float(), reduction='none')
+        if not offsets.is_floating_point() or not truth.is_floating_point() or support.is_complex():
+            raise ValueError('Offset predictions/targets must be floating point and support must be real')
+        torch._assert_async((torch.isfinite(support) & (support >= 0) & (support <= 1)).all(), 'Offset support must contain finite values in [0,1]')
+        support = support.float()
+        active = support > 0
+        truth = torch.where(active, truth.float(), 0.)
+        torch._assert_async((torch.isfinite(truth) & (truth.abs() <= .5+1e-5)).all(), 'Supervised offsets must be finite and in [-0.5,0.5] pixels')
+        prediction = torch.where(active, offsets.float(), 0.)
+        error = F.smooth_l1_loss(prediction, truth, reduction='none')
         offset_loss = (error*support).sum()/(2*support.sum()).clamp_min(1)
     return {'loss':center_loss+offset_weight*offset_loss, 'heatmap_loss':center_loss, 'offset_loss':offset_loss}
 
@@ -54,13 +75,13 @@ def decode_grid_points(heatmap, offsets=None, *, threshold=.3, max_points=4096, 
     Thresholds, NMS radius and capacities need validation for the deployment
     resolution. ``truncated`` flags overflow instead of silently hiding it.
     """
-    if heatmap.ndim != 4 or heatmap.shape[1] != 1 or min(heatmap.shape[-2:]) < 1:
+    if heatmap.ndim != 4 or min(heatmap.shape) < 1 or heatmap.shape[1] != 1:
         raise ValueError('heatmap must be [B,1,H,W]')
     if not heatmap.is_floating_point():
         raise ValueError('heatmap must be floating point')
     if type(max_points) is not int or max_points < 1 or type(nms_radius) is not int or not 1 <= nms_radius <= 16:
         raise ValueError('Positive max_points and integer nms_radius in 1..16 required')
-    if not math.isfinite(threshold) or not 0 < threshold <= 1:
+    if isinstance(threshold, bool) or not isinstance(threshold, Real) or not math.isfinite(threshold) or not 0 < threshold <= 1:
         raise ValueError('threshold must be in (0,1]')
     b, _, h, w = heatmap.shape
     if offsets is not None and (offsets.shape != (b, 2, h, w) or offsets.device != heatmap.device):

@@ -1,0 +1,91 @@
+{
+  "release": "0.11.1",
+  "scope": "Grid-point API robustness, mixed-precision training, checkpoint compatibility and bounded patch intermediates",
+  "runtime": {
+    "python": "3.12",
+    "torch": "2.14.1+cpu",
+    "device": "cpu",
+    "cuda_available": false
+  },
+  "fixed_regressions": [
+    "Half-precision logits overflowed the zero offset loss even with finite float32 BCE",
+    "Half-precision support reduction could overflow and silently erase offset loss",
+    "Inactive nonfinite regression entries contaminated the masked loss",
+    "Direct supervision rendering ignored the configured grid defaults",
+    "Supervision accepted mismatched or incomplete grid target payloads",
+    "Unused grid settings prevented compatible lead-only checkpoint replay",
+    "Falsy invalid configuration objects silently selected defaults",
+    "Patch allocations grew across all batch and point dimensions"
+  ],
+  "api": {
+    "single_string_outputs_and_leads": true,
+    "invalid_options_fail_before_renderer_construction": true,
+    "active_grid_checkpoint_config_strict": true,
+    "geometric_coordinate_contract_unchanged": true
+  },
+  "local_verification": {
+    "full_suite": {
+      "discovered": 285,
+      "passed": 277,
+      "skipped": 6,
+      "errors": 2,
+      "errors_reason": "Original tests/fixtures/raster-v021.npz absent in partial checkout, not regenerated",
+      "note": "Full run includes eight new tests. A ninth empty-point/invalid-visibility regression was added afterwards and passed with the final focused suite"
+    },
+    "final_grid_suite": {
+      "discovered": 32,
+      "passed": 31,
+      "skipped": 1,
+      "skip_reason": "CUDA unavailable"
+    },
+    "grid_modules_coverage": {
+      "covered_lines": 282,
+      "num_statements": 286,
+      "percent_covered": 97.90575916230367,
+      "percent_covered_display": "98",
+      "missing_lines": 4,
+      "excluded_lines": 0,
+      "percent_statements_covered": 98.6013986013986,
+      "percent_statements_covered_display": "99",
+      "num_branches": 96,
+      "num_partial_branches": 4,
+      "covered_branches": 92,
+      "missing_branches": 4,
+      "percent_branches_covered": 95.83333333333333,
+      "percent_branches_covered_display": "96"
+    },
+    "training_examples": {
+      "gaussian_steps": 3,
+      "disk_steps": 3,
+      "finite_loss_and_all_head_gradients": true
+    },
+    "lint": "Fatal-error library/tests/examples lint and strict E,F lint for point modules/new regression file passed",
+    "wheel": "Built ecg_torch_renderer-0.11.1-py3-none-any.whl without dependencies",
+    "documentation": {
+      "build_pages": 21,
+      "validation": "Blocked locally by absent original gallery binary. Full-checkout CI remains required"
+    },
+    "visual_review": {
+      "scenarios": 16,
+      "layouts": "multiple",
+      "panel": "build/ergonomics-scenarios/scenarios.jpg",
+      "observation": "Reviewed scan, oblique, low-light, folds, stains, cuts, missing fragments and thermal damage. No visible integration regression observed. This is qualitative review, not a real-image equivalence benchmark"
+    }
+  },
+  "memory_contract": {
+    "temporary_patch_entry_budget": 1048576,
+    "not_a_bound_on": [
+      "output tensors",
+      "allocator overhead",
+      "total process memory",
+      "total device memory"
+    ],
+    "independent_reference": "Scalar point-distance/max-composition reference across point chunks, plus batch-boundary parity"
+  },
+  "ci_requirement": "Run all six Library contracts jobs against full upstream tree before merging. This report records local evidence only",
+  "limitations": [
+    "No CUDA execution or GPU performance measurement",
+    "No real-image detector accuracy or photographic-equivalence benchmark",
+    "Focused module coverage is not project-wide coverage or proof of all SOLID properties"
+  ]
+}

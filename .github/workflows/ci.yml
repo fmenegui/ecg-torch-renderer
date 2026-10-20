@@ -110,7 +110,7 @@ jobs:
           ecg_gpu/physical_camera.py ecg_gpu/emissive_display.py
           ecg_gpu/measured_paper.py ecg_gpu/material_history.py ecg_gpu/paper_mechanics.py
           ecg_gpu/grid_points.py tests/test_grid_points.py examples/grid_points.py
-          ecg_gpu/grid_point_learning.py tests/test_grid_point_learning.py examples/grid_point_unet.py examples/grid_point_sizes.py
+          ecg_gpu/grid_point_learning.py tests/test_grid_point_learning.py tests/test_grid_point_quality.py examples/grid_point_unet.py examples/grid_point_sizes.py
           tests/test_realism_v090.py tests/test_pathtrace_v090.py examples/physical_realism.py
       - name: Branch-aware coverage of model contracts
         run: |

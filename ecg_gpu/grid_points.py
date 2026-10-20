@@ -7,6 +7,7 @@ All batch work stays in torch on the input device, with fixed padded shapes.
 """
 from dataclasses import dataclass
 import math
+from numbers import Real
 
 import torch
 from torch.nn import functional as F
@@ -37,15 +38,18 @@ class GridPointConfig:
                 raise ValueError('Grid point rows/columns must be integers in 1..1024')
         for name in ('sigma_pixels', 'max_error_pixels', 'min_visibility', 'max_image_error_pixels'):
             value = getattr(self, name)
-            if isinstance(value, bool) or not math.isfinite(value) or value <= 0:
+            if isinstance(value, bool) or not isinstance(value, Real) or not math.isfinite(value) or value <= 0:
                 raise ValueError(f'{name} must be positive and finite')
+            object.__setattr__(self, name, float(value))
         if self.sigma_pixels > 4 or self.min_visibility > 1:
             raise ValueError('Use sigma_pixels <=4 and min_visibility <=1')
         if self.mask_shape not in ('gaussian', 'disk'):
             raise ValueError('mask_shape must be gaussian or disk')
-        if self.radius_pixels is not None and (isinstance(self.radius_pixels, bool)
+        if self.radius_pixels is not None and (isinstance(self.radius_pixels, bool) or not isinstance(self.radius_pixels, Real)
                 or not math.isfinite(self.radius_pixels) or not 0 < self.radius_pixels <= 16):
             raise ValueError('radius_pixels must be finite and in (0,16]')
+        if self.radius_pixels is not None:
+            object.__setattr__(self, 'radius_pixels', float(self.radius_pixels))
         if self.mask_shape == 'disk' and self.radius_pixels is None:
             raise ValueError('A disk requires an explicit radius_pixels')
         if type(self.refinement_steps) is not int or not 0 <= self.refinement_steps <= 8:
@@ -60,19 +64,53 @@ def identity_field(batch, height, width, *, device):
     return torch.stack(((x+.5)*2/width-1, (y+.5)*2/height-1), -1)[None].expand(batch, -1, -1, -1)
 
 
+def _point_mask(xy, present, valid, config):
+    """Bound patch intermediates across batch, points AND marker offsets."""
+    b, _, h, w = valid.shape
+    radius = math.ceil(config.radius_pixels if config.radius_pixels is not None else 3*config.sigma_pixels)
+    offsets = torch.arange(-radius, radius+1, device=xy.device)
+    oy, ox = torch.meshgrid(offsets, offsets, indexing='ij')
+    offset = torch.stack((ox.flatten(), oy.flatten()), -1)
+    result = torch.zeros(b, h*w, device=xy.device)
+    # This budget limits patch entries, not total process/device memory.
+    budget = 1 << 20
+    offset_count = min(64, len(offset))
+    batch_chunk = max(1, min(b, budget//offset_count))
+    point_chunk = max(1, budget//(batch_chunk*offset_count))
+    for first_batch in range(0, b, batch_chunk):
+        last_batch = first_batch+batch_chunk
+        for first_point in range(0, xy.shape[1], point_chunk):
+            centers = xy[first_batch:last_batch, first_point:first_point+point_chunk]
+            active = present[first_batch:last_batch, first_point:first_point+point_chunk]
+            anchor = centers.round().long()
+            for first in range(0, len(offset), offset_count):
+                pixel = anchor[..., None, :] + offset[first:first+offset_count]
+                distance2 = (pixel.to(xy.dtype) - centers[..., None, :]).square().sum(-1)
+                value = (torch.exp(-distance2/(2*config.sigma_pixels**2)) if config.mask_shape == 'gaussian'
+                         else torch.ones_like(distance2))
+                if config.radius_pixels is not None:
+                    value = value*(distance2 <= config.radius_pixels**2)
+                x, y = pixel.unbind(-1)
+                inside = (x >= 0) & (x < w) & (y >= 0) & (y < h) & active[..., None]
+                index = y.clamp(0, h-1)*w + x.clamp(0, w-1)
+                result[first_batch:last_batch].scatter_reduce_(1, index.flatten(1), (value*inside).flatten(1), reduce='amax')
+    return result.reshape(b, 1, h, w)*valid
+
+
 def rasterize_grid_points(xy, present, valid, *, config=None):
     """Draw Gaussian/disc targets around floating centers without moving them.
 
     Returns a mask plus optional sparse nearest-pixel offset targets. Offset
-    collisions are ignored explicitly. Work is bounded to 64 offsets per
-    splat chunk, rather than allocating B*N*(2*radius+1)^2 full patches.
-    This helper permits changing the target size without rerendering RGB.
+    collisions are ignored explicitly. Patch work is chunked across batch,
+    points and offsets, with at most 2^20 patch entries per chunk. This does
+    not bound required output tensors or total allocator/process memory.
+    Change target size without rerendering RGB.
     """
-    config = config or GridPointConfig()
+    config = GridPointConfig() if config is None else config
     if not isinstance(config, GridPointConfig):
         raise TypeError('config must be GridPointConfig')
-    if xy.ndim != 3 or xy.shape[-1] != 2 or present.shape != xy.shape[:2]:
-        raise ValueError('xy/present must have shapes [B,N,2] and [B,N]')
+    if xy.ndim != 3 or xy.shape[0] < 1 or xy.shape[-1] != 2 or present.shape != xy.shape[:2]:
+        raise ValueError('xy/present must have shapes [B,N,2] and [B,N], B>=1')
     if valid.ndim != 4 or valid.shape[:2] != (xy.shape[0], 1) or min(valid.shape[-2:]) < 1:
         raise ValueError('valid must have shape [B,1,H,W]')
     if xy.device != valid.device or present.device != xy.device:
@@ -81,27 +119,12 @@ def rasterize_grid_points(xy, present, valid, *, config=None):
         raise ValueError('Use float32 xy/valid and boolean present')
     b, _, h, w = valid.shape
     torch._assert_async((torch.isfinite(xy).all(-1) | ~present).all(), 'Visible point coordinates must be finite')
+    torch._assert_async((torch.isfinite(valid) & (valid >= 0) & (valid <= 1)).all(), 'valid must contain finite values in [0,1]')
     present = present & (xy[..., 0] >= 0) & (xy[..., 0] <= w-1) & (xy[..., 1] >= 0) & (xy[..., 1] <= h-1)
     xy = torch.where(present[..., None], xy, -1.)
-    radius = math.ceil(config.radius_pixels if config.radius_pixels is not None else 3*config.sigma_pixels)
-    offsets = torch.arange(-radius, radius+1, device=xy.device)
-    oy, ox = torch.meshgrid(offsets, offsets, indexing='ij')
-    offset = torch.stack((ox.flatten(), oy.flatten()), -1)
-    result = torch.zeros(b, h*w, device=xy.device)
-    anchor = xy.round().long()
-    for first in range(0, len(offset), 64):
-        pixel = anchor[..., None, :] + offset[first:first+64]
-        distance2 = (pixel.to(xy.dtype) - xy[..., None, :]).square().sum(-1)
-        value = (torch.exp(-distance2/(2*config.sigma_pixels**2)) if config.mask_shape == 'gaussian'
-                 else torch.ones_like(distance2))
-        if config.radius_pixels is not None:
-            value = value*(distance2 <= config.radius_pixels**2)
-        x, y = pixel.unbind(-1)
-        inside = (x >= 0) & (x < w) & (y >= 0) & (y < h) & present[..., None]
-        index = y.clamp(0, h-1)*w + x.clamp(0, w-1)
-        result.scatter_reduce_(1, index.flatten(1), (value*inside).flatten(1), reduce='amax')
-    outputs = {'grid_points_mask':result.reshape(b, 1, h, w)*valid}
+    outputs = {'grid_points_mask':_point_mask(xy, present, valid, config)}
     if config.return_offsets:
+        anchor = xy.round().long()
         index = anchor[..., 1].clamp(0, h-1)*w + anchor[..., 0].clamp(0, w-1)
         counts = torch.zeros(b, h*w, device=xy.device, dtype=torch.long)
         counts.scatter_add_(1, index, present.long())
@@ -180,10 +203,10 @@ def grid_point_targets(field, valid, *, canonical_size, ppm, phase_x, phase_y,
     at discontinuities, or failing the round trip are explicitly invalid.
     This does not claim exact mesh projection or recover hidden nodes.
     """
-    config = config or GridPointConfig()
+    config = GridPointConfig() if config is None else config
     if not isinstance(config, GridPointConfig):
         raise TypeError('config must be GridPointConfig')
-    if field.ndim != 4 or field.shape[-1] != 2 or min(field.shape[1:3]) < 2:
+    if field.ndim != 4 or field.shape[0] < 1 or field.shape[-1] != 2 or min(field.shape[1:3]) < 2:
         raise ValueError('field must be [B,H,W,2], H/W >=2')
     b, h, w, _ = field.shape
     ch, cw = canonical_size

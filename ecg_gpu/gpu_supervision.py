@@ -46,8 +46,8 @@ class SupervisionConfig:
     grid_point_config: GridPointConfig = GridPointConfig()
 
     def __post_init__(self):
-        object.__setattr__(self, 'outputs', tuple(self.outputs))
-        object.__setattr__(self, 'leads', tuple(self.leads))
+        object.__setattr__(self, 'outputs', (self.outputs,) if isinstance(self.outputs, str) else tuple(self.outputs))
+        object.__setattr__(self, 'leads', (self.leads,) if isinstance(self.leads, str) else tuple(self.leads))
         if len(set(self.outputs)) != len(self.outputs) or set(self.outputs) - _OUTPUTS:
             raise ValueError(f'Unique supervision outputs required, choose from {sorted(_OUTPUTS)}')
         if not self.leads or len(set(self.leads)) != len(self.leads) or set(self.leads) - set(LEADS):
@@ -60,6 +60,8 @@ class SupervisionConfig:
             raise TypeError('grid_point_config must be GridPointConfig')
         if not self.visible_only and {'grid_points', 'grid_points_mask'} & set(self.outputs):
             raise ValueError('Grid points require visible_only=True. Hidden points are not reconstructed')
+        if self.grid_point_config.return_offsets and 'grid_points_mask' in self.outputs and 'grid_points' not in self.outputs:
+            raise ValueError("Include 'grid_points' in outputs to return the requested offset targets")
 
 
 def mask_bounding_boxes(masks, threshold=.05):
@@ -105,23 +107,47 @@ class ECGSupervisionLayer(ECGImageLayer):
     ECGImageLayer instead to avoid all dense supervision allocations.
     """
     def __init__(self, fs=500., *, supervision=None, photo=True, **options):
-        super().__init__(fs=fs, photo=photo, **options)
         if supervision is not None and not isinstance(supervision, SupervisionConfig):
             raise TypeError('supervision must be a SupervisionConfig')
-        self.supervision = supervision or SupervisionConfig()
         if not isinstance(photo, bool):
             raise ValueError('photo must be bool')
+        resolved = supervision if supervision is not None else SupervisionConfig()
+        super().__init__(fs=fs, photo=photo, **options)
+        self.supervision = resolved
         self.photo = photo
         indices = [LEADS.index(lead) for lead in self.supervision.leads]
         self.register_buffer('_lead_indices', torch.tensor(indices, device=self.renderer.device), persistent=False)
 
+    @staticmethod
+    def _effective_supervision(configuration):
+        if not isinstance(configuration, dict):
+            return configuration
+        configuration = dict(configuration)
+        if not {'grid_points', 'grid_points_mask'} & set(configuration.get('outputs', ())):
+            configuration.pop('grid_point_config', None)
+        return configuration
+
     def get_extra_state(self):
-        return {**super().get_extra_state(), 'supervision': asdict(self.supervision), 'photo': self.photo}
+        return {**super().get_extra_state(),
+                'supervision': self._effective_supervision(asdict(self.supervision)), 'photo': self.photo}
 
     def set_extra_state(self, state):
-        if state.get('supervision') != asdict(self.supervision) or state.get('photo') != self.photo:
+        if (self._effective_supervision(state.get('supervision')) != self._effective_supervision(asdict(self.supervision))
+                or state.get('photo') != self.photo):
             raise ValueError('Supervision configuration changed. Recreate the same layer before resuming')
         super().set_extra_state(state)
+
+    def render_batch(self, signals, fs=None, *, lengths=None, parameters=None,
+                     generator=None, stage='all', photo=None, grid_point_config=None, **options):
+        """Render directly, inheriting this layer's grid settings by default.
+
+        Explicit overrides remain available for inspection, but supervise()
+        rejects grid targets generated with a different configuration.
+        """
+        if options.get('return_grid_points', False) and grid_point_config is None:
+            grid_point_config = self.supervision.grid_point_config
+        return super().render_batch(signals, fs, lengths=lengths, parameters=parameters,
+            generator=generator, stage=stage, photo=photo, grid_point_config=grid_point_config, **options)
 
     @torch.no_grad()
     def forward(self, signals, fs=None, *, lengths=None, parameters=None, generator=None):
@@ -158,7 +184,18 @@ class ECGSupervisionLayer(ECGImageLayer):
         if {'grid_points', 'grid_points_mask'} & set(requested):
             if 'grid_points_mask' not in rendered.targets:
                 raise ValueError('Render with return_grid_points=True for grid point supervision')
+            provenance = rendered.metadata.get('grid_points', {})
+            if provenance.get('configuration') != asdict(self.supervision.grid_point_config):
+                raise ValueError('Grid-point target configuration differs. Render with this layer or the same grid_point_config')
             if 'grid_points' in requested:
+                required_points = {'grid_points_xy', 'grid_points_valid', 'grid_points_active',
+                    'grid_points_ids', 'grid_points_canonical_xy', 'grid_points_mm',
+                    'grid_points_error_px', 'grid_points_error_image_px'}
+                if self.supervision.grid_point_config.return_offsets:
+                    required_points |= {'grid_points_offsets', 'grid_points_offset_valid',
+                                        'grid_points_anchor_xy', 'grid_points_anchor_valid'}
+                if required_points - rendered.targets.keys():
+                    raise ValueError(f'RenderBatch lacks grid-point targets: {sorted(required_points - rendered.targets.keys())}')
                 batch.update({name: value for name, value in rendered.targets.items() if name.startswith('grid_points_')})
             else:
                 batch['grid_points_mask'] = rendered.targets['grid_points_mask']
