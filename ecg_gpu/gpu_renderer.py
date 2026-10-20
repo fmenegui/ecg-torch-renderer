@@ -1046,7 +1046,7 @@ class ECGRenderer(nn.Module):
             metadata['grid_points'] = {'schema':'ecg-grid-points-v1', 'spacing_mm':5.,
                 'coordinate_convention':'xy pixel centers, top-left pixel is (0,0)',
                 'id_convention':'row,column in the canonical material lattice',
-                'projection':'local inverse-map solve with material-space round-trip rejection',
+                'projection':'iterative inverse of sampled UV with canonical and image-space residual checks',
                 'configuration':asdict(grid_point_config or GridPointConfig()),
                 'visibility':'geometric support, not optical readability'}
         if return_instances and return_instance_boxes:

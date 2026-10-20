@@ -73,6 +73,31 @@ class GridPointTests(unittest.TestCase):
         self.assertLess(float((canonical[visible]-result['grid_points_canonical_xy'][visible]).abs().max()), .03)
         self.assertTrue(torch.equal(result['grid_points_ids'], self.project()['grid_points_ids']))
 
+    def test_refined_coordinates_match_independent_bilinear_forward_equations(self):
+        import numpy as np
+        yy, xx = torch.meshgrid(torch.arange(90), torch.arange(120), indexing='ij')
+        source = torch.stack((xx+.004*yy.square(), yy+.002*xx.square()), -1).float()
+        field = ((source+.5)/torch.tensor([60., 45.])-1)[None]
+        c = GridPointConfig(rows=16, columns=16, max_image_error_pixels=.0001)
+        result = self.project(field, config=c)
+        visible = result['grid_points_valid'][0]
+        desired = result['grid_points_canonical_xy'][0, visible].double().numpy()
+        reference = desired.copy()
+        # Independent double-precision solve of the piecewise-linear sampled
+        # squared-coordinate functions. This includes raster interpolation.
+        for _ in range(12):
+            x, y = reference.T
+            fx, fy = np.floor(x), np.floor(y)
+            sx = fx**2+(x-fx)*(2*fx+1)
+            sy = fy**2+(y-fy)*(2*fy+1)
+            rx, ry = desired[:, 0]-x-.004*sy, desired[:, 1]-y-.002*sx
+            a, b = .004*(2*fy+1), .002*(2*fx+1)
+            reference += np.stack(((rx-a*ry)/(1-a*b), (ry-b*rx)/(1-a*b)), -1)
+        self.assertGreater(int(visible.sum()), 60)
+        actual = result['grid_points_xy'][0, visible].double().numpy()
+        np.testing.assert_allclose(actual, reference, atol=5e-5, rtol=0)
+        self.assertLess(float(result['grid_points_error_image_px'][0, visible].max()), 1e-4)
+
     def test_occlusion_cuts_missing_grid_and_absent_header_region(self):
         valid = torch.ones(1, 1, 90, 120)
         valid[..., 30:61, 30:71] = 0
@@ -169,6 +194,8 @@ class GridPointTests(unittest.TestCase):
     @unittest.skipUnless(torch.cuda.is_available(), 'CUDA hardware unavailable')
     def test_cuda_outputs_stay_on_device(self):
         layer = self.layer(photo=True).cuda()
+        layer.supervision = SupervisionConfig(outputs=('grid_points',),
+            grid_point_config=GridPointConfig(return_offsets=True))
         result = layer(torch.zeros(1, 12, 1001, device='cuda'))
         self.assertTrue(all(value.device.type == 'cuda' for value in result.values()))
 
@@ -197,14 +224,55 @@ class GridPointTests(unittest.TestCase):
         # look_at right = cross(direction, up), here +X.
         import math
         focal = 256/(2*math.tan(math.radians(49)/2))
-        expected = torch.stack((127.5+focal*world_x/.4, 95.5-focal*world_y/.4), -1)
+        # The generated flat sheet is 80 micrometers above the table.
+        expected = torch.stack((127.5+focal*world_x/(.4-.00008), 95.5-focal*world_y/(.4-.00008)), -1)
         self.assertGreater(int(visible.sum()), 100)
-        torch.testing.assert_close(result['grid_points_xy'][0, visible], expected[visible], atol=.025, rtol=0)
+        torch.testing.assert_close(result['grid_points_xy'][0, visible], expected[visible], atol=.00015, rtol=0)
         self.assertTrue((result['grid_points_mask'] <= result['valid']).all())
         covered = pathtrace_capture(canonical, config=replace(config, occluder=True), seed=72, return_grid_points=True)
         lost = result['grid_points_valid'] & ~covered['grid_points_valid']
         self.assertGreater(int(lost.sum()), 0)
         self.assertTrue(torch.equal(result['grid_points_ids'], covered['grid_points_ids']))
+
+    @unittest.skipUnless(importlib.util.find_spec('mitsuba'), 'Optional Mitsuba unavailable')
+    def test_offline_oblique_fold_matches_independent_triangle_and_camera_projection(self):
+        import math
+        import numpy as np
+        from ecg_gpu.pathtrace import pathtrace_capture, PathTraceConfig, paper_mesh
+        layer = self.layer()
+        canonical = layer.render_batch(torch.zeros(1, 12, 1001), stage='all', photo=False,
+                                        as_texture=True, return_instances=True)
+        config = PathTraceConfig(width=256, height=192, samples_per_pixel=1,
+            surface='fold', bend_radians=.65, mesh_columns=33, mesh_rows=17,
+            camera_origin=(.04, -.12, .4), camera_target=(0., 0., .008), camera_up=(.1, 1., 0.))
+        result = pathtrace_capture(canonical, config=config, seed=72, return_grid_points=True,
+            grid_point_config=GridPointConfig(return_offsets=True))
+        selected = result['grid_points_valid'][0]
+        uv = ((result['grid_points_canonical_xy'][0, selected]+.5)/torch.tensor([256, 192])).double().numpy()
+        ppm = float(canonical.metadata['ppm'][0])
+        vertices, _, _ = paper_mesh(256/ppm*.001, 192/ppm*.001, 'fold', .65, columns=33, rows=17)
+        sheet = vertices.reshape(17, 33, 3).astype(np.float64)
+        cell = uv*np.array([32, 16])
+        ij = np.floor(cell).astype(int)
+        fx, fy = (cell-ij).T
+        col, row = ij.T
+        a, b, c, d = sheet[row, col], sheet[row+1, col], sheet[row, col+1], sheet[row+1, col+1]
+        first = a*(1-fx-fy)[:, None]+b*fy[:, None]+c*fx[:, None]
+        second = c*(1-fy)[:, None]+b*(1-fx)[:, None]+d*(fx+fy-1)[:, None]
+        world = np.where((fx+fy <= 1)[:, None], first, second)
+        origin = np.array(config.camera_origin)
+        forward = np.array(config.camera_target)-origin
+        forward /= np.linalg.norm(forward)
+        right = np.cross(forward, config.camera_up)
+        right /= np.linalg.norm(right)
+        up = np.cross(right, forward)
+        offset = world-origin
+        z = offset@forward
+        focal = config.width/(2*math.tan(math.radians(config.field_of_view)/2))
+        expected = np.stack((127.5+focal*(offset@right)/z, 95.5-focal*(offset@up)/z), -1)
+        self.assertGreater(int(selected.sum()), 100)
+        np.testing.assert_allclose(result['grid_points_xy'][0, selected].numpy(), expected, atol=.0002, rtol=0)
+        self.assertLess(float(result['grid_points_error_image_px'][0, selected].max()), .0002)
 
 
 if __name__ == '__main__':
