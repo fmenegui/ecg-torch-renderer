@@ -35,7 +35,10 @@ jobs:
       - name: Raster, geometry, replay, supervision and profiling contracts
         run: python -m unittest discover -s tests -v
       - name: Training integration
-        run: python examples/segmentation.py --steps 3 --compile-raster --compile-scene
+        run: |
+          python examples/segmentation.py --steps 3 --compile-raster --compile-scene
+          python examples/grid_point_unet.py --steps 3 --sigma 1.2
+          python examples/grid_point_unet.py --steps 3 --mask-shape disk --radius 2
       - name: Independent material geometry audit
         run: python documentation/paper_audit.py --out build/paper-audit.json
   docs:
@@ -78,7 +81,7 @@ jobs:
       - name: Independent 3D ray, UV, visibility and physical-scale tests
         run: |
           python -m unittest discover -s tests -p 'test_pathtrace*.py' -v
-          python -m unittest discover -s tests -p test_grid_points.py -v
+          python -m unittest discover -s tests -p 'test_grid_point*.py' -v
           python -m unittest discover -s tests -p test_adversity_r3.py -v
       - name: Export grouped YOLO detection dataset
         run: python examples/export_yolo.py --out build/yolo-ci --groups 4 --views 2 --width 192 --height 128 --scenario missing_fragments
@@ -107,6 +110,7 @@ jobs:
           ecg_gpu/physical_camera.py ecg_gpu/emissive_display.py
           ecg_gpu/measured_paper.py ecg_gpu/material_history.py ecg_gpu/paper_mechanics.py
           ecg_gpu/grid_points.py tests/test_grid_points.py examples/grid_points.py
+          ecg_gpu/grid_point_learning.py tests/test_grid_point_learning.py examples/grid_point_unet.py examples/grid_point_sizes.py
           tests/test_realism_v090.py tests/test_pathtrace_v090.py examples/physical_realism.py
       - name: Branch-aware coverage of model contracts
         run: |
@@ -115,8 +119,8 @@ jobs:
           python -m coverage json -o build/model-coverage.json --include='*/ecg_gpu/document_templates.py,*/ecg_gpu/thermal_print.py,*/ecg_gpu/physical_camera.py,*/ecg_gpu/emissive_display.py,*/ecg_gpu/measured_paper.py,*/ecg_gpu/material_history.py,*/ecg_gpu/paper_mechanics.py'
       - name: Grid-point contract coverage
         run: |
-          python -m coverage run --branch -m unittest discover -s tests -p test_grid_points.py -v
-          python -m coverage report --fail-under=95 --include='*/ecg_gpu/grid_points.py'
+          python -m coverage run --branch -m unittest discover -s tests -p 'test_grid_point*.py' -v
+          python -m coverage report --fail-under=95 --include='*/ecg_gpu/grid_points.py,*/ecg_gpu/grid_point_learning.py'
       - uses: actions/upload-artifact@v4
         with:
           name: model-coverage

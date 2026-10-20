@@ -18,7 +18,7 @@ from PIL import Image
 from .gpu_appearance import linear_to_srgb
 from .gpu_supervision import mask_bounding_boxes
 from .paper_mechanics import SheetConfig, relax_sheet, assert_no_crossings, paper_shell, lift_cut_lips
-from .grid_points import GridPointConfig, grid_point_targets
+from .grid_points import GridPointConfig, _grid_lattice, rasterize_grid_points
 
 
 @dataclass(frozen=True)
@@ -412,6 +412,57 @@ def _visible_samples(mi, scene, config, paper_shape, *, details=False):
                 yield field, mask, torch.from_numpy(normals.astype(np.float32)).permute(2, 0, 1)[None], torch.from_numpy(height.copy())[None, None]
 
 
+def _mesh_grid_points(mi, scene, paper, canonical, valid, point_config):
+    """Project actual UV-parametrized mesh points through the actual sensor.
+
+    Unlike inversion of a pixel UV map, this evaluates the triangle containing
+    each material point before sampling the camera. An independent camera ray
+    verifies front-surface visibility and UV identity. Mesh/sensor precision is
+    float32. Numerical residuals are not real-world calibration guarantees.
+    """
+    c = point_config or GridPointConfig()
+    ch, cw = canonical.image.shape[-2:]
+    h, w = valid.shape[-2:]
+    p = canonical.metadata['parameters']
+    lattice = _grid_lattice((ch, cw), canonical.metadata['ppm'].detach().cpu(),
+        p['grid_phase_x'].detach().cpu(), p['grid_phase_y'].detach().cpu(),
+        canonical.metadata['top'].detach().cpu(),
+        (p['grid_present']*(p['grid_strength'] > 0)).detach().cpu(), c)
+    material_uv = (lattice['grid_points_canonical_xy'][0]+.5)/torch.tensor([cw, ch])
+    uv = mi.Point2f(mi.Float(material_uv[:, 0].numpy()), mi.Float(material_uv[:, 1].numpy()))
+    active = mi.Bool(lattice['grid_points_active'][0].numpy())
+    surface = paper.eval_parameterization(uv, active=active)
+    sensor = scene.sensors()[0]
+    direction, weight = sensor.sample_direction(surface, mi.Point2f(.5), active=surface.is_valid() & active)
+    # Mitsuba direction samples report film pixel-edge coordinates.
+    projected = direction.uv.numpy().T.copy()-.5
+    xy = torch.from_numpy(np.nan_to_num(projected, nan=-1., posinf=-1., neginf=-1.))[None]
+    film_uv = (xy[0]+.5)/torch.tensor([w, h])
+    ray, _ = sensor.sample_ray(0., .5,
+        mi.Point2f(mi.Float(film_uv[:, 0].numpy()), mi.Float(film_uv[:, 1].numpy())), mi.Point2f(.5))
+    hit = scene.ray_intersect(ray)
+    visible_ray = np.asarray((active & surface.is_valid() & hit.is_valid() &
+        (hit.shape == paper) & (hit.wi.z > 0) & (weight.x > 0)).numpy()).copy()
+    hit_uv = torch.from_numpy(hit.uv.numpy().T.copy())[None]
+    error = ((hit_uv-material_uv[None])*torch.tensor([cw, ch])).square().sum(-1).sqrt()
+    # A second sensor connection at the ray hit measures camera round-trip
+    # error independently of the material-space identity check above.
+    verification, _ = sensor.sample_direction(hit, mi.Point2f(.5), active=hit.is_valid())
+    hit_xy = torch.from_numpy(verification.uv.numpy().T.copy()-.5)[None]
+    image_error = (hit_xy-xy).square().sum(-1).sqrt()
+    source_valid = F.grid_sample(canonical.targets['valid'].detach().cpu(),
+        (material_uv*2-1)[None, None], align_corners=False, padding_mode='border')[:, 0, 0]
+    visible = (lattice['grid_points_active'] & torch.from_numpy(visible_ray)[None]
+        & torch.isfinite(xy).all(-1) & (xy[..., 0] >= 0) & (xy[..., 0] <= w-1)
+        & (xy[..., 1] >= 0) & (xy[..., 1] <= h-1) & (source_valid >= c.min_visibility)
+        & (error <= c.max_error_pixels) & (image_error <= c.max_image_error_pixels))
+    xy = torch.where(visible[..., None], xy, -1.)
+    return {**lattice, **rasterize_grid_points(xy, visible, valid, config=c),
+        'grid_points_xy':xy, 'grid_points_valid':visible,
+        'grid_points_error_px':torch.where(visible, error, -1.),
+        'grid_points_error_image_px':torch.where(visible, image_error, -1.)}
+
+
 def pathtrace_capture(canonical, *, config=None, background_texture=None, seed=1973, return_geometry=False,
                       return_grid_points=False, grid_point_config=None):
     """Render one canonical RenderBatch with 3D light transport and targets.
@@ -650,21 +701,15 @@ def pathtrace_capture(canonical, *, config=None, background_texture=None, seed=1
         paper_valid /= samples
         geometry = None
         point_targets = {}
-        if return_geometry or return_grid_points:
+        if return_geometry:
             field, mask, normals, height = next(_visible_samples(mi, scene,
                 replace(config, label_samples_per_axis=1), paper_shape, details=True))
             field = torch.where(mask.permute(0, 2, 3, 1).bool(), field, torch.full_like(field, 2.))
             if return_geometry:
                 geometry = {'inverse_field':field, 'mask':mask, 'normals':normals,
                             'height':height / (width_m / 2)}
-            if return_grid_points:
-                point_valid = F.grid_sample(material_valid, field, padding_mode='border', align_corners=False)*mask
-                point_targets = grid_point_targets(field, point_valid, canonical_size=(ch, cw),
-                    ppm=canonical.metadata['ppm'].detach().cpu(), top=canonical.metadata['top'].detach().cpu(),
-                    phase_x=parameters['grid_phase_x'].detach().cpu(), phase_y=parameters['grid_phase_y'].detach().cpu(),
-                    grid_present=(parameters['grid_present']*(parameters['grid_strength'] > 0)).detach().cpu(),
-                    config=grid_point_config)
-                point_targets['grid_points_mask'] = torch.minimum(point_targets['grid_points_mask'], masks[:, -1:])
+        if return_grid_points:
+            point_targets = _mesh_grid_points(mi, scene, paper_shape, canonical, masks[:, -1:], grid_point_config)
     valid = masks[:, -1:]
     # Preserve coverage semantics: source-valid applies once, not squared.
     lead_masks, instance_masks = masks[:, :12], masks[:, 12:-1]
@@ -693,7 +738,7 @@ def pathtrace_capture(canonical, *, config=None, background_texture=None, seed=1
                          'grid_points':{'schema':'ecg-grid-points-v1', 'spacing_mm':5.,
                              'coordinate_convention':'xy pixel centers, top-left pixel is (0,0)',
                              'id_convention':'row,column in the canonical material lattice',
-                             'projection':'local inverse of center-ray UV, round-trip rejection',
+                             'projection':'direct mesh UV parameterization and sensor projection, camera-ray visibility verification',
                              'configuration':asdict(grid_point_config or GridPointConfig()),
                              'visibility':'geometric support, not optical readability'} if return_grid_points else None,
                          'width_m': width_m, 'height_m': height_m,

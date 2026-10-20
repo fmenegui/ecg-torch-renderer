@@ -1,0 +1,150 @@
+{
+  "schema": "ecg-subpixel-verification-v1",
+  "version": "0.11.0",
+  "python": "3.12.14",
+  "torch": "2.14.1+cpu",
+  "cuda_verified": false,
+  "focused_tests": {
+    "discovered": 23,
+    "passed": 22,
+    "skipped": 1,
+    "skip_reason": "CUDA hardware unavailable"
+  },
+  "full_local_discovery": {
+    "discovered": 277,
+    "passed": 269,
+    "skipped": 6,
+    "errors": 2,
+    "error_reason": "Unchanged original raster-v021.npz absent from this partial checkout. Full-checkout CI required."
+  },
+  "new_module_coverage": {
+    "statements": 251,
+    "missed_statements": 2,
+    "branches": 82,
+    "partial_branches": 2,
+    "combined_percent_rounded": 99,
+    "modules": [
+      "grid_points.py",
+      "grid_point_learning.py"
+    ]
+  },
+  "independent_coordinate_references": [
+    {
+      "case": "online coupled bilinear map",
+      "coordinate_tolerance_output_px": 5e-05
+    },
+    {
+      "case": "offline flat plane, actual 80 micrometer table clearance",
+      "coordinate_tolerance_output_px": 0.00015
+    },
+    {
+      "case": "offline oblique folded mesh, independent triangle interpolation and pinhole camera",
+      "coordinate_tolerance_output_px": 0.0002
+    }
+  ],
+  "ideal_gaussian_subpixel_decode_tolerance_px": 0.0001,
+  "unet_integration": {
+    "shape": [
+      2,
+      3,
+      192,
+      256
+    ],
+    "steps": 3,
+    "gaussian_loss": 2.1467037200927734,
+    "disk_loss": 2.859086751937866,
+    "all_three_heads_have_finite_nonzero_gradients": true,
+    "accuracy_benchmark": false
+  },
+  "source": "entirely artificial demo signals",
+  "gallery": {
+    "schema": "ecg-grid-mask-sizes-v1",
+    "settings": [
+      {
+        "rows": 128,
+        "columns": 128,
+        "sigma_pixels": 0.6,
+        "max_error_pixels": 0.01,
+        "min_visibility": 0.99,
+        "mask_shape": "gaussian",
+        "radius_pixels": null,
+        "refinement_steps": 4,
+        "max_image_error_pixels": 0.01,
+        "return_offsets": false
+      },
+      {
+        "rows": 128,
+        "columns": 128,
+        "sigma_pixels": 1.2,
+        "max_error_pixels": 0.01,
+        "min_visibility": 0.99,
+        "mask_shape": "gaussian",
+        "radius_pixels": null,
+        "refinement_steps": 4,
+        "max_image_error_pixels": 0.01,
+        "return_offsets": false
+      },
+      {
+        "rows": 128,
+        "columns": 128,
+        "sigma_pixels": 0.8,
+        "max_error_pixels": 0.01,
+        "min_visibility": 0.99,
+        "mask_shape": "disk",
+        "radius_pixels": 2.5,
+        "refinement_steps": 4,
+        "max_image_error_pixels": 0.01,
+        "return_offsets": false
+      }
+    ],
+    "ideal_gaussian_decoder": [
+      {
+        "sigma": 0.6,
+        "decoded_error_px": 0.0
+      },
+      {
+        "sigma": 1.2,
+        "decoded_error_px": 0.0
+      }
+    ],
+    "captures": [
+      {
+        "backend": "online",
+        "points": 2090,
+        "max_material_residual_px": 0.00019301011343486607,
+        "max_image_residual_px": 0.00016939034685492516
+      },
+      {
+        "backend": "offline",
+        "points": 2065,
+        "max_material_residual_px": 0.00046288486919365823,
+        "max_image_residual_px": 0.0001726334885461256
+      }
+    ],
+    "positions_changed_by_mask_size": false,
+    "signals": "entirely artificial",
+    "cuda_verified": false,
+    "real_image_detector_accuracy": false,
+    "precision_note": "Numerical residuals verify the represented geometry, not real-world physical calibration."
+  },
+  "lint": "strict new-module checks and fatal-error lint passed",
+  "documentation": "21 pages built, original binary assets validated only in full-checkout CI",
+  "limits": [
+    "No trained real-image detector accuracy claim",
+    "Numerical residuals do not certify real-world physical calibration",
+    "Online coordinates invert the sampled bilinear map, not an unsampled continuous surface",
+    "Offline coordinates directly project the represented mesh and sensor in float32",
+    "Binary disks alone do not uniquely encode fractional centers",
+    "Anchor collisions disable offset supervision instead of averaging targets",
+    "CUDA hardware unavailable"
+  ],
+  "implementation_sha256": {
+    "ecg_gpu/grid_points.py": "46728b5ebe7da9b3cfaed596e7ffe602318dd50a4eca069d2ec35ee5646b1fe5",
+    "ecg_gpu/grid_point_learning.py": "8d9b1e72b9cdffb2ab6fc63a6f55257b72d08c96ba9c05388223aa375124c99a",
+    "ecg_gpu/pathtrace.py": "12d3d743440bca16ab40eb4a15649dee30d3dba48565f01576cc4d368e1446b8",
+    "tests/test_grid_points.py": "029f2a623d23bee4069caf9bcd694a0765dae3f86510eb3a3c5fbb41f705e5d9",
+    "tests/test_grid_point_learning.py": "4302489c092feba0472c761f2e40278a6ac0469165d5a2b4d6e2183e9b42cdc9",
+    "examples/grid_point_unet.py": "80995c5442669a83feba10d4419158b435f3d4a17e6e2b948e24dcd8c4207210",
+    "examples/grid_point_sizes.py": "9a18f32022aaf818ddf89d6e1c640f7adf1205bb7e997205f2d289ec450946ed"
+  }
+}

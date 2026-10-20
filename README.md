@@ -11,6 +11,9 @@ Both torch and offline rendering can export identified **5 mm grid
 intersections**, their visible image coordinates and a point-only mask.
 See [the grid-point guide](documentation/pages/grid-points.md) and
 `python examples/grid_points.py --out build/grid-points --offline`.
+Gaussian spread and disk radius are configurable without moving the fractional
+centers. Optional x/y offset targets, a local subpixel decoder and a three-head
+U-Net example support point localization training.
 
 [Documentation](https://ecg-torch-renderer-docs.sageotter16.chatgpt.site) ·
 [Guide source](documentation/pages/quickstart.md) · [Gallery recipes](docs/gallery.json) ·
