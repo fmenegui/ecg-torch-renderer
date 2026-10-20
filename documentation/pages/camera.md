@@ -1,5 +1,18 @@
 # Capture & print artifacts
 
+## Static camera paths in 0.8.1
+
+`RenderConfig(camera_mode='direct', jpeg_enabled=False)` omits optical sensor
+and JPEG work. The `sensor` path omits the direct alternative. These settings
+are structural, so no device-to-host scalar inspection is needed per batch.
+`full` retains mixed per-record sensor controls and computes both alternatives.
+Scenario recipes choose compatible settings automatically. Pixel and RNG
+parity are checked against the full path for each specialized domain.
+
+Direct mode requires `sensor_active=0`, sensor mode requires one, and a disabled
+codec requires `jpeg_active=0`. Conflicting overrides raise rather than being
+silently ignored. Optics do not change geometric waveform targets.
+
 ## Material damage in 0.8.0
 
 Paper appearance is constructed in material coordinates before perspective or
@@ -128,4 +141,5 @@ Tears remove part of the paper. Opaque rectangles, procedural pen strokes and ro
 Shadowed or blurred pixels remain geometrically valid. Visibility does not mean the trace is readable. Keep a separate quality criterion if your application needs it.
 
 `photo=False` produces a canonical page and disables the camera geometry, surface deformation and external document warps. It is useful for rectified training targets. It does not automatically remove every configured print artifact.
+
 

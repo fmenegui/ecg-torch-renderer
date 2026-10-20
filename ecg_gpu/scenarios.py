@@ -39,7 +39,9 @@ def capture_scenario(name, *, height=768, width=1024, severity=.6):
                'water_damage':'wrinkled', 'torn_edges':'curl',
                'missing_fragments':'wrinkled'}.get(name, 'flat')
     config = RenderConfig(height=height, width=width, profile=profile,
-                          severity=s, surface_mode=surface)
+                          severity=s, surface_mode=surface,
+                          camera_mode='direct' if name == 'clean_print' else 'sensor',
+                          jpeg_enabled=photo)
     p = {
         'layout': Choice(['3x4+r1', '6x2', '12x1']),
         'speed_index': 1, 'gain_index': 1, 'sequential': True,
@@ -169,3 +171,4 @@ def capture_scenario(name, *, height=768, width=1024, severity=.6):
                  thermal_fade=.6*s, fade_position=.70, fade_width=.13,
                  foxing_strength=.18*s, object_shadow='none')
     return config, p
+

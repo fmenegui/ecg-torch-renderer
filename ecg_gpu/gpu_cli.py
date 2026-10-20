@@ -120,7 +120,9 @@ def normalized_input_fingerprint(signals,rates,lengths):
 
 def render_file(input_path,output_path,*,fs=None,units=None,device='auto',config=None,
                 parameters=None,seed=1973,metadata_path=None,document_assets=None,fonts=None,compile_raster=False,
-                targets_dir=None,supervision=None):
+                targets_dir=None,supervision=None,photo=True,as_texture=False,stream_id=0):
+    if as_texture and (photo or targets_dir is None):
+        raise ValueError('Texture export requires photo=False and targets_dir to retain paper_support')
     signals,rates,lengths=load_signals(input_path,fs,units)
     device=torch.device('cuda' if torch.cuda.is_available() else 'cpu') if device=='auto' else torch.device(device)
     if device.type=='cuda' and not torch.cuda.is_available():
@@ -128,16 +130,18 @@ def render_file(input_path,output_path,*,fs=None,units=None,device='auto',config
     layer_type = ECGSupervisionLayer if targets_dir is not None else ECGImageLayer
     layer_options = {'supervision': supervision or SupervisionConfig()} if targets_dir is not None else {}
     layer=layer_type(config=config or RenderConfig(),parameters=parameters,seed=seed,randomize=False,
-                        document_assets=document_assets,fonts=fonts,compile_raster=compile_raster,**layer_options).to(device)
+                        document_assets=document_assets,fonts=fonts,compile_raster=compile_raster,
+                        photo=photo,stream_id=stream_id,**layer_options).to(device)
     renderer=layer.renderer
     value=torch.from_numpy(signals)
     if device.type=='cuda':
         value=value.pin_memory()
     value=value.to(device,non_blocking=True)
-    needs_instances = targets_dir is not None and bool({'instance_masks','instance_boxes'} & set(layer.supervision.outputs))
+    needs_instances = targets_dir is not None and bool({'instance_masks','instance_boxes','instance_visible_fraction'} & set(layer.supervision.outputs))
     batch=layer.render_batch(value,torch.as_tensor(rates,device=device),lengths=lengths,
                             stage='trace' if targets_dir is not None else 'image',
-                            return_baselines=False,return_instances=needs_instances,return_instance_boxes=False)
+                            return_baselines=False,return_instances=needs_instances,return_instance_boxes=False,
+                            as_texture=as_texture)
     output=Path(output_path)
     if output.suffix.lower() in {'.png','.jpg','.jpeg'}:
         if len(signals)!=1:
@@ -153,7 +157,7 @@ def render_file(input_path,output_path,*,fs=None,units=None,device='auto',config
     report={'schema':'ecg-torch-renderer-cli-v1','device':str(device),'torch_version':str(torch.__version__),
             'input_sha256':hashlib.sha256(Path(input_path).read_bytes()).hexdigest(),
             'normalized_input':normalized_input_fingerprint(signals,rates,lengths),
-            'seed':seed,'outputs':[str(path.resolve()) for path in paths],
+            'seed':seed,'stream_id':stream_id,'outputs':[str(path.resolve()) for path in paths],
             'image_shape':list(batch.image.shape),'signal_units':'mV','configuration':renderer.specification(),
             'compile_raster':compile_raster,'metadata':plain(batch.metadata)}
     if targets_dir is not None:
@@ -161,6 +165,8 @@ def render_file(input_path,output_path,*,fs=None,units=None,device='auto',config
         target_output.mkdir(parents=True,exist_ok=True)
         paired=layer.supervise(batch)
         encoded={key:tensor.detach().cpu().numpy() for key,tensor in paired.items() if key!='image'}
+        if as_texture:
+            encoded['paper_support']=batch.targets['paper_support'].detach().cpu().numpy()
         np.savez_compressed(target_output/'targets.npz',**encoded)
         boxes={key:plain(tensor) for key,tensor in paired.items() if 'box' in key or key.endswith('_ids') or key.startswith('instance_') and 'masks' not in key}
         (target_output/'boxes.json').write_text(json.dumps({'coordinate_format':'xyxy_pixels_exclusive',
@@ -196,6 +202,12 @@ def main():
     parser.add_argument('--antialias',type=int,default=4)
     parser.add_argument('--threads',type=int,default=2)
     parser.add_argument('--seed',type=int,default=1973)
+    parser.add_argument('--stream-id',type=int,default=0,help='Independent deterministic worker/rank stream')
+    parser.add_argument('--rectified',action='store_true',help='Render a final rectified document without photographic geometry')
+    parser.add_argument('--as-texture',action='store_true',help='Prepare intact albedo and separate damage support for 3D. Requires --rectified')
+    parser.add_argument('--camera-mode',choices=['full','direct','sensor'],default='full')
+    parser.add_argument('--no-jpeg',action='store_true',help='Omit JPEG computation through a static camera specialization')
+    parser.add_argument('--max-font-size',type=float)
     parser.add_argument('--layout',default=None)
     parser.add_argument('--speed',type=float,choices=SPEEDS[1:])
     parser.add_argument('--gain',type=float,choices=GAINS[1:])
@@ -224,9 +236,11 @@ def main():
     try:
         config=RenderConfig(height=args.height,width=args.width,profile=args.profile,severity=args.severity,
                             surface_mode=args.surface,surface_resolution=args.surface_resolution,
-                            shadow_samples=args.shadow_samples,antialias_samples=args.antialias)
+                            shadow_samples=args.shadow_samples,antialias_samples=args.antialias,
+                            camera_mode=args.camera_mode,jpeg_enabled=not args.no_jpeg,max_font_size=args.max_font_size)
         assets=DocumentAssets.from_npz(args.document_assets) if args.document_assets else None
         report=render_file(args.input,args.output,fs=args.fs,units=args.units,device=args.device,config=config,
+                           photo=not args.rectified,as_texture=args.as_texture,stream_id=args.stream_id,
                            parameters=parameters_from_json(overrides),seed=args.seed,metadata_path=args.metadata,document_assets=assets,fonts=args.font,compile_raster=args.compile_raster,
                            targets_dir=args.targets_dir,supervision=SupervisionConfig(
                                outputs=tuple(item.strip() for item in args.targets.split(',') if item.strip()),
@@ -240,4 +254,5 @@ def main():
 
 if __name__=='__main__':
     main()
+
 

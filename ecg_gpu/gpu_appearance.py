@@ -25,8 +25,12 @@ def linear_to_srgb(image):
 
 
 class CameraAppearance(nn.Module):
-    def __init__(self):
+    def __init__(self, *, mode='full', jpeg_enabled=True):
         super().__init__()
+        if mode not in {'full', 'direct', 'sensor'} or type(jpeg_enabled) is not bool:
+            raise ValueError('Use mode full/direct/sensor and boolean jpeg_enabled')
+        self.mode = mode
+        self.jpeg_enabled = jpeg_enabled
         k = torch.arange(8, dtype=torch.float32)[:, None]
         n = torch.arange(8, dtype=torch.float32)[None]
         dct = torch.cos(math.pi * (2 * n + 1) * k / 16) * math.sqrt(2 / 8)
@@ -120,23 +124,38 @@ class CameraAppearance(nn.Module):
         # Reflectance colors arrive display encoded. Exposure and the optical
         # PSF act on radiance, where adding photons is a linear operation.
         # Do not clip highlights before their energy spreads through the PSF.
-        irradiance = srgb_to_linear(image) * light.clamp_min(0)
-        sensor = self.optical_blur(irradiance, parameters['blur'], parameters['motion'], parameters['motion_angle'])
+        if self.mode == 'direct':
+            torch._assert_async((parameters['sensor_active'] == 0).all(),
+                                'direct camera mode requires sensor_active=0')
+        if self.mode == 'sensor':
+            torch._assert_async((parameters['sensor_active'] == 1).all(),
+                                'sensor camera mode requires sensor_active=1')
+        if self.mode != 'direct':
+            irradiance = srgb_to_linear(image) * light.clamp_min(0)
+            sensor = self.optical_blur(irradiance, parameters['blur'], parameters['motion'], parameters['motion_angle'])
         noise = torch.randn(image.shape, device=image.device, generator=generator)
         # Independent read and signal-dependent shot noise add in variance.
         # Shot noise is evaluated before digital white balance, which amplifies
         # the observed noise along with each channel's signal.
-        variance = p('read_noise').square() + p('shot_noise').square() * sensor.clamp_min(0)
-        sensor = (sensor + noise * variance.sqrt()).clamp(0, 1)
-        sensor = linear_to_srgb(sensor * white_balance).clamp(0, 1).pow(p('gamma'))
+        if self.mode != 'direct':
+            variance = p('read_noise').square() + p('shot_noise').square() * sensor.clamp_min(0)
+            sensor = (sensor + noise * variance.sqrt()).clamp(0, 1)
+            sensor = linear_to_srgb(sensor * white_balance).clamp(0, 1).pow(p('gamma'))
         # Preserve canonical display-space behavior for sensor_active=0, which
         # existing callers also use to bypass optics for clean printed pages.
-        direct = (image * light * white_balance).clamp(0, 1)
-        direct_variance = p('read_noise').square() + p('shot_noise').square() * direct
-        direct = (direct + noise * direct_variance.sqrt()).clamp(0, 1).pow(p('gamma'))
-        image = torch.lerp(direct, sensor, p('sensor_active'))
-        compressed = self.jpeg(image, parameters['jpeg_quality'])
-        image = torch.where(p('jpeg_active').bool(), compressed, image)
+        if self.mode != 'sensor':
+            direct = (image * light * white_balance).clamp(0, 1)
+            direct_variance = p('read_noise').square() + p('shot_noise').square() * direct
+            direct = (direct + noise * direct_variance.sqrt()).clamp(0, 1).pow(p('gamma'))
+        image = (direct if self.mode == 'direct' else sensor if self.mode == 'sensor'
+                 else torch.lerp(direct, sensor, p('sensor_active')))
+        if self.jpeg_enabled:
+            compressed = self.jpeg(image, parameters['jpeg_quality'])
+            image = torch.where(p('jpeg_active').bool(), compressed, image)
+        else:
+            torch._assert_async((parameters['jpeg_active'] == 0).all(),
+                                'JPEG disabled in camera configuration')
         # Quantization occurs only in the observation, never in signal references.
         return ((image.clamp(0, 1) * 255).round() / 255).contiguous()
+
 

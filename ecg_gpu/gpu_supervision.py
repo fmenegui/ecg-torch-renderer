@@ -16,6 +16,7 @@ from .schema_v05 import LEADS
 _OUTPUTS = frozenset({
     'lead_masks', 'trace_mask', 'bw', 'wb', 'lead_boxes',
     'instance_masks', 'instance_boxes',
+    'instance_visible_fraction',
 })
 
 
@@ -97,7 +98,7 @@ class ECGSupervisionLayer(ECGImageLayer):
     ECGImageLayer instead to avoid all dense supervision allocations.
     """
     def __init__(self, fs=500., *, supervision=None, photo=True, **options):
-        super().__init__(fs=fs, **options)
+        super().__init__(fs=fs, photo=photo, **options)
         if supervision is not None and not isinstance(supervision, SupervisionConfig):
             raise TypeError('supervision must be a SupervisionConfig')
         self.supervision = supervision or SupervisionConfig()
@@ -118,7 +119,7 @@ class ECGSupervisionLayer(ECGImageLayer):
     @torch.no_grad()
     def forward(self, signals, fs=None, *, lengths=None, parameters=None, generator=None):
         requested = self.supervision.outputs
-        instances_needed = bool({'instance_masks', 'instance_boxes'} & set(requested))
+        instances_needed = bool({'instance_masks', 'instance_boxes', 'instance_visible_fraction'} & set(requested))
         rendered = self.render_batch(
             signals, fs, lengths=lengths, parameters=parameters, generator=generator,
             stage='trace', photo=self.photo, return_instances=instances_needed,
@@ -134,7 +135,7 @@ class ECGSupervisionLayer(ECGImageLayer):
         with stage='trace' or 'all', and return_instances=True when requested.
         """
         requested = self.supervision.outputs
-        instances_needed = bool({'instance_masks', 'instance_boxes'} & set(requested))
+        instances_needed = bool({'instance_masks', 'instance_boxes', 'instance_visible_fraction'} & set(requested))
         required = {'valid', 'traces'} | ({'instances'} if instances_needed else set())
         if required - rendered.targets.keys():
             raise ValueError(f'RenderBatch lacks supervision targets: {sorted(required - rendered.targets.keys())}')
@@ -176,6 +177,11 @@ class ECGSupervisionLayer(ECGImageLayer):
             batch['lead_boxes'], batch['lead_box_valid'] = mask_bounding_boxes(traces, self.supervision.threshold)
             batch['lead_ids'] = self._lead_indices[None].expand(rendered.image.shape[0], -1)
         if instances_needed:
+            fraction = rendered.targets.get('instance_visible_fraction')
+            if fraction is not None:
+                batch['instance_visible_fraction'] = fraction
+            elif 'instance_visible_fraction' in requested:
+                raise ValueError('Render with return_visibility_fraction=True for instance_visible_fraction')
             instance_masks = rendered.targets['instances']
             if self.supervision.visible_only:
                 instance_masks = instance_masks * visibility
@@ -191,4 +197,5 @@ class ECGSupervisionLayer(ECGImageLayer):
             batch['instance_windows_s'] = torch.stack((info['start_s'], info['end_s']), -1)
             batch['instance_amplitude_sign'] = info['amplitude_sign']
         return batch
+
 

@@ -31,12 +31,14 @@ def samples_from_batch(batch, *, source_ids, group_ids, sample_ids, provenance=N
     if provenance is not None and len(provenance) != count:
         raise ValueError('Exactly one provenance mapping required per image')
     required = ('image', 'instance_boxes', 'instance_box_valid', 'instance_active', 'instance_lead_ids')
+    if 'instance_visible_fraction' in batch:
+        required += ('instance_visible_fraction',)
     return [dict({key: batch[key][i:i+1] for key in required},
                  source_id=source_ids[i], group_id=group_ids[i], sample_id=sample_ids[i],
                  provenance=(provenance[i] if provenance is not None else {})) for i in range(count)]
 
 
-def export_yolo_dataset(samples, out, *, val_fraction=.2, seed=1973):
+def export_yolo_dataset(samples, out, *, val_fraction=.2, seed=1973, min_visible_fraction=0.):
     """Write an Ultralytics *detection* dataset and auditable JSON manifest.
 
     Samples are records from ``samples_from_batch``. No model downloads happen.
@@ -80,7 +82,7 @@ def export_yolo_dataset(samples, out, *, val_fraction=.2, seed=1973):
         # Preflight shapes/labels and provenance before creating any files.
         if record['image'].shape[0] != 1 or record['image'].shape[1] != 3:
             raise ValueError('Each export record must contain image [1,3,H,W]')
-        detection_targets(record)
+        detection_targets(record, min_visible_fraction=min_visible_fraction)
         json.dumps(record.get('provenance', {}), allow_nan=False)
         image = record['image']
         if not torch.isfinite(image).all() or (image < 0).any() or (image > 1).any():
@@ -98,6 +100,7 @@ def export_yolo_dataset(samples, out, *, val_fraction=.2, seed=1973):
         (out/'labels'/split).mkdir(parents=True, exist_ok=True)
     manifest = {'schema': 'ecg-yolo-detection-v1', 'task': 'detect',
                 'class_names': LEADS, 'seed': seed, 'requested_val_fraction': val_fraction,
+                'min_visible_fraction': min_visible_fraction,
                 'box_definition': 'visible trace instance, xyxy exclusive pixel edges before normalized xywh',
                 'split_unit': 'caller-supplied patient or source recording group_id',
                 'groups': {gid: 'val' if gid in validation else 'train' for gid in sorted(groups)},
@@ -108,7 +111,7 @@ def export_yolo_dataset(samples, out, *, val_fraction=.2, seed=1973):
         image_path, label_path = Path('images')/split/(name+'.png'), Path('labels')/split/(name+'.txt')
         pixels = (record['image'][0].detach().float().cpu().permute(1, 2, 0)*255).round().to(torch.uint8).numpy()
         Image.fromarray(pixels).save(out/image_path)
-        target = detection_targets(record)
+        target = detection_targets(record, min_visible_fraction=min_visible_fraction)
         classes = target['cls'].detach().cpu().flatten().tolist()
         boxes = target['bboxes'].detach().cpu().tolist()
         slots = target['instance_idx'].detach().cpu().tolist()
@@ -126,3 +129,4 @@ def export_yolo_dataset(samples, out, *, val_fraction=.2, seed=1973):
     (out/'dataset.yaml').write_text(json.dumps(config, indent=2)+'\n', encoding='utf-8')
     (out/'manifest.json').write_text(json.dumps(manifest, indent=2, allow_nan=False)+'\n', encoding='utf-8')
     return manifest
+

@@ -1,5 +1,13 @@
 # Reproducibility
 
+For independent workers/ranks, pass distinct nonnegative `stream_id` values to
+the layer. Stream identity and call counters are checkpointed. The default
+stream zero is reproducible and intentionally does not infer distributed state.
+
+For offline views stable across worker assignment and dataset ordering, call
+`render_seed(base_seed, source_id, view_id=...)` before creating the generator
+or layer. This uses a stable digest rather than Python's salted `hash()`.
+
 The rendering seed controls a capture. It does not assign patients to train, validation or test sets.
 
 ## Training and evaluation
@@ -69,3 +77,4 @@ every sample's temporal location. The extrema envelope protects narrow
 amplitude excursions, not sample chronology inside a single output column.
 
 Version 0.5.0 intentionally changes the sampled paper distribution and renderer signature. An old checkpoint cannot silently resume with the new model. Keep the recorded package version to replay an old experiment, or start an explicitly new rendering experiment. Both `compile_raster` and `compile_scene` settings must match when restoring layer state.
+

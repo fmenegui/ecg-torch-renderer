@@ -25,7 +25,7 @@ def table(headers, rows):
 def build():
     import torch
     import ecg_gpu
-    from ecg_gpu import ECGImageLayer, ECGRenderer, ECGSupervisionLayer, RenderConfig, SupervisionConfig, profile_layer, capture_scenario, detection_targets, padded_detection_targets, masked_segmentation_loss, load_rgb_bank
+    from ecg_gpu import ECGImageLayer, ECGRenderer, ECGSupervisionLayer, RenderConfig, SupervisionConfig, profile_layer, capture_scenario, detection_targets, padded_detection_targets, masked_segmentation_loss, load_rgb_bank, render_seed
     torch.set_num_threads(2)
     renderer = ECGRenderer(RenderConfig(height=64, width=96, surface_resolution=32, shadow_samples=0))
     parameters = renderer.sample_parameters(1, generator=torch.Generator().manual_seed(0))
@@ -50,6 +50,7 @@ def build():
         'padded_detection_targets': padded_detection_targets,
         'masked_segmentation_loss': masked_segmentation_loss,
         'load_rgb_bank': load_rgb_bank,
+        'render_seed': render_seed,
     }
     metadata['signatures'] = {name: str(inspect.signature(obj)) for name, obj in api.items()}
     perf = json.loads((ROOT / 'PERFORMANCE_CPU.json').read_text())
@@ -65,16 +66,20 @@ def build():
         'shadow_samples': 'Height-field shadow samples, 0..32',
         'geometry_solver': 'coarse_to_fine with two pixel refinements, or dense reference',
         'damage_detail': 'rich: all damage types, edge: first tear only and lower compute cost',
+        'max_font_size': 'Static glyph bound, default max(24, 0.025 * width), includes header scale',
+        'camera_mode': 'full for mixed controls, direct for no optical sensor, sensor for sensor-only',
+        'jpeg_enabled': 'Static codec opt-out, false requires jpeg_active=0',
     }
     summary = verified.get('release_validation', {})
-    for current_name in ('ROUND3_VERIFICATION.json', 'ROUND2_VERIFICATION.json', 'SWARM_VERIFICATION.json'):
+    for current_name in ('AUDIT_FIXES_VERIFICATION.json', 'ROUND3_VERIFICATION.json', 'ROUND2_VERIFICATION.json', 'SWARM_VERIFICATION.json'):
         current_path = ROOT / 'research' / current_name
         if current_path.exists():
             current = json.loads(current_path.read_text())
             if current.get('version') == ecg_gpu.__version__:
                 counts = current['tests']
+                skipped = counts.get('skipped', counts.get('skipped_cuda', 0))
                 summary = {**summary, 'portable_tests':
-                           f"{counts['passed']} passed, {counts['skipped_cuda']} CUDA skips ({counts['run']} tests run)"}
+                           f"{counts['passed']} passed, {skipped} skips ({counts['run']} tests run)"}
                 break
     replacements = {
         'layout_count': str(len(renderer.layout_specs)), 'figure_count': str(gallery['figures']),
@@ -132,3 +137,4 @@ def build():
 
 if __name__ == '__main__':
     build()
+

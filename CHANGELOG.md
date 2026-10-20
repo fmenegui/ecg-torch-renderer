@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.8.1
+
+- Recompose quarter-turn overrides and derive orientation from absolute angles.
+  Reject contradictory explicit orientation/angle pairs.
+- Integrate projected unit support using the inverse Jacobian so perspective
+  magnification is not mistaken for missing calibration text.
+- Apply missing substrate to final rectified documents. Add explicit
+  `photo=False, as_texture=True` for intact offline-3D albedo with separate support.
+- Make the per-record photo parameter gate geometry and add a static photo
+  option to ECGImageLayer and the CLI.
+- Size font atlases and static glyph bounds from actual text and a configurable
+  font-size limit. Reject oversized overrides rather than silently truncating.
+- Supply instance-visible ink fractions to training adapters and grouped YOLO
+  export, with documented geometric rather than readability semantics.
+- Add checkpointed independent RNG streams and stable source/view seed derivation.
+- Add direct/sensor camera specializations and a static JPEG opt-out, preserving
+  pixel/RNG parity within their supported domains. Recipes select these paths.
+- Validate integer configuration controls and binary lead/photo presence early.
+- Expose the offline Mitsuba variant and avoid changing global Dr.Jit thread count.
+- Give artificial demo leads distinct morphologies and consistent limb identities.
+  This remains an integration example, not a physiological simulator.
+- Add audit regressions, a status ledger and a source-backed photorealism roadmap.
+
 ## 0.8.0
 
 - Branched, finite and asymmetric creases, irregular accordion spacing and
@@ -98,4 +121,5 @@
 
 Frozen numerical/performance reference, retained as the immutable archive
 `references/ecg-gpu-generator-v021.zip`.
+
 
