@@ -52,6 +52,12 @@ class CameraAppearance(nn.Module):
         self.register_buffer('ycc_to_rgb', torch.tensor([
             [1., 0., 1.402], [1., -.344136, -.714136], [1., 1.772, 0.]]))
 
+    requires_observation = False
+
+    def scene_depth(self, scene, ppm, width, valid):
+        """Optional depth contract for camera extensions, in meters."""
+        return None
+
     def _codec_plane(self, plane, quality, table):
         b, c, h, w = plane.shape
         value = F.pad(plane, (0, (-w) % 8, 0, (-h) % 8), mode='replicate') - 128
@@ -76,7 +82,7 @@ class CameraAppearance(nn.Module):
         chroma = F.interpolate(chroma, size=(h + h % 2, w + w % 2), mode='bilinear', align_corners=False)[..., :h, :w] - 128
         return (torch.einsum('ij,bjhw->bihw', self.ycc_to_rgb, torch.cat([y, chroma], 1)) / 255).clamp(0, 1)
 
-    def optical_blur(self, image, sigma, motion, angle):
+    def optical_blur(self, image, sigma, motion, angle, *, depth_m=None):
         """Defocus convolved with a finite, constant-velocity shutter path.
 
         ``sigma`` and ``motion`` are in output pixels. The 9x9 support covers
@@ -103,7 +109,7 @@ class CameraAppearance(nn.Module):
         padded = F.pad(image, (4, 4, 4, 4), mode='replicate').reshape(1, b * c, h + 8, w + 8)
         return F.conv2d(padded, kernel, groups=b * c).reshape(b, c, h, w)
 
-    def forward(self, image, parameters, generator=None):
+    def forward(self, image, parameters, generator=None, *, depth_m=None):
         """Observe an sRGB scene through linear optics and a simplified sensor.
 
         ``sensor_active`` blends the captured observation with the legacy direct
@@ -132,7 +138,7 @@ class CameraAppearance(nn.Module):
                                 'sensor camera mode requires sensor_active=1')
         if self.mode != 'direct':
             irradiance = srgb_to_linear(image) * light.clamp_min(0)
-            sensor = self.optical_blur(irradiance, parameters['blur'], parameters['motion'], parameters['motion_angle'])
+            sensor = self.optical_blur(irradiance, parameters['blur'], parameters['motion'], parameters['motion_angle'], depth_m=depth_m)
         noise = torch.randn(image.shape, device=image.device, generator=generator)
         # Independent read and signal-dependent shot noise add in variance.
         # Shot noise is evaluated before digital white balance, which amplifies

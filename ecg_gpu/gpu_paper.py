@@ -155,6 +155,15 @@ class PaperSurface(nn.Module):
                  * torch.exp(-(distance / (span * .8)).square()) * active).sum(1, keepdim=True)
         micro = micro * ((mode == 4) + (mode == 5))
         local = (local * .66 + micro * .00045) * p['surface_strength'][:, None, None, None]
+        if 'history_warp_strength' in p:
+            # Liquid, deposits and cockling share the same material center and
+            # coffee_radius. Geometry and normals are updated before projection.
+            cx = p['stain_x'][:, None, None, None] * 2 - 1
+            cy = (p['stain_y'][:, None, None, None] * 2 - 1) * self.aspect
+            radius = p['coffee_radius'][:, None, None, None] * 2
+            distance_liquid = ((x - cx).square() + (y - cy).square()) / radius.square()
+            local = local + p['history_warp_strength'][:, None, None, None] * torch.exp(-distance_liquid) * (
+                .65 + .35 * torch.cos((x - cx) / radius * 9))
         dzdu, dzdv = derivatives(local, self.aspect)
         shorten_x = centered_integral(torch.rsqrt(1 + dzdu.square()) - 1, 2 / x.shape[-1], -1)
         shorten_y = centered_integral(torch.rsqrt(1 + dzdv.square()) - 1, 2 * self.aspect / x.shape[-2], -2)
@@ -167,3 +176,4 @@ class PaperSurface(nn.Module):
                             dv.square().sum(1, keepdim=True).sqrt() - 1,
                             (du * dv).sum(1, keepdim=True)), 1)
         return mesh, normals, metric
+

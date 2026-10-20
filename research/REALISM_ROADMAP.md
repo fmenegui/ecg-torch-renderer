@@ -1,7 +1,11 @@
 # Photorealism roadmap
 
 Proposal after the 2026-10-20 correctness audit. This document proposes work.
-It does not claim that the implementations or real-image results below exist.
+The proposal is retained as the research target. Version 0.9 implements bounded
+mechanisms for all eight areas, documented in `documentation/pages/realism.md`.
+Measured device templates/material presets, a full thin-shell collision solver,
+calibrated chemistry/ISP and the real-image acceptance evidence remain open.
+No real-image results are claimed.
 
 ## Objective
 

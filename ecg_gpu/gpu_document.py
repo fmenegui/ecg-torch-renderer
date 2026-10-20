@@ -7,6 +7,7 @@ All random sampling, inverse solving, shading and composition stay on device.
 """
 from dataclasses import dataclass
 import hashlib
+import json
 import math
 
 import torch
@@ -37,6 +38,12 @@ class DocumentAssets:
     normals: torch.Tensor = None
     height: torch.Tensor = None
     shading: torch.Tensor = None
+    provenance: dict = None
+
+    def __post_init__(self):
+        # Canonical JSON representation makes provenance stable across NPZ,
+        # checkpoints and construction from tuple-valued dataclass configs.
+        self.provenance = json.loads(json.dumps(self.provenance, allow_nan=False))
 
     @classmethod
     def from_npz(cls, path):
@@ -45,8 +52,34 @@ class DocumentAssets:
         with np.load(path, allow_pickle=False) as source:
             if str(source['schema']) != 'ecg-document-assets-v1':
                 raise ValueError('Explicit ecg-document-assets-v1 schema required')
-            return cls(**{name: torch.from_numpy(source[name].copy())
+            provenance = json.loads(str(source['provenance'])) if 'provenance' in source else None
+            return cls(provenance=provenance, **{name: torch.from_numpy(source[name].copy())
                           for name in ['inverse_field','mask','normals','height','shading'] if name in source})
+
+
+    def to_npz(self, path):
+        """Validate and atomically save a bank outside the training loop."""
+        import os
+        from pathlib import Path
+        import tempfile
+        import numpy as np
+        # Reuse the renderer's independent shape/range validation at export.
+        DocumentScene(64, 64, assets=self)
+        values = {name:getattr(self, name).detach().cpu().numpy()
+                  for name in ('inverse_field', 'mask', 'normals', 'height', 'shading')
+                  if getattr(self, name) is not None}
+        path = Path(path)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        temporary = None
+        try:
+            with tempfile.NamedTemporaryFile(dir=path.parent, suffix='.npz', delete=False) as stream:
+                temporary = stream.name
+                np.savez_compressed(stream, schema='ecg-document-assets-v1',
+                    provenance=json.dumps(self.provenance, sort_keys=True, allow_nan=False), **values)
+            os.replace(temporary, path)
+        finally:
+            if temporary is not None and os.path.exists(temporary):
+                os.unlink(temporary)
 
 
 class DocumentScene(nn.Module):
@@ -83,6 +116,7 @@ class DocumentScene(nn.Module):
             [.42,.255,.145],[.73,.73,.70],[.82,.78,.67],[.31,.37,.43],
             [.55,.59,.63],[.77,.86,.85],[.17,.19,.22],[.27,.17,.13]]))
         self.asset_hashes = {}
+        self.asset_provenance = json.loads(json.dumps(assets.provenance, allow_nan=False)) if assets else None
         self._register_assets(assets)
 
     @property
@@ -601,3 +635,4 @@ class DocumentScene(nn.Module):
             shadow+=torch.sigmoid(-distance/softness)*(kind==index)
         shadow*=p['object_shadow_strength'][:,None,None,None]
         return F.interpolate(shadow,size=(self.height,self.width),mode='bilinear',align_corners=False)
+

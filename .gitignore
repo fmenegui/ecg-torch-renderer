@@ -7,3 +7,7 @@ dist/
 benchmark*/
 profile*/
 ecg-colab-results*/
+
+node_modules/
+.coverage
+htmlcov/

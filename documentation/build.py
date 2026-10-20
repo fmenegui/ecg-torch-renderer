@@ -52,6 +52,12 @@ def build():
         'load_rgb_bank': load_rgb_bank,
         'render_seed': render_seed,
     }
+    from ecg_gpu import DocumentTemplate, ThermalPrintConfig, LensConfig, SensorConfig, DisplayConfig, MaterialHistory, MeasuredPaperBank, SceneBank, PhysicalCamera
+    from ecg_gpu.pathtrace import PathTraceConfig, capture_geometry_assets
+    from ecg_gpu.paper_mechanics import SheetConfig
+    api.update({obj.__name__:obj for obj in (DocumentTemplate, ThermalPrintConfig, LensConfig, SensorConfig,
+        DisplayConfig, MaterialHistory, MeasuredPaperBank, SceneBank, PhysicalCamera, PathTraceConfig,
+        SheetConfig, capture_geometry_assets)})
     metadata['signatures'] = {name: str(inspect.signature(obj)) for name, obj in api.items()}
     perf = json.loads((ROOT / 'PERFORMANCE_CPU.json').read_text())
     scene_perf = json.loads((ROOT / 'PERFORMANCE_SCENE_CPU.json').read_text())
@@ -71,7 +77,7 @@ def build():
         'jpeg_enabled': 'Static codec opt-out, false requires jpeg_active=0',
     }
     summary = verified.get('release_validation', {})
-    for current_name in ('AUDIT_FIXES_VERIFICATION.json', 'ROUND3_VERIFICATION.json', 'ROUND2_VERIFICATION.json', 'SWARM_VERIFICATION.json'):
+    for current_name in ('REALISM_V090_VERIFICATION.json', 'AUDIT_FIXES_VERIFICATION.json', 'ROUND3_VERIFICATION.json', 'ROUND2_VERIFICATION.json', 'SWARM_VERIFICATION.json'):
         current_path = ROOT / 'research' / current_name
         if current_path.exists():
             current = json.loads(current_path.read_text())
@@ -122,7 +128,7 @@ def build():
     staging.mkdir(parents=True, exist_ok=True)
     (staging / 'data.json').write_text(json.dumps(payload, indent=2) + '\n')
     (OUTPUT / 'api-data.json').write_text(json.dumps(metadata, indent=2) + '\n')
-    for name in ('round3-gallery.jpg', 'round3-pathtraced-gallery.jpg'):
+    for name in ('round3-gallery.jpg', 'round3-pathtraced-gallery.jpg', 'realism-v090-gallery.jpg'):
         source = ROOT / 'research' / 'assets' / name
         if source.exists():
             (OUTPUT / 'assets').mkdir(parents=True, exist_ok=True)
