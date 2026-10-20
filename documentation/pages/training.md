@@ -1,5 +1,9 @@
 # Train an image model
 
+Major-grid keypoints are available in both backends. See
+[5 mm grid-point supervision](grid-points.html) for point-only masks, identified
+coordinates, visibility flags and an online/offline export example.
+
 Instance batches include geometric visible-ink fractions. Both detection
 adapters and `export_yolo_dataset` accept `min_visible_fraction`. The grouped
 export example exposes `--min-visible-fraction`. Tiny artificial training runs

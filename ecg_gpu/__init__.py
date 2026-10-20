@@ -18,5 +18,6 @@ from .emissive_display import EmissiveDisplay, DisplayConfig
 from .measured_paper import MeasuredPaperBank, PaperScan
 from .material_history import MaterialHistory
 from .assets import SceneBank
+from .grid_points import GridPointConfig, grid_point_targets
 
-__version__ = "0.9.1"
+__version__ = "0.10.0"

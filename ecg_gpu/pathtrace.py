@@ -18,6 +18,7 @@ from PIL import Image
 from .gpu_appearance import linear_to_srgb
 from .gpu_supervision import mask_bounding_boxes
 from .paper_mechanics import SheetConfig, relax_sheet, assert_no_crossings, paper_shell, lift_cut_lips
+from .grid_points import GridPointConfig, grid_point_targets
 
 
 @dataclass(frozen=True)
@@ -411,7 +412,8 @@ def _visible_samples(mi, scene, config, paper_shape, *, details=False):
                 yield field, mask, torch.from_numpy(normals.astype(np.float32)).permute(2, 0, 1)[None], torch.from_numpy(height.copy())[None, None]
 
 
-def pathtrace_capture(canonical, *, config=None, background_texture=None, seed=1973, return_geometry=False):
+def pathtrace_capture(canonical, *, config=None, background_texture=None, seed=1973, return_geometry=False,
+                      return_grid_points=False, grid_point_config=None):
     """Render one canonical RenderBatch with 3D light transport and targets.
 
     Canonical input must be one rectified page, including instance targets.
@@ -424,6 +426,10 @@ def pathtrace_capture(canonical, *, config=None, background_texture=None, seed=1
     """
     if type(return_geometry) is not bool:
         raise ValueError('return_geometry must be bool')
+    if type(return_grid_points) is not bool:
+        raise ValueError('return_grid_points must be bool')
+    if grid_point_config is not None and not isinstance(grid_point_config, GridPointConfig):
+        raise TypeError('grid_point_config must be GridPointConfig')
     config = config or PathTraceConfig()
     if not isinstance(config, PathTraceConfig):
         raise TypeError('config must be PathTraceConfig')
@@ -444,6 +450,9 @@ def pathtrace_capture(canonical, *, config=None, background_texture=None, seed=1
     if count < 1 or canonical.metadata['lead_id'].shape != (1, count) or canonical.metadata['active'].shape != (1, count):
         raise ValueError('Instance identities must match canonical mask slots')
     parameters = canonical.metadata.get('parameters', {})
+    if return_grid_points and ({'grid_phase_x', 'grid_phase_y', 'grid_present', 'grid_strength'} - parameters.keys()
+                               or 'top' not in canonical.metadata):
+        raise ValueError('Grid point export requires canonical grid parameters and top metadata')
     for key in ('angle', 'quarter', 'translate_x', 'translate_y', 'perspective_x', 'perspective_y',
                 'radial', 'curl_x', 'curl_y', 'crease_warp', 'surface_strength', 'asset_active'):
         if key in parameters and (parameters[key] != 0).any():
@@ -640,18 +649,28 @@ def pathtrace_capture(canonical, *, config=None, background_texture=None, seed=1
         masks /= samples
         paper_valid /= samples
         geometry = None
-        if return_geometry:
+        point_targets = {}
+        if return_geometry or return_grid_points:
             field, mask, normals, height = next(_visible_samples(mi, scene,
                 replace(config, label_samples_per_axis=1), paper_shape, details=True))
             field = torch.where(mask.permute(0, 2, 3, 1).bool(), field, torch.full_like(field, 2.))
-            geometry = {'inverse_field':field, 'mask':mask, 'normals':normals,
-                        'height':height / (width_m / 2)}
+            if return_geometry:
+                geometry = {'inverse_field':field, 'mask':mask, 'normals':normals,
+                            'height':height / (width_m / 2)}
+            if return_grid_points:
+                point_valid = F.grid_sample(material_valid, field, padding_mode='border', align_corners=False)*mask
+                point_targets = grid_point_targets(field, point_valid, canonical_size=(ch, cw),
+                    ppm=canonical.metadata['ppm'].detach().cpu(), top=canonical.metadata['top'].detach().cpu(),
+                    phase_x=parameters['grid_phase_x'].detach().cpu(), phase_y=parameters['grid_phase_y'].detach().cpu(),
+                    grid_present=(parameters['grid_present']*(parameters['grid_strength'] > 0)).detach().cpu(),
+                    config=grid_point_config)
+                point_targets['grid_points_mask'] = torch.minimum(point_targets['grid_points_mask'], masks[:, -1:])
     valid = masks[:, -1:]
     # Preserve coverage semantics: source-valid applies once, not squared.
     lead_masks, instance_masks = masks[:, :12], masks[:, 12:-1]
     lead_boxes, lead_box_valid = mask_bounding_boxes(lead_masks)
     instance_boxes, instance_box_valid = mask_bounding_boxes(instance_masks)
-    return {'image': image, 'valid': valid, 'paper_mask': paper_valid, 'geometry':geometry,
+    return {'image': image, 'valid': valid, 'paper_mask': paper_valid, 'geometry':geometry, **point_targets,
             'lead_masks': lead_masks, 'lead_boxes': lead_boxes, 'lead_box_valid': lead_box_valid,
             'lead_ids': torch.arange(12, dtype=torch.int64)[None],
             'instance_masks': instance_masks, 'instance_boxes': instance_boxes,
@@ -671,6 +690,12 @@ def pathtrace_capture(canonical, *, config=None, background_texture=None, seed=1
                          'canonical_sample_rate_hz': canonical.metadata.get('sample_rate_hz', torch.tensor([])).detach().cpu().tolist(),
                          'seed': seed, 'samples_per_pixel': config.samples_per_pixel,
                          'label_samples_per_axis': config.label_samples_per_axis,
+                         'grid_points':{'schema':'ecg-grid-points-v1', 'spacing_mm':5.,
+                             'coordinate_convention':'xy pixel centers, top-left pixel is (0,0)',
+                             'id_convention':'row,column in the canonical material lattice',
+                             'projection':'local inverse of center-ray UV, round-trip rejection',
+                             'configuration':asdict(grid_point_config or GridPointConfig()),
+                             'visibility':'geometric support, not optical readability'} if return_grid_points else None,
                          'width_m': width_m, 'height_m': height_m,
                          'surface': config.surface, 'bend_radians': config.bend_radians,
                          'background_sha256': background_hash,

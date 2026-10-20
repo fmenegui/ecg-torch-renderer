@@ -7,6 +7,11 @@ a training loop. Input `[B,12,T]` signals in mV, get RGB with optional independe
 lead masks, black/white views and detection boxes. Rendering and target
 generation stay on the signal device.
 
+Both torch and offline rendering can export identified **5 mm grid
+intersections**, their visible image coordinates and a point-only mask.
+See [the grid-point guide](documentation/pages/grid-points.md) and
+`python examples/grid_points.py --out build/grid-points --offline`.
+
 [Documentation](https://ecg-torch-renderer-docs.sageotter16.chatgpt.site) ·
 [Guide source](documentation/pages/quickstart.md) · [Gallery recipes](docs/gallery.json) ·
 [GPU Colab notebook](https://colab.research.google.com/github/fmenegui/ecg-torch-renderer/blob/main/notebooks/colab_gpu_profile.ipynb)
