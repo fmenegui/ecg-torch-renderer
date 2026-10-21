@@ -1,0 +1,386 @@
+{
+  "points": [
+    {
+      "name": "raw-point-1973",
+      "backend": "online",
+      "patients": 8,
+      "detection": {
+        "images": 16,
+        "tp": 29239,
+        "fp": 195,
+        "fn": 137,
+        "precision": 0.9933750084935788,
+        "recall": 0.9953363289760349,
+        "f1": 0.9943547015813637,
+        "median_error_px": 0.21722181447051278,
+        "p95_error_px": 0.5474273081421527,
+        "localization_population": "matched points only"
+      },
+      "f1_patient_bootstrap_95": [
+        0.9889421206972306,
+        0.9987076791573248
+      ],
+      "topology_accepted": 16,
+      "images": 16,
+      "accepted_with_relative_identity_at_least_99pct": 16,
+      "relative_identity_scope": "selected nodes matched within 1.5px, not a certificate of the full warp"
+    },
+    {
+      "name": "raw-point-1973",
+      "backend": "offline",
+      "patients": 8,
+      "detection": {
+        "images": 16,
+        "tp": 28354,
+        "fp": 935,
+        "fn": 979,
+        "precision": 0.9680767523643689,
+        "recall": 0.9666246207343265,
+        "f1": 0.9673501415850705,
+        "median_error_px": 0.4252663444481546,
+        "p95_error_px": 1.0599964848174714,
+        "localization_population": "matched points only"
+      },
+      "f1_patient_bootstrap_95": [
+        0.9595262309956457,
+        0.9748080666632842
+      ],
+      "topology_accepted": 15,
+      "images": 16,
+      "accepted_with_relative_identity_at_least_99pct": 15,
+      "relative_identity_scope": "selected nodes matched within 1.5px, not a certificate of the full warp"
+    },
+    {
+      "name": "raw-point-20261021",
+      "backend": "online",
+      "patients": 8,
+      "detection": {
+        "images": 16,
+        "tp": 29166,
+        "fp": 306,
+        "fn": 210,
+        "precision": 0.9896172638436482,
+        "recall": 0.9928513071895425,
+        "f1": 0.991231647634584,
+        "median_error_px": 0.3242148958086609,
+        "p95_error_px": 0.7353871293866556,
+        "localization_population": "matched points only"
+      },
+      "f1_patient_bootstrap_95": [
+        0.9860038382615861,
+        0.9956480348157215
+      ],
+      "topology_accepted": 16,
+      "images": 16,
+      "accepted_with_relative_identity_at_least_99pct": 16,
+      "relative_identity_scope": "selected nodes matched within 1.5px, not a certificate of the full warp"
+    },
+    {
+      "name": "raw-point-20261021",
+      "backend": "offline",
+      "patients": 8,
+      "detection": {
+        "images": 16,
+        "tp": 28526,
+        "fp": 794,
+        "fn": 807,
+        "precision": 0.9729195088676671,
+        "recall": 0.9724883237309515,
+        "f1": 0.9727038685148245,
+        "median_error_px": 0.4206477850595812,
+        "p95_error_px": 1.0267871985731283,
+        "localization_population": "matched points only"
+      },
+      "f1_patient_bootstrap_95": [
+        0.9636796424968522,
+        0.9815634406428958
+      ],
+      "topology_accepted": 16,
+      "images": 16,
+      "accepted_with_relative_identity_at_least_99pct": 15,
+      "relative_identity_scope": "selected nodes matched within 1.5px, not a certificate of the full warp"
+    },
+    {
+      "name": "contrast-point-1973",
+      "backend": "online",
+      "patients": 8,
+      "detection": {
+        "images": 16,
+        "tp": 29170,
+        "fp": 145,
+        "fn": 206,
+        "precision": 0.9950537267610439,
+        "recall": 0.9929874727668845,
+        "f1": 0.9940195259920601,
+        "median_error_px": 0.1701947689720567,
+        "p95_error_px": 0.41773068375218303,
+        "localization_population": "matched points only"
+      },
+      "f1_patient_bootstrap_95": [
+        0.9896298294416588,
+        0.9977712120565237
+      ],
+      "topology_accepted": 16,
+      "images": 16,
+      "accepted_with_relative_identity_at_least_99pct": 16,
+      "relative_identity_scope": "selected nodes matched within 1.5px, not a certificate of the full warp"
+    },
+    {
+      "name": "contrast-point-1973",
+      "backend": "offline",
+      "patients": 8,
+      "detection": {
+        "images": 16,
+        "tp": 27705,
+        "fp": 956,
+        "fn": 1628,
+        "precision": 0.9666445692753218,
+        "recall": 0.9444993693110149,
+        "f1": 0.9554436665861986,
+        "median_error_px": 0.284186571241031,
+        "p95_error_px": 0.7852007925296404,
+        "localization_population": "matched points only"
+      },
+      "f1_patient_bootstrap_95": [
+        0.9498609647835023,
+        0.9605919472384132
+      ],
+      "topology_accepted": 15,
+      "images": 16,
+      "accepted_with_relative_identity_at_least_99pct": 14,
+      "relative_identity_scope": "selected nodes matched within 1.5px, not a certificate of the full warp"
+    },
+    {
+      "name": "contrast-point-20261021",
+      "backend": "online",
+      "patients": 8,
+      "detection": {
+        "images": 16,
+        "tp": 29234,
+        "fp": 200,
+        "fn": 142,
+        "precision": 0.9932051369164911,
+        "recall": 0.9951661220043573,
+        "f1": 0.9941846624723687,
+        "median_error_px": 0.23344503018631402,
+        "p95_error_px": 0.46461183259677885,
+        "localization_population": "matched points only"
+      },
+      "f1_patient_bootstrap_95": [
+        0.9877692529047485,
+        0.9994217801469745
+      ],
+      "topology_accepted": 16,
+      "images": 16,
+      "accepted_with_relative_identity_at_least_99pct": 16,
+      "relative_identity_scope": "selected nodes matched within 1.5px, not a certificate of the full warp"
+    },
+    {
+      "name": "contrast-point-20261021",
+      "backend": "offline",
+      "patients": 8,
+      "detection": {
+        "images": 16,
+        "tp": 28656,
+        "fp": 694,
+        "fn": 677,
+        "precision": 0.9763543441226575,
+        "recall": 0.9769201922749122,
+        "f1": 0.9766371862379224,
+        "median_error_px": 0.28299901047424103,
+        "p95_error_px": 0.7966940590620184,
+        "localization_population": "matched points only"
+      },
+      "f1_patient_bootstrap_95": [
+        0.9687340000682664,
+        0.9839147977135265
+      ],
+      "topology_accepted": 15,
+      "images": 16,
+      "accepted_with_relative_identity_at_least_99pct": 15,
+      "relative_identity_scope": "selected nodes matched within 1.5px, not a certificate of the full warp"
+    },
+    {
+      "name": "contrast-global-1973",
+      "backend": "online",
+      "patients": 8,
+      "detection": {
+        "images": 16,
+        "tp": 28919,
+        "fp": 345,
+        "fn": 457,
+        "precision": 0.9882107709130673,
+        "recall": 0.984443082788671,
+        "f1": 0.9863233287858117,
+        "median_error_px": 0.35374675618873175,
+        "p95_error_px": 0.7670118753032065,
+        "localization_population": "matched points only"
+      },
+      "f1_patient_bootstrap_95": [
+        0.9760838844956364,
+        0.993751572602607
+      ],
+      "topology_accepted": 16,
+      "images": 16,
+      "accepted_with_relative_identity_at_least_99pct": 0,
+      "relative_identity_scope": "selected nodes matched within 1.5px, not a certificate of the full warp"
+    },
+    {
+      "name": "contrast-global-1973",
+      "backend": "offline",
+      "patients": 8,
+      "detection": {
+        "images": 16,
+        "tp": 27493,
+        "fp": 1753,
+        "fn": 1840,
+        "precision": 0.940060179169801,
+        "recall": 0.9372720144547098,
+        "f1": 0.9386640263575684,
+        "median_error_px": 0.4565162406074052,
+        "p95_error_px": 1.1317719806153523,
+        "localization_population": "matched points only"
+      },
+      "f1_patient_bootstrap_95": [
+        0.9287339482272438,
+        0.947135524193186
+      ],
+      "topology_accepted": 16,
+      "images": 16,
+      "accepted_with_relative_identity_at_least_99pct": 0,
+      "relative_identity_scope": "selected nodes matched within 1.5px, not a certificate of the full warp"
+    },
+    {
+      "name": "contrast-global-20261021",
+      "backend": "online",
+      "patients": 8,
+      "detection": {
+        "images": 16,
+        "tp": 28601,
+        "fp": 1010,
+        "fn": 775,
+        "precision": 0.9658910540002026,
+        "recall": 0.9736179193899782,
+        "f1": 0.9697390950548426,
+        "median_error_px": 0.35973652117221994,
+        "p95_error_px": 0.8366695178086324,
+        "localization_population": "matched points only"
+      },
+      "f1_patient_bootstrap_95": [
+        0.9422366055502207,
+        0.9869774357478724
+      ],
+      "topology_accepted": 16,
+      "images": 16,
+      "accepted_with_relative_identity_at_least_99pct": 0,
+      "relative_identity_scope": "selected nodes matched within 1.5px, not a certificate of the full warp"
+    },
+    {
+      "name": "contrast-global-20261021",
+      "backend": "offline",
+      "patients": 8,
+      "detection": {
+        "images": 16,
+        "tp": 26766,
+        "fp": 1991,
+        "fn": 2567,
+        "precision": 0.9307646833814376,
+        "recall": 0.9124876419050216,
+        "f1": 0.9215355482871407,
+        "median_error_px": 0.4548029178841851,
+        "p95_error_px": 1.0898750272947613,
+        "localization_population": "matched points only"
+      },
+      "f1_patient_bootstrap_95": [
+        0.9076088022044613,
+        0.9328745973101729
+      ],
+      "topology_accepted": 16,
+      "images": 16,
+      "accepted_with_relative_identity_at_least_99pct": 0,
+      "relative_identity_scope": "selected nodes matched within 1.5px, not a certificate of the full warp"
+    }
+  ],
+  "paired_deltas": [
+    {
+      "name": "contrast-point-1973",
+      "baseline": "raw-point-1973",
+      "backend": "online",
+      "f1_delta": -0.0003351755893036268,
+      "paired_patient_bootstrap_95": [
+        -0.006669124964933551,
+        0.005306516622222196
+      ]
+    },
+    {
+      "name": "contrast-point-1973",
+      "baseline": "raw-point-1973",
+      "backend": "offline",
+      "f1_delta": -0.011906474998871874,
+      "paired_patient_bootstrap_95": [
+        -0.015538288200152336,
+        -0.008375106460104798
+      ]
+    },
+    {
+      "name": "contrast-point-20261021",
+      "baseline": "raw-point-20261021",
+      "backend": "online",
+      "f1_delta": 0.002953014837784651,
+      "paired_patient_bootstrap_95": [
+        -0.005235323460721269,
+        0.011061769792189868
+      ]
+    },
+    {
+      "name": "contrast-point-20261021",
+      "baseline": "raw-point-20261021",
+      "backend": "offline",
+      "f1_delta": 0.003933317723097907,
+      "paired_patient_bootstrap_95": [
+        -4.111418793125706e-05,
+        0.00800146976998155
+      ]
+    },
+    {
+      "name": "contrast-global-1973",
+      "baseline": "raw-point-1973",
+      "backend": "online",
+      "f1_delta": -0.008031372795551994,
+      "paired_patient_bootstrap_95": [
+        -0.014159582001330277,
+        -0.0028949727845102194
+      ]
+    },
+    {
+      "name": "contrast-global-1973",
+      "baseline": "raw-point-1973",
+      "backend": "offline",
+      "f1_delta": -0.028686115227502085,
+      "paired_patient_bootstrap_95": [
+        -0.034143098888497786,
+        -0.023122628848008277
+      ]
+    },
+    {
+      "name": "contrast-global-20261021",
+      "baseline": "raw-point-20261021",
+      "backend": "online",
+      "f1_delta": -0.021492552579741475,
+      "paired_patient_bootstrap_95": [
+        -0.04920762963899237,
+        -0.004013359553960251
+      ]
+    },
+    {
+      "name": "contrast-global-20261021",
+      "baseline": "raw-point-20261021",
+      "backend": "offline",
+      "f1_delta": -0.051168320227683806,
+      "paired_patient_bootstrap_95": [
+        -0.05919649363859758,
+        -0.04447909686485188
+      ]
+    }
+  ]
+}
