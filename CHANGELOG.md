@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.13.0.dev0 (unreleased)
+
+- Add optional, hash-pinned Heng/Tang image-to-signal reference integration,
+  with a single waveform checkpoint and the published 15-checkpoint ensemble.
+- Preserve physical mV units, named leads and sequential printed time windows.
+  Keep interpolation masks and fail explicitly on an absent waveform row.
+- Load the official Kaggle metric v7 and retain failed images in evaluation.
+  Report raw errors alongside the metric's time/DC-aligned SNR.
+- Expose explicit artifact setup, a batch CLI, grouped source manifests,
+  WFDB16 checksum validation and an experimental single-sampling geometry mode.
+- Add independent numerical tests, a notebook-function parity audit and an
+  actual public-checkpoint CI integration. External artifacts are not bundled.
+
 ## 0.8.1
 
 - Recompose quarter-turn overrides and derive orientation from absolute angles.

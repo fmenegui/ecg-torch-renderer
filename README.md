@@ -353,8 +353,29 @@ light/dark themes, a generated API reference and a filterable gallery. The
 hosted Site currently requires the owner's account. All guide sources,
 generated pages and images are public here and can be hosted from `docs/`.
 
-This is an image/target generator. It does not include a trained clinical
-digitizer or demonstrate superiority to a commercial system. Examples use
-artificial signals. [Contributing](CONTRIBUTING.md) · [Changelog](CHANGELOG.md) · MIT.
+## Optional image-to-signal reference
+
+The `digitization` extra integrates Heng's learned paper rectification and Tang's
+published waveform checkpoints. It supports a single-model development profile
+and the published fifteen-model inference ensemble. Downloads are explicit and
+SHA-256 pinned, and failures remain visible in signal-level evaluation.
+
+```bash
+python -m pip install -e '.[digitization]'
+ecg-digitize fetch --assets build/reference-assets
+python examples/prepare_digitization_reference.py --out build/digitization-data
+ecg-digitize run --assets build/reference-assets \
+  --manifest build/digitization-data/manifest.json --out build/digitization-run \
+  --device cpu --precision bfloat16
+```
+
+Install a matching Torch/torchvision stack first. The default adapter assumes the
+Kaggle 3x4 plus long-II layout. It does not infer arbitrary document calibration
+or establish clinical generalization. See the [digitization guide](documentation/pages/digitization.md)
+for full-ensemble setup, mV/time contracts, official-metric version and limitations.
+
+The renderer remains an image/target generator. The optional research reference
+does not establish superiority to a commercial system.
+[Contributing](CONTRIBUTING.md) · [Changelog](CHANGELOG.md) · MIT for this package's code.
 
 
