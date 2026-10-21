@@ -8,6 +8,7 @@ printed text and waveform in one coordinate system. Paper gains remain supplied.
 import argparse
 import copy
 from dataclasses import replace
+import io
 import json
 from pathlib import Path
 import shutil
@@ -26,9 +27,58 @@ from ecg_gpu.digitization.artifacts import sha256_file
 from ecg_gpu.digitization.runner import _write_json
 from examples.digitization_npj_probe import load_upstream
 from examples.digitization_npj_profiles import apply_profile, run
+from examples.digitization_layout_probe import printed_windows, support_mask
+from ecg_gpu.digitization.signals import LEADS
 
 
 CASES = ('offline-flat', 'offline-fold')
+
+
+def save_rgb(path, image):
+    """Write a complete PNG and verify decoded pixels before recording its hash."""
+    buffer = io.BytesIO()
+    Image.fromarray(image).save(buffer, format='PNG')
+    path.write_bytes(buffer.getvalue())
+    with Image.open(path) as decoded:
+        if not np.array_equal(np.asarray(decoded), image):
+            raise ValueError('PNG write did not preserve RGB pixels')
+    return sha256_file(path)
+
+
+def summarize(reports, root, inputs):
+    """Keep ordinary coverage beside raw errors on identical observed support."""
+    with np.load(inputs/'source.npz') as data:
+        truth, fs = data['values_mv'], int(data['fs'])
+    manifest = json.loads((inputs/'manifest.json').read_text())
+    metadata = {c['name']: c['metadata'] for c in manifest['cases']}
+    records = []
+    for name in CASES:
+        windows = printed_windows(metadata[name])
+        printed = np.stack([support_mask(np.arange(truth.shape[1])/fs, windows[lead]) for lead in LEADS])
+        common = printed.copy()
+        predictions, measures = {}, {}
+        for arm, report in reports.items():
+            case = next(c for c in report['cases'] if c['name'] == name)
+            measures[arm] = {'status': case['status'], 'error': case.get('error'),
+                             'evaluation': case.get('evaluation')}
+            path = root/'results'/arm/'configured'/(name+'-prediction.npz')
+            if case['status'] == 'returned' and path.exists():
+                with np.load(path) as data:
+                    predictions[arm] = data['values_mv'].copy()
+                common &= np.isfinite(predictions[arm])
+            else:
+                common[:] = False
+        for arm, prediction in predictions.items():
+            error = prediction[common]-truth[common]
+            measures[arm]['common_support_raw_rmse_mv'] = float(np.sqrt(np.mean(error**2))) if error.size else None
+        records.append({'name': name, 'common_observed_printed_samples': int(common.sum()),
+                        'printed_samples': int(printed.sum()), 'arms': measures})
+    return {'schema': 'ecg-grid-rectification-summary-v1', 'cases': records,
+            'limits': ['Two synthetic images with one shared artificial source waveform',
+                       'Known-grid arm uses oracle vertices at 5 mm spacing',
+                       'Detected-grid arm uses frozen upstream grid segmentation and graph/TPS, not a newly trained detector',
+                       'Paper gain and output duration are declared, not inferred',
+                       'No real-image validation or clinical accuracy claim']}
 
 
 def grid_remap(rgb, observed, canonical, ids, size):
@@ -133,9 +183,9 @@ def prepare(inputs, out, source):
                   'mesh_sha256': geometry['metadata']['mesh_sha256']}
         for arm, image in (('oracle-grid', oracle), ('detected-grid', detected), ('canonical', clean)):
             path = out/arm/case['image']
-            Image.fromarray(image).save(path)
+            digest = save_rgb(path, image)
             entry = copy.deepcopy(case)
-            entry.update(image_sha256=sha256_file(path), rectification_arm=arm)
+            entry.update(image_sha256=digest, rectification_arm=arm)
             manifests[arm]['cases'].append(entry)
         np.savez_compressed(out/'oracle-support-{}'.format(case['name']), valid=supported)
         evidence['cases'].append(record)
@@ -162,3 +212,4 @@ if __name__ == '__main__':
                            arms=('configured',), dewarping=False, case_names=CASES)
     _write_json(args.out/'report.json', {'schema': 'ecg-grid-rectification-v1',
                 'neural_training_performed': False, 'arms': reports})
+    _write_json(args.out/'summary.json', summarize(reports, args.out, args.inputs))
