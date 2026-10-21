@@ -1,0 +1,25 @@
+{
+  "schema": "ecg-grid-rectification-inputs-v1",
+  "upstream_commit": "97a15087d4abcda843da8c58ee74b1d8f47e6f9a",
+  "detector_receives_generator_coordinates": false,
+  "cases": [
+    {
+      "name": "offline-flat",
+      "original_sha256": "927f21757407b5515d6481e41b9f8c705c2e1270172f0bb7ae0353e7c01184f8",
+      "oracle_grid_nodes": 1705,
+      "oracle_supported_pixel_fraction": 0.8816986083984375,
+      "detected_grid_nodes": 1223,
+      "canonical_is_new_clean_texture_not_recovered_rgb": true,
+      "mesh_sha256": "3e30704c38b4337939bcf94b7cc43ee26e581e8b02a5266cefe777cf3e89f61c"
+    },
+    {
+      "name": "offline-fold",
+      "original_sha256": "4ab08fbee05cff66bc72b2b02e36b8697447b617cd0ee39cf705aa098756f786",
+      "oracle_grid_nodes": 1705,
+      "oracle_supported_pixel_fraction": 0.8816986083984375,
+      "detected_grid_nodes": 586,
+      "canonical_is_new_clean_texture_not_recovered_rgb": true,
+      "mesh_sha256": "7dad1adac2cb758d2ae76f1c1337089f3a1eee3ae334417b42649b4b50ae108a"
+    }
+  ]
+}
