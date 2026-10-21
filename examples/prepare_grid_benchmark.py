@@ -8,11 +8,12 @@ import argparse
 import csv
 import hashlib
 import json
-from pathlib import Path
 import re
+import shutil
 import subprocess
 import sys
 from concurrent.futures import ThreadPoolExecutor
+from pathlib import Path
 
 import numpy as np
 
@@ -20,7 +21,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from ecg_gpu.schema_v05 import LEADS
 
 
-def prepare(metadata, out, *, train=16, validation=4, test=4, seed=1973):
+def prepare(metadata, out, *, train=16, validation=4, test=4, seed=1973, wfdb_cache=None):
     counts = {'train': train, 'validation': validation, 'test': test}
     if any(type(n) is not int or n < 1 for n in counts.values()):
         raise ValueError('Positive source counts required')
@@ -57,8 +58,13 @@ def prepare(metadata, out, *, train=16, validation=4, test=4, seed=1973):
         for suffix in ('.hea', '.dat'):
             path = raw/(Path(stem).name+suffix)
             url = 'https://physionet.org/files/ptb-xl/1.0.3/'+stem+suffix
-            subprocess.run(['curl', '--fail', '--silent', '--show-error', '--max-time', '35',
-                            '--max-filesize', '200000', '-o', str(path), url], check=True, timeout=40)
+            cached = Path(wfdb_cache)/path.name if wfdb_cache is not None else None
+            if cached is not None and cached.is_file():
+                shutil.copy2(cached, path)
+            else:
+                subprocess.run(['curl', '--fail', '--silent', '--show-error', '--retry', '3',
+                                '--retry-all-errors', '--connect-timeout', '10', '--max-time', '35',
+                                '--max-filesize', '200000', '-o', str(path), url], check=True, timeout=180)
             paths.append(path)
         lines = paths[0].read_text().splitlines()
         _, leads, fs, samples = lines[0].split()[:4]
@@ -99,6 +105,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--metadata', type=Path, required=True)
     parser.add_argument('--out', type=Path, required=True)
+    parser.add_argument('--wfdb-cache', type=Path)
     for name, default in (('train', 16), ('validation', 4), ('test', 4), ('seed', 1973)):
         parser.add_argument('--'+name, type=int, default=default)
     print(json.dumps(prepare(**vars(parser.parse_args()))['counts']))
