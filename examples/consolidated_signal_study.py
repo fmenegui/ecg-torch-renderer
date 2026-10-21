@@ -18,7 +18,7 @@ from examples.digitization_grid_rectification import grid_remap, save_rgb
 from examples.digitization_npj_profiles import run
 
 
-def main(root, source):
+def main(root, source, *, prepare_only=False):
     selected = json.loads((root/'selected-model.json').read_text())
     state = torch.load(root/selected['checkpoint'], map_location='cpu', weights_only=True)
     model = GridFieldNet(contrast=selected['variant'] != 'raw-point').cuda().eval()
@@ -63,6 +63,9 @@ def main(root, source):
     del model
     torch.cuda.empty_cache()
     _write_json(root/'learned-rectification.json', cases)
+    if prepare_only:
+        progress(root, 'learned-inputs-prepared')
+        return
     outputs = []
     for i, patient in enumerate(pairs):
         for arm in ('original', 'oracle', 'learned'):
@@ -83,6 +86,7 @@ if __name__ == '__main__':
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--root', type=Path, required=True)
     p.add_argument('--source', type=Path, required=True)
+    p.add_argument('--prepare-only', action='store_true')
     a = p.parse_args()
     torch.set_num_threads(4)
-    main(a.root, a.source)
+    main(a.root, a.source, prepare_only=a.prepare_only)
