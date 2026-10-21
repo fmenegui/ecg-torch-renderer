@@ -1,0 +1,121 @@
+{
+  "release": "0.12.0",
+  "study": "Exploratory grid detection, not complete waveform digitization",
+  "runtime": {
+    "python": "3.12.14",
+    "torch": "2.14.1+cpu",
+    "scipy": "1.17.0",
+    "device": "cpu",
+    "cuda_available": false
+  },
+  "cohort": {
+    "patients": 24,
+    "train": 16,
+    "validation": 4,
+    "test": 4,
+    "views_per_patient_per_backend": 2,
+    "captures": 96,
+    "source": "PTB-XL 1.0.3 at 100 Hz",
+    "signal_processing": "ADC-to-mV conversion only, original WFDB checksums and initial values checked"
+  },
+  "training": {
+    "models": 7,
+    "steps_per_model": 300,
+    "batch_size": 4,
+    "crop_size": 192,
+    "total_optimizer_steps": 2100,
+    "seconds_all_models_excluding_render_generation_and_evaluation": 345.84321216499666,
+    "cpu_threads": 2,
+    "repeated_training_seeds": 1
+  },
+  "evaluation": {
+    "matching_radius_output_px": 1.5,
+    "all_peaks_scored": true,
+    "truncated_test_images": 0,
+    "thresholds": "Validation only, calibrated again after removing the initial 2048-node cap",
+    "training_weights_reused_in_rescoring": true,
+    "validation_and_test_membership_unchanged": true,
+    "patient_bootstrap_repeats": 2000,
+    "localization_errors": "Among matched points only"
+  },
+  "external": {
+    "images": 3,
+    "source_records": 1,
+    "independent_of_training_groups": true,
+    "annotated_images": 1,
+    "annotated_points": 234,
+    "annotation_scope": "Clean red-grid region above the waveforms of one physical color scan",
+    "method": "Pixel-derived profile peaks and local intensity centers, visually reviewed against the original crop",
+    "gold_standard": false,
+    "uncertainty": "Uncalibrated. No subpixel physical accuracy or clinical generalization claim",
+    "unannotated_images": "Grayscale scan and phone photo, inference and qualitative inspection only",
+    "manifest_sha256": "f010502cd270e3f2433ab5f63727cbdf6abe233b469459791ac3e383d76c3f3c",
+    "dataset": "https://www.kaggle.com/datasets/physionet/ecg-image-database",
+    "dataset_version": 2,
+    "source_image_distribution": "Original/modified external source images are excluded from the public repository and deliverable archive",
+    "qualitative_phone_review": "The unannotated phone photo has visibly sparse and misplaced predictions. No numerical recall is assigned without complete reference labels"
+  },
+  "sampling_sensitivity": {
+    "paired_test_images": 1,
+    "samples_per_pixel": [
+      16,
+      128
+    ],
+    "threshold_retuned": false,
+    "same_grid_coordinates_and_validity": true,
+    "scope": "Illustrative sensitivity, not an aggregate improvement estimate"
+  },
+  "software_checks": {
+    "new_unit_tests": 10,
+    "unit_tests_passed": 10,
+    "full_discovered": 296,
+    "full_passed": 288,
+    "full_skipped": 6,
+    "full_errors": 2,
+    "local_errors": "Missing original tests/fixtures/raster-v021.npz in partial checkout. Original fixture preserved, full-checkout CI required",
+    "integration": "Three regimes, four ablations, external annotated/unannotated inference, checkpoint export, deterministic cache replay and rescoring passed",
+    "branch_aware_new_module_coverage": {
+      "covered_lines": 454,
+      "num_statements": 505,
+      "percent_covered": 87.06766917293233,
+      "percent_covered_display": "87",
+      "missing_lines": 51,
+      "excluded_lines": 0,
+      "percent_statements_covered": 89.9009900990099,
+      "percent_statements_covered_display": "90",
+      "num_branches": 160,
+      "num_partial_branches": 29,
+      "covered_branches": 125,
+      "missing_branches": 35,
+      "percent_branches_covered": 78.125,
+      "percent_branches_covered_display": "78"
+    },
+    "lint": "Fatal-error codebase lint and strict E,F new-module/example/test lint passed",
+    "wheel": "Built 0.12.0 without runtime dependency changes",
+    "docs": "21-page build passed. Full binary gallery validation delegated to full-checkout CI",
+    "visual": "Reviewed 16-scenario capture panel, synthetic prediction crops and physical image/reference overlays"
+  },
+  "artifacts_sha256": {
+    "report.json": "9cba961f2ba1fb4f021948fa8b6e37a0f47fbd00f6d48268f882dad1e240a78f",
+    "metrics.csv": "09710c744f77c203622f9d19cef6852a5dcabb8e4331bc554c44f823884dfdd6",
+    "summary.json": "139180bf9f2c5a0b51529476ae52b5f576c776013a4d265c48f7fe27cf26b704",
+    "sources.json": "2878a54bab78ac0a801eaea47e7f1f05900cc110118ad7e810df4e6ce879cde2",
+    "external-references.json": "f010502cd270e3f2433ab5f63727cbdf6abe233b469459791ac3e383d76c3f3c",
+    "spp-sensitivity.json": "de73a737a6dd9823e17694f221f762a6e93673f9328fbcda8476d94553ce249c"
+  },
+  "code_sha256": {
+    "ecg_gpu/grid_benchmark.py": "5b9063dc03f12fd367667c8c52acef872f1390ca80276430d6680daa12872900",
+    "ecg_gpu/grid_evaluation.py": "618c7a4f75e64ad5ae41e4f20b96992cd34abb8f6d443749e733e3bed6bbc551",
+    "examples/prepare_grid_benchmark.py": "6f0e06dee1e9ea44286d740db0c66780c3fff4984a237e90dd373140bb6c7eab",
+    "examples/annotate_red_grid_scan.py": "6ba90b6aa52afe9bc6e9e0f5b6bc1ebfebe3a8c6a681c8729b3c3f242e0867d5",
+    "examples/grid_benchmark_spp.py": "5af1022ff3b00172a6120b03a446a8b58d6ce9f410c693d35a5134e4b7cb2f3d",
+    "examples/summarize_grid_benchmark.py": "21f6e93d6f6547a7c39181707770cd46e182f070df199d52a01bb240a1854546"
+  },
+  "remaining_work": [
+    "Larger independent real cohort with expert grid references including ink overlaps, folds and damage",
+    "More model seeds and balanced higher-SPP/higher-resolution training studies",
+    "Inferred grid ordering and robust rectification without oracle identities",
+    "Trace extraction, lead/time calibration and end-to-end waveform/SNR evaluation",
+    "CUDA execution, peak device memory and throughput"
+  ]
+}
