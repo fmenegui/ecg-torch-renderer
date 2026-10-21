@@ -4,6 +4,7 @@
     {
       "profile": "heng-tang-single",
       "geometry": "reference",
+      "precision": "bfloat16",
       "images": 20,
       "patients": 5,
       "successes": 20,
@@ -58,6 +59,7 @@
     {
       "profile": "heng-tang-full",
       "geometry": "reference",
+      "precision": "bfloat16",
       "images": 1,
       "patients": 1,
       "successes": 1,
@@ -97,6 +99,7 @@
     {
       "profile": "heng-tang-single / composed",
       "geometry": "composed",
+      "precision": "bfloat16",
       "images": 1,
       "patients": 1,
       "successes": 1,
@@ -109,6 +112,46 @@
           "images": 1,
           "failures": 0,
           "official_snr_db": 21.856943511696652
+        }
+      },
+      "metric": {
+        "name": "official Kaggle ECG metric v7",
+        "source_sha256": "2313548daed2fb2219f8b863791915670b25e67cf32988dd75799c3b2ec5c306",
+        "max_alignment_seconds": 0.2,
+        "power_ratio_cap": 1000000.0,
+        "aggregation": "mean capped linear image ratios, then 10*log10",
+        "failure_policy": "explicit zero-prediction penalty when reference is available"
+      },
+      "environment": {
+        "python": "3.12.14",
+        "torch": "2.14.1+cpu",
+        "cuda_available": false,
+        "cpu_threads": 2,
+        "machine": "x86_64"
+      },
+      "limits": [
+        "Development smoke evaluation, not the private Kaggle test",
+        "Unknown overlap with upstream model training data",
+        "Patient grouping does not establish distinct devices or sites",
+        "Official alignment can mask timing and DC errors, inspect raw RMSE too"
+      ]
+    },
+    {
+      "profile": "heng-tang-single / float32",
+      "geometry": "reference",
+      "precision": "float32",
+      "images": 1,
+      "patients": 1,
+      "successes": 1,
+      "failures": 0,
+      "official_snr_db": 21.633289478212557,
+      "minimum_image_snr_db": 21.633289478212557,
+      "median_wall_seconds": 82.30597780899552,
+      "by_image_type": {
+        "color-scan": {
+          "images": 1,
+          "failures": 0,
+          "official_snr_db": 21.633289478212557
         }
       },
       "metric": {
@@ -420,6 +463,19 @@
       "precision": "bfloat16",
       "image_sha256": "abacc8ede0dd499c8c489532713aedfa3d96cc4df6b6441a493b7b7a1ec29f58",
       "prediction_sha256": "4f54f73f415640d7e6fdd37952cba5ae5759d2089ca8dbea89af927ff072b280"
+    },
+    {
+      "profile": "heng-tang-single / float32",
+      "image_id": "D0_000022_04",
+      "patient_id": "20978.0",
+      "image_type": "color-scan",
+      "status": "success",
+      "snr_db": 21.633289478212557,
+      "mean_lead_raw_rmse_mv": 0.013451832857558913,
+      "wall_seconds": 82.30597780899552,
+      "precision": "float32",
+      "image_sha256": "abacc8ede0dd499c8c489532713aedfa3d96cc4df6b6441a493b7b7a1ec29f58",
+      "prediction_sha256": "8bce1abc509178780938e223fe2a0865394c45dfa09cac295c9c82d634a3633e"
     }
   ],
   "interpretation": [

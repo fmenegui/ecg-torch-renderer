@@ -98,6 +98,11 @@ The experimental single-sampling geometry scored 21.8569 dB on that same image,
 to establish an improvement, so the original geometry remains the default.
 
 The machine and dependency versions are recorded in `protocol.json`.
+The CPU float32 default was also executed on the same color scan: SNR 21.6333 dB,
+82.3 seconds and peak RSS 5.68 GB. The smoke test uses this portable default.
+The precision-related score difference on this example is comparable to the
+small composed-geometry difference, reinforcing the need for broader paired
+experiments before claiming that the geometric change improves digitization.
 The first full attempt was interrupted by the OS memory limit while other jobs
 were running. The completed full run used an isolated inference process. A
 metadata correction records TTA accurately per model group without changing the

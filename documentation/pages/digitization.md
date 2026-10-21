@@ -121,6 +121,8 @@ border validity, temporal ownership, mV conversion, original WFDB checksums,
 patient leakage, artifact corruption and explicit failure accounting. CI runs
 an actual published checkpoint through a declared real-image development fixture.
 An SNR floor on that fixture is an integration guard, not clinical validation.
+The CI smoke defaults to float32, matching the CPU CLI default and avoiding a
+dependency on efficient native bfloat16 instructions in the runner hardware.
 
 The current work reproduces published inference components. It does not reproduce
 all training, the private competition test or clinical generalization. Upstream

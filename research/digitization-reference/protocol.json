@@ -48,6 +48,13 @@
     "full_probe_seconds": 500.5985311179975,
     "full_peak_rss_bytes": 5089095680,
     "composed_single_probe_snr_db": 21.856943511696652,
-    "composed_probe_is_exploratory": true
+    "composed_probe_is_exploratory": true,
+    "float32_default_probe": {
+      "snr_db": 21.633289478212557,
+      "wall_seconds": 82.30597780899552,
+      "process_peak_rss_bytes": 5678632960,
+      "device": "cpu",
+      "threads": 2
+    }
   }
 }

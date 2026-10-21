@@ -17,10 +17,11 @@ def main():
     parser.add_argument('--assets', type=Path, required=True)
     parser.add_argument('--manifest', type=Path, required=True)
     parser.add_argument('--out', type=Path, required=True)
+    parser.add_argument('--precision', choices=('float32', 'bfloat16'), default='float32')
     args = parser.parse_args()
     from ecg_gpu.digitization.cli import main as run
     status = run(['run', '--assets', str(args.assets), '--manifest', str(args.manifest),
-                  '--out', str(args.out), '--precision', 'bfloat16', '--threads', '2'])
+                  '--out', str(args.out), '--precision', args.precision, '--threads', '2'])
     report = json.loads((args.out/'report.json').read_text())
     if status or report['successes'] != report['cases_total'] or report['scored_cases'] != report['cases_total']:
         raise RuntimeError('Reference inference failed or silently omitted a scored image')

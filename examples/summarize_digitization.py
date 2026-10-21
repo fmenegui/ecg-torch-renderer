@@ -19,11 +19,14 @@ def summarize(reports, out):
     for doc in documents:
         profile = next((c['provenance']['profile'] for c in doc['cases'] if c['status'] == 'success'), 'failed')
         geometry = next((c['provenance']['geometry'] for c in doc['cases'] if c['status'] == 'success'), 'unknown')
+        precision = next((c['provenance']['precision'] for c in doc['cases'] if c['status'] == 'success'), 'unknown')
         if geometry != 'reference':
             profile += ' / '+geometry
+        if precision != 'bfloat16':
+            profile += ' / '+precision
         score = doc.get('official_snr_db')
         individual = [c['evaluation']['official_snr_db'] for c in doc['cases'] if 'evaluation' in c]
-        groups.append({'profile': profile, 'geometry': geometry, 'images': doc['cases_total'], 'patients': doc['patients'],
+        groups.append({'profile': profile, 'geometry': geometry, 'precision': precision, 'images': doc['cases_total'], 'patients': doc['patients'],
             'successes': doc['successes'], 'failures': doc['failures'], 'official_snr_db': score,
             'minimum_image_snr_db': min(individual) if individual else None,
             'median_wall_seconds': statistics.median(c['wall_seconds'] for c in doc['cases']),
@@ -73,10 +76,10 @@ def summarize(reports, out):
 <meta name="viewport" content="width=device-width,initial-scale=1"><title>Digitalização de ECG · referência</title>
 <style>body{margin:0;background:#101722;color:#e5ebf5;font:16px/1.6 system-ui}main{max-width:1100px;margin:auto;padding:48px 24px}h1{font-size:clamp(28px,5vw,48px);line-height:1.15;margin:16px 0}h2{font-size:23px;margin-top:42px}p{color:#aab9cc}.eyebrow{color:#79daca;text-transform:uppercase;letter-spacing:.12em;font-size:12px}.cards{display:flex;flex-wrap:wrap;gap:16px;margin:28px 0}article{background:#182432;border:1px solid #2b3c4e;border-radius:14px;padding:22px;flex:1;min-width:240px}article span{color:#aab9cc}strong{display:block;font-size:42px;font-weight:600}small{font-size:18px}article p{margin:5px 0}.note{border-left:3px solid #e6bb70;padding:8px 18px;background:#202631}table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:11px 12px;border-bottom:1px solid #2b3c4e}th{color:#aab9cc;font-weight:500}.scroll{overflow:auto}a{color:#79daca}footer{margin-top:38px;color:#8fa0b5;font-size:13px}</style>
 <main><div class="eyebrow">ECG torch renderer · digitalização</div><h1>Da imagem ao sinal.</h1>
-<p>Referência de retificação Heng e extração de ondas Tang. Inferência medida em CPU, com precisão bfloat16.</p>
+<p>Referência de retificação Heng e extração de ondas Tang. Piloto em CPU bfloat16 e verificação da execução padrão em float32.</p>
 <div class="cards">'''+cards+'''</div>
 <div class="note">Esta é uma avaliação de desenvolvimento. A sobreposição com o treinamento dos checkpoints públicos é desconhecida. Os números não representam o teste privado do Kaggle nem validação clínica.</div>
-<p>O ensemble completo e a geometria composta foram avaliados em uma imagem cada. Compare-os com o perfil simples na mesma imagem. Os tempos do perfil simples incluem trabalho concorrente.</p>
+<p>O ensemble completo, a geometria composta e a precisão float32 foram avaliados em uma imagem cada. Compare-os com o perfil simples na mesma imagem. Os tempos do piloto incluem trabalho concorrente.</p>
 <h2>Qualidade por tipo de imagem</h2><p>A agregação usa as razões lineares de SNR antes de converter para dB, conforme a métrica oficial.</p>
 <div class="scroll"><table><thead><tr><th>Perfil</th><th>Imagem</th><th>Quantidade</th><th>SNR (dB)</th><th>Falhas</th></tr></thead><tbody>'''+modes+'''</tbody></table></div>
 <h2>Todos os exemplos</h2><p>Uma inferência concluída pode recuperar uma onda inadequada. Examine também os menores escores. O RMSE abaixo é a média entre derivações, sem alinhamento temporal ou correção de offset.</p>
