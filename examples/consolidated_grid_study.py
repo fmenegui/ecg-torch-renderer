@@ -4,11 +4,11 @@ All test outputs are evaluated after model/threshold selection on validation.
 The script is a research driver, not a clinical digitization application.
 """
 import argparse
-from dataclasses import asdict
 import json
-from pathlib import Path
-import time
 import sys
+import time
+from dataclasses import asdict
+from pathlib import Path
 
 import numpy as np
 import torch
@@ -16,17 +16,16 @@ from torch.nn import functional as F
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from ecg_gpu import ECGImageLayer, capture_scenario
-from ecg_gpu.pathtrace import PathTraceConfig, pathtrace_capture
-from ecg_gpu.grid_points import GridPointConfig, rasterize_grid_points
-from ecg_gpu.grid_point_learning import grid_point_loss, decode_grid_points
-from ecg_gpu.grid_evaluation import match_grid_points, summarize_grid_matches
-from ecg_gpu.digitization.field_rectifier import GridFieldNet, chart_loss, chart_lattice
-from ecg_gpu.digitization.lattice import organize_lattice
 from ecg_gpu.digitization.artifacts import sha256_file
+from ecg_gpu.digitization.field_rectifier import GridFieldNet, chart_lattice, chart_loss
+from ecg_gpu.digitization.lattice import organize_lattice
 from ecg_gpu.digitization.runner import _write_json
 from ecg_gpu.gpu_cli import plain
+from ecg_gpu.grid_evaluation import match_grid_points, summarize_grid_matches
+from ecg_gpu.grid_point_learning import decode_grid_points, grid_point_loss
+from ecg_gpu.grid_points import GridPointConfig, rasterize_grid_points
+from ecg_gpu.pathtrace import PathTraceConfig, pathtrace_capture
 from examples.digitization_grid_rectification import grid_remap, save_rgb
-
 
 VARIANTS = ('raw-point', 'contrast-point', 'contrast-global')
 SEEDS = (1973, 20261021)
@@ -284,7 +283,7 @@ def prepare_pipeline_inputs(root, samples, records, fs):
             entry = {'name': name, 'image': image, 'image_sha256': digest,
                      'layout': sample['layout'], 'metadata': sample['paper_metadata']}
             manifest['cases'].append(entry)
-            warped, support = grid_remap(rgb, xy, canonical, ids, tuple(sample['canonical_size']))
+            warped, _support = grid_remap(rgb, xy, canonical, ids, tuple(sample['canonical_size']))
             oracle_entry = dict(entry, image_sha256=save_rgb(oracle/image, warped))
             oracle_manifest['cases'].append(oracle_entry)
         _write_json(original/'manifest.json', manifest)
