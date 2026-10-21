@@ -42,6 +42,13 @@ class GridRectification(unittest.TestCase):
         with self.assertRaises(ValueError):
             grid_remap(rgb, canonical, canonical, ids, (24, 24))
 
+    def test_only_explicitly_accepted_topology_cells_are_sampled(self):
+        ids, canonical = self.points()
+        rgb = np.zeros((24, 24, 3), dtype=np.uint8)
+        _, valid = grid_remap(rgb, canonical, canonical, ids, (24, 24), allowed_cells=[[0, 0]])
+        self.assertTrue(valid[4, 4])
+        self.assertFalse(valid[12, 12])
+
         ids, canonical = self.points()
         canonical[0, 0] = np.nan
         with self.assertRaises(ValueError):
