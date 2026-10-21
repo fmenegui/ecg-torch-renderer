@@ -81,7 +81,7 @@ def summarize(reports, root, inputs):
                        'No real-image validation or clinical accuracy claim']}
 
 
-def grid_remap(rgb, observed, canonical, ids, size):
+def grid_remap(rgb, observed, canonical, ids, size, *, allowed_cells=None):
     """Piecewise affine inverse sampling, without crossing missing grid cells.
 
     Coordinates denote pixel centers. Only triangles joining immediate lattice
@@ -101,6 +101,9 @@ def grid_remap(rgb, observed, canonical, ids, size):
     triangulation = Delaunay(canonical)
     vertices = ids[triangulation.simplices]
     supported = (np.ptp(vertices, axis=1) <= 1).all(axis=1)
+    if allowed_cells is not None:
+        allowed = {tuple(cell) for cell in allowed_cells}
+        supported &= np.array([tuple(cell) in allowed for cell in vertices.min(axis=1)])
     mapping = np.full((height, width, 2), -1., dtype=np.float32)
     valid = np.zeros((height, width), dtype=bool)
     for start in range(0, height, 64):
