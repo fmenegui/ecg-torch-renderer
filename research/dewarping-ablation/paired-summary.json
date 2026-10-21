@@ -1,0 +1,108 @@
+{
+  "schema": "ecg-dewarping-ablation-v1",
+  "cases": [
+    {
+      "name": "six-rows",
+      "enabled": {
+        "status": "returned",
+        "error": null,
+        "predicted_layout": "standard_6x2",
+        "layout_matches_expected": true,
+        "mean_observed_lead_snr_db": 13.85681611637371,
+        "printed_time_coverage": 0.9967666666666667,
+        "raw_overlap_rmse_mv": 0.05775042088892249,
+        "unsupported_output_fraction": 0.0
+      },
+      "disabled": {
+        "status": "returned",
+        "error": null,
+        "predicted_layout": "standard_6x2",
+        "layout_matches_expected": true,
+        "mean_observed_lead_snr_db": 21.064975153606177,
+        "printed_time_coverage": 0.9257,
+        "raw_overlap_rmse_mv": 0.03768866286476931,
+        "unsupported_output_fraction": 0.0
+      },
+      "disabled_minus_enabled_snr_db": 7.208159037232468
+    },
+    {
+      "name": "portrait",
+      "enabled": {
+        "status": "returned",
+        "error": null,
+        "predicted_layout": "standard_12x1",
+        "layout_matches_expected": true,
+        "mean_observed_lead_snr_db": -2.5030836769458187,
+        "printed_time_coverage": 0.9130333333333334,
+        "raw_overlap_rmse_mv": 0.17924423672396256,
+        "unsupported_output_fraction": 0.0
+      },
+      "disabled": {
+        "status": "returned",
+        "error": null,
+        "predicted_layout": "standard_12x1",
+        "layout_matches_expected": true,
+        "mean_observed_lead_snr_db": 6.285466305218397,
+        "printed_time_coverage": 0.9830666666666666,
+        "raw_overlap_rmse_mv": 0.08751754854326212,
+        "unsupported_output_fraction": 0.0
+      },
+      "disabled_minus_enabled_snr_db": 8.788549982164216
+    },
+    {
+      "name": "offline-flat",
+      "enabled": {
+        "status": "returned",
+        "error": null,
+        "predicted_layout": "standard_3x4_with_r1",
+        "layout_matches_expected": true,
+        "mean_observed_lead_snr_db": 13.29468243207049,
+        "printed_time_coverage": 0.79936,
+        "raw_overlap_rmse_mv": 0.0727461481087454,
+        "unsupported_output_fraction": 0.1990166737922189
+      },
+      "disabled": {
+        "status": "returned",
+        "error": null,
+        "predicted_layout": "standard_3x4_with_r1",
+        "layout_matches_expected": true,
+        "mean_observed_lead_snr_db": 18.25520773329045,
+        "printed_time_coverage": 0.99952,
+        "raw_overlap_rmse_mv": 0.07532437940914324,
+        "unsupported_output_fraction": 0.0
+      },
+      "disabled_minus_enabled_snr_db": 4.9605253012199615
+    },
+    {
+      "name": "offline-fold",
+      "enabled": {
+        "status": "returned",
+        "error": null,
+        "predicted_layout": "standard_6x2",
+        "layout_matches_expected": true,
+        "mean_observed_lead_snr_db": -6.675466354137501,
+        "printed_time_coverage": 0.9775333333333334,
+        "raw_overlap_rmse_mv": 0.43709358516023566,
+        "unsupported_output_fraction": 0.0
+      },
+      "disabled": {
+        "status": "returned",
+        "error": null,
+        "predicted_layout": "standard_6x2",
+        "layout_matches_expected": true,
+        "mean_observed_lead_snr_db": -7.7237811609693985,
+        "printed_time_coverage": 0.9820333333333333,
+        "raw_overlap_rmse_mv": 0.624923478605195,
+        "unsupported_output_fraction": 0.0
+      },
+      "disabled_minus_enabled_snr_db": -1.0483148068318977
+    }
+  ],
+  "training_performed": false,
+  "automatic_setting_selection": false,
+  "limits": [
+    "One artificial signal, four diagnostic cases",
+    "Conditional SNR can improve while coverage deteriorates",
+    "No real-image or clinical validation"
+  ]
+}
