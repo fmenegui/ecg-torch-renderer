@@ -1,10 +1,12 @@
 """Independent coordinate and missing-lattice checks for diagnostic warping."""
 import importlib.util
+from pathlib import Path
+import tempfile
 import unittest
 
 import numpy as np
 
-from examples.digitization_grid_rectification import grid_remap
+from examples.digitization_grid_rectification import grid_remap, save_rgb
 
 
 @unittest.skipUnless(importlib.util.find_spec('cv2') and importlib.util.find_spec('scipy'),
@@ -39,10 +41,22 @@ class GridRectification(unittest.TestCase):
         ids[0] = ids[1]
         with self.assertRaises(ValueError):
             grid_remap(rgb, canonical, canonical, ids, (24, 24))
+
         ids, canonical = self.points()
         canonical[0, 0] = np.nan
         with self.assertRaises(ValueError):
             grid_remap(rgb, canonical, canonical, ids, (24, 24))
+
+    def test_saved_png_preserves_noncontiguous_rgb_and_digest(self):
+        import hashlib
+        from PIL import Image
+        image = np.arange(3*170*190, dtype=np.uint8).reshape(3, 170, 190).transpose(1, 2, 0)
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory)/'control.png'
+            digest = save_rgb(path, image)
+            self.assertEqual(digest, hashlib.sha256(path.read_bytes()).hexdigest())
+            with Image.open(path) as decoded:
+                np.testing.assert_array_equal(np.asarray(decoded), image)
 
 
 if __name__ == '__main__':
