@@ -61,8 +61,10 @@ The restoration loss is 0.2 times color L1 plus 0.25 times edge L1 within that
 term. Visibility loss has weight 0.1 and the point positive weight is 10.
 
 Recovery checkpoints retain model, optimizer, RNG and sampling-index metadata.
-An automatic restart CLI is not yet implemented. Do not confuse stored
-recovery state with a verified exact-resume workflow.
+The `--resume` CLI restores model, optimizer and RNG, continues the deterministic
+crop index, and rejects mismatched bank/protocol signatures. Recovery files are
+replaced atomically. Interrupted-versus-uninterrupted CUDA parity has not yet
+been demonstrated, so exact numerical continuation is not claimed.
 
 Validation backend-macro F1 selects thresholds from 0.3, 0.5, 0.7, 0.85 and
 0.93. The best point detector and the best jointly supervised model are
@@ -112,15 +114,19 @@ when the URL for an exclusion list returned HTTP 404. Its GPU was removed and
 logs recovered. The corrected 316,985-byte package also carries 77 pseudonymous
 public PTB-XL exclusion identifiers, each verified against the official public
 metadata. It carries no images, waveforms, clinical/demographic fields or
-pretrained weights. Public ECGs are downloaded on the server from PhysioNet.
+pretrained weights. The second GPU attempt failed on PhysioNet HTTPS timeouts before training and
+was removed after log recovery. The new 318,367-byte code-only package fetches
+the publisher public S3 source, retaining the full 100 Hz subset at
+`/workspace/datasets/ptb-xl/1.0.3` on the persistent volume. It runs a 48-image,
+two-model engineering smoke before the full study. Smoke patients overlap the
+full cohort and do not constitute an independent benchmark.
 
 The live catalog read selected one Secure Cloud A40 at USD 0.59/hour in
 CA-MTL-1. A 50 GB high-performance volume stores bank/checkpoints. The current
-owned pod is `lopg4wu6ws5h3l` and the volume is `wxt8cq1hh1`. Do not modify the
+owned pod is `rl2ouqsgfgedwe` and the volume is `wxt8cq1hh1`. Do not modify the
 user's original stopped A4000 pod. A controller bounds compute duration and
-removes its own GPU after recovery. The volume is removed only after the
-offline bank has been saved, otherwise it remains explicitly marked for
-recovery. Actual final resource state must be read back before reporting it.
+removes its own GPU after recovery. The volume remains for reuse of the public dataset, cached bank and
+checkpoints. It is not deleted by this training controller. Actual final resource state must be read back before reporting it.
 
 Local validation: 11 focused tests pass. The full integration run executes
 371 tests with 12 skips and two errors from the missing original fixture

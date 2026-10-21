@@ -273,7 +273,7 @@ def selection(model, rows, root):
     return max(candidates, key=lambda x: x['backend_macro_f1']), candidates
 
 
-def train(root, manifest, *, joint, seed, steps, batch_size=4):
+def train(root, manifest, *, joint, seed, steps, batch_size=4, resume=False):
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
     model = DenoisingGridNet().cuda()
@@ -285,8 +285,29 @@ def train(root, manifest, *, joint, seed, steps, batch_size=4):
     folder = root/'models'
     folder.mkdir(exist_ok=True)
     history = []
+    resumed_steps = 0
+    signature = {'manifest_sha256': hashlib.sha256(json.dumps(manifest, sort_keys=True).encode()).hexdigest(),
+                 'seed': seed, 'joint': joint, 'steps': steps, 'batch_size': batch_size,
+                 'crop': 384, 'width': 24, 'learning_rate': .001}
+    recovery = folder/(name+'-recovery.pt')
+    if resume and recovery.exists():
+        saved = torch.load(recovery, map_location='cpu', weights_only=True)
+        if saved.get('training_signature') != signature:
+            raise ValueError('Recovery checkpoint does not match this bank and training protocol')
+        model.load_state_dict(saved['state_dict'])
+        optimizer.load_state_dict(saved['optimizer'])
+        torch.set_rng_state(saved['torch_rng'])
+        torch.cuda.set_rng_state_all(saved['cuda_rng'])
+        resumed_steps = int(saved['steps'])
+        if not 0 <= resumed_steps <= steps:
+            raise ValueError('Invalid recovery step')
+        history_path = folder/(name+'-history.json')
+        history = json.loads(history_path.read_text()) if history_path.exists() else []
+        subset = torch.utils.data.Subset(ds, range(resumed_steps*batch_size, len(ds)))
+        loader = DataLoader(subset, batch_size=batch_size, num_workers=2, collate_fn=collate, pin_memory=True)
+        progress(root, 'training-resumed', name=name, step=resumed_steps, steps=steps)
     started = time.time()
-    for step, (images, clean, valid, xy, present) in enumerate(loader, 1):
+    for step, (images, clean, valid, xy, present) in enumerate(loader, resumed_steps+1):
         image, reference = images.cuda(non_blocking=True).float()/255, clean.cuda(non_blocking=True).float()/255
         valid, xy, present = valid.cuda(non_blocking=True), xy.cuda(non_blocking=True), present.cuda(non_blocking=True)
         target = rasterize_grid_points(xy, present, valid, config=GridPointConfig(sigma_pixels=1., return_offsets=True))
@@ -304,10 +325,13 @@ def train(root, manifest, *, joint, seed, steps, batch_size=4):
         if step == 1 or step % 1000 == 0 or step == steps:
             history.append({'step': step, 'loss': float(loss.detach()), 'point_loss': float(points.detach()),
                             'restoration_loss': float(restoration['loss'].detach()), 'elapsed_seconds': time.time()-started})
+            temporary = recovery.with_suffix('.pt.part')
             torch.save({'state_dict': model.state_dict(), 'optimizer': optimizer.state_dict(),
                         'torch_rng': torch.get_rng_state(), 'cuda_rng': torch.cuda.get_rng_state_all(),
                         'seed': seed, 'joint': joint, 'steps': step, 'threshold': None, 'width': 24,
-                        'model_class': 'DenoisingGridNet', 'training_sampling': 'index-deterministic'}, folder/(name+'-recovery.pt'))
+                        'model_class': 'DenoisingGridNet', 'training_sampling': 'index-deterministic',
+                        'training_signature': signature}, temporary)
+            temporary.replace(recovery)
             _write_json(folder/(name+'-history.json'), history)
             progress(root, 'training', name=name, step=step, steps=steps)
     model.eval()
@@ -426,7 +450,7 @@ def evaluate_previous(root, manifest, checkpoint):
         'threshold': state['threshold'], 'by_backend': {k: summarize_grid_matches(v) for k, v in grouped.items()},
         'cases': cases, 'limits': ['Architecture, resolution, training cohort and training budget all differ']})
 
-def main(cohort, root, steps=10000, batch_size=4, render_only=False):
+def main(cohort, root, steps=10000, batch_size=4, render_only=False, resume=False):
     if not torch.cuda.is_available():
         raise RuntimeError('Real CUDA required')
     root.mkdir(parents=True, exist_ok=True)
@@ -441,7 +465,7 @@ def main(cohort, root, steps=10000, batch_size=4, render_only=False):
     # All choices are frozen before opening any synthetic test predictions.
     for seed in SEEDS:
         for joint in (False, True):
-            trials.append(train(root, manifest, joint=joint, seed=seed, steps=steps, batch_size=batch_size))
+            trials.append(train(root, manifest, joint=joint, seed=seed, steps=steps, batch_size=batch_size, resume=resume))
             _write_json(root/'trials.json', trials)
             torch.cuda.empty_cache()
     selected = max(trials, key=lambda t: t['validation']['backend_macro_f1'])
@@ -459,6 +483,7 @@ if __name__ == '__main__':
     parser.add_argument('--steps', type=int, default=10000)
     parser.add_argument('--batch-size', type=int, default=4)
     parser.add_argument('--render-only', action='store_true')
+    parser.add_argument('--resume', action='store_true')
     args = parser.parse_args()
     torch.set_num_threads(4)
     main(**vars(args))
