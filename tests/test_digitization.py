@@ -87,6 +87,24 @@ class SignalContracts(unittest.TestCase):
             with self.subTest(shape=a.shape, scale=scale, length=length), self.assertRaises(ValueError):
                 decode_waveform_rows(a, zero_mv=z, pixels_per_mv=scale, length=length)
 
+    def test_saved_upsampled_rows_can_replay_gap_rule_without_information_loss(self):
+        from scipy.interpolate import PchipInterpolator
+        from scipy.signal import resample
+        from ecg_gpu.digitization.signals import replay_linear_gaps
+        rng = np.random.default_rng(17)
+        columns = rng.normal(size=(4, 24))
+        observed = np.ones((4, 24), dtype=bool)
+        observed[:, 9:12] = False
+        old, expected = columns.copy(), columns.copy()
+        valid, missing = np.flatnonzero(observed[0]), np.flatnonzero(~observed[0])
+        for row in range(4):
+            old[row, missing] = PchipInterpolator(valid, columns[row, valid])(missing)
+            expected[row, missing] = np.interp(missing, valid, columns[row, valid])
+        actual = replay_linear_gaps(resample(old, 50, axis=-1), observed)
+        np.testing.assert_allclose(actual, resample(expected, 50, axis=-1), atol=2e-14)
+        with self.assertRaises(ValueError):
+            replay_linear_gaps(resample(old, 12, axis=-1), observed)
+
     def test_sequential_lead_identity_times_and_long_ii(self):
         rows = np.zeros((4, 100))
         for row in range(3):
@@ -260,6 +278,28 @@ class ArtifactContracts(unittest.TestCase):
                     fetch_assets(root)
             self.assertEqual(list(root.iterdir()), [])
 
+    def test_notebook_download_verifies_extracted_source_and_rejects_oversize(self):
+        import io
+        source = 'def score():\n    return 1\n'
+        notebook = {'cells': [{'cell_type': 'markdown', 'source': ['ignored']},
+                              {'cell_type': 'code', 'source': source.splitlines(keepends=True)}]}
+        response = json.dumps({'blob': {'source': json.dumps(notebook)}}).encode()
+        item = {'path': 'metric.py', 'url': 'https://example.org/metric',
+                'format': 'kaggle-notebook-python', 'size': len(source.encode()),
+                'sha256': hashlib.sha256(source.encode()).hexdigest()}
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            with patch('ecg_gpu.digitization.artifacts.artifact_lock', return_value={'artifacts': [item]}), \
+                 patch('urllib.request.urlopen', return_value=io.BytesIO(response)):
+                fetch_assets(root)
+            self.assertEqual((root/'metric.py').read_text(), source)
+            (root/'metric.py').unlink()
+            with patch('ecg_gpu.digitization.artifacts.artifact_lock', return_value={'artifacts': [item]}), \
+                 patch('urllib.request.urlopen', return_value=io.BytesIO(b'x'*5_000_001)):
+                with self.assertRaisesRegex(ValueError, 'size limit'):
+                    fetch_assets(root)
+            self.assertEqual(list(root.iterdir()), [])
+
     def test_external_loader_selects_definitions_without_file_side_effects(self):
         from ecg_gpu.digitization.reference import _definitions
         with tempfile.TemporaryDirectory() as folder:
@@ -283,6 +323,16 @@ class ArtifactContracts(unittest.TestCase):
             torch.save({'state_dict': {'unexpected': torch.ones(1)}}, p)
             with self.assertRaises(RuntimeError):
                 _load_weights(net, p)
+
+    def test_invalid_reference_configuration_fails_before_large_asset_io(self):
+        from ecg_gpu.digitization.reference import HengTangDigitizer
+        for kw in ({'precision': 'unknown'}, {'precision': 'float16'},
+                   {'geometry': 'unknown'}, {'profile': 'unknown'},
+                   {'device': 'mps'}, {'waveform_tta': 'false'}):
+            with self.subTest(kw=kw), self.assertRaises(ValueError):
+                HengTangDigitizer('not-downloaded', **kw)
+        with patch('torch.cuda.is_available', return_value=False), self.assertRaises(RuntimeError):
+            HengTangDigitizer('not-downloaded', device='cuda')
 
 
 def local_assets(test):
@@ -331,6 +381,12 @@ class OfficialMetricContracts(unittest.TestCase):
             with self.assertRaises(ValueError):
                 self.metric.image(truth, pred)
 
+    def test_zero_power_floor_and_invalid_aggregate_are_finite(self):
+        self.assertEqual(self.metric.aggregate([{'official_power_ratio': 0.}]), -384.)
+        self.assertIsNone(self.metric.aggregate([]))
+        with self.assertRaises(ValueError):
+            self.metric.aggregate([{'official_power_ratio': float('nan')}])
+
     def test_runner_accounts_for_failure_and_never_saves_zero_success(self):
         from ecg_gpu.digitization.runner import run_manifest
         with tempfile.TemporaryDirectory() as folder:
@@ -357,6 +413,23 @@ class OfficialMetricContracts(unittest.TestCase):
             self.assertLess(report['official_snr_db'], 60)
             with self.assertRaises(FileExistsError):
                 run_manifest(manifest, root/'out', Backend(), self.metric)
+
+    def test_prediction_disk_failure_leaves_no_partial_success_artifact(self):
+        from ecg_gpu.digitization.runner import run_manifest
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            row, _ = make_record(root)
+            manifest = root/'manifest.json'
+            manifest.write_text(json.dumps({'schema_version': 1, 'cases': [row]}))
+            truth = sequential_reference(read_wfdb16(root/'record.hea'))
+            class Backend:
+                def predict(self, image, *, fs, progress=None):
+                    return DigitizationResult(truth), {}
+            with patch('numpy.savez_compressed', side_effect=OSError('disk full')):
+                report = run_manifest(manifest, root/'out', Backend(), self.metric)
+            self.assertEqual(report['failures'], 1)
+            self.assertEqual(list((root/'out/predictions').iterdir()), [])
+            self.assertTrue(report['cases'][0]['evaluation']['failure_penalty'])
 
 
 if __name__ == '__main__':

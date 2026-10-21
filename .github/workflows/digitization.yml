@@ -1,9 +1,14 @@
 name: Digitization reference
 on:
   push:
+    branches: [main]
   pull_request:
+  workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: digitization-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   reference:
     runs-on: ubuntu-latest
@@ -33,7 +38,7 @@ jobs:
           python -m coverage run --branch -m unittest discover -s tests -p test_digitization.py -v
           python -m ruff check ecg_gpu/digitization tests/test_digitization.py examples/prepare_digitization_reference.py examples/digitization_smoke.py --select E,F --ignore E501
       - name: Download one declared development fixture and waveform reference
-        run: python examples/prepare_digitization_reference.py --out build/digitization-fixture --records 22 --kinds digital
+        run: python examples/prepare_digitization_reference.py --out build/digitization-fixture --records 22 --kinds digital --metadata research/digitization-reference/patients.csv
       - name: Execute actual checkpoints through the full image-to-signal chain
         run: |
           python -m coverage run --branch --append examples/digitization_smoke.py --assets build/reference-assets --manifest build/digitization-fixture/manifest.json --out build/digitization-smoke

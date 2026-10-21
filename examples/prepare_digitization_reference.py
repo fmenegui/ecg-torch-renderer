@@ -57,6 +57,7 @@ def prepare(out, records, kinds, *, metadata=None):
             (out/name).write_bytes(body)
             sources.append({'file': name, 'url': url, 'bytes': len(body),
                             'sha256': hashlib.sha256(body).hexdigest()})
+            print(json.dumps({'downloaded': name, 'bytes': len(body)}), flush=True)
         header = out/(stem+'.hea')
         full = read_wfdb16(header)
         for kind in kinds:

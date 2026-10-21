@@ -1,0 +1,365 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "image_id": "D0_000022_02",
+      "image": "D0_000022_02.png",
+      "image_sha256": "d6937484744c62aab24d627707aa7a056216671909e4c57d0bc9c5df3761625d",
+      "patient_id": "20978.0",
+      "split": "development",
+      "image_type": "digital",
+      "fs": 500,
+      "reference_header": "D0_000022.hea",
+      "reference_header_sha256": "eb708ee0d53321cfd1cea94eb0829b4fc272202d4739c367911aa0c55d269a51",
+      "reference_dat_sha256": "844b98566196a53b2fc004a885bb43967afb60026c6e3d6d8a0f9c4728c00ac0",
+      "source": {
+        "url": "https://www.kaggle.com/datasets/physionet/ecg-image-database",
+        "dataset_version": 2,
+        "license": "CC BY-ND 4.0, source images excluded from redistribution",
+        "upstream_training_overlap": "unknown"
+      }
+    },
+    {
+      "image_id": "D0_000022_04",
+      "image": "D0_000022_04.jpeg",
+      "image_sha256": "abacc8ede0dd499c8c489532713aedfa3d96cc4df6b6441a493b7b7a1ec29f58",
+      "patient_id": "20978.0",
+      "split": "development",
+      "image_type": "color-scan",
+      "fs": 500,
+      "reference_header": "D0_000022.hea",
+      "reference_header_sha256": "eb708ee0d53321cfd1cea94eb0829b4fc272202d4739c367911aa0c55d269a51",
+      "reference_dat_sha256": "844b98566196a53b2fc004a885bb43967afb60026c6e3d6d8a0f9c4728c00ac0",
+      "source": {
+        "url": "https://www.kaggle.com/datasets/physionet/ecg-image-database",
+        "dataset_version": 2,
+        "license": "CC BY-ND 4.0, source images excluded from redistribution",
+        "upstream_training_overlap": "unknown"
+      }
+    },
+    {
+      "image_id": "D0_000022_05",
+      "image": "D0_000022_05.jpeg",
+      "image_sha256": "d0b81b0619c6db71472c4aef6e706eb9d25ec509283b4b27939dfefd58c4816e",
+      "patient_id": "20978.0",
+      "split": "development",
+      "image_type": "gray-scan",
+      "fs": 500,
+      "reference_header": "D0_000022.hea",
+      "reference_header_sha256": "eb708ee0d53321cfd1cea94eb0829b4fc272202d4739c367911aa0c55d269a51",
+      "reference_dat_sha256": "844b98566196a53b2fc004a885bb43967afb60026c6e3d6d8a0f9c4728c00ac0",
+      "source": {
+        "url": "https://www.kaggle.com/datasets/physionet/ecg-image-database",
+        "dataset_version": 2,
+        "license": "CC BY-ND 4.0, source images excluded from redistribution",
+        "upstream_training_overlap": "unknown"
+      }
+    },
+    {
+      "image_id": "D0_000022_06",
+      "image": "D0_000022_06.jpeg",
+      "image_sha256": "4e9ad3b03bbd13f7ef494f1d142726b40879d903bb70c103b6732ab2455ffe60",
+      "patient_id": "20978.0",
+      "split": "development",
+      "image_type": "phone-photo",
+      "fs": 500,
+      "reference_header": "D0_000022.hea",
+      "reference_header_sha256": "eb708ee0d53321cfd1cea94eb0829b4fc272202d4739c367911aa0c55d269a51",
+      "reference_dat_sha256": "844b98566196a53b2fc004a885bb43967afb60026c6e3d6d8a0f9c4728c00ac0",
+      "source": {
+        "url": "https://www.kaggle.com/datasets/physionet/ecg-image-database",
+        "dataset_version": 2,
+        "license": "CC BY-ND 4.0, source images excluded from redistribution",
+        "upstream_training_overlap": "unknown"
+      }
+    },
+    {
+      "image_id": "D0_000066_02",
+      "image": "D0_000066_02.png",
+      "image_sha256": "f1d30d5a9a597bc94d3f79ca6cf7cdd12af882049c250a4b4ebc3e4e8c087bf5",
+      "patient_id": "11352.0",
+      "split": "development",
+      "image_type": "digital",
+      "fs": 500,
+      "reference_header": "D0_000066.hea",
+      "reference_header_sha256": "ca9fe262ba60454343b712d443bae701193dea309b396cfb551cdbddadd742d6",
+      "reference_dat_sha256": "4ed12b1986234b85607587ea6becfa02a21ab051b3f19c97c44813e36f9471f5",
+      "source": {
+        "url": "https://www.kaggle.com/datasets/physionet/ecg-image-database",
+        "dataset_version": 2,
+        "license": "CC BY-ND 4.0, source images excluded from redistribution",
+        "upstream_training_overlap": "unknown"
+      }
+    },
+    {
+      "image_id": "D0_000066_04",
+      "image": "D0_000066_04.jpeg",
+      "image_sha256": "6c4ffcde916b7247502927272ab20797cb5b9994908fbb1e49580dcbbb3582f5",
+      "patient_id": "11352.0",
+      "split": "development",
+      "image_type": "color-scan",
+      "fs": 500,
+      "reference_header": "D0_000066.hea",
+      "reference_header_sha256": "ca9fe262ba60454343b712d443bae701193dea309b396cfb551cdbddadd742d6",
+      "reference_dat_sha256": "4ed12b1986234b85607587ea6becfa02a21ab051b3f19c97c44813e36f9471f5",
+      "source": {
+        "url": "https://www.kaggle.com/datasets/physionet/ecg-image-database",
+        "dataset_version": 2,
+        "license": "CC BY-ND 4.0, source images excluded from redistribution",
+        "upstream_training_overlap": "unknown"
+      }
+    },
+    {
+      "image_id": "D0_000066_05",
+      "image": "D0_000066_05.jpeg",
+      "image_sha256": "c4ca33a881cda91e0e522eb2157e46f1a821e8da03595c9cec190d7a2c34803d",
+      "patient_id": "11352.0",
+      "split": "development",
+      "image_type": "gray-scan",
+      "fs": 500,
+      "reference_header": "D0_000066.hea",
+      "reference_header_sha256": "ca9fe262ba60454343b712d443bae701193dea309b396cfb551cdbddadd742d6",
+      "reference_dat_sha256": "4ed12b1986234b85607587ea6becfa02a21ab051b3f19c97c44813e36f9471f5",
+      "source": {
+        "url": "https://www.kaggle.com/datasets/physionet/ecg-image-database",
+        "dataset_version": 2,
+        "license": "CC BY-ND 4.0, source images excluded from redistribution",
+        "upstream_training_overlap": "unknown"
+      }
+    },
+    {
+      "image_id": "D0_000066_06",
+      "image": "D0_000066_06.jpeg",
+      "image_sha256": "1b9e2d058bceb3e7f96464be48085aaa62c80d98b522cdcdccc1292ba2dfdf6b",
+      "patient_id": "11352.0",
+      "split": "development",
+      "image_type": "phone-photo",
+      "fs": 500,
+      "reference_header": "D0_000066.hea",
+      "reference_header_sha256": "ca9fe262ba60454343b712d443bae701193dea309b396cfb551cdbddadd742d6",
+      "reference_dat_sha256": "4ed12b1986234b85607587ea6becfa02a21ab051b3f19c97c44813e36f9471f5",
+      "source": {
+        "url": "https://www.kaggle.com/datasets/physionet/ecg-image-database",
+        "dataset_version": 2,
+        "license": "CC BY-ND 4.0, source images excluded from redistribution",
+        "upstream_training_overlap": "unknown"
+      }
+    },
+    {
+      "image_id": "D0_000077_02",
+      "image": "D0_000077_02.png",
+      "image_sha256": "82a03199eec94210f5b6f9d25f4885ac7b10f1597d32c38c186f3c1463df0387",
+      "patient_id": "8555.0",
+      "split": "development",
+      "image_type": "digital",
+      "fs": 500,
+      "reference_header": "D0_000077.hea",
+      "reference_header_sha256": "8c2a15db03fc9d8da518a16c66a312690750de559857fcbc48f65f848cd29897",
+      "reference_dat_sha256": "6722210bd8971f200fa1aeef49ec3315b88546dccbbadea02297660b05d67a50",
+      "source": {
+        "url": "https://www.kaggle.com/datasets/physionet/ecg-image-database",
+        "dataset_version": 2,
+        "license": "CC BY-ND 4.0, source images excluded from redistribution",
+        "upstream_training_overlap": "unknown"
+      }
+    },
+    {
+      "image_id": "D0_000077_04",
+      "image": "D0_000077_04.jpeg",
+      "image_sha256": "047c8e338832302fcbf2c496f5cf1b0b3dacaea32c5d06c74ecb6d194a478ec7",
+      "patient_id": "8555.0",
+      "split": "development",
+      "image_type": "color-scan",
+      "fs": 500,
+      "reference_header": "D0_000077.hea",
+      "reference_header_sha256": "8c2a15db03fc9d8da518a16c66a312690750de559857fcbc48f65f848cd29897",
+      "reference_dat_sha256": "6722210bd8971f200fa1aeef49ec3315b88546dccbbadea02297660b05d67a50",
+      "source": {
+        "url": "https://www.kaggle.com/datasets/physionet/ecg-image-database",
+        "dataset_version": 2,
+        "license": "CC BY-ND 4.0, source images excluded from redistribution",
+        "upstream_training_overlap": "unknown"
+      }
+    },
+    {
+      "image_id": "D0_000077_05",
+      "image": "D0_000077_05.jpeg",
+      "image_sha256": "3d0a5b126b879d954d92b3ea8beb2d9e1820b8b080eae8acfb445fd119940de8",
+      "patient_id": "8555.0",
+      "split": "development",
+      "image_type": "gray-scan",
+      "fs": 500,
+      "reference_header": "D0_000077.hea",
+      "reference_header_sha256": "8c2a15db03fc9d8da518a16c66a312690750de559857fcbc48f65f848cd29897",
+      "reference_dat_sha256": "6722210bd8971f200fa1aeef49ec3315b88546dccbbadea02297660b05d67a50",
+      "source": {
+        "url": "https://www.kaggle.com/datasets/physionet/ecg-image-database",
+        "dataset_version": 2,
+        "license": "CC BY-ND 4.0, source images excluded from redistribution",
+        "upstream_training_overlap": "unknown"
+      }
+    },
+    {
+      "image_id": "D0_000077_06",
+      "image": "D0_000077_06.jpeg",
+      "image_sha256": "764608fdbce4fcbbd4d4c783f084320e0e91023ee9191d3b8b13764e1fa07746",
+      "patient_id": "8555.0",
+      "split": "development",
+      "image_type": "phone-photo",
+      "fs": 500,
+      "reference_header": "D0_000077.hea",
+      "reference_header_sha256": "8c2a15db03fc9d8da518a16c66a312690750de559857fcbc48f65f848cd29897",
+      "reference_dat_sha256": "6722210bd8971f200fa1aeef49ec3315b88546dccbbadea02297660b05d67a50",
+      "source": {
+        "url": "https://www.kaggle.com/datasets/physionet/ecg-image-database",
+        "dataset_version": 2,
+        "license": "CC BY-ND 4.0, source images excluded from redistribution",
+        "upstream_training_overlap": "unknown"
+      }
+    },
+    {
+      "image_id": "D0_000085_02",
+      "image": "D0_000085_02.png",
+      "image_sha256": "3a29ca5e8da3797341d5adc72bf7bc662569cf04d5cadb5ee492b9b1d9975f12",
+      "patient_id": "15904.0",
+      "split": "development",
+      "image_type": "digital",
+      "fs": 500,
+      "reference_header": "D0_000085.hea",
+      "reference_header_sha256": "ff0031270e6875bc1c6e46031aa278d4aef66cce8399a58e7baa0da58fdb1a88",
+      "reference_dat_sha256": "4fcbdbf49dcadc20a8824f29a87f01b9d61115776ad9a16c4eb5683c19ba804f",
+      "source": {
+        "url": "https://www.kaggle.com/datasets/physionet/ecg-image-database",
+        "dataset_version": 2,
+        "license": "CC BY-ND 4.0, source images excluded from redistribution",
+        "upstream_training_overlap": "unknown"
+      }
+    },
+    {
+      "image_id": "D0_000085_04",
+      "image": "D0_000085_04.jpeg",
+      "image_sha256": "97db1c078384d7e450d803626fc454ec0bd25b4e4a6df2b0cfb4f651352505c6",
+      "patient_id": "15904.0",
+      "split": "development",
+      "image_type": "color-scan",
+      "fs": 500,
+      "reference_header": "D0_000085.hea",
+      "reference_header_sha256": "ff0031270e6875bc1c6e46031aa278d4aef66cce8399a58e7baa0da58fdb1a88",
+      "reference_dat_sha256": "4fcbdbf49dcadc20a8824f29a87f01b9d61115776ad9a16c4eb5683c19ba804f",
+      "source": {
+        "url": "https://www.kaggle.com/datasets/physionet/ecg-image-database",
+        "dataset_version": 2,
+        "license": "CC BY-ND 4.0, source images excluded from redistribution",
+        "upstream_training_overlap": "unknown"
+      }
+    },
+    {
+      "image_id": "D0_000085_05",
+      "image": "D0_000085_05.jpeg",
+      "image_sha256": "18c31ba7fb9206ee4facd07906c15c451c87987fc0fb6d6d47c46401a65fcbe9",
+      "patient_id": "15904.0",
+      "split": "development",
+      "image_type": "gray-scan",
+      "fs": 500,
+      "reference_header": "D0_000085.hea",
+      "reference_header_sha256": "ff0031270e6875bc1c6e46031aa278d4aef66cce8399a58e7baa0da58fdb1a88",
+      "reference_dat_sha256": "4fcbdbf49dcadc20a8824f29a87f01b9d61115776ad9a16c4eb5683c19ba804f",
+      "source": {
+        "url": "https://www.kaggle.com/datasets/physionet/ecg-image-database",
+        "dataset_version": 2,
+        "license": "CC BY-ND 4.0, source images excluded from redistribution",
+        "upstream_training_overlap": "unknown"
+      }
+    },
+    {
+      "image_id": "D0_000085_06",
+      "image": "D0_000085_06.jpeg",
+      "image_sha256": "925a66f3744cddb2d1131f0dae7376a501dfef5da332c962c653f8008948da3f",
+      "patient_id": "15904.0",
+      "split": "development",
+      "image_type": "phone-photo",
+      "fs": 500,
+      "reference_header": "D0_000085.hea",
+      "reference_header_sha256": "ff0031270e6875bc1c6e46031aa278d4aef66cce8399a58e7baa0da58fdb1a88",
+      "reference_dat_sha256": "4fcbdbf49dcadc20a8824f29a87f01b9d61115776ad9a16c4eb5683c19ba804f",
+      "source": {
+        "url": "https://www.kaggle.com/datasets/physionet/ecg-image-database",
+        "dataset_version": 2,
+        "license": "CC BY-ND 4.0, source images excluded from redistribution",
+        "upstream_training_overlap": "unknown"
+      }
+    },
+    {
+      "image_id": "D0_000107_02",
+      "image": "D0_000107_02.png",
+      "image_sha256": "20b92d908f23de747e784e5669ad823c5d6a144e7a5a47c6bc5c6bfec3c1b297",
+      "patient_id": "13453.0",
+      "split": "development",
+      "image_type": "digital",
+      "fs": 500,
+      "reference_header": "D0_000107.hea",
+      "reference_header_sha256": "56c493af287314237d7584e6adec97533dd71ef22637d530caee5393432c6b9d",
+      "reference_dat_sha256": "8c7f074a09137051502b08ab75fb7496666ddece8ca081843e9cfbfcf256ddb1",
+      "source": {
+        "url": "https://www.kaggle.com/datasets/physionet/ecg-image-database",
+        "dataset_version": 2,
+        "license": "CC BY-ND 4.0, source images excluded from redistribution",
+        "upstream_training_overlap": "unknown"
+      }
+    },
+    {
+      "image_id": "D0_000107_04",
+      "image": "D0_000107_04.jpeg",
+      "image_sha256": "b6b2ba241f5415a75683d664161e33e90dab3ce662de2ea15195a5f5e51a32fd",
+      "patient_id": "13453.0",
+      "split": "development",
+      "image_type": "color-scan",
+      "fs": 500,
+      "reference_header": "D0_000107.hea",
+      "reference_header_sha256": "56c493af287314237d7584e6adec97533dd71ef22637d530caee5393432c6b9d",
+      "reference_dat_sha256": "8c7f074a09137051502b08ab75fb7496666ddece8ca081843e9cfbfcf256ddb1",
+      "source": {
+        "url": "https://www.kaggle.com/datasets/physionet/ecg-image-database",
+        "dataset_version": 2,
+        "license": "CC BY-ND 4.0, source images excluded from redistribution",
+        "upstream_training_overlap": "unknown"
+      }
+    },
+    {
+      "image_id": "D0_000107_05",
+      "image": "D0_000107_05.jpeg",
+      "image_sha256": "062844dbcdd46f195ec32c332ab220cbd9189fb17b47299edb23c28037325941",
+      "patient_id": "13453.0",
+      "split": "development",
+      "image_type": "gray-scan",
+      "fs": 500,
+      "reference_header": "D0_000107.hea",
+      "reference_header_sha256": "56c493af287314237d7584e6adec97533dd71ef22637d530caee5393432c6b9d",
+      "reference_dat_sha256": "8c7f074a09137051502b08ab75fb7496666ddece8ca081843e9cfbfcf256ddb1",
+      "source": {
+        "url": "https://www.kaggle.com/datasets/physionet/ecg-image-database",
+        "dataset_version": 2,
+        "license": "CC BY-ND 4.0, source images excluded from redistribution",
+        "upstream_training_overlap": "unknown"
+      }
+    },
+    {
+      "image_id": "D0_000107_06",
+      "image": "D0_000107_06.jpeg",
+      "image_sha256": "cc96b7a0bffa9484e09d091fa3c62244f5843131fa85a38cd7917a71c05f009b",
+      "patient_id": "13453.0",
+      "split": "development",
+      "image_type": "phone-photo",
+      "fs": 500,
+      "reference_header": "D0_000107.hea",
+      "reference_header_sha256": "56c493af287314237d7584e6adec97533dd71ef22637d530caee5393432c6b9d",
+      "reference_dat_sha256": "8c7f074a09137051502b08ab75fb7496666ddece8ca081843e9cfbfcf256ddb1",
+      "source": {
+        "url": "https://www.kaggle.com/datasets/physionet/ecg-image-database",
+        "dataset_version": 2,
+        "license": "CC BY-ND 4.0, source images excluded from redistribution",
+        "upstream_training_overlap": "unknown"
+      }
+    }
+  ]
+}

@@ -136,3 +136,31 @@ def split_rows(rows_mv, fs, *, average_ii=True, einthoven=True):
         leads['III'][:length] += residual
         leads['II'][:length] -= residual
     return {name: LeadSignal(leads[name], fs, starts[name]) for name in LEADS}
+
+
+def replay_linear_gaps(rows_mv, observed_columns):
+    """Re-decode saved Fourier-upsampled rows without rerunning the network.
+
+    Upsampling preserves the original columns, so Fourier resampling back to
+    their count recovers the pre-resampling samples. Replace only missing
+    columns with the notebook's linear gap rule and resample again. Reject
+    saved downsampled rows, where that recovery would lose information.
+    """
+    from scipy.signal import resample
+
+    rows = np.asarray(rows_mv, dtype=np.float64)
+    observed = np.asarray(observed_columns)
+    if rows.ndim != 2 or rows.shape[0] != 4 or not np.isfinite(rows).all():
+        raise ValueError('Four finite saved rows required')
+    if observed.dtype != np.bool_ or observed.ndim != 2 or observed.shape[0] != 4:
+        raise ValueError('Four boolean original-column observation masks required')
+    if observed.shape[1] < 3 or rows.shape[1] < observed.shape[1] or not observed.any(axis=1).all():
+        raise ValueError('Saved rows must preserve the original Fourier column information')
+    if observed.all():
+        return rows.copy()
+    columns = resample(rows, observed.shape[1], axis=-1)
+    for row in range(4):
+        valid = np.flatnonzero(observed[row])
+        missing = np.flatnonzero(~observed[row])
+        columns[row, missing] = np.interp(missing, valid, columns[row, valid])
+    return resample(columns, rows.shape[1], axis=-1)

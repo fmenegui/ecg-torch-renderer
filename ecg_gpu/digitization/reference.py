@@ -76,8 +76,9 @@ class HengTangDigitizer:
         from .artifacts import verify_assets
 
         self.assets = Path(assets)
-        self.artifacts = verify_assets(self.assets, profile=profile)
         self.device = torch.device(device)
+        if self.device.type not in ('cpu', 'cuda'):
+            raise ValueError('The reference adapter supports CPU and CUDA')
         if precision not in ('float32', 'bfloat16', 'float16'):
             raise ValueError('Unknown precision')
         if self.device.type == 'cpu' and precision == 'float16':
@@ -86,6 +87,9 @@ class HengTangDigitizer:
             raise RuntimeError('CUDA is unavailable')
         if geometry not in ('reference', 'composed'):
             raise ValueError('geometry must be reference or composed')
+        if profile not in ('single', 'full') or type(waveform_tta) is not bool:
+            raise ValueError('A known profile and boolean waveform_tta are required')
+        self.artifacts = verify_assets(self.assets, profile=profile)
         self.precision, self.geometry, self.waveform_tta = precision, geometry, waveform_tta
         self.profile = profile
         env = _environment()
@@ -135,6 +139,12 @@ class HengTangDigitizer:
             xy = compose_grid_to_source(torch.as_tensor(grid, dtype=torch.float32),
                                        homography, output_size=(1700, 4400))
             rect, valid = sample_source(rotated, xy)
+            # Heng fills unsupported lattice nodes with [0, 0]. They do not
+            # establish observed support even when that source pixel exists.
+            support = torch.as_tensor(np.any(grid != 0, axis=-1), dtype=torch.float32)[None, None]
+            support = torch.nn.functional.interpolate(support, size=(1700, 4400),
+                mode='bilinear', align_corners=True)[0, 0] > 1-1e-6
+            valid &= support
             return rect.clamp(0, 255).byte().numpy(), float(valid.float().mean())
         # Preserve the three sampling operations and historical align_corners
         # mismatch in Tang notebook v15. Corrected geometry is a distinct mode.
@@ -204,7 +214,10 @@ class HengTangDigitizer:
             warnings.append('Low-confidence waveform columns were interpolated')
         result = DigitizationResult(split_rows(rows, fs),
             provenance={'profile': f'heng-tang-{self.profile}', 'precision': self.precision,
-                'device': str(self.device), 'geometry': self.geometry, 'waveform_tta': self.waveform_tta,
+                'device': str(self.device), 'geometry': self.geometry,
+                'waveform_tta': self.profile == 'full' or self.waveform_tta,
+                'waveform_tta_by_group': ({'run15': True, 'run13': False, 'run10': False}
+                    if self.profile == 'full' else {'run15': self.waveform_tta}),
                 'waveform_checkpoints': checkpoint_count,
                 'artifact_lock_sha256': self.artifacts['lock_sha256']},
             diagnostics={'seconds': {'stage0': stage0_s, 'stage1': stage1_s, 'stage2': stage2_s},
