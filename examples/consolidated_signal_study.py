@@ -2,11 +2,13 @@
 import argparse
 import copy
 import json
-from pathlib import Path
 import shutil
 import sys
+from pathlib import Path
+
 import numpy as np
 import torch
+
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from ecg_gpu.digitization.field_rectifier import GridFieldNet, chart_lattice
 from ecg_gpu.digitization.lattice import organize_lattice
