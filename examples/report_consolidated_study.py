@@ -42,7 +42,7 @@ def main(root):
         # Percentile intervals need not enclose the original estimate. Draw endpoints directly.
         axis.barh(np.arange(len(rows)), values, color=['#466a91','#466a91','#267970','#267970','#b57939','#b57939'], height=.65)
         axis.hlines(np.arange(len(rows)), bounds[:,0], bounds[:,1], color='#172b3a', linewidth=2)
-        axis.set(yticks=np.arange(len(rows)), yticklabels=labels, xlim=(0,1), xlabel='F1 · raio de 1,5 px', title=backend)
+        axis.set(yticks=np.arange(len(rows)), yticklabels=labels, xlim=(0,1), xlabel='F1 · raio de 1,5 px', title={'online':'Renderer torch','offline':'Captura física simulada'}[backend])
         axis.invert_yaxis()
     figure.savefig(root/'detection-comparison.png',dpi=180)
     plt.close(figure)
@@ -50,6 +50,7 @@ def main(root):
 <style>body{font:16px/1.6 system-ui;color:#193044;background:#f4f6f8;max-width:1180px;margin:auto;padding:32px}h1{font-size:38px;line-height:1.15}h2{margin-top:44px}table{border-collapse:collapse;width:100%;background:white;font-variant-numeric:tabular-nums}td,th{padding:10px;text-align:left;border-bottom:1px solid #d8e0e7}th{font-size:13px}img{width:100%;height:auto}article{background:white;padding:20px;margin:18px 0;border-radius:12px}.notice{border-left:4px solid #bf8428;padding:14px;background:#fff5e3}.small{font-size:13px;color:#536678}summary{cursor:pointer;color:#246a86}code{overflow-wrap:anywhere}</style>
 <p class="small">PESQUISA · 21 OUT 2026 · GPU RTX 3090</p><h1>Retificação de ECG: o que os experimentos demonstram</h1>
 <p>Três variantes, duas sementes e o mesmo orçamento. Os sinais são originais de pacientes novos do PTB-XL. As imagens de teste são capturas sintéticas e não constituem validação clínica.</p>'''
+    page = page.replace('GPU RTX 3090', 'GPU '+html.escape(json.loads((root/'gpu.json').read_text())['name']))
     page+=f'<p>Modelo escolhido somente na validação: <strong>{html.escape(selected["name"])}</strong>. Treino com 32 pacientes, validação com oito e teste com oito. Cada paciente tem quatro capturas, totalizando 192 imagens.</p>'
     page+='<p class="notice">Contar pontos corretamente não garante ordenar a grade, preservar todas as derivações ou reconstruir o sinal. A geometria conhecida é um controle com acesso à verdade, não uma solução automática.</p>'
     page+='<h2>Detecção e organização da grade</h2><img alt="F1 por variante e semente, com intervalo bootstrap por paciente" src="'+embed(root/'detection-comparison.png')+'"><p class="small">Intervalos percentis de 95%, 2.000 reamostragens dos oito pacientes. Capturas de um mesmo paciente permanecem no mesmo grupo.</p><table><tr><th>Modelo</th><th>Captura</th><th>F1</th><th>Erro p95 (px)</th><th>Grades aceitas</th><th>Identidade relativa ≥99%</th></tr>'
@@ -67,6 +68,22 @@ def main(root):
             note='Perfis configurados, retificação não linear ativada' if arm.startswith('npj') else f'Perfil single, layout assumido 3x4+r1, compatível em {sum(c.get("layout_assumption_matches_input",False) for c in cases)} imagens'
             page+=f'<tr><td>{arm}</td><td>{sum(c["status"]=="returned" for c in cases)}</td><td>{len(cases)}</td><td>{note}</td></tr>'
         page+='</table>'
+    if report.get('references') is not None:
+        page+='<h2>Erro bruto nas mesmas amostras</h2><p>Sem alinhar curvas nem remover DC. Cada comparação usa somente amostras impressas finitas nos dois métodos. Casos ausentes não recebem erro zero.</p><table><tr><th>Par</th><th>Casos com suporte comum</th><th>Fração impressa em comum</th><th>RMSE bruto primeiro (mV)</th><th>RMSE bruto segundo (mV)</th></tr>'
+        for row in report['references']['pooled_pairwise_raw_errors']:
+            if row['first']=='original' or (row['first']=='learned' and row['second'] in ('resize-2x','npj_dewarping_enabled')):
+                first,second=row['first'],row['second']
+                fraction=row['common_printed_support_fraction']
+                page+=f'<tr><td>{first} / {second}</td><td>{row["cases_with_common_support"]}/{row["total_cases"]}</td><td>{fraction:.1%}</td><td>{number(row[first+"_pooled_raw_rmse_mv"])}</td><td>{number(row[second+"_pooled_raw_rmse_mv"])}</td></tr>'
+        page+='</table><p class="small">RMSE agrupado por número de amostras comuns. O suporte de cada par pode diferir. Esse erro condicional deve ser lido junto das falhas de layout e da cobertura completa.</p>'
+    if (root/'external-transfer.json').exists():
+        external = json.loads((root/'external-transfer.json').read_text())
+        page+='<h2>Fotografia física: diagnóstico exploratório</h2><p>Uma única região anotada automaticamente, de um ECG impresso anteriormente examinado. Os números abaixo descrevem concordância com referência aproximada e não acurácia clínica.</p><table><tr><th>Modelo</th><th>F1 na região</th><th>Precisão</th><th>Recall</th></tr>'
+        for row in external['cases']:
+            metric = row['metrics']
+            if metric is not None:
+                page+=f'<tr><td>{html.escape(row["name"])}</td><td>{number(metric["f1"])}</td><td>{number(metric["precision"])}</td><td>{number(metric["recall"])}</td></tr>'
+        page+='</table><p class="small">Raio de 1,5 px após redimensionamento com proporção preservada para 768×512. As outras duas fotografias não têm anotações e não recebem uma pontuação de acurácia.</p>'
     page+='<h2>Inspeção de todas as imagens usadas na reconstrução</h2>'
     for patient in json.loads((root/'signal-inputs.json').read_text()):
         original=root/patient['original']
