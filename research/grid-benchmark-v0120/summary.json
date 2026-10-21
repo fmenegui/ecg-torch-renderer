@@ -1,0 +1,131 @@
+{
+  "report_sha256": "9cba961f2ba1fb4f021948fa8b6e37a0f47fbd00f6d48268f882dad1e240a78f",
+  "bootstrap": {
+    "unit": "patient group, keeping all views together",
+    "repeats": 2000,
+    "seed": 71,
+    "test_groups": 4,
+    "interval": "percentile 95%",
+    "limitation": "Exploratory sampling uncertainty only, not training-seed or domain uncertainty"
+  },
+  "models": {
+    "baseline-online": {
+      "online": {
+        "images": 8,
+        "tp": 14983,
+        "fp": 1030,
+        "fn": 1703,
+        "precision": 0.9356772622244426,
+        "recall": 0.8979383914658996,
+        "f1": 0.9164194623688798,
+        "median_error_px": 0.41600727243052954,
+        "p95_error_px": 0.9080364717990846,
+        "localization_population": "matched points only",
+        "f1_patient_bootstrap_95": [
+          0.895505069011848,
+          0.9302896416298478
+        ]
+      },
+      "offline": {
+        "images": 8,
+        "tp": 221,
+        "fp": 584,
+        "fn": 16465,
+        "precision": 0.2745341614906832,
+        "recall": 0.0132446362219825,
+        "f1": 0.025270138928591847,
+        "median_error_px": 1.0070389511496078,
+        "p95_error_px": 1.4301052102956278,
+        "localization_population": "matched points only",
+        "f1_patient_bootstrap_95": [
+          0.01124780316344464,
+          0.038633318445734706
+        ]
+      }
+    },
+    "baseline-offline": {
+      "online": {
+        "images": 8,
+        "tp": 7273,
+        "fp": 14281,
+        "fn": 9413,
+        "precision": 0.33743156722650086,
+        "recall": 0.4358743857125734,
+        "f1": 0.38038702928870294,
+        "median_error_px": 0.6448915220626558,
+        "p95_error_px": 1.327997109671824,
+        "localization_population": "matched points only",
+        "f1_patient_bootstrap_95": [
+          0.32346680182463255,
+          0.44527010772232767
+        ]
+      },
+      "offline": {
+        "images": 8,
+        "tp": 3590,
+        "fp": 14247,
+        "fn": 13096,
+        "precision": 0.2012670292089477,
+        "recall": 0.21515042550641256,
+        "f1": 0.20797729050198419,
+        "median_error_px": 1.0357311196625414,
+        "p95_error_px": 1.454001569716752,
+        "localization_population": "matched points only",
+        "f1_patient_bootstrap_95": [
+          0.19439519588218473,
+          0.22009402751175344
+        ]
+      }
+    },
+    "baseline-mixed": {
+      "online": {
+        "images": 8,
+        "tp": 11966,
+        "fp": 3406,
+        "fn": 4720,
+        "precision": 0.7784283112151965,
+        "recall": 0.7171281313676136,
+        "f1": 0.7465219290036809,
+        "median_error_px": 0.47945200933233756,
+        "p95_error_px": 1.2775931704258556,
+        "localization_population": "matched points only",
+        "f1_patient_bootstrap_95": [
+          0.7072121212121212,
+          0.7893331638166677
+        ]
+      },
+      "offline": {
+        "images": 8,
+        "tp": 4159,
+        "fp": 11561,
+        "fn": 12527,
+        "precision": 0.2645674300254453,
+        "recall": 0.24925086899196933,
+        "f1": 0.2566808615688453,
+        "median_error_px": 0.9722052363263057,
+        "p95_error_px": 1.4511014352722116,
+        "localization_population": "matched points only",
+        "f1_patient_bootstrap_95": [
+          0.22821703531712087,
+          0.293100218545114
+        ]
+      }
+    }
+  },
+  "paired_differences": {
+    "online": {
+      "comparison": "mixed minus online F1",
+      "bootstrap_95": [
+        -0.19221743451895523,
+        -0.1377473127655915
+      ]
+    },
+    "offline": {
+      "comparison": "mixed minus online F1",
+      "bootstrap_95": [
+        0.20181496639436225,
+        0.27821837740302574
+      ]
+    }
+  }
+}

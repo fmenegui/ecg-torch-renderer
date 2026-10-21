@@ -234,3 +234,104 @@ Train a one-channel heatmap head, extract local maxima and estimate subpixel
 positions. Evaluate point matching precision/recall and localization error,
 then test grid ordering and rectification separately. A heatmap alone does not
 establish topology, fill missing nodes or implement grid unwarping.
+
+## Reproducible detector benchmark
+
+Install `pip install -e '.[benchmark,pathtrace]'`. The benchmark extra adds
+SciPy for offline matching and interpolation, without changing rendering
+dependencies. This experiment caches **both** renderer distributions before
+training. Here online means images produced by torch, not fresh rendering
+inside each optimizer step.
+
+```bash
+python examples/prepare_grid_benchmark.py --metadata ptbxl_database.csv --out build/cohort
+python -m ecg_gpu.grid_benchmark --signals build/cohort/signals.npz --out build/pilot --ablations
+```
+
+Download `ptbxl_database.csv` from the [PTB-XL 1.0.3 release](https://physionet.org/content/ptb-xl/1.0.3/).
+The preparation script explicitly downloads only selected 100 Hz records,
+checks WFDB initial values and checksums, and converts ADC values to physical
+mV. It selects one recording per patient using folds 1–8 for training, 9 for
+validation and 10 for testing. It records file hashes, patient IDs and source
+IDs. The benchmark accepts other authorized NPZ cohorts with `signals`, `fs`,
+`source_ids`, `group_ids`, `splits`, `lead_names` and `units='mV'`. Input tensors
+must be finite N,12,T, with standard leads in order. It rejects duplicate source
+IDs and patient groups or identical waveform hashes crossing partitions.
+
+Online, offline and mixed baseline runs share source/view keys, model
+initialization, crop random sequence, examples seen and optimizer budget. The
+mixed regime alternates backends by source/view key. The two rendering recipes
+are different distributions, so this is not a causal isolation of ray tracing
+from other camera and paper settings. With `--ablations`, additional mixed
+models compare sigma .6 and 2, removal of offsets and disks of radius 2.5.
+Default baseline sigma is 1.2. All runs use one model seed. Repeat experiments
+over seeds and larger cohorts before making a ranking claim.
+
+Thresholds are selected on validation only. Test output includes one-to-one
+maximum-cardinality/minimum-distance matching within 1.5 output pixels, TP/FP/FN,
+precision/recall/F1, and median/p95 error **among matched points**. The default
+benchmark decoder scores every peak using H*W capacity, so its output is not
+truncated by an arbitrary node limit. Sparse radius-neighborhood matching
+avoids a dense all-pairs/dummy matrix. Empty/undefined metrics are
+null, not perfect scores. JSON reports, a source/view manifest, CSV metrics,
+model checkpoints and NPZ predictions are exported. Existing nonempty output
+directories are refused. `--cache build/pilot` reuses captures after checking
+their hashes, source-cohort hash and geometry configuration, while allowing a
+different training budget. CPU matching, file I/O and previews are outside the
+renderer and loss hot paths.
+
+To recalibrate and evaluate existing weights without any optimizer steps, use
+`python -m ecg_gpu.grid_benchmark --rescore build/pilot --out build/rescored`.
+Pass the same `--external` manifest to repeat external inference. Capture and
+checkpoint provenance are verified. Both training and rescoring reports mark
+their completion status, and rescoring records the previous report hash and
+training-driver hash separately from the evaluator version. Use the original
+capture directory for this operation, not a report-only export.
+
+`--external external.json` loads local original images from an explicit JSON
+manifest. Every image requires `id`, `image`, `sha256`, `source_id` and
+`group_id`. Annotated images additionally require `points_xy` in original
+pixel-center coordinates, a complete `annotation_region=[x0,y0,x1,y1]` and an
+`annotation_method`. Images are resized with preserved aspect ratio and padded
+on the right/bottom. Scoring is restricted to the annotated region and uses the
+same validation-selected threshold. Unannotated images receive predictions
+and overlays only. No external image is used for training or threshold tuning.
+
+The helper `examples/annotate_red_grid_scan.py` proposes intersections in an
+axis-aligned clean red-grid region for visual review. These are pixel-derived
+**silver references**, with uncalibrated annotation uncertainty. They are not
+independent expert gold annotations and do not establish subpixel physical
+accuracy. Preserve original dataset licenses when sharing any images or
+adapted overlays. Source hashes and point-coordinate files can be kept in
+research reports without embedding the source images.
+
+The held-out-node rectification diagnostic uses known lattice identities from
+matching against synthetic labels. It explicitly reports **oracle
+correspondence** and unsupported nodes outside the interpolation hull. The
+`rectify_grid_image` primitive accepts supplied ordered correspondences and
+returns rectified RGB with support. Neither diagnostic infers grid ordering,
+reconstructs occluded cells or validates foldovers. The experiment does not
+yet reconstruct waveforms or report SNR. These require a separate trace model,
+layout/time-window handling and signal-level evaluation.
+
+Load a saved baseline for inference with:
+
+```python
+import torch
+from ecg_gpu.grid_benchmark import GridUNet
+from ecg_gpu import decode_grid_points
+
+saved = torch.load('build/pilot/baseline-mixed.pt', map_location=device,
+                   weights_only=True)
+model = GridUNet().to(device)
+model.load_state_dict(saved['state_dict'])
+model.eval()
+with torch.inference_mode():
+    heat_logits, delta = model(image_rgb)  # B,3,H,W, RGB in [0,1]
+    prediction = decode_grid_points(heat_logits.sigmoid(), delta,
+                                   threshold=saved['threshold'])
+```
+
+For the no-offset ablation, pass `offsets=None` to decoding. The public decoder
+keeps its fixed-capacity API and truncation flags. The benchmark itself uses
+full-image capacity to score every peak.
