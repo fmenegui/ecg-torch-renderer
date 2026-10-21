@@ -67,7 +67,9 @@ def prepare(metadata, out, *, train=16, validation=4, test=4, seed=1973, wfdb_ca
                                 '--max-filesize', '200000', '-o', str(path), url], check=True, timeout=180)
             paths.append(path)
         lines = paths[0].read_text().splitlines()
-        _, leads, fs, samples = lines[0].split()[:4]
+        record_name, leads, fs, samples = lines[0].split()[:4]
+        if record_name != Path(stem).name:
+            raise ValueError('WFDB header record identity does not match selected source')
         if (int(leads), int(fs), int(samples)) != (12, 100, 1000):
             raise ValueError('Expected 12-lead, 100 Hz, 10-second PTB-XL record')
         values = np.frombuffer(paths[1].read_bytes(), dtype='<i2').reshape(1000, 12).T
@@ -75,7 +77,7 @@ def prepare(metadata, out, *, train=16, validation=4, test=4, seed=1973, wfdb_ca
         for index, line in enumerate(lines[1:13]):
             parts = line.split()
             gain = re.fullmatch(r'([0-9.]+)\((-?[0-9]+)\)/mV', parts[2])
-            if parts[1] != '16' or gain is None or parts[-1].upper() != LEADS[index].upper():
+            if parts[0] != Path(stem).name+'.dat' or parts[1] != '16' or gain is None or parts[-1].upper() != LEADS[index].upper():
                 raise ValueError('Unexpected WFDB channel encoding')
             if (values[index, 0] != int(parts[5]) or int(values[index].astype(np.int64).sum()) % 65536 != int(parts[6]) % 65536
                     or (values[index] == -32768).any() or float(gain[1]) <= 0):
