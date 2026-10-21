@@ -18,7 +18,7 @@ info['matmul_finite']=bool(torch.isfinite(y).all())
 (RESULTS/'gpu.json').write_text(json.dumps(info,indent=2))
 del x,y;torch.cuda.empty_cache()
 phase('install-dependencies')
-command([sys.executable,'-m','pip','install','--disable-pip-version-check','-e','.[digitization]','-r','experiment-requirements.txt'],timeout=900)
+command([sys.executable,'-m','pip','install','--disable-pip-version-check','--no-index','--find-links','wheels','--no-build-isolation','-e','.[digitization]','-r','experiment-requirements.txt'],timeout=900)
 phase('unit-tests')
 with (RESULTS/'unit-tests.log').open('w') as log:
  p=subprocess.run([sys.executable,'-m','unittest','tests.test_field_rectifier','tests.test_grid_point_quality','-v'],cwd=ROOT,stdout=log,stderr=subprocess.STDOUT,timeout=180)
@@ -40,21 +40,19 @@ assert bool(torch.isfinite(torch.tensor(image.numpy())).all())
 phase('consolidated-detector-study')
 command([sys.executable,'-u','examples/consolidated_grid_study.py','--signals',str(cohort/'signals.npz'),'--out',str(RESULTS),'--steps','1800'],timeout=8500)
 phase('prepare-public-npj-source')
-source=ROOT/'upstream-npj';env=dict(os.environ,GIT_LFS_SKIP_SMUDGE='1')
-command(['git','init',str(source)],env=env)
-command(['git','-C',str(source),'remote','add','origin','https://github.com/Ahus-AIM/Open-ECG-Digitizer.git'],env=env)
-command(['git','-C',str(source),'fetch','--depth','1','origin','97a15087d4abcda843da8c58ee74b1d8f47e6f9a'],env=env)
-command(['git','-C',str(source),'checkout','--detach','FETCH_HEAD'],env=env)
-if not shutil.which('git-lfs'):
- command(['apt-get','update']);command(['apt-get','install','-y','git-lfs'])
-command(['git','-C',str(source),'lfs','install','--local']);command(['git','-C',str(source),'lfs','pull'])
+source=ROOT/'upstream-npj'
+os.environ['PATH']=str(ROOT/'bin')+os.pathsep+os.environ['PATH']
+command(['git','-C',str(source),'lfs','install','--local'])
+command(['git','-C',str(source),'status','--porcelain','--untracked-files=no'])
 phase('consolidated-signal-study')
-command([sys.executable,'-u','examples/consolidated_signal_study.py','--root',str(RESULTS),'--source',str(source)],timeout=1800)
+command([sys.executable,'-u','examples/consolidated_signal_study.py','--root',str(RESULTS),'--source',str(source),'--prepare-only'],timeout=1800)
+command([sys.executable,'-u','examples/resume_consolidated_signals.py','--root',str(RESULTS),'--source',str(source)],timeout=1800)
 versions={name:importlib.metadata.version(name) for name in ['torch','torchvision','numpy','scipy','mitsuba','timm','pandas']}
 (RESULTS/'packages.json').write_text(json.dumps(versions,indent=2))
 phase('additional-frozen-reference-comparisons')
 from ecg_gpu.digitization.artifacts import fetch_assets
-fetch_assets(ROOT/'reference-assets')
+from ecg_gpu.digitization.artifacts import verify_assets
+verify_assets(ROOT/'reference-assets')
 command([sys.executable,'-u','examples/consolidated_references.py','--root',str(RESULTS),'--source',str(source),'--assets',str(ROOT/'reference-assets'),'--external',str(ROOT/'external/external.json')],timeout=1800)
 command([sys.executable,'examples/summarize_consolidated_study.py','--root',str(RESULTS)],timeout=180)
 phase('completed')
