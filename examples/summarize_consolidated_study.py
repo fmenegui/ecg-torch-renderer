@@ -36,11 +36,37 @@ def point_summary(trials, repeats=2000):
     return records
 
 
+def point_deltas(trials, repeats=2000):
+    """Paired patient bootstrap with the same seed, cases and training budget."""
+    records = []
+    rng = np.random.default_rng(20261021)
+    for trial in trials:
+        variant, seed = trial['name'].rsplit('-', 1)
+        if variant == 'raw-point':
+            continue
+        baseline = next(t for t in trials if t['name'] == 'raw-point-'+seed)
+        for backend in ('online', 'offline'):
+            cases = [c for c in trial['cases'] if c['backend'] == backend]
+            raw = [c for c in baseline['cases'] if c['backend'] == backend]
+            groups = sorted({c['group_id'] for c in cases})
+            intervention = {g:[c for c in cases if c['group_id'] == g] for g in groups}
+            control = {g:[c for c in raw if c['group_id'] == g] for g in groups}
+            differences = []
+            for _ in range(repeats):
+                selected = rng.choice(groups, len(groups))
+                differences.append(f1([c for g in selected for c in intervention[g]])-
+                                   f1([c for g in selected for c in control[g]]))
+            records.append({'name':trial['name'], 'baseline':baseline['name'], 'backend':backend,
+                            'f1_delta':f1(cases)-f1(raw),
+                            'paired_patient_bootstrap_95':np.quantile(differences,[.025,.975]).tolist()})
+    return records
+
+
 def signal_summary(root):
     pairs=json.loads((root/'signal-inputs.json').read_text())
     results=json.loads((root/'signal-results.json').read_text())
     records=[]
-    totals={arm:{'attempted':0,'returned':0,'correct_layout':0,'coverage':[],'conditional_snr_db':[]} for arm in ('original','oracle','learned')}
+    totals={arm:{'attempted':0,'returned':0,'correct_layout':0,'coverage':[],'conditional_snr_db':[]} for arm in ('original','oracle','learned','resize-2x')}
     for patient in pairs:
         source=root/patient['original']
         manifest=json.loads((source/'manifest.json').read_text())
@@ -89,9 +115,82 @@ def signal_summary(root):
     return {'totals':totals,'cases':records}
 
 
+def reference_summary(root):
+    path = root/'reference-results.json'
+    if not path.exists():
+        return None
+    references = json.loads(path.read_text())
+    totals = {}
+    pairs = []
+    for method in ('npj_dewarping_enabled', 'kaggle'):
+        cases = [c for patient in references for c in patient[method]]
+        valid = lambda c: c['status'] == 'returned' and c.get(
+            'layout_matches_expected', c.get('layout_assumption_matches_input', False))
+        compatible = [c for c in cases if c.get('layout_assumption_matches_input', True)]
+        totals[method] = {'attempted':len(cases), 'returned':sum(c['status']=='returned' for c in cases),
+            'correct_or_compatible_layout_returns':sum(valid(c) for c in cases),
+            'layout_compatible_inputs':len(compatible),
+            'all_case_mean_coverage':float(np.mean([c.get('evaluation',{}).get('printed_time_coverage',0.) if valid(c) else 0. for c in cases])),
+            'layout_compatible_input_mean_coverage':float(np.mean([c.get('evaluation',{}).get('printed_time_coverage',0.) if valid(c) else 0. for c in compatible])) if compatible else None}
+    patients = json.loads((root/'signal-inputs.json').read_text())
+    main_results = json.loads((root/'signal-results.json').read_text())
+    from itertools import combinations
+    methods = ('original','oracle','learned','resize-2x','npj_dewarping_enabled','kaggle')
+    for patient in patients:
+        original = root/patient['original']
+        manifest = json.loads((original/'manifest.json').read_text())
+        with np.load(original/'source.npz') as data:
+            truth, fs = data['values_mv'], int(data['fs'])
+        reference = next(r for r in references if r['source_id'] == patient['source_id'])
+        for entry in manifest['cases']:
+            windows = printed_windows(entry['metadata'])
+            printed = np.stack([support_mask(np.arange(truth.shape[1])/fs,windows[lead]) for lead in LEADS])
+            predictions = {}
+            for method in methods:
+                if method in ('original','oracle','learned','resize-2x'):
+                    trial = next((r for r in main_results if r['source_id'] == patient['source_id'] and r['arm'] == method), None)
+                    cases = trial['cases'] if trial else []
+                    filename = root/'signal-results'/patient['source_id']/method/'configured'/(entry['name']+'-prediction.npz')
+                else:
+                    cases = reference[method]
+                    folder = 'npj-dewarping-enabled/configured' if method == 'npj_dewarping_enabled' else 'kaggle'
+                    filename = root/'reference-results'/patient['source_id']/folder/(entry['name']+'-prediction.npz')
+                case = next((c for c in cases if c['name'] == entry['name']), None)
+                if case and case['status'] == 'returned' and case.get('layout_matches_expected',case.get('layout_assumption_matches_input',False)) and filename.exists():
+                    with np.load(filename) as data:
+                        predictions[method] = data['values_mv'].copy()
+            for first, second in combinations(methods,2):
+                common = printed.copy()
+                if first not in predictions or second not in predictions:
+                    common[:] = False
+                else:
+                    common &= np.isfinite(predictions[first]) & np.isfinite(predictions[second])
+                record = {'source_id':patient['source_id'],'group_id':patient['group_id'],'backend':entry['name'],
+                          'first':first,'second':second,'common_printed_samples':int(common.sum()),'printed_samples':int(printed.sum())}
+                if common.any():
+                    for method in (first,second):
+                        delta = predictions[method][common]-truth[common]
+                        record[method+'_raw_rmse_mv'] = float(np.sqrt(np.mean(delta**2)))
+                pairs.append(record)
+    pooled = []
+    for first, second in combinations(methods,2):
+        rows = [r for r in pairs if r['first']==first and r['second']==second]
+        count = sum(r['common_printed_samples'] for r in rows)
+        printed = sum(r['printed_samples'] for r in rows)
+        record = {'first':first,'second':second,'common_samples':count,
+                  'cases_with_common_support':sum(r['common_printed_samples']>0 for r in rows),
+                  'total_cases':len(rows),'common_printed_support_fraction':count/printed if printed else None}
+        for method in (first,second):
+            squared = sum(r['common_printed_samples']*r[method+'_raw_rmse_mv']**2 for r in rows if r['common_printed_samples'])
+            record[method+'_pooled_raw_rmse_mv'] = float(np.sqrt(squared/count)) if count else None
+        pooled.append(record)
+    return {'totals':totals,'pairwise_raw_errors':pairs,'pooled_pairwise_raw_errors':pooled}
+
+
 def main(root):
     report={'schema':'ecg-consolidated-summary-v1','points':point_summary(json.loads((root/'test-results.json').read_text())),
-        'signals':signal_summary(root), 'limits':['Synthetic captures only, original patient waveforms','Two seeds, eight held-out patients','Paper gain supplied to frozen npj','Conditional SNR is not the Kaggle competition metric','Oracle coordinates are an upper-bound control, not RGB inference','Grid association does not certify global injectivity']}
+        'paired_point_deltas':point_deltas(json.loads((root/'test-results.json').read_text())),
+        'signals':signal_summary(root), 'references':reference_summary(root), 'limits':['Synthetic captures only, original patient waveforms','Two seeds, eight held-out patients','Paper gain supplied to frozen npj','Conditional SNR is not the Kaggle competition metric','Oracle coordinates are an upper-bound control, not RGB inference','Grid association does not certify global injectivity']}
     _write_json(root/'consolidated-summary.json',report)
     print(json.dumps(report['signals']['totals'],indent=2))
 
