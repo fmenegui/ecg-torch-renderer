@@ -190,7 +190,7 @@ def reference_summary(root):
 def main(root):
     report={'schema':'ecg-consolidated-summary-v1','points':point_summary(json.loads((root/'test-results.json').read_text())),
         'paired_point_deltas':point_deltas(json.loads((root/'test-results.json').read_text())),
-        'signals':signal_summary(root), 'references':reference_summary(root), 'limits':['Synthetic captures only, original patient waveforms','Two seeds, eight held-out patients','Paper gain supplied to frozen npj','Conditional SNR is not the Kaggle competition metric','Oracle coordinates are an upper-bound control, not RGB inference','Grid association does not certify global injectivity']}
+        'signals':signal_summary(root), 'references':reference_summary(root), 'limits':['Synthetic captures only, original patient waveforms','Two seeds, eight held-out patients','Paper gain supplied to frozen npj','Conditional SNR is not the Kaggle competition metric','Oracle supplies known geometry only, not a guaranteed upper bound on extraction because output density and crop differ','Grid association does not certify global injectivity','Train and test share capture families and geometry ranges','Resize 2x does not exactly match every warped output density, so the comparison evaluates the pipeline rather than isolating geometry']}
     _write_json(root/'consolidated-summary.json',report)
     print(json.dumps(report['signals']['totals'],indent=2))
 

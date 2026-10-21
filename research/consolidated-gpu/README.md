@@ -1,6 +1,6 @@
 # Consolidated GPU rectification study
 
-Detector training and held-out localization are complete. Frozen signal extraction is in progress. No overall superiority claim is supported yet.
+Training, held-out localization, frozen signal extraction and reference comparisons are complete. The result supports a synthetic-domain pipeline improvement, not general or clinical superiority.
 
 ## Locked comparison
 
@@ -136,3 +136,74 @@ is an experimental diagnostic, not automatic calibration of gain or speed.
 The four previously examined synthetic probes now produce inferred image
 rectifications. Their recorded canvas support is not a measurement of original
 page completeness, identity correctness or recovered signal quality.
+
+## Portable checkpoint check
+
+From the recovered result directory and this repository:
+
+```bash
+python examples/rectify_field_image.py \
+  --checkpoint results/models/contrast-point-20261021.pt \
+  --image input.png --out build/rectified --device cpu
+```
+
+The command writes rectified RGB, interpolation support, predicted points and
+a JSON record containing the input and checkpoint hashes. It refuses global
+chart checkpoints because their held-out identity checks failed. Support is
+measured on the inferred canvas and cannot establish original-page coverage.
+
+The offline setup uses the exact additional package versions listed in
+`resolved-dependencies.txt`, alongside the matched CUDA torch/torchvision stack
+of the declared official Runpod image. Prepare these wheels outside rented
+compute with `pip download --no-deps -r resolved-dependencies.txt --dest wheels`.
+External reference assets remain subject to their original provenance and
+licenses and are not included in the public result archive.
+
+## Completed signal comparison
+
+All 96 digitizer image attempts are retained, including failures. The configured
+npj neural weights stay frozen and the paper gain is supplied in every npj arm.
+
+| Input / reference | Correct-layout accepted outputs | All-case mean printed-time coverage |
+| --- | ---: | ---: |
+| Original RGB, npj dewarping off | 3/16 | 13.92% |
+| Original RGB, npj dewarping on | 4/16 | 17.34% |
+| Bilinear 2x RGB, npj dewarping off | 10/16 | 54.69% |
+| Learned RGB rectification, npj dewarping off | 10/16 | 58.14% |
+| Known-geometry control, npj dewarping off | 7/16 | 36.38% |
+
+The learned and resize-only arms have nine cases with common valid printed-time
+support, representing 31.96% of all printed samples. On that identical subset,
+pooled raw RMSE is 0.09746 mV learned versus 0.22913 mV resize-only. No temporal
+alignment or DC removal enters this comparison. Against npj dewarping on, the
+learned arm has 0.08498 versus 0.16987 mV on four common cases, only 7.84% of
+all printed samples. These are conditional errors, not whole-population scores.
+
+Kaggle single returns no waveform in 16 attempts, of which only four inputs
+match its 3x4+r1 layout assumption. That is a limited transfer diagnostic on
+two compatible-layout patients, not evidence about the competition ranking.
+Conditional SNR here is not the official Kaggle metric.
+
+The 2x control recovers much of the acceptance and coverage gain. It does not
+exactly match the density or crop of every inferred warp, so this study does
+not isolate geometric correction from all scaling and framing effects. The
+known-geometry control is also not guaranteed to maximize downstream extraction
+because its density/crop differ. Six learned cases still fail acceptance or
+layout correctness. Even a correct layout does not guarantee complete signals.
+
+Three physical photographs provide exploratory transfer only. The one annotated
+ROI gives F1 1.0 for the contrast-selected model, but its references are automatic
+silver annotations from a previously examined printed synthetic ECG. The other
+two photographs have no point labels. These observations are not independent
+clinical validation.
+
+The four older synthetic transfer probes now yield image rectifications. A
+geometry/source-hash-verified audit gives offline-flat F1 0.97448 and offline-fold
+F1 0.89504, with 100% relative identity consistency among selected matched nodes
+in both. These old probes have no new signal-extraction claim.
+
+The final result archive passed its transport checksum, and all six checkpoint
+byte streams match the training outputs. All 192 capture hashes were verified.
+All owned temporary pods and volumes were confirmed absent afterward. The
+original stopped A4000 remains unchanged. Estimated GPU cost from catalog rates
+and observed lifecycle durations is $0.4532, excluding storage and not an invoice.

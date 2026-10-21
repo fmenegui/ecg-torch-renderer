@@ -1,0 +1,1149 @@
+{
+  "schema": "ecg-consolidated-gpu-v1",
+  "status": "completed",
+  "selection": "validation only before test metrics",
+  "selected_model": {
+    "name": "contrast-point-20261021",
+    "variant": "contrast-point",
+    "seed": 20261021,
+    "steps": 1800,
+    "checkpoint_sha256": "e09218759a52bdf7324f88d7ef7615820f7d06908e9c4000ab93c1e50e57a54d",
+    "validation": {
+      "threshold": 0.7,
+      "backend_macro_f1": 0.9958664320879939,
+      "by_backend": {
+        "online": {
+          "images": 16,
+          "tp": 29371,
+          "fp": 1,
+          "fn": 5,
+          "precision": 0.9999659539697672,
+          "recall": 0.9998297930283224,
+          "f1": 0.9998978688636209,
+          "median_error_px": 0.23049844130301414,
+          "p95_error_px": 0.44168465635718135,
+          "localization_population": "matched points only"
+        },
+        "offline": {
+          "images": 16,
+          "tp": 29093,
+          "fp": 238,
+          "fn": 241,
+          "precision": 0.9918857181821281,
+          "recall": 0.9917842776300538,
+          "f1": 0.9918349953123669,
+          "median_error_px": 0.27991634641846974,
+          "p95_error_px": 0.7183532467264107,
+          "localization_population": "matched points only"
+        }
+      }
+    }
+  },
+  "cohort": {
+    "train_patients": 32,
+    "validation_patients": 8,
+    "test_patients": 8,
+    "captures": 192,
+    "views_per_patient": 4,
+    "seeds": [
+      1973,
+      20261021
+    ]
+  },
+  "points": [
+    {
+      "name": "raw-point-1973",
+      "backend": "online",
+      "patients": 8,
+      "detection": {
+        "images": 16,
+        "tp": 29239,
+        "fp": 195,
+        "fn": 137,
+        "precision": 0.9933750084935788,
+        "recall": 0.9953363289760349,
+        "f1": 0.9943547015813637,
+        "median_error_px": 0.21722181447051278,
+        "p95_error_px": 0.5474273081421527,
+        "localization_population": "matched points only"
+      },
+      "f1_patient_bootstrap_95": [
+        0.9889421206972306,
+        0.9987076791573248
+      ],
+      "topology_accepted": 16,
+      "images": 16,
+      "accepted_with_relative_identity_at_least_99pct": 16,
+      "relative_identity_scope": "selected nodes matched within 1.5px, not a certificate of the full warp"
+    },
+    {
+      "name": "raw-point-1973",
+      "backend": "offline",
+      "patients": 8,
+      "detection": {
+        "images": 16,
+        "tp": 28354,
+        "fp": 935,
+        "fn": 979,
+        "precision": 0.9680767523643689,
+        "recall": 0.9666246207343265,
+        "f1": 0.9673501415850705,
+        "median_error_px": 0.4252663444481546,
+        "p95_error_px": 1.0599964848174714,
+        "localization_population": "matched points only"
+      },
+      "f1_patient_bootstrap_95": [
+        0.9595262309956457,
+        0.9748080666632842
+      ],
+      "topology_accepted": 15,
+      "images": 16,
+      "accepted_with_relative_identity_at_least_99pct": 15,
+      "relative_identity_scope": "selected nodes matched within 1.5px, not a certificate of the full warp"
+    },
+    {
+      "name": "raw-point-20261021",
+      "backend": "online",
+      "patients": 8,
+      "detection": {
+        "images": 16,
+        "tp": 29166,
+        "fp": 306,
+        "fn": 210,
+        "precision": 0.9896172638436482,
+        "recall": 0.9928513071895425,
+        "f1": 0.991231647634584,
+        "median_error_px": 0.3242148958086609,
+        "p95_error_px": 0.7353871293866556,
+        "localization_population": "matched points only"
+      },
+      "f1_patient_bootstrap_95": [
+        0.9860038382615861,
+        0.9956480348157215
+      ],
+      "topology_accepted": 16,
+      "images": 16,
+      "accepted_with_relative_identity_at_least_99pct": 16,
+      "relative_identity_scope": "selected nodes matched within 1.5px, not a certificate of the full warp"
+    },
+    {
+      "name": "raw-point-20261021",
+      "backend": "offline",
+      "patients": 8,
+      "detection": {
+        "images": 16,
+        "tp": 28526,
+        "fp": 794,
+        "fn": 807,
+        "precision": 0.9729195088676671,
+        "recall": 0.9724883237309515,
+        "f1": 0.9727038685148245,
+        "median_error_px": 0.4206477850595812,
+        "p95_error_px": 1.0267871985731283,
+        "localization_population": "matched points only"
+      },
+      "f1_patient_bootstrap_95": [
+        0.9636796424968522,
+        0.9815634406428958
+      ],
+      "topology_accepted": 16,
+      "images": 16,
+      "accepted_with_relative_identity_at_least_99pct": 15,
+      "relative_identity_scope": "selected nodes matched within 1.5px, not a certificate of the full warp"
+    },
+    {
+      "name": "contrast-point-1973",
+      "backend": "online",
+      "patients": 8,
+      "detection": {
+        "images": 16,
+        "tp": 29170,
+        "fp": 145,
+        "fn": 206,
+        "precision": 0.9950537267610439,
+        "recall": 0.9929874727668845,
+        "f1": 0.9940195259920601,
+        "median_error_px": 0.1701947689720567,
+        "p95_error_px": 0.41773068375218303,
+        "localization_population": "matched points only"
+      },
+      "f1_patient_bootstrap_95": [
+        0.9896298294416588,
+        0.9977712120565237
+      ],
+      "topology_accepted": 16,
+      "images": 16,
+      "accepted_with_relative_identity_at_least_99pct": 16,
+      "relative_identity_scope": "selected nodes matched within 1.5px, not a certificate of the full warp"
+    },
+    {
+      "name": "contrast-point-1973",
+      "backend": "offline",
+      "patients": 8,
+      "detection": {
+        "images": 16,
+        "tp": 27705,
+        "fp": 956,
+        "fn": 1628,
+        "precision": 0.9666445692753218,
+        "recall": 0.9444993693110149,
+        "f1": 0.9554436665861986,
+        "median_error_px": 0.284186571241031,
+        "p95_error_px": 0.7852007925296404,
+        "localization_population": "matched points only"
+      },
+      "f1_patient_bootstrap_95": [
+        0.9498609647835023,
+        0.9605919472384132
+      ],
+      "topology_accepted": 15,
+      "images": 16,
+      "accepted_with_relative_identity_at_least_99pct": 14,
+      "relative_identity_scope": "selected nodes matched within 1.5px, not a certificate of the full warp"
+    },
+    {
+      "name": "contrast-point-20261021",
+      "backend": "online",
+      "patients": 8,
+      "detection": {
+        "images": 16,
+        "tp": 29234,
+        "fp": 200,
+        "fn": 142,
+        "precision": 0.9932051369164911,
+        "recall": 0.9951661220043573,
+        "f1": 0.9941846624723687,
+        "median_error_px": 0.23344503018631402,
+        "p95_error_px": 0.46461183259677885,
+        "localization_population": "matched points only"
+      },
+      "f1_patient_bootstrap_95": [
+        0.9877692529047485,
+        0.9994217801469745
+      ],
+      "topology_accepted": 16,
+      "images": 16,
+      "accepted_with_relative_identity_at_least_99pct": 16,
+      "relative_identity_scope": "selected nodes matched within 1.5px, not a certificate of the full warp"
+    },
+    {
+      "name": "contrast-point-20261021",
+      "backend": "offline",
+      "patients": 8,
+      "detection": {
+        "images": 16,
+        "tp": 28656,
+        "fp": 694,
+        "fn": 677,
+        "precision": 0.9763543441226575,
+        "recall": 0.9769201922749122,
+        "f1": 0.9766371862379224,
+        "median_error_px": 0.28299901047424103,
+        "p95_error_px": 0.7966940590620184,
+        "localization_population": "matched points only"
+      },
+      "f1_patient_bootstrap_95": [
+        0.9687340000682664,
+        0.9839147977135265
+      ],
+      "topology_accepted": 15,
+      "images": 16,
+      "accepted_with_relative_identity_at_least_99pct": 15,
+      "relative_identity_scope": "selected nodes matched within 1.5px, not a certificate of the full warp"
+    },
+    {
+      "name": "contrast-global-1973",
+      "backend": "online",
+      "patients": 8,
+      "detection": {
+        "images": 16,
+        "tp": 28919,
+        "fp": 345,
+        "fn": 457,
+        "precision": 0.9882107709130673,
+        "recall": 0.984443082788671,
+        "f1": 0.9863233287858117,
+        "median_error_px": 0.35374675618873175,
+        "p95_error_px": 0.7670118753032065,
+        "localization_population": "matched points only"
+      },
+      "f1_patient_bootstrap_95": [
+        0.9760838844956364,
+        0.993751572602607
+      ],
+      "topology_accepted": 16,
+      "images": 16,
+      "accepted_with_relative_identity_at_least_99pct": 0,
+      "relative_identity_scope": "selected nodes matched within 1.5px, not a certificate of the full warp"
+    },
+    {
+      "name": "contrast-global-1973",
+      "backend": "offline",
+      "patients": 8,
+      "detection": {
+        "images": 16,
+        "tp": 27493,
+        "fp": 1753,
+        "fn": 1840,
+        "precision": 0.940060179169801,
+        "recall": 0.9372720144547098,
+        "f1": 0.9386640263575684,
+        "median_error_px": 0.4565162406074052,
+        "p95_error_px": 1.1317719806153523,
+        "localization_population": "matched points only"
+      },
+      "f1_patient_bootstrap_95": [
+        0.9287339482272438,
+        0.947135524193186
+      ],
+      "topology_accepted": 16,
+      "images": 16,
+      "accepted_with_relative_identity_at_least_99pct": 0,
+      "relative_identity_scope": "selected nodes matched within 1.5px, not a certificate of the full warp"
+    },
+    {
+      "name": "contrast-global-20261021",
+      "backend": "online",
+      "patients": 8,
+      "detection": {
+        "images": 16,
+        "tp": 28601,
+        "fp": 1010,
+        "fn": 775,
+        "precision": 0.9658910540002026,
+        "recall": 0.9736179193899782,
+        "f1": 0.9697390950548426,
+        "median_error_px": 0.35973652117221994,
+        "p95_error_px": 0.8366695178086324,
+        "localization_population": "matched points only"
+      },
+      "f1_patient_bootstrap_95": [
+        0.9422366055502207,
+        0.9869774357478724
+      ],
+      "topology_accepted": 16,
+      "images": 16,
+      "accepted_with_relative_identity_at_least_99pct": 0,
+      "relative_identity_scope": "selected nodes matched within 1.5px, not a certificate of the full warp"
+    },
+    {
+      "name": "contrast-global-20261021",
+      "backend": "offline",
+      "patients": 8,
+      "detection": {
+        "images": 16,
+        "tp": 26766,
+        "fp": 1991,
+        "fn": 2567,
+        "precision": 0.9307646833814376,
+        "recall": 0.9124876419050216,
+        "f1": 0.9215355482871407,
+        "median_error_px": 0.4548029178841851,
+        "p95_error_px": 1.0898750272947613,
+        "localization_population": "matched points only"
+      },
+      "f1_patient_bootstrap_95": [
+        0.9076088022044613,
+        0.9328745973101729
+      ],
+      "topology_accepted": 16,
+      "images": 16,
+      "accepted_with_relative_identity_at_least_99pct": 0,
+      "relative_identity_scope": "selected nodes matched within 1.5px, not a certificate of the full warp"
+    }
+  ],
+  "paired_point_deltas": [
+    {
+      "name": "contrast-point-1973",
+      "baseline": "raw-point-1973",
+      "backend": "online",
+      "f1_delta": -0.0003351755893036268,
+      "paired_patient_bootstrap_95": [
+        -0.006669124964933551,
+        0.005306516622222196
+      ]
+    },
+    {
+      "name": "contrast-point-1973",
+      "baseline": "raw-point-1973",
+      "backend": "offline",
+      "f1_delta": -0.011906474998871874,
+      "paired_patient_bootstrap_95": [
+        -0.015538288200152336,
+        -0.008375106460104798
+      ]
+    },
+    {
+      "name": "contrast-point-20261021",
+      "baseline": "raw-point-20261021",
+      "backend": "online",
+      "f1_delta": 0.002953014837784651,
+      "paired_patient_bootstrap_95": [
+        -0.005235323460721269,
+        0.011061769792189868
+      ]
+    },
+    {
+      "name": "contrast-point-20261021",
+      "baseline": "raw-point-20261021",
+      "backend": "offline",
+      "f1_delta": 0.003933317723097907,
+      "paired_patient_bootstrap_95": [
+        -4.111418793125706e-05,
+        0.00800146976998155
+      ]
+    },
+    {
+      "name": "contrast-global-1973",
+      "baseline": "raw-point-1973",
+      "backend": "online",
+      "f1_delta": -0.008031372795551994,
+      "paired_patient_bootstrap_95": [
+        -0.014159582001330277,
+        -0.0028949727845102194
+      ]
+    },
+    {
+      "name": "contrast-global-1973",
+      "baseline": "raw-point-1973",
+      "backend": "offline",
+      "f1_delta": -0.028686115227502085,
+      "paired_patient_bootstrap_95": [
+        -0.034143098888497786,
+        -0.023122628848008277
+      ]
+    },
+    {
+      "name": "contrast-global-20261021",
+      "baseline": "raw-point-20261021",
+      "backend": "online",
+      "f1_delta": -0.021492552579741475,
+      "paired_patient_bootstrap_95": [
+        -0.04920762963899237,
+        -0.004013359553960251
+      ]
+    },
+    {
+      "name": "contrast-global-20261021",
+      "baseline": "raw-point-20261021",
+      "backend": "offline",
+      "f1_delta": -0.051168320227683806,
+      "paired_patient_bootstrap_95": [
+        -0.05919649363859758,
+        -0.04447909686485188
+      ]
+    }
+  ],
+  "signal_totals": {
+    "original": {
+      "attempted": 16,
+      "returned": 5,
+      "correct_layout": 3,
+      "all_case_mean_coverage": 0.13919438364209066,
+      "mean_snr_correct_layout_returned_only_db": 3.5117299697086306,
+      "snr_cases": 3
+    },
+    "oracle": {
+      "attempted": 16,
+      "returned": 9,
+      "correct_layout": 7,
+      "all_case_mean_coverage": 0.36379061379461786,
+      "mean_snr_correct_layout_returned_only_db": 7.291426580777919,
+      "snr_cases": 7
+    },
+    "learned": {
+      "attempted": 16,
+      "returned": 13,
+      "correct_layout": 10,
+      "all_case_mean_coverage": 0.5814244155354258,
+      "mean_snr_correct_layout_returned_only_db": 11.581539825909193,
+      "snr_cases": 10
+    },
+    "resize-2x": {
+      "attempted": 16,
+      "returned": 11,
+      "correct_layout": 10,
+      "all_case_mean_coverage": 0.5469251485259929,
+      "mean_snr_correct_layout_returned_only_db": 5.983061759160947,
+      "snr_cases": 10
+    }
+  },
+  "reference_totals": {
+    "npj_dewarping_enabled": {
+      "attempted": 16,
+      "returned": 5,
+      "correct_or_compatible_layout_returns": 4,
+      "layout_compatible_inputs": 16,
+      "all_case_mean_coverage": 0.17338569750680688,
+      "layout_compatible_input_mean_coverage": 0.17338569750680688
+    },
+    "kaggle": {
+      "attempted": 16,
+      "returned": 0,
+      "correct_or_compatible_layout_returns": 0,
+      "layout_compatible_inputs": 4,
+      "all_case_mean_coverage": 0.0,
+      "layout_compatible_input_mean_coverage": 0.0
+    }
+  },
+  "pairwise_pooled_raw_errors": [
+    {
+      "first": "original",
+      "second": "oracle",
+      "common_samples": 36295,
+      "cases_with_common_support": 3,
+      "total_cases": 16,
+      "common_printed_support_fraction": 0.059075431651865934,
+      "original_pooled_raw_rmse_mv": 0.12571424563551836,
+      "oracle_pooled_raw_rmse_mv": 0.10538591423463566
+    },
+    {
+      "first": "original",
+      "second": "learned",
+      "common_samples": 41652,
+      "cases_with_common_support": 3,
+      "total_cases": 16,
+      "common_printed_support_fraction": 0.06779473423787077,
+      "original_pooled_raw_rmse_mv": 0.1279875199368046,
+      "learned_pooled_raw_rmse_mv": 0.08733621148064785
+    },
+    {
+      "first": "original",
+      "second": "resize-2x",
+      "common_samples": 41514,
+      "cases_with_common_support": 3,
+      "total_cases": 16,
+      "common_printed_support_fraction": 0.06757011901351598,
+      "original_pooled_raw_rmse_mv": 0.12810841940999823,
+      "resize-2x_pooled_raw_rmse_mv": 0.23599490878009954
+    },
+    {
+      "first": "original",
+      "second": "npj_dewarping_enabled",
+      "common_samples": 36750,
+      "cases_with_common_support": 3,
+      "total_cases": 16,
+      "common_printed_support_fraction": 0.05981601083361546,
+      "original_pooled_raw_rmse_mv": 0.13241467357000292,
+      "npj_dewarping_enabled_pooled_raw_rmse_mv": 0.15202394117048884
+    },
+    {
+      "first": "original",
+      "second": "kaggle",
+      "common_samples": 0,
+      "cases_with_common_support": 0,
+      "total_cases": 16,
+      "common_printed_support_fraction": 0.0,
+      "original_pooled_raw_rmse_mv": null,
+      "kaggle_pooled_raw_rmse_mv": null
+    },
+    {
+      "first": "oracle",
+      "second": "learned",
+      "common_samples": 137169,
+      "cases_with_common_support": 7,
+      "total_cases": 16,
+      "common_printed_support_fraction": 0.22326265006901222,
+      "oracle_pooled_raw_rmse_mv": 0.16979419556307623,
+      "learned_pooled_raw_rmse_mv": 0.10241047299164845
+    },
+    {
+      "first": "oracle",
+      "second": "resize-2x",
+      "common_samples": 128636,
+      "cases_with_common_support": 7,
+      "total_cases": 16,
+      "common_printed_support_fraction": 0.20937394202974036,
+      "oracle_pooled_raw_rmse_mv": 0.17842606861127305,
+      "resize-2x_pooled_raw_rmse_mv": 0.2783568812036737
+    },
+    {
+      "first": "oracle",
+      "second": "npj_dewarping_enabled",
+      "common_samples": 42609,
+      "cases_with_common_support": 4,
+      "total_cases": 16,
+      "common_printed_support_fraction": 0.06935239198937472,
+      "oracle_pooled_raw_rmse_mv": 0.10493221000014741,
+      "npj_dewarping_enabled_pooled_raw_rmse_mv": 0.167920759262022
+    },
+    {
+      "first": "oracle",
+      "second": "kaggle",
+      "common_samples": 0,
+      "cases_with_common_support": 0,
+      "total_cases": 16,
+      "common_printed_support_fraction": 0.0,
+      "oracle_pooled_raw_rmse_mv": null,
+      "kaggle_pooled_raw_rmse_mv": null
+    },
+    {
+      "first": "learned",
+      "second": "resize-2x",
+      "common_samples": 196365,
+      "cases_with_common_support": 9,
+      "total_cases": 16,
+      "common_printed_support_fraction": 0.31961281543790204,
+      "learned_pooled_raw_rmse_mv": 0.09746134798633996,
+      "resize-2x_pooled_raw_rmse_mv": 0.22912817124104232
+    },
+    {
+      "first": "learned",
+      "second": "npj_dewarping_enabled",
+      "common_samples": 48142,
+      "cases_with_common_support": 4,
+      "total_cases": 16,
+      "common_printed_support_fraction": 0.0783581603687596,
+      "learned_pooled_raw_rmse_mv": 0.08497811889667174,
+      "npj_dewarping_enabled_pooled_raw_rmse_mv": 0.1698700093173489
+    },
+    {
+      "first": "learned",
+      "second": "kaggle",
+      "common_samples": 0,
+      "cases_with_common_support": 0,
+      "total_cases": 16,
+      "common_printed_support_fraction": 0.0,
+      "learned_pooled_raw_rmse_mv": null,
+      "kaggle_pooled_raw_rmse_mv": null
+    },
+    {
+      "first": "resize-2x",
+      "second": "npj_dewarping_enabled",
+      "common_samples": 47998,
+      "cases_with_common_support": 4,
+      "total_cases": 16,
+      "common_printed_support_fraction": 0.07812377926508503,
+      "resize-2x_pooled_raw_rmse_mv": 0.24650061041675797,
+      "npj_dewarping_enabled_pooled_raw_rmse_mv": 0.1700329071085798
+    },
+    {
+      "first": "resize-2x",
+      "second": "kaggle",
+      "common_samples": 0,
+      "cases_with_common_support": 0,
+      "total_cases": 16,
+      "common_printed_support_fraction": 0.0,
+      "resize-2x_pooled_raw_rmse_mv": null,
+      "kaggle_pooled_raw_rmse_mv": null
+    },
+    {
+      "first": "npj_dewarping_enabled",
+      "second": "kaggle",
+      "common_samples": 0,
+      "cases_with_common_support": 0,
+      "total_cases": 16,
+      "common_printed_support_fraction": 0.0,
+      "npj_dewarping_enabled_pooled_raw_rmse_mv": null,
+      "kaggle_pooled_raw_rmse_mv": null
+    }
+  ],
+  "signal_cases": [
+    {
+      "source_id": "ptbxl-172",
+      "group_id": "ptbxl-patient-20766.0",
+      "backend": "online",
+      "methods": {
+        "original": {
+          "status": "failed",
+          "layout_correct": false,
+          "printed_time_coverage_if_returned": 0.6170503837170503,
+          "conditional_snr_db": 1.139000516941081
+        },
+        "oracle": {
+          "status": "returned",
+          "layout_correct": false,
+          "printed_time_coverage_if_returned": 0.4498164831498165,
+          "conditional_snr_db": 0.5905172665248097
+        },
+        "learned": {
+          "status": "returned",
+          "layout_correct": true,
+          "printed_time_coverage_if_returned": 0.9946279612946279,
+          "conditional_snr_db": 16.986227218672145
+        },
+        "resize-2x": {
+          "status": "returned",
+          "layout_correct": true,
+          "printed_time_coverage_if_returned": 0.951051051051051,
+          "conditional_snr_db": 15.642524350785905
+        }
+      }
+    },
+    {
+      "source_id": "ptbxl-172",
+      "group_id": "ptbxl-patient-20766.0",
+      "backend": "offline",
+      "methods": {
+        "original": {
+          "status": "returned",
+          "layout_correct": false,
+          "printed_time_coverage_if_returned": 0.3382048715382049,
+          "conditional_snr_db": -1.4488891352280637
+        },
+        "oracle": {
+          "status": "returned",
+          "layout_correct": true,
+          "printed_time_coverage_if_returned": 0.868335001668335,
+          "conditional_snr_db": 12.282147358465325
+        },
+        "learned": {
+          "status": "returned",
+          "layout_correct": true,
+          "printed_time_coverage_if_returned": 0.991624958291625,
+          "conditional_snr_db": 12.378812343424121
+        },
+        "resize-2x": {
+          "status": "returned",
+          "layout_correct": true,
+          "printed_time_coverage_if_returned": 0.9451451451451451,
+          "conditional_snr_db": 11.4809837250947
+        }
+      }
+    },
+    {
+      "source_id": "ptbxl-20576",
+      "group_id": "ptbxl-patient-21218.0",
+      "backend": "online",
+      "methods": {
+        "original": {
+          "status": "failed",
+          "layout_correct": false,
+          "printed_time_coverage_if_returned": 0.06121121121121121,
+          "conditional_snr_db": -0.8261425347431559
+        },
+        "oracle": {
+          "status": "failed",
+          "layout_correct": false,
+          "printed_time_coverage_if_returned": 0.05293626960293627,
+          "conditional_snr_db": -32.64059881507325
+        },
+        "learned": {
+          "status": "returned",
+          "layout_correct": false,
+          "printed_time_coverage_if_returned": 0.342676009342676,
+          "conditional_snr_db": -6.2103551328120306
+        },
+        "resize-2x": {
+          "status": "failed",
+          "layout_correct": false,
+          "printed_time_coverage_if_returned": 0.3081081081081081,
+          "conditional_snr_db": -4.090752650211741
+        }
+      }
+    },
+    {
+      "source_id": "ptbxl-20576",
+      "group_id": "ptbxl-patient-21218.0",
+      "backend": "offline",
+      "methods": {
+        "original": {
+          "status": "failed",
+          "layout_correct": false,
+          "printed_time_coverage_if_returned": 0.06356356356356356,
+          "conditional_snr_db": -17.369497363350774
+        },
+        "oracle": {
+          "status": "failed",
+          "layout_correct": false,
+          "printed_time_coverage_if_returned": 0.25595595595595594,
+          "conditional_snr_db": -9.723759439306358
+        },
+        "learned": {
+          "status": "failed",
+          "layout_correct": false,
+          "printed_time_coverage_if_returned": 0.29295962629295963,
+          "conditional_snr_db": -2.4272872374720236
+        },
+        "resize-2x": {
+          "status": "failed",
+          "layout_correct": false,
+          "printed_time_coverage_if_returned": 0.2829496162829496,
+          "conditional_snr_db": -8.28975336014047
+        }
+      }
+    },
+    {
+      "source_id": "ptbxl-2605",
+      "group_id": "ptbxl-patient-19670.0",
+      "backend": "online",
+      "methods": {
+        "original": {
+          "status": "returned",
+          "layout_correct": true,
+          "printed_time_coverage_if_returned": 0.8845229832897336,
+          "conditional_snr_db": 3.7105696761788227
+        },
+        "oracle": {
+          "status": "returned",
+          "layout_correct": true,
+          "printed_time_coverage_if_returned": 0.7559660455928674,
+          "conditional_snr_db": 8.781038611904629
+        },
+        "learned": {
+          "status": "returned",
+          "layout_correct": true,
+          "printed_time_coverage_if_returned": 0.9963696545833111,
+          "conditional_snr_db": 10.65828835295922
+        },
+        "resize-2x": {
+          "status": "returned",
+          "layout_correct": true,
+          "printed_time_coverage_if_returned": 0.9954620682291389,
+          "conditional_snr_db": 8.23568350427314
+        }
+      }
+    },
+    {
+      "source_id": "ptbxl-2605",
+      "group_id": "ptbxl-patient-19670.0",
+      "backend": "offline",
+      "methods": {
+        "original": {
+          "status": "returned",
+          "layout_correct": false,
+          "printed_time_coverage_if_returned": 0.7370668944530457,
+          "conditional_snr_db": -0.4669856375266215
+        },
+        "oracle": {
+          "status": "returned",
+          "layout_correct": true,
+          "printed_time_coverage_if_returned": 0.9973840158026801,
+          "conditional_snr_db": 11.158218624517273
+        },
+        "learned": {
+          "status": "returned",
+          "layout_correct": true,
+          "printed_time_coverage_if_returned": 0.9963162671507128,
+          "conditional_snr_db": 11.760517551546684
+        },
+        "resize-2x": {
+          "status": "returned",
+          "layout_correct": true,
+          "printed_time_coverage_if_returned": 0.7969675938284128,
+          "conditional_snr_db": 1.6391804718977196
+        }
+      }
+    },
+    {
+      "source_id": "ptbxl-21391",
+      "group_id": "ptbxl-patient-8700.0",
+      "backend": "online",
+      "methods": {
+        "original": {
+          "status": "failed",
+          "layout_correct": false,
+          "printed_time_coverage_if_returned": 0.3390724057390724,
+          "conditional_snr_db": 0.4065986506363088
+        },
+        "oracle": {
+          "status": "failed",
+          "layout_correct": false,
+          "printed_time_coverage_if_returned": 0.1632298965632299,
+          "conditional_snr_db": 3.0551670635297006
+        },
+        "learned": {
+          "status": "returned",
+          "layout_correct": true,
+          "printed_time_coverage_if_returned": 0.9835502168835503,
+          "conditional_snr_db": 11.88052785809184
+        },
+        "resize-2x": {
+          "status": "returned",
+          "layout_correct": true,
+          "printed_time_coverage_if_returned": 0.9128461795128462,
+          "conditional_snr_db": 9.895983874276396
+        }
+      }
+    },
+    {
+      "source_id": "ptbxl-21391",
+      "group_id": "ptbxl-patient-8700.0",
+      "backend": "offline",
+      "methods": {
+        "original": {
+          "status": "failed",
+          "layout_correct": false,
+          "printed_time_coverage_if_returned": 0.11287954621287954,
+          "conditional_snr_db": -1.396171712382615
+        },
+        "oracle": {
+          "status": "returned",
+          "layout_correct": true,
+          "printed_time_coverage_if_returned": 0.8961294627961295,
+          "conditional_snr_db": 0.9588945508082186
+        },
+        "learned": {
+          "status": "returned",
+          "layout_correct": true,
+          "printed_time_coverage_if_returned": 0.981081081081081,
+          "conditional_snr_db": 7.91981872197285
+        },
+        "resize-2x": {
+          "status": "returned",
+          "layout_correct": true,
+          "printed_time_coverage_if_returned": 0.8284951618284951,
+          "conditional_snr_db": -3.615415779227211
+        }
+      }
+    },
+    {
+      "source_id": "ptbxl-2987",
+      "group_id": "ptbxl-patient-7011.0",
+      "backend": "online",
+      "methods": {
+        "original": {
+          "status": "failed",
+          "layout_correct": false,
+          "printed_time_coverage_if_returned": 0.027327327327327327,
+          "conditional_snr_db": -0.11511851114308212
+        },
+        "oracle": {
+          "status": "failed",
+          "layout_correct": false,
+          "printed_time_coverage_if_returned": 0.0,
+          "conditional_snr_db": null
+        },
+        "learned": {
+          "status": "failed",
+          "layout_correct": false,
+          "printed_time_coverage_if_returned": 0.46988655321988654,
+          "conditional_snr_db": -2.378583265418966
+        },
+        "resize-2x": {
+          "status": "returned",
+          "layout_correct": false,
+          "printed_time_coverage_if_returned": 0.16896896896896896,
+          "conditional_snr_db": -2.58988456823267
+        }
+      }
+    },
+    {
+      "source_id": "ptbxl-2987",
+      "group_id": "ptbxl-patient-7011.0",
+      "backend": "offline",
+      "methods": {
+        "original": {
+          "status": "failed",
+          "layout_correct": false,
+          "printed_time_coverage_if_returned": 0.0,
+          "conditional_snr_db": null
+        },
+        "oracle": {
+          "status": "failed",
+          "layout_correct": false,
+          "printed_time_coverage_if_returned": 0.12230563897230563,
+          "conditional_snr_db": -4.378763220821025
+        },
+        "learned": {
+          "status": "returned",
+          "layout_correct": false,
+          "printed_time_coverage_if_returned": 0.30367033700367035,
+          "conditional_snr_db": -3.5401829450689606
+        },
+        "resize-2x": {
+          "status": "failed",
+          "layout_correct": false,
+          "printed_time_coverage_if_returned": 0.1705538872205539,
+          "conditional_snr_db": -0.8425971544263972
+        }
+      }
+    },
+    {
+      "source_id": "ptbxl-10640",
+      "group_id": "ptbxl-patient-6816.0",
+      "backend": "online",
+      "methods": {
+        "original": {
+          "status": "returned",
+          "layout_correct": true,
+          "printed_time_coverage_if_returned": 0.778335379851583,
+          "conditional_snr_db": 5.8062766345157
+        },
+        "oracle": {
+          "status": "returned",
+          "layout_correct": true,
+          "printed_time_coverage_if_returned": 0.6538358870321926,
+          "conditional_snr_db": 3.7411809139877694
+        },
+        "learned": {
+          "status": "returned",
+          "layout_correct": true,
+          "printed_time_coverage_if_returned": 0.7986226042389621,
+          "conditional_snr_db": 10.603961693089913
+        },
+        "resize-2x": {
+          "status": "returned",
+          "layout_correct": true,
+          "printed_time_coverage_if_returned": 0.7830334739202391,
+          "conditional_snr_db": 8.859981166707362
+        }
+      }
+    },
+    {
+      "source_id": "ptbxl-10640",
+      "group_id": "ptbxl-patient-6816.0",
+      "backend": "offline",
+      "methods": {
+        "original": {
+          "status": "returned",
+          "layout_correct": true,
+          "printed_time_coverage_if_returned": 0.5642517751321339,
+          "conditional_snr_db": 1.0183435984313693
+        },
+        "oracle": {
+          "status": "returned",
+          "layout_correct": true,
+          "printed_time_coverage_if_returned": 0.7806310394533127,
+          "conditional_snr_db": 8.730246867839496
+        },
+        "learned": {
+          "status": "returned",
+          "layout_correct": true,
+          "printed_time_coverage_if_returned": 0.7980353424803801,
+          "conditional_snr_db": 10.08564302962128
+        },
+        "resize-2x": {
+          "status": "returned",
+          "layout_correct": true,
+          "printed_time_coverage_if_returned": 0.7925898243553468,
+          "conditional_snr_db": -3.7919653957783375
+        }
+      }
+    },
+    {
+      "source_id": "ptbxl-18762",
+      "group_id": "ptbxl-patient-16354.0",
+      "backend": "online",
+      "methods": {
+        "original": {
+          "status": "failed",
+          "layout_correct": false,
+          "printed_time_coverage_if_returned": 0.5772439105772439,
+          "conditional_snr_db": 0.9981463382068481
+        },
+        "oracle": {
+          "status": "failed",
+          "layout_correct": false,
+          "printed_time_coverage_if_returned": 0.4268601935268602,
+          "conditional_snr_db": 0.7288753948508662
+        },
+        "learned": {
+          "status": "returned",
+          "layout_correct": false,
+          "printed_time_coverage_if_returned": 0.49923256589923254,
+          "conditional_snr_db": 17.04890301385269
+        },
+        "resize-2x": {
+          "status": "returned",
+          "layout_correct": true,
+          "printed_time_coverage_if_returned": 0.8669002335669003,
+          "conditional_snr_db": 9.149193016776673
+        }
+      }
+    },
+    {
+      "source_id": "ptbxl-18762",
+      "group_id": "ptbxl-patient-16354.0",
+      "backend": "offline",
+      "methods": {
+        "original": {
+          "status": "failed",
+          "layout_correct": false,
+          "printed_time_coverage_if_returned": 0.23733733733733733,
+          "conditional_snr_db": 0.08020970129112759
+        },
+        "oracle": {
+          "status": "returned",
+          "layout_correct": true,
+          "printed_time_coverage_if_returned": 0.8683683683683684,
+          "conditional_snr_db": 5.388259137922724
+        },
+        "learned": {
+          "status": "returned",
+          "layout_correct": true,
+          "printed_time_coverage_if_returned": 0.961327994661328,
+          "conditional_snr_db": 11.446514751620013
+        },
+        "resize-2x": {
+          "status": "returned",
+          "layout_correct": true,
+          "printed_time_coverage_if_returned": 0.8783116449783116,
+          "conditional_snr_db": 2.3344686568031197
+        }
+      }
+    },
+    {
+      "source_id": "ptbxl-3406",
+      "group_id": "ptbxl-patient-6682.0",
+      "backend": "online",
+      "methods": {
+        "original": {
+          "status": "failed",
+          "layout_correct": false,
+          "printed_time_coverage_if_returned": 0.3090256923590257,
+          "conditional_snr_db": -6.170889799124659
+        },
+        "oracle": {
+          "status": "returned",
+          "layout_correct": false,
+          "printed_time_coverage_if_returned": 0.2085251918585252,
+          "conditional_snr_db": -1.8069096084993508
+        },
+        "learned": {
+          "status": "returned",
+          "layout_correct": true,
+          "printed_time_coverage_if_returned": 0.8012345679012346,
+          "conditional_snr_db": 12.095086738093869
+        },
+        "resize-2x": {
+          "status": "failed",
+          "layout_correct": false,
+          "printed_time_coverage_if_returned": 0.4417917917917918,
+          "conditional_snr_db": -7.065696214830404
+        }
+      }
+    },
+    {
+      "source_id": "ptbxl-3406",
+      "group_id": "ptbxl-patient-6682.0",
+      "backend": "offline",
+      "methods": {
+        "original": {
+          "status": "failed",
+          "layout_correct": false,
+          "printed_time_coverage_if_returned": 0.12477477477477478,
+          "conditional_snr_db": -3.4920033005565703
+        },
+        "oracle": {
+          "status": "failed",
+          "layout_correct": false,
+          "printed_time_coverage_if_returned": 0.3228228228228228,
+          "conditional_snr_db": -3.991613523488624
+        },
+        "learned": {
+          "status": "failed",
+          "layout_correct": false,
+          "printed_time_coverage_if_returned": 0.6167834501167835,
+          "conditional_snr_db": -4.9396306525879785
+        },
+        "resize-2x": {
+          "status": "failed",
+          "layout_correct": false,
+          "printed_time_coverage_if_returned": 0.4604270937604271,
+          "conditional_snr_db": -6.332160430492244
+        }
+      }
+    }
+  ],
+  "limits": [
+    "Synthetic captures only, original patient waveforms",
+    "Two seeds, eight held-out patients",
+    "Paper gain supplied to frozen npj",
+    "Conditional SNR is not the Kaggle competition metric",
+    "Oracle supplies known geometry only, not a guaranteed upper bound on extraction because output density and crop differ",
+    "Grid association does not certify global injectivity",
+    "Train and test share capture families and geometry ranges",
+    "Resize 2x does not exactly match every warped output density, so the comparison evaluates the pipeline rather than isolating geometry"
+  ]
+}
