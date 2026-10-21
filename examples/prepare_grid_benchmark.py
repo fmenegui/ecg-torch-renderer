@@ -12,7 +12,7 @@ import re
 import shutil
 import subprocess
 import sys
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, wait, FIRST_COMPLETED
 from pathlib import Path
 
 import numpy as np
@@ -21,7 +21,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from ecg_gpu.schema_v05 import LEADS
 
 
-def prepare(metadata, out, *, train=16, validation=4, test=4, seed=1973, wfdb_cache=None):
+def prepare(metadata, out, *, train=16, validation=4, test=4, seed=1973, wfdb_cache=None,
+            excluded_patients=None):
     counts = {'train': train, 'validation': validation, 'test': test}
     if any(type(n) is not int or n < 1 for n in counts.values()):
         raise ValueError('Positive source counts required')
@@ -30,6 +31,8 @@ def prepare(metadata, out, *, train=16, validation=4, test=4, seed=1973, wfdb_ca
         raise FileExistsError('Choose a new or empty cohort directory')
     with Path(metadata).open() as stream:
         rows = list(csv.DictReader(stream))
+    excluded = {str(int(float(p))) for p in (excluded_patients or [])}
+    rows = [r for r in rows if str(int(float(r['patient_id']))) not in excluded]
     rng = np.random.default_rng(seed)
     rng.shuffle(rows)
     selected, used = [], set()
@@ -37,8 +40,9 @@ def prepare(metadata, out, *, train=16, validation=4, test=4, seed=1973, wfdb_ca
         candidates = [r for r in rows if ('train' if int(r['strat_fold']) <= 8 else 'validation' if int(r['strat_fold']) == 9 else 'test') == split]
         chosen = 0
         for row in candidates:
-            if row['patient_id'] not in used:
-                used.add(row['patient_id'])
+            patient = str(int(float(row['patient_id'])))
+            if patient not in used:
+                used.add(patient)
                 selected.append((row, split))
                 chosen += 1
                 if chosen == count:
@@ -63,7 +67,7 @@ def prepare(metadata, out, *, train=16, validation=4, test=4, seed=1973, wfdb_ca
                 shutil.copy2(cached, path)
             else:
                 subprocess.run(['curl', '--fail', '--silent', '--show-error', '--retry', '3',
-                                '--retry-all-errors', '--connect-timeout', '10', '--max-time', '35',
+                                '--connect-timeout', '10', '--max-time', '35',
                                 '--max-filesize', '200000', '-o', str(path), url], check=True, timeout=180)
             paths.append(path)
         lines = paths[0].read_text().splitlines()
@@ -88,8 +92,21 @@ def prepare(metadata, out, *, train=16, validation=4, test=4, seed=1973, wfdb_ca
             'header_sha256': hashlib.sha256(paths[0].read_bytes()).hexdigest(),
             'dat_sha256': hashlib.sha256(paths[1].read_bytes()).hexdigest()}
 
-    with ThreadPoolExecutor(6) as pool:
-        downloaded = list(pool.map(download, selected))
+    # Bound queued work. A denied download must not leave the whole cohort
+    # scheduled or retry HTTP 403 responses as if they were transient failures.
+    pool = ThreadPoolExecutor(6)
+    pending, downloaded, cursor = {}, [None]*len(selected), 0
+    try:
+        while cursor < len(selected) or pending:
+            while cursor < len(selected) and len(pending) < 6:
+                pending[pool.submit(download, selected[cursor])] = cursor
+                cursor += 1
+            completed, _ = wait(pending, return_when=FIRST_COMPLETED)
+            for future in completed:
+                index = pending.pop(future)
+                downloaded[index] = future.result()
+    finally:
+        pool.shutdown(wait=True, cancel_futures=True)
     provenance = [item[1] for item in downloaded]
     np.savez_compressed(out/'signals.npz', signals=np.stack([item[0] for item in downloaded]), fs=100.,
         source_ids=np.array([r['source_id'] for r in provenance]), group_ids=np.array([r['group_id'] for r in provenance]),
@@ -98,6 +115,7 @@ def prepare(metadata, out, *, train=16, validation=4, test=4, seed=1973, wfdb_ca
         'license': 'CC BY 4.0', 'metadata_sha256': hashlib.sha256(Path(metadata).read_bytes()).hexdigest(),
         'signals_sha256': hashlib.sha256((out/'signals.npz').read_bytes()).hexdigest(),
         'seed': seed, 'counts': counts, 'records': provenance,
+        'excluded_patient_ids': sorted(excluded),
         'signal_processing': 'Original ADC-to-mV conversion only, no physiological augmentation'}
     (out/'sources.json').write_text(json.dumps(report, indent=2)+'\n')
     return report
@@ -108,6 +126,11 @@ if __name__ == '__main__':
     parser.add_argument('--metadata', type=Path, required=True)
     parser.add_argument('--out', type=Path, required=True)
     parser.add_argument('--wfdb-cache', type=Path)
+    parser.add_argument('--excluded-patients', type=Path,
+                        help='JSON list of PTB-XL patient IDs excluded before sampling')
     for name, default in (('train', 16), ('validation', 4), ('test', 4), ('seed', 1973)):
         parser.add_argument('--'+name, type=int, default=default)
-    print(json.dumps(prepare(**vars(parser.parse_args()))['counts']))
+    arguments = vars(parser.parse_args())
+    excluded_path = arguments.pop('excluded_patients')
+    arguments['excluded_patients'] = json.loads(excluded_path.read_text()) if excluded_path else None
+    print(json.dumps(prepare(**arguments)['counts']))

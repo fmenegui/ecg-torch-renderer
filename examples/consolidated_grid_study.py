@@ -38,7 +38,7 @@ def progress(root, phase, **values):
     print(json.dumps(record), flush=True)
 
 
-def capture_dataset(records, fs, root, *, variant='cuda_ad_rgb'):
+def capture_dataset(records, fs, root, *, variant='cuda_ad_rgb', views=2, samples_per_pixel=128):
     """Store uint8 RGB and geometric supervision, without changing waveforms."""
     import drjit as dr
     dr.set_thread_count(6)
@@ -46,7 +46,7 @@ def capture_dataset(records, fs, root, *, variant='cuda_ad_rgb'):
     directory.mkdir(exist_ok=True)
     manifest = []
     for index, record in enumerate(records):
-        for view in range(2):
+        for view in range(views):
             seed = 20261021+index*1009+view*47
             layout = ('3x4+r1', '6x2', '12x1')[(index+view) % 3]
             for backend in ('online', 'offline'):
@@ -70,7 +70,7 @@ def capture_dataset(records, fs, root, *, variant='cuda_ad_rgb'):
                     else:
                         batch = layer.render_batch(signal, stage='all', photo=False, as_texture=True, return_instances=True)
                         surface = ('flat', 'fold', 'curl', 'multifold')[(index+view) % 4]
-                        capture_config = PathTraceConfig(width=768, height=512, samples_per_pixel=128,
+                        capture_config = PathTraceConfig(width=768, height=512, samples_per_pixel=samples_per_pixel,
                             surface=surface, bend_radians=.25+.15*view, geometry_seed=seed,
                             camera_origin=(.015*((index % 3)-1), -.065-.015*view, .36+.015*(index % 3)),
                             environment_radiance=.15, key_radiance=4., variant=variant,
@@ -81,7 +81,7 @@ def capture_dataset(records, fs, root, *, variant='cuda_ad_rgb'):
                         canonical_size = list(batch.image.shape[-2:])
                 visible = targets['grid_points_valid'][0].cpu().numpy()
                 rgb = (image[0].permute(1, 2, 0).cpu().numpy()*255).round().clip(0, 255).astype(np.uint8)
-                key = f'{index:03d}-{view}-{backend}'
+                key = f'{index:05d}-{view}-{backend}' if views != 2 else f'{index:03d}-{view}-{backend}'
                 path = directory/(key+'.npz')
                 np.savez_compressed(path, image=rgb, valid=targets['valid'][0, 0].cpu().numpy().astype(np.float16),
                     xy=targets['grid_points_xy'][0].cpu().numpy()[visible],
@@ -94,7 +94,7 @@ def capture_dataset(records, fs, root, *, variant='cuda_ad_rgb'):
                     'paper_metadata': metadata, 'canonical_size': canonical_size,
                     'points': int(visible.sum())})
                 _write_json(root/'capture-manifest.json', manifest)
-                progress(root, 'rendering', completed=len(manifest), total=len(records)*4)
+                progress(root, 'rendering', completed=len(manifest), total=len(records)*views*2)
                 del layer, batch, targets, image
                 if backend == 'offline':
                     del captured

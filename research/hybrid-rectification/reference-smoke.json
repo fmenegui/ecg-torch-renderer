@@ -1,0 +1,32 @@
+[
+  {
+    "method": "kaggle",
+    "id": "standard",
+    "input_sha256": "904cdb184a9a221516c09a83baeed41a99c11860ba7d3be08177fec39558948b",
+    "status": "failed",
+    "error": "ValueError: Fewer than four document references were detected"
+  },
+  {
+    "method": "kaggle",
+    "id": "offline-fold",
+    "input_sha256": "4ab08fbee05cff66bc72b2b02e36b8697447b617cd0ee39cf705aa098756f786",
+    "status": "failed",
+    "error": "ValueError: Fewer than four document references were detected"
+  },
+  {
+    "method": "npj",
+    "id": "standard",
+    "input_sha256": "904cdb184a9a221516c09a83baeed41a99c11860ba7d3be08177fec39558948b",
+    "status": "returned",
+    "image": "npj/standard/rectified.png",
+    "waveform_extraction_invoked": false
+  },
+  {
+    "method": "npj",
+    "id": "offline-fold",
+    "input_sha256": "4ab08fbee05cff66bc72b2b02e36b8697447b617cd0ee39cf705aa098756f786",
+    "status": "returned",
+    "image": "npj/offline-fold/rectified.png",
+    "waveform_extraction_invoked": false
+  }
+]

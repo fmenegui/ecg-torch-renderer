@@ -46,6 +46,15 @@ class PrepareGridCohortTests(unittest.TestCase):
                   self.assertRaisesRegex(ValueError,'identity')):
                 prepare(metadata,root/'cohort',train=1,validation=1,test=1,wfdb_cache=cache)
 
+    def test_excluded_patient_normalizes_decimal_identity(self):
+        with TemporaryDirectory() as temporary:
+            root=Path(temporary)
+            metadata,cache=self.fixture(root)
+            with (patch('examples.prepare_grid_benchmark.subprocess.run',side_effect=AssertionError('No network')),
+                  self.assertRaisesRegex(ValueError,'Not enough')):
+                prepare(metadata,root/'cohort',train=1,validation=1,test=1,wfdb_cache=cache,
+                        excluded_patients=['1.0'])
+
 
 if __name__=='__main__':
     unittest.main()

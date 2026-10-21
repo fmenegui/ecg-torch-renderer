@@ -72,7 +72,7 @@ class HengTangDigitizer:
     """
 
     def __init__(self, assets, *, device='cpu', precision='float32', geometry='reference',
-                 waveform_tta=False, profile='single'):
+                 waveform_tta=False, profile='single', rectification_only=False):
         from .artifacts import verify_assets
 
         self.assets = Path(assets)
@@ -112,6 +112,10 @@ class HengTangDigitizer:
             ('ROUND', 'interpolate_mapping', 'segment_to_endpoints_fitline', 'line_params',
              'compare_segment', 'canonical_order', 'canonical_y_order', 'canonical_x_order',
              'output_to_predict'), dict(common))
+        if rectification_only:
+            self.net2 = None
+            self.hrnet = None
+            return
         decoder = _definitions(self.assets/'third/models/decoders.py',
             ('CoordDecoderBlock', 'CoordUnetDecoder'), dict(env))
         ns = dict(env, CoordUnetDecoder=decoder['CoordUnetDecoder'])
@@ -164,13 +168,11 @@ class HengTangDigitizer:
         return cv2.resize(rect, (4400, 1700), interpolation=cv2.INTER_CUBIC), None
 
     @torch.inference_mode()
-    def predict(self, image, *, fs, progress=None):
-        """Return twelve calibrated leads plus learned geometry diagnostics."""
+    def rectify_image(self, image):
+        """Run the published stage0/1 geometry without waveform extraction."""
         rgb = np.asarray(image)
         if rgb.ndim != 3 or rgb.shape[2] != 3 or rgb.dtype != np.uint8 or min(rgb.shape[:2]) < 32:
             raise ValueError('Reference input must be uint8 HWC RGB')
-        if isinstance(fs, bool) or not isinstance(fs, (int, float)) or not math.isfinite(fs) or fs <= 0 or fs != int(fs):
-            raise ValueError('Reference digitization requires positive integer fs')
         started = time.perf_counter()
         batch = self.common0['image_to_batch'](rgb)
         # Process TTA sequentially to bound peak memory while retaining order.
@@ -201,6 +203,21 @@ class HengTangDigitizer:
         rect, valid_fraction = self._rectify(rotated, homography, grid)
         self._sync()
         stage1_s = time.perf_counter()-t1
+        return {'rectified': rect, 'grid_normalized_xy': grid, 'homography': homography,
+                'rotated': rotated, 'geometric_valid_fraction': valid_fraction,
+                'homography_inliers': int(inliers.sum()),
+                'stage0_orientation_probabilities': orientation,
+                'seconds': {'stage0': stage0_s, 'stage1': stage1_s}}
+
+    @torch.inference_mode()
+    def predict(self, image, *, fs, progress=None):
+        """Return twelve calibrated leads plus learned geometry diagnostics."""
+        if self.net2 is None:
+            raise RuntimeError('This instance was created for rectification only')
+        if isinstance(fs, bool) or not isinstance(fs, (int, float)) or not math.isfinite(fs) or fs <= 0 or fs != int(fs):
+            raise ValueError('Reference digitization requires positive integer fs')
+        geometric = self.rectify_image(image)
+        rect = geometric['rectified']
         t2 = time.perf_counter()
         image2 = torch.from_numpy(np.ascontiguousarray(rect[:1696, :4352].transpose(2, 0, 1)))[None].to(self.device)
         rows, observed, checkpoint_count = self._waveforms(image2, fs, progress)
@@ -220,12 +237,13 @@ class HengTangDigitizer:
                     if self.profile == 'full' else {'run15': self.waveform_tta}),
                 'waveform_checkpoints': checkpoint_count,
                 'artifact_lock_sha256': self.artifacts['lock_sha256']},
-            diagnostics={'seconds': {'stage0': stage0_s, 'stage1': stage1_s, 'stage2': stage2_s},
+            diagnostics={'seconds': dict(geometric['seconds'], stage2=stage2_s),
                 'row_observed_fraction': observed.mean(axis=1).tolist(),
-                'geometric_valid_fraction': valid_fraction, 'homography_inliers': int(inliers.sum()),
-                'stage0_orientation_probabilities': orientation}, warnings=warnings)
-        return result, {'rectified': rect, 'grid_normalized_xy': grid,
-                        'homography': homography, 'rows_mv': rows, 'observed_columns': observed}
+                'geometric_valid_fraction': geometric['geometric_valid_fraction'],
+                'homography_inliers': geometric['homography_inliers'],
+                'stage0_orientation_probabilities': geometric['stage0_orientation_probabilities']}, warnings=warnings)
+        return result, {'rectified': rect, 'grid_normalized_xy': geometric['grid_normalized_xy'],
+                        'homography': geometric['homography'], 'rows_mv': rows, 'observed_columns': observed}
 
     def _waveforms(self, image, fs, progress):
         if self.profile == 'single':

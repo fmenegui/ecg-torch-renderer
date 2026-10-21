@@ -1,0 +1,47 @@
+{
+  "as_of_utc": "2026-10-21T21:31:18.057323+00:00",
+  "new_gpu_training_executed": false,
+  "new_pods_created": 0,
+  "runpod_read_attempts": 2,
+  "runpod_error": {
+    "status": 500,
+    "detail": "authentication failed"
+  },
+  "local_cuda": false,
+  "larger_cohort": {
+    "train": 1024,
+    "validation": 128,
+    "test": 128,
+    "patients_selected": 1280,
+    "planned_images": 7680,
+    "download_complete": false,
+    "wfdb_files_in_partial_cache": 70,
+    "selected_cohort_sha256": "1c78c963ec77de8e58e22f11b2e125337bbd6231ce1c2a73bc617df2c1ff7c7c",
+    "signal_file_error": "HTTP 403"
+  },
+  "cpu_preview": {
+    "test_images": 32,
+    "model": "previous contrast-point-20261021",
+    "new_training": false
+  },
+  "reference_smoke": {
+    "synthetic_images": 2,
+    "npj_returned": 2,
+    "kaggle_returned": 0,
+    "waveform_extraction_invoked": false
+  },
+  "physical_check": {
+    "captures": 12,
+    "ecg_records": 4,
+    "topology_accepted": 10,
+    "topology_rejected": 2,
+    "manual_annotations": false
+  },
+  "validation": {
+    "focused_tests": 51,
+    "skipped": 6,
+    "failed": 0,
+    "full_suite": "attempted, interrupted before completion. No full-suite pass claimed",
+    "ruff": "not installed"
+  }
+}
