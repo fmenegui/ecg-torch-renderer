@@ -86,10 +86,13 @@ def write_page(out, inputs, manifest, report):
     (out/'index.html').write_text(page+'</html>')
 
 
-def run(inputs, out, source, *, device='cpu', arms=('published', 'configured')):
+def run(inputs, out, source, *, device='cpu', arms=('published', 'configured'),
+        dewarping=None, case_names=None):
     inputs, out = Path(inputs).resolve(), Path(out).resolve()
     if out.exists() and any(out.iterdir()):
         raise FileExistsError('Choose a new or empty output directory')
+    if dewarping is not None and type(dewarping) is not bool:
+        raise ValueError('dewarping must be bool or None')
     device = torch.device(device)
     if device.type not in ('cpu', 'cuda') or device.type == 'cuda' and not torch.cuda.is_available():
         raise ValueError('An available CPU or CUDA device is required')
@@ -98,7 +101,15 @@ def run(inputs, out, source, *, device='cpu', arms=('published', 'configured')):
         raise ValueError('Source signal checksum mismatch')
     with np.load(inputs/'source.npz') as data:
         values, fs = data['values_mv'], int(data['fs'])
+    if case_names is not None:
+        requested = set(case_names)
+        known = {case['name'] for case in manifest['cases']}
+        if not requested or requested - known:
+            raise ValueError('Select nonempty known case names')
+        manifest['cases'] = [case for case in manifest['cases'] if case['name'] in requested]
     model, config, commit = load_upstream(source)
+    if dewarping is not None:
+        model.apply_dewarping = dewarping
     model.device = str(device)
     model.segmentation_model.to(device)
     identifier = model.identifier
@@ -111,6 +122,7 @@ def run(inputs, out, source, *, device='cpu', arms=('published', 'configured')):
         'cuda_runtime': torch.version.cuda, 'cpu_threads': torch.get_num_threads(),
         'gpu_name': torch.cuda.get_device_name(device) if device.type == 'cuda' else None,
         'upstream_commit': commit, 'input_manifest_sha256': sha256_file(inputs/'manifest.json'),
+        'apply_dewarping': model.apply_dewarping, 'selected_cases': [c['name'] for c in manifest['cases']],
         'arms': list(arms), 'weights_changed': False, 'training_performed': False,
         'configured_gain_source': 'explicit declared paper gain from generation configuration',
         'configured_gain_is_inferred': False,
@@ -164,7 +176,7 @@ def run(inputs, out, source, *, device='cpu', arms=('published', 'configured')):
                 with Image.open(inputs/case['image']) as image:
                     rgb = np.array(image.convert('RGB'))
                 tensor = torch.from_numpy(rgb.transpose(2, 0, 1).copy())[None].float()
-                with contextlib.redirect_stdout(log), torch.inference_mode():
+                with contextlib.redirect_stdout(log), torch.no_grad():
                     result = model(tensor, layout_should_include_substring=None)
                 canonical = result['signal']['canonical_lines']
                 if canonical is None:
