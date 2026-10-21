@@ -1,5 +1,27 @@
 # Major-grid intersections for point detection
 
+## Sampling and subpixel evaluation
+
+The [paired sampling study](https://github.com/fmenegui/ecg-torch-renderer/tree/main/research/grid-sampling-study)
+evaluates fixed detectors on the same eight offline test views at 16, 32, 64
+and 128 SPP. Its report records source hashes, tables and limitations. No model
+or threshold is tuned in this study.
+
+```python
+from ecg_gpu.grid_evaluation import evaluate_grid_tolerances
+
+scores = evaluate_grid_tolerances(predicted_xy, reference_xy,
+                                  radii=(0.25, 0.5, 1.0, 1.5))
+```
+
+Coordinates and tolerances use output-image pixel centers. Each tolerance
+performs a new maximum-cardinality/minimum-distance assignment. Errors and
+signed bias describe matched points only. Precision, recall and F1 retain
+false positives and missing nodes. Synthetic geometric accuracy and uncertain
+physical point references must be reported separately.
+
+## Supervision contract
+
 Both backends can export only the intersections of the **5 mm** major grid.
 These are material lattice nodes, not paper mesh vertices, 1 mm intersections,
 ECG fiducials, or detections from RGB. They enable training a detector for

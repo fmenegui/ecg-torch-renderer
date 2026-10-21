@@ -1,0 +1,9 @@
+{
+  "predictions_verified": 224,
+  "captures_verified": 32,
+  "aggregates_reproduced": 112,
+  "paired_intervals_identical": true,
+  "driver_after_pairing_validation_sha256": "0644cc50e35c6bc4ff392e4300e8c4a9f5b12b54c57d346fe7d76358e6d79e6e",
+  "executed_source_archive_sha256": "fc89edef057541fb0867a5b283941870da27678f26112048bd0e2a94c04bf89f",
+  "parent_checkpoint_and_capture_hashes_verified": true
+}

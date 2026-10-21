@@ -1,0 +1,648 @@
+{
+  "status": "completed",
+  "training_or_tuning": false,
+  "images": 12,
+  "patients": 4,
+  "manifest_sha256": "d3a55ab95230f292a907f4507109a0b099aec5b7eba8980a1cb9da45ab73a38d",
+  "parent_report_sha256": "9cba961f2ba1fb4f021948fa8b6e37a0f47fbd00f6d48268f882dad1e240a78f",
+  "annotation_scope": "Unannotated convenience sample. Counts are not accuracy metrics",
+  "models": [
+    {
+      "name": "baseline-online",
+      "threshold": 0.85,
+      "checkpoint_sha256": "8b493aa19d701d80189e179f6b8083b35ee418edb60bb4894e02fd1100c80c07",
+      "external": [
+        {
+          "id": "physical-000066-04",
+          "predictions": 2485,
+          "truncated": false,
+          "image_sha256": "6c4ffcde916b7247502927272ab20797cb5b9994908fbb1e49580dcbbb3582f5",
+          "metrics": null
+        },
+        {
+          "id": "physical-000066-05",
+          "predictions": 1876,
+          "truncated": false,
+          "image_sha256": "c4ca33a881cda91e0e522eb2157e46f1a821e8da03595c9cec190d7a2c34803d",
+          "metrics": null
+        },
+        {
+          "id": "physical-000066-06",
+          "predictions": 302,
+          "truncated": false,
+          "image_sha256": "1b9e2d058bceb3e7f96464be48085aaa62c80d98b522cdcdccc1292ba2dfdf6b",
+          "metrics": null
+        },
+        {
+          "id": "physical-000077-04",
+          "predictions": 2495,
+          "truncated": false,
+          "image_sha256": "047c8e338832302fcbf2c496f5cf1b0b3dacaea32c5d06c74ecb6d194a478ec7",
+          "metrics": null
+        },
+        {
+          "id": "physical-000077-05",
+          "predictions": 1831,
+          "truncated": false,
+          "image_sha256": "3d0a5b126b879d954d92b3ea8beb2d9e1820b8b080eae8acfb445fd119940de8",
+          "metrics": null
+        },
+        {
+          "id": "physical-000077-06",
+          "predictions": 207,
+          "truncated": false,
+          "image_sha256": "764608fdbce4fcbbd4d4c783f084320e0e91023ee9191d3b8b13764e1fa07746",
+          "metrics": null
+        },
+        {
+          "id": "physical-000085-04",
+          "predictions": 2498,
+          "truncated": false,
+          "image_sha256": "97db1c078384d7e450d803626fc454ec0bd25b4e4a6df2b0cfb4f651352505c6",
+          "metrics": null
+        },
+        {
+          "id": "physical-000085-05",
+          "predictions": 1825,
+          "truncated": false,
+          "image_sha256": "18c31ba7fb9206ee4facd07906c15c451c87987fc0fb6d6d47c46401a65fcbe9",
+          "metrics": null
+        },
+        {
+          "id": "physical-000085-06",
+          "predictions": 126,
+          "truncated": false,
+          "image_sha256": "925a66f3744cddb2d1131f0dae7376a501dfef5da332c962c653f8008948da3f",
+          "metrics": null
+        },
+        {
+          "id": "physical-000107-04",
+          "predictions": 2500,
+          "truncated": false,
+          "image_sha256": "b6b2ba241f5415a75683d664161e33e90dab3ce662de2ea15195a5f5e51a32fd",
+          "metrics": null
+        },
+        {
+          "id": "physical-000107-05",
+          "predictions": 1808,
+          "truncated": false,
+          "image_sha256": "062844dbcdd46f195ec32c332ab220cbd9189fb17b47299edb23c28037325941",
+          "metrics": null
+        },
+        {
+          "id": "physical-000107-06",
+          "predictions": 264,
+          "truncated": false,
+          "image_sha256": "cc96b7a0bffa9484e09d091fa3c62244f5843131fa85a38cd7917a71c05f009b",
+          "metrics": null
+        }
+      ]
+    },
+    {
+      "name": "baseline-offline",
+      "threshold": 0.5,
+      "checkpoint_sha256": "6576d7d88fd44523a53651a49e3fcdd36f70b935f69f88d75d4b94849a7cd700",
+      "external": [
+        {
+          "id": "physical-000066-04",
+          "predictions": 4048,
+          "truncated": false,
+          "image_sha256": "6c4ffcde916b7247502927272ab20797cb5b9994908fbb1e49580dcbbb3582f5",
+          "metrics": null
+        },
+        {
+          "id": "physical-000066-05",
+          "predictions": 3241,
+          "truncated": false,
+          "image_sha256": "c4ca33a881cda91e0e522eb2157e46f1a821e8da03595c9cec190d7a2c34803d",
+          "metrics": null
+        },
+        {
+          "id": "physical-000066-06",
+          "predictions": 2642,
+          "truncated": false,
+          "image_sha256": "1b9e2d058bceb3e7f96464be48085aaa62c80d98b522cdcdccc1292ba2dfdf6b",
+          "metrics": null
+        },
+        {
+          "id": "physical-000077-04",
+          "predictions": 4055,
+          "truncated": false,
+          "image_sha256": "047c8e338832302fcbf2c496f5cf1b0b3dacaea32c5d06c74ecb6d194a478ec7",
+          "metrics": null
+        },
+        {
+          "id": "physical-000077-05",
+          "predictions": 3219,
+          "truncated": false,
+          "image_sha256": "3d0a5b126b879d954d92b3ea8beb2d9e1820b8b080eae8acfb445fd119940de8",
+          "metrics": null
+        },
+        {
+          "id": "physical-000077-06",
+          "predictions": 2587,
+          "truncated": false,
+          "image_sha256": "764608fdbce4fcbbd4d4c783f084320e0e91023ee9191d3b8b13764e1fa07746",
+          "metrics": null
+        },
+        {
+          "id": "physical-000085-04",
+          "predictions": 3968,
+          "truncated": false,
+          "image_sha256": "97db1c078384d7e450d803626fc454ec0bd25b4e4a6df2b0cfb4f651352505c6",
+          "metrics": null
+        },
+        {
+          "id": "physical-000085-05",
+          "predictions": 3258,
+          "truncated": false,
+          "image_sha256": "18c31ba7fb9206ee4facd07906c15c451c87987fc0fb6d6d47c46401a65fcbe9",
+          "metrics": null
+        },
+        {
+          "id": "physical-000085-06",
+          "predictions": 2144,
+          "truncated": false,
+          "image_sha256": "925a66f3744cddb2d1131f0dae7376a501dfef5da332c962c653f8008948da3f",
+          "metrics": null
+        },
+        {
+          "id": "physical-000107-04",
+          "predictions": 4037,
+          "truncated": false,
+          "image_sha256": "b6b2ba241f5415a75683d664161e33e90dab3ce662de2ea15195a5f5e51a32fd",
+          "metrics": null
+        },
+        {
+          "id": "physical-000107-05",
+          "predictions": 3245,
+          "truncated": false,
+          "image_sha256": "062844dbcdd46f195ec32c332ab220cbd9189fb17b47299edb23c28037325941",
+          "metrics": null
+        },
+        {
+          "id": "physical-000107-06",
+          "predictions": 2735,
+          "truncated": false,
+          "image_sha256": "cc96b7a0bffa9484e09d091fa3c62244f5843131fa85a38cd7917a71c05f009b",
+          "metrics": null
+        }
+      ]
+    },
+    {
+      "name": "baseline-mixed",
+      "threshold": 0.7,
+      "checkpoint_sha256": "264565bdb487fe0a56be3d1344b7b8296b416fe4a8af024932ea1400380f5c88",
+      "external": [
+        {
+          "id": "physical-000066-04",
+          "predictions": 2538,
+          "truncated": false,
+          "image_sha256": "6c4ffcde916b7247502927272ab20797cb5b9994908fbb1e49580dcbbb3582f5",
+          "metrics": null
+        },
+        {
+          "id": "physical-000066-05",
+          "predictions": 2899,
+          "truncated": false,
+          "image_sha256": "c4ca33a881cda91e0e522eb2157e46f1a821e8da03595c9cec190d7a2c34803d",
+          "metrics": null
+        },
+        {
+          "id": "physical-000066-06",
+          "predictions": 2190,
+          "truncated": false,
+          "image_sha256": "1b9e2d058bceb3e7f96464be48085aaa62c80d98b522cdcdccc1292ba2dfdf6b",
+          "metrics": null
+        },
+        {
+          "id": "physical-000077-04",
+          "predictions": 2537,
+          "truncated": false,
+          "image_sha256": "047c8e338832302fcbf2c496f5cf1b0b3dacaea32c5d06c74ecb6d194a478ec7",
+          "metrics": null
+        },
+        {
+          "id": "physical-000077-05",
+          "predictions": 2907,
+          "truncated": false,
+          "image_sha256": "3d0a5b126b879d954d92b3ea8beb2d9e1820b8b080eae8acfb445fd119940de8",
+          "metrics": null
+        },
+        {
+          "id": "physical-000077-06",
+          "predictions": 2518,
+          "truncated": false,
+          "image_sha256": "764608fdbce4fcbbd4d4c783f084320e0e91023ee9191d3b8b13764e1fa07746",
+          "metrics": null
+        },
+        {
+          "id": "physical-000085-04",
+          "predictions": 2577,
+          "truncated": false,
+          "image_sha256": "97db1c078384d7e450d803626fc454ec0bd25b4e4a6df2b0cfb4f651352505c6",
+          "metrics": null
+        },
+        {
+          "id": "physical-000085-05",
+          "predictions": 2865,
+          "truncated": false,
+          "image_sha256": "18c31ba7fb9206ee4facd07906c15c451c87987fc0fb6d6d47c46401a65fcbe9",
+          "metrics": null
+        },
+        {
+          "id": "physical-000085-06",
+          "predictions": 2072,
+          "truncated": false,
+          "image_sha256": "925a66f3744cddb2d1131f0dae7376a501dfef5da332c962c653f8008948da3f",
+          "metrics": null
+        },
+        {
+          "id": "physical-000107-04",
+          "predictions": 2540,
+          "truncated": false,
+          "image_sha256": "b6b2ba241f5415a75683d664161e33e90dab3ce662de2ea15195a5f5e51a32fd",
+          "metrics": null
+        },
+        {
+          "id": "physical-000107-05",
+          "predictions": 2911,
+          "truncated": false,
+          "image_sha256": "062844dbcdd46f195ec32c332ab220cbd9189fb17b47299edb23c28037325941",
+          "metrics": null
+        },
+        {
+          "id": "physical-000107-06",
+          "predictions": 2388,
+          "truncated": false,
+          "image_sha256": "cc96b7a0bffa9484e09d091fa3c62244f5843131fa85a38cd7917a71c05f009b",
+          "metrics": null
+        }
+      ]
+    },
+    {
+      "name": "sigma06-mixed",
+      "threshold": 0.3,
+      "checkpoint_sha256": "f5ea456d8601670785e0919ef802cd2235e9535e049a6a9ce5d6c414467e16cb",
+      "external": [
+        {
+          "id": "physical-000066-04",
+          "predictions": 2685,
+          "truncated": false,
+          "image_sha256": "6c4ffcde916b7247502927272ab20797cb5b9994908fbb1e49580dcbbb3582f5",
+          "metrics": null
+        },
+        {
+          "id": "physical-000066-05",
+          "predictions": 4358,
+          "truncated": false,
+          "image_sha256": "c4ca33a881cda91e0e522eb2157e46f1a821e8da03595c9cec190d7a2c34803d",
+          "metrics": null
+        },
+        {
+          "id": "physical-000066-06",
+          "predictions": 2525,
+          "truncated": false,
+          "image_sha256": "1b9e2d058bceb3e7f96464be48085aaa62c80d98b522cdcdccc1292ba2dfdf6b",
+          "metrics": null
+        },
+        {
+          "id": "physical-000077-04",
+          "predictions": 2669,
+          "truncated": false,
+          "image_sha256": "047c8e338832302fcbf2c496f5cf1b0b3dacaea32c5d06c74ecb6d194a478ec7",
+          "metrics": null
+        },
+        {
+          "id": "physical-000077-05",
+          "predictions": 4324,
+          "truncated": false,
+          "image_sha256": "3d0a5b126b879d954d92b3ea8beb2d9e1820b8b080eae8acfb445fd119940de8",
+          "metrics": null
+        },
+        {
+          "id": "physical-000077-06",
+          "predictions": 2722,
+          "truncated": false,
+          "image_sha256": "764608fdbce4fcbbd4d4c783f084320e0e91023ee9191d3b8b13764e1fa07746",
+          "metrics": null
+        },
+        {
+          "id": "physical-000085-04",
+          "predictions": 2746,
+          "truncated": false,
+          "image_sha256": "97db1c078384d7e450d803626fc454ec0bd25b4e4a6df2b0cfb4f651352505c6",
+          "metrics": null
+        },
+        {
+          "id": "physical-000085-05",
+          "predictions": 4376,
+          "truncated": false,
+          "image_sha256": "18c31ba7fb9206ee4facd07906c15c451c87987fc0fb6d6d47c46401a65fcbe9",
+          "metrics": null
+        },
+        {
+          "id": "physical-000085-06",
+          "predictions": 2446,
+          "truncated": false,
+          "image_sha256": "925a66f3744cddb2d1131f0dae7376a501dfef5da332c962c653f8008948da3f",
+          "metrics": null
+        },
+        {
+          "id": "physical-000107-04",
+          "predictions": 2715,
+          "truncated": false,
+          "image_sha256": "b6b2ba241f5415a75683d664161e33e90dab3ce662de2ea15195a5f5e51a32fd",
+          "metrics": null
+        },
+        {
+          "id": "physical-000107-05",
+          "predictions": 4293,
+          "truncated": false,
+          "image_sha256": "062844dbcdd46f195ec32c332ab220cbd9189fb17b47299edb23c28037325941",
+          "metrics": null
+        },
+        {
+          "id": "physical-000107-06",
+          "predictions": 2648,
+          "truncated": false,
+          "image_sha256": "cc96b7a0bffa9484e09d091fa3c62244f5843131fa85a38cd7917a71c05f009b",
+          "metrics": null
+        }
+      ]
+    },
+    {
+      "name": "sigma20-mixed",
+      "threshold": 0.7,
+      "checkpoint_sha256": "86f6dd41c4250173b618338f5ce1d7d1f5acdb0e8583979e56f1a028210a2913",
+      "external": [
+        {
+          "id": "physical-000066-04",
+          "predictions": 2042,
+          "truncated": false,
+          "image_sha256": "6c4ffcde916b7247502927272ab20797cb5b9994908fbb1e49580dcbbb3582f5",
+          "metrics": null
+        },
+        {
+          "id": "physical-000066-05",
+          "predictions": 2236,
+          "truncated": false,
+          "image_sha256": "c4ca33a881cda91e0e522eb2157e46f1a821e8da03595c9cec190d7a2c34803d",
+          "metrics": null
+        },
+        {
+          "id": "physical-000066-06",
+          "predictions": 2031,
+          "truncated": false,
+          "image_sha256": "1b9e2d058bceb3e7f96464be48085aaa62c80d98b522cdcdccc1292ba2dfdf6b",
+          "metrics": null
+        },
+        {
+          "id": "physical-000077-04",
+          "predictions": 2030,
+          "truncated": false,
+          "image_sha256": "047c8e338832302fcbf2c496f5cf1b0b3dacaea32c5d06c74ecb6d194a478ec7",
+          "metrics": null
+        },
+        {
+          "id": "physical-000077-05",
+          "predictions": 2224,
+          "truncated": false,
+          "image_sha256": "3d0a5b126b879d954d92b3ea8beb2d9e1820b8b080eae8acfb445fd119940de8",
+          "metrics": null
+        },
+        {
+          "id": "physical-000077-06",
+          "predictions": 1852,
+          "truncated": false,
+          "image_sha256": "764608fdbce4fcbbd4d4c783f084320e0e91023ee9191d3b8b13764e1fa07746",
+          "metrics": null
+        },
+        {
+          "id": "physical-000085-04",
+          "predictions": 1998,
+          "truncated": false,
+          "image_sha256": "97db1c078384d7e450d803626fc454ec0bd25b4e4a6df2b0cfb4f651352505c6",
+          "metrics": null
+        },
+        {
+          "id": "physical-000085-05",
+          "predictions": 2173,
+          "truncated": false,
+          "image_sha256": "18c31ba7fb9206ee4facd07906c15c451c87987fc0fb6d6d47c46401a65fcbe9",
+          "metrics": null
+        },
+        {
+          "id": "physical-000085-06",
+          "predictions": 892,
+          "truncated": false,
+          "image_sha256": "925a66f3744cddb2d1131f0dae7376a501dfef5da332c962c653f8008948da3f",
+          "metrics": null
+        },
+        {
+          "id": "physical-000107-04",
+          "predictions": 2088,
+          "truncated": false,
+          "image_sha256": "b6b2ba241f5415a75683d664161e33e90dab3ce662de2ea15195a5f5e51a32fd",
+          "metrics": null
+        },
+        {
+          "id": "physical-000107-05",
+          "predictions": 2231,
+          "truncated": false,
+          "image_sha256": "062844dbcdd46f195ec32c332ab220cbd9189fb17b47299edb23c28037325941",
+          "metrics": null
+        },
+        {
+          "id": "physical-000107-06",
+          "predictions": 2114,
+          "truncated": false,
+          "image_sha256": "cc96b7a0bffa9484e09d091fa3c62244f5843131fa85a38cd7917a71c05f009b",
+          "metrics": null
+        }
+      ]
+    },
+    {
+      "name": "nooffset-mixed",
+      "threshold": 0.7,
+      "checkpoint_sha256": "b82abcbfc44a6785fe8d8ea299819bc9f594a90483e780e6cbf3a62df1cbff01",
+      "external": [
+        {
+          "id": "physical-000066-04",
+          "predictions": 2514,
+          "truncated": false,
+          "image_sha256": "6c4ffcde916b7247502927272ab20797cb5b9994908fbb1e49580dcbbb3582f5",
+          "metrics": null
+        },
+        {
+          "id": "physical-000066-05",
+          "predictions": 3068,
+          "truncated": false,
+          "image_sha256": "c4ca33a881cda91e0e522eb2157e46f1a821e8da03595c9cec190d7a2c34803d",
+          "metrics": null
+        },
+        {
+          "id": "physical-000066-06",
+          "predictions": 2210,
+          "truncated": false,
+          "image_sha256": "1b9e2d058bceb3e7f96464be48085aaa62c80d98b522cdcdccc1292ba2dfdf6b",
+          "metrics": null
+        },
+        {
+          "id": "physical-000077-04",
+          "predictions": 2496,
+          "truncated": false,
+          "image_sha256": "047c8e338832302fcbf2c496f5cf1b0b3dacaea32c5d06c74ecb6d194a478ec7",
+          "metrics": null
+        },
+        {
+          "id": "physical-000077-05",
+          "predictions": 3012,
+          "truncated": false,
+          "image_sha256": "3d0a5b126b879d954d92b3ea8beb2d9e1820b8b080eae8acfb445fd119940de8",
+          "metrics": null
+        },
+        {
+          "id": "physical-000077-06",
+          "predictions": 2377,
+          "truncated": false,
+          "image_sha256": "764608fdbce4fcbbd4d4c783f084320e0e91023ee9191d3b8b13764e1fa07746",
+          "metrics": null
+        },
+        {
+          "id": "physical-000085-04",
+          "predictions": 2518,
+          "truncated": false,
+          "image_sha256": "97db1c078384d7e450d803626fc454ec0bd25b4e4a6df2b0cfb4f651352505c6",
+          "metrics": null
+        },
+        {
+          "id": "physical-000085-05",
+          "predictions": 3088,
+          "truncated": false,
+          "image_sha256": "18c31ba7fb9206ee4facd07906c15c451c87987fc0fb6d6d47c46401a65fcbe9",
+          "metrics": null
+        },
+        {
+          "id": "physical-000085-06",
+          "predictions": 1933,
+          "truncated": false,
+          "image_sha256": "925a66f3744cddb2d1131f0dae7376a501dfef5da332c962c653f8008948da3f",
+          "metrics": null
+        },
+        {
+          "id": "physical-000107-04",
+          "predictions": 2475,
+          "truncated": false,
+          "image_sha256": "b6b2ba241f5415a75683d664161e33e90dab3ce662de2ea15195a5f5e51a32fd",
+          "metrics": null
+        },
+        {
+          "id": "physical-000107-05",
+          "predictions": 2996,
+          "truncated": false,
+          "image_sha256": "062844dbcdd46f195ec32c332ab220cbd9189fb17b47299edb23c28037325941",
+          "metrics": null
+        },
+        {
+          "id": "physical-000107-06",
+          "predictions": 2337,
+          "truncated": false,
+          "image_sha256": "cc96b7a0bffa9484e09d091fa3c62244f5843131fa85a38cd7917a71c05f009b",
+          "metrics": null
+        }
+      ]
+    },
+    {
+      "name": "disk-mixed",
+      "threshold": 0.7,
+      "checkpoint_sha256": "9ef48c670ffad56cfecb62726c42a9409f2857486b84ee92542ae1f1b00527bf",
+      "external": [
+        {
+          "id": "physical-000066-04",
+          "predictions": 2402,
+          "truncated": false,
+          "image_sha256": "6c4ffcde916b7247502927272ab20797cb5b9994908fbb1e49580dcbbb3582f5",
+          "metrics": null
+        },
+        {
+          "id": "physical-000066-05",
+          "predictions": 2356,
+          "truncated": false,
+          "image_sha256": "c4ca33a881cda91e0e522eb2157e46f1a821e8da03595c9cec190d7a2c34803d",
+          "metrics": null
+        },
+        {
+          "id": "physical-000066-06",
+          "predictions": 2073,
+          "truncated": false,
+          "image_sha256": "1b9e2d058bceb3e7f96464be48085aaa62c80d98b522cdcdccc1292ba2dfdf6b",
+          "metrics": null
+        },
+        {
+          "id": "physical-000077-04",
+          "predictions": 2423,
+          "truncated": false,
+          "image_sha256": "047c8e338832302fcbf2c496f5cf1b0b3dacaea32c5d06c74ecb6d194a478ec7",
+          "metrics": null
+        },
+        {
+          "id": "physical-000077-05",
+          "predictions": 2359,
+          "truncated": false,
+          "image_sha256": "3d0a5b126b879d954d92b3ea8beb2d9e1820b8b080eae8acfb445fd119940de8",
+          "metrics": null
+        },
+        {
+          "id": "physical-000077-06",
+          "predictions": 2256,
+          "truncated": false,
+          "image_sha256": "764608fdbce4fcbbd4d4c783f084320e0e91023ee9191d3b8b13764e1fa07746",
+          "metrics": null
+        },
+        {
+          "id": "physical-000085-04",
+          "predictions": 2391,
+          "truncated": false,
+          "image_sha256": "97db1c078384d7e450d803626fc454ec0bd25b4e4a6df2b0cfb4f651352505c6",
+          "metrics": null
+        },
+        {
+          "id": "physical-000085-05",
+          "predictions": 2347,
+          "truncated": false,
+          "image_sha256": "18c31ba7fb9206ee4facd07906c15c451c87987fc0fb6d6d47c46401a65fcbe9",
+          "metrics": null
+        },
+        {
+          "id": "physical-000085-06",
+          "predictions": 1449,
+          "truncated": false,
+          "image_sha256": "925a66f3744cddb2d1131f0dae7376a501dfef5da332c962c653f8008948da3f",
+          "metrics": null
+        },
+        {
+          "id": "physical-000107-04",
+          "predictions": 2413,
+          "truncated": false,
+          "image_sha256": "b6b2ba241f5415a75683d664161e33e90dab3ce662de2ea15195a5f5e51a32fd",
+          "metrics": null
+        },
+        {
+          "id": "physical-000107-05",
+          "predictions": 2375,
+          "truncated": false,
+          "image_sha256": "062844dbcdd46f195ec32c332ab220cbd9189fb17b47299edb23c28037325941",
+          "metrics": null
+        },
+        {
+          "id": "physical-000107-06",
+          "predictions": 2214,
+          "truncated": false,
+          "image_sha256": "cc96b7a0bffa9484e09d091fa3c62244f5843131fa85a38cd7917a71c05f009b",
+          "metrics": null
+        }
+      ]
+    }
+  ]
+}
