@@ -1,0 +1,83 @@
+{
+  "purpose": "ECG generated-paper model experiment",
+  "requested_gpu": "NVIDIA A40",
+  "catalog_hourly_gpu_usd": 0.59,
+  "temporary_disk_gb": 50,
+  "bundle_sha256": "0dd034c8c04a7ca4331dc7dddf6ea2080cf368f1fcee7f25f5dd6a47fd05a6c2",
+  "events": [
+    {
+      "event": "capacity",
+      "time": 1792587090.2364326,
+      "availability": "MEDIUM",
+      "price": {
+        "community": 0.35,
+        "secure": 0.59,
+        "serverless": 1.22
+      },
+      "data_centers": [
+        {
+          "availability": "LOW",
+          "id": "CA-MTL-1",
+          "name": "CA-MTL-1"
+        },
+        {
+          "availability": "LOW",
+          "id": "EU-SE-1",
+          "name": "EU-SE-1"
+        }
+      ]
+    },
+    {
+      "event": "created",
+      "time": 1792587091.2022111,
+      "pod_id": "22futphnvi5oiw"
+    },
+    {
+      "event": "read_back",
+      "time": 1792587091.613134,
+      "id": "22futphnvi5oiw",
+      "status": "RUNNING",
+      "image": "runpod/pytorch:1.0.2-cu1281-torch280-ubuntu2404",
+      "disk": 50,
+      "cloud": "SECURE",
+      "dataCenterId": "CA-MTL-1",
+      "cost": 0.59,
+      "ports": [
+        "8000/http"
+      ]
+    },
+    {
+      "event": "boot_status",
+      "time": 1792587096.6014926,
+      "status": "RUNNING"
+    },
+    {
+      "event": "external_health_verified",
+      "time": 1792587117.2395077,
+      "gpu": "NVIDIA A40, 49140 MiB, 595.91.07",
+      "state": "ready"
+    },
+    {
+      "event": "error",
+      "time": 1792587117.3703494,
+      "message": "HTTPError: 404 Client Error: Not Found for url: https://22futphnvi5oiw-8000.proxy.runpod.net/upload"
+    },
+    {
+      "event": "deletion_read_back",
+      "time": 1792587118.4305456,
+      "pod_id": "22futphnvi5oiw",
+      "absent": true,
+      "other_pods_unchanged": [
+        {
+          "id": "66b03wurfx1l3t",
+          "status": "EXITED"
+        }
+      ]
+    }
+  ],
+  "pod_id": "22futphnvi5oiw",
+  "proxy_url": "https://22futphnvi5oiw-8000.proxy.runpod.net",
+  "experiment_status": "failed",
+  "deleted_confirmed": true,
+  "failure_reason": "Runpod HTTP proxy returned 404 on upload immediately after successful authenticated health read"
+}

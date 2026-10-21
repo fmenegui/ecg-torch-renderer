@@ -1,0 +1,115 @@
+{
+  "schema": "ecg-kaggle-paper-transfer-v1",
+  "status": "completed",
+  "device": "cuda",
+  "precision": "float32",
+  "profile": "single",
+  "input_manifest_sha256": "64231b741770549a47850858c0a229db11fe134abe67115aa512b485c0d52f0d",
+  "weights_changed": false,
+  "training_performed": false,
+  "assumed_layout": "3x4+r1",
+  "metric": "same missing-aware +/-100 ms comparison as npj arms",
+  "full_ensemble_limit": "Stage0/1 geometry is shared by single and full profiles",
+  "cases": [
+    {
+      "name": "standard",
+      "image_sha256": "904cdb184a9a221516c09a83baeed41a99c11860ba7d3be08177fec39558948b",
+      "layout_assumption_matches_input": true,
+      "status": "failed",
+      "error": "ValueError: Fewer than four document references were detected",
+      "peak_gpu_allocated_bytes": 1563579392,
+      "last_network_stage": 0,
+      "wall_seconds": 0.44069311500061303
+    },
+    {
+      "name": "without-rhythm",
+      "image_sha256": "32d8cf0086ac8416dbb81c9ca56460139f45b7d7b3cdb5f802234f9f9f1a96fc",
+      "layout_assumption_matches_input": false,
+      "status": "failed",
+      "error": "ValueError: Fewer than four document references were detected",
+      "peak_gpu_allocated_bytes": 1563579392,
+      "last_network_stage": 0,
+      "wall_seconds": 0.4229066319821868
+    },
+    {
+      "name": "six-rows",
+      "image_sha256": "1342b85f2c09a129702459ddb915dceb5ca24549c6e0e0c70bcab68757ee6183",
+      "layout_assumption_matches_input": false,
+      "status": "failed",
+      "error": "ValueError: Fewer than four document references were detected",
+      "peak_gpu_allocated_bytes": 1563579392,
+      "last_network_stage": 0,
+      "wall_seconds": 0.4381972330156714
+    },
+    {
+      "name": "portrait",
+      "image_sha256": "6af758cb70faed7563cd0fa9aadcfb16965a4de86bb6f9c862ea858224448ccd",
+      "layout_assumption_matches_input": false,
+      "status": "failed",
+      "error": "ValueError: Fewer than four document references were detected",
+      "peak_gpu_allocated_bytes": 3484038144,
+      "last_network_stage": 0,
+      "wall_seconds": 1.0372007210098673
+    },
+    {
+      "name": "cabrera",
+      "image_sha256": "f16a02aec7ac029766df2112ed0c22c9ab2c17553aa4d88a3f7c098fdd033f2a",
+      "layout_assumption_matches_input": false,
+      "status": "failed",
+      "error": "ValueError: Fewer than four document references were detected",
+      "peak_gpu_allocated_bytes": 1563579392,
+      "last_network_stage": 0,
+      "wall_seconds": 0.44597325299400836
+    },
+    {
+      "name": "gain-5",
+      "image_sha256": "6a3ff6dce0ab1dcb73cf22d3461773c271e536940fd95fb1c6d09778839cc747",
+      "layout_assumption_matches_input": true,
+      "status": "failed",
+      "error": "ValueError: Fewer than four document references were detected",
+      "peak_gpu_allocated_bytes": 1563579392,
+      "last_network_stage": 0,
+      "wall_seconds": 0.44832367802155204
+    },
+    {
+      "name": "speed-50",
+      "image_sha256": "f5b607e584355182cc1abc416c2fcec7b89b739f3486efd5ac525a44303b2ed8",
+      "layout_assumption_matches_input": true,
+      "status": "failed",
+      "error": "ValueError: Fewer than four document references were detected",
+      "peak_gpu_allocated_bytes": 1563579392,
+      "last_network_stage": 0,
+      "wall_seconds": 0.4370429959963076
+    },
+    {
+      "name": "phone",
+      "image_sha256": "78011cd5514dfda0c59d1352e39ffcda6b70f4bd0638da5ba9828f0ff02f1eca",
+      "layout_assumption_matches_input": true,
+      "status": "failed",
+      "error": "ValueError: Fewer than four document references were detected",
+      "peak_gpu_allocated_bytes": 1563579392,
+      "last_network_stage": 0,
+      "wall_seconds": 0.46865669498220086
+    },
+    {
+      "name": "offline-flat",
+      "image_sha256": "927f21757407b5515d6481e41b9f8c705c2e1270172f0bb7ae0353e7c01184f8",
+      "layout_assumption_matches_input": true,
+      "status": "failed",
+      "error": "ValueError: Fewer than four document references were detected",
+      "peak_gpu_allocated_bytes": 1563579392,
+      "last_network_stage": 0,
+      "wall_seconds": 0.4493590070051141
+    },
+    {
+      "name": "offline-fold",
+      "image_sha256": "4ab08fbee05cff66bc72b2b02e36b8697447b617cd0ee39cf705aa098756f786",
+      "layout_assumption_matches_input": false,
+      "status": "failed",
+      "error": "ValueError: Fewer than four document references were detected",
+      "peak_gpu_allocated_bytes": 1563579392,
+      "last_network_stage": 0,
+      "wall_seconds": 0.4510495209833607
+    }
+  ]
+}

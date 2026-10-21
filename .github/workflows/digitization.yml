@@ -35,8 +35,8 @@ jobs:
         run: ecg-digitize fetch --assets build/reference-assets
       - name: Independent contract and failure-accounting tests
         run: |
-          python -m coverage run --branch -m unittest discover -s tests -p test_digitization.py -v
-          python -m ruff check ecg_gpu/digitization tests/test_digitization.py examples/prepare_digitization_reference.py examples/digitization_smoke.py --select E,F --ignore E501
+          python -m coverage run --branch -m unittest discover -s tests -p 'test_digitization*.py' -v
+          python -m ruff check ecg_gpu/digitization tests/test_digitization*.py examples/*digitization*.py examples/run_paper_experiment.py examples/report_paper_experiment.py --select E,F --ignore E501
       - name: Download one declared development fixture and waveform reference
         run: python examples/prepare_digitization_reference.py --out build/digitization-fixture --records 22 --kinds digital --metadata research/digitization-reference/patients.csv
       - name: Execute actual checkpoints through the full image-to-signal chain

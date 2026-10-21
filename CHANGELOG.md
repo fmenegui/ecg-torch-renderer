@@ -12,6 +12,12 @@
   WFDB16 checksum validation and an experimental single-sampling geometry mode.
 - Add independent numerical tests, a notebook-function parity audit and an
   actual public-checkpoint CI integration. External artifacts are not bundled.
+- Add reproducible synthetic multi-layout transfer probes for the frozen Kaggle
+  reference and the external npj Open-ECG-Digitizer, with missing-aware coverage,
+  explicit layout fallback, physical unit conversion and embedded visual reports.
+- Add calibrated arbitrary lead-region decoding with subpixel peaks, explicit
+  polarity/time ownership and gap-preserving partial observations. Add matched
+  device paper-profile controls and paired online/offline experiment inputs.
 
 ## 0.8.1
 
