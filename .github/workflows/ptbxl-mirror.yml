@@ -1,0 +1,45 @@
+name: Publish verified PTB-XL 100 Hz mirror
+on:
+  push:
+    branches: ['data/ptbxl-1.0.3-100hz']
+    paths:
+      - '.github/workflows/ptbxl-mirror.yml'
+      - 'scripts/package_ptbxl.py'
+      - 'scripts/verify_ptbxl.py'
+      - 'datasets/ptbxl/**'
+permissions:
+  contents: write
+concurrency:
+  group: ptbxl-1.0.3-100hz-release
+  cancel-in-progress: false
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Refuse to overwrite an existing release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view ptbxl-1.0.3-100hz --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo 'Release already exists. Refusing to overwrite it.'
+            exit 1
+          fi
+      - name: Download original public 100 Hz files from publisher S3
+        run: |
+          aws s3 sync s3://physionet-open/ptb-xl/1.0.3/ source/ --no-sign-request --exclude '*' --include 'records100/*' --include '*.csv' --include 'LICENSE.txt' --no-progress --only-show-errors
+      - name: Verify every record and package original bytes
+        run: |
+          python scripts/package_ptbxl.py --source source --out release
+          python scripts/verify_ptbxl.py release
+      - name: Upload draft, download and verify all release assets, then publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create ptbxl-1.0.3-100hz release/* --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --draft --title 'PTB-XL 1.0.3: original 100 Hz records' --notes-file datasets/ptbxl/README.md
+          gh release download ptbxl-1.0.3-100hz --repo "$GITHUB_REPOSITORY" --dir verified-download
+          cd verified-download
+          sha256sum -c SHA256SUMS
+          python verify_ptbxl.py .
+          gh release edit ptbxl-1.0.3-100hz --repo "$GITHUB_REPOSITORY" --draft=false --latest=false
