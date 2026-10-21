@@ -1,7 +1,10 @@
 import unittest
+
 import numpy as np
 import torch
-from ecg_gpu.digitization.field_rectifier import GridFieldNet, chart_loss, chart_lattice
+
+from ecg_gpu.digitization.field_rectifier import GridFieldNet, chart_lattice, chart_loss
+
 
 class FieldRectifierTests(unittest.TestCase):
     def test_heads_and_gradients(self):
@@ -10,7 +13,7 @@ class FieldRectifierTests(unittest.TestCase):
             model = GridFieldNet(contrast=contrast, width=4)
             result = model(torch.rand(2, 3, 33, 49))
             self.assertEqual(result['chart'].shape, (2, 2, 33, 49))
-            self.assertLessEqual(float(result['offsets'].abs().max()), .5)
+            self.assertLessEqual(float(result['offsets'].detach().abs().max()), .5)
             sum(x.square().mean() for x in result.values()).backward()
             self.assertTrue(all(torch.isfinite(p.grad).all() for p in model.parameters()))
 
@@ -20,7 +23,7 @@ class FieldRectifierTests(unittest.TestCase):
         pixel = torch.tensor([[[3.25, 2.6], [6.3, 4.2]]])
         truth = (pixel+.5)/torch.tensor([10., 8.])
         value = chart_loss(chart, truth*2-1, truth, torch.tensor([[1., 0.]]))
-        self.assertLess(float(value), 1e-10)
+        self.assertLess(float(value.detach()), 1e-10)
         value.backward()
         self.assertTrue(torch.isfinite(chart.grad).all())
 
