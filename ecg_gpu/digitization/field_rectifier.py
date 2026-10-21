@@ -4,6 +4,8 @@ No image or file operations occur in the network's forward path. The chart
 predicts major-grid coordinates, supervised only during training. Inference
 receives RGB. It does not infer gain, paper speed or lead/time ownership.
 """
+from itertools import pairwise
+
 import numpy as np
 import torch
 from torch import nn
@@ -22,7 +24,7 @@ class GridFieldNet(nn.Module):
         super().__init__()
         self.contrast = contrast
         widths = (width, width*2, width*4, width*6)
-        self.encoders = nn.ModuleList([Block(6, widths[0])]+[Block(a, b) for a, b in zip(widths, widths[1:])])
+        self.encoders = nn.ModuleList([Block(6, widths[0])]+[Block(a, b) for a, b in pairwise(widths)])
         self.context = nn.Conv2d(widths[-1], widths[-1], 1)
         self.decoders = nn.ModuleList([Block(widths[3]+widths[2], widths[2]),
                                        Block(widths[2]+widths[1], widths[1]),
