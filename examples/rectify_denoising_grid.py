@@ -1,7 +1,8 @@
 """RGB-only inference with a diverse-study multitask checkpoint.
 
-The optional restored image is a diagnostic. The geometric output always
-samples the original RGB, with explicit partial support and no extrapolation.
+The optional restored image is a diagnostic. The default output preserves the
+full input frame, with inferred geometry and a separate evidence map. Explicit
+cell cutouts are available only as a diagnostic mode.
 """
 import argparse
 import json
@@ -15,6 +16,8 @@ import torch
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from ecg_gpu.digitization.artifacts import sha256_file
 from ecg_gpu.digitization.denoising_grid import DenoisingGridNet
+from ecg_gpu.digitization.complete_rectifier import fit_complete_map, render_complete
+from ecg_gpu.digitization.cell_mesh import CellMap, cell_triangles
 from ecg_gpu.digitization.lattice import organize_lattice
 from ecg_gpu.digitization.cycle_lattice import organize_cycle_lattice
 from ecg_gpu.digitization.observation import remove_periodic_banding
@@ -25,11 +28,75 @@ from ecg_gpu.grid_point_learning import decode_grid_points
 from examples.digitization_grid_rectification import grid_remap
 
 
-def rectify(checkpoint, image, out, device='cpu', pixels_per_mm=8., profile='baseline'):
+def write_geometry_output(rgb, xy, scores, local, out, *, pixels_per_mm=8., output_mode='full'):
+    """Preserve original visible content independently of detected-cell evidence."""
+    if output_mode not in ('full', 'cells'):
+        raise ValueError('Output mode must be full or cells')
+    out = Path(out)
+    out.mkdir(parents=True, exist_ok=True)
+    chosen = np.asarray(local['selected_indices'], int)
+    ids = np.asarray(local['ids'], int).reshape(-1, 2)
+    report = {'output_mode': output_mode, 'source_for_rectification': 'original RGB'}
+    Image.fromarray(rgb).save(out/'original-rgb.png')
+    if output_mode == 'cells':
+        report['status'] = 'rejected'
+        if local['partial_status'] == 'partial':
+            canonical = ids[:, ::-1]*(5*pixels_per_mm)
+            size = (canonical.max(0)+1).astype(int)[::-1]
+            if max(size) <= 4096:
+                warped, support = grid_remap(rgb, xy[chosen], canonical, ids,
+                                            tuple(size), allowed_cells=local['cells'])
+                Image.fromarray(warped).save(out/'rectified-original-rgb.png')
+                Image.fromarray(support.astype(np.uint8)*255).save(out/'output-support.png')
+                report.update(status='partial-rectification',
+                              supported_output_canvas_fraction=float(support.mean()))
+        return report
+    mapping, fitted = fit_complete_map(xy[chosen], ids[:, ::-1]*5., ids, rgb.shape,
+                                      scores[chosen], local['cells'])
+    warped, valid, evidence, rendered, eligible = render_complete(rgb, mapping,
+        pixels_per_mm=pixels_per_mm, return_eligibility=True)
+    details = dict(fitted, **rendered)
+    if not details['resampled'] and len(ids):
+        observed = xy[chosen]
+        triangles = cell_triangles(observed, ids[:, ::-1]*5., ids, local['cells'])
+        partial = CellMap(observed, ids[:, ::-1]*5., triangles)
+        for start in range(0, rgb.shape[0], 48):
+            yy, xx = np.mgrid[start:min(start+48, rgb.shape[0]), :rgb.shape[1]]
+            keep = np.isfinite(partial(np.column_stack((xx.ravel(), yy.ravel())))).all(1)
+            eligible[start:start+len(yy)].reshape(-1)[keep] = True
+            evidence[start:start+len(yy)].reshape(-1)[keep] = 3
+        details['observed_cell_coordinates_available'] = bool(eligible.any())
+    filename = 'rectified-original-rgb.png' if details['resampled'] else 'original-preserved.png'
+    Image.fromarray(warped).save(out/filename)
+    Image.fromarray(warped).save(out/'output-original-rgb.png')
+    Image.fromarray(valid.astype(np.uint8)*255).save(out/'sampling-valid.png')
+    colors = np.array([[225, 229, 231], [227, 150, 85], [104, 160, 207], [49, 145, 109]], np.uint8)
+    Image.fromarray(colors[evidence]).save(out/'geometry-evidence.png')
+    Image.fromarray(eligible.astype(np.uint8)*255).save(out/'geometry-eligibility.png')
+    np.savez_compressed(out/'geometry-evidence.npz', sampling_valid=valid, evidence=evidence,
+                        geometric_eligibility=eligible)
+    if mapping is not None:
+        np.savez_compressed(out/'full-frame-mesh.npz', source=mapping.source,
+                            target_mm=mapping.target, triangles=mapping.triangles)
+    report.update(status='rectification-proposal' if details['resampled'] else 'original-preserved',
+        output_image=filename, complete_geometry=details, original_image='original-rgb.png',
+        geometry_accuracy_verified=False, evidence_map_erases_rgb=False,
+        sampled_map_roundtrip_checked=False,
+        coordinate_mode='complete-map-with-eligibility' if details['resampled'] else 'observed-cells-only',
+        observed_cell_coordinate_data='points.npz',
+        evidence_legend={'0': 'outside sampled frame or original unrectified',
+                         '1': 'extrapolated geometry', '2': 'interpolated geometry',
+                         '3': 'observed grid cell, not an accuracy certificate'})
+    return report
+
+
+def rectify(checkpoint, image, out, device='cpu', pixels_per_mm=8., profile='banding', output_mode='full'):
     if out.exists() and any(out.iterdir()):
         raise FileExistsError('Use an empty output directory')
     if not np.isfinite(pixels_per_mm) or pixels_per_mm <= 0:
         raise ValueError('Positive finite output density required')
+    if output_mode not in ('full', 'cells'):
+        raise ValueError('Output mode must be full or cells')
     if profile not in ('baseline', 'threshold-70', 'banding', 'banding-recall', 'geometry-recall'):
         raise ValueError('Unknown geometric inference profile')
     out.mkdir(parents=True, exist_ok=True)
@@ -107,18 +174,8 @@ def rectify(checkpoint, image, out, device='cpu', pixels_per_mm=8., profile='bas
     if state['joint']:
         restored = Image.fromarray((clean*255).round().clip(0, 255).astype(np.uint8))
         restored.resize((w, h), Image.Resampling.BILINEAR).save(out/'restored-diagnostic.png')
-    if local['partial_status'] == 'partial':
-        ids = np.asarray(local['ids'])
-        canonical = ids[:, ::-1]*(5*pixels_per_mm)
-        size = (canonical.max(0)+1).astype(int)[::-1]
-        if max(size) <= 4096:
-            warped, support = grid_remap(rgb, xy[local['selected_indices']], canonical, ids,
-                                        tuple(size), allowed_cells=local['cells'])
-            Image.fromarray(warped).save(out/'rectified-original-rgb.png')
-            Image.fromarray(support.astype(np.uint8)*255).save(out/'output-support.png')
-            report.update(status='partial-rectification', supported_output_canvas_fraction=float(support.mean()))
-        else:
-            report['error'] = 'Output extent exceeds 4096-pixel diagnostic bound'
+    report.update(write_geometry_output(rgb, xy, scores, local, out,
+        pixels_per_mm=pixels_per_mm, output_mode=output_mode))
     _write_json(out/'report.json', report)
     return report
 
@@ -129,6 +186,8 @@ if __name__ == '__main__':
         parser.add_argument('--'+key, type=Path, required=True)
     parser.add_argument('--device', choices=('cpu', 'cuda'), default='cpu')
     parser.add_argument('--pixels-per-mm', type=float, default=8.)
-    parser.add_argument('--profile', choices=('baseline', 'threshold-70', 'banding', 'banding-recall', 'geometry-recall'), default='baseline')
+    parser.add_argument('--profile', choices=('baseline', 'threshold-70', 'banding', 'banding-recall', 'geometry-recall'), default='banding')
+    parser.add_argument('--output-mode', choices=('full', 'cells'), default='full',
+                        help='Full original-RGB frame with separate evidence, or cell-only diagnostic')
     torch.set_num_threads(4)
     print(json.dumps(rectify(**vars(parser.parse_args()))))

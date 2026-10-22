@@ -50,6 +50,8 @@ def run(images, checkpoint, source, assets, out):
     summary = {'schema': 'cpu-rectification-support-audit-v1', 'device': 'cpu',
                'manifest_sha256': sha256_file(images), 'cases': len(rows),
                'ours_partial_outputs': sum(r['status'] == 'partial-rectification' for r in ours),
+               'ours_full_frame_proposals': sum(r['status'] == 'rectification-proposal' for r in ours),
+               'ours_original_preserved': sum(r['status'] == 'original-preserved' for r in ours),
                'reference_image_returns': {name: sum(r['method'] == name and r['status'] == 'returned'
                                                    for r in references) for name in ('kaggle', 'npj')},
                'complete_rectification_accuracy_measured': False,

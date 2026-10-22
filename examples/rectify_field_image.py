@@ -1,6 +1,6 @@
 """Experimental RGB-only rectification with a consolidated-study checkpoint.
 
-Outputs preserve missing geometric support. The model assumes the detected
+Outputs preserve visible RGB and report missing geometric evidence. The model assumes the detected
 points belong to a 5 mm major grid. Gain, speed, layout and global injectivity
 are not inferred or certified by this command.
 """
@@ -20,10 +20,10 @@ from ecg_gpu.digitization.field_rectifier import GridFieldNet, chart_lattice
 from ecg_gpu.digitization.lattice import organize_lattice
 from ecg_gpu.digitization.runner import _write_json
 from ecg_gpu.grid_point_learning import decode_grid_points
-from examples.digitization_grid_rectification import grid_remap, save_rgb
+from examples.rectify_denoising_grid import write_geometry_output
 
 
-def rectify(checkpoint, image_path, out, *, device='cpu', pixels_per_mm=8.):
+def rectify(checkpoint, image_path, out, *, device='cpu', pixels_per_mm=8., output_mode='full'):
     if not np.isfinite(pixels_per_mm) or pixels_per_mm <= 0:
         raise ValueError('Positive finite display density required')
     out=Path(out)
@@ -61,18 +61,9 @@ def rectify(checkpoint, image_path, out, *, device='cpu', pixels_per_mm=8.):
         'assumed_major_grid_mm':5.,'display_pixels_per_mm':pixels_per_mm,'topology':topology,
         'gain_inferred':False,'paper_speed_inferred':False,'status':'rejected'}
     np.savez_compressed(out/'points.npz',xy=xy,scores=scores,chart=chart)
-    if topology['status']=='accepted' and len(topology['cells'])>=16:
-        ids=np.asarray(topology['ids'])
-        canonical=ids[:,::-1]*(5*pixels_per_mm)
-        size=np.maximum(512,(canonical.max(0)+1).astype(int))[::-1]
-        if max(size)>4096:
-            report['error']='Inferred extent exceeds the 4096px diagnostic bound'
-        else:
-            warped,support=grid_remap(rgb,xy[topology['selected_indices']],canonical,ids,
-                tuple(size),allowed_cells=topology['cells'])
-            report.update(status='rectified',output_sha256=save_rgb(out/'rectified.png',warped),
-                          supported_pixel_fraction=float(support.mean()))
-            np.savez_compressed(out/'support.npz',valid=support)
+    local=dict(topology,partial_status='partial' if len(topology['cells'])>=16 else 'rejected')
+    report.update(write_geometry_output(rgb,xy,scores,local,out,
+        pixels_per_mm=pixels_per_mm,output_mode=output_mode))
     _write_json(out/'report.json',report)
     return report
 
@@ -83,7 +74,8 @@ if __name__=='__main__':
         p.add_argument('--'+name,type=Path,required=True)
     p.add_argument('--device',choices=('cpu','cuda'),default='cpu')
     p.add_argument('--pixels-per-mm',type=float,default=8.)
+    p.add_argument('--output-mode',choices=('full','cells'),default='full')
     a=p.parse_args()
     torch.set_num_threads(4)
-    result=rectify(a.checkpoint,a.image,a.out,device=a.device,pixels_per_mm=a.pixels_per_mm)
+    result=rectify(a.checkpoint,a.image,a.out,device=a.device,pixels_per_mm=a.pixels_per_mm,output_mode=a.output_mode)
     print(json.dumps({key:result[key] for key in ('status','variant','threshold')}))

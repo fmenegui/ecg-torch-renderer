@@ -1,0 +1,161 @@
+{
+  "selected_radius": 0.75,
+  "engineering_error_threshold_mm": 0.5,
+  "new_independent_test": false,
+  "physical_scale_fitted_for_evaluation": false,
+  "rgb_preservation": "Full-frame sampled RGB on accepted maps, exact original RGB on rejection",
+  "coordinate_fallback": "Previous partial coordinate field retained independently of visible RGB",
+  "splits": {
+    "validation": {
+      "images": 48,
+      "patients": 6,
+      "baseline": {
+        "offline": {
+          "good_coverage": 0.49481201171875,
+          "wrong_covered_fraction": 0.014994303385416666,
+          "covered_fraction": 0.5098063151041666
+        },
+        "torch-cached": {
+          "good_coverage": 0.8882853190104166,
+          "wrong_covered_fraction": 0.00783962673611111,
+          "covered_fraction": 0.8961249457465278
+        },
+        "backend_balanced": {
+          "good_coverage": 0.6915486653645833,
+          "wrong_covered_fraction": 0.011416965060763888,
+          "covered_fraction": 0.7029656304253472
+        }
+      },
+      "eligible_coordinates": {
+        "offline": {
+          "good_coverage": 0.5421142578125,
+          "wrong_covered_fraction": 0.02288818359375,
+          "covered_fraction": 0.56500244140625
+        },
+        "torch-cached": {
+          "good_coverage": 0.902004665798611,
+          "wrong_covered_fraction": 0.008416069878472222,
+          "covered_fraction": 0.9104207356770833
+        },
+        "backend_balanced": {
+          "good_coverage": 0.7220594618055556,
+          "wrong_covered_fraction": 0.015652126736111112,
+          "covered_fraction": 0.7377115885416666
+        }
+      },
+      "all_proposed_coordinates": {
+        "offline": {
+          "good_coverage": 0.5699462890625,
+          "wrong_covered_fraction": 0.046000162760416664,
+          "covered_fraction": 0.6159464518229166
+        },
+        "torch-cached": {
+          "good_coverage": 0.9112074110243057,
+          "wrong_covered_fraction": 0.016418457031250003,
+          "covered_fraction": 0.9276258680555557
+        },
+        "backend_balanced": {
+          "good_coverage": 0.7405768500434029,
+          "wrong_covered_fraction": 0.031209309895833336,
+          "covered_fraction": 0.7717861599392362
+        }
+      },
+      "full_map_proposals": 27,
+      "original_frame_fallbacks": 21,
+      "reasons": {
+        "complete map accepted": 27,
+        "no orientation-preserving completion of a grid gap": 18,
+        "insufficient 2D grid evidence": 2,
+        "complete map cannot be indexed safely": 1
+      },
+      "paired_patient_bootstrap_95_delta": {
+        "good_coverage": [
+          0.009219699435763914,
+          0.052481587727863634
+        ],
+        "wrong_covered_fraction": [
+          0.0004340277777777778,
+          0.008748372395833334
+        ]
+      },
+      "roundtrip_max_px": 4.61658157843134e-12,
+      "case_gains_above_1_percentage_point": 12,
+      "case_losses_below_minus_1_percentage_point": 0
+    },
+    "test": {
+      "images": 48,
+      "patients": 6,
+      "baseline": {
+        "offline": {
+          "good_coverage": 0.435302734375,
+          "wrong_covered_fraction": 0.014261881510416666,
+          "covered_fraction": 0.4495646158854167
+        },
+        "torch-cached": {
+          "good_coverage": 0.8712632921006943,
+          "wrong_covered_fraction": 0.03432888454861111,
+          "covered_fraction": 0.9055921766493055
+        },
+        "backend_balanced": {
+          "good_coverage": 0.6532830132378471,
+          "wrong_covered_fraction": 0.024295383029513888,
+          "covered_fraction": 0.677578396267361
+        }
+      },
+      "eligible_coordinates": {
+        "offline": {
+          "good_coverage": 0.4821573893229167,
+          "wrong_covered_fraction": 0.022257486979166668,
+          "covered_fraction": 0.5044148763020834
+        },
+        "torch-cached": {
+          "good_coverage": 0.8950670030381945,
+          "wrong_covered_fraction": 0.03659396701388889,
+          "covered_fraction": 0.9316609700520834
+        },
+        "backend_balanced": {
+          "good_coverage": 0.6886121961805556,
+          "wrong_covered_fraction": 0.029425726996527776,
+          "covered_fraction": 0.7180379231770834
+        }
+      },
+      "all_proposed_coordinates": {
+        "offline": {
+          "good_coverage": 0.52288818359375,
+          "wrong_covered_fraction": 0.2629597981770833,
+          "covered_fraction": 0.7858479817708333
+        },
+        "torch-cached": {
+          "good_coverage": 0.9056532118055555,
+          "wrong_covered_fraction": 0.04949273003472222,
+          "covered_fraction": 0.9551459418402777
+        },
+        "backend_balanced": {
+          "good_coverage": 0.7142706976996527,
+          "wrong_covered_fraction": 0.15622626410590276,
+          "covered_fraction": 0.8704969618055555
+        }
+      },
+      "full_map_proposals": 32,
+      "original_frame_fallbacks": 16,
+      "reasons": {
+        "complete map accepted": 32,
+        "no orientation-preserving completion of a grid gap": 15,
+        "complete map cannot be indexed safely": 1
+      },
+      "paired_patient_bootstrap_95_delta": {
+        "good_coverage": [
+          0.01104397243923605,
+          0.06983100043402772
+        ],
+        "wrong_covered_fraction": [
+          0.0023871527777777745,
+          0.007873535156249998
+        ]
+      },
+      "roundtrip_max_px": 1.0454554069021994e-11,
+      "case_gains_above_1_percentage_point": 21,
+      "case_losses_below_minus_1_percentage_point": 0
+    }
+  }
+}

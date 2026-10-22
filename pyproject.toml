@@ -14,8 +14,8 @@ dev = ["coverage>=7.6,<8", "ruff>=0.11,<1"]
 wfdb = ["wfdb>=4.1"]
 pathtrace = ["mitsuba>=3.9,<4"]
 yolo = ["ultralytics>=8.3,<9"]
-benchmark = ["scipy>=1.10,<2"]
-digitization = ["scipy>=1.10,<2", "pandas>=2.2,<4", "timm==1.0.22", "opencv-python-headless>=4.11,<5", "connected-components-3d>=3.26,<4"]
+benchmark = ["scipy>=1.10,<2", "shapely>=2.1,<2.2"]
+digitization = ["scipy>=1.10,<2", "shapely>=2.1,<2.2", "pandas>=2.2,<4", "timm==1.0.22", "opencv-python-headless>=4.11,<5", "connected-components-3d>=3.26,<4"]
 
 [project.scripts]
 ecg-render = "ecg_gpu.gpu_cli:main"
