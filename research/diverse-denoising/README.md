@@ -1,8 +1,9 @@
 # Diverse offline captures and joint point / restoration learning
 
-This is an active experiment. Targets and training scripts are implemented.
-No completed larger training result is claimed until the server outputs are
-recovered and verified. Current execution status is recorded separately.
+The larger execution completed. All 10,240 captures, four 10,000-step models,
+and four synthetic test evaluations were recovered. Model hashes were verified.
+Measured results are in `results/summary.json` and `results/README.md`.
+This does not establish real-photo generalization or superiority over references.
 
 ## Bank specification
 
@@ -122,8 +123,8 @@ two-model engineering smoke before the full study. Smoke patients overlap the
 full cohort and do not constitute an independent benchmark.
 
 The live catalog read selected one Secure Cloud A40 at USD 0.59/hour in
-CA-MTL-1. A 50 GB high-performance volume stores bank/checkpoints. The current
-owned pod is `rl2ouqsgfgedwe` and the volume is `wxt8cq1hh1`. Do not modify the
+CA-MTL-1. A 50 GB high-performance volume stores bank/checkpoints. The execution
+owned pod was `rl2ouqsgfgedwe` and the volume is `wxt8cq1hh1`. Do not modify the
 user's original stopped A4000 pod. A controller bounds compute duration and
 removes its own GPU after recovery. The volume remains for reuse of the public dataset, cached bank and
 checkpoints. It is not deleted by this training controller. Actual final resource state must be read back before reporting it.
@@ -145,3 +146,7 @@ License: Creative Commons Attribution 4.0.
 Citation: Wagner et al., PTB-XL, doi:10.13026/kfzx-aw45.
 
 Two additional patient-bootstrap tests pass after that integration run.
+
+## Final recovery
+
+The GPU remained running after the job finished because automatic controller cleanup did not occur. Local workspace maintenance removed the controller artifacts. Recovery read the persistent volume, verified all four model hashes, and independently confirmed the pod was `EXITED` after stopping it. The volume `wxt8cq1hh1` remains for the source data, complete capture bank and checkpoints. Gallery examples show substantial partial-rectification failures despite high point F1. External reference inference ran, but no fair scored superiority comparison has been completed.
