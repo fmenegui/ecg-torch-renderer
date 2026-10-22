@@ -1,0 +1,300 @@
+{
+  "date": "2026-10-22",
+  "source_policy": "Primary publications, official code/docs and official write-ups. Access depth explicit. No downloaded third-party full text redistributed.",
+  "entries": [
+    {
+      "id": "npj",
+      "title": "ECG digitization, Stenhede et al.",
+      "primary_url": "https://www.nature.com/articles/s41746-025-02327-1",
+      "engineering_reading": "Main Hough/projective method is distinct from the explicitly experimental TPS branch.",
+      "access": "Full official Europe PMC XML read by research agent, primary code read. Nature direct access redirected.",
+      "code_commit": "97a15087d4abcda843da8c58ee74b1d8f47e6f9a",
+      "official_repository": "https://github.com/Ahus-AIM/Open-ECG-Digitizer",
+      "fulltext_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12891466/fullTextXML"
+    },
+    {
+      "id": "dotter-patent",
+      "title": "Methods for generating an image of a graphical representation",
+      "primary_url": "https://patents.google.com/patent/US20240144417A1/en",
+      "engineering_reading": "Point graph/cells, missing-vertex regression and original per-cell sampling are prior art.",
+      "access": "Description and claims read, no proprietary executable established.",
+      "family": [
+        "WO2022184740A1",
+        "EP4302256B1",
+        "US12614244B2"
+      ],
+      "inventors": [
+        "Simon Rovder",
+        "Martin Herman",
+        "Robert Herman",
+        "Viktor Jurasek",
+        "Timotej Palus"
+      ]
+    },
+    {
+      "id": "leader-paper",
+      "title": "High precision ECG digitization using artificial intelligence",
+      "primary_url": "https://doi.org/10.1016/j.jelectrocard.2025.153900",
+      "engineering_reading": "Leader segments waveforms. Dotter/Gridder/Undistortion normalize geometry. Historical Lauder reference points to Leader.",
+      "access": "Published primary indexed text and preprint methods read. Direct original pages blocked in this environment.",
+      "preprint": "https://www.medrxiv.org/content/10.1101/2024.08.31.24312876v1.full"
+    },
+    {
+      "id": "waveform-patent",
+      "title": "Systems and methods for extracting waveforms from a digital image",
+      "primary_url": "https://patents.google.com/patent/US20260065633A1/en",
+      "engineering_reading": "Column candidates, baselines and continuity concern extraction. Patent does not use the word Leader.",
+      "access": "Primary description and claims read. Nominal linkage to Leader not established by patent.",
+      "family": [
+        "WO2026050771A1"
+      ],
+      "inventors": [
+        "Simon Rovder",
+        "Boris Vavrik",
+        "Vladimir Boza",
+        "Adam Rafajdus",
+        "Michal Hojcka"
+      ]
+    },
+    {
+      "id": "kaggle-17th-place-solution",
+      "title": "17th place solution",
+      "primary_url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/writeups/17th-place-solution",
+      "engineering_reading": "Template pose, MONAI native windows, weighted points and trace-mask auxiliary filtering.",
+      "access": "Full official public write-up read, no new model execution.",
+      "authors": "MaxChen303",
+      "source_receipt_sha256": "4f5e4c628e6f7829b9593d1cb6db60d09fef55f65da0f7bfc345a3014b9d2bfd",
+      "writeup_id": 65247,
+      "topic_id": 669887,
+      "receipt_only_full_text_not_redistributed": true
+    },
+    {
+      "id": "kaggle-1st-place-solution",
+      "title": "1st place solution",
+      "primary_url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/writeups/1st-place-solution",
+      "engineering_reading": "Subpixel weighted means, surface outlier rejection, missing-grid completion and direct original-image remapping.",
+      "access": "Full official public write-up read, no new model execution.",
+      "authors": "outrunner, Yijun, Arya, Bob, Shane Hsieh",
+      "source_receipt_sha256": "74797e5e844956446908eaed9a760315b17b158dd25007807af912e111671199",
+      "writeup_id": 65142,
+      "topic_id": 669584,
+      "receipt_only_full_text_not_redistributed": true
+    },
+    {
+      "id": "kaggle-2nd-place-solution",
+      "title": "2nd place solution",
+      "primary_url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/writeups/2nd-place-solution",
+      "engineering_reading": "Unmodified Heng stage0/1. Linear-domain SNR aggregation influenced focus on easy and medium cases.",
+      "access": "Full official public write-up read, no new model execution.",
+      "authors": "Takashi Someya",
+      "source_receipt_sha256": "cc77d62b7be5c78629f3af960f997a450637695433aaf52190b954430d6dc8da",
+      "writeup_id": 65240,
+      "topic_id": 669871,
+      "receipt_only_full_text_not_redistributed": true
+    },
+    {
+      "id": "kaggle-3rd-place-solution",
+      "title": "3rd place solution",
+      "primary_url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/writeups/3rd-place-solution",
+      "engineering_reading": "High-resolution sampling and indexed-grid refinement. Fixed template/layout assumptions.",
+      "access": "Full official public write-up read, no new model execution.",
+      "authors": "Tang",
+      "source_receipt_sha256": "3b406af5d5cfbde5c85d68d36282cc1b9ac4e82e99105c9d6d610bb6c395c7c8",
+      "writeup_id": 65167,
+      "topic_id": 669668,
+      "receipt_only_full_text_not_redistributed": true,
+      "official_repository": "https://github.com/tanghaozhe/physionet-ecg-image-digitization-3rd-place",
+      "code_commit": "f2b4ac2823007e3fb387a7e188e748ad832bb2b7"
+    },
+    {
+      "id": "kaggle-4th-place-solution",
+      "title": "4th place solution",
+      "primary_url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/writeups/4th-place-solution",
+      "engineering_reading": "Native 704-square overlap windows, joint grid/layout and global line indices with fixed classes.",
+      "access": "Full official public write-up read, no new model execution.",
+      "authors": "tomoon33",
+      "source_receipt_sha256": "5cb1ff28beff269a6d11e623a7d76b6508c2daac83a2c120af5d2d60846a64f5",
+      "writeup_id": 65250,
+      "topic_id": 669897,
+      "receipt_only_full_text_not_redistributed": true,
+      "official_repository": "https://github.com/uchiyama33/physionet_4th_place",
+      "code_commit": "d62de09e5ce5e707a71099bdd387e9e335ce4ae9"
+    },
+    {
+      "id": "kaggle-5th-place-solution",
+      "title": "5th place solution",
+      "primary_url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/writeups/5th-place-solution",
+      "engineering_reading": "Dense pseudo-correspondences, iterative matching and local robust K-neighbor homographies.",
+      "access": "Full official public write-up read, no new model execution.",
+      "authors": "Đăng Nguyễn Hồng",
+      "source_receipt_sha256": "164652d4eefe7b0714d183ba3e4057cef50a11c0fcbb2172d1fea12cd445d4e3",
+      "writeup_id": 65346,
+      "topic_id": 670227,
+      "receipt_only_full_text_not_redistributed": true,
+      "official_repository": "https://github.com/dangnh0611/kaggle_ecg_digitization",
+      "code_commit": "8358d5b09a5b9519275e9b54c11716da5752a9d6"
+    },
+    {
+      "id": "kaggle-9th-place-solution",
+      "title": "9th place solution",
+      "primary_url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/writeups/9th-place-solution",
+      "engineering_reading": "ALIKED/LightGlue and RANSAC template pose before grid refinement.",
+      "access": "Full official public write-up read, no new model execution.",
+      "authors": "YumeNeko",
+      "source_receipt_sha256": "579e5258dfe05d56e66215e0943d4512bdd177b573ecf6d176becb5e818ffcbb",
+      "writeup_id": 65330,
+      "topic_id": 670169,
+      "receipt_only_full_text_not_redistributed": true
+    },
+    {
+      "id": "uvdoc",
+      "title": "UVDoc",
+      "primary_url": "https://arxiv.org/abs/2302.02887",
+      "engineering_reading": "Coarse 2D/3D mesh predicts sampling coordinates. Does not establish metric ECG aspect.",
+      "access": "Primary method and official training/demo code read. Checkpoint exists in tree, not downloaded.",
+      "code_commit": "4c9b82b537057aff2526e6dd118a847cdd072e82",
+      "official_repository": "https://github.com/tanguymagne/UVDoc"
+    },
+    {
+      "id": "syntheticdoc",
+      "title": "SyntheticDoc",
+      "primary_url": "https://arxiv.org/html/2609.15503v1",
+      "engineering_reading": "Physical deformation data and lightweight baseline favor testing data quality. ECG transfer unmeasured.",
+      "access": "Full primary paper and official code/docs read. Weights not executed.",
+      "code_commit": "aabd9cf05f479781df432e3bd7e940f3e6716dbd",
+      "official_repository": "https://github.com/tanguymagne/SyntheticDoc"
+    },
+    {
+      "id": "d2dewarp",
+      "title": "D2Dewarp",
+      "primary_url": "https://arxiv.org/html/2507.08492v2",
+      "engineering_reading": "Dual H/V line evidence and backward map are established.",
+      "access": "Primary methods and official model/train/predict code read.",
+      "code_commit": "1105c0f0e44404d9a8dedb78f689078dba42221c",
+      "official_repository": "https://github.com/xiaomore/D2Dewarp"
+    },
+    {
+      "id": "aadd",
+      "title": "AADD",
+      "primary_url": "https://arxiv.org/html/2507.15000v1",
+      "engineering_reading": "UV axial alignment and ROI-based second pass are prior art.",
+      "access": "Primary method and official README read. Full inference release still coming soon at pin.",
+      "code_commit": "7f8b5ec683589babfe8302106e1b96ca71b69bc4",
+      "official_repository": "https://github.com/chaoyunwang/AADD"
+    },
+    {
+      "id": "dvd",
+      "title": "DvD",
+      "primary_url": "https://arxiv.org/html/2505.21975v2",
+      "engineering_reading": "Diffusion of coordinates followed by original RGB sampling. Generalization and cost need measurement.",
+      "access": "Full primary paper, official docs and validation code read.",
+      "code_commit": "db87dd2f9f7a7ab1dc3f3c2d86df0fd60460160b",
+      "official_repository": "https://github.com/hanquansanren/DvD"
+    },
+    {
+      "id": "docres",
+      "title": "DocRes",
+      "primary_url": "https://openaccess.thecvf.com/content/CVPR2024/html/Zhang_DocRes_A_Generalist_Model_Toward_Unifying_Document_Image_Restoration_Tasks_CVPR_2024_paper.html",
+      "engineering_reading": "Use geometric coordinate branch separately from appearance restoration.",
+      "access": "Primary method and official inference branch read.",
+      "code_commit": "d3e3a18c7c7ad10e4615ca2eb6a10f83128d8560",
+      "official_repository": "https://github.com/ZZZHANG-jx/DocRes"
+    },
+    {
+      "id": "docgeonet",
+      "title": "DocGeoNet",
+      "primary_url": "https://arxiv.org/abs/2210.08161",
+      "engineering_reading": "Global 3D geometry and local line evidence, without assuming ECG waves are text lines.",
+      "access": "Primary abstract and official README inspected, full code not audited.",
+      "code_commit": "ead1d371b3c6eefdc054b4d6e633e561c83ef80e",
+      "official_repository": "https://github.com/fh2019ustc/DocGeoNet"
+    },
+    {
+      "id": "dewarpnet",
+      "title": "DewarpNet",
+      "primary_url": "https://openaccess.thecvf.com/content_ICCV_2019/html/Das_DewarpNet_Single-Image_Document_Unwarping_With_Stacked_3D_and_2D_Regression_ICCV_2019_paper.html",
+      "engineering_reading": "3D shape plus 2D mapping is established.",
+      "access": "Primary abstract/method and official README inspected.",
+      "code_commit": "5f9e216535f048d98ca44bbfb5f6ea55f8cdfe13",
+      "official_repository": "https://github.com/cvlab-stonybrook/DewarpNet"
+    },
+    {
+      "id": "doctr",
+      "title": "DocTr",
+      "primary_url": "https://arxiv.org/abs/2110.12942",
+      "engineering_reading": "Geometry and illumination branches should be compared separately.",
+      "access": "Primary abstract and official README inspected, commit not pinned.",
+      "official_repository": "https://github.com/fh2019ustc/DocTr"
+    },
+    {
+      "id": "docunet",
+      "title": "DocUNet",
+      "primary_url": "https://openaccess.thecvf.com/content_cvpr_2018/html/Ma_DocUNet_Document_Image_CVPR_2018_paper.html",
+      "engineering_reading": "Historical dense dewarping baseline, not evidence of physical scale.",
+      "access": "Primary abstract inspected."
+    },
+    {
+      "id": "lattice-mrf",
+      "title": "Deformed Lattice Detection, Park et al. 2009",
+      "primary_url": "https://publications.ri.cmu.edu/deformed-lattice-detection-in-real-world-images-using-mean-shift-belief-propagation",
+      "engineering_reading": "Lattice proposals, degree-four graph and alternating registration are prior art.",
+      "access": "Author-hosted primary abstract/method read."
+    },
+    {
+      "id": "slim",
+      "title": "Scalable Locally Injective Mappings",
+      "primary_url": "https://igl.ethz.ch/projects/slim/",
+      "engineering_reading": "Sparse distortion optimization needs feasible initialization and does not certify physical truth.",
+      "access": "Author primary project and official repository read.",
+      "code_commit": "1ead3b5625b5b678ef4e1ca1a2d7f9363188b776",
+      "official_repository": "https://github.com/MichaelRabinovich/Scalable-Locally-Injective-Mappings"
+    },
+    {
+      "id": "magsacpp",
+      "title": "MAGSAC++",
+      "primary_url": "https://arxiv.org/abs/1912.05909",
+      "engineering_reading": "Robust estimator to ablate, not a cure for unobserved pitch or IDs.",
+      "access": "Primary paper and official OpenCV USAC documentation read.",
+      "code_commit": "d259f8b3a8925025e45667241fb68629b07603bb",
+      "official_repository": "https://github.com/danini/magsac"
+    },
+    {
+      "id": "digital-topology",
+      "title": "Digital diffeomorphism, Liu et al.",
+      "primary_url": "https://doi.org/10.1007/s11263-024-02047-1",
+      "engineering_reading": "Positive central-difference Jacobian alone can miss digital folds. Audit actual interpolation.",
+      "access": "Primary paper read by document agent. Root PMC browser access blocked.",
+      "official_repository": "https://github.com/yihao6/digital_diffeomorphism"
+    },
+    {
+      "id": "crc",
+      "title": "Conformal Risk Control",
+      "primary_url": "https://arxiv.org/html/2208.02814",
+      "engineering_reading": "Monotone expected bounded loss under exchangeability is not automatically selective ratio risk.",
+      "access": "Full primary assumptions and limitations read."
+    },
+    {
+      "id": "ecg-image-db",
+      "title": "ECG-Image-Database 2026",
+      "primary_url": "https://doi.org/10.1088/1361-6579/ae85b2",
+      "engineering_reading": "Public capture and waveform evidence. Pairing is not dense geometric truth.",
+      "access": "Official full XML and official dataset metadata/listing read."
+    },
+    {
+      "id": "pm-ecg-id",
+      "title": "PM-ECG-ID",
+      "primary_url": "https://zenodo.org/api/records/13617673",
+      "engineering_reading": "100 source ECGs, 6000 photos, printed segments available. No dense warp ground truth stated.",
+      "access": "Official metadata read, archive not downloaded."
+    },
+    {
+      "id": "scorer",
+      "title": "PhysioNet 2024 evaluation",
+      "primary_url": "https://github.com/physionetchallenges/evaluation-2024",
+      "engineering_reading": "Temporal/baseline shift allowances require separate no-shift metrics.",
+      "access": "Actual scoring source read.",
+      "code_commit": "1a5135470e7fd9817633f055f3dadebb58fc89ef",
+      "official_repository": "https://github.com/physionetchallenges/evaluation-2024"
+    }
+  ]
+}

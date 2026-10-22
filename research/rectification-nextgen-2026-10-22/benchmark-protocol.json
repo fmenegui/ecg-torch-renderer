@@ -1,0 +1,333 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-22",
+  "status": "research_design_not_final_preregistration",
+  "baseline_commit": "b9fd04dd6516e3469d1f36593849249c082458a8",
+  "new_model_trained": false,
+  "new_real_image_benchmark_executed": false,
+  "claim_scope": "Best among named executable comparators on specified endpoints and versioned data only",
+  "splits": {
+    "unit": "patient, grouping every record/page/view derived from that patient",
+    "partitions": [
+      "training",
+      "model_selection_validation",
+      "selection_calibration",
+      "external_final"
+    ],
+    "old_96_replays": "development_and_regression_only",
+    "generator_device_layout_holdout": "additional axes, not substitutes for patient independence",
+    "public_data_overlap": "record per method, checkpoint and source ID before interpreting rankings"
+  },
+  "datasets": [
+    {
+      "id": "ECG-Image-Database",
+      "doi": "10.1088/1361-6579/ae85b2",
+      "url": "https://www.kaggle.com/datasets/physionet/ecg-image-database/",
+      "reported_images": 37191,
+      "reported_records": 2243,
+      "ahus_patients": 266,
+      "ahus_images": 1596,
+      "ahus_printed_segment": "first 5 s of 10 s archived waveform, 2 Cabrera pages, 50 mm/s, 10 mm/mV",
+      "role": "public reproduction, capture and waveform benchmark",
+      "dense_geometry_gold": false,
+      "overlap_note": "Ahus used by original npj validation, public cohort is not a blind test against those weights",
+      "metadata_total_bytes": 36436614076,
+      "materialization": "manifest first, granular listing, subset before full download"
+    },
+    {
+      "id": "PM-ECG-ID",
+      "concept_doi": "10.5281/zenodo.13617672",
+      "version_doi": "10.5281/zenodo.13617673",
+      "url": "https://zenodo.org/records/13617673",
+      "source_records": 100,
+      "images": 6000,
+      "scenarios": 60,
+      "printed_segment_files": [
+        "leads.npz",
+        "rhythms.npz"
+      ],
+      "dense_geometry_gold": false,
+      "archive_bytes": 33863935685,
+      "archive_md5": "e9e21300e7eefa139eacf024d2ebda26"
+    },
+    {
+      "id": "independent physical pilot",
+      "status": "not_collected",
+      "planning_records": 30,
+      "planning_views_each": 6,
+      "annotation": "two annotators with adjudication, uncertainty and landmarks held out from fitting",
+      "sample_size": "final power and group count determined from separate pilot before final evaluation"
+    }
+  ],
+  "manifest_required_fields": [
+    "dataset_version",
+    "file_sha256",
+    "patient_group",
+    "source_record_id",
+    "page_id",
+    "printed_window",
+    "capture_device",
+    "layout",
+    "mm_per_grid_family",
+    "paper_speed_mm_s",
+    "gain_mm_mV",
+    "gold_domain_hash",
+    "annotation_uncertainty",
+    "source_overlap_by_method",
+    "partition",
+    "excluded_physical_occlusion"
+  ],
+  "adapter_lock_required_fields": [
+    "repository",
+    "commit",
+    "weight_sha256",
+    "dependency_lock",
+    "invocation",
+    "input_convention",
+    "crop_resize_chain",
+    "output_density",
+    "calibration_assumptions",
+    "fallback_semantics"
+  ],
+  "baseline_registry": [
+    {
+      "id": "B0",
+      "method": "current detector and eligibility",
+      "execution": "cached old replay only this investigation"
+    },
+    {
+      "id": "classical",
+      "method": "grid/Hough global homography",
+      "execution": "adapter and fresh run pending"
+    },
+    {
+      "id": "npj-main",
+      "method": "official main perspective pipeline",
+      "commit": "97a15087d4abcda843da8c58ee74b1d8f47e6f9a",
+      "execution": "fresh run pending"
+    },
+    {
+      "id": "npj-tps-experimental",
+      "method": "separate unvalidated optional nonlinear branch",
+      "execution": "optional, never conflated with main"
+    },
+    {
+      "id": "kaggle-3",
+      "method": "Heng stages and indexed grid",
+      "commit": "f2b4ac2823007e3fb387a7e188e748ad832bb2b7",
+      "execution": "weights lock and fresh run pending"
+    },
+    {
+      "id": "kaggle-4",
+      "method": "native tiled multitask grid",
+      "commit": "d62de09e5ce5e707a71099bdd387e9e335ce4ae9",
+      "execution": "checkpoint availability and fresh run pending"
+    },
+    {
+      "id": "kaggle-5",
+      "method": "local robust homography K16",
+      "commit": "8358d5b09a5b9519275e9b54c11716da5752a9d6",
+      "execution": "weights lock and fresh run pending"
+    },
+    {
+      "id": "UVDoc",
+      "commit": "4c9b82b537057aff2526e6dd118a847cdd072e82",
+      "execution": "public checkpoint in tree, not downloaded or executed"
+    },
+    {
+      "id": "SyntheticDoc",
+      "commit": "aabd9cf05f479781df432e3bd7e940f3e6716dbd",
+      "execution": "public checkpoints announced, not downloaded or executed"
+    },
+    {
+      "id": "D2Dewarp",
+      "commit": "1105c0f0e44404d9a8dedb78f689078dba42221c",
+      "execution": "announced external weights not downloaded or executed"
+    },
+    {
+      "id": "DvD",
+      "commit": "db87dd2f9f7a7ab1dc3f3c2d86df0fd60460160b",
+      "execution": "optional high-cost reference, not executed"
+    },
+    {
+      "id": "Dotter-Gridder-Leader",
+      "execution": "proprietary executable and weights unavailable here, not ranked as failure"
+    }
+  ],
+  "tracks": [
+    {
+      "id": "partial_coordinates",
+      "outputs": "physical coordinates with declared eligible domain",
+      "original_fallback": "may retain separately scored partial coordinates"
+    },
+    {
+      "id": "full_rectified_image",
+      "outputs": "rectified image with physical density/aspect and frame retention",
+      "original_fallback": "content-preserving abstention, not successful global rectification"
+    },
+    {
+      "id": "known_calibration",
+      "provided_equally": "paper units, speed, gain and reference metadata"
+    },
+    {
+      "id": "automatic_calibration",
+      "provided_equally": "image only, with explicit permitted metadata"
+    },
+    {
+      "id": "common_extractor",
+      "rule": "freeze signal extractor, layout and printed windows across rectifiers"
+    },
+    {
+      "id": "native_pipeline",
+      "rule": "native rectification and extraction, separately labeled"
+    }
+  ],
+  "geometry": {
+    "domain": "predefined visible paper independent of predictions, including headers and missing-grid areas",
+    "exclude": "truly occluded material and photographic background from physical chart scoring",
+    "threshold_mm": 0.5,
+    "threshold_kind": "engineering criterion, not clinical standard",
+    "G": "fraction of fixed queries returned finite with physical error <= threshold",
+    "W": "fraction of fixed queries returned finite with physical error > threshold",
+    "C": "G+W",
+    "R": "W/C with explicit zero-coverage handling",
+    "aggregation": "patient mean across predefined views and queries, balanced source/backend diagnostics",
+    "required": [
+      "G",
+      "W",
+      "C",
+      "R",
+      "p50_mm",
+      "p95_mm",
+      "p99_mm",
+      "pitch_alias_rate",
+      "orientation_error",
+      "lead_identity_error"
+    ],
+    "evaluation_alignment": "no fitted scale, shear, affine, polarity or nonuniform time rescaling",
+    "gauge_track": "discrete axis/sign/origin only if preregistered, separate strict orientation endpoint",
+    "gold_decomposition": [
+      "gold_points_and_IDs",
+      "anonymous_gold_points",
+      "model_points_with_gold_association",
+      "fully_image_only"
+    ],
+    "real_landmarks": "sparse independent physical landmarks do not constitute dense gold after interpolation"
+  },
+  "selection": {
+    "curves": [
+      "coverage_at_fixed_risk",
+      "risk_at_fixed_coverage"
+    ],
+    "baseline_fairness": [
+      "always_accept",
+      "common frozen posthoc quality gate when native uncertainty unavailable"
+    ],
+    "calibration_unit": "independent patient group, not pixels",
+    "crc_limit": "standard monotone expected-loss CRC does not automatically bound R or arbitrary distribution shift",
+    "current_calibration": "6-patient cohorts cannot support a nontrivial 1% CRC promise"
+  },
+  "signal": {
+    "printed_only": true,
+    "lead_and_window_conventions": "Cabrera/-aVR and sequential windows explicitly resolved",
+    "metrics": [
+      "no-shift SNR",
+      "no-shift RMSE",
+      "reference-shift score",
+      "finite-sample coverage",
+      "chosen shifts",
+      "time and amplitude errors"
+    ],
+    "scorer_commit": "1a5135470e7fd9817633f055f3dadebb58fc89ef",
+    "scorer_shift_note": "official 2024 allows up to 0.5 s and 1 mV shifts, reported separately",
+    "sanity_controls": [
+      "exact signal",
+      "all missing",
+      "partly finite",
+      "baseline shift",
+      "time shift",
+      "gain error"
+    ]
+  },
+  "statistics": {
+    "primary": "paired patient-cluster differences, stratified by source",
+    "uncertainty": "patient-cluster bootstrap or appropriate bounded-loss inference, preserve correlated views",
+    "multiplicity": "preregistered family-wise control such as Holm or simultaneous intervals",
+    "subgroups": [
+      "scanner",
+      "phone",
+      "severe_3D",
+      "unseen_layout",
+      "small_paper_in_frame",
+      "missing_grid",
+      "blur",
+      "low_projected_pitch"
+    ]
+  },
+  "proposed_engineering_gates": {
+    "frozen_for_final_test": false,
+    "delta_G": "adjusted 95% lower bound >0 against each named comparator, +3 percentage points practical point-estimate aim",
+    "delta_W": "95% upper bound <= +0.2 percentage points versus strongest baseline selected on validation",
+    "absolute_R_target": 0.02,
+    "R_status": "proposal to validate and freeze, not a certified risk bound",
+    "coverage": "no victory from near-zero returned coverage, compare at same coverage/risk operating points",
+    "content": "exact original archived on all inputs, zero analytical mask deletion, proposed 99.9% annotated-landmark retention",
+    "waveform": "improve common-extractor fidelity without predefined meaningful timing/amplitude degradation",
+    "performance": "publish quality/latency/memory Pareto table at matched resolution/output density and common hardware"
+  },
+  "latency": {
+    "batch_size": 1,
+    "report": [
+      "cold load",
+      "warm p50",
+      "warm p95",
+      "throughput",
+      "peak CPU RSS",
+      "peak GPU allocated/reserved"
+    ],
+    "include": [
+      "decode",
+      "ROI",
+      "all model passes",
+      "tile fusion",
+      "device transfers",
+      "CPU fit",
+      "hypothesis search",
+      "sampling",
+      "required outputs"
+    ],
+    "GPU": "synchronize measurements, no CPU timing advertised as GPU timing",
+    "resolution_buckets": [
+      "true sensor 4MP",
+      "true sensor 12MP",
+      "native lower-resolution public captures"
+    ]
+  },
+  "failure_policy": {
+    "all_attempted_cases_in_denominator": true,
+    "statuses": [
+      "original",
+      "partial_map",
+      "full_proposal",
+      "abstain",
+      "timeout",
+      "invalid_output"
+    ],
+    "unavailable_methods": "not executed, never converted into failed inference",
+    "budget_fields": [
+      "max_hypotheses",
+      "max_iterations",
+      "max_mesh_vertices",
+      "max_output_pixels",
+      "timeout_ms"
+    ],
+    "runtime_reports": [
+      "hypotheses_evaluated",
+      "iterations",
+      "budget_exhausted",
+      "stop_reason",
+      "stage_timings"
+    ]
+  },
+  "publication": "scripts, manifests, source IDs and aggregate/per-case metrics, no third-party full texts or datasets included here"
+}

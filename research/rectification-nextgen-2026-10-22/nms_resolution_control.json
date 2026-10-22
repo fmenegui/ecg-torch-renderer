@@ -1,0 +1,90 @@
+{
+  "repository": "fmenegui/ecg-torch-renderer",
+  "commit": "b9fd04dd6516e3469d1f36593849249c082458a8",
+  "path": "ecg_gpu/grid_point_learning.py",
+  "git_blob_sha": "790a040fa23d8ac488afee643445d803ab0c4c6b",
+  "pytorch_version": "2.8.0+cpu",
+  "device": "cpu",
+  "neural_model_executed": false,
+  "records": [
+    {
+      "peak_spacing_px": 2,
+      "nms_radius_px": 2,
+      "max_points": 16,
+      "detected_points": 1,
+      "xy": [
+        [
+          5.0,
+          7.0
+        ]
+      ],
+      "scores": [
+        0.949999988079071
+      ],
+      "truncated": false
+    },
+    {
+      "peak_spacing_px": 2,
+      "nms_radius_px": 1,
+      "max_points": 16,
+      "detected_points": 2,
+      "xy": [
+        [
+          5.0,
+          7.0
+        ],
+        [
+          7.0,
+          7.0
+        ]
+      ],
+      "scores": [
+        0.949999988079071,
+        0.8999999761581421
+      ],
+      "truncated": false
+    },
+    {
+      "peak_spacing_px": 3,
+      "nms_radius_px": 2,
+      "max_points": 16,
+      "detected_points": 2,
+      "xy": [
+        [
+          5.0,
+          7.0
+        ],
+        [
+          8.0,
+          7.0
+        ]
+      ],
+      "scores": [
+        0.949999988079071,
+        0.8999999761581421
+      ],
+      "truncated": false
+    },
+    {
+      "peak_spacing_px": 3,
+      "nms_radius_px": 2,
+      "max_points": 1,
+      "detected_points": 1,
+      "xy": [
+        [
+          5.0,
+          7.0
+        ]
+      ],
+      "scores": [
+        0.949999988079071
+      ],
+      "truncated": true
+    }
+  ],
+  "limits": [
+    "Synthetic heat peaks, not real CNN outputs",
+    "No accuracy improvement demonstrated",
+    "Smaller NMS may also increase false positives and needs validation"
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "audited_commit": "b9fd04dd6516e3469d1f36593849249c082458a8",
+  "source_sha256": {
+    "complete_rectifier.py": "0c3e6025332eaf582a4f3d57218cbf7ed0bdabad1efc7e7503cce3e9646de2da",
+    "frame_mesh.py": "89dc2e121bbdfca6c5b8eaa48a0f021375a2bd5c1e802c8c697f929ade733205",
+    "cell_mesh.py": "566253fba786de84475f00d593b80876b3869499d3703c18a71c9a5396cf37d6"
+  },
+  "versions": {
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "shapely": "2.1.2",
+    "opencv-python-headless": "4.11.0.86"
+  },
+  "supported_opencv_major": true,
+  "environment_scope": "Analytic controls only. This run is not the project integration suite.",
+  "scale_alias": {
+    "kind": "Deliberate 1 mm to 5 mm major-grid assignment fault injection",
+    "assumption_violation": true,
+    "fit_status": "full-frame-rectification",
+    "inlier_fraction": 1.0,
+    "predicted_mm": [
+      [
+        12.5,
+        12.5
+      ],
+      [
+        17.5,
+        17.5
+      ]
+    ],
+    "true_mm": [
+      [
+        2.5,
+        2.5
+      ],
+      [
+        3.5,
+        3.5
+      ]
+    ],
+    "errors_mm": [
+      14.142135623730951,
+      19.79898987322333
+    ],
+    "eligible": [
+      true,
+      true
+    ],
+    "roundtrip_max_px": 0.0,
+    "zero_confidence_geometry_identical": true,
+    "zero_confidence_fit_status": "full-frame-rectification",
+    "claim": "Topology and self-consistency cannot validate an externally supplied physical scale assignment."
+  },
+  "subcell_identifiability": {
+    "kind": "Two C1 2D maps with identical grid intersections and grid boundaries",
+    "cell_mm": 5.0,
+    "bump_amplitude_mm": 1.2,
+    "analytic_minimum_jacobian_determinant": 0.2460177631384497,
+    "sampled_minimum_jacobian_determinant": 0.2460177631384497,
+    "maximum_anchor_disagreement_mm": 0.0,
+    "maximum_cell_boundary_disagreement_mm": 0.0,
+    "center_truth_separation_mm": 1.1999999999999993,
+    "point_or_boundary_only_minimax_error_lower_bound_mm": 0.5999999999999996,
+    "current_estimator_error_under_alternative_truth_mm": 1.1999999999999993,
+    "current_estimator_center_eligible": true,
+    "current_evidence_label": 3,
+    "scope": "Only the unconstrained C1 2D map class. No impossibility claim for calibrated 3D geometry, known isometry/curvature bounds or additional image evidence.",
+    "novelty_claim": false
+  }
+}
