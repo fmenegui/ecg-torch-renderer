@@ -89,7 +89,8 @@ class HengTangDigitizer:
             raise ValueError('geometry must be reference or composed')
         if profile not in ('single', 'full') or type(waveform_tta) is not bool:
             raise ValueError('A known profile and boolean waveform_tta are required')
-        self.artifacts = verify_assets(self.assets, profile=profile)
+        self.artifacts = verify_assets(self.assets, profile=profile,
+                                       rectification_only=rectification_only)
         self.precision, self.geometry, self.waveform_tta = precision, geometry, waveform_tta
         self.profile = profile
         env = _environment()

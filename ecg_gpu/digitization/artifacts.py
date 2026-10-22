@@ -30,24 +30,35 @@ def _artifact_path(root, relative):
     return path
 
 
-def verify_assets(root, *, profile='single'):
+def _selected_artifacts(lock, profile, rectification_only):
+    if profile not in ('single', 'full'):
+        raise ValueError('profile must be single or full')
+    if type(rectification_only) is not bool:
+        raise ValueError('rectification_only must be boolean')
+    return [item for item in lock['artifacts']
+            if profile in item.get('profiles', ('single', 'full'))
+            and (not rectification_only or item['path'].startswith('heng/'))]
+
+
+def verify_assets(root, *, profile='single', rectification_only=False):
     if profile not in ('single', 'full'):
         raise ValueError('profile must be single or full')
     lock = artifact_lock()
-    for item in lock['artifacts']:
-        if profile not in item.get('profiles', ('single', 'full')):
-            continue
+    selected = _selected_artifacts(lock, profile, rectification_only)
+    for item in selected:
         path = _artifact_path(root, item['path'])
         if not path.is_file():
             raise FileNotFoundError(f'Missing {item["path"]}. Run ecg-digitize fetch --assets {root}')
         if path.stat().st_size != item['size'] or sha256_file(path) != item['sha256']:
             raise ValueError(f'Artifact checksum mismatch: {item["path"]}')
     lock['lock_sha256'] = sha256_file(Path(__file__).with_name('reference-lock.json'))
+    lock['verified_paths'] = [item['path'] for item in selected]
+    lock['verification_scope'] = 'rectification' if rectification_only else profile
     return lock
 
 
-def fetch_assets(root, *, profile='single', timeout=45):
-    """Download only the locked single-checkpoint profile, never during inference.
+def fetch_assets(root, *, profile='single', timeout=45, rectification_only=False):
+    """Download the explicitly requested locked artifacts, never during inference.
 
     Existing mismatched files are rejected instead of silently overwritten.
     Public upstream code and weights stay in this external directory. No
@@ -56,9 +67,7 @@ def fetch_assets(root, *, profile='single', timeout=45):
     lock = artifact_lock()
     if profile not in ('single', 'full'):
         raise ValueError('profile must be single or full')
-    for item in lock['artifacts']:
-        if profile not in item.get('profiles', ('single', 'full')):
-            continue
+    for item in _selected_artifacts(lock, profile, rectification_only):
         path = _artifact_path(root, item['path'])
         if path.exists():
             if path.stat().st_size == item['size'] and sha256_file(path) == item['sha256']:
@@ -94,4 +103,4 @@ def fetch_assets(root, *, profile='single', timeout=45):
         finally:
             if temporary is not None and temporary.exists():
                 temporary.unlink()
-    return verify_assets(root, profile=profile)
+    return verify_assets(root, profile=profile, rectification_only=rectification_only)

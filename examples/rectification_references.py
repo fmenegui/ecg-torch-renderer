@@ -4,8 +4,11 @@ npj normally dewarps its signal probability, not the returned RGB. Applying its
 same estimated warp to RGB is explicitly an adapter output, not published RGB.
 """
 import argparse
+import contextlib
+import io
 import json
 import sys
+import time
 from pathlib import Path
 
 import numpy as np
@@ -40,7 +43,14 @@ class NPJRectifier:
             mx, my = model.pixel_size_finder(aligned_grid)
         ppm = (1/mx+1/my)/2
         # The upstream optimizer requires enabled gradients for its positions.
-        model.dewarper.fit(aligned_grid.squeeze(), ppm)
+        fit_log = io.StringIO()
+        with contextlib.redirect_stdout(fit_log):
+            model.dewarper.fit(aligned_grid.squeeze(), ppm)
+        messages = fit_log.getvalue()
+        if messages:
+            print(messages, end='', flush=True)
+        points = np.asarray(model.dewarper.final_local_maxima).reshape(-1, 2)
+        fallback_reported = 'The dewarping failed.' in messages
         with torch.no_grad():
             sampling = model.dewarper.grid[None].to(aligned.device)
             warped = F.grid_sample(aligned, sampling, align_corners=False)
@@ -48,10 +58,13 @@ class NPJRectifier:
             warped = torch.where(support, warped, torch.ones_like(warped))
         return {'rectified': (warped[0].permute(1, 2, 0).cpu().numpy()*255).round().clip(0, 255).astype(np.uint8),
                 'aligned': (aligned[0].permute(1, 2, 0).cpu().numpy()*255).round().clip(0, 255).astype(np.uint8),
-                'points_aligned_xy': np.asarray(model.dewarper.final_local_maxima)[:, ::-1],
+                'points_aligned_xy': points[:, ::-1],
                 'support': support[0, 0].cpu().numpy(),
                 'sampling_normalized': sampling[0].cpu().numpy(),
-                'upstream_commit': self.commit, 'nonlinear_dewarping': True,
+                'upstream_commit': self.commit,
+                'nonlinear_dewarping': len(points) >= 3 and not fallback_reported,
+                'identity_fallback_reported': fallback_reported,
+                'dewarping_fit_warning': messages.strip() if fallback_reported else None,
                 'rgb_warp_is_adapter': True, 'waveform_extraction_invoked': False}
 
 
@@ -72,6 +85,8 @@ def main(images, out, source, assets, device='cuda'):
         for row in manifest:
             path = images.parent/row['file']
             record = {'method': method, 'id': row['id'], 'input_sha256': sha256_file(path), 'status': 'failed'}
+            started = time.perf_counter()
+            record['phase'] = 'inference'
             try:
                 if record['input_sha256'] != row['sha256']:
                     raise ValueError('Input bytes differ from locked image list')
@@ -84,8 +99,13 @@ def main(images, out, source, assets, device='cuda'):
                 np.savez_compressed(directory/'geometry.npz', **geometry)
                 record.update(status='returned', image=str((directory/'rectified.png').relative_to(out)),
                               waveform_extraction_invoked=False)
+                for key in ('nonlinear_dewarping', 'identity_fallback_reported',
+                            'dewarping_fit_warning', 'rgb_warp_is_adapter', 'upstream_commit'):
+                    if key in result:
+                        record[key] = result[key]
             except Exception as exc:
                 record['error'] = type(exc).__name__+': '+str(exc)
+            record['wall_seconds'] = time.perf_counter()-started
             reports.append(record)
             _write_json(out/'references.json', reports)
             print(json.dumps(record), flush=True)

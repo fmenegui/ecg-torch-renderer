@@ -1,0 +1,33 @@
+{
+  "focused_tests": {
+    "run": 23,
+    "passed": 23
+  },
+  "integration": {
+    "run": 378,
+    "passed": 351,
+    "skipped": 25,
+    "errors": 2,
+    "error_causes": [
+      "missing original tests/fixtures/raster-v021.npz",
+      "missing original references/ecg-gpu-generator-v021.zip"
+    ],
+    "fixtures_regenerated": false
+  },
+  "capture_gallery": {
+    "cases": 16,
+    "multi_layout": true,
+    "visually_inspected": true,
+    "device": "cpu"
+  },
+  "cuda_rerun_performed": false,
+  "npj_empty_point_regression": {
+    "cases": [
+      "01152-5",
+      "01152-7"
+    ],
+    "returned": 2,
+    "identity_fallback_reported": 2,
+    "upstream_source_modified": false
+  }
+}

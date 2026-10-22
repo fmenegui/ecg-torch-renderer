@@ -1,0 +1,342 @@
+{
+  "selection": {
+    "detector": "joint-1973",
+    "joint_restoration": "joint-1973",
+    "criterion": "validation backend-macro F1 only"
+  },
+  "trials": [
+    {
+      "name": "point-1973",
+      "joint": false,
+      "seed": 1973,
+      "by_backend": {
+        "torch-cached": {
+          "images": 768,
+          "tp": 2402764,
+          "fp": 63246,
+          "fn": 174077,
+          "precision": 0.9743529020563583,
+          "recall": 0.9324455796845827,
+          "f1": 0.9529387245429223,
+          "median_error_px": 0.1864909454575771,
+          "p95_error_px": 0.6272139370243935,
+          "localization_population": "matched points only"
+        },
+        "offline": {
+          "images": 256,
+          "tp": 350472,
+          "fp": 28844,
+          "fn": 121494,
+          "precision": 0.9239578609918907,
+          "recall": 0.7425789145828301,
+          "f1": 0.8233981218914531,
+          "median_error_px": 0.3028076152485811,
+          "p95_error_px": 0.9705812239169134,
+          "localization_population": "matched points only"
+        }
+      },
+      "held_out_noise": {
+        "impulse": {
+          "images": 128,
+          "tp": 377453,
+          "fp": 9348,
+          "fn": 39286,
+          "precision": 0.9758325340420526,
+          "recall": 0.9057299652780277,
+          "f1": 0.939475321701471,
+          "median_error_px": 0.18898213231055844,
+          "p95_error_px": 0.4718331859548695,
+          "localization_population": "matched points only"
+        },
+        "moire": {
+          "images": 128,
+          "tp": 374167,
+          "fp": 35031,
+          "fn": 42572,
+          "precision": 0.9143910771802404,
+          "recall": 0.8978449341194369,
+          "f1": 0.906042470551628,
+          "median_error_px": 0.24430536624716204,
+          "p95_error_px": 0.779930293643765,
+          "localization_population": "matched points only"
+        }
+      },
+      "test_cases": 1024,
+      "patients": 128,
+      "native_topology_accepted": 899,
+      "partial_local_outputs": 939,
+      "mean_all_case_true_grid_node_support": 0.6492538212486811,
+      "conditional_median_case_p95_mm": 0.19589394924098702,
+      "cases_with_geometric_residual": 938,
+      "cases_with_at_least_99pct_matched_node_identity_agreement": 803,
+      "mean_per_case_restoration_mse_before": 0.03541162489591076,
+      "mean_per_case_restoration_mse_after": 0.0428488544730153,
+      "restoration_head_supervised": false
+    },
+    {
+      "name": "joint-1973",
+      "joint": true,
+      "seed": 1973,
+      "by_backend": {
+        "torch-cached": {
+          "images": 768,
+          "tp": 2447989,
+          "fp": 60066,
+          "fn": 128852,
+          "precision": 0.976050764436984,
+          "recall": 0.9499961386829843,
+          "f1": 0.9628472244073428,
+          "median_error_px": 0.1699576093654273,
+          "p95_error_px": 0.5881834509155718,
+          "localization_population": "matched points only"
+        },
+        "offline": {
+          "images": 256,
+          "tp": 384483,
+          "fp": 30016,
+          "fn": 87483,
+          "precision": 0.9275848675147588,
+          "recall": 0.814641308907845,
+          "f1": 0.8674521836733543,
+          "median_error_px": 0.29731231334481373,
+          "p95_error_px": 0.9542476677864155,
+          "localization_population": "matched points only"
+        }
+      },
+      "held_out_noise": {
+        "impulse": {
+          "images": 128,
+          "tp": 414304,
+          "fp": 30290,
+          "fn": 2435,
+          "precision": 0.931870425601785,
+          "recall": 0.9941570143423102,
+          "f1": 0.9620065642440264,
+          "median_error_px": 0.16530857567171714,
+          "p95_error_px": 0.4245341384332457,
+          "localization_population": "matched points only"
+        },
+        "moire": {
+          "images": 128,
+          "tp": 401942,
+          "fp": 61868,
+          "fn": 14797,
+          "precision": 0.8666091718591664,
+          "recall": 0.9644933639520179,
+          "f1": 0.9129349985066135,
+          "median_error_px": 0.19973569566953972,
+          "p95_error_px": 0.6448935617340295,
+          "localization_population": "matched points only"
+        }
+      },
+      "test_cases": 1024,
+      "patients": 128,
+      "native_topology_accepted": 911,
+      "partial_local_outputs": 963,
+      "mean_all_case_true_grid_node_support": 0.771085439089192,
+      "conditional_median_case_p95_mm": 0.18424202872284973,
+      "cases_with_geometric_residual": 962,
+      "cases_with_at_least_99pct_matched_node_identity_agreement": 818,
+      "mean_per_case_restoration_mse_before": 0.03541162489591076,
+      "mean_per_case_restoration_mse_after": 0.003454103999315411,
+      "restoration_head_supervised": true
+    },
+    {
+      "name": "point-20261021",
+      "joint": false,
+      "seed": 20261021,
+      "by_backend": {
+        "torch-cached": {
+          "images": 768,
+          "tp": 2467004,
+          "fp": 119287,
+          "fn": 109837,
+          "precision": 0.9538771932470089,
+          "recall": 0.9573753289395814,
+          "f1": 0.9556230598016863,
+          "median_error_px": 0.18728500642003604,
+          "p95_error_px": 0.6699308146378656,
+          "localization_population": "matched points only"
+        },
+        "offline": {
+          "images": 256,
+          "tp": 394008,
+          "fp": 47258,
+          "fn": 77958,
+          "precision": 0.8929036000960872,
+          "recall": 0.8348228474084998,
+          "f1": 0.8628869772412706,
+          "median_error_px": 0.2937836947290404,
+          "p95_error_px": 1.0673770068358128,
+          "localization_population": "matched points only"
+        }
+      },
+      "held_out_noise": {
+        "impulse": {
+          "images": 128,
+          "tp": 413239,
+          "fp": 68842,
+          "fn": 3500,
+          "precision": 0.8571982716597418,
+          "recall": 0.9916014579868935,
+          "f1": 0.919514474533277,
+          "median_error_px": 0.18659265841521108,
+          "p95_error_px": 0.4959010268627819,
+          "localization_population": "matched points only"
+        },
+        "moire": {
+          "images": 128,
+          "tp": 402745,
+          "fp": 76228,
+          "fn": 13994,
+          "precision": 0.840851154449207,
+          "recall": 0.9664202294481677,
+          "f1": 0.89927342717302,
+          "median_error_px": 0.2329176095853587,
+          "p95_error_px": 0.8284175300946073,
+          "localization_population": "matched points only"
+        }
+      },
+      "test_cases": 1024,
+      "patients": 128,
+      "native_topology_accepted": 799,
+      "partial_local_outputs": 980,
+      "mean_all_case_true_grid_node_support": 0.7930133701893074,
+      "conditional_median_case_p95_mm": 0.22817362413116943,
+      "cases_with_geometric_residual": 979,
+      "cases_with_at_least_99pct_matched_node_identity_agreement": 771,
+      "mean_per_case_restoration_mse_before": 0.03541162489591076,
+      "mean_per_case_restoration_mse_after": 0.023385716361204074,
+      "restoration_head_supervised": false
+    },
+    {
+      "name": "joint-20261021",
+      "joint": true,
+      "seed": 20261021,
+      "by_backend": {
+        "torch-cached": {
+          "images": 768,
+          "tp": 2455289,
+          "fp": 108160,
+          "fn": 121552,
+          "precision": 0.9578068453868206,
+          "recall": 0.9528290647346888,
+          "f1": 0.9553114707535956,
+          "median_error_px": 0.16426367077376658,
+          "p95_error_px": 0.6069728237125818,
+          "localization_population": "matched points only"
+        },
+        "offline": {
+          "images": 256,
+          "tp": 395252,
+          "fp": 39704,
+          "fn": 76714,
+          "precision": 0.9087172035792126,
+          "recall": 0.8374586304945695,
+          "f1": 0.8716339442642256,
+          "median_error_px": 0.2845475161048011,
+          "p95_error_px": 1.0127271104402193,
+          "localization_population": "matched points only"
+        }
+      },
+      "held_out_noise": {
+        "impulse": {
+          "images": 128,
+          "tp": 414953,
+          "fp": 67862,
+          "fn": 1786,
+          "precision": 0.8594451290867102,
+          "recall": 0.9957143439898833,
+          "f1": 0.9225749649270638,
+          "median_error_px": 0.1572355214522298,
+          "p95_error_px": 0.4244239390313134,
+          "localization_population": "matched points only"
+        },
+        "moire": {
+          "images": 128,
+          "tp": 407203,
+          "fp": 79673,
+          "fn": 9536,
+          "precision": 0.8363587443209359,
+          "recall": 0.9771175723894332,
+          "f1": 0.9012754325680737,
+          "median_error_px": 0.19068965284494477,
+          "p95_error_px": 0.7063865980839865,
+          "localization_population": "matched points only"
+        }
+      },
+      "test_cases": 1024,
+      "patients": 128,
+      "native_topology_accepted": 828,
+      "partial_local_outputs": 997,
+      "mean_all_case_true_grid_node_support": 0.8032990493974331,
+      "conditional_median_case_p95_mm": 0.19569045391047504,
+      "cases_with_geometric_residual": 995,
+      "cases_with_at_least_99pct_matched_node_identity_agreement": 795,
+      "mean_per_case_restoration_mse_before": 0.03541162489591076,
+      "mean_per_case_restoration_mse_after": 0.003792274816110751,
+      "restoration_head_supervised": true
+    }
+  ],
+  "paired_seed_comparisons": [
+    {
+      "seed": 1973,
+      "backend": "torch-cached",
+      "patients": 128,
+      "cases": 768,
+      "delta_f1_right_minus_left": 0.00990849986442055,
+      "ci95": [
+        0.008243168288551936,
+        0.011770422993177373
+      ],
+      "bootstrap_draws": 2000,
+      "cluster": "patient"
+    },
+    {
+      "seed": 1973,
+      "backend": "offline",
+      "patients": 128,
+      "cases": 256,
+      "delta_f1_right_minus_left": 0.04405406178190119,
+      "ci95": [
+        0.03259064867639862,
+        0.05609498904832139
+      ],
+      "bootstrap_draws": 2000,
+      "cluster": "patient"
+    },
+    {
+      "seed": 20261021,
+      "backend": "torch-cached",
+      "patients": 128,
+      "cases": 768,
+      "delta_f1_right_minus_left": -0.0003115890480906991,
+      "ci95": [
+        -0.0026092384805881607,
+        0.0022170333340226626
+      ],
+      "bootstrap_draws": 2000,
+      "cluster": "patient"
+    },
+    {
+      "seed": 20261021,
+      "backend": "offline",
+      "patients": 128,
+      "cases": 256,
+      "delta_f1_right_minus_left": 0.008746967022954966,
+      "ci95": [
+        0.0010477671926242133,
+        0.01739308992665464
+      ],
+      "bootstrap_draws": 2000,
+      "cluster": "patient"
+    }
+  ],
+  "limits": [
+    "Patient bootstrap conditional on each trained model",
+    "Partial cell support does not certify correct identities or global injectivity",
+    "Synthetic grid support is not complete page or waveform coverage",
+    "Color reconstruction error is not clinical waveform preservation",
+    "The user photograph is development material and was never training data"
+  ]
+}

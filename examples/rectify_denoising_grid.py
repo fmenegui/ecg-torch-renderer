@@ -17,6 +17,7 @@ from ecg_gpu.digitization.artifacts import sha256_file
 from ecg_gpu.digitization.denoising_grid import DenoisingGridNet
 from ecg_gpu.digitization.lattice import organize_lattice
 from ecg_gpu.digitization.local_cells import locally_supported_cells
+from ecg_gpu.digitization.support import cell_support_summary
 from ecg_gpu.digitization.runner import _write_json
 from ecg_gpu.grid_point_learning import decode_grid_points
 from examples.digitization_grid_rectification import grid_remap
@@ -60,6 +61,7 @@ def rectify(checkpoint, image, out, device='cpu', pixels_per_mm=8.):
         'status': 'rejected', 'assumed_major_grid_mm': 5., 'pixels_per_mm': pixels_per_mm,
         'source_for_rectification': 'original RGB', 'gain_inferred': False, 'speed_inferred': False,
         'global_injectivity_checked': False}
+    report['cell_support'] = cell_support_summary(local)
     np.savez_compressed(out/'points.npz', xy=xy, scores=scores,
                         selected=np.asarray(local['selected_indices']), ids=np.asarray(local['ids']), cells=np.asarray(local['cells']))
     if state['joint']:
