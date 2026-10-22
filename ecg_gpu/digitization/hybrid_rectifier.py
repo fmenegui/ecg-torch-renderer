@@ -7,7 +7,7 @@ No missing cell is filled and no global injectivity claim is made.
 import numpy as np
 from scipy import sparse
 from scipy.sparse.linalg import lsqr
-from scipy.spatial import Delaunay
+from .cell_mesh import forward_cell_map
 
 
 def refine_lattice(xy, scores, topology, *, smoothness=.05, iterations=3):
@@ -71,22 +71,7 @@ def refine_lattice(xy, scores, topology, *, smoothness=.05, iterations=3):
 
 def forward_supported(observed, canonical, ids, query, cells):
     """Map evaluation points through supported triangles without extrapolation."""
-    observed, canonical, ids, query = map(np.asarray, (observed, canonical, ids, query))
-    if len(observed) < 3:
-        return np.full((len(query), 2), np.nan)
-    mesh = Delaunay(observed)
-    vertices = ids[mesh.simplices]
-    allowed = {tuple(c) for c in cells}
-    good = (np.ptp(vertices, axis=1) <= 1).all(1)
-    good &= np.array([tuple(v) in allowed for v in vertices.min(1)])
-    s = mesh.find_simplex(query)
-    keep = (s >= 0) & good[np.maximum(s, 0)]
-    transform = mesh.transform[s[keep]]
-    a = np.einsum('nij,nj->ni', transform[:, :2], query[keep]-transform[:, 2])
-    weights = np.column_stack((a, 1-a.sum(1)))
-    result = np.full((len(query), 2), np.nan)
-    result[keep] = np.einsum('ni,nij->nj', weights, canonical[mesh.simplices[s[keep]]])
-    return result
+    return forward_cell_map(observed, canonical, ids, query, cells)
 
 
 def similarity_residual(predicted, reference):

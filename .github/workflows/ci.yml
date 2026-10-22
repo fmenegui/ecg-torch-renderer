@@ -31,7 +31,7 @@ jobs:
           else
             python -m pip install torch==${{ matrix.torch }} --index-url https://download.pytorch.org/whl/cpu
           fi
-          python -m pip install -e '.[benchmark]'
+          python -m pip install -e '.[benchmark]' 'opencv-python-headless>=4.11,<5'
       - name: Raster, geometry, replay, supervision and profiling contracts
         run: python -m unittest discover -s tests -v
       - name: Training integration
@@ -138,3 +138,4 @@ jobs:
         with:
           name: model-coverage
           path: build/model-coverage.json
+

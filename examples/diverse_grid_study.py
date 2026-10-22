@@ -68,7 +68,7 @@ def clean_parameters(parameters):
     return result
 
 
-def render_one(signal, fs, index, view, split, *, variant='cuda_ad_rgb'):
+def render_one(signal, fs, index, view, split, *, variant='cuda_ad_rgb', export_geometry=False):
     seed = 20261022+index*1009+view*47
     rng = np.random.default_rng(seed)
     offline = view in (2, 6)
@@ -126,6 +126,13 @@ def render_one(signal, fs, index, view, split, *, variant='cuda_ad_rgb'):
         xy = result['grid_points_xy'][0].cpu().numpy()[active]
         ids = result['grid_points_ids'][0].cpu().numpy()[active]
         support = valid[0, 0].cpu().numpy().astype(np.float32)
+        reference_mm = None
+        if export_geometry:
+            inverse = field if offline else batch.inverse_field
+            canonical_pixels = (inverse[0].cpu()+1)*torch.tensor([cw, ch])/2-.5
+            phase = torch.stack([batch.metadata['parameters'][key].cpu().reshape(-1)[0]
+                                 for key in ('grid_phase_x', 'grid_phase_y')]).remainder(5)
+            reference_mm = (canonical_pixels/batch.metadata['ppm'].cpu().reshape(-1)[0]-phase).numpy()
         noisy = uint8(image)
         clean_rgb = uint8(clean)
         # A source-independent noise assignment covers every family and severity.
@@ -139,6 +146,8 @@ def render_one(signal, fs, index, view, split, *, variant='cuda_ad_rgb'):
         noisy = np.rot90(noisy, quarter).copy()
         clean_rgb = np.rot90(clean_rgb, quarter).copy()
         support = np.rot90(support, quarter).copy()
+        if reference_mm is not None:
+            reference_mm = np.rot90(reference_mm, quarter).copy()
         ratio = min(WIDTH/old_w, HEIGHT/old_h)
         new_w, new_h = round(old_w*ratio), round(old_h*ratio)
         if (new_h, new_w) != (HEIGHT, WIDTH):
@@ -149,6 +158,11 @@ def render_one(signal, fs, index, view, split, *, variant='cuda_ad_rgb'):
             target_canvas[:new_h, :new_w] = np.asarray(Image.fromarray(clean_rgb).resize((new_w, new_h), Image.Resampling.BILINEAR))
             mask_canvas[:new_h, :new_w] = np.asarray(Image.fromarray(support).resize((new_w, new_h), Image.Resampling.BILINEAR))
             noisy, clean_rgb, support = canvas, target_canvas, mask_canvas
+            if reference_mm is not None:
+                field_canvas = np.zeros((HEIGHT, WIDTH, 2), np.float32)
+                for axis in (0, 1):
+                    field_canvas[:new_h, :new_w, axis] = np.asarray(Image.fromarray(reference_mm[..., axis]).resize((new_w, new_h), Image.Resampling.BILINEAR))
+                reference_mm = field_canvas
             xy = (xy+.5)*[new_w/old_w, new_h/old_h]-.5
         metadata['post_rotation_quarters'] = quarter
         metadata['letterbox_size'] = [new_w, new_h]
@@ -157,6 +171,7 @@ def render_one(signal, fs, index, view, split, *, variant='cuda_ad_rgb'):
             keep = support[pixel[:, 1].clip(0, HEIGHT-1), pixel[:, 0].clip(0, WIDTH-1)] >= .99
             xy, ids = xy[keep], ids[keep]
     return {'image': noisy, 'clean': clean_rgb, 'valid': support, 'xy': xy, 'ids': ids,
+            **({'reference_mm': reference_mm} if export_geometry else {}),
             'metadata': {'seed': seed, 'backend': 'offline' if offline else 'torch-cached', 'layout': layout,
                          'severity': severity, 'noise': noise, **metadata}}
 

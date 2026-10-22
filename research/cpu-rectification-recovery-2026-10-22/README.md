@@ -1,5 +1,7 @@
 # CPU rectification recovery and partial-support audit
 
+Follow-up geometry corrections, three-arm diagnosis and a separately reserved CPU replay assessment are in [rectification-attack-2026-10-22](../rectification-attack-2026-10-22/README.md).
+
 The larger study had already completed. This continuation recovers that state,
 finishes patient-cluster uncertainty estimates and repeats a small, frozen
 image-only comparison without starting a GPU or retraining a model.

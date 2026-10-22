@@ -1,0 +1,16 @@
+{
+  "schema": "rectification-attack-v1",
+  "source": "frozen PTB-XL cohort, source bytes verified",
+  "development_patients": 6,
+  "development_rule": "first six validation patients, original global indices 1024..1029",
+  "assessment_patients": 6,
+  "assessment_rule": "last six test patients, original global indices 1274..1279",
+  "views_per_patient": 8,
+  "evaluation_queries_per_image": 4096,
+  "physical_alignment": "integer translation and signed axis permutation, no fitted scale",
+  "main_metric": "fraction of the fixed visible-material query domain covered with error <=0.5 mm",
+  "threshold_status": "engineering evaluation threshold, not a clinical acceptance criterion",
+  "selection": "validation only, maximize backend-balanced patient-mean good coverage subject to wrong covered fraction <= cells baseline +0.005 overall and +0.01 for each backend",
+  "original_test_images_previously_inspected": "not selected for final assessment",
+  "new_training": false
+}

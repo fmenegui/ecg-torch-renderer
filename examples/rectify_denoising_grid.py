@@ -16,6 +16,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from ecg_gpu.digitization.artifacts import sha256_file
 from ecg_gpu.digitization.denoising_grid import DenoisingGridNet
 from ecg_gpu.digitization.lattice import organize_lattice
+from ecg_gpu.digitization.cycle_lattice import organize_cycle_lattice
+from ecg_gpu.digitization.observation import remove_periodic_banding
 from ecg_gpu.digitization.local_cells import locally_supported_cells
 from ecg_gpu.digitization.support import cell_support_summary
 from ecg_gpu.digitization.runner import _write_json
@@ -23,11 +25,13 @@ from ecg_gpu.grid_point_learning import decode_grid_points
 from examples.digitization_grid_rectification import grid_remap
 
 
-def rectify(checkpoint, image, out, device='cpu', pixels_per_mm=8.):
+def rectify(checkpoint, image, out, device='cpu', pixels_per_mm=8., profile='baseline'):
     if out.exists() and any(out.iterdir()):
         raise FileExistsError('Use an empty output directory')
     if not np.isfinite(pixels_per_mm) or pixels_per_mm <= 0:
         raise ValueError('Positive finite output density required')
+    if profile not in ('baseline', 'threshold-70', 'banding', 'banding-recall', 'geometry-recall'):
+        raise ValueError('Unknown geometric inference profile')
     out.mkdir(parents=True, exist_ok=True)
     state = torch.load(checkpoint, map_location='cpu', weights_only=True)
     if state['model_class'] != 'DenoisingGridNet':
@@ -50,7 +54,40 @@ def rectify(checkpoint, image, out, device='cpu', pixels_per_mm=8.):
         clean = output['clean'][0].cpu().permute(1, 2, 0).numpy()[:rh, :rw]
     inside = ((xy >= 0) & (xy <= [rw-1, rh-1])).all(1)
     xy, scores = (xy[inside]+.5)/[rw/w, rh/h]-.5, scores[inside]
-    native = organize_lattice(xy, scores)
+    banding = {'applied': False}
+    point_threshold = float(state['threshold'])
+    fallback = None
+    if profile != 'baseline':
+        pilot_xy, pilot_scores = xy.copy(), scores.copy()
+        filtered = rgb
+        if profile != 'threshold-70':
+            filtered, banding = remove_periodic_banding(rgb, pilot_xy)
+        geometry_output = output
+        if banding['applied']:
+            canvas[:rh, :rw] = np.asarray(Image.fromarray(filtered).resize((rw, rh), Image.Resampling.BILINEAR))
+            tensor = torch.from_numpy(canvas.copy()).permute(2, 0, 1)[None].float().to(device)/255
+            with torch.inference_mode():
+                geometry_output = model(tensor)
+        point_threshold = .5 if profile == 'geometry-recall' else .7 if profile in ('threshold-70', 'banding-recall') else float(state['threshold'])
+        prediction = decode_grid_points(geometry_output['heat'].float().sigmoid(), geometry_output['offsets'].float(),
+                                        threshold=point_threshold, max_points=16384)
+        keep = prediction['valid'][0]
+        xy = prediction['xy'][0, keep].cpu().numpy()
+        scores = prediction['scores'][0, keep].cpu().numpy()
+        inside = ((xy >= 0) & (xy <= [rw-1, rh-1])).all(1)
+        xy, scores = (xy[inside]+.5)/[rw/w, rh/h]-.5, scores[inside]
+        high = scores >= float(state['threshold'])
+        hint = organize_lattice(xy[high], scores[high])
+        if profile != 'geometry-recall':
+            native = organize_lattice(xy, scores)
+        elif hint.get('spacing_px'):
+            native = organize_cycle_lattice(xy, scores, geometry_hint=hint)
+        else:
+            xy, scores = pilot_xy, pilot_scores
+            native = organize_lattice(xy, scores)
+            fallback = 'original pilot, unavailable geometry hint'
+    else:
+        native = organize_lattice(xy, scores)
     local = locally_supported_cells(xy, native)
     report = {'model_class': state['model_class'], 'joint_training': state['joint'],
         'checkpoint_sha256': sha256_file(checkpoint), 'input_sha256': sha256_file(image),
@@ -61,6 +98,9 @@ def rectify(checkpoint, image, out, device='cpu', pixels_per_mm=8.):
         'status': 'rejected', 'assumed_major_grid_mm': 5., 'pixels_per_mm': pixels_per_mm,
         'source_for_rectification': 'original RGB', 'gain_inferred': False, 'speed_inferred': False,
         'global_injectivity_checked': False}
+    report.update(detection_profile=profile, point_threshold=point_threshold,
+                  background_banding=banding, inference_fallback=fallback,
+                  sampled_map_roundtrip_checked=True)
     report['cell_support'] = cell_support_summary(local)
     np.savez_compressed(out/'points.npz', xy=xy, scores=scores,
                         selected=np.asarray(local['selected_indices']), ids=np.asarray(local['ids']), cells=np.asarray(local['cells']))
@@ -89,5 +129,6 @@ if __name__ == '__main__':
         parser.add_argument('--'+key, type=Path, required=True)
     parser.add_argument('--device', choices=('cpu', 'cuda'), default='cpu')
     parser.add_argument('--pixels-per-mm', type=float, default=8.)
+    parser.add_argument('--profile', choices=('baseline', 'threshold-70', 'banding', 'banding-recall', 'geometry-recall'), default='baseline')
     torch.set_num_threads(4)
     print(json.dumps(rectify(**vars(parser.parse_args()))))

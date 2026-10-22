@@ -1,0 +1,1201 @@
+{
+  "selected": "clean85-network",
+  "cli_profile": "banding",
+  "good_definition": "fixed gold query domain covered with material error <=0.5 mm",
+  "wrong_definition": "fixed domain covered with material error >0.5 mm",
+  "aggregation": "patient means, equal backend weights for overall results",
+  "bootstrap": "20000 paired patient resamples, seed 1973, six patients per split",
+  "inference_scope": "conditional on these six replay patients, not a population or clinical claim",
+  "splits": {
+    "validation": {
+      "by_method": {
+        "backend-balanced": {
+          "legacy-oracle": {
+            "good_coverage": 0.9867146809895834,
+            "wrong_covered_fraction": 0.0004679361979166667,
+            "covered_fraction": 0.9871826171875,
+            "images": 48,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.006900014105973696,
+            "images_with_conditional_error": 48,
+            "images_below_10pct_good_coverage": 0,
+            "images_below_50pct_good_coverage": 0
+          },
+          "cells-oracle": {
+            "good_coverage": 0.9867146809895834,
+            "wrong_covered_fraction": 0.0004679361979166667,
+            "covered_fraction": 0.9871826171875,
+            "images": 48,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.005864221749104373,
+            "images_with_conditional_error": 48,
+            "images_below_10pct_good_coverage": 0,
+            "images_below_50pct_good_coverage": 0
+          },
+          "legacy-anonymous": {
+            "good_coverage": 0.9357333713107638,
+            "wrong_covered_fraction": 0.0004679361979166667,
+            "covered_fraction": 0.9362013075086805,
+            "images": 48,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.006900014105973696,
+            "images_with_conditional_error": 48,
+            "images_below_10pct_good_coverage": 0,
+            "images_below_50pct_good_coverage": 2
+          },
+          "cells-anonymous": {
+            "good_coverage": 0.9357333713107638,
+            "wrong_covered_fraction": 0.0004679361979166667,
+            "covered_fraction": 0.9362013075086805,
+            "images": 48,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.00588451403614703,
+            "images_with_conditional_error": 48,
+            "images_below_10pct_good_coverage": 0,
+            "images_below_50pct_good_coverage": 2
+          },
+          "legacy-network": {
+            "good_coverage": 0.6748894585503473,
+            "wrong_covered_fraction": 0.03138902452256945,
+            "covered_fraction": 0.7062784830729166,
+            "images": 48,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.16597207022238747,
+            "images_with_conditional_error": 47,
+            "images_below_10pct_good_coverage": 5,
+            "images_below_50pct_good_coverage": 9
+          },
+          "cells-network": {
+            "good_coverage": 0.6749606662326388,
+            "wrong_covered_fraction": 0.03131781684027778,
+            "covered_fraction": 0.7062784830729166,
+            "images": 48,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.16719334797414698,
+            "images_with_conditional_error": 47,
+            "images_below_10pct_good_coverage": 5,
+            "images_below_50pct_good_coverage": 9
+          },
+          "clean85-network": {
+            "good_coverage": 0.6915486653645834,
+            "wrong_covered_fraction": 0.011416965060763888,
+            "covered_fraction": 0.7029656304253472,
+            "images": 48,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.16719334797414698,
+            "images_with_conditional_error": 47,
+            "images_below_10pct_good_coverage": 3,
+            "images_below_50pct_good_coverage": 8
+          }
+        },
+        "torch-cached": {
+          "legacy-oracle": {
+            "good_coverage": 0.9943237304687499,
+            "wrong_covered_fraction": 0.0,
+            "covered_fraction": 0.9943237304687499,
+            "images": 36,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.0047640136878045,
+            "images_with_conditional_error": 36,
+            "images_below_10pct_good_coverage": 0,
+            "images_below_50pct_good_coverage": 0
+          },
+          "cells-oracle": {
+            "good_coverage": 0.9943237304687499,
+            "wrong_covered_fraction": 0.0,
+            "covered_fraction": 0.9943237304687499,
+            "images": 36,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.004095203323173395,
+            "images_with_conditional_error": 36,
+            "images_below_10pct_good_coverage": 0,
+            "images_below_50pct_good_coverage": 0
+          },
+          "legacy-anonymous": {
+            "good_coverage": 0.9942084418402777,
+            "wrong_covered_fraction": 0.0,
+            "covered_fraction": 0.9942084418402777,
+            "images": 36,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.004764013687803167,
+            "images_with_conditional_error": 36,
+            "images_below_10pct_good_coverage": 0,
+            "images_below_50pct_good_coverage": 0
+          },
+          "cells-anonymous": {
+            "good_coverage": 0.9942084418402777,
+            "wrong_covered_fraction": 0.0,
+            "covered_fraction": 0.9942084418402777,
+            "images": 36,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.004095203323173654,
+            "images_with_conditional_error": 36,
+            "images_below_10pct_good_coverage": 0,
+            "images_below_50pct_good_coverage": 0
+          },
+          "legacy-network": {
+            "good_coverage": 0.8627997504340277,
+            "wrong_covered_fraction": 0.031080457899305552,
+            "covered_fraction": 0.8938802083333334,
+            "images": 36,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.1467178737985088,
+            "images_with_conditional_error": 36,
+            "images_below_10pct_good_coverage": 2,
+            "images_below_50pct_good_coverage": 3
+          },
+          "cells-network": {
+            "good_coverage": 0.8628811306423612,
+            "wrong_covered_fraction": 0.030999077690972224,
+            "covered_fraction": 0.8938802083333334,
+            "images": 36,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.1481246949645194,
+            "images_with_conditional_error": 36,
+            "images_below_10pct_good_coverage": 2,
+            "images_below_50pct_good_coverage": 3
+          },
+          "clean85-network": {
+            "good_coverage": 0.8882853190104166,
+            "wrong_covered_fraction": 0.00783962673611111,
+            "covered_fraction": 0.8961249457465278,
+            "images": 36,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.1481246949645194,
+            "images_with_conditional_error": 36,
+            "images_below_10pct_good_coverage": 1,
+            "images_below_50pct_good_coverage": 2
+          }
+        },
+        "offline": {
+          "legacy-oracle": {
+            "good_coverage": 0.9791056315104166,
+            "wrong_covered_fraction": 0.0009358723958333334,
+            "covered_fraction": 0.98004150390625,
+            "images": 12,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.011065015384739557,
+            "images_with_conditional_error": 12,
+            "images_below_10pct_good_coverage": 0,
+            "images_below_50pct_good_coverage": 0
+          },
+          "cells-oracle": {
+            "good_coverage": 0.9791056315104166,
+            "wrong_covered_fraction": 0.0009358723958333334,
+            "covered_fraction": 0.98004150390625,
+            "images": 12,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.010798851875049455,
+            "images_with_conditional_error": 12,
+            "images_below_10pct_good_coverage": 0,
+            "images_below_50pct_good_coverage": 0
+          },
+          "legacy-anonymous": {
+            "good_coverage": 0.87725830078125,
+            "wrong_covered_fraction": 0.0009358723958333334,
+            "covered_fraction": 0.8781941731770834,
+            "images": 12,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.011065015384739557,
+            "images_with_conditional_error": 12,
+            "images_below_10pct_good_coverage": 0,
+            "images_below_50pct_good_coverage": 2
+          },
+          "cells-anonymous": {
+            "good_coverage": 0.87725830078125,
+            "wrong_covered_fraction": 0.0009358723958333334,
+            "covered_fraction": 0.8781941731770834,
+            "images": 12,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.011247689734511401,
+            "images_with_conditional_error": 12,
+            "images_below_10pct_good_coverage": 0,
+            "images_below_50pct_good_coverage": 2
+          },
+          "legacy-network": {
+            "good_coverage": 0.4869791666666667,
+            "wrong_covered_fraction": 0.031697591145833336,
+            "covered_fraction": 0.5186767578125,
+            "images": 12,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.24951346861210255,
+            "images_with_conditional_error": 11,
+            "images_below_10pct_good_coverage": 3,
+            "images_below_50pct_good_coverage": 6
+          },
+          "cells-network": {
+            "good_coverage": 0.4870402018229167,
+            "wrong_covered_fraction": 0.031636555989583336,
+            "covered_fraction": 0.5186767578125,
+            "images": 12,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.24233312106622765,
+            "images_with_conditional_error": 11,
+            "images_below_10pct_good_coverage": 3,
+            "images_below_50pct_good_coverage": 6
+          },
+          "clean85-network": {
+            "good_coverage": 0.49481201171875,
+            "wrong_covered_fraction": 0.014994303385416666,
+            "covered_fraction": 0.5098063151041666,
+            "images": 12,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.24233312106622765,
+            "images_with_conditional_error": 11,
+            "images_below_10pct_good_coverage": 2,
+            "images_below_50pct_good_coverage": 6
+          }
+        }
+      },
+      "paired": {
+        "backend-balanced": {
+          "legacy-network": {
+            "good_coverage": {
+              "delta": 0.01665920681423606,
+              "paired_patient_bootstrap_ci95": [
+                0.00011867947048604943,
+                0.04204644097222218
+              ],
+              "patient_deltas": [
+                0.000244140625,
+                0.0,
+                0.023091634114583315,
+                0.00014241536458325932,
+                0.00016276041666651864,
+                0.07631429036458326
+              ]
+            },
+            "wrong_covered_fraction": {
+              "delta": -0.019972059461805556,
+              "paired_patient_bootstrap_ci95": [
+                -0.04313829210069445,
+                -0.00011867947048611015
+              ],
+              "patient_deltas": [
+                -0.000244140625,
+                0.0,
+                -0.049702962239583336,
+                -0.00014241536458333218,
+                -0.00016276041666666696,
+                -0.069580078125
+              ]
+            },
+            "covered_fraction": {
+              "delta": -0.0033128526475694566,
+              "paired_patient_bootstrap_ci95": [
+                -0.0133056640625,
+                0.0033671061197916297
+              ],
+              "patient_deltas": [
+                0.0,
+                0.0,
+                -0.026611328125,
+                0.0,
+                0.0,
+                0.006734212239583259
+              ]
+            },
+            "images_improved_over_1pp": 2,
+            "images_regressed_over_1pp": 0
+          },
+          "cells-network": {
+            "good_coverage": {
+              "delta": 0.016587999131944458,
+              "paired_patient_bootstrap_ci95": [
+                0.0,
+                0.041992187500000035
+              ],
+              "patient_deltas": [
+                0.0,
+                0.0,
+                0.0233154296875,
+                0.0,
+                0.0,
+                0.07621256510416674
+              ]
+            },
+            "wrong_covered_fraction": {
+              "delta": -0.01990085177951389,
+              "paired_patient_bootstrap_ci95": [
+                -0.043060302734375,
+                0.0
+              ],
+              "patient_deltas": [
+                0.0,
+                0.0,
+                -0.0499267578125,
+                0.0,
+                0.0,
+                -0.06947835286458334
+              ]
+            },
+            "covered_fraction": {
+              "delta": -0.0033128526475694566,
+              "paired_patient_bootstrap_ci95": [
+                -0.0133056640625,
+                0.0033671061197916297
+              ],
+              "patient_deltas": [
+                0.0,
+                0.0,
+                -0.026611328125,
+                0.0,
+                0.0,
+                0.006734212239583259
+              ]
+            },
+            "images_improved_over_1pp": 2,
+            "images_regressed_over_1pp": 0
+          }
+        },
+        "torch-cached": {
+          "legacy-network": {
+            "good_coverage": {
+              "delta": 0.025485568576388857,
+              "paired_patient_bootstrap_ci95": [
+                -2.034505208337034e-05,
+                0.07631429036458331
+              ],
+              "patient_deltas": [
+                0.0003662109375,
+                0.0,
+                4.069010416662966e-05,
+                0.00016276041666662966,
+                -0.00016276041666674068,
+                0.15250651041666663
+              ]
+            },
+            "wrong_covered_fraction": {
+              "delta": -0.023240831163194444,
+              "paired_patient_bootstrap_ci95": [
+                -0.06958007812500001,
+                2.0345052083333386e-05
+              ],
+              "patient_deltas": [
+                -0.0003662109375,
+                0.0,
+                -4.069010416666663e-05,
+                -0.0001627604166666661,
+                0.00016276041666666652,
+                -0.1390380859375
+              ]
+            },
+            "covered_fraction": {
+              "delta": 0.0022447374131944384,
+              "paired_patient_bootstrap_ci95": [
+                0.0,
+                0.006734212239583315
+              ],
+              "patient_deltas": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.01346842447916663
+              ]
+            },
+            "images_improved_over_1pp": 1,
+            "images_regressed_over_1pp": 0
+          },
+          "cells-network": {
+            "good_coverage": {
+              "delta": 0.025404188368055563,
+              "paired_patient_bootstrap_ci95": [
+                0.0,
+                0.07621256510416669
+              ],
+              "patient_deltas": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.15242513020833337
+              ]
+            },
+            "wrong_covered_fraction": {
+              "delta": -0.023159450954861115,
+              "paired_patient_bootstrap_ci95": [
+                -0.06947835286458334,
+                0.0
+              ],
+              "patient_deltas": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                -0.13895670572916669
+              ]
+            },
+            "covered_fraction": {
+              "delta": 0.0022447374131944384,
+              "paired_patient_bootstrap_ci95": [
+                0.0,
+                0.006734212239583315
+              ],
+              "patient_deltas": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.01346842447916663
+              ]
+            },
+            "images_improved_over_1pp": 1,
+            "images_regressed_over_1pp": 0
+          }
+        },
+        "offline": {
+          "legacy-network": {
+            "good_coverage": {
+              "delta": 0.007832845052083334,
+              "paired_patient_bootstrap_ci95": [
+                8.138020833333333e-05,
+                0.023193359375
+              ],
+              "patient_deltas": [
+                0.0001220703125,
+                0.0,
+                0.046142578125,
+                0.0001220703125,
+                0.00048828125,
+                0.0001220703125
+              ]
+            },
+            "wrong_covered_fraction": {
+              "delta": -0.016703287760416668,
+              "paired_patient_bootstrap_ci95": [
+                -0.0498046875,
+                -8.138020833333333e-05
+              ],
+              "patient_deltas": [
+                -0.0001220703125,
+                0.0,
+                -0.099365234375,
+                -0.0001220703125,
+                -0.00048828125,
+                -0.0001220703125
+              ]
+            },
+            "covered_fraction": {
+              "delta": -0.008870442708333334,
+              "paired_patient_bootstrap_ci95": [
+                -0.026611328125,
+                0.0
+              ],
+              "patient_deltas": [
+                0.0,
+                0.0,
+                -0.05322265625,
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "images_improved_over_1pp": 1,
+            "images_regressed_over_1pp": 0
+          },
+          "cells-network": {
+            "good_coverage": {
+              "delta": 0.007771809895833333,
+              "paired_patient_bootstrap_ci95": [
+                0.0,
+                0.0233154296875
+              ],
+              "patient_deltas": [
+                0.0,
+                0.0,
+                0.046630859375,
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "wrong_covered_fraction": {
+              "delta": -0.016642252604166668,
+              "paired_patient_bootstrap_ci95": [
+                -0.0499267578125,
+                0.0
+              ],
+              "patient_deltas": [
+                0.0,
+                0.0,
+                -0.099853515625,
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "covered_fraction": {
+              "delta": -0.008870442708333334,
+              "paired_patient_bootstrap_ci95": [
+                -0.026611328125,
+                0.0
+              ],
+              "patient_deltas": [
+                0.0,
+                0.0,
+                -0.05322265625,
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "images_improved_over_1pp": 1,
+            "images_regressed_over_1pp": 0
+          }
+        }
+      },
+      "common_domain": {
+        "backend-balanced": {
+          "legacy-network": {
+            "pooled_common_query_fraction": 0.7961985270182291,
+            "baseline_pooled_common_rmse_mm": 3.7025468215507655,
+            "selected_pooled_common_rmse_mm": 0.32793376174280586,
+            "weighting": "pooled image query points, conditional on common finite support"
+          },
+          "cells-network": {
+            "pooled_common_query_fraction": 0.7961985270182291,
+            "baseline_pooled_common_rmse_mm": 3.7028230626004683,
+            "selected_pooled_common_rmse_mm": 0.32793376174280586,
+            "weighting": "pooled image query points, conditional on common finite support"
+          }
+        },
+        "torch-cached": {
+          "legacy-network": {
+            "pooled_common_query_fraction": 0.8937920464409722,
+            "baseline_pooled_common_rmse_mm": 4.025983423021345,
+            "selected_pooled_common_rmse_mm": 0.27458456793961605,
+            "weighting": "pooled image query points, conditional on common finite support"
+          },
+          "cells-network": {
+            "pooled_common_query_fraction": 0.8937920464409722,
+            "baseline_pooled_common_rmse_mm": 4.026279198440093,
+            "selected_pooled_common_rmse_mm": 0.27458456793961605,
+            "weighting": "pooled image query points, conditional on common finite support"
+          }
+        },
+        "offline": {
+          "legacy-network": {
+            "pooled_common_query_fraction": 0.50341796875,
+            "baseline_pooled_common_rmse_mm": 0.6282134545909215,
+            "selected_pooled_common_rmse_mm": 0.5279675873628459,
+            "weighting": "pooled image query points, conditional on common finite support"
+          },
+          "cells-network": {
+            "pooled_common_query_fraction": 0.50341796875,
+            "baseline_pooled_common_rmse_mm": 0.6284172115367676,
+            "selected_pooled_common_rmse_mm": 0.5279675873628459,
+            "weighting": "pooled image query points, conditional on common finite support"
+          }
+        }
+      },
+      "patient_ids": [
+        "ptbxl-patient-11092.0",
+        "ptbxl-patient-12988.0",
+        "ptbxl-patient-13741.0",
+        "ptbxl-patient-732.0",
+        "ptbxl-patient-7809.0",
+        "ptbxl-patient-8456.0"
+      ]
+    },
+    "test": {
+      "by_method": {
+        "backend-balanced": {
+          "legacy-oracle": {
+            "good_coverage": 0.9876675075954862,
+            "wrong_covered_fraction": 0.0,
+            "covered_fraction": 0.9876675075954862,
+            "images": 48,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.005521110210811229,
+            "images_with_conditional_error": 48,
+            "images_below_10pct_good_coverage": 0,
+            "images_below_50pct_good_coverage": 0
+          },
+          "cells-oracle": {
+            "good_coverage": 0.9885423448350695,
+            "wrong_covered_fraction": 0.0,
+            "covered_fraction": 0.9885423448350695,
+            "images": 48,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.005799440788474304,
+            "images_with_conditional_error": 48,
+            "images_below_10pct_good_coverage": 0,
+            "images_below_50pct_good_coverage": 0
+          },
+          "legacy-anonymous": {
+            "good_coverage": 0.9642673068576388,
+            "wrong_covered_fraction": 0.0,
+            "covered_fraction": 0.9642673068576388,
+            "images": 48,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.005521110210803501,
+            "images_with_conditional_error": 48,
+            "images_below_10pct_good_coverage": 0,
+            "images_below_50pct_good_coverage": 1
+          },
+          "cells-anonymous": {
+            "good_coverage": 0.9642673068576388,
+            "wrong_covered_fraction": 0.0,
+            "covered_fraction": 0.9642673068576388,
+            "images": 48,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.005658387888793925,
+            "images_with_conditional_error": 48,
+            "images_below_10pct_good_coverage": 0,
+            "images_below_50pct_good_coverage": 1
+          },
+          "legacy-network": {
+            "good_coverage": 0.6399027506510416,
+            "wrong_covered_fraction": 0.02441745334201389,
+            "covered_fraction": 0.6643202039930555,
+            "images": 48,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.16778958538676247,
+            "images_with_conditional_error": 48,
+            "images_below_10pct_good_coverage": 5,
+            "images_below_50pct_good_coverage": 12
+          },
+          "cells-network": {
+            "good_coverage": 0.6399671766493055,
+            "wrong_covered_fraction": 0.02435302734375,
+            "covered_fraction": 0.6643202039930555,
+            "images": 48,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.16735840429911458,
+            "images_with_conditional_error": 48,
+            "images_below_10pct_good_coverage": 5,
+            "images_below_50pct_good_coverage": 12
+          },
+          "clean85-network": {
+            "good_coverage": 0.6532830132378473,
+            "wrong_covered_fraction": 0.024295383029513885,
+            "covered_fraction": 0.677578396267361,
+            "images": 48,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.16609738154906628,
+            "images_with_conditional_error": 48,
+            "images_below_10pct_good_coverage": 4,
+            "images_below_50pct_good_coverage": 11
+          }
+        },
+        "torch-cached": {
+          "legacy-oracle": {
+            "good_coverage": 0.9942152235243057,
+            "wrong_covered_fraction": 0.0,
+            "covered_fraction": 0.9942152235243057,
+            "images": 36,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.0029727895918772304,
+            "images_with_conditional_error": 36,
+            "images_below_10pct_good_coverage": 0,
+            "images_below_50pct_good_coverage": 0
+          },
+          "cells-oracle": {
+            "good_coverage": 0.9942152235243057,
+            "wrong_covered_fraction": 0.0,
+            "covered_fraction": 0.9942152235243057,
+            "images": 36,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.0030805739231550147,
+            "images_with_conditional_error": 36,
+            "images_below_10pct_good_coverage": 0,
+            "images_below_50pct_good_coverage": 0
+          },
+          "legacy-anonymous": {
+            "good_coverage": 0.994106716579861,
+            "wrong_covered_fraction": 0.0,
+            "covered_fraction": 0.994106716579861,
+            "images": 36,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.0029727895918775296,
+            "images_with_conditional_error": 36,
+            "images_below_10pct_good_coverage": 0,
+            "images_below_50pct_good_coverage": 0
+          },
+          "cells-anonymous": {
+            "good_coverage": 0.994106716579861,
+            "wrong_covered_fraction": 0.0,
+            "covered_fraction": 0.994106716579861,
+            "images": 36,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.0030806262587158265,
+            "images_with_conditional_error": 36,
+            "images_below_10pct_good_coverage": 0,
+            "images_below_50pct_good_coverage": 0
+          },
+          "legacy-network": {
+            "good_coverage": 0.8446044921874999,
+            "wrong_covered_fraction": 0.03447129991319445,
+            "covered_fraction": 0.8790757921006945,
+            "images": 36,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.12524210409449046,
+            "images_with_conditional_error": 36,
+            "images_below_10pct_good_coverage": 2,
+            "images_below_50pct_good_coverage": 5
+          },
+          "cells-network": {
+            "good_coverage": 0.844631618923611,
+            "wrong_covered_fraction": 0.034444173177083336,
+            "covered_fraction": 0.8790757921006945,
+            "images": 36,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.12526517075212656,
+            "images_with_conditional_error": 36,
+            "images_below_10pct_good_coverage": 2,
+            "images_below_50pct_good_coverage": 5
+          },
+          "clean85-network": {
+            "good_coverage": 0.8712632921006943,
+            "wrong_covered_fraction": 0.03432888454861111,
+            "covered_fraction": 0.9055921766493057,
+            "images": 36,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.12122507065401095,
+            "images_with_conditional_error": 36,
+            "images_below_10pct_good_coverage": 1,
+            "images_below_50pct_good_coverage": 4
+          }
+        },
+        "offline": {
+          "legacy-oracle": {
+            "good_coverage": 0.9811197916666666,
+            "wrong_covered_fraction": 0.0,
+            "covered_fraction": 0.9811197916666666,
+            "images": 12,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.009997239661288244,
+            "images_with_conditional_error": 12,
+            "images_below_10pct_good_coverage": 0,
+            "images_below_50pct_good_coverage": 0
+          },
+          "cells-oracle": {
+            "good_coverage": 0.9828694661458334,
+            "wrong_covered_fraction": 0.0,
+            "covered_fraction": 0.9828694661458334,
+            "images": 12,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.008411839045758623,
+            "images_with_conditional_error": 12,
+            "images_below_10pct_good_coverage": 0,
+            "images_below_50pct_good_coverage": 0
+          },
+          "legacy-anonymous": {
+            "good_coverage": 0.9344278971354166,
+            "wrong_covered_fraction": 0.0,
+            "covered_fraction": 0.9344278971354166,
+            "images": 12,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.009997239661296783,
+            "images_with_conditional_error": 12,
+            "images_below_10pct_good_coverage": 0,
+            "images_below_50pct_good_coverage": 1
+          },
+          "cells-anonymous": {
+            "good_coverage": 0.9344278971354166,
+            "wrong_covered_fraction": 0.0,
+            "covered_fraction": 0.9344278971354166,
+            "images": 12,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.009135118222579947,
+            "images_with_conditional_error": 12,
+            "images_below_10pct_good_coverage": 0,
+            "images_below_50pct_good_coverage": 1
+          },
+          "legacy-network": {
+            "good_coverage": 0.4352010091145833,
+            "wrong_covered_fraction": 0.014363606770833334,
+            "covered_fraction": 0.4495646158854167,
+            "images": 12,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.46092816716518226,
+            "images_with_conditional_error": 12,
+            "images_below_10pct_good_coverage": 3,
+            "images_below_50pct_good_coverage": 7
+          },
+          "cells-network": {
+            "good_coverage": 0.435302734375,
+            "wrong_covered_fraction": 0.014261881510416666,
+            "covered_fraction": 0.4495646158854167,
+            "images": 12,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.4510958419355882,
+            "images_with_conditional_error": 12,
+            "images_below_10pct_good_coverage": 3,
+            "images_below_50pct_good_coverage": 7
+          },
+          "clean85-network": {
+            "good_coverage": 0.435302734375,
+            "wrong_covered_fraction": 0.014261881510416666,
+            "covered_fraction": 0.4495646158854167,
+            "images": 12,
+            "patients": 6,
+            "median_image_conditional_p95_mm": 0.4510958419355882,
+            "images_with_conditional_error": 12,
+            "images_below_10pct_good_coverage": 3,
+            "images_below_50pct_good_coverage": 7
+          }
+        }
+      },
+      "paired": {
+        "backend-balanced": {
+          "legacy-network": {
+            "good_coverage": {
+              "delta": 0.01338026258680558,
+              "paired_patient_bootstrap_ci95": [
+                3.721449110244235e-05,
+                0.039889865451388916
+              ],
+              "patient_deltas": [
+                -0.00010172526041674068,
+                0.00038655598958348136,
+                0.0,
+                0.00018310546875,
+                0.00022379557291674068,
+                0.07958984375
+              ]
+            },
+            "wrong_covered_fraction": {
+              "delta": -0.0001220703125000003,
+              "paired_patient_bootstrap_ci95": [
+                -0.0003899468315972226,
+                0.00012207031249999972
+              ],
+              "patient_deltas": [
+                0.00010172526041666609,
+                0.00030517578125,
+                0.0,
+                -0.00018310546875,
+                -0.00022379557291666782,
+                -0.000732421875
+              ]
+            },
+            "covered_fraction": {
+              "delta": 0.01325819227430558,
+              "paired_patient_bootstrap_ci95": [
+                0.0,
+                0.039543999565972245
+              ],
+              "patient_deltas": [
+                0.0,
+                0.0006917317708334814,
+                0.0,
+                0.0,
+                0.0,
+                0.078857421875
+              ]
+            },
+            "images_improved_over_1pp": 1,
+            "images_regressed_over_1pp": 0
+          },
+          "cells-network": {
+            "good_coverage": {
+              "delta": 0.013315836588541704,
+              "paired_patient_bootstrap_ci95": [
+                0.0,
+                0.039716932508680615
+              ],
+              "patient_deltas": [
+                0.0,
+                0.0006917317708334814,
+                0.0,
+                0.0,
+                0.0,
+                0.07920328776041674
+              ]
+            },
+            "wrong_covered_fraction": {
+              "delta": -5.7644314236111306e-05,
+              "paired_patient_bootstrap_ci95": [
+                -0.0001729329427083339,
+                0.0
+              ],
+              "patient_deltas": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                -0.0003458658854166678
+              ]
+            },
+            "covered_fraction": {
+              "delta": 0.01325819227430558,
+              "paired_patient_bootstrap_ci95": [
+                0.0,
+                0.039543999565972245
+              ],
+              "patient_deltas": [
+                0.0,
+                0.0006917317708334814,
+                0.0,
+                0.0,
+                0.0,
+                0.078857421875
+              ]
+            },
+            "images_improved_over_1pp": 1,
+            "images_regressed_over_1pp": 0
+          }
+        },
+        "torch-cached": {
+          "legacy-network": {
+            "good_coverage": {
+              "delta": 0.026658799913194458,
+              "paired_patient_bootstrap_ci95": [
+                7.459852430556173e-05,
+                0.07939995659722222
+              ],
+              "patient_deltas": [
+                4.069010416662966e-05,
+                0.0012613932291667407,
+                0.0001220703125,
+                0.0,
+                0.00020345052083337034,
+                0.1583251953125
+              ]
+            },
+            "wrong_covered_fraction": {
+              "delta": -0.00014241536458333367,
+              "paired_patient_bootstrap_ci95": [
+                -0.0003458658854166668,
+                2.0345052083333044e-05
+              ],
+              "patient_deltas": [
+                -4.069010416666782e-05,
+                0.0001220703125,
+                -0.0001220703125,
+                0.0,
+                -0.0002034505208333339,
+                -0.0006103515625000002
+              ]
+            },
+            "covered_fraction": {
+              "delta": 0.026516384548611122,
+              "paired_patient_bootstrap_ci95": [
+                0.0,
+                0.07908799913194446
+              ],
+              "patient_deltas": [
+                0.0,
+                0.0013834635416667407,
+                0.0,
+                0.0,
+                0.0,
+                0.15771484375
+              ]
+            },
+            "images_improved_over_1pp": 1,
+            "images_regressed_over_1pp": 0
+          },
+          "cells-network": {
+            "good_coverage": {
+              "delta": 0.026631673177083353,
+              "paired_patient_bootstrap_ci95": [
+                0.0,
+                0.07943386501736115
+              ],
+              "patient_deltas": [
+                0.0,
+                0.0013834635416667407,
+                0.0,
+                0.0,
+                0.0,
+                0.15840657552083337
+              ]
+            },
+            "wrong_covered_fraction": {
+              "delta": -0.0001152886284722222,
+              "paired_patient_bootstrap_ci95": [
+                -0.0003458658854166667,
+                0.0
+              ],
+              "patient_deltas": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                -0.0006917317708333333
+              ]
+            },
+            "covered_fraction": {
+              "delta": 0.026516384548611122,
+              "paired_patient_bootstrap_ci95": [
+                0.0,
+                0.07908799913194446
+              ],
+              "patient_deltas": [
+                0.0,
+                0.0013834635416667407,
+                0.0,
+                0.0,
+                0.0,
+                0.15771484375
+              ]
+            },
+            "images_improved_over_1pp": 1,
+            "images_regressed_over_1pp": 0
+          }
+        },
+        "offline": {
+          "legacy-network": {
+            "good_coverage": {
+              "delta": 0.00010172526041666667,
+              "paired_patient_bootstrap_ci95": [
+                -0.000244140625,
+                0.0004679361979166667
+              ],
+              "patient_deltas": [
+                -0.000244140625,
+                -0.00048828125,
+                -0.0001220703125,
+                0.0003662109375,
+                0.000244140625,
+                0.0008544921875
+              ]
+            },
+            "wrong_covered_fraction": {
+              "delta": -0.00010172526041666667,
+              "paired_patient_bootstrap_ci95": [
+                -0.0004679361979166667,
+                0.000244140625
+              ],
+              "patient_deltas": [
+                0.000244140625,
+                0.00048828125,
+                0.0001220703125,
+                -0.0003662109375,
+                -0.000244140625,
+                -0.0008544921875
+              ]
+            },
+            "covered_fraction": {
+              "delta": 0.0,
+              "paired_patient_bootstrap_ci95": [
+                0.0,
+                0.0
+              ],
+              "patient_deltas": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "images_improved_over_1pp": 0,
+            "images_regressed_over_1pp": 0
+          },
+          "cells-network": {
+            "good_coverage": {
+              "delta": 0.0,
+              "paired_patient_bootstrap_ci95": [
+                0.0,
+                0.0
+              ],
+              "patient_deltas": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "wrong_covered_fraction": {
+              "delta": 0.0,
+              "paired_patient_bootstrap_ci95": [
+                0.0,
+                0.0
+              ],
+              "patient_deltas": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "covered_fraction": {
+              "delta": 0.0,
+              "paired_patient_bootstrap_ci95": [
+                0.0,
+                0.0
+              ],
+              "patient_deltas": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "images_improved_over_1pp": 0,
+            "images_regressed_over_1pp": 0
+          }
+        }
+      },
+      "common_domain": {
+        "backend-balanced": {
+          "legacy-network": {
+            "pooled_common_query_fraction": 0.7716776529947916,
+            "baseline_pooled_common_rmse_mm": 2.3636355971775465,
+            "selected_pooled_common_rmse_mm": 2.363499878823837,
+            "weighting": "pooled image query points, conditional on common finite support"
+          },
+          "cells-network": {
+            "pooled_common_query_fraction": 0.7716776529947916,
+            "baseline_pooled_common_rmse_mm": 2.363534923906591,
+            "selected_pooled_common_rmse_mm": 2.363499878823837,
+            "weighting": "pooled image query points, conditional on common finite support"
+          }
+        },
+        "torch-cached": {
+          "legacy-network": {
+            "pooled_common_query_fraction": 0.8790486653645834,
+            "baseline_pooled_common_rmse_mm": 2.5480662716647946,
+            "selected_pooled_common_rmse_mm": 2.547878235818932,
+            "weighting": "pooled image query points, conditional on common finite support"
+          },
+          "cells-network": {
+            "pooled_common_query_fraction": 0.8790486653645834,
+            "baseline_pooled_common_rmse_mm": 2.5479162867881504,
+            "selected_pooled_common_rmse_mm": 2.547878235818932,
+            "weighting": "pooled image query points, conditional on common finite support"
+          }
+        },
+        "offline": {
+          "legacy-network": {
+            "pooled_common_query_fraction": 0.4495646158854167,
+            "baseline_pooled_common_rmse_mm": 0.5224449869561718,
+            "selected_pooled_common_rmse_mm": 0.5236074291594602,
+            "weighting": "pooled image query points, conditional on common finite support"
+          },
+          "cells-network": {
+            "pooled_common_query_fraction": 0.4495646158854167,
+            "baseline_pooled_common_rmse_mm": 0.5236074291594602,
+            "selected_pooled_common_rmse_mm": 0.5236074291594602,
+            "weighting": "pooled image query points, conditional on common finite support"
+          }
+        }
+      },
+      "patient_ids": [
+        "ptbxl-patient-10531.0",
+        "ptbxl-patient-11323.0",
+        "ptbxl-patient-11767.0",
+        "ptbxl-patient-13701.0",
+        "ptbxl-patient-20306.0",
+        "ptbxl-patient-20398.0"
+      ]
+    }
+  }
+}
