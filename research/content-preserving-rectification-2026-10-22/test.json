@@ -69,7 +69,7 @@
         "good_coverage": 0.99755859375,
         "wrong_covered_fraction": 0.0
       },
-      "seconds": 2.4705781869997736,
+      "seconds": 2.367265494998719,
       "coordinate_mode": "complete-map"
     },
     {
@@ -140,7 +140,7 @@
         "good_coverage": 0.939208984375,
         "wrong_covered_fraction": 0.001220703125
       },
-      "seconds": 0.7896577049978077,
+      "seconds": 0.7954946829995606,
       "coordinate_mode": "complete-map"
     },
     {
@@ -198,7 +198,7 @@
         "good_coverage": 0.946044921875,
         "wrong_covered_fraction": 0.0
       },
-      "seconds": 0.28351718300109496,
+      "seconds": 0.2695319449994713,
       "coordinate_mode": "previous-observed-cell-field"
     },
     {
@@ -269,7 +269,7 @@
         "good_coverage": 0.921630859375,
         "wrong_covered_fraction": 0.00634765625
       },
-      "seconds": 2.0782264240042423,
+      "seconds": 2.101668563998828,
       "coordinate_mode": "complete-map"
     },
     {
@@ -340,7 +340,7 @@
         "good_coverage": 0.304931640625,
         "wrong_covered_fraction": 0.03759765625
       },
-      "seconds": 0.46562128300138284,
+      "seconds": 0.473753205005778,
       "coordinate_mode": "complete-map"
     },
     {
@@ -398,7 +398,7 @@
         "good_coverage": 0.986083984375,
         "wrong_covered_fraction": 0.007568359375
       },
-      "seconds": 0.19342680300178472,
+      "seconds": 0.16467314500187058,
       "coordinate_mode": "previous-observed-cell-field"
     },
     {
@@ -469,7 +469,7 @@
         "good_coverage": 0.00537109375,
         "wrong_covered_fraction": 0.004150390625
       },
-      "seconds": 0.21845958799531218,
+      "seconds": 0.22754065299523063,
       "coordinate_mode": "complete-map"
     },
     {
@@ -540,7 +540,7 @@
         "good_coverage": 0.956298828125,
         "wrong_covered_fraction": 0.000244140625
       },
-      "seconds": 2.18282098799682,
+      "seconds": 2.1038386410000385,
       "coordinate_mode": "complete-map"
     },
     {
@@ -611,7 +611,7 @@
         "good_coverage": 0.97119140625,
         "wrong_covered_fraction": 0.000244140625
       },
-      "seconds": 0.8567005739969318,
+      "seconds": 0.9127216459964984,
       "coordinate_mode": "complete-map"
     },
     {
@@ -682,7 +682,7 @@
         "good_coverage": 0.802734375,
         "wrong_covered_fraction": 0.002685546875
       },
-      "seconds": 3.7371727259960608,
+      "seconds": 0.7992155399988405,
       "coordinate_mode": "complete-map"
     },
     {
@@ -740,7 +740,7 @@
         "good_coverage": 0.639892578125,
         "wrong_covered_fraction": 0.0283203125
       },
-      "seconds": 0.23573920800117776,
+      "seconds": 0.19991154099989217,
       "coordinate_mode": "previous-observed-cell-field"
     },
     {
@@ -811,7 +811,7 @@
         "good_coverage": 0.99169921875,
         "wrong_covered_fraction": 0.0
       },
-      "seconds": 0.901912100998743,
+      "seconds": 0.7947039139980916,
       "coordinate_mode": "complete-map"
     },
     {
@@ -882,7 +882,7 @@
         "good_coverage": 0.95556640625,
         "wrong_covered_fraction": 0.000244140625
       },
-      "seconds": 2.069118202998652,
+      "seconds": 2.0004059079947183,
       "coordinate_mode": "complete-map"
     },
     {
@@ -953,7 +953,7 @@
         "good_coverage": 0.971435546875,
         "wrong_covered_fraction": 0.005859375
       },
-      "seconds": 0.9742034549999516,
+      "seconds": 0.7980578019996756,
       "coordinate_mode": "complete-map"
     },
     {
@@ -1024,7 +1024,7 @@
         "good_coverage": 0.048583984375,
         "wrong_covered_fraction": 0.00732421875
       },
-      "seconds": 0.39855762899969704,
+      "seconds": 0.33175383799971314,
       "coordinate_mode": "complete-map"
     },
     {
@@ -1082,7 +1082,7 @@
         "good_coverage": 0.97802734375,
         "wrong_covered_fraction": 0.008544921875
       },
-      "seconds": 0.7398483520009904,
+      "seconds": 0.6906000789967948,
       "coordinate_mode": "previous-observed-cell-field"
     },
     {
@@ -1153,7 +1153,7 @@
         "good_coverage": 0.999755859375,
         "wrong_covered_fraction": 0.0
       },
-      "seconds": 2.012345158000244,
+      "seconds": 2.4534144459976233,
       "coordinate_mode": "complete-map"
     },
     {
@@ -1224,7 +1224,7 @@
         "good_coverage": 0.822265625,
         "wrong_covered_fraction": 0.001953125
       },
-      "seconds": 1.9821801770012826,
+      "seconds": 3.4709188069973607,
       "coordinate_mode": "complete-map"
     },
     {
@@ -1295,7 +1295,7 @@
         "good_coverage": 0.200439453125,
         "wrong_covered_fraction": 0.008056640625
       },
-      "seconds": 0.5758899560023565,
+      "seconds": 0.6269689979963005,
       "coordinate_mode": "complete-map"
     },
     {
@@ -1366,7 +1366,7 @@
         "good_coverage": 0.99755859375,
         "wrong_covered_fraction": 0.001220703125
       },
-      "seconds": 4.456065345999377,
+      "seconds": 5.724612108002475,
       "coordinate_mode": "complete-map"
     },
     {
@@ -1437,7 +1437,7 @@
         "good_coverage": 0.951904296875,
         "wrong_covered_fraction": 0.000244140625
       },
-      "seconds": 0.8292687610010034,
+      "seconds": 0.8942044430004898,
       "coordinate_mode": "complete-map"
     },
     {
@@ -1508,7 +1508,7 @@
         "good_coverage": 0.99072265625,
         "wrong_covered_fraction": 0.003173828125
       },
-      "seconds": 0.8068342309998116,
+      "seconds": 0.8201938650017837,
       "coordinate_mode": "complete-map"
     },
     {
@@ -1579,7 +1579,7 @@
         "good_coverage": 0.64990234375,
         "wrong_covered_fraction": 0.020263671875
       },
-      "seconds": 0.811966310000571,
+      "seconds": 0.727355423005065,
       "coordinate_mode": "complete-map"
     },
     {
@@ -1650,7 +1650,7 @@
         "good_coverage": 0.96435546875,
         "wrong_covered_fraction": 0.00341796875
       },
-      "seconds": 0.7739555960069993,
+      "seconds": 0.8614954969962128,
       "coordinate_mode": "complete-map"
     },
     {
@@ -1721,7 +1721,7 @@
         "good_coverage": 0.975830078125,
         "wrong_covered_fraction": 0.008544921875
       },
-      "seconds": 2.265516455998295,
+      "seconds": 2.1615203119945363,
       "coordinate_mode": "complete-map"
     },
     {
@@ -1792,7 +1792,7 @@
         "good_coverage": 0.998779296875,
         "wrong_covered_fraction": 0.0
       },
-      "seconds": 4.27346416299406,
+      "seconds": 4.480569108003692,
       "coordinate_mode": "complete-map"
     },
     {
@@ -1850,7 +1850,7 @@
         "good_coverage": 0.92431640625,
         "wrong_covered_fraction": 0.00537109375
       },
-      "seconds": 0.3389757040058612,
+      "seconds": 0.32894807100092294,
       "coordinate_mode": "previous-observed-cell-field"
     },
     {
@@ -1921,7 +1921,7 @@
         "good_coverage": 0.996826171875,
         "wrong_covered_fraction": 0.001220703125
       },
-      "seconds": 2.1447516810003435,
+      "seconds": 2.114626855000097,
       "coordinate_mode": "complete-map"
     },
     {
@@ -1979,7 +1979,7 @@
         "good_coverage": 0.12451171875,
         "wrong_covered_fraction": 0.0234375
       },
-      "seconds": 0.06560965799872065,
+      "seconds": 0.06869956599985017,
       "coordinate_mode": "previous-observed-cell-field"
     },
     {
@@ -2050,7 +2050,7 @@
         "good_coverage": 0.822265625,
         "wrong_covered_fraction": 0.00146484375
       },
-      "seconds": 0.729698103001283,
+      "seconds": 0.7661601250001695,
       "coordinate_mode": "complete-map"
     },
     {
@@ -2109,7 +2109,7 @@
         "good_coverage": 0.33154296875,
         "wrong_covered_fraction": 0.015625
       },
-      "seconds": 0.1762862999967183,
+      "seconds": 0.16403078499570256,
       "coordinate_mode": "previous-observed-cell-field"
     },
     {
@@ -2167,7 +2167,7 @@
         "good_coverage": 0.998291015625,
         "wrong_covered_fraction": 0.000244140625
       },
-      "seconds": 0.6683338420043583,
+      "seconds": 0.6289718150001136,
       "coordinate_mode": "previous-observed-cell-field"
     },
     {
@@ -2225,7 +2225,7 @@
         "good_coverage": 0.983154296875,
         "wrong_covered_fraction": 0.001953125
       },
-      "seconds": 0.7217898369999602,
+      "seconds": 0.6956763440030045,
       "coordinate_mode": "previous-observed-cell-field"
     },
     {
@@ -2296,7 +2296,7 @@
         "good_coverage": 0.98876953125,
         "wrong_covered_fraction": 0.0
       },
-      "seconds": 2.3333988820013474,
+      "seconds": 2.131277059997956,
       "coordinate_mode": "complete-map"
     },
     {
@@ -2367,7 +2367,7 @@
         "good_coverage": 0.013427734375,
         "wrong_covered_fraction": 0.007080078125
       },
-      "seconds": 0.21070415099529782,
+      "seconds": 0.19613184800255112,
       "coordinate_mode": "complete-map"
     },
     {
@@ -2438,7 +2438,7 @@
         "good_coverage": 0.994873046875,
         "wrong_covered_fraction": 0.0
       },
-      "seconds": 2.449287702998845,
+      "seconds": 1.975544600005378,
       "coordinate_mode": "complete-map"
     },
     {
@@ -2496,7 +2496,7 @@
         "good_coverage": 0.998779296875,
         "wrong_covered_fraction": 0.000732421875
       },
-      "seconds": 0.7117718149966095,
+      "seconds": 0.8102275970013579,
       "coordinate_mode": "previous-observed-cell-field"
     },
     {
@@ -2554,7 +2554,7 @@
         "good_coverage": 0.11572265625,
         "wrong_covered_fraction": 0.160888671875
       },
-      "seconds": 0.9264038249966688,
+      "seconds": 1.0597455049937707,
       "coordinate_mode": "previous-observed-cell-field"
     },
     {
@@ -2612,7 +2612,7 @@
         "good_coverage": 0.98046875,
         "wrong_covered_fraction": 0.00244140625
       },
-      "seconds": 0.28368251400388544,
+      "seconds": 0.1729204240036779,
       "coordinate_mode": "previous-observed-cell-field"
     },
     {
@@ -2683,7 +2683,7 @@
         "good_coverage": 0.9443359375,
         "wrong_covered_fraction": 0.00048828125
       },
-      "seconds": 0.7491832119994797,
+      "seconds": 0.7496016950026387,
       "coordinate_mode": "complete-map"
     },
     {
@@ -2754,7 +2754,7 @@
         "good_coverage": 0.999755859375,
         "wrong_covered_fraction": 0.0
       },
-      "seconds": 0.8421438049990684,
+      "seconds": 0.7653120489994762,
       "coordinate_mode": "complete-map"
     },
     {
@@ -2825,7 +2825,7 @@
         "good_coverage": 0.90234375,
         "wrong_covered_fraction": 0.00341796875
       },
-      "seconds": 0.8511680390001857,
+      "seconds": 0.7145251580004697,
       "coordinate_mode": "complete-map"
     },
     {
@@ -2883,7 +2883,7 @@
         "good_coverage": 0.22216796875,
         "wrong_covered_fraction": 0.064453125
       },
-      "seconds": 0.14786861700122245,
+      "seconds": 0.15066136099630967,
       "coordinate_mode": "previous-observed-cell-field"
     },
     {
@@ -2954,7 +2954,7 @@
         "good_coverage": 0.97265625,
         "wrong_covered_fraction": 0.002197265625
       },
-      "seconds": 0.8786041170023964,
+      "seconds": 0.9457930759963347,
       "coordinate_mode": "complete-map"
     },
     {
@@ -3012,7 +3012,7 @@
         "good_coverage": 0.04833984375,
         "wrong_covered_fraction": 0.949462890625
       },
-      "seconds": 0.8306535060037277,
+      "seconds": 0.8502165429963497,
       "coordinate_mode": "previous-observed-cell-field"
     },
     {
@@ -3083,7 +3083,7 @@
         "good_coverage": 0.99853515625,
         "wrong_covered_fraction": 0.00048828125
       },
-      "seconds": 4.704861015998176,
+      "seconds": 5.495815830996435,
       "coordinate_mode": "complete-map"
     },
     {
@@ -3141,7 +3141,7 @@
         "good_coverage": 0.261474609375,
         "wrong_covered_fraction": 0.008056640625
       },
-      "seconds": 0.07148865899944212,
+      "seconds": 0.06995668200397631,
       "coordinate_mode": "previous-observed-cell-field"
     },
     {
@@ -3199,7 +3199,7 @@
         "good_coverage": 0.998779296875,
         "wrong_covered_fraction": 0.000732421875
       },
-      "seconds": 0.6626094370003557,
+      "seconds": 0.6334561590047088,
       "coordinate_mode": "previous-observed-cell-field"
     }
   ],
@@ -3208,7 +3208,7 @@
     "ecg_gpu/digitization/complete_rectifier.py": "0c3e6025332eaf582a4f3d57218cbf7ed0bdabad1efc7e7503cce3e9646de2da",
     "ecg_gpu/digitization/frame_mesh.py": "89dc2e121bbdfca6c5b8eaa48a0f021375a2bd5c1e802c8c697f929ade733205",
     "ecg_gpu/digitization/cell_mesh.py": "566253fba786de84475f00d593b80876b3869499d3703c18a71c9a5396cf37d6",
-    "examples/rectify_denoising_grid.py": "1db8d6fd1a0343a87c44991513751af9ca84828ac6dd95353454ce6235cf9ca1",
+    "examples/rectify_denoising_grid.py": "5d181ddd0f2815d9b2be13a5b48abc54b9cf82ea1e75779429480b285f40964f",
     "examples/rectify_field_image.py": "c11641b35ed91dd7b6eace0cde9f8ec8ae50e41c2649732ae9d2f82d70219133",
     "examples/evaluate_complete_rectification.py": "7cd50df945715138b24204b107b089aac46f148e5e4669999dc02a6c92d3f761",
     "pyproject.toml": "926f67e9f2e24db160c6ce5ece652541cdf56003294403298e9d6bb2e83fe04d"

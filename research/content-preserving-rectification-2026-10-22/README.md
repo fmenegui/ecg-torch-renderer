@@ -29,6 +29,8 @@ The full npj article XML and methods/results/discussion were read through the of
 
 `original-rgb.png` always preserves decoded input values. `output-original-rgb.png` contains a sampled full-frame proposal or the unchanged input. `geometry-evidence.png`, `geometry-eligibility.png` and `sampling-valid.png` are separate. White padding may occur outside the mapped input quadrilateral. Missing grid evidence does not whiten internal RGB. `--output-mode cells` explicitly requests the old partial-cell diagnostic.
 
+`observed-grid-geometry.npz` contains selected source coordinates, corresponding physical coordinates, grid IDs, scores and allowed cells. The output helper writes this archive itself, so partial-coordinate fallback is reproducible for both checkpoint CLIs and standalone cached-point previews. Raw model-specific `points.npz` files are retained separately. A regression check reconstructs the fallback coordinate mask from the reported archive and compares it with the emitted eligibility image.
+
 The default detector profile is the previously validation-selected `banding` profile. Weights, architecture and cached detections are unchanged. Background filtering influences detector input only. Original RGB supplies the output, and the optional restoration head remains diagnostic.
 
 ## Evaluation protocol and selection

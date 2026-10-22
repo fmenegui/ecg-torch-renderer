@@ -131,7 +131,7 @@
     "ecg_gpu/digitization/complete_rectifier.py": "0c3e6025332eaf582a4f3d57218cbf7ed0bdabad1efc7e7503cce3e9646de2da",
     "ecg_gpu/digitization/frame_mesh.py": "89dc2e121bbdfca6c5b8eaa48a0f021375a2bd5c1e802c8c697f929ade733205",
     "ecg_gpu/digitization/cell_mesh.py": "566253fba786de84475f00d593b80876b3869499d3703c18a71c9a5396cf37d6",
-    "examples/rectify_denoising_grid.py": "1db8d6fd1a0343a87c44991513751af9ca84828ac6dd95353454ce6235cf9ca1",
+    "examples/rectify_denoising_grid.py": "5d181ddd0f2815d9b2be13a5b48abc54b9cf82ea1e75779429480b285f40964f",
     "examples/rectify_field_image.py": "c11641b35ed91dd7b6eace0cde9f8ec8ae50e41c2649732ae9d2f82d70219133",
     "examples/evaluate_complete_rectification.py": "7cd50df945715138b24204b107b089aac46f148e5e4669999dc02a6c92d3f761",
     "pyproject.toml": "926f67e9f2e24db160c6ce5ece652541cdf56003294403298e9d6bb2e83fe04d"
@@ -149,6 +149,15 @@
     "previous_sha256": "6df6b6b5a8029282be4d910de7e5de32591a99f920d990ff7cc4f47d46557def",
     "current_sha256": "1db8d6fd1a0343a87c44991513751af9ca84828ac6dd95353454ce6235cf9ca1",
     "reason": "Correct legacy sampled-map-roundtrip metadata to false for the new full-image CLI. No geometry, sampling, eligibility or selection change.",
+    "geometry_sources_changed": false,
+    "selection_recomputed": false,
+    "test_already_retrospective": true
+  },
+  "coordinate_archive_amendment": {
+    "path": "examples/rectify_denoising_grid.py",
+    "previous_sha256": "1db8d6fd1a0343a87c44991513751af9ca84828ac6dd95353454ce6235cf9ca1",
+    "current_sha256": "5d181ddd0f2815d9b2be13a5b48abc54b9cf82ea1e75779429480b285f40964f",
+    "reason": "The output helper now saves its own complete partial-coordinate archive, independently of model-specific points.npz formats. Sampling, fitting, eligibility and chosen radius unchanged.",
     "geometry_sources_changed": false,
     "selection_recomputed": false,
     "test_already_retrospective": true

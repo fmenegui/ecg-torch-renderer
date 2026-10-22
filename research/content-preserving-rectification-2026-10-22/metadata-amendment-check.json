@@ -2,5 +2,6 @@
   "all_48_fit_and_result_records_exactly_equal": true,
   "algorithm_changed": false,
   "prior_report_sha256": "bcf4f33282765d75b33f1d68a21ac6af7b62ebe4a9c7eefe33725cfbbdab1b58",
-  "current_report_sha256": "065245569b36498d34fd74556052acfbb72f3db1f091b6c80a387f2ea74b195f"
+  "current_report_sha256": "48531c26115efa0bba9185ba61d71b9e61106e9fa9a70519dc40341b216b485e",
+  "coordinate_archive_amendment_geometry_unchanged": true
 }

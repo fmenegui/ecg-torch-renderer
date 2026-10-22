@@ -27,6 +27,6 @@ test_refinement_preserves_affine_grid_and_reduces_jitter (tests.test_hybrid_rect
 test_similarity_does_not_hide_anisotropic_scale (tests.test_hybrid_rectifier.HybridGeometryTests.test_similarity_does_not_hide_anisotropic_scale) ... ok
 
 ----------------------------------------------------------------------
-Ran 27 tests in 1.909s
+Ran 27 tests in 1.851s
 
 OK

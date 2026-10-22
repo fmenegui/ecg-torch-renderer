@@ -38,6 +38,9 @@ def write_geometry_output(rgb, xy, scores, local, out, *, pixels_per_mm=8., outp
     ids = np.asarray(local['ids'], int).reshape(-1, 2)
     report = {'output_mode': output_mode, 'source_for_rectification': 'original RGB'}
     Image.fromarray(rgb).save(out/'original-rgb.png')
+    np.savez_compressed(out/'observed-grid-geometry.npz', xy=xy[chosen], scores=scores[chosen],
+                        ids=ids, canonical_mm=ids[:, ::-1]*5.,
+                        cells=np.asarray(local['cells'], int).reshape(-1, 2))
     if output_mode == 'cells':
         report['status'] = 'rejected'
         if local['partial_status'] == 'partial':
@@ -83,7 +86,7 @@ def write_geometry_output(rgb, xy, scores, local, out, *, pixels_per_mm=8., outp
         geometry_accuracy_verified=False, evidence_map_erases_rgb=False,
         sampled_map_roundtrip_checked=False,
         coordinate_mode='complete-map-with-eligibility' if details['resampled'] else 'observed-cells-only',
-        observed_cell_coordinate_data='points.npz',
+        observed_cell_coordinate_data='observed-grid-geometry.npz',
         evidence_legend={'0': 'outside sampled frame or original unrectified',
                          '1': 'extrapolated geometry', '2': 'interpolated geometry',
                          '3': 'observed grid cell, not an accuracy certificate'})

@@ -201,9 +201,15 @@ class CompleteRectificationTests(unittest.TestCase):
             report = write_geometry_output(image, observed, np.ones(len(ids)), local, path)
             self.assertEqual(report['status'], 'original-preserved')
             self.assertTrue(report['complete_geometry']['observed_cell_coordinates_available'])
+            with np.load(path/report['observed_cell_coordinate_data']) as data:
+                yy, xx = np.mgrid[:160, :240]
+                coordinates = forward_cell_map(data['xy'], data['canonical_mm'], data['ids'],
+                    np.column_stack((xx.ravel(), yy.ravel())), data['cells'])
             with np.load(path/'geometry-evidence.npz') as data:
                 self.assertTrue(data['geometric_eligibility'].any())
                 self.assertFalse(data['geometric_eligibility'].all())
+                np.testing.assert_array_equal(np.isfinite(coordinates).all(1).reshape(160, 240),
+                                              data['geometric_eligibility'])
             np.testing.assert_array_equal(np.asarray(Image.open(path/report['output_image'])), image)
 
 
