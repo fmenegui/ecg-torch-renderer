@@ -1,0 +1,11 @@
+test_01_scalar_rectangle_clipping_rgb_rgba_borders_flips (__main__.IndependentAxisAreaTests.test_01_scalar_rectangle_clipping_rgb_rgba_borders_flips) ... ok
+test_02_known_32to1_counterexample_positive_control (__main__.IndependentAxisAreaTests.test_02_known_32to1_counterexample_positive_control) ... ok
+test_03_tile_partition_exact_and_full_source_identity (__main__.IndependentAxisAreaTests.test_03_tile_partition_exact_and_full_source_identity) ... ok
+test_04_explicitly_rejects_off_diagonal_singular_nonfinite (__main__.IndependentAxisAreaTests.test_04_explicitly_rejects_off_diagonal_singular_nonfinite) ... ok
+test_05_rejects_unresolved_tiny_footprint (__main__.IndependentAxisAreaTests.test_05_rejects_unresolved_tiny_footprint) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.095s
+
+OK
+{"receipt": "/workspace/scratch/a57599a3e70e/m4/qa/receipts/independent-axis-area-tests.json", "tests": 5, "passed": true}

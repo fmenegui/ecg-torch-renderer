@@ -1,0 +1,242 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-10-23",
+  "scope": "Primary-source mechanism review. No third-party inference, credentials, image upload or source redistribution.",
+  "labels": {
+    "documented": "Explicit primary-source statement or inspected original code",
+    "inferred": "Our engineering deduction, not attributed competitor behavior",
+    "to_test": "Unexecuted proposal"
+  },
+  "sources": [
+    {
+      "id": "N1",
+      "title": "Digitizing paper ECGs at scale: an open-source algorithm for clinical research",
+      "type": "primary_paper",
+      "url": "https://www.nature.com/articles/s41746-025-02327-1",
+      "official_full_text": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12891466/fullTextXML",
+      "doi": "10.1038/s41746-025-02327-1",
+      "refs": ["turn128search0", "turn128search3"],
+      "documented": "Published main uses global perspective correction and autocorrelation scale, not a validated local TPS rectifier.",
+      "limit": "Waveform evaluation is not dense geometry metrology. Full text also read from local M3 paper.xml."
+    },
+    {
+      "id": "N2",
+      "title": "Open-ECG-Digitizer official main branch metadata",
+      "type": "primary_repository_metadata",
+      "url": "https://api.github.com/repos/Ahus-AIM/Open-ECG-Digitizer/branches/main",
+      "sha": "97a15087d4abcda843da8c58ee74b1d8f47e6f9a",
+      "commit_date": "2026-06-04T11:07:40Z",
+      "version": "1.9.3",
+      "retrieval": "GitHub connector GET branch metadata, checked 2026-10-23",
+      "documented": "Same main SHA as frozen M3 source."
+    },
+    {
+      "id": "N3",
+      "title": "Open-ECG-Digitizer README, presets and experimental Dewarper",
+      "type": "primary_code",
+      "url": "https://github.com/Ahus-AIM/Open-ECG-Digitizer/tree/97a15087d4abcda843da8c58ee74b1d8f47e6f9a",
+      "files": ["README.md", "src/model/dewarper.py", "src/config/inference_wrapper.yml", "src/config/inference_wrapper_george-moody-2024.yml", "src/config/inference_wrapper_ahus_testset.yml"],
+      "refs": ["turn115search0"],
+      "documented": "Experimental dewarping is not formally evaluated and is off in official presets. TPS subsamples controls randomly and has an identity fallback.",
+      "limit": "An optional experimental arm must not be presented as the published main method."
+    },
+    {
+      "id": "P1",
+      "title": "High precision ECG digitization using artificial intelligence",
+      "type": "primary_paper_and_author_summary",
+      "url": "https://www.medrxiv.org/content/10.1101/2024.08.31.24312876v1.full",
+      "publisher_doi": "10.1016/j.jelectrocard.2025.153900",
+      "official_summary": "https://www.powerfulmedical.com/research/high-precision-ecg-digitization-using-artificial-intelligence/",
+      "refs": ["turn131view0"],
+      "documented": "Grid normalization and subsequent waveform reconstruction are different stages.",
+      "limit": "Full preprint read in M3. Commercial release identity and dense coordinate scores are not provided by the abstract or summary."
+    },
+    {
+      "id": "P2",
+      "title": "US20240144417A1: Methods for generating an image of a graphical representation",
+      "type": "primary_patent_disclosure",
+      "url": "https://patents.google.com/patent/US20240144417A1/en",
+      "refs": ["turn131view2", "turn132view0", "turn132view1", "turn132view2"],
+      "documented": "Probabilistic directional edges, closed cycles, BFS network selection, missing-node regression and per-cell original color sampling.",
+      "limit": "Examples are not verified settings of the commercial implementation. No legal interpretation is supplied."
+    },
+    {
+      "id": "P3",
+      "title": "US12614244B2: Methods for generating an undistorted image from a distorted original image of a graphical representation",
+      "type": "primary_patent_disclosure",
+      "url": "https://patents.google.com/patent/US12614244B2/en",
+      "publication_date": "2026-04-28",
+      "refs": ["turn120view3", "turn132view3"],
+      "documented": "Cell correspondence and inverse source sampling are disclosed. Four-corner operator wording does not uniquely identify all numerical conventions.",
+      "limit": "Does not identify current product build, checkpoint, TPS or geometric benchmark score."
+    },
+    {
+      "id": "P4",
+      "title": "Powerful Medical public OpenAPI snapshot audited in M3",
+      "type": "primary_api_documentation",
+      "url": "https://eu-west-1.pm-api.com/v0/openapi.json",
+      "local_audit": "../../m3/dotter-gridder/availability.json",
+      "documented": "M3 snapshot exposes digitization endpoints, build metadata and warnings, with no Dotter/Gridder dense geometry export.",
+      "limit": "Snapshot evidence only. No authentication or inference call in M4. Do not equate documented API with executed commercial results."
+    },
+    {
+      "id": "K1",
+      "title": "Tang third-place Kaggle source audited in M3",
+      "type": "primary_code",
+      "url": "https://github.com/tanghaozhe/physionet-ecg-image-digitization-3rd-place/tree/f2b4ac2823007e3fb387a7e188e748ad832bb2b7",
+      "sha": "f2b4ac2823007e3fb387a7e188e748ad832bb2b7",
+      "documented": "Semantic line IDs and lead markers depend on supported template.",
+      "limit": "Bounded to this authentic arm. Not all Kaggle solutions or the first-place method. Dedicated Kaggle M4 review owns broader comparison."
+    },
+    {
+      "id": "C1",
+      "title": "Calibration Wizard: A Guidance System for Camera Calibration Based on Modelling Geometric and Corner Uncertainty",
+      "type": "primary_paper",
+      "url": "https://openaccess.thecvf.com/content_ICCV_2019/html/Peng_Calibration_Wizard_A_Guidance_System_for_Camera_Calibration_Based_on_ICCV_2019_paper.html",
+      "refs": ["turn128search1", "turn128search24"],
+      "documented": "Accounts for corner localization uncertainty in geometric estimation.",
+      "inferred": "ECG frontend should separate anisotropic localization covariance from correspondence and pitch uncertainty.",
+      "limit": "Camera calibration paper, not an ECG evaluation."
+    },
+    {
+      "id": "D1",
+      "title": "Revisiting Document Image Dewarping by Grid Regularization",
+      "venue": "CVPR 2022",
+      "type": "primary_paper",
+      "url": "https://arxiv.org/abs/2203.16850",
+      "publisher": "https://openaccess.thecvf.com/content/CVPR2022/html/Jiang_Revisiting_Document_Image_Dewarping_by_Grid_Regularization_CVPR_2022_paper.html",
+      "refs": ["turn118search2", "turn118search13", "turn136view1"],
+      "documented": "Uses boundary/text-line constraints in grid optimization.",
+      "limit": "Readability scores do not establish metric ECG calibration."
+    },
+    {
+      "id": "D2",
+      "title": "UVDoc: Neural Grid-based Document Unwarping",
+      "venue": "SIGGRAPH Asia 2023",
+      "type": "primary_paper_and_code",
+      "url": "https://arxiv.org/html/2302.02887v2",
+      "doi": "10.1145/3610548.3618174",
+      "repo": "https://github.com/tanguymagne/UVDoc",
+      "sha": "4c9b82b537057aff2526e6dd118a847cdd072e82",
+      "refs": ["turn116view1", "turn115search12"],
+      "documented": "Coupled coarse 2D/3D grid training and a UV-reference capture pipeline.",
+      "availability": "Official code and LICENSE inspected. Checkpoint model/best_model.pkl confirmed by inventory: 32158393 bytes, Git blob 418108b3fcc9b49df64cb3bae0f5506b3e406934. No download or execution.",
+      "limit": "Full visibility/no occlusion assumption. Read README benchmark erratum before reproducing scores."
+    },
+    {
+      "id": "D3",
+      "title": "Deep Unrestricted Document Image Rectification (DocTr++)",
+      "venue": "IEEE Transactions on Multimedia 26 (2024)",
+      "type": "primary_paper",
+      "url": "https://arxiv.org/html/2304.08796v2",
+      "doi": "10.1109/TMM.2023.3347094",
+      "repo": "https://github.com/fh2019ustc/DocTr-Plus",
+      "refs": ["turn123view2", "turn125view2"],
+      "documented": "Hierarchy and mapping definition support complete, partial or missing document boundaries.",
+      "limit": "Not an independently calibrated ECG geometry method."
+    },
+    {
+      "id": "D4",
+      "title": "DocMatcher: Document Image Dewarping via Structural and Textual Line Matching",
+      "venue": "WACV 2025",
+      "type": "primary_paper_and_code",
+      "url": "https://felixhertlein.github.io/doc-matcher/",
+      "publisher": "https://openaccess.thecvf.com/content/WACV2025/html/Hertlein_DocMatcher_Document_Image_Dewarping_via_Structural_and_Textual_Line_Matching_WACV_2025_paper.html",
+      "repo": "https://github.com/felixhertlein/doc-matcher",
+      "sha": "750a1cb1f8c8e8cd2e5bf207ad1f98ba1169ac33",
+      "refs": ["turn118search1", "turn123view3"],
+      "documented": "Matches structural/textual lines to a known template.",
+      "availability": "Code and LICENSE inspected. models.yaml links DocMatcher SAM/Lineformer/LightGlue weights. No download or execution.",
+      "limit": "Template match validity is an additional hypothesis, not universal ECG layout support."
+    },
+    {
+      "id": "D5",
+      "title": "ForCenNet: Foreground-Centric Network for Document Image Rectification",
+      "venue": "ICCV 2025",
+      "type": "primary_paper_and_repository_inventory",
+      "url": "https://arxiv.org/html/2507.19804v1",
+      "publisher": "https://openaccess.thecvf.com/content/ICCV2025/html/Cai_ForCenNet_Foreground-Centric_Network_for_Document_Image_Rectification_ICCV_2025_paper.html",
+      "repo": "https://github.com/caipeng328/ForCenNet",
+      "sha": "d524b96bab518054fbe1c499ee43f0eec774d81d",
+      "refs": ["turn123view0", "turn125view1"],
+      "documented": "Foreground mask and curvature supervision for reference elements.",
+      "availability": "Only README.md and assets at root of consulted official snapshot. No executable comparator demonstrated.",
+      "limit": "Preserving physiological curvature is different from straightening document lines."
+    },
+    {
+      "id": "D6",
+      "title": "D2Dewarp: Dual Dimensions Geometric Representation Learning Based Document Image Dewarping",
+      "venue": "CVPR 2026",
+      "type": "primary_paper_and_code_inventory",
+      "url": "https://arxiv.org/html/2507.08492v3",
+      "publisher": "https://openaccess.thecvf.com/content/CVPR2026/html/Li_D2Dewarp_Dual_Dimensions_Geometric_Representation_Learning_Based_Document_Image_Dewarping_CVPR_2026_paper.html",
+      "repo": "https://github.com/xiaomore/D2Dewarp",
+      "sha": "1105c0f0e44404d9a8dedb78f689078dba42221c",
+      "refs": ["turn118search0", "turn123view1", "turn125view0"],
+      "documented": "Separate H/V line decoder heads and feature fusion.",
+      "availability": "train.py, predict.py and networks inventoried. README explicitly declares CC BY-NC-ND 4.0 and links pretrained weights on Drive/Baidu. No download or execution.",
+      "limit": "H/V evidence alone does not assign ECG metric line IDs."
+    },
+    {
+      "id": "D7",
+      "title": "DvD: Unleashing a Generative Paradigm for Document Dewarping via Coordinates-based Diffusion Model",
+      "venue": "2025 preprint. Venue not independently verified in this bounded review.",
+      "type": "primary_preprint",
+      "url": "https://arxiv.org/abs/2505.21975",
+      "refs": ["turn129view1"],
+      "documented": "Denoises warp coordinates rather than RGB.",
+      "limit": "Abstract-level mechanism checked. No model execution or uncertainty calibration verified."
+    },
+    {
+      "id": "D8",
+      "title": "Geometric Rectification of Creased Document Images based on Isometric Mapping",
+      "type": "primary_preprint",
+      "url": "https://arxiv.org/abs/2212.08365",
+      "refs": ["turn136view0"],
+      "documented": "Uses isometric/developable geometry and feature lines for creases.",
+      "limit": "Abstract-level mechanism checked. No authentic implementation executed."
+    },
+    {
+      "id": "D9",
+      "title": "SyntheticDoc: A Large Synthetic Dataset for Document Unwarping and Illumination Correction",
+      "venue": "ECCV 2026, oral according to official ETH page",
+      "type": "primary_paper_project_and_code",
+      "url": "https://arxiv.org/html/2609.15503v1",
+      "official_project": "https://igl.ethz.ch/projects/SyntheticDoc/",
+      "repo": "https://github.com/tanguymagne/SyntheticDoc",
+      "sha": "aabd9cf05f479781df432e3bd7e940f3e6716dbd",
+      "refs": ["turn116view3", "turn136view2", "turn137view0"],
+      "documented": "Physics-based generation and rich dense annotations at scale.",
+      "availability": "generation, training, DATASET.md and LICENSE inventoried. README confirms image/albedo/shading/UV/backward-map/metadata release, with normals and 3D coordinates still pending. No dataset download or inference.",
+      "limit": "Large storage cost and camera/viewpoint scope remain. Not ECG clinical validation."
+    },
+    {
+      "id": "D10",
+      "title": "TextFlow: Textline-guided Generic Document Image Unwarping",
+      "type": "primary_repository",
+      "url": "https://github.com/Liu-Shaokai/TextFlow",
+      "sha": "f14329d01511a6b939903cfab02e4559efcbb1ba",
+      "refs": ["turn130search4"],
+      "documented": "README describes unwarped text-map auxiliary supervision.",
+      "availability": "README, assets and textflow.py inventoried. No run or full pipeline audit.",
+      "limit": "No geometric ECG superiority claim."
+    },
+    {
+      "id": "E1",
+      "title": "ECG-image-database: large-scale paired ECG images and time-series with real-world artifacts; a foundation for computerized ECG digitization and analysis",
+      "venue": "Physiological Measurement 47(7), 075015 (2026)",
+      "type": "primary_data_paper",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42504433/",
+      "full_text": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13402943/",
+      "refs": ["turn130search0", "turn128search6"],
+      "documented": "Same Ahus/Emory/PTB-XL image family associated with npj and challenges.",
+      "limit": "Do not call automatically independent because of a new publication date. Direct PMC open returned a browser challenge."
+    }
+  ],
+  "retrieval_limits": [
+    "CVF direct PDF and some HTML opens returned 403 or timeout, although primary indexed abstracts were retrievable. Author arXiv and official project pages were used for method details.",
+    "NPJ branch metadata was re-read through the purpose-built GitHub connector.",
+    "No broad patent novelty or legal freedom-to-operate search was performed.",
+    "No raw external paper, code, dataset, vendor JavaScript or OpenAPI response was copied into the deliverable."
+  ]
+}

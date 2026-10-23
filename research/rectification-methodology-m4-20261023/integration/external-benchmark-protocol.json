@@ -1,0 +1,47 @@
+{
+  "schema": "m4-external-rectification-benchmark-design-v1",
+  "date": "2026-10-23",
+  "status": "design_not_executed_no_external_results_claimed",
+  "purpose": "Select a rectification methodology with fair geometry, image-preservation, abstention and resource evidence. The M3 retrospective synthetic bank remains a development set.",
+  "tiers": [
+    {"id": "A", "name": "estimator-only", "input": "Identical independently measured intersections, line observations and IDs, with controlled noise and explicit identity faults.", "question": "Which estimator is most accurate and stable conditional on the observations?", "limit": "Does not compare detectors, RGB handling or full products."},
+    {"id": "B", "name": "frozen-native-geometry", "input": "Same original RGB with each native detector and its predeclared settings. Native output geometry is evaluated without truth-based scale/orientation repair.", "question": "What fraction of the fixed visible physical domain is returned correctly, wrongly or not returned?", "limit": "Products without accessible geometry require a separate raster-landmark contract."},
+    {"id": "C", "name": "end-to-end-image-and-signal", "input": "The same original RGB and complete native output, including failures, crops, fallbacks and original preservation.", "question": "Are traces, text, calibration and layout preserved, and does downstream signal extraction retain amplitude/time/lead identity?", "limit": "Signal SNR cannot substitute for geometry error or prove clinical equivalence."}
+  ],
+  "data_partitions": {
+    "groups": ["patient", "source ECG recording", "document instance", "capture session", "manufacturer/template family", "synthetic generator family"],
+    "holdout": "Lock genuine held-out manufacturers, sessions and physical capture conditions before model or threshold choice. Near duplicates, reprints, crops and alternate photos of one recording stay in the same split.",
+    "known_dataset_overlap": "ECG-image-database Ahus/Emory/PTB-XL is not automatically external to npj or challenge-trained solutions. Audit by source identifiers and perceptual near-duplicates, and mark unknown competitor training overlap.",
+    "cohorts": ["several-patient Kaggle-compatible 3x4+r1", "other known ECG layouts", "unseen manufacturers and layouts", "gridless and ambiguous cases", "independent photographed physical pages", "analytical and independently rendered counterexamples"],
+    "sample_size": "Determine paired precision/power from a separate pilot and predeclare the unit as patient or independent document. Do not infer population performance from the single compatible M3 example."
+  },
+  "truth": {
+    "geometry": "Independently surveyed physical or nominal chart landmarks, with an explicit target definition and measurement uncertainty. Hide scoring correspondences from inference. Report what portions lack trustworthy truth.",
+    "image": "Flat scan or measured reference of the same printed page plus original capture, with trace/text/calibration annotations independent of each method. Occluded ink is not treated as recoverable truth in visible-coverage scores.",
+    "signal": "Original waveform with units, lead ownership, sequential time windows, gain and speed retained separately from image geometry.",
+    "annotation": "Independent annotation and disagreement estimate, with blinded adjudication for critical landmarks. Renderer-exported coordinates are not physical-camera metrology."
+  },
+  "primary_geometry_metrics": [
+    "G, W, C and W/C on a fixed input-visible query domain at a preregistered engineering threshold",
+    "separately predeclared uniform canonical material-area queries and uniform source-visible pixel queries, with no confidence-derived evaluation domain",
+    "native orientation and scale with only a declared gauge adjustment that does not erase the evaluated ambiguity",
+    "conditional RMSE, p95, p99, maximum and common-support paired errors",
+    "wrong confident outputs, rejection, fallback and uncertainty calibration",
+    "seams, local scale bias, inverse ambiguity, fold and horizon incidence"
+  ],
+  "separate_image_metrics": [
+    "actual full inverse footprint and returned image coverage",
+    "object-wise thin trace, spike and decimal-point disappearance, width, contrast, energy and phase sensitivity, not just whole-image means",
+    "text and calibration-mark preservation, border crops and lead-window ownership",
+    "image file decode, dimensions, alpha and publication integrity"
+  ],
+  "execution": {
+    "arms": "Use exact released code/checkpoint/settings and author licences. Each rank is not necessarily a distinct rectifier. Group borrowed Heng stages and separate geometry variants.",
+    "failure": "All scheduled cases remain in denominator, including exceptions, degenerate outputs, missing geometry, original fallbacks and timeouts. C=0 gives undefined W/C, not zero risk.",
+    "fairness": "Report in-scope and out-of-scope strata separately, train-source familiarity, information supplied to each method, resolution and output field of view. Do not choose competitor presets per image using truth.",
+    "resources": "Named hardware, thread limits, cold and warm latency, memory, preprocessing, resampling and file I/O. CPU-only evidence cannot establish GPU performance.",
+    "statistics": "Paired analysis by independent group, preregistered primary comparisons, uncertainty intervals and multiplicity handling. Resamples and grid queries are not independent patients.",
+    "commercial": "Powerful Medical remains not executed without authorized access. If authorized later, evaluate native product output with a declared raster-landmark contract when its internal field is not exposed. Do not equate an analytic reconstruction of a patent with the commercial product."
+  },
+  "promotion": "Promote a component only after its adverse strata and resource limits pass. Promote a complete method only after a frozen external test, not because one component wins a synthetic mean."
+}

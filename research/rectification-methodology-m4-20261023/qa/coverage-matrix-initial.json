@@ -1,0 +1,500 @@
+{
+  "schema": "m4-independent-coverage-matrix-v1",
+  "date": "2026-10-23",
+  "purpose": "Finite adversarial coverage plan, not all possible ECG inputs",
+  "evidence_levels": {
+    "A": "formal property or independent analytic reference for stated assumptions",
+    "B": "executed component diagnostic",
+    "C": "paired end-to-end synthetic diagnostic",
+    "D": "fresh external real-capture geometric evaluation",
+    "E": "prospective downstream clinical endpoint"
+  },
+  "severity": {
+    "critical": "may silently alter physical calibration, direction, clinically relevant content or validity of a superiority claim",
+    "high": "substantial geometry/content failure or unsupported output",
+    "medium": "performance or reporting limitation"
+  },
+  "acceptance_note": "Engineering gates are not clinical acceptability thresholds. Evidence for one family does not cover all continuous parameters. Current evidence is deliberately descriptive until independent M4 executions are appended.",
+  "cases": [
+    {
+      "id": "G01",
+      "family": "Exact planar affine",
+      "severity": "high",
+      "identifiability": "Identifiable given correct pitch, IDs and orientation",
+      "independent_truth": "Closed-form nonsingular affine and independent queries",
+      "acceptance_gate": "Global candidate exact to declared numerical tolerance. No residual-induced bias. Roundtrip separately reported.",
+      "current_evidence": "M3 analytical positive, M4 pending",
+      "focus": "geometry"
+    },
+    {
+      "id": "G02",
+      "family": "Strong planar perspective",
+      "severity": "high",
+      "identifiability": "Identifiable with noncollinear correctly identified nodes and no crossing horizon",
+      "independent_truth": "Closed-form homography, held-out interiors and edges",
+      "acceptance_gate": "Projective exactness on clean plane, denominator same sign over full supported hull, no horizon crossing.",
+      "current_evidence": "M3 analytical positive, M4 pending",
+      "focus": "geometry"
+    },
+    {
+      "id": "G03",
+      "family": "Noisy plane and localization quantization",
+      "severity": "high",
+      "identifiability": "Statistical, conditional on correct correspondence and declared noise",
+      "independent_truth": "Independent latent coordinates before noise, independent noise seeds",
+      "acceptance_gate": "Retain global H and regularized candidates. Report tail loss and per-scene regressions. Selection cannot use latent truth.",
+      "current_evidence": "M3 local overfit reproduced, M4 pending",
+      "focus": "geometry"
+    },
+    {
+      "id": "G04",
+      "family": "Smooth nonplanar developable sheet",
+      "severity": "high",
+      "identifiability": "Identifiable only where observation supplies adequate spatial constraints",
+      "independent_truth": "Independent camera projection of cylinder/cone and calibrated real sheet",
+      "acceptance_gate": "Evaluate interiors, interpolation bias and tails beyond fitted nodes. Analytic 2D distortion alone does not certify a developable physical sheet.",
+      "current_evidence": "M3 2D/component controls only",
+      "focus": "geometry"
+    },
+    {
+      "id": "G05",
+      "family": "Nondevelopable crumple, stretch or wet paper",
+      "severity": "high",
+      "identifiability": "Partly identifiable with dense visible grid, model class may be false",
+      "independent_truth": "Independent measured surface/camera or dense fiduciary metrology",
+      "acceptance_gate": "Mark unsupported model assumptions. No global H or developability certificate based solely on low fit residual.",
+      "current_evidence": "not executed",
+      "focus": "geometry"
+    },
+    {
+      "id": "G06",
+      "family": "Aligned visible crease",
+      "severity": "high",
+      "identifiability": "Piecewise identifiable if crease sides and nodes are observed",
+      "independent_truth": "Piecewise closed-form maps and independent 3D hinge",
+      "acceptance_gate": "C0 continuity, no fold or overlap, preserve crease instead of oversmoothing.",
+      "current_evidence": "M3 analytical positive, M4 pending",
+      "focus": "geometry"
+    },
+    {
+      "id": "G07",
+      "family": "Oblique/subcell crease",
+      "severity": "high",
+      "identifiability": "Underconstrained between sparse grid nodes",
+      "independent_truth": "Analytic oblique hinge with held-out crease-near queries",
+      "acceptance_gate": "Preserve negative controls and worst local error. Abstain from unsupported subcell certainty, no mean-only improvement.",
+      "current_evidence": "M3 regression reproduced",
+      "focus": "geometry"
+    },
+    {
+      "id": "G08",
+      "family": "Hidden crease between identical boundary observations",
+      "severity": "critical",
+      "identifiability": "Not identifiable from sparse matching nodes alone",
+      "independent_truth": "Two distinct maps with identical supplied node observations",
+      "acceptance_gate": "Expose model uncertainty or unsupported interval. Never certify physical error from perfect node fit.",
+      "current_evidence": "counterexample specified",
+      "focus": "geometry"
+    },
+    {
+      "id": "G09",
+      "family": "Missing central grid or erased printed grid",
+      "severity": "high",
+      "identifiability": "Geometry may interpolate under a declared prior, content can remain observed",
+      "independent_truth": "Known independent warp plus strokes/text in no-grid area",
+      "acceptance_gate": "No confidence mask on RGB. Separate observed/interpolated/extrapolated support. No silent bridge across unsupported holes.",
+      "current_evidence": "M3 gap evidence and actual sampler evidence",
+      "focus": "both"
+    },
+    {
+      "id": "G10",
+      "family": "Large unobserved margin/header",
+      "severity": "high",
+      "identifiability": "Extrapolation cannot be certified from grid alone",
+      "independent_truth": "Independent full-paper map plus margin annotations",
+      "acceptance_gate": "Return original and label extrapolation. Full-paper coverage and annotation loss assessed outside trusted grid.",
+      "current_evidence": "M3 paper domain covers margins",
+      "focus": "both"
+    },
+    {
+      "id": "G11",
+      "family": "Disconnected lattice components",
+      "severity": "critical",
+      "identifiability": "Each island origin/phase may be unidentifiable without shared cues",
+      "independent_truth": "Independent lattice IDs, paired ambiguous component observations",
+      "acceptance_gate": "Do not silently retain only largest component or independently origin-register islands. Export alternative associations.",
+      "current_evidence": "M3 49/98 point loss reproduced",
+      "focus": "geometry"
+    },
+    {
+      "id": "G12",
+      "family": "Every-other major line and major/minor pitch alias",
+      "severity": "critical",
+      "identifiability": "Not identifiable if distinguishing printed cues are absent",
+      "independent_truth": "Observationally identical sparse lattice with 5 versus 10 mm interpretation",
+      "acceptance_gate": "Cross-validation and cycle consistency must not certify pitch. Declare unresolved scale or use an independent inference-time calibration cue.",
+      "current_evidence": "M3 coherent alias reproduced",
+      "focus": "geometry"
+    },
+    {
+      "id": "G13",
+      "family": "Skipped/duplicated row, col or coherent ID band fault",
+      "severity": "critical",
+      "identifiability": "Sometimes observable globally, locally coherent errors can imitate warp",
+      "independent_truth": "Independent canonical IDs and deliberately contaminated supplied IDs",
+      "acceptance_gate": "Retain catastrophic cases. Candidate selection without gold. ID uncertainty remains distinct from geometric fit.",
+      "current_evidence": "M3 coherent faults reproduced",
+      "focus": "geometry"
+    },
+    {
+      "id": "G14",
+      "family": "D4 rotation and mirrored source",
+      "severity": "critical",
+      "identifiability": "Bare square lattice is ambiguous, text/lead/calibration cues may identify",
+      "independent_truth": "Independent orientation manifest, asymmetric text/spike/lead windows",
+      "acceptance_gate": "Inference chooses orientation without gold. D4 oracle remains a diagnostic. Reflection must not silently change ECG polarity/time.",
+      "current_evidence": "M3 native orientation failures",
+      "focus": "both"
+    },
+    {
+      "id": "G15",
+      "family": "Unknown absolute chart origin",
+      "severity": "high",
+      "identifiability": "Translation gauge unidentifiable without an anchor convention",
+      "independent_truth": "Known physical page/crop origin and separately identifiable cue",
+      "acceptance_gate": "One translation-only diagnostic allowed, native origin/timing/baseline separately reported. No per-component alignment.",
+      "current_evidence": "M3 fixed translation protocol",
+      "focus": "geometry"
+    },
+    {
+      "id": "G16",
+      "family": "Photocopied anisotropic stretch or rectangular printed grid",
+      "severity": "critical",
+      "identifiability": "Canonical scale needs device/print conventions or independently available cues",
+      "independent_truth": "Measured printed pitch and original signal metadata",
+      "acceptance_gate": "Do not enforce isotropic 5 mm prior when native paper convention is unverified. Preserve actual time/mV calibration.",
+      "current_evidence": "not executed",
+      "focus": "geometry"
+    },
+    {
+      "id": "G17",
+      "family": "Multiple grids, overlapping sheets, mixed panels or pasted strips",
+      "severity": "critical",
+      "identifiability": "May admit several incompatible lattices",
+      "independent_truth": "Independent ownership mask and source-to-panel physical maps",
+      "acceptance_gate": "Never force one coordinate chart across competing sheets or lead strips. Explicit ambiguity/segmentation or abstention.",
+      "current_evidence": "not executed",
+      "focus": "geometry"
+    },
+    {
+      "id": "G18",
+      "family": "Perspective horizon or near-singular camera view",
+      "severity": "critical",
+      "identifiability": "Ill-conditioned or nonidentifiable at grazing limit",
+      "independent_truth": "Analytic denominator extrema on convex hull and degenerate controls",
+      "acceptance_gate": "Reject crossing horizon, near-zero area and unstable inverse. State tested numerical margin.",
+      "current_evidence": "M3 guards, M4 pending",
+      "focus": "geometry"
+    },
+    {
+      "id": "G19",
+      "family": "Folded or positive-area overlapping mesh",
+      "severity": "critical",
+      "identifiability": "Image-to-material map may be multi-valued under occlusion",
+      "independent_truth": "Independent triangle intersections and preimage multiplicity",
+      "acceptance_gate": "Reject source/target positive-area overlaps, mixed orientations and ambiguous inverse. Positive Jacobian alone is insufficient.",
+      "current_evidence": "M4 independent attack pending",
+      "focus": "geometry"
+    },
+    {
+      "id": "G20",
+      "family": "Positive local Jacobians with global wrap",
+      "severity": "critical",
+      "identifiability": "Locally valid does not imply one-to-one",
+      "independent_truth": "Explicit double-wrapped strip or non-simple boundary",
+      "acceptance_gate": "Simple boundary plus suitable topology theorem or explicit global overlap check required. Cycle on chosen branch is insufficient.",
+      "current_evidence": "counterexample specified",
+      "focus": "geometry"
+    },
+    {
+      "id": "G21",
+      "family": "Duplicated, collinear or noninteger node identifiers",
+      "severity": "high",
+      "identifiability": "Invalid assumptions are directly observable",
+      "independent_truth": "Hand-constructed degenerate inputs",
+      "acceptance_gate": "Reject explicitly and deterministically. No plausible finite map from malformed data.",
+      "current_evidence": "M4 independent attack pending",
+      "focus": "geometry"
+    },
+    {
+      "id": "G22",
+      "family": "Spatially coherent outliers and registration drift",
+      "severity": "critical",
+      "identifiability": "Potentially indistinguishable from real deformation",
+      "independent_truth": "Independent clean map plus clustered perturbations",
+      "acceptance_gate": "Blocked heldout source observations excluded from both fits. Preserve worst-case wrong coverage and robust/global controls.",
+      "current_evidence": "M3 fault negatives, M4 pending",
+      "focus": "geometry"
+    },
+    {
+      "id": "O01",
+      "family": "Opaque occlusion, finger or torn-away sheet",
+      "severity": "critical",
+      "identifiability": "Hidden ECG content is not recoverable from the input alone",
+      "independent_truth": "Known occlusion layer and original visible support",
+      "acceptance_gate": "Exclude invisible material from visible-content truth, report occluded fraction separately. Do not hallucinate waveform.",
+      "current_evidence": "M3 reconstructed mask audit",
+      "focus": "both"
+    },
+    {
+      "id": "O02",
+      "family": "Glare/clipping, severe blur, JPEG destruction or sub-Nyquist input",
+      "severity": "critical",
+      "identifiability": "Lost source information is not invertibly recoverable",
+      "independent_truth": "Independent pre-capture signal, optical model and measured input",
+      "acceptance_gate": "Do not claim sampling can recover absent observations. Report information loss and abstention, retain source archive.",
+      "current_evidence": "limited analytical sampling only",
+      "focus": "sampling"
+    },
+    {
+      "id": "O03",
+      "family": "Shadows, colored grid, grayscale, stains and dark background",
+      "severity": "high",
+      "identifiability": "May confound grid detector while ECG remains observed",
+      "independent_truth": "Matched geometry with independently varied photometry",
+      "acceptance_gate": "Geometry target unchanged by blur/photometry, signal retention by separate masks and native layouts.",
+      "current_evidence": "no M4 frontend execution",
+      "focus": "both"
+    },
+    {
+      "id": "O04",
+      "family": "Layout unsupported by comparator",
+      "severity": "high",
+      "identifiability": "Supported task known before predictions",
+      "independent_truth": "Official versioned task assumptions and pre-inference manifest",
+      "acceptance_gate": "All-layout operational table plus powered stated-support stratum. Never redefine support by success.",
+      "current_evidence": "M3 Kaggle-compatible N=1, insufficient",
+      "focus": "benchmark"
+    },
+    {
+      "id": "S01",
+      "family": "Thin vertical strokes across phase",
+      "severity": "critical",
+      "identifiability": "Input-observed stroke is identifiable, output sampling can lose it",
+      "independent_truth": "Exact affine coordinates, independent pixel-cell area reference",
+      "acceptance_gate": "Retain disappearance counts, contrast, signed and absolute dark-area error at fixed density. No mask-based RGB deletion.",
+      "current_evidence": "M3 actual loss and integration candidate",
+      "focus": "sampling"
+    },
+    {
+      "id": "S02",
+      "family": "Oblique and horizontal thin strokes/spikes",
+      "severity": "critical",
+      "identifiability": "Observable only up to input bandwidth",
+      "independent_truth": "Exact strips, impulses and independently rasterized line intersections",
+      "acceptance_gate": "Report all angles/phases, isolated narrow pacer spikes and broad calibration pulses separately. No finite quadrature universal guarantee.",
+      "current_evidence": "M3 strip angles only",
+      "focus": "sampling"
+    },
+    {
+      "id": "S03",
+      "family": "Tiny text, decimal points, lead labels and annotations",
+      "severity": "critical",
+      "identifiability": "Text semantics can fail despite low full-image MAE",
+      "independent_truth": "Source-annotated glyph/point masks plus exact geometric reference",
+      "acceptance_gate": "Object-wise survival and legibility assessment, no full-paper average to hide tiny missing objects.",
+      "current_evidence": "not executed",
+      "focus": "sampling"
+    },
+    {
+      "id": "S04",
+      "family": "Anisotropic/sheared minification",
+      "severity": "high",
+      "identifiability": "Identifiable under correct inverse",
+      "independent_truth": "Exact affine matrix and analytic output footprints",
+      "acceptance_gate": "Compare effective directional pixel scale and aliasing. Report footprint integration and source reconstruction model.",
+      "current_evidence": "M3 affine anisotropy positive, M4 pending",
+      "focus": "sampling"
+    },
+    {
+      "id": "S05",
+      "family": "Nonlinear inverse with high curvature inside pixel",
+      "severity": "high",
+      "identifiability": "Approximation needs a resolution/error bound",
+      "independent_truth": "Closed-form smooth inverse plus independent high-order or exact integral",
+      "acceptance_gate": "Area quadrature refinement and explicit unresolved error. Agreement of finite 2/4/8 grids is not a universal guarantee.",
+      "current_evidence": "not executed",
+      "focus": "sampling"
+    },
+    {
+      "id": "S06",
+      "family": "Border pixel, half-open footprint and partial source support",
+      "severity": "high",
+      "identifiability": "Policy is identifiable and must be explicit",
+      "independent_truth": "Exact constant/edge impulse with analytic valid fraction",
+      "acceptance_gate": "Return finite/inside/reconstruction fractions separately. Explicit background or normalization policy, no hidden edge-renormalization.",
+      "current_evidence": "M4 independent attack pending",
+      "focus": "sampling"
+    },
+    {
+      "id": "S07",
+      "family": "NaN, Inf, overflow, rejected or ambiguous inverse samples",
+      "severity": "critical",
+      "identifiability": "Invalidity directly observable",
+      "independent_truth": "Hand-constructed invalid inverse results",
+      "acceptance_gate": "Invalid sample contributes declared background and never samples safe technical coordinate zero. No dropping from denominator.",
+      "current_evidence": "M4 independent attack pending",
+      "focus": "sampling"
+    },
+    {
+      "id": "S08",
+      "family": "RGB confidence zero over observed content",
+      "severity": "critical",
+      "identifiability": "Confidence is not evidence that RGB pixels are absent",
+      "independent_truth": "Same RGB/map with trust false, true and mixed masks",
+      "acceptance_gate": "Decoded RGB exactly independent of trust. Trust exported separately including zero/full support.",
+      "current_evidence": "M4 independent attack pending",
+      "focus": "sampling"
+    },
+    {
+      "id": "S09",
+      "family": "RGBA transparent colored pixels and premultiplication",
+      "severity": "high",
+      "identifiability": "Alpha semantics explicitly declared",
+      "independent_truth": "Known RGBA mixtures with analytic premultiplied expected color",
+      "acceptance_gate": "No hidden-color fringe, alpha independent of geometric trust, unsupported channels fail explicitly.",
+      "current_evidence": "M4 independent attack pending",
+      "focus": "sampling"
+    },
+    {
+      "id": "S10",
+      "family": "Constant image, checkerboard, energy and dynamic range",
+      "severity": "high",
+      "identifiability": "Constants and bounds analytically known",
+      "independent_truth": "Exact constants and piecewise constant cells",
+      "acceptance_gate": "Constants preserved on fully supported footprint, output bounded, signed bias retained. Dark-area/MAE objectives reported separately.",
+      "current_evidence": "M3 objective tradeoffs retained",
+      "focus": "sampling"
+    },
+    {
+      "id": "S11",
+      "family": "Tile boundary and tile-size metamorphism",
+      "severity": "high",
+      "identifiability": "Exact algorithm should be tile invariant",
+      "independent_truth": "Same callable, source and grid partitioned in many tile sizes",
+      "acceptance_gate": "Bit-exact pixels and fraction arrays, query order documented, tile bounds enforced. No full-frame coordinate cache.",
+      "current_evidence": "M4 independent attack pending",
+      "focus": "sampling"
+    },
+    {
+      "id": "S12",
+      "family": "Huge output and bounded memory",
+      "severity": "critical",
+      "identifiability": "Allocation behavior observable at declared shape/order",
+      "independent_truth": "Streaming consumer hash with isolated peak-RSS measurement",
+      "acceptance_gate": "Memory scales with tile size plus source/output contract, not Noutput times subgrid squared. Record unavoidable final image separately.",
+      "current_evidence": "M4 independent attack pending",
+      "focus": "sampling"
+    },
+    {
+      "id": "E01",
+      "family": "Encoder interruption, disk/replace error and truncated PNG",
+      "severity": "critical",
+      "identifiability": "File validity directly testable",
+      "independent_truth": "Existing valid target plus injected failure and full pixel decode",
+      "acceptance_gate": "Temp on destination filesystem, full decode before replace. Old target retained on precommit failure, cleanup and commit state explicit.",
+      "current_evidence": "M3 truncated PNG incident",
+      "focus": "export"
+    },
+    {
+      "id": "E02",
+      "family": "Wrong mode/shape, dishonest metadata or stale resume",
+      "severity": "critical",
+      "identifiability": "Artifact contract independently testable",
+      "independent_truth": "Pixel array hash, decoded bytes, source/config/receipt identities",
+      "acceptance_gate": "Reject mismatch, no dimensions-only validation. Resume binds source, config and output hash.",
+      "current_evidence": "M3 hash/lock controls",
+      "focus": "export"
+    },
+    {
+      "id": "B01",
+      "family": "Renderer-specific detector training advantage",
+      "severity": "critical",
+      "identifiability": "Cannot be eliminated by adding more same-renderer synthetic cases",
+      "independent_truth": "New external renderers and real capture devices/patients never used for training/selection",
+      "acceptance_gate": "Separate native endpoint from matched-observation solver lane. Report known/unknown training overlap and unseen renderer/device strata.",
+      "current_evidence": "M3 known confound, unresolved",
+      "focus": "benchmark"
+    },
+    {
+      "id": "B02",
+      "family": "Repeated patients, layouts and correlated comparator presets",
+      "severity": "high",
+      "identifiability": "Dependence observable from provenance",
+      "independent_truth": "Patient/source identity and paired capture hierarchy",
+      "acceptance_gate": "Cluster at patient/original-record level, no query-level pseudo-replication. Presets not independent methods.",
+      "current_evidence": "M3 patient bootstrap descriptive only",
+      "focus": "benchmark"
+    },
+    {
+      "id": "B03",
+      "family": "Gold-selected candidate, scale or orientation rescue",
+      "severity": "critical",
+      "identifiability": "Detectable by inference signature and perturbation controls",
+      "independent_truth": "Sealed truth and arbitrary gold permutation",
+      "acceptance_gate": "No gold input to selection, no winner per image from scored loss. Freeze config before assessment, record all candidates and failures.",
+      "current_evidence": "M4 interface and protocol frozen",
+      "focus": "benchmark"
+    },
+    {
+      "id": "B04",
+      "family": "Conditional-risk or mean-score hiding content loss",
+      "severity": "critical",
+      "identifiability": "Mask and averaging policies directly observable",
+      "independent_truth": "Fixed full-paper, material-area, grid and object-wise reference domains",
+      "acceptance_gate": "G/W/C/R together, abstention retained, tails/max/patient failures plus tiny-object recall. No single mean declares winner.",
+      "current_evidence": "M3 coverage separation, no text/waveform endpoint",
+      "focus": "benchmark"
+    },
+    {
+      "id": "B05",
+      "family": "Commercial product unavailable or patent-inspired proxy",
+      "severity": "high",
+      "identifiability": "Product access and exported fields are externally constrained",
+      "independent_truth": "Authorized documented product invocation and native output evidence",
+      "acceptance_gate": "Unavailable is N/A. Primitive resemblance never labelled Dotter/Gridder product score.",
+      "current_evidence": "M3 no commercial execution",
+      "focus": "benchmark"
+    },
+    {
+      "id": "B06",
+      "family": "Post-score protocol edits and reused holdout",
+      "severity": "critical",
+      "identifiability": "Provenance observable",
+      "independent_truth": "Immutable manifest/code/weights/query hashes and event timestamps",
+      "acceptance_gate": "Version changes as development, never relabel consumed data fresh. New assessment after tuning.",
+      "current_evidence": "M3 already inspected, M4 analytical development",
+      "focus": "benchmark"
+    },
+    {
+      "id": "B07",
+      "family": "Timing scopes, warm caches, shared CPU and hidden allocations",
+      "severity": "medium",
+      "identifiability": "Measured only under named environment",
+      "independent_truth": "Cold/warm separated isolated runner and complete cost scopes",
+      "acceptance_gate": "Include load/prep/map/sample/export separately and end-to-end, RSS and thread counts. No CPU-to-GPU extrapolation.",
+      "current_evidence": "M3 loaded shared-host only",
+      "focus": "benchmark"
+    },
+    {
+      "id": "B08",
+      "family": "Unknown waveform/lead/time calibration after rectification",
+      "severity": "critical",
+      "identifiability": "Full endpoint needs independent supplied signal and native metadata",
+      "independent_truth": "Exact original mV waveform, lead ownership, sample-time windows and calibration pulses",
+      "acceptance_gate": "Common fixed extractor paired across rectifiers plus native pipeline separately. Geometry alone cannot certify clinical fidelity.",
+      "current_evidence": "not executed",
+      "focus": "benchmark"
+    }
+  ]
+}

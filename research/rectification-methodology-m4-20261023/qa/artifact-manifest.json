@@ -1,0 +1,32 @@
+{
+  "schema": "m4-independent-qa-artifacts-v1",
+  "date": "2026-10-23",
+  "review": "final-review.md",
+  "source_owner": "m4_adversarial_qa",
+  "files_sha256": {
+    "audit_final_checkpoints.py": "5ba997376e187351834b733e09dd01f2dbe9f691e71bc374a5c0d9bf126aecc8",
+    "audit_geometry_results.py": "850e0491820dcbfb38a254a2066f4f8791f8d588d6f479946e263d17a59c48f6",
+    "audit_sampling_results.py": "83f23d1f9d4295b7f351976f3dcb231901d4b80bc1ca93b3e2ba9e81e69f509b",
+    "coverage-matrix-initial.json": "842434b32123c03e2365cc6586d3b1544e4c6b4387544babeed7be299f7fbeea",
+    "coverage-matrix.json": "1343d5998f2900390590547c38bca2ae42a4729e025e2c8577a7eb796b09e96d",
+    "final-review.md": "d385197b0141b3eb266d2bf1c07efc4c690ed958111e9a9d8c761c05432d674d",
+    "independent-test-spec.json": "95d5ef1643fb605b894f96a30d84d8e4f1d313aa82cbcbd0300b478563023797",
+    "independent_axis_area_tests.py": "5a6c53fb35d778a592e53ccd4dad6d8db36fea4623e5478d3c1d230071677c12",
+    "independent_component_tests.py": "f8129cfe2afb82250fd357b1fa6ff329f16fc2eea3ad9a4a70d6169cc85d8811",
+    "protocol-review.md": "8e625c981aafc1c7a083a76f81df1dcbffa2928c1bdafaec74f75d469232b14a",
+    "receipts/final-checkpoints-audit.json": "4a65fb349d4806b3fcc73009c37a60eba2cfcb3a7ed88afb8784b78aba2e2547",
+    "receipts/geometry-result-audit.json": "55e0d8601a7352638cf127794faab902a3dbf37d2eca8bc876e6112c148d23f9",
+    "receipts/geometry-result-audit.log": "362f7e918de71e56c22dcd377533f9058fc85ffe0c829105f0e19804acfd2348",
+    "receipts/independent-axis-area-tests-before-integer-alpha.json": "3f03402b2c4922ab8c66130e4ec6d2054a08e22e2a94e988d696c3810558bec2",
+    "receipts/independent-axis-area-tests-before-integer-alpha.log": "5fc3b4c164a35068938250beee35380725ea98650d6c523a687ce0ce62773374",
+    "receipts/independent-axis-area-tests.json": "3f03402b2c4922ab8c66130e4ec6d2054a08e22e2a94e988d696c3810558bec2",
+    "receipts/independent-axis-area-tests.log": "a2419bf3f63f405be0e5a423fd36bb15be926fef49e7dbdcc89894660926cd4b",
+    "receipts/independent-component-tests.json": "58f1e175d454d430e33b7b96577d00d7ab90bda0956cd635dfdd0b412ee8cc7e",
+    "receipts/independent-component-tests.log": "d50125bae014ea9066ce2810467339a7f5564dac3c0933961a424760f7b77c8f",
+    "receipts/non-simple-boundary-before-fix.json": "6d44f5b8b8f1b44eab44dff6194a2ad8d19855c14d41db1eb8776e533c8fb6c7",
+    "receipts/sampling-result-audit.json": "6da86aa922b59a0720571b005af18067ed649d2ec6c76b8f3f7bd9684bf66534",
+    "receipts/sampling-result-audit.log": "5f202768a4d5c20157808e66b3986c1ef7e063c501a66619c6bcf2048e1f4ad0",
+    "snapshots/geometry_selector-pre-boundary-review.py": "42737558261ca6f5f87a04be8e208dc5a779918a487f39b11d1e3f76aaf37239"
+  },
+  "limits": "Component evidence and methodology review only. No new native NN, real clinical or commercial product result."
+}

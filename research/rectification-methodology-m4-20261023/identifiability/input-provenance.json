@@ -1,0 +1,22 @@
+[
+  {
+    "path": "/workspace/scratch/a57599a3e70e/ecg-torch-renderer/AGENTS.md",
+    "sha256": "e3caa2e60e692d62d140ec80affb39b15a48980ab392da4d3eb0e002996587b9"
+  },
+  {
+    "path": "/workspace/scratch/a57599a3e70e/m3/our-critique/critique.md",
+    "sha256": "f04ef08e75ede282523a3faa3161efd3b5f96b726bd0fcf0b252e06b7330c00f"
+  },
+  {
+    "path": "/workspace/scratch/a57599a3e70e/m3/our-critique/decision-matrix.json",
+    "sha256": "26b0af11602d4bbac1768057815fc594c352121dcfe87a149196bc296227c270"
+  },
+  {
+    "path": "/workspace/scratch/a57599a3e70e/m3/benchmark/protocol.json",
+    "sha256": "83debefdb2b1bd33735c8883c0f0d3d17acc590a309ba82e79ac55a785013be0"
+  },
+  {
+    "path": "/workspace/scratch/a57599a3e70e/m3/benchmark/final-interpretation-pt.md",
+    "sha256": "682b855b4d8e3fbdcfec2a52b3a9841785eadb8667fd9a06edd7c37dd12931e1"
+  }
+]
