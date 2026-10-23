@@ -1,0 +1,268 @@
+{
+  "schema": "ecg-rectification-method-comparison-m3-v1",
+  "date": "2026-10-23",
+  "status": "reviewed_by_independent_QA_ready_for_root_adapter_and_source_lock_before_scoring",
+  "purpose": "Choose defensible methodological decisions using authentic native pipelines and separately labelled geometric component ablations",
+  "our_source_commit": "f4f6caef3b59b5830e93284cccadbc6855fc701e",
+  "claim_scope": "Paired diagnostic comparison on the specified synthetic bank and independent analytical controls. No external clinical superiority or universal-best claim.",
+  "prior_exposure": {
+    "M2_112_captures_already_inspected": true,
+    "M2_64_patient_separated_assessment_is_now_diagnostic": true,
+    "new_unseen_holdout_claim_permitted": false,
+    "comparator_outputs_not_inspected_when_protocol_written": true
+  },
+  "schedule": {
+    "source": "Existing M2 manifest and capture SHA256 locks",
+    "views_per_patient": [
+      0,
+      1,
+      2,
+      6
+    ],
+    "development": {
+      "patients": 6,
+      "captures": 24,
+      "manifest_split": "validation",
+      "role": "Adapter correctness, unit conventions and resource feasibility only. No comparator-specific quality tuning.",
+      "execution_policy": "Pool24islocked, but one small predeclared development feasibility case plus independent analytical controls are mandatory before diagnostic execution. No full-development aggregate unless all24are actually scored for every registered method."
+    },
+    "diagnostic": {
+      "patients": 8,
+      "captures": 32,
+      "manifest_split": "test",
+      "role": "Predeclared paired diagnostic panel, all original test-patient groups retained."
+    },
+    "render_backend_balance": "Two torch-cached and two offline captures per patient, verified against manifest before execution",
+    "ordering": "split, source_index, view, then method order alternated by patient index for shared-host timing",
+    "no_replacement_after_failures": true,
+    "smoke": "One known clean analytical case and one small development image may establish import, shape and timing. Record any wrapper changes and freeze before diagnostic inference.",
+    "optional_larger_panel": "Any expansion to all112 or all64 is a separately labelled extension. Do not silently merge partial extension cases into the primary32 panel.",
+    "primary_execution": "Complete32case diagnostic split only. All56querypanels remain frozen in the lock. Postprocessor --split test requires160case-method results and excludes incomplete development smoke prefixes from aggregate statistics."
+  },
+  "tracks": [
+    {
+      "id": "native_image_to_geometry",
+      "input": "Identical original RGB capture bytes or lossless PNG encoding, no gold nodes, IDs, layout windows or geometric reference passed to inference",
+      "methods": [
+        "our-B0",
+        "our-M2-strength1-guard",
+        "npj-official-Generic",
+        "npj-official-GeorgeMoody2024",
+        "kaggle-third-original"
+      ],
+      "automatic_native_scale": true,
+      "automatic_native_orientation": true,
+      "output_requirement": "Interpretable native source-pixel to physical-mm map, native eligible footprint, crop/resize/rotation chain, native scale/calibration assumptions and actual sampling status",
+      "unsupported_layouts": "Report both all-layout operational performance and the predeclared stated-support stratum. A layout is not marked unsupported after seeing a failed prediction."
+    },
+    {
+      "id": "matched_input_geometric_primitives",
+      "input": "Same observed grid points and fixed IDs or four cell corners, with controlled physical coordinates supplied equally to every solver",
+      "methods": [
+        "our piecewise affine two triangles",
+        "per-cell bilinear",
+        "per-cell four-corner homography",
+        "global projective where applicable"
+      ],
+      "stage_label": "Component ablation, not authentic image-to-geometry performance and not commercial Dotter/Gridder",
+      "truth": "Independent closed-form transformations evaluated at held-out interior/material queries, not at fitted corner nodes only"
+    },
+    {
+      "id": "native_waveform_pipeline_optional",
+      "rule": "Only if authentic pipeline and exact printed waveform windows are available. Native extraction results remain separate from pure rectification rankings. A changed extractor cannot certify a better rectifier."
+    }
+  ],
+  "availability_policy": {
+    "npj": "Official published-main implementation with Generic.yml as primary multilayout preset and GeorgeMoody2024.yml as a separately named predeclared original preset. Neither chosen using gold metrics. Ahus preset smoke only. Optional nonlinear TPS remains separate and is not substituted for published main.",
+    "kaggle": "Run pinned original third-place pipeline and checkpoint. Any corrected half-pixel/NaN variant is a separately named adaptation, never silently substituted.",
+    "dotter_gridder": "Actual commercial execution requires documented authorized access. A paper/patent-inspired primitive is not the commercial model. Unavailable commercial access is N/A, not failed inference.",
+    "new_auth_or_paid_access": "Do not invent credentials or call undocumented endpoints. Record exact documented access requirement."
+  },
+  "adapter_lock_required": [
+    "source_repository",
+    "source_commit",
+    "source_file_sha256",
+    "checkpoint_sha256",
+    "dependency_versions",
+    "native_invocation",
+    "input_rgb_sha256",
+    "input_pixel_center_convention",
+    "resize_crop_rotation_chain",
+    "native_output_origin",
+    "native_output_density",
+    "scale_source",
+    "native_eligible_mask_definition",
+    "native_fallback_behavior",
+    "stated_supported_layouts",
+    "adapter_source_sha256"
+  ],
+  "coordinate_contract": {
+    "source_axes": "x is column increasing right, y is row increasing down, original source pixel centres",
+    "physical_axes": "Canonical paper x/y increasing according to the fixed renderer export convention. Adapter may apply a globally fixed documented row/column convention, never choose a sign/permutation per image from gold.",
+    "our_raw_map": "Reconstruct from native inferred lattice IDs and the fixed5mm assumption, before any M2 evaluation-only D4/origin correction. Reuse of already gold-aligned M2 predicted maps as primary raw outputs is prohibited.",
+    "npj_raw_map": "Compose exact native preprocessing, Hough/perspective, crop and rotation map, multiply each output axis by its native estimated mm-per-pixel. Its arbitrary cropped-image origin is not forced onto a5mm integer grid.",
+    "kaggle_raw_map": "Compose exact stage0 orientation/homography and stage1 native grid warp, with the original declared nominal5mm major-grid pitch. Do not infer pitch by fitting gold. Preserve original interpolation and sampling conventions in the authentic arm.",
+    "backward_map_inversion": "Only invert original valid nonfolded native cells with explicit boundary/overlap policy. Record holes, folds, overlaps and ambiguous inverse queries, never invent a dense forward map by free gold registration.",
+    "physical_scale": "No gold-fitted scale, anisotropic rescaling, shear, affine transformation, smooth warp or nonuniform time rescaling is allowed.",
+    "primary_gauge": "Continuous translation only. No per-image D4, rotation, reflection or axis permutation chosen from gold.",
+    "strict_native_origin": "Where a method externally defines a physical origin, report raw native-origin errors separately. Translation-gauge results are not automatic absolute-origin or timing/baseline accuracy.",
+    "secondary_D4": "Optional D4-plus-translation diagnostic reported in a separate table solely to distinguish orientation from shape/scale failure. Never used for primary ranking or winner selection.",
+    "M2_comparability": "M3 numbers are not directly comparable with previous M2 aggregate G because the evaluation gauge changes and the case panel changes. Recompute all primary arms under the new common contract."
+  },
+  "query_contract": {
+    "primary_domain": "paper",
+    "secondary_domain": "grid",
+    "reference": "Original renderer-exported reference_mm and valid/material-support mask. The domain is selected independently of every method prediction.",
+    "queries_per_domain": 4096,
+    "query_reuse": "Reuse only existing M2 grid_query/grid_reference and paper_query/paper_reference arrays if their capture and domain hashes verify. Never reuse method predictions, eligibility, D4 or fitted offsets.",
+    "query_measure": "Uniform deterministic sampling of exported source-image material-support pixels, not a claim of uniform material area under perspective.",
+    "visibility_audit": "Independent QA reconstructed11post-noise opaque masks and checked112captures/224querydomains,1939checks PASS. Recorded opaque interiors are removed from valid, zero sampled queries in those interiors. Domain remains renderer-exported material support, not independent physical/camera metrology.",
+    "domain_disclosure": "Paper includes headers/margins/missing-grid regions within exported material support. Background is excluded. Physical occlusion status must be disclosed separately.",
+    "anchor_pool": {
+      "count": 64,
+      "domain": "paper only, one pool shared by both scoring domains",
+      "disjoint_from": "Union of grid and paper scoring-query source positions",
+      "selection": "Without replacement from remaining eligible exported material-support source pixels, deterministic PCG64 RNG seeded by SHA256('20261023:'+case_key), using a recorded conversion of the first8digestbytes to an unsigned little-endian seed",
+      "frozen_before_predictions": true,
+      "persist": [
+        "source_xy",
+        "reference_mm",
+        "source_sha256",
+        "reference_sha256",
+        "selection_seed",
+        "scoring_query_hashes"
+      ]
+    },
+    "translation_registration": {
+      "one_offset_per_method_and_image": true,
+      "eligible_anchor": "Native eligible flag is true and predicted x/y are finite",
+      "minimum_anchors": 3,
+      "minimum_reference_span_mm_each_axis": 1.0,
+      "predicted_span": "Recorded only, not an eligibility gate. A collapsed or wrong-scale output must not escape W through an evaluation-only predicted-span rejection.",
+      "offset": "Coordinatewise median(reference_mm minus native_predicted_mm) over every eligible anchor. No RANSAC, outlier removal or method-specific selection.",
+      "apply": "Apply the same2Doffset to all grid and paper scoring predictions. Do not fit offsets separately by domain, lead, crop, connected component or query subset.",
+      "failure": "Insufficient accepted finite anchors or insufficient reference span produces registration_unavailable. Keep the scheduled image and patient in denominators, show G=C=0 and undefined R with a distinct registration-failure flag. Do not drop or replace the case.",
+      "scope": "Removes unidentifiable global chart-origin translation for geometry-shape comparison only. Not part of inference and not a claimed automatic origin estimate."
+    }
+  },
+  "metrics": {
+    "correct_threshold_mm": 0.5,
+    "threshold_scope": "Engineering comparison threshold, not a clinical acceptability criterion",
+    "G": "Fixed-query fraction native-eligible, finite and physical error at most0.5mm after the permitted shared translation",
+    "W": "Fixed-query fraction native-eligible and either nonfinite/invalid or physical error above0.5mm. Claimed-eligible NaN is wrong, not silently excluded.",
+    "C": "Fixed-query fraction claimed eligible. G+W=C after explicit invalid-output accounting.",
+    "R": "W/C recomputed from aggregate W and C, undefined at zero coverage",
+    "finite_errors": [
+      "p50_mm",
+      "p95_mm",
+      "p99_mm",
+      "RMSE_mm"
+    ],
+    "coverage_disclosure": "All finite-error metrics are conditional on the finite returned subset. Report their counts and G/W/C alongside them, plus common-support paired error.",
+    "catastrophic": [
+      "wrong_major_minor_pitch",
+      "coherent_ID_scale_alias",
+      "orientation_or_reflection_failure",
+      "folded_or_noninjective_cells",
+      "full_output_rejected",
+      "no_output",
+      "invalid_claimed_queries"
+    ],
+    "sampling_and_RGB": [
+      "exact_decoded_original_archive",
+      "native_full_map_proposal",
+      "RGB_actually_resampled",
+      "original_fallback",
+      "partial_coordinates_only",
+      "native_source_footprint",
+      "annotation_or_control_stroke_retention"
+    ],
+    "sampling_limit": "An original archive proves retention of input bytes, not waveform preservation in the resampled image. A valid inverse or tiny roundtrip is not physical gold accuracy.",
+    "unrestricted_finite_field": {
+      "required_for_RGB_interpretation": true,
+      "footprint": "Adapter explicitly supplies native_footprint to anchors/grid/paper. Never assume trusted eligibility equals actualRGBfootprint. No map extension beyond native crop.",
+      "prediction": "Finite physical coordinates inside actual footprint, confidence gate removed. Report nonfinite/fold/hole footprint counts separately. This diagnostic is not RGB waveform fidelity.",
+      "registration": "Reuse primary offset whenever available. If primary registration is unavailable, use one separately disclosed translation-only offset from finite-footprint anchors, reused for both domains. Do not mix this fallback with primary metrics."
+    },
+    "operational_RGB_rectification": {
+      "distinct_from_geometry_track": true,
+      "requirement": "RGB actually resampled using the native map, not merely proposed full mesh or partial-coordinate output.",
+      "failure_policy": "For original-preserved, no-output, timeout or non-resampled cases, set operational G=C=0 and R undefined, retaining every scheduled case/patient. Keep native partial-coordinate metrics separately.",
+      "success_metric": "Where available, apply the actual-resampling gate to unrestricted finite physical-field metrics inside the native output footprint. Preserve inverse-validation holes/folds and claimed invalid counts.",
+      "limit": "An inverse-valid field can omit folded or ambiguous regions that native RGB still samples, especially in Kaggle. Report these cell counts and do not claim complete RGB fidelity from inverse-valid geometry alone."
+    }
+  },
+  "failure_and_budget": {
+    "all_scheduled_cases_retained": true,
+    "inference_timeout_seconds_per_case": 180,
+    "model_load_timeout_seconds": 300,
+    "CPU_model_concurrency": 1,
+    "CPU_threads": 2,
+    "OpenCV_threads": 1,
+    "root_memory_limit_note": "8GiBcgroup. Load and run large comparator models serially, use fresh subprocesses where feasible.",
+    "maximum_output_pixels": 16000000,
+    "budget_change": "Root may lower resolution/output budget for all comparable arms before diagnostic metrics. A method-specific budget adaptation receives a separate name and does not replace authentic-default results.",
+    "statuses": [
+      "native_full_output",
+      "native_partial_map",
+      "original_content_preserving_abstention",
+      "unsupported_by_declared_scope",
+      "registration_unavailable",
+      "timeout",
+      "invalid_output",
+      "dependency_or_model_load_failure",
+      "not_executed_access_unavailable"
+    ],
+    "unavailable_vs_failed": "Missing authenticated commercial access is not an attempted-case failure. Once a registered runnable method is scheduled, malformed/rejected/timeout inputs remain in its operational denominator."
+  },
+  "aggregation": {
+    "independent_unit": "patient group, not image, lead or query",
+    "overall": "Mean within patient and backend, then equal weight for patients and the two backends",
+    "all_layout_operational": "All32 scheduled diagnostic cases, retaining out-of-supported-layout cases with their explicit statuses",
+    "stated_support": "Additional stratum determined from official method assumptions before inference. Report exact case and patient counts, no posthoc success-only subset.",
+    "uncertainty": "20000 paired patient-cluster bootstrap draws, seed1973, preserve both backends and recalculate aggregate R. Descriptive conditional intervals only.",
+    "superiority": "No confirmatory SOTA claim from this already-inspected synthetic diagnostic panel. Report quality/coverage/latency Pareto decisions and severe individual failures. If later making formal multiple-comparator superiority claims, preregister a new independent assessment and multiplicity control."
+  },
+  "analytic_component_minimum": {
+    "cases": [
+      "affine",
+      "planar_projective",
+      "smooth_nonplanar",
+      "piecewise_crease"
+    ],
+    "variants": [
+      "exact_corners",
+      "localization_noise",
+      "missing_nodes_or_support"
+    ],
+    "additional_structural_controls": [
+      "all_four_right_angle_rotations",
+      "progressive_perspective_with_perfect_points",
+      "two_disconnected_regular_regions",
+      "only_every_second_major_line_with_consistent_wrong_IDs",
+      "minor_major_pitch_alias",
+      "subpixel_sampling_and_half_pixel_conventions"
+    ],
+    "grid_or_cells": "Match observations/IDs/corners and material query positions across primitive solvers. Gold transform is independent of each fitted model and held-out queries are not corner constraints.",
+    "report": "Every analytical scene and all arms retained. This diagnoses mechanisms and model bias, not clinical-population superiority."
+  },
+  "decision_policy": {
+    "no_single_metric_winner": true,
+    "retain": "Original RGB, exact coordinate conventions, patient grouping, physical scale, explicit fallback, input-only budgets and independent gold queries",
+    "test_before_adopt": "Grid organization/alias handling, global versus local geometry, affine versus projective versus bilinear cells, uncertainty/abstention, detector front-end resolution and sampling density",
+    "reject": "Gold scale/shear rescue, best-case galleries only, NaNs dropped by nanmean, hidden fallback treated as successful dewarping, copied product names for an approximation, arbitrary mask erosion that wins only by coverage loss",
+    "new_method_selection": "Use development and explicit analytic failure mechanisms. Any quality tuning after diagnostic results consumes this panel as development and requires a new independent assessment before a generalization claim."
+  },
+  "execution_decision": {
+    "our_detector": "Rerun frozen checkpoint threshold0.85 and periodic-banding pipeline once per capture, no new training. B0/M2 share these M3 detections. M2 cached detections are replay diagnostics only, not current timing.",
+    "execution": "Models loaded once, inference serial CPU2threads, method order alternated by patient. CNN output reuse between npj presets requires proven exact equivalence and separate stage timing disclosure.",
+    "models": "No case expansion beyond32diagnostic and24development without separately labelled extension."
+  },
+  "QA": {
+    "metric_core_independent_tests_passed": 20,
+    "query_visibility_integrity_checks_passed": 1939,
+    "query_schedule_sha256": "b7bde0fc53a2a6cfe0c63da30872c85634702517bf636efdfb52d5afaba51c73",
+    "metric_core_sha256": "8ed4cf91bc5b52c1c4bb1d0803d0f2644dbdc06573f799df8a73712b6f883e51",
+    "inference_executed_by_protocol_author": false
+  }
+}

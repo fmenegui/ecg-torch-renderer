@@ -1,0 +1,10 @@
+{
+  "status": "pass",
+  "tests": 20,
+  "failures": 0,
+  "errors": 0,
+  "production_scorer_exercised": true,
+  "source_file": "/workspace/scratch/a57599a3e70e/m3/benchmark/metric_core.py",
+  "source_sha256": "8ed4cf91bc5b52c1c4bb1d0803d0f2644dbdc06573f799df8a73712b6f883e51",
+  "scope": "Analytic scoring, origin/D4 separation, footprint, patient pairing and query-contract checks only"
+}

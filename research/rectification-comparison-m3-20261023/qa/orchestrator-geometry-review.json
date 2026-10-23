@@ -1,0 +1,12 @@
+{
+  "schema": "M3-independent-orchestration-geometry-QA-v1",
+  "source_file": "/workspace/scratch/a57599a3e70e/ecg-torch-renderer/examples/compare_rectification_methods.py",
+  "source_sha256": "18fedaf81856d7533a08aff112873fcc1b5c3c19b8d23fc7b62b046d8374e20e",
+  "tests": 5,
+  "failures": 0,
+  "errors": 0,
+  "actual_wrapper_source_exercised": true,
+  "actual_neural_inference_exercised": false,
+  "deadline_scope": "Cooperative SIGALRM at Python interruption points. This test does not prove hard preemption of long C/C++ inference operations.",
+  "status": "pass"
+}

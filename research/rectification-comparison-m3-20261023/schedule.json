@@ -1,0 +1,1639 @@
+{
+  "date": "2026-10-23",
+  "purpose": "Frozen diagnosticM3panel before comparator metrics, notnewholdout",
+  "views": [
+    0,
+    1,
+    2,
+    6
+  ],
+  "development_cases": 24,
+  "diagnostic_cases": 32,
+  "manifest_sha256": "94085d4c2feb528d9508f143d36664fd03811830ab5ec06733a474d4fd4904fe",
+  "cases": [
+    {
+      "key": "01024-0",
+      "source_id": "ptbxl-1577",
+      "group_id": "ptbxl-patient-7809.0",
+      "split": "validation",
+      "source_index": 1024,
+      "view": 0,
+      "backend": "torch-cached",
+      "layout": "3x4+r1",
+      "file": "bank/01024-0.npz",
+      "sha256": "6a947a655dbe96f6700b8bc88c6b81243cc81dc7f09c9b5a4c9478569b7d0ec5",
+      "query_file": "queries/01024-0.npz",
+      "query_archive_sha256": "bd8b84259c7f87f93fa0e3fc8d4710b0b32843c382c4f183f75f7d972f281ec3",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "e298049e1bfc0064c846c797b535de37b63a1a7dc3117a98bcdcab296879ae17",
+          "reference_sha256": "c608a14d0be52d54282461df03eea46fc3aa9e47ae02063940a5c212807e592b"
+        },
+        "grid": {
+          "source_sha256": "4da430e28c02321d3187e99de9eda39a674206fa0d9ee8855e822113c53a3d8f",
+          "reference_sha256": "3d25871e94bc943a19b875f1991c2b1a823363d8031499e1a9f4e1691a9f4242"
+        },
+        "paper": {
+          "source_sha256": "3ba990f4c807a8d44e2b31440ff14b5126d4a035b68897e71228a1af88eab635",
+          "reference_sha256": "db05950e40052cf0ef6db815634c0e2eb925d6f3f6b5c398082cd6906e9491c4"
+        }
+      },
+      "anchor_seed": 7026802588117492353
+    },
+    {
+      "key": "01024-1",
+      "source_id": "ptbxl-1577",
+      "group_id": "ptbxl-patient-7809.0",
+      "split": "validation",
+      "source_index": 1024,
+      "view": 1,
+      "backend": "torch-cached",
+      "layout": "12x1+r2",
+      "file": "bank/01024-1.npz",
+      "sha256": "4fea6c3616377220fb7fa344528f2f8b9078b46611dbc9c9357826da35ae9f58",
+      "query_file": "queries/01024-1.npz",
+      "query_archive_sha256": "3331e871baf04f20c1c704c1e8c8b93b9acc2a59e5dd65281b4f8e73a2440d7a",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "dc95b2774bfa2827931f32003180ed470e1ca5fc5fef7f2a3b66a22fcf2e83a0",
+          "reference_sha256": "bd75bdb65f5383ccedfa617294da09bb85e31354076d6f8bafa5256394f460b8"
+        },
+        "grid": {
+          "source_sha256": "97fa6dfa61eea764e3073383ba60247adb4e1707863eb157c03068ce2237440a",
+          "reference_sha256": "e688e4fa078cb9a7c28634e1c8627b7bdf30198cdb48d3ce5d64a0a43baf07cf"
+        },
+        "paper": {
+          "source_sha256": "2be96a3363598b71fc968aa184e1493e034e62cf7a595c752f1ee733b4d09284",
+          "reference_sha256": "4e62dad95d3a44b2576facdc564fb09e7b7917d4b152e046b5353dcca4d75fea"
+        }
+      },
+      "anchor_seed": 7156373736916363311
+    },
+    {
+      "key": "01024-2",
+      "source_id": "ptbxl-1577",
+      "group_id": "ptbxl-patient-7809.0",
+      "split": "validation",
+      "source_index": 1024,
+      "view": 2,
+      "backend": "offline",
+      "layout": "4x3+r2",
+      "file": "bank/01024-2.npz",
+      "sha256": "0ab43b2e8c25bc88bcb626557ee2a70d51ea11272a53477f073073771bd0b2e4",
+      "query_file": "queries/01024-2.npz",
+      "query_archive_sha256": "2fc21ae966ad7e0a6a788b9e6af70766d3b052009f3aefa355057b9d9ca880f2",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "3b85f5d490664c34e6701a89654cc785527abe05b8ea5a2aed28d59a84f4c5c0",
+          "reference_sha256": "4072047b925f0ac04aab4743d230b649a1d9f4cada1cf5cb7fbf0ffbcbcbd30b"
+        },
+        "grid": {
+          "source_sha256": "4c8a761666279ab75c8057d6b97c9dbc49fb2d568f2a563ebc074a28a9172ba7",
+          "reference_sha256": "05a6b64aa2167e5c63338044b0f06a10e2dd39f7f344d90124318cc1f6a395a8"
+        },
+        "paper": {
+          "source_sha256": "dada86f03fb9b9576f96371796210b3d9a74c9a2329008136815e71a4ba21d85",
+          "reference_sha256": "6d82d3640caeaaf370fb53de231d1b967e1e5128eec304762dc4845807bb9e32"
+        }
+      },
+      "anchor_seed": 3737592037436212749
+    },
+    {
+      "key": "01024-6",
+      "source_id": "ptbxl-1577",
+      "group_id": "ptbxl-patient-7809.0",
+      "split": "validation",
+      "source_index": 1024,
+      "view": 6,
+      "backend": "offline",
+      "layout": "4x3",
+      "file": "bank/01024-6.npz",
+      "sha256": "5646ff3340654716bc176246910a252a9aa2eb4c71eb92978e9312a3e14e6382",
+      "query_file": "queries/01024-6.npz",
+      "query_archive_sha256": "f682611bf8f8e2a8eda7f2a3ebf74a4d0c1fda732214d5636df94760b4ca09e8",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "97b28a655715a25ac696030e54a36c624425d1e11ba65435d3874c95dfd318de",
+          "reference_sha256": "f4526386675dcd8c96620a78ab1a298ee66f2f51877ee2d518acdbbb58aa65fc"
+        },
+        "grid": {
+          "source_sha256": "2ad74b6c3b21d3409e32c8ed48072cbed84597298e5ed31472bdbfbb033a0fcb",
+          "reference_sha256": "e8fbe714360758edc44d442821206b72c5732413ab9d88b77d621e8b86515335"
+        },
+        "paper": {
+          "source_sha256": "87d9f55b91b1188a9d742c9836838071763316f2dac763a3383eadcd2514d27f",
+          "reference_sha256": "c18605ae0b401a647f9c6cfdea75e842eca59c5597f70f62c46e48ec18c7b258"
+        }
+      },
+      "anchor_seed": 18383849393162121972
+    },
+    {
+      "key": "01025-0",
+      "source_id": "ptbxl-12459",
+      "group_id": "ptbxl-patient-13741.0",
+      "split": "validation",
+      "source_index": 1025,
+      "view": 0,
+      "backend": "torch-cached",
+      "layout": "3x4+r2",
+      "file": "bank/01025-0.npz",
+      "sha256": "6429509e8424821aca399d09095df49f931794536dd756b635881baeff96ea6a",
+      "query_file": "queries/01025-0.npz",
+      "query_archive_sha256": "f9bbb0b6157aba57f7b38d8faffc9e2718bd3633803444fcc4f54cbe7301934b",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "72a0ee14ff404539f429012203ccd6e1d2d649fdfa1a44dd16a28abe79e75a93",
+          "reference_sha256": "0cec26dd338decd768c4aa94498ee4712d9faab0443d5e51bdf6caf0a8886a67"
+        },
+        "grid": {
+          "source_sha256": "2e4bbf5aae47b4899ce99b50f1c8a4a563e766869f62d3bf6f5ae44e73ecd71d",
+          "reference_sha256": "ac28378ddd8ea821056187b195ae726487ef7316dcff0cf06cd7e565344e401a"
+        },
+        "paper": {
+          "source_sha256": "3e7e22990d5e725b9e8d1f0239dff28fe3e6af9153021cfaf44bbfa36907d365",
+          "reference_sha256": "f3f112623540247344b776e2979ea77999767047fcfe9c2f385c6e29655dcb28"
+        }
+      },
+      "anchor_seed": 8210050918511012565
+    },
+    {
+      "key": "01025-1",
+      "source_id": "ptbxl-12459",
+      "group_id": "ptbxl-patient-13741.0",
+      "split": "validation",
+      "source_index": 1025,
+      "view": 1,
+      "backend": "torch-cached",
+      "layout": "12x1+r3",
+      "file": "bank/01025-1.npz",
+      "sha256": "73ea8430078f034f4abf751f58e8e54a41d179b798004f32c10693c954536c6a",
+      "query_file": "queries/01025-1.npz",
+      "query_archive_sha256": "343fd87ce0386569a6c17b1398fb2d161c7794b51a39af4d1d64f7145acf2112",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "e7a8509a333ce74b95d9b7a8e687030100310939db4e085dd91596d12ca23526",
+          "reference_sha256": "d0fa72cc2f6ac9baacf28d7bc51a87f03ead263a2a45d9adcc5052f3b8a5123a"
+        },
+        "grid": {
+          "source_sha256": "134859720997a77f009d3426adf4c6f2ca5fa182dadbbfb95bd4c4a13c7bc439",
+          "reference_sha256": "6b91ef4c45e712bc7857da1d15e2dfc3089f89b62ec2a4ae43c955f775491e30"
+        },
+        "paper": {
+          "source_sha256": "00ad8fa765850681a68da2a17ff1459b3b480b160713b6c592b5b989db24d814",
+          "reference_sha256": "eb5156d1a042d59224f709157285f88620d7fae20ddc6bd777cd23326e205cd6"
+        }
+      },
+      "anchor_seed": 10069925252797884328
+    },
+    {
+      "key": "01025-2",
+      "source_id": "ptbxl-12459",
+      "group_id": "ptbxl-patient-13741.0",
+      "split": "validation",
+      "source_index": 1025,
+      "view": 2,
+      "backend": "offline",
+      "layout": "4x3+r3",
+      "file": "bank/01025-2.npz",
+      "sha256": "c670589a8d719e55d4751ed5caeeac0d3a2fc8dc6f2be3c7568defc6c2f40dbf",
+      "query_file": "queries/01025-2.npz",
+      "query_archive_sha256": "7155ac0fb9e36280a6b35d79bba2fc1d9a10a58a551d075eddb8953cadf80115",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "ff0458884d0645d07cad7ab264f8e1484c845ad08799441f10f891dc804c6d4a",
+          "reference_sha256": "72703cd1f1593b291fe8d9e9640d5a1a736b300827be0cd1919ac47bbbf015ca"
+        },
+        "grid": {
+          "source_sha256": "b3a709fe0d242fd6dc8b3891fb537554c42707cfe427a23605e4bf214c66c5d1",
+          "reference_sha256": "ec128c4855e60af48130d70e0b95a62cdd434334cc673669f950cd3d94c90672"
+        },
+        "paper": {
+          "source_sha256": "662bab70f3207e1540322c6570a17d12e37a82e9ca65e15ed8c2a4a96da28816",
+          "reference_sha256": "0eac71ad77238cdff0c0ce356562d0d97e28b6c9c74730e3c6c7892d7bbcf1ad"
+        }
+      },
+      "anchor_seed": 10444486373060310816
+    },
+    {
+      "key": "01025-6",
+      "source_id": "ptbxl-12459",
+      "group_id": "ptbxl-patient-13741.0",
+      "split": "validation",
+      "source_index": 1025,
+      "view": 6,
+      "backend": "offline",
+      "layout": "4x3+r1",
+      "file": "bank/01025-6.npz",
+      "sha256": "4b80e16a21016a529c4ada86def195056f696a0564e1144533cb942bb180799b",
+      "query_file": "queries/01025-6.npz",
+      "query_archive_sha256": "eb514dc8f24d3d9df75fe9bcb084157984d52ff13cf163f4557234c6757fb4f4",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "35e6c826bdb37399ad233037accf447f0f88da0e921d0a4d85c47fb02996c629",
+          "reference_sha256": "88636840c785d5b2905e0e6a47cd1da6132ed5c316087d49e975c86a2f0f8dea"
+        },
+        "grid": {
+          "source_sha256": "d5824334983d1000f4154f8971ca8d0ba6520e6e53dab8c5b7b0baae065cdcf2",
+          "reference_sha256": "539836e65cf5cab1c4c544d0c75681118c77fcbd6ac0677206dd89af69b0e158"
+        },
+        "paper": {
+          "source_sha256": "07f2f11aa3614c169d3994cb471c947699c58d817a4c5e2e5f55ef3c899f9561",
+          "reference_sha256": "e223190741454a71114a861bdc9d04add9a938664e7f506258bb35e7e77248b5"
+        }
+      },
+      "anchor_seed": 1511375818222315853
+    },
+    {
+      "key": "01026-0",
+      "source_id": "ptbxl-2429",
+      "group_id": "ptbxl-patient-8456.0",
+      "split": "validation",
+      "source_index": 1026,
+      "view": 0,
+      "backend": "torch-cached",
+      "layout": "3x4+r3",
+      "file": "bank/01026-0.npz",
+      "sha256": "989d77f4a8fa6eae3ce7a88b68afb75da23ab665ec1ca4938d47b48fa7361927",
+      "query_file": "queries/01026-0.npz",
+      "query_archive_sha256": "0bd299e5186056f7c385e2675a5791461209ee22dff9c4c31fbbd031ce0376e1",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "2220a356ed09811967a7500da8d82a77c011b2f39240e61407984a2bddb92d88",
+          "reference_sha256": "0a0feee05bedd1037cdec0725526c3dad53e12cc9b761488a0772c507bc8fc91"
+        },
+        "grid": {
+          "source_sha256": "15dc3de377993c8cf935474d482b7dc4e96a37217c70676955c0b858443ee14f",
+          "reference_sha256": "8592e250fd75d41ec321168752199c3d478fc2f1fa263ed5eca2080e59a401f7"
+        },
+        "paper": {
+          "source_sha256": "905503c2bc4e930bb35133ee337704d80ef540642a977f2700e313e3ac1dc8e3",
+          "reference_sha256": "68890af1eb5ff18ea94df1495aeb8d6c82c72bb1e883896109cb8df490349798"
+        }
+      },
+      "anchor_seed": 5584178554199692983
+    },
+    {
+      "key": "01026-1",
+      "source_id": "ptbxl-2429",
+      "group_id": "ptbxl-patient-8456.0",
+      "split": "validation",
+      "source_index": 1026,
+      "view": 1,
+      "backend": "torch-cached",
+      "layout": "2x6+r1",
+      "file": "bank/01026-1.npz",
+      "sha256": "ee0cf036500aa5b23b49f3db87e1cb19f26912a5d119ff69c5f6524d4338294c",
+      "query_file": "queries/01026-1.npz",
+      "query_archive_sha256": "7c5abb02e4840e84141ab217c20b7d620517ac46853c22bdae8d1735fc983c0b",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "888307dbf81d473792904076bb547ad464e222dc983e1fc8a3988ba8e2c0260d",
+          "reference_sha256": "47c8fa9e55b42fa3d677515d3018ed184a366cfca3e9543350b3a2e595b61e52"
+        },
+        "grid": {
+          "source_sha256": "44b678e67a3a9978669c359c85d27b4cf9419e169561029362ce4565efeca7fc",
+          "reference_sha256": "6f06b9255d69f69e4fba4ce93eed2991b0047acb5c4be367a032e2eed6170190"
+        },
+        "paper": {
+          "source_sha256": "a2254e1a333e4bd41fbd7fa1fa828377660b813b4a0f89012b802aace2ad00c7",
+          "reference_sha256": "580406aa98e27ea76b047ec259fd13a640ef382e90907f1f30cd4d3571d9535f"
+        }
+      },
+      "anchor_seed": 15269905024211463536
+    },
+    {
+      "key": "01026-2",
+      "source_id": "ptbxl-2429",
+      "group_id": "ptbxl-patient-8456.0",
+      "split": "validation",
+      "source_index": 1026,
+      "view": 2,
+      "backend": "offline",
+      "layout": "3x4-cabrera",
+      "file": "bank/01026-2.npz",
+      "sha256": "2e28c0dfb949169c27bc656c2cde51b8034ed06be9a1c6e56ab1bb509be0d8c9",
+      "query_file": "queries/01026-2.npz",
+      "query_archive_sha256": "902579e5af07548a693caaf23def589d2aecaa3a4b70dc9166b884537d406486",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "5021a5daca9d04b6b30d2cd43df26a5803161c97b765878113d575838be0a931",
+          "reference_sha256": "36ff81ba908936ae22058e4fc2d03793c6271bad4774b21610a393b7c0b03aa9"
+        },
+        "grid": {
+          "source_sha256": "e461b2e03ee43cc9f7b91973c3f3595294096af3064bf40de2b54724b7cd9ea0",
+          "reference_sha256": "d0d60a392406845c28c30710f9626c318e979730ebaa8e7bea8cec3555195661"
+        },
+        "paper": {
+          "source_sha256": "0d1ff064e0a5a0899141019fb0fa83843bebf20156164e20ad7dd0c7f7bbdb52",
+          "reference_sha256": "175c1e2c4464b76392762dcab19901480876eec603223d183843eebb6a05240d"
+        }
+      },
+      "anchor_seed": 908748745446901579
+    },
+    {
+      "key": "01026-6",
+      "source_id": "ptbxl-2429",
+      "group_id": "ptbxl-patient-8456.0",
+      "split": "validation",
+      "source_index": 1026,
+      "view": 6,
+      "backend": "offline",
+      "layout": "4x3+r2",
+      "file": "bank/01026-6.npz",
+      "sha256": "8ed65852c8cc2565aab6c9b6e4d5ac63729545377db4f462e33ae70891491a2f",
+      "query_file": "queries/01026-6.npz",
+      "query_archive_sha256": "f9b1ee0f71da3095baf96d77b2dd5d085a00d87e5aff57d7192999ccf93624bc",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "d2bd9f5b808fbe0a097d7c916c072318d886a719be4fb4e502cefa32489f188b",
+          "reference_sha256": "cbe96bc6dcbca11d977fe38950c4c9bed1b5ab4f1294076f41308851221a2559"
+        },
+        "grid": {
+          "source_sha256": "f17722eda9d7de56be923c4a558e96c4ba1a7848184eb0a75b4ea48bcd1ffa60",
+          "reference_sha256": "250f51fd673a35acf4347d29899f2d989e79726a75862f62e1460e5419b32fbc"
+        },
+        "paper": {
+          "source_sha256": "c4cfaaedce109dfd20c1834ea019126e84d54ca9fbb82ad6f51c8803e3a0f225",
+          "reference_sha256": "a049114ffcf33962451b7d4b111b9b0e1bf34b474145f77468668e5e2205606d"
+        }
+      },
+      "anchor_seed": 15953640137666634166
+    },
+    {
+      "key": "01027-0",
+      "source_id": "ptbxl-3155",
+      "group_id": "ptbxl-patient-732.0",
+      "split": "validation",
+      "source_index": 1027,
+      "view": 0,
+      "backend": "torch-cached",
+      "layout": "6x2+r1",
+      "file": "bank/01027-0.npz",
+      "sha256": "1c7361b94ba189a565f29794b815e90e35e21579a3bd2758423398d592702c71",
+      "query_file": "queries/01027-0.npz",
+      "query_archive_sha256": "3482dd43cfb266aa6478ea9932dc45154281581317b19db05936416177b2994d",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "528dd1128d4a58847217331835bf28383c59d5a71adeaaa9606d1a67568b9f9c",
+          "reference_sha256": "3d22a607979d3a26376da601b5ac393924171d306d2ecf2112bb448a92e45b6b"
+        },
+        "grid": {
+          "source_sha256": "aaa1077eceb583e1b4f412bde6bdd5982766c0a0daf53a19df71c062f2ba1ed1",
+          "reference_sha256": "aabd51d4999d76eb17812ad042b554c79eb68cdc6cdddf4d6db19a7f08bffe9f"
+        },
+        "paper": {
+          "source_sha256": "590347ca1cbdae62fd087c5d9ef1eab977a1b6d3062917ea1eaa8a384b02011f",
+          "reference_sha256": "49a5fabe6ccf7bd09b4b57d310b62c55131b92349a456321295f3310fa1e5e19"
+        }
+      },
+      "anchor_seed": 9319952435015248725
+    },
+    {
+      "key": "01027-1",
+      "source_id": "ptbxl-3155",
+      "group_id": "ptbxl-patient-732.0",
+      "split": "validation",
+      "source_index": 1027,
+      "view": 1,
+      "backend": "torch-cached",
+      "layout": "2x6+r2",
+      "file": "bank/01027-1.npz",
+      "sha256": "b27569abc6dbf3dae959f3298f291dc49d9c6ad88e7e438e7ff180ddaf79ffd4",
+      "query_file": "queries/01027-1.npz",
+      "query_archive_sha256": "18aed18d4ab8020b3c695aae6bd2773b8b1cc9088edc66bb84af7d9bdc2752af",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "38d06ff4ac3c667f51087245559dddb8fb428cb0622c1754d390802791863a51",
+          "reference_sha256": "4a13dc32cece2f2f4e8e7607c231f27ef4cc884ad2f203c9c7afa4622215efb0"
+        },
+        "grid": {
+          "source_sha256": "ad12db11a9f4be94625779580c192b66fbe38cb924059a47448279e00c54ee30",
+          "reference_sha256": "82b4dcd1b73ff50717fbf51ef497d68ac87ee264a3a66f4feb1abd26cd3a9a40"
+        },
+        "paper": {
+          "source_sha256": "fb5ffee7088cab45b9388d6c6ebcddc6bf6e296c90d0301d4170904aa05ad49b",
+          "reference_sha256": "3cbc0e7c9461ee78888739d9d796779b991a1a6f82fe7a6f5a519b74630d1aa1"
+        }
+      },
+      "anchor_seed": 2376263576090278242
+    },
+    {
+      "key": "01027-2",
+      "source_id": "ptbxl-3155",
+      "group_id": "ptbxl-patient-732.0",
+      "split": "validation",
+      "source_index": 1027,
+      "view": 2,
+      "backend": "offline",
+      "layout": "3x4-cabrera+r1",
+      "file": "bank/01027-2.npz",
+      "sha256": "dcd3c3cabaaa285dba55080a5bf34d5221d664c75495362d7b07c68c5a4244b0",
+      "query_file": "queries/01027-2.npz",
+      "query_archive_sha256": "f3abef46e25f505b2352c908dc0d1cf78d6736f23cf8e5954f175f76035bf938",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "5668de48eb4d780c2c37176516a256e5ef8f06083951f30ff419171bfd6f5af5",
+          "reference_sha256": "e22c201bdf8ef4f9d71cd309e51790b16b75e4ea160c2659f622fa3856cbe322"
+        },
+        "grid": {
+          "source_sha256": "cb9af4c75d243c8f8302c920806a65053611d95d25d83e86f55eeb1babc15218",
+          "reference_sha256": "7ec14d48613c7ed3e8dbf2210ed720d7cc46ed9145329d7b8609387b11d8dec8"
+        },
+        "paper": {
+          "source_sha256": "6d70d8e812d0891db1965a77464dd41a41509e636b6a2806b402a5c0823f818c",
+          "reference_sha256": "33441f7980989a5d0da376fbf33e204e4f79f5552c6622def4450c24695ff468"
+        }
+      },
+      "anchor_seed": 5119678901061334079
+    },
+    {
+      "key": "01027-6",
+      "source_id": "ptbxl-3155",
+      "group_id": "ptbxl-patient-732.0",
+      "split": "validation",
+      "source_index": 1027,
+      "view": 6,
+      "backend": "offline",
+      "layout": "4x3+r3",
+      "file": "bank/01027-6.npz",
+      "sha256": "0fe242779e8485f9455c3020e36ecf275a42b45a66ec0f62cc21e7b625397ac8",
+      "query_file": "queries/01027-6.npz",
+      "query_archive_sha256": "8e55c3c2dc0460bc18b486a9920344d67c9a0ec515209f0b69fd9be9d7556115",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "5bb56e4421b73b4d5f396fecf1da642977132a01486f9c7f5c036cf70e2a0862",
+          "reference_sha256": "b8a9a6394d1059a8e2110bec05091a9e254fb0f3837e3a62caa8b5868f15b51f"
+        },
+        "grid": {
+          "source_sha256": "10587290d81ce75b888107efef0d3f57a53351880dda12288fcc853688045d4e",
+          "reference_sha256": "12fbf4830f04d09cc830a19e91d3122c2bae8cf1d5b18ac310a2785de255b832"
+        },
+        "paper": {
+          "source_sha256": "b68b57f5f3e9d22876ce99f8f4bc63579a33b853f166e4be1ba94b45f284df73",
+          "reference_sha256": "583b8296cf9c7ecded48371333e6814400c66e431d32f633cd591209cd0bfce0"
+        }
+      },
+      "anchor_seed": 16150786232193329918
+    },
+    {
+      "key": "01028-0",
+      "source_id": "ptbxl-15251",
+      "group_id": "ptbxl-patient-11092.0",
+      "split": "validation",
+      "source_index": 1028,
+      "view": 0,
+      "backend": "torch-cached",
+      "layout": "6x2+r2",
+      "file": "bank/01028-0.npz",
+      "sha256": "e62a67b2cb35ee5bae4f9befc47920dc8038778f4e384b91cd6f49d9eb7050e2",
+      "query_file": "queries/01028-0.npz",
+      "query_archive_sha256": "133438a9616644f8df6660333b1b16fffa35f9a39042a5b243d43792f5a5c8f4",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "4d5be72d7ba403524ee99cce515c4b644264ab5a24de99edd711296747a5fe66",
+          "reference_sha256": "eecb4163ee4bc91780a615ef4e9555400235ab05e6fd1f94549bf380c9f6a2a8"
+        },
+        "grid": {
+          "source_sha256": "c0646edba769d77480f7b2d408481d4b5b8bf39707c3c7f99304f01342329faa",
+          "reference_sha256": "cbfb23f5c81c9dd399a9c0100e283580fe0f5277219e26c5ddba6c10ebb3a0fb"
+        },
+        "paper": {
+          "source_sha256": "40480238e794dea57c86b6680674c9a4e809716f6f338d7a1df08e27a4396e32",
+          "reference_sha256": "36c71ac66d9c440e83e73d566c8df79327978d3f215729c5f4375d66b7a5daf9"
+        }
+      },
+      "anchor_seed": 6223349774830309086
+    },
+    {
+      "key": "01028-1",
+      "source_id": "ptbxl-15251",
+      "group_id": "ptbxl-patient-11092.0",
+      "split": "validation",
+      "source_index": 1028,
+      "view": 1,
+      "backend": "torch-cached",
+      "layout": "2x6+r3",
+      "file": "bank/01028-1.npz",
+      "sha256": "ae828e25762549f52a81f092128c15f14c5e75c59b54fdd7ee745c912b5d4f68",
+      "query_file": "queries/01028-1.npz",
+      "query_archive_sha256": "416787cb02884a1bf77519115f09ebc7c379cc743d6772b9e7d7c1dbc254edd8",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "7c9e5d928f12477632ae44856b1c3b1aea246a7710648bf8cbe8dff469d246b3",
+          "reference_sha256": "e0f012ec5baa202f1c3d62c2e0a4889c7fda901b822711c9792f677510923af9"
+        },
+        "grid": {
+          "source_sha256": "80b62ab88388aef9232e2744ea8b322dfc646d5a972d3fed7bd9d22326d22478",
+          "reference_sha256": "6fef81d4fd1c4bc08e5b17a94779280208de24aee2f6b39a44eb3e356076ff1a"
+        },
+        "paper": {
+          "source_sha256": "05738a9a8506c20d0826601b8d38d441e3ff62d3c71c39a6f49361cfeebcde43",
+          "reference_sha256": "ea98174ee71f600a997324f7035779d166c864043b13e888e5c6d7e03cff4ca9"
+        }
+      },
+      "anchor_seed": 17948735744305244693
+    },
+    {
+      "key": "01028-2",
+      "source_id": "ptbxl-15251",
+      "group_id": "ptbxl-patient-11092.0",
+      "split": "validation",
+      "source_index": 1028,
+      "view": 2,
+      "backend": "offline",
+      "layout": "3x4-cabrera+r2",
+      "file": "bank/01028-2.npz",
+      "sha256": "4323bebbd7d07246a63669e071d1f9a98db61874c0dab69e07138960c06ea5f3",
+      "query_file": "queries/01028-2.npz",
+      "query_archive_sha256": "f273b1a43a4c455724b1fa8cd92cc9db936677459f52c36ba8f70e8780d74fca",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "e94220325fa45444d71ebaaa17b63e01a9c10316a52d9a9c1330ab7b44dd4933",
+          "reference_sha256": "d4ab6896904bb45b9d5cbbd4af7d806b7327088ac2787d7c56b2c1379f4e5786"
+        },
+        "grid": {
+          "source_sha256": "ed4d01d0177de889b1d08fe5f20664ebb3201bc8b8dd7177ba66490bcb9265b7",
+          "reference_sha256": "27c61561dfb5a3884c726ce4dc7b72a080e93eaeaae357e3ed033ae73a8a00f0"
+        },
+        "paper": {
+          "source_sha256": "3db2755ebcb26acd0867767564857755cd54c7f9a3cb183db09949b3afc16b82",
+          "reference_sha256": "52ffeee781e0017543807680cc2bfbe8d4b022cf0abc8649c79757910a222583"
+        }
+      },
+      "anchor_seed": 12536941580083587211
+    },
+    {
+      "key": "01028-6",
+      "source_id": "ptbxl-15251",
+      "group_id": "ptbxl-patient-11092.0",
+      "split": "validation",
+      "source_index": 1028,
+      "view": 6,
+      "backend": "offline",
+      "layout": "3x4-cabrera",
+      "file": "bank/01028-6.npz",
+      "sha256": "e3f512cccfa67740c74e0bf1b9abc907407bb9a59c145802972431b91c0137dd",
+      "query_file": "queries/01028-6.npz",
+      "query_archive_sha256": "b5936ad29a8ab09e38bd72ef56ff46e639759f5f774ae81e23cf4c570b19d2f2",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "8fd0482f74ef01bcfbb398848e64be99d15471dfe603d25176a22d7c4e8790df",
+          "reference_sha256": "98e906f43649a32de2cea456b3e93e85ef62a66077109c7d7173077f2241a098"
+        },
+        "grid": {
+          "source_sha256": "dc11ced874534738e19534d1d73367c294363d084283999f0b58d183c7b7b2c9",
+          "reference_sha256": "1a7b96c96b30f6fc95b605afebeaa544cb1bdc5ecbf33acb304b0a4dd315901c"
+        },
+        "paper": {
+          "source_sha256": "28daf6b2cc58b45c7d2365e2ee1fd3254539d291f859ef9ecbeb80f94b21ac19",
+          "reference_sha256": "bca8ea552103e01eecee43b20c41793146d4d15c6d887503083b519e404e0c2e"
+        }
+      },
+      "anchor_seed": 9233968916691380614
+    },
+    {
+      "key": "01029-0",
+      "source_id": "ptbxl-10452",
+      "group_id": "ptbxl-patient-12988.0",
+      "split": "validation",
+      "source_index": 1029,
+      "view": 0,
+      "backend": "torch-cached",
+      "layout": "6x2+r3",
+      "file": "bank/01029-0.npz",
+      "sha256": "92929944b5a18dea87c0cb3a262aad4228d16f5c4239885087c25474054c3887",
+      "query_file": "queries/01029-0.npz",
+      "query_archive_sha256": "05c774dbe657313a875a7cf991708f8dc1c38d9a29bb70730c35ceb40e342568",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "66944071a82c7dcbee2ecd27c3d098bc5db7a421203f83514fdf1ed9cced8db0",
+          "reference_sha256": "aad5d783637a97ba5f1b16759e18a5082068681d6224f6f16147d72928b5130c"
+        },
+        "grid": {
+          "source_sha256": "00f0dc7f9f910e54d1563390567e7d3d2344f6f8533a9e06aacb3e3e727355d7",
+          "reference_sha256": "02d87ae58c163ba807fa00a839c1fb166d227750eca22e01054ae61edeec24c8"
+        },
+        "paper": {
+          "source_sha256": "839a8e4f07fb80fa7ccbf8d95edf44c601c5a2e8ea32e1203b195c569eb9eabe",
+          "reference_sha256": "ceae20a9974d012ad659dbdde5612710be54d559516f7f0be063c69e07ffd3fd"
+        }
+      },
+      "anchor_seed": 15975295403471791761
+    },
+    {
+      "key": "01029-1",
+      "source_id": "ptbxl-10452",
+      "group_id": "ptbxl-patient-12988.0",
+      "split": "validation",
+      "source_index": 1029,
+      "view": 1,
+      "backend": "torch-cached",
+      "layout": "4x3",
+      "file": "bank/01029-1.npz",
+      "sha256": "b711f55c191b32a10f2f47fc7aede1f027e3defb543a041b53bcec6db5401a99",
+      "query_file": "queries/01029-1.npz",
+      "query_archive_sha256": "6bcdf23f0c7a8dbf582de3fc037215f3e1d1450e00c166ba64e2b72d17ebaf86",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "b7bd83ba5fcec359e98322eaeb8fdf24d9a72d7305fc728aeb177b00700447b7",
+          "reference_sha256": "8497e7898e52f78fb480fa628b88d35c585a83a189059400628d12dde95db7ff"
+        },
+        "grid": {
+          "source_sha256": "0874c5c728b2c5e93abc80a330dbd0aea2d14c917461a9ceb31d5b78601b7657",
+          "reference_sha256": "66dd08800a0317eb95853b7abaadf680988e531d2e20711c934501eaf460b05c"
+        },
+        "paper": {
+          "source_sha256": "df61a4cea5863230b8be79bc9f6bd2fe34cb7e96b1f5670d4ec52437c9016145",
+          "reference_sha256": "fcc4a9f24c6e88cd2504f91d9f19833c3413cb91e16d39541584c0ea099e31e1"
+        }
+      },
+      "anchor_seed": 10697838598770612402
+    },
+    {
+      "key": "01029-2",
+      "source_id": "ptbxl-10452",
+      "group_id": "ptbxl-patient-12988.0",
+      "split": "validation",
+      "source_index": 1029,
+      "view": 2,
+      "backend": "offline",
+      "layout": "3x4-cabrera+r3",
+      "file": "bank/01029-2.npz",
+      "sha256": "c56a7dbc319db5a572dd71a17719a3e229915ba30db2f665d3035e967242d8d4",
+      "query_file": "queries/01029-2.npz",
+      "query_archive_sha256": "3b66d8da235dcfc63fa8c8457e482823023358a35e808af2844c78bdf0f3897a",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "3fac3f066addd5ea83e741834fa28e7af470aaf10f7b8be47afeb2f87bf00b5e",
+          "reference_sha256": "ec145516e41767359228371672e84c8b922134baeb9d312717d5492793084227"
+        },
+        "grid": {
+          "source_sha256": "b2fa545b1e935da1495cd8cebb3b602eaecbfa1bffb8bce9abc38a400b561a8f",
+          "reference_sha256": "c05b8d5de00765f2524e10dcfc45a67157a843cd362f4f2855e312f4a31534d5"
+        },
+        "paper": {
+          "source_sha256": "dbcd6ad57252f48970bc7effd36046df14edfb78d6bcd5fcd23a4fd99f560789",
+          "reference_sha256": "91783406c161b5512a4dc795b2d7148202f0c4094315b678a057d2de76ebefa1"
+        }
+      },
+      "anchor_seed": 13429700690575891937
+    },
+    {
+      "key": "01029-6",
+      "source_id": "ptbxl-10452",
+      "group_id": "ptbxl-patient-12988.0",
+      "split": "validation",
+      "source_index": 1029,
+      "view": 6,
+      "backend": "offline",
+      "layout": "3x4-cabrera+r1",
+      "file": "bank/01029-6.npz",
+      "sha256": "15cfb91d76e569a42f37d35cf273fa7bd921912e95013d14838a76c1111b53c5",
+      "query_file": "queries/01029-6.npz",
+      "query_archive_sha256": "dae0b221d3433db07bd561bbf403ac8cb81c710f2a1750d32a61eef3fb955eb0",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "a0189c83d4b2ecc239d17a533877ea31e31eb46d1715655f811a42ebf60c971c",
+          "reference_sha256": "d0ffad633bbc28f241bb27f9d45a05e47353e48d4764b0bd54242bd5e95215d8"
+        },
+        "grid": {
+          "source_sha256": "fd4d5ab88976d3e4252573cc78a75fad1e8326b1376dcb2e37aa02a054381db7",
+          "reference_sha256": "5f2c33dcd21b19d430edd357fcc31591690bc3cfc7b1dc7b477bc18ffcfdf002"
+        },
+        "paper": {
+          "source_sha256": "7ed9079693c22c326b934df144adb34969b13a91bdd7332dbd34ceb95adc4d13",
+          "reference_sha256": "16ee48d55527ae78ca4a8e43e70ad1d0428f301b2aab456007ef4f62306e0203"
+        }
+      },
+      "anchor_seed": 6961825904154611961
+    },
+    {
+      "key": "220288-0",
+      "source_id": "ptbxl-20288",
+      "group_id": "ptbxl-patient-10264.0",
+      "split": "test",
+      "source_index": 220288,
+      "view": 0,
+      "backend": "torch-cached",
+      "layout": "1x1-long",
+      "file": "bank/220288-0.npz",
+      "sha256": "1ae55864988f57bf613ad8e2e375b57f979e3d301422aa8180d2d6e0092e59ae",
+      "query_file": "queries/220288-0.npz",
+      "query_archive_sha256": "f89a45a1ad25224ccaa170f32d82e92a4478612032511151e28b10c93f7314a3",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "03960b311dc84957e29895153a37c0d161198b9397c010e94b972b5766524b81",
+          "reference_sha256": "071def463b33afacce46f9c67d8b27983e4ee037285bbd6119d3bf1429456aab"
+        },
+        "grid": {
+          "source_sha256": "75d8ac5ec2eb99a473e396a0022319d23d42c0e9a904dffaac7632251fb28199",
+          "reference_sha256": "c4a7cc6eb85c2b92b003c158b389410e8253ad14d6dc1725d7ecc258afb0d81c"
+        },
+        "paper": {
+          "source_sha256": "c02de3ab86cc25d27dc48b83c3f9cf94586c62e4df7896b636abe4ceca179893",
+          "reference_sha256": "25b0a8efdcb8dbd44f1a151b6961d31f74513f6dbbf343d7b212229b77701887"
+        }
+      },
+      "anchor_seed": 1049774249097781056
+    },
+    {
+      "key": "220288-1",
+      "source_id": "ptbxl-20288",
+      "group_id": "ptbxl-patient-10264.0",
+      "split": "test",
+      "source_index": 220288,
+      "view": 1,
+      "backend": "torch-cached",
+      "layout": "3x4+r2",
+      "file": "bank/220288-1.npz",
+      "sha256": "8c93591340dd1c9bced19b04e55cbf43e4455ec5cb48b37059b35af2bd8c8a34",
+      "query_file": "queries/220288-1.npz",
+      "query_archive_sha256": "6f210ad7a11ca2f5be6ca6653e2b28f2aaf647f857e19c7537dc67903b719428",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "dc7f980975d3a5d5582120ae3784852938b3562cdec3f94a6f946c57cd4fdec8",
+          "reference_sha256": "82dbfc76449f9f8c5993f2c5468574839f988eb67d64ffc68207f303c9a57a0e"
+        },
+        "grid": {
+          "source_sha256": "5180cceaf547fe5878dd6a5734a041315c90be0cb84a235baf9c1a4461fbf0bb",
+          "reference_sha256": "b4fd19f9a14bb8fbebbd7953c1889e783958d4cd1017dda5803bb457783bdd79"
+        },
+        "paper": {
+          "source_sha256": "d70b456effde3cc37494ee6b52f72375ce4befabb1363c16edf16a64e6592c98",
+          "reference_sha256": "91d1317c1bb89503dd769d034de77be45d79f357fdfd76ac9c66621bd1687966"
+        }
+      },
+      "anchor_seed": 14626475624967645560
+    },
+    {
+      "key": "220288-2",
+      "source_id": "ptbxl-20288",
+      "group_id": "ptbxl-patient-10264.0",
+      "split": "test",
+      "source_index": 220288,
+      "view": 2,
+      "backend": "offline",
+      "layout": "12x1+r3",
+      "file": "bank/220288-2.npz",
+      "sha256": "48d1f9186b417e6b69b329aac3a7afdbf9206f9d3af3fb872fa4bcd639d25a4d",
+      "query_file": "queries/220288-2.npz",
+      "query_archive_sha256": "b53ccf412e47c20fea643a12e2a195daec7786652faa6ee6ddf62e6a4962a61d",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "f9590e1d3ff7c128517ae6077bed2c803fce466fab9afbabcfa9eecebe989bb5",
+          "reference_sha256": "2e8df9bb0ee78d61a5bdb59de675b7aab4df56dde45bc7110d1897cdf40314df"
+        },
+        "grid": {
+          "source_sha256": "0244c9071d8869e9777f676fa61b8dc0bbc366d03cfd49e4c072dad5c8599991",
+          "reference_sha256": "9e6db361a4e8bc5836931fb9a09dfa0ef1daa5300e952af99eda738a132794b2"
+        },
+        "paper": {
+          "source_sha256": "9c3354f2492bd6658b1b9eeb4a60fc5c18f52b81c7b4f14fee2fed9bfd2a6c6f",
+          "reference_sha256": "bbb0f9683da4b91d18e9d87358d4178cee454136cf89f7f1e2dc5bf195abeb4f"
+        }
+      },
+      "anchor_seed": 4746463743790449289
+    },
+    {
+      "key": "220288-6",
+      "source_id": "ptbxl-20288",
+      "group_id": "ptbxl-patient-10264.0",
+      "split": "test",
+      "source_index": 220288,
+      "view": 6,
+      "backend": "offline",
+      "layout": "12x1+r1",
+      "file": "bank/220288-6.npz",
+      "sha256": "caee7f23bda284c09231b3f7812cc3de92bafe766ab06fed1520bdf169bea273",
+      "query_file": "queries/220288-6.npz",
+      "query_archive_sha256": "02d47b3e88844159a3aee130f523db3729240e2bc0516f7bd89a212eafff983d",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "9053ca3901119ba27402c7fe578a4137f55326fd0157957bfd1cfbb05f3b6f85",
+          "reference_sha256": "282afd98c6f2e6438466b067daa175bfeecc559470223c5c4472ccdbaaa711d7"
+        },
+        "grid": {
+          "source_sha256": "1689efd5d79acf857a9c8e0ab4cda70bc5692537be0b90caf69d8b2b7f41fbcd",
+          "reference_sha256": "0215efefa6edee39ee6e91640338caf0daaf4754751d81a857552776d0563f6e"
+        },
+        "paper": {
+          "source_sha256": "dcd6d3d8ea60aa00808da793273f7484df992760b66aec383a4a077dd839a3b3",
+          "reference_sha256": "d07cd4c666dea1de032e654de25603e5c905c94e90d2eab23f6926cad7a0cc4c"
+        }
+      },
+      "anchor_seed": 16921517149341327229
+    },
+    {
+      "key": "208777-0",
+      "source_id": "ptbxl-8777",
+      "group_id": "ptbxl-patient-1210.0",
+      "split": "test",
+      "source_index": 208777,
+      "view": 0,
+      "backend": "torch-cached",
+      "layout": "6x2+r1",
+      "file": "bank/208777-0.npz",
+      "sha256": "dd3063f76b11c3befe1707ec431cacf2a3d719761993673ffb37bc6d9b561db9",
+      "query_file": "queries/208777-0.npz",
+      "query_archive_sha256": "4907a7a1bd2a22f17cbf1376e81ef1c5c162dfe181f76df95df4c81e99b34bf9",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "490107be807a517ed9f8c9007bd4bafc24edd8dee73670b119f85bf624be1204",
+          "reference_sha256": "078dcd2c3f8c99b7de52c8298c0f0ee0c5e467511007f1ba2b97336d9dff7f20"
+        },
+        "grid": {
+          "source_sha256": "4436d90cadf98e7a36b5dcde05b7ceadef7d3c3bbaff8ba7613809d6bfd0f590",
+          "reference_sha256": "2921a4c5ea09ae0e1b226c7445ce2ca53be3bea27a6a35cd0780946d664ae5a1"
+        },
+        "paper": {
+          "source_sha256": "10b1663805c7dc25d92990181feac90f4e0df125c596ec6ee3ab79ee29cfbc60",
+          "reference_sha256": "a8110ab8a18d27b2891d73a18d15b73a7de927ed777f21d00d69fd8f07ce67ec"
+        }
+      },
+      "anchor_seed": 8119105545252667844
+    },
+    {
+      "key": "208777-1",
+      "source_id": "ptbxl-8777",
+      "group_id": "ptbxl-patient-1210.0",
+      "split": "test",
+      "source_index": 208777,
+      "view": 1,
+      "backend": "torch-cached",
+      "layout": "2x6+r2",
+      "file": "bank/208777-1.npz",
+      "sha256": "615be188297451214783a473ae47a9b798ab9224f563f564f61e259231af9abe",
+      "query_file": "queries/208777-1.npz",
+      "query_archive_sha256": "258a83bdaa736c9d295ba57b3115f1ccaf3abf8294dc6536f75b5da3ba144aff",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "c3b20d3a70219056b22fbf989e1c5615aa036391f394239e714e5eaa785e248c",
+          "reference_sha256": "dfeed8e211c3fc1d344f3ea4c9ef931899c44e8c3f46a95441148a8c41e5ca66"
+        },
+        "grid": {
+          "source_sha256": "209c4a014c5fe6319f43c0eb38f80a79b1ccc8949ad818d2bd1cad27fd0ba21c",
+          "reference_sha256": "05ff64f4aaae77c34ba8dc607b2d147903497e581ab628b4aa4849b75220fe83"
+        },
+        "paper": {
+          "source_sha256": "4d399537bddad3331ce131192c358fa504ecf00fb30507a8e2900a504e62c2f3",
+          "reference_sha256": "69448c0d277bc38cd1f401e789d0620f89b5733c0d7a43e30e6392f148c3b5c3"
+        }
+      },
+      "anchor_seed": 4956778828067422937
+    },
+    {
+      "key": "208777-2",
+      "source_id": "ptbxl-8777",
+      "group_id": "ptbxl-patient-1210.0",
+      "split": "test",
+      "source_index": 208777,
+      "view": 2,
+      "backend": "offline",
+      "layout": "3x4-cabrera+r1",
+      "file": "bank/208777-2.npz",
+      "sha256": "8844409709cc75a50d34111482f7fcdd9ad0eeea52c15358e1f66c7908e8fbf9",
+      "query_file": "queries/208777-2.npz",
+      "query_archive_sha256": "786b9e2ad56c78dcbf485ff6c82b09efb6d9a6fb533a2d8af6b8643da6711fb7",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "ed4c92933f0865f3a2c422cd67aa1dc75471b773a33911d9c27d99308b10b0f7",
+          "reference_sha256": "8cd707db85a80688c0ce9b655b10c8dcf2d91e550ea649148172d1b1385888ff"
+        },
+        "grid": {
+          "source_sha256": "f95b30a29cc3bb5255b72b3ac8ab0423fcf8ad7570bf3a31192f29d494d9d9ed",
+          "reference_sha256": "dce8e86a4e5af8f737dd9aac119f2cd071e9f600dfe007f9dbd480bc72cab285"
+        },
+        "paper": {
+          "source_sha256": "149e2d76c81c14628f382284ab479119f74bab82e9a9c255628d65ed3dfa839f",
+          "reference_sha256": "2746b47e7c4092d383484dc7ea251d14b463f5d4d65db3444ebb917cb5d4a770"
+        }
+      },
+      "anchor_seed": 3110290610274673740
+    },
+    {
+      "key": "208777-6",
+      "source_id": "ptbxl-8777",
+      "group_id": "ptbxl-patient-1210.0",
+      "split": "test",
+      "source_index": 208777,
+      "view": 6,
+      "backend": "offline",
+      "layout": "4x3+r3",
+      "file": "bank/208777-6.npz",
+      "sha256": "52c3a2ccd41f87fb08b49180fbb23a84d18a2b35a1ac277c058b566d163b7f16",
+      "query_file": "queries/208777-6.npz",
+      "query_archive_sha256": "1e6bcaf5336ea802cf1e0ab3338372bdcc98e33018f1aca84191cef36f57befa",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "092cf8ecde6ccf1117e5bc2ee16ea8d4f529cf1475188251285c73f9bfe3fae8",
+          "reference_sha256": "7fcddc32ba48f6d08677880a5bfb234adadf2c3c43405f29bf684eade2edbbd5"
+        },
+        "grid": {
+          "source_sha256": "cda75c431a382a001673ed73df66d0f9a124c2a169893e447bda98f54013d91b",
+          "reference_sha256": "381fcdac3087d22b7bb122f8200a911ce8caab6176338bb96354edd3eb32d184"
+        },
+        "paper": {
+          "source_sha256": "4817a58ab740c4829dce218d891063092a9670b68ca36cf289f61ddf1dad6e26",
+          "reference_sha256": "0daa866bb57dc320e2d9256fc224558ccee3d0ebc1c5fe8c8587c24a887b3b85"
+        }
+      },
+      "anchor_seed": 12983529020379073686
+    },
+    {
+      "key": "206852-0",
+      "source_id": "ptbxl-6852",
+      "group_id": "ptbxl-patient-8264.0",
+      "split": "test",
+      "source_index": 206852,
+      "view": 0,
+      "backend": "torch-cached",
+      "layout": "12x1",
+      "file": "bank/206852-0.npz",
+      "sha256": "66a562c02516c6f2e367cbe001fe21ebf8970479a5e8bf3a011db994f8a9f450",
+      "query_file": "queries/206852-0.npz",
+      "query_archive_sha256": "be7df1ef8c0ac11f64499068e833c2096a136e9229a00bfc9204e8ab360ed581",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "32eff9039625425eec32c0a88a879ded4f390d114f838666b942ba86e49694d6",
+          "reference_sha256": "c8e524e25991553236b7192cdc1627deff68e4ef8b6090c2d70c0f2c34c9f9ab"
+        },
+        "grid": {
+          "source_sha256": "935d895f8a8ad38a576e46f17288351b4bf9809bc2c5e22e90b392633c586d31",
+          "reference_sha256": "c022d636ce2953b5c9bc6438389b9bb689da2bd100203c4054c25dae83e4944b"
+        },
+        "paper": {
+          "source_sha256": "a2fff242126fc451165d02431b367f1c9afc6c15b5f587e703467c9437375b25",
+          "reference_sha256": "a8c7734599cb8c525dd4ffd69c2d1211f5503d57e7fd4fbf70c424a50bb85697"
+        }
+      },
+      "anchor_seed": 12683591520584769415
+    },
+    {
+      "key": "206852-1",
+      "source_id": "ptbxl-6852",
+      "group_id": "ptbxl-patient-8264.0",
+      "split": "test",
+      "source_index": 206852,
+      "view": 1,
+      "backend": "torch-cached",
+      "layout": "6x2+r3",
+      "file": "bank/206852-1.npz",
+      "sha256": "73279164bab857b1ac8c1c22bbcbb854d1d4f95c48480989616384ed0f8d7396",
+      "query_file": "queries/206852-1.npz",
+      "query_archive_sha256": "963f31db40e8a8a52fce775fbe107d96eb6dc4e1a7a5c6be50b548e6b2a5fab1",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "355a5abc527592970d91fa588e17c3ced0f4fa36078c105923099ab42725f26b",
+          "reference_sha256": "12ab156f2dfe94f2f49b800c687592abd1a1edc250ba4486d4a6eda05b1f6910"
+        },
+        "grid": {
+          "source_sha256": "eeec3eb544326b5edd204f34cf5e382bc91418328170ee9ff1e91e8ce087c3cf",
+          "reference_sha256": "6cf65d54d0ed8f55def9059d2e51849d9ddae6fb16182752831e1d6158f5a80c"
+        },
+        "paper": {
+          "source_sha256": "457a5f0fca175244b7a5ec34e75531197783fb502fd02a379a4e36b7fdad75b3",
+          "reference_sha256": "addd2aa7b3a7bc5d42cd171244d6108301fe4d8a8a748a80431a6ae3d299f1d5"
+        }
+      },
+      "anchor_seed": 9393278008329839634
+    },
+    {
+      "key": "206852-2",
+      "source_id": "ptbxl-6852",
+      "group_id": "ptbxl-patient-8264.0",
+      "split": "test",
+      "source_index": 206852,
+      "view": 2,
+      "backend": "offline",
+      "layout": "4x3",
+      "file": "bank/206852-2.npz",
+      "sha256": "a60165943763daff1fa9d02b8e0a0edebdaf3c2fab38bebc426ceb7587571951",
+      "query_file": "queries/206852-2.npz",
+      "query_archive_sha256": "589620271c3134ce65b82ffc364008b0cc89a161d54188bb57bb122f6264088b",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "e5b00d9bebbaa987f80b8335bd43eee1b9bebfd7bb28cc6512a87a2bfa5a6e12",
+          "reference_sha256": "3cf3b3549d74fbdb36545a1b8cf2699645808d807a196a012826fd42c4b35999"
+        },
+        "grid": {
+          "source_sha256": "5fdf0efdf313802559aac181ce63fb122881f0a47b16397bc3f16eec5e774946",
+          "reference_sha256": "d49aebb99a056e9cc0053aa68a3beb640ea67d459b0ed33d4ad70472b40c4770"
+        },
+        "paper": {
+          "source_sha256": "c54a9e1088b81251eb96801dee75842e6a41fa667f916eb25d330bed63befe1c",
+          "reference_sha256": "2a583fac772491bac53e56d3ac1e24bc33bb03d51a217ca676fbea7332205909"
+        }
+      },
+      "anchor_seed": 6656043731691293140
+    },
+    {
+      "key": "206852-6",
+      "source_id": "ptbxl-6852",
+      "group_id": "ptbxl-patient-8264.0",
+      "split": "test",
+      "source_index": 206852,
+      "view": 6,
+      "backend": "offline",
+      "layout": "2x6+r2",
+      "file": "bank/206852-6.npz",
+      "sha256": "17da2cbb01a2ad4d9520fbd56521d98958f915c64a616fad125e853986698b87",
+      "query_file": "queries/206852-6.npz",
+      "query_archive_sha256": "d9da25a407078de81c484cf582339f473e655f7db1dc56f60e62aa70bdd3faad",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "c91361bf099873100f67596962e596a831b222c17469aa9f2960884a37533903",
+          "reference_sha256": "342e145c644a007ffe3e701af2b638cb7a68aaabc634911c25d39731562e7645"
+        },
+        "grid": {
+          "source_sha256": "c605569dc7eb8c1d38bb78c84c2c87b7b54082a78303b4f154b63cdfd246af1f",
+          "reference_sha256": "be060714e3be9bd36d13ada7553537ed15822d88aac9f46ea02e4a14bd016099"
+        },
+        "paper": {
+          "source_sha256": "cdef1aa0eaba1f4b0e5afc6a5ce447207ed4a3252c4fae9b1b15a9018f787fde",
+          "reference_sha256": "5326397d4d2bb7dac542dbd0617a61e5d182de230017db8433eb00fa62dff1ef"
+        }
+      },
+      "anchor_seed": 4810545395792458349
+    },
+    {
+      "key": "208114-0",
+      "source_id": "ptbxl-8114",
+      "group_id": "ptbxl-patient-6191.0",
+      "split": "test",
+      "source_index": 208114,
+      "view": 0,
+      "backend": "torch-cached",
+      "layout": "3x4+r1",
+      "file": "bank/208114-0.npz",
+      "sha256": "1029fb5e2697e784e12990badaaa23c987f7f0b502b8ea54b9400f0f9c921926",
+      "query_file": "queries/208114-0.npz",
+      "query_archive_sha256": "d623827a10c5a90836dc45e1116c8b68abd0911d589d41bba52d95f6defec5be",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "60753b9ff396bc686468bbbcd25e1520010ff579d582c92e0e06909d22c2cff2",
+          "reference_sha256": "8255d7516377de32d0e586d0da80ea3bf54d13b3cc471c10f615b281fd6ff516"
+        },
+        "grid": {
+          "source_sha256": "fd9a33e6c05503f725d2658b41964cb76f650f546848fc2d2213bb3e986e206b",
+          "reference_sha256": "edff88cd3413cc72b58fdf17c05d466bf2f631aa4a68bf7916b2f0f8fbaa777d"
+        },
+        "paper": {
+          "source_sha256": "f16de25418fd4ed6561ffa3f9414547ea880e18052f9de954e82a1b4ecda83bc",
+          "reference_sha256": "7158f7159a2dea33b1863eab8a22611944efc9b67caecc0208db309f56b834a5"
+        }
+      },
+      "anchor_seed": 7476288497019570936
+    },
+    {
+      "key": "208114-1",
+      "source_id": "ptbxl-8114",
+      "group_id": "ptbxl-patient-6191.0",
+      "split": "test",
+      "source_index": 208114,
+      "view": 1,
+      "backend": "torch-cached",
+      "layout": "12x1+r2",
+      "file": "bank/208114-1.npz",
+      "sha256": "5492f8b98cf2ad75aa8edec22cd9d6282ce266d60749821e573f068169052805",
+      "query_file": "queries/208114-1.npz",
+      "query_archive_sha256": "91cfba205a6f6751a592b02f2134a9609da37d6772578585fac8228e4acb7a51",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "8fa4a0f32e2d7bf347c81b326514f3a0d2df961a26d8f3e1390e36941210965e",
+          "reference_sha256": "a5c0f53f64fcbfbbf6d8d651b43ba1d21198121a5c17d33b1e0808365e4dbee1"
+        },
+        "grid": {
+          "source_sha256": "7af3cf6c6714a992337a753678c58268b7801e61fa041f0a002be80619fced3a",
+          "reference_sha256": "748804704a69a749e4d991e3c86097fa2a5ca0e25f39358b259db169b236bc94"
+        },
+        "paper": {
+          "source_sha256": "f90c2fdefa7c51ec6fa27d4f121c405829b748561d56664ff0efa0707111fc0f",
+          "reference_sha256": "b376b27bc3729b0d250d5e5f7ac77611630875501d29a61f00baf954c614d0b2"
+        }
+      },
+      "anchor_seed": 14755030770857394677
+    },
+    {
+      "key": "208114-2",
+      "source_id": "ptbxl-8114",
+      "group_id": "ptbxl-patient-6191.0",
+      "split": "test",
+      "source_index": 208114,
+      "view": 2,
+      "backend": "offline",
+      "layout": "4x3+r2",
+      "file": "bank/208114-2.npz",
+      "sha256": "1b7211799549c037918edb56ce785c616fa97acd270b4c6cdb2597c717546d15",
+      "query_file": "queries/208114-2.npz",
+      "query_archive_sha256": "cb654e108324b05dc785d6a4c2bafb8a6762126efa1a7a034c762abddc98dad5",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "091b574c3d97e1aedc5446f1916258a86c0e05aabe3771e14ea99a39b2130ad8",
+          "reference_sha256": "d2189d4ca51f25412e4e9c821ab65c0044dec2632ee11b55622f670ad50b70dc"
+        },
+        "grid": {
+          "source_sha256": "cfad858b318e6ffd4ab88b5ef6959366dc060024070b62890b8aaba2a8d84f7b",
+          "reference_sha256": "1be4d53932d1ce3fdf9f3160ba7ad1e1316d72e831d6c291ffeb210e161ad5cc"
+        },
+        "paper": {
+          "source_sha256": "cd88994f1547661887c074da51ef72201e53d9137eec2da9a9816aa8a1c32b9e",
+          "reference_sha256": "7246d817f9383d8bd83f3466675126713f5258ea82a57f38758067d6a5a1c09a"
+        }
+      },
+      "anchor_seed": 13031177345341870803
+    },
+    {
+      "key": "208114-6",
+      "source_id": "ptbxl-8114",
+      "group_id": "ptbxl-patient-6191.0",
+      "split": "test",
+      "source_index": 208114,
+      "view": 6,
+      "backend": "offline",
+      "layout": "4x3",
+      "file": "bank/208114-6.npz",
+      "sha256": "b088595b33637c617da3b633d063e242d2a3b5f47edf9cf3e032dd92df668fa5",
+      "query_file": "queries/208114-6.npz",
+      "query_archive_sha256": "401cf503d42dd234714f4c9771f7067447e868c5ab0d283239b604d630f333c7",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "b891c9bbcdc4eb6a71f70886455913fc3c8c0767e948b7d37f487587ee15c06b",
+          "reference_sha256": "75dbe3e8dd0c3812e402e218303f052cd7914ac8728ffa39928de242da5d35b3"
+        },
+        "grid": {
+          "source_sha256": "d731b2ad573bde6ebf404d40d1d0ab5c1b700125b1e1dd76d86b78c1371cba2a",
+          "reference_sha256": "89cc2094890a40eb4dfca20dbfe77ca12b3a26f7705ab346571c653af348bcca"
+        },
+        "paper": {
+          "source_sha256": "8e62ecfa961c3a66ed8e29721c83388d124605a8df969481b6e5cbb0cf5f6dff",
+          "reference_sha256": "417822fb09f5304ade333a70c29a368fdafe4c3c8a971006f3302b7a999d63be"
+        }
+      },
+      "anchor_seed": 1487815517706126426
+    },
+    {
+      "key": "215864-0",
+      "source_id": "ptbxl-15864",
+      "group_id": "ptbxl-patient-13372.0",
+      "split": "test",
+      "source_index": 215864,
+      "view": 0,
+      "backend": "torch-cached",
+      "layout": "2x6+r2",
+      "file": "bank/215864-0.npz",
+      "sha256": "0b4d1cbd2934009a331c6fb32aca5e33a8fdb54c57408c0bb630d3acab47c33a",
+      "query_file": "queries/215864-0.npz",
+      "query_archive_sha256": "125386c64af1a3cfdd176eea9061237d4f61c445a5a67a14d4a5fdff66bcbdd0",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "4a3141f1c4a44fe7f2fcd1caab21a0a19028415e21ddcc4e1f2b53e59a35b325",
+          "reference_sha256": "40974467da351a26bd1aadde5ce9c47674004ecdd76fbcb9bfe925520ca4a834"
+        },
+        "grid": {
+          "source_sha256": "479d799e72148732c8ab7f5ac0f391e30fddf4aab83eb491f53f2a75a6f9c5f9",
+          "reference_sha256": "0edf8f52ca295d72c8f9952f4f63d2faade74b39a8a801740eccec7aa16df1ef"
+        },
+        "paper": {
+          "source_sha256": "9be03426418baa8f3992668abf8b6291ddb178125df218cdf543298f220b8bca",
+          "reference_sha256": "a7f3f38e5b07fdf4343f2994668a44d96a34dfe180ee27f0e8ae744f6d86b626"
+        }
+      },
+      "anchor_seed": 2052291191481313157
+    },
+    {
+      "key": "215864-1",
+      "source_id": "ptbxl-15864",
+      "group_id": "ptbxl-patient-13372.0",
+      "split": "test",
+      "source_index": 215864,
+      "view": 1,
+      "backend": "torch-cached",
+      "layout": "3x4-cabrera+r1",
+      "file": "bank/215864-1.npz",
+      "sha256": "a7d316b32ecbdff6ff6d6a995e7a5ae821ce6577e5139ad392f8bc6c2d2cc7d7",
+      "query_file": "queries/215864-1.npz",
+      "query_archive_sha256": "1814508209b33e3fa754aec427e8ca653c31686fbf00c6c3dd728b67e0c5b454",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "cd630cf46e74a1fd4ffb5720dde53203403e1a353e0b0342f38560761a2a004f",
+          "reference_sha256": "401af43aa3953beeef0b42ca36a38b06b756e324ae92705f7503bbccefc82f18"
+        },
+        "grid": {
+          "source_sha256": "cc9864a4834ebe50db30f5e862d54393515725bcf367341bba50409fe231d21f",
+          "reference_sha256": "98715aa29d8f91e6a169f651f5a75be4a64ed03b116f1d3538477b64506c93fe"
+        },
+        "paper": {
+          "source_sha256": "0a3348fefd8d9c9c100b29aa43ab0cee47501036f953c6589add59d355663df3",
+          "reference_sha256": "1cf175f8b11e36723f8c6fcc50e944fdcaabdc5866fe076c7656501e99f362ce"
+        }
+      },
+      "anchor_seed": 9549651844186488047
+    },
+    {
+      "key": "215864-2",
+      "source_id": "ptbxl-15864",
+      "group_id": "ptbxl-patient-13372.0",
+      "split": "test",
+      "source_index": 215864,
+      "view": 2,
+      "backend": "offline",
+      "layout": "1x1-long",
+      "file": "bank/215864-2.npz",
+      "sha256": "0a0a8aba57afd902390e35aa2841659c4997bea71724c406f8c930d3ba6cf833",
+      "query_file": "queries/215864-2.npz",
+      "query_archive_sha256": "84dbc350beb70c82b212a2b7b0fcfbc729a30f7a5cfef07953d1cac3710559c9",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "306a38bbed24d41fb469330e5035b027b8ba56e98fd1e27819dc24c39cd5811d",
+          "reference_sha256": "09530f773f0cf982e00a12d60924dc2287ab3bc95cf1b654765466285e5f3b03"
+        },
+        "grid": {
+          "source_sha256": "741e5af50192676f961ea7a96552073568d2c24e00de62f176f368d7707e765c",
+          "reference_sha256": "e75b13390683ed60efb1018bdc45fd7692728220ed55cae3deb3eb4c20501d4d"
+        },
+        "paper": {
+          "source_sha256": "8d33fed72f421d216847994993cae88ff3e998f49be9bde30ff1a835927751aa",
+          "reference_sha256": "5310e335173e64ad5af3fb24840a769143ea2c72da718b85fb96e7a1d66d6256"
+        }
+      },
+      "anchor_seed": 3201647652966102737
+    },
+    {
+      "key": "215864-6",
+      "source_id": "ptbxl-15864",
+      "group_id": "ptbxl-patient-13372.0",
+      "split": "test",
+      "source_index": 215864,
+      "view": 6,
+      "backend": "offline",
+      "layout": "2x1-long",
+      "file": "bank/215864-6.npz",
+      "sha256": "e27915426e2e381fb14078213c95af6c28cfb98acb51b3a81c50cf518feb6b10",
+      "query_file": "queries/215864-6.npz",
+      "query_archive_sha256": "4f707ae8d31afeeb5ee119564d2a53d341d1395097d56f76d34bf5e79c3d55c3",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "34f81af7e394668e0257b28b5461842d605560f69a8b79c091196d011ff840bd",
+          "reference_sha256": "5477eda7153442162f0304d758768d7556404e2ac98314dfde62f12334f4ba57"
+        },
+        "grid": {
+          "source_sha256": "978215bb46692c44f28f05c3cf79bdef4014f7f4595a91a20b83f5920cdd4716",
+          "reference_sha256": "3e3e03722139f50a8cfc2baa351070cb27aff2e5012af8ad1258929d022768bf"
+        },
+        "paper": {
+          "source_sha256": "009c7aa910f9ada59155ddd51e085d5ca7007984d99968aa10f802ee7cc2a5b8",
+          "reference_sha256": "da67422ae0d7230e7841797be88a04cc618ac1e95978a8515ba7f91c116052ac"
+        }
+      },
+      "anchor_seed": 6195225564566607953
+    },
+    {
+      "key": "211723-0",
+      "source_id": "ptbxl-11723",
+      "group_id": "ptbxl-patient-19518.0",
+      "split": "test",
+      "source_index": 211723,
+      "view": 0,
+      "backend": "torch-cached",
+      "layout": "2x6+r1",
+      "file": "bank/211723-0.npz",
+      "sha256": "372fcd6ddf89a703155d9e54af64812a6077546a248f5cb36e016e8d5e9abb7d",
+      "query_file": "queries/211723-0.npz",
+      "query_archive_sha256": "2cd15e6fcf223c83d669e6c9d938b2433afbdcda8a9e49bc831b2092f2fd70ad",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "a1ddd0ab2ed98fd7d2ebaf8898c65764091c02280de77faff21cc0a19d5cbe86",
+          "reference_sha256": "626bce3b4f8580dc3121a859994c74a9cd93043fad97cc32befad0ea615d93dd"
+        },
+        "grid": {
+          "source_sha256": "c7a3bfb106c377f626dccbf4cd4c412ef5b237410de7258035c19518a9c44218",
+          "reference_sha256": "bc3de5a1659d9a06cae80bb08141005ace98f8179888ba0e818e8a5e67127a77"
+        },
+        "paper": {
+          "source_sha256": "e9aaf439ba76bcad8595e52694f67d60bf3dc9634678aa1baaf21c6d32bc7107",
+          "reference_sha256": "2d475175b581d496fb7aa638a51e5e87bcf3b71017e9f0007d397fb582929c06"
+        }
+      },
+      "anchor_seed": 4706377927808023656
+    },
+    {
+      "key": "211723-1",
+      "source_id": "ptbxl-11723",
+      "group_id": "ptbxl-patient-19518.0",
+      "split": "test",
+      "source_index": 211723,
+      "view": 1,
+      "backend": "torch-cached",
+      "layout": "3x4-cabrera",
+      "file": "bank/211723-1.npz",
+      "sha256": "43f05a4da932da12a693cd78d94a46abfe67238cfa8546adda40eefd125fc05e",
+      "query_file": "queries/211723-1.npz",
+      "query_archive_sha256": "ff7eac1a11e342d4d9d26aa70f5aba2a4450a492b9a119dd36970ccbf4d2777b",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "7b662bb6d6ec418d27ffc517434bb8c4e3254bf8994b529d0010c25e1c8713f3",
+          "reference_sha256": "17c027ccad354fe7ea8a07486f399b9fd18d2edddbbc685d41597be61c90ca96"
+        },
+        "grid": {
+          "source_sha256": "064aa129cf8c2109cd2de1cb10a3f5b0b2bb910d191578dc4a064ef94a4f9603",
+          "reference_sha256": "22411d8ac1767db87c99c714c9c2ab44b7081478a703b8631c96253f92dbbaad"
+        },
+        "paper": {
+          "source_sha256": "236b48293447cea3aeaf2c6bd768bd7aca0f5fe66fe05874996578c433ac7f3f",
+          "reference_sha256": "1bc75104bc745980e2af8c1fe56d056d9a2e7a65b87d0a626ed9dc1896d3cdfb"
+        }
+      },
+      "anchor_seed": 17509946385042271428
+    },
+    {
+      "key": "211723-2",
+      "source_id": "ptbxl-11723",
+      "group_id": "ptbxl-patient-19518.0",
+      "split": "test",
+      "source_index": 211723,
+      "view": 2,
+      "backend": "offline",
+      "layout": "3x1-long",
+      "file": "bank/211723-2.npz",
+      "sha256": "5a3746d212ffe3d15799ec9df113b216bc5d8331e258623193530bbce85fec85",
+      "query_file": "queries/211723-2.npz",
+      "query_archive_sha256": "017f47bec0be01a352d34a8b2588e60c7512050c784822fe3987143b3f7ac0e6",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "6f2589851b966c697140777315c25ca5ccd7088c006aa817d086b0824617d98e",
+          "reference_sha256": "fea5409589eff51a5537afd61a4d70044374d62844752dd3fb6a70d81e4bffc3"
+        },
+        "grid": {
+          "source_sha256": "a08e4c9d4853698fb8fc1a3644e1339d84b983f39d1183892fa813b8ed5f0fcb",
+          "reference_sha256": "fe1b5ba058cf2515863df269ce3698c1f22277b96c7da9018b2db56f699604bc"
+        },
+        "paper": {
+          "source_sha256": "28b46b4ec0eb56c3983a625ece20558fe8df81bda94efe1b3ce270db71d27d2f",
+          "reference_sha256": "10c20f5cd983878c30b14a2d53b2c461cadbd6149e9d86d70c414ffbdc9fb554"
+        }
+      },
+      "anchor_seed": 14251026025073783888
+    },
+    {
+      "key": "211723-6",
+      "source_id": "ptbxl-11723",
+      "group_id": "ptbxl-patient-19518.0",
+      "split": "test",
+      "source_index": 211723,
+      "view": 6,
+      "backend": "offline",
+      "layout": "12x1-cabrera",
+      "file": "bank/211723-6.npz",
+      "sha256": "b1c9a7b16303ce42ff72b924eab7dde430d2bdf8b80ceda4dfd530894f41265c",
+      "query_file": "queries/211723-6.npz",
+      "query_archive_sha256": "de31e25db256c3464dda86d1063c4636d6ecb52c12ec4c131b41d323c5894aab",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "d93077e4bbb205826ef0666403a783905b547eaa6858dc0e10568e3614e025df",
+          "reference_sha256": "28a05ffc8936b48babc7657c4cc41d7920ca1261beca3832462124bfaa0b13c2"
+        },
+        "grid": {
+          "source_sha256": "2aa2faffcaf84c84a978319201d152c336bd74c3d9a289f35f894a12c8859a13",
+          "reference_sha256": "6a07567d4f80b9e2d2369be063ecfb219b0eec5ec290914841f3361e9469d20e"
+        },
+        "paper": {
+          "source_sha256": "dc506a03b8f504b36ff4e4dd3ba3720338b89e1b4737fa7f60bcc89555bf827e",
+          "reference_sha256": "95f92488c64648bf985294bec752c980e9fdc4845f0c72ce00c5a4b65d83d688"
+        }
+      },
+      "anchor_seed": 14559104876751562776
+    },
+    {
+      "key": "211855-0",
+      "source_id": "ptbxl-11855",
+      "group_id": "ptbxl-patient-8288.0",
+      "split": "test",
+      "source_index": 211855,
+      "view": 0,
+      "backend": "torch-cached",
+      "layout": "12x1-cabrera",
+      "file": "bank/211855-0.npz",
+      "sha256": "f469133d69786df21b596ff765bf321830b03abd4147c3158be226504a50e8e3",
+      "query_file": "queries/211855-0.npz",
+      "query_archive_sha256": "6503c16b037380fe108d53c0c67b7a1601de4c3f1a71aad69703cd0840419714",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "afec3bd4535b51fa906d781088a2af720efc7df24ce9853bc16e462cea8eda65",
+          "reference_sha256": "3c977c2e13bc532a0db4b8d1ca59b05a0549bd105dc3f4827bffb76b8ae89fe9"
+        },
+        "grid": {
+          "source_sha256": "f307c070f9879ddfe02549f778ca98765b5046df8307b5d6e87f063da755eed6",
+          "reference_sha256": "67c6384d2e514f396f48c887d262152a2a91560be433576b167b637b9e15df32"
+        },
+        "paper": {
+          "source_sha256": "09dd25ec4ec432e2e91cb31a77ecf4aafeb64527a75fce099436e11c22eab33a",
+          "reference_sha256": "262df64e5da131fcbc8fb1ad874d28d24b6040059c1efa13f3204ea4796201a2"
+        }
+      },
+      "anchor_seed": 6719403195913005369
+    },
+    {
+      "key": "211855-1",
+      "source_id": "ptbxl-11855",
+      "group_id": "ptbxl-patient-8288.0",
+      "split": "test",
+      "source_index": 211855,
+      "view": 1,
+      "backend": "torch-cached",
+      "layout": "12x1",
+      "file": "bank/211855-1.npz",
+      "sha256": "970a1a0a3fd9d9bdb3d09cc7aa690eca2734242cdd297faffb7e7c3db2ded47f",
+      "query_file": "queries/211855-1.npz",
+      "query_archive_sha256": "760ef7eba9b6df0c9cc0c8e622f2c45295ee349c6ce67f398150e6a9519df79e",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "2770148dcec446219b6e5b4da9333909e5c0b9c5c0b1f0d35779c078e1752330",
+          "reference_sha256": "46525f27172d33e267728eff31e312ee92c7e84bfc1ab356f5fdfd3368c9f3bb"
+        },
+        "grid": {
+          "source_sha256": "acb71057765f7e66312b70d13a0bd00329cadd25168623bed377c2a54b9e6d42",
+          "reference_sha256": "842bd1639695f9f1cc2bbef0020c8cec88d5133d56377ac006f8a72fb5a5a4b8"
+        },
+        "paper": {
+          "source_sha256": "025a2c6685357adcc381bfd7d54642ef247a8d57c5fc6f43a32e3f5d504fdedb",
+          "reference_sha256": "5ef14b605b6e189fd537d9583f5ac2979f8db836e385bb640e5d672df586705b"
+        }
+      },
+      "anchor_seed": 11175182077936071524
+    },
+    {
+      "key": "211855-2",
+      "source_id": "ptbxl-11855",
+      "group_id": "ptbxl-patient-8288.0",
+      "split": "test",
+      "source_index": 211855,
+      "view": 2,
+      "backend": "offline",
+      "layout": "6x2+r3",
+      "file": "bank/211855-2.npz",
+      "sha256": "9e50ab2f10b129edcd391ca438ceb2578d35b3f44357d42929525b186fca4c82",
+      "query_file": "queries/211855-2.npz",
+      "query_archive_sha256": "81a43f3800e3abb0293ba116be9aab289c42b8e627981b5972d3840e9437afe0",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "5f8afa4bcfd4d656cd038512fe4e5a4679a7d5a327a94925d851e764437248a9",
+          "reference_sha256": "cb860588c410dc8f06546bcc96bac6e2307d0763ecd437dd00873add64a2c42d"
+        },
+        "grid": {
+          "source_sha256": "10a3c7e1b95e2ad0ad50130d6b87a55f28850f4642eaf3025429087ecb6194fc",
+          "reference_sha256": "1ad4489002bd84a797a70fc2178ba67edb197af7e92cee53390128705278cf18"
+        },
+        "paper": {
+          "source_sha256": "04495fa34888cfb689bfc1467d2f2550f42c02a4ac0dc5ce7f7fed3f1c371960",
+          "reference_sha256": "21cc59d1ed29f84630fc35e2f7fe6c56c89ed5ab5593d181ea79d658cdfbe8bb"
+        }
+      },
+      "anchor_seed": 2401366833021754008
+    },
+    {
+      "key": "211855-6",
+      "source_id": "ptbxl-11855",
+      "group_id": "ptbxl-patient-8288.0",
+      "split": "test",
+      "source_index": 211855,
+      "view": 6,
+      "backend": "offline",
+      "layout": "6x2+r1",
+      "file": "bank/211855-6.npz",
+      "sha256": "75f1fb00675f1b15666be6fbb0c30ca15cfbb01b3bdff19fc6da190fbdb72836",
+      "query_file": "queries/211855-6.npz",
+      "query_archive_sha256": "cd9ed08f07aac4352c2d6cda1e901828ccc704528eb3ade012f0c59ecf3da951",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "0d32b4d81f2b57c2bb59fb9b177bbe766eaa5032a5e7660eff6c41ae09bd3445",
+          "reference_sha256": "45bebfd9490305a18cff32507bc8f62329a4b9473abd662be16db345dac597a3"
+        },
+        "grid": {
+          "source_sha256": "10e0131e0a0c8de649705b2d34b6f64c1fe7161bccb1ad8525726a3e537d94d5",
+          "reference_sha256": "b830178eccee5f72b196c4381d5200457a5216a12aa2063a6485270db7bc3864"
+        },
+        "paper": {
+          "source_sha256": "a6964a4ba60dc1c3943a9bdab52f9b3cd41075009057be24bbaed9317bf1d784",
+          "reference_sha256": "d55c8da950501b944e2378a7e3f53424a75abd9eeae20dd5befa3a4b7633755f"
+        }
+      },
+      "anchor_seed": 12557234403854050035
+    },
+    {
+      "key": "206056-0",
+      "source_id": "ptbxl-6056",
+      "group_id": "ptbxl-patient-935.0",
+      "split": "test",
+      "source_index": 206056,
+      "view": 0,
+      "backend": "torch-cached",
+      "layout": "4x3",
+      "file": "bank/206056-0.npz",
+      "sha256": "d0695e87137d5794b8a10ec269da206ee3b2b8d4697348c3428e43f1d2f68803",
+      "query_file": "queries/206056-0.npz",
+      "query_archive_sha256": "d4132486c6575b7ee201eff1c791a1758946731be832acb9111be9caa71c65a7",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "a1761cc0dc11882fe43b2e35b472d3cc2b7b0e0e890930bd3833d007e433aa7c",
+          "reference_sha256": "b0a8ab552bc8e53706f4041bbd1160b195da64e3e3759f490c7c86f53371ecde"
+        },
+        "grid": {
+          "source_sha256": "dd69b7b59a75fa51c6fcdcc47957ead7b352200d7aac8c528dbd67fe71449977",
+          "reference_sha256": "0bd0cd7ca2d5a95573898b4ac48a825861b8dabc59d7ba37b7f59d483abaa9b6"
+        },
+        "paper": {
+          "source_sha256": "4d317fa38865dd7655a3dc760d4e2f0b60ea4909f0a33b52d8006305b5987271",
+          "reference_sha256": "5ddbd1b6e8f883320b9850ea357fc3d8e5f2dc8feb539f1c6fd97149a4118d17"
+        }
+      },
+      "anchor_seed": 16418393182440951030
+    },
+    {
+      "key": "206056-1",
+      "source_id": "ptbxl-6056",
+      "group_id": "ptbxl-patient-935.0",
+      "split": "test",
+      "source_index": 206056,
+      "view": 1,
+      "backend": "torch-cached",
+      "layout": "3x4-cabrera+r3",
+      "file": "bank/206056-1.npz",
+      "sha256": "d86230c39ca2a4430aaadacfbb233f39b07a1211adce806efea9d5201d0a3271",
+      "query_file": "queries/206056-1.npz",
+      "query_archive_sha256": "00b2dfab43ea573e47323406fac7a47a5e4f2848ac60d3f35fe82629172c3626",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "6d09786a61b463962d54a1d020d98280a75806145cfd2eb432f68cadf88799b2",
+          "reference_sha256": "7dca6cb02b12fa58f001bd988958b057bff46b23aefed95354485d172327fcf8"
+        },
+        "grid": {
+          "source_sha256": "6f94d4a6aee0d8ce9a0b059c69e0703ca69493799ea8d9489cf81b1c6ba7618e",
+          "reference_sha256": "8b949ee1dd245c1858df6eabb2fb7158e3d6a1dc405a30a2cc4460415a70d12d"
+        },
+        "paper": {
+          "source_sha256": "9e1ff45d3f89c55096869ad31dd0e43c78dc00c497da5798bae659f784d07517",
+          "reference_sha256": "e633f10f2bb1dc83445d33f03f9a6a6f162b13cd19e5391067ade34f599a6013"
+        }
+      },
+      "anchor_seed": 1267940074639607607
+    },
+    {
+      "key": "206056-2",
+      "source_id": "ptbxl-6056",
+      "group_id": "ptbxl-patient-935.0",
+      "split": "test",
+      "source_index": 206056,
+      "view": 2,
+      "backend": "offline",
+      "layout": "3x4",
+      "file": "bank/206056-2.npz",
+      "sha256": "e44a6c3bf5646ec7742bd8436a811eb2540b4877f411d4bf7f18145f199fc919",
+      "query_file": "queries/206056-2.npz",
+      "query_archive_sha256": "85b83d1e376acc51adec55ba3cc918a319a9eeaf2398e369f9db2522813e43c5",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "bf88813916583633a972e38534f146e52bc1d79e3b8e96faf355cc9b4c47431a",
+          "reference_sha256": "6240cbf9aaf1d681f378faf4af7c1c25dae939986c27ea26e39cd55ff366dc57"
+        },
+        "grid": {
+          "source_sha256": "40184315a8dde14b37c7f974b0a121c345dbe611a054b81b0af162eb8c7d943f",
+          "reference_sha256": "62d546a0f0da819c59e35c32b81c1d042312f41f23d77a940bbc326d028238bf"
+        },
+        "paper": {
+          "source_sha256": "d231992caf2c0df6b642a59b9640a7578b0c796bc1ec7a7bda4ecdbae7fbeb3e",
+          "reference_sha256": "c5e11e0f45c339c6e7b5e9994994dbaf3e618be13f03b4bcf2c3f83c65e9c245"
+        }
+      },
+      "anchor_seed": 16154313996188355293
+    },
+    {
+      "key": "206056-6",
+      "source_id": "ptbxl-6056",
+      "group_id": "ptbxl-patient-935.0",
+      "split": "test",
+      "source_index": 206056,
+      "view": 6,
+      "backend": "offline",
+      "layout": "1x1-long",
+      "file": "bank/206056-6.npz",
+      "sha256": "b24ea6dc634fec38c1197450fd4e5bbb81a26ff4be7887020cd6c0b71001af85",
+      "query_file": "queries/206056-6.npz",
+      "query_archive_sha256": "36dc784159ea2f80981215a264972389e1051fb50c8b52ea1c7b1437952fe100",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "fc4d3df5ff4ab9146823484e95d2a02f0fe19496c62332fe887232f075962e2f",
+          "reference_sha256": "5a8e4db673eb9baefd0547055e86970b5192786d0eda552c3f7351195075a045"
+        },
+        "grid": {
+          "source_sha256": "0d47107f10861eb44777a61a11f3851322ab1dee78c660aba1506141ca47a4a1",
+          "reference_sha256": "f391af06d708a428ca8f33b2b8334026af58d7a84d310e1cfdeedcbdaad4bc76"
+        },
+        "paper": {
+          "source_sha256": "c9848214046987cb869d2bc073de058237bf11bf88dd027900e9c09bc1b94222",
+          "reference_sha256": "2dfb1f7c1e765e25de1ca4b59efc977b361421c52f67eb72d735f39e16d70417"
+        }
+      },
+      "anchor_seed": 4497732614208311235
+    }
+  ]
+}

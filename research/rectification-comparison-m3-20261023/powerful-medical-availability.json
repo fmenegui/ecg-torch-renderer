@@ -1,0 +1,127 @@
+{
+  "checked_date": "2026-10-23",
+  "scope": "primary paper, geometry patent, official product, public demo and OpenAPI. Bounded search, not proof of inexistence.",
+  "official_code_found": false,
+  "official_weights_found": false,
+  "api_exists": true,
+  "api_public_docs": "https://eu-west-1.pm-api.com/v0/docs",
+  "openapi_url": "https://eu-west-1.pm-api.com/v0/openapi.json",
+  "openapi_sha256": "2246a476bb6a9354844b5ba366feffde91cac217920ead966a21edafcdf528a9",
+  "openapi_version": "6defb60953a79e5a732d8b5ea91feeb8288cc091",
+  "official_demo": "https://aidemo.pmcardio.com/",
+  "api_key_required": true,
+  "credential_provided": false,
+  "inference_calls": 0,
+  "images_transmitted": 0,
+  "contact_sent": false,
+  "documented_paths": [
+    "/api_key_metadata",
+    "/ecg/diagnose/v1",
+    "/ecg/explain/v1",
+    "/ecg/digitization/v3",
+    "/ecg/digitization/v4",
+    "/ecg/diagnosis/v2",
+    "/ecg/omi/v1",
+    "/ecg/active_omi/v2",
+    "/ecg/lvef/v0",
+    "/ingestion",
+    "/ecg/visualize/v0",
+    "/ecg/stemi_criteria/v1"
+  ],
+  "exposed_geometry_stage_endpoint": false,
+  "what_can_be_scored_with_authorized_api": [
+    "waveform mV vs known source, lead ownership, times ms, coverage of returned signals, failures and warnings, service latency"
+  ],
+  "what_current_schema_does_not_enable": [
+    "dense input pixel to material millimetre field",
+    "Dotter mask localization recall/precision",
+    "Gridder lattice topology",
+    "geometric sampling of original RGB"
+  ],
+  "api_v3_required_fields": [
+    "image",
+    "number_of_photos",
+    "index_of_photo",
+    "paper_speed",
+    "voltage_gain"
+  ],
+  "api_v4_explicit_calibration_recommended": {
+    "paper_speed": 25,
+    "voltage_gain": 10,
+    "reason": "V4 defaults gain20, use exact capture metadata, not endpoint default."
+  },
+  "api_v4_supported_layouts": [
+    "3x4_r0",
+    "3x4_r1",
+    "3x4_r2",
+    "3x4_r3",
+    "6x2_r0",
+    "6x2_r1",
+    "12x1_r0",
+    "12x1_r1",
+    "3x2_r0",
+    "3x2_r1",
+    "6x1_r0",
+    "6x1_r1",
+    "3x1_r0",
+    "3x1_r1"
+  ],
+  "api_v4_warning_codes": [
+    "bad_column_split",
+    "dummy_normalization",
+    "incorrect_metadata",
+    "limb_instead_of_chest_leads",
+    "low_coverage",
+    "low_limb_score",
+    "low_qrs_quality",
+    "missing_lead_row",
+    "only_limb_leads",
+    "only_chest_leads",
+    "part_of_four_photo_ecg",
+    "single_lead_ecg",
+    "skipped_normalization",
+    "wrong_layout",
+    "wrong_rotation",
+    "zero_leads"
+  ],
+  "api_v4_failure_codes": [
+    "dotter_small_image",
+    "dotter_small_photo",
+    "dotter_uniform_image",
+    "gridder_too_many_points",
+    "leader_no_leads",
+    "lead_extraction_unsupported_layout",
+    "lead_extraction_wrong_lead_number",
+    "format_detection_leads_too_short"
+  ],
+  "service_build_pin_fields": [
+    "powerfulmedical_system_id",
+    "result.product_identification.production_identifier"
+  ],
+  "dataset": {
+    "concept_doi": "10.5281/zenodo.13617672",
+    "version_doi": "10.5281/zenodo.13617673",
+    "bytes": 33863935685,
+    "md5": "e9e21300e7eefa139eacf024d2ebda26",
+    "source_waveforms": 100,
+    "images": 6000,
+    "license_metadata": "GPL-3.0-or-later",
+    "full_downloaded": false,
+    "metadata_sha256": "5e1afead65a555565860b4deca80ac94b24135917b4a8397cce7a12dbf8c3b93",
+    "dense_geometric_gold_promised_by_metadata": false,
+    "waveform_ids_must_be_checked_for_overlap": true
+  },
+  "component_comparator": {
+    "script": "component_control.py",
+    "source_sha256": "9896453a761edc9050d767af6dfccf978892d77c96aca333481f187a9319ac0d",
+    "label": "geometric primitive ablation, NOT commercial Dotter/Gridder",
+    "cases": 10,
+    "methods": [
+      "triangles",
+      "homography",
+      "bilinear"
+    ],
+    "interior_queries_per_case": 12288,
+    "official_commercial_weights_used": false
+  }
+}

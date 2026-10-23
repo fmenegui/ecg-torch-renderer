@@ -1,0 +1,38 @@
+{
+  "schema": "projective-residual-composition-development-controls-v1",
+  "date": "2026-10-23",
+  "phase": "Predeclared analytical development probe motivated by C04, not a held-out comparison or method selection result",
+  "inputs": "Known-ID grid correspondences and analytical image positions. No neural detector and no M3 or M2 image bank.",
+  "canonical_grid": {"rows": 12, "columns": 16, "step_mm": 5},
+  "queries": {"count": 4096, "seed": 1973, "physical_low_mm": [0.001,0.001], "physical_high_mm": [74.999,54.999]},
+  "source_projection": "[10*u/(1+k*u), 10*v/(1+k*u)] after the named analytic coordinate deformation",
+  "arms": [
+    "M2 direct shared piecewise-affine cells",
+    "global homography LS, restricted to original observed-cell support",
+    "T_LS composed with H_LS, inverse H_LS^-1 composed with T_LS^-1",
+    "global homography RANSAC, restricted to original observed-cell support",
+    "T_RANSAC composed with H_RANSAC, inverse H_RANSAC^-1 composed with T_RANSAC^-1"
+  ],
+  "homography": {"ransac_threshold_mm": 1.5, "ransac_seed": 1973, "max_iterations": 2000, "confidence": 0.995, "horizon_guard": "denominator same nonzero sign over every observed source vertex", "singular_ratio_min": 1e-12},
+  "cases": [
+    {"name":"flat-affine", "kind":"flat", "k":0, "noise_px":0, "seed":1973},
+    {"name":"flat-projective", "kind":"flat", "k":0.02, "noise_px":0, "seed":1973},
+    {"name":"flat-projective-strong", "kind":"flat", "k":0.08, "noise_px":0, "seed":1973},
+    {"name":"smooth", "kind":"smooth", "k":0.02, "amplitudes_mm":[2,3], "noise_px":0, "seed":1973},
+    {"name":"crease-aligned", "kind":"aligned", "k":0.02, "crease_u_mm":30, "slope":0.30, "noise_px":0, "seed":1973},
+    {"name":"crease-oblique", "kind":"oblique", "k":0.02, "line_v_minus_0_6u_mm":8, "slope":0.50, "noise_px":0, "seed":1973},
+    {"name":"flat-noise-low", "kind":"flat", "k":0.02, "noise_px":0.35, "seed":1973},
+    {"name":"flat-noise-high", "kind":"flat", "k":0.02, "noise_px":0.90, "seed":65537},
+    {"name":"smooth-noise", "kind":"smooth", "k":0.02, "amplitudes_mm":[2,3], "noise_px":0.60, "seed":104729},
+    {"name":"crease-oblique-noise", "kind":"oblique", "k":0.02, "line_v_minus_0_6u_mm":8, "slope":0.50, "noise_px":0.60, "seed":104729},
+    {"name":"flat-coherent-row-error", "kind":"flat", "k":0.02, "noise_px":0, "anchor_fault":"x shift 5*sin(2*pi*row/11) pixels", "seed":1973},
+    {"name":"flat-coherent-half-error", "kind":"flat", "k":0.02, "noise_px":0, "anchor_fault":"x shift 13 pixels for canonical u>=25mm", "seed":1973}
+  ],
+  "guard_fault_controls": [
+    "Four source correspondences with swapped bottom endpoints induce a fitted homography whose horizon crosses the source cell, and must be rejected",
+    "Collinear input anchors must return explicit rejection rather than fabricate a field"
+  ],
+  "measurements": ["G within 0.5mm", "W above 0.5mm", "C finite returned support", "R=W/C", "RMSE", "p95", "p99", "common-support RMSE versus direct cells", "rejection reason", "H inlier fraction", "shared-edge forward and inverse continuity", "source-code and protocol SHA256"],
+  "prohibited": ["No product attribution to Powerful Medical", "No change to frozen M2", "No clinical or state-of-the-art claim", "No oracle selection of a branch by query error", "No new settings selected after reading these scores", "No RGB-delivery or end-to-end detector claim"],
+  "expected_tradeoff": "Composition should remove projective interpolation bias when H is appropriate. It can still overfit anchor noise, preserve wrong IDs, fail with a bad global fit or be biased near nonlinear creases. Negative controls remain in the output."
+}

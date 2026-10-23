@@ -1,0 +1,104 @@
+[
+  {
+    "id": "paper_published",
+    "url": "https://doi.org/10.1016/j.jelectrocard.2025.153900",
+    "web_ref": "turn87search0",
+    "note": "Publisher primary abstract/indexed methods, direct403"
+  },
+  {
+    "id": "paper_pubmed",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/40010101/",
+    "web_ref": "turn87search1",
+    "note": "Primary record and author abstract"
+  },
+  {
+    "id": "preprint",
+    "url": "https://www.medrxiv.org/content/10.1101/2024.08.31.24312876v1.full",
+    "web_ref": "turn89search2",
+    "note": "Primary full-text index, direct403"
+  },
+  {
+    "id": "preprint_pdf",
+    "url": "https://www.medrxiv.org/content/10.1101/2024.08.31.24312876v1.full.pdf",
+    "web_ref": "turn89search32",
+    "note": "Primary indexed model and normalization methods, direct403"
+  },
+  {
+    "id": "us_application",
+    "url": "https://patents.google.com/patent/US20240144417A1/en",
+    "web_ref": "turn84view2",
+    "note": "Detailed description, claims1\u201316; graph detail lines605\u2013639"
+  },
+  {
+    "id": "us_grant",
+    "url": "https://patents.google.com/patent/US12614244B2/en",
+    "web_ref": "turn85view0",
+    "note": "Granted2026-04-28, claim1 inspected atlines468\u2013473"
+  },
+  {
+    "id": "ep_grant",
+    "url": "https://patents.google.com/patent/EP4302256B1/en",
+    "web_ref": "turn84view3",
+    "note": "Claims1\u201315, specifically1 and9\u201314"
+  },
+  {
+    "id": "ep_official_pdf",
+    "url": "https://data.epo.org/publication-server/rest/v1.2/patents/EP4302256NWB1/document.pdf",
+    "web_ref": "turn89search36",
+    "note": "OfficialEPOpublication"
+  },
+  {
+    "id": "patent_figures",
+    "url": "https://patentimages.storage.googleapis.com/76/a3/89/b85882e6fccede/US20240144417A1.pdf",
+    "web_ref": "turn91view2",
+    "note": "LocalPDFsha and renderedpages2,5,12. Figures1A/B,1G,2J/K inspected."
+  },
+  {
+    "id": "official_research",
+    "url": "https://www.powerfulmedical.com/research/high-precision-ecg-digitization-using-artificial-intelligence/",
+    "web_ref": "turn87search9",
+    "note": "Vendorresearchsummary, notindependentcomparison"
+  },
+  {
+    "id": "independent_challenge",
+    "url": "https://cinc.org/archives/2024/pdf/CinC2024-011.pdf",
+    "web_ref": "turn90view2",
+    "note": "IndependentorganizersAPIevaluation, fullwaveform task, differentcompetition fromKaggle"
+  },
+  {
+    "id": "official_demo",
+    "url": "https://aidemo.pmcardio.com/",
+    "web_ref": "turn94search0",
+    "note": "Officialpublicdemoauth/docsinstructions. RuntimeHTMLreadsJSbundle, nokeyprovided"
+  },
+  {
+    "id": "official_openapi",
+    "url": "https://eu-west-1.pm-api.com/v0/openapi.json",
+    "web_ref": null,
+    "note": "Primarypublicschema retrievedHTTP200usingURLexplicitlylinkedbySwagger, sha inavailability"
+  },
+  {
+    "id": "official_docs",
+    "url": "https://eu-west-1.pm-api.com/v0/docs",
+    "web_ref": null,
+    "note": "OfficialpublicSwaggerHTTP200, authrequirements/schemaURL"
+  },
+  {
+    "id": "org_service",
+    "url": "https://www.powerfulmedical.com/legal/pmcardio-org-privacy/",
+    "web_ref": "turn89search3",
+    "note": "OfficialcontractedserviceAPI reference"
+  },
+  {
+    "id": "data_record",
+    "url": "https://zenodo.org/api/records/13617672",
+    "web_ref": null,
+    "note": "OfficialJSONHTTP200, resolvesrecord13617673, noZIPdownload"
+  },
+  {
+    "id": "author_full_preprint",
+    "url": "https://www.researchgate.net/publication/383740641_High_Precision_ECG_Digitization_Using_Artificial_Intelligence",
+    "web_ref": "turn102view0",
+    "note": "Author-uploaded primarypreprint. Methods251\u2013353, scoring399\u2013443, limitations634\u2013678 allread. DistinctDotter/Leadertraincounts."
+  }
+]
