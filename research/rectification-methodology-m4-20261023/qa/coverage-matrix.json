@@ -1075,6 +1075,24 @@
       "final_cost_audited": true,
       "final_replay_outputs_audited": 3360,
       "new_quality_claim": false
+    },
+    "numpy_compatibility_followup": {
+      "type": "compatibility-only",
+      "historical_geometry_sha256": "0ce6062797c5e25dd9ce3d7b26a6a9fabe7779ca72b5ea4e55fcda564bed9e87",
+      "current_geometry_sha256": "421ebe98bdd9b5c18daf039837297d8592e9fdb4f937b466311033a9f6be7fe0",
+      "existing_test_methods_per_runtime": 26,
+      "actual_numpy_versions": [
+        "2.3.5",
+        "2.5.4"
+      ],
+      "python": "3.12.14",
+      "cross_reference_float64_triangles": 8204,
+      "cross_bit_mismatches_each_runtime": 0,
+      "independent_saved_parity_checks": 3096,
+      "saved_arrays_compared": 1444,
+      "new_failure_families": 0,
+      "no_method_or_score_change": true,
+      "historical_approval_receipts_preserved": true
     }
   }
 }

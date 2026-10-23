@@ -124,7 +124,9 @@ def guard_complex(source, triangles, label):
     while its distinct boundary points coincide. The boundary checks reject it.
     """
     vertices = source[triangles]
-    cross = np.cross(vertices[:, 1]-vertices[:, 0], vertices[:, 2]-vertices[:, 0])
+    edge_a = vertices[:, 1]-vertices[:, 0]
+    edge_b = vertices[:, 2]-vertices[:, 0]
+    cross = edge_a[:, 0]*edge_b[:, 1]-edge_a[:, 1]*edge_b[:, 0]
     scale = np.max(np.sum((vertices[:, 1]-vertices[:, 0])**2, axis=1))
     tolerance = max(scale*1e-10, 1e-12)
     if np.any(np.abs(cross) <= tolerance):

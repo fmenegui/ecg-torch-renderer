@@ -116,5 +116,6 @@ OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 swarm-venv/bin/python m4/geometry/spars
 
 As fontes, os protocolos, a implementação M2 importada e a composição M3 importada são identificados por SHA256 nos JSONs. Nenhuma fonte congelada do M2/M3 foi modificada. O script verificador compara as duas execuções, os arrays de todos os candidatos, as métricas e os guardas. O script esparso verifica paridade e custo sem parâmetros derivados do gold.
 '''
+report += '\n## Correção de compatibilidade NumPy 2.5\n\nA fonte atual troca somente o produto vetorial 2D por determinante escalar explícito. A fonte guard-v2 aprovada foi preservada. As mesmas 19 cenas foram executadas novamente em NumPy 2.3.5 e NumPy 2.5.4 real, com todas as 19 seleções, 342 arrays de candidatos e 76 registros de scores exatamente iguais ao guard-v2 nos dois ambientes. Veja `numpy-compatibility.md` e os dois recibos de compatibilidade. Nenhum parâmetro ou tolerância mudou.\n'
 (ROOT/'analysis.md').write_text(report)
 print(ROOT/'analysis.md')

@@ -142,6 +142,8 @@ Powerful Medical continua N/A por falta de execução autorizada/acesso adequado
     validation=json.loads(validation_path.read_text()) if validation_path.exists() else {'status':'Validação final ainda em fechamento.'}
     section('validation','Verificações, versão e entregas',md('''
 Os componentes M4 são offline, fora do hot path de treinamento Torch. As fontes e resultados M2/M3 foram preservados. Uma galeria de regressão do renderer com 16 cenários e múltiplos layouts foi exportada, totalmente decodificada e inspecionada. Ela não representa saídas de um detector M4 nem equivalência com fotografias reais.
+
+O primeiro CI com NumPy 2.5.4 revelou a remoção de `np.cross` para vetores 2D. A guarda nova usa o determinante escalar explícito. A fonte anterior foi preservada e as 19 cenas foram repetidas em NumPy 2.3.5 e 2.5.4. As 19 seleções, 342 arrays de candidatos, 722 arrays totais e 76 registros de scores foram exatamente iguais. A correção não alterou candidatos, tolerâncias ou fontes M2/M3. Os recibos locais não substituem o status de CI abaixo.
 ''')+'<pre>'+esc(json.dumps(validation,ensure_ascii=False,indent=2))+'</pre>'+
         (f'<p><a href="{esc(args.pr_url)}">Código e testes em PR de pesquisa</a></p>' if args.pr_url else ''))
     sources=load('m4/prior-art/sources.json')['sources']

@@ -9,8 +9,13 @@
     },
     {
       "path": "research/rectification-methodology-m4-20261023/geometry/analysis.md",
-      "bytes": 15917,
-      "sha256": "ed7b3484f4b79c1e982a4d44150ad71bcedddbfbdec6b91e5e941c0a7ced9464"
+      "bytes": 16408,
+      "sha256": "a347e31543116b3ccd86ae321638ea1776d9d2dc99ba2ce95a259d3cedeea0bd"
+    },
+    {
+      "path": "research/rectification-methodology-m4-20261023/geometry/check_numpy_compatibility.py",
+      "bytes": 6551,
+      "sha256": "33f6f14a7dd3104872c2142cc96e7db17cee9b931648cab3372cd5360839849b"
     },
     {
       "path": "research/rectification-methodology-m4-20261023/geometry/check_results.py",
@@ -19,6 +24,11 @@
     },
     {
       "path": "research/rectification-methodology-m4-20261023/geometry/geometry_selector.py",
+      "bytes": 16351,
+      "sha256": "421ebe98bdd9b5c18daf039837297d8592e9fdb4f937b466311033a9f6be7fe0"
+    },
+    {
+      "path": "research/rectification-methodology-m4-20261023/geometry/geometry_selector_guard_v2_historical.py",
       "bytes": 16284,
       "sha256": "0ce6062797c5e25dd9ce3d7b26a6a9fabe7779ca72b5ea4e55fcda564bed9e87"
     },
@@ -43,14 +53,39 @@
       "sha256": "b817f9f31758678df7443521341fcb0922b2ccdb9983d0180dffdd4f2bc76a0b"
     },
     {
-      "path": "research/rectification-methodology-m4-20261023/geometry/manifest.json",
+      "path": "research/rectification-methodology-m4-20261023/geometry/manifest-before-numpy-compatibility.json",
       "bytes": 11101,
       "sha256": "603390c708ad7c5e6848c10fd44935b8ee62c9c89b9d30ca57c6fa285eaf052c"
+    },
+    {
+      "path": "research/rectification-methodology-m4-20261023/geometry/manifest.json",
+      "bytes": 21083,
+      "sha256": "bf9860bc693ea8e7b86f4ea8bea673a0e017ad552e0c08126e9b7653e2d46b85"
     },
     {
       "path": "research/rectification-methodology-m4-20261023/geometry/measurements.csv",
       "bytes": 15715,
       "sha256": "4ab52d7506ae41977dc9097f71a2562498d4b470d8a53d4f543f8408554c9a82"
+    },
+    {
+      "path": "research/rectification-methodology-m4-20261023/geometry/numpy-compatibility-retest.json",
+      "bytes": 4403,
+      "sha256": "2dc2e8e6304eac2a28c9def6d20191e5fdac78f111c711774ed85ae798b86eb5"
+    },
+    {
+      "path": "research/rectification-methodology-m4-20261023/geometry/numpy-compatibility-revision.json",
+      "bytes": 1574,
+      "sha256": "0eee6ca9b6b91303e54911491957391e1b48b167c604bcf76d6817a852013fc4"
+    },
+    {
+      "path": "research/rectification-methodology-m4-20261023/geometry/numpy-compatibility.md",
+      "bytes": 3636,
+      "sha256": "deb364bbaf82b029affb0e5e455234b273f741e12b7d69d8481ed257f331b464"
+    },
+    {
+      "path": "research/rectification-methodology-m4-20261023/geometry/numpy254-compatibility-retest.json",
+      "bytes": 4363,
+      "sha256": "03dc2dd50b5536ebf249bfbbd5f2de3a6707824e4e4ee6a928ea0f141064186e"
     },
     {
       "path": "research/rectification-methodology-m4-20261023/geometry/protocol.json",
@@ -89,8 +124,8 @@
     },
     {
       "path": "research/rectification-methodology-m4-20261023/geometry/write_report.py",
-      "bytes": 14911,
-      "sha256": "0fa718eea9e6143eeb0c93c4a7319216a65a61aff99451dbf93ff1a9fd470205"
+      "bytes": 15419,
+      "sha256": "a75cb1fc58ce0359368d809f5d2ce8acaad41a7ed14f42b63c207260c1f80158"
     },
     {
       "path": "research/rectification-methodology-m4-20261023/identifiability/audit-protocol.json",
@@ -154,8 +189,8 @@
     },
     {
       "path": "research/rectification-methodology-m4-20261023/integration/build_report.py",
-      "bytes": 22462,
-      "sha256": "81744a0746e8a2e164dd3c66c3f64282b057517853459f8985732ead226fe168"
+      "bytes": 22920,
+      "sha256": "4f71238af31febc8c2a9f726f0b1c08e4561fcac27bdda31f2240a6ead6583ee"
     },
     {
       "path": "research/rectification-methodology-m4-20261023/integration/decision-contract.json",
@@ -209,8 +244,8 @@
     },
     {
       "path": "research/rectification-methodology-m4-20261023/qa/artifact-manifest.json",
-      "bytes": 2837,
-      "sha256": "99d04c39c54f3079f63478a3f6717678b808206705691e495274106227da2b46"
+      "bytes": 4594,
+      "sha256": "958b89c318bda150fe63c3e1225b50f591fbab90e5853cdeb807a9b3b7cf0885"
     },
     {
       "path": "research/rectification-methodology-m4-20261023/qa/audit_final_checkpoints.py",
@@ -221,6 +256,11 @@
       "path": "research/rectification-methodology-m4-20261023/qa/audit_geometry_results.py",
       "bytes": 11246,
       "sha256": "850e0491820dcbfb38a254a2066f4f8791f8d588d6f479946e263d17a59c48f6"
+    },
+    {
+      "path": "research/rectification-methodology-m4-20261023/qa/audit_numpy_compatibility_results.py",
+      "bytes": 4578,
+      "sha256": "055a7bca68bbf435066f68861c610f61508bcda2cda5aa1966db7af75ebe9568"
     },
     {
       "path": "research/rectification-methodology-m4-20261023/qa/audit_sampling_results.py",
@@ -234,13 +274,13 @@
     },
     {
       "path": "research/rectification-methodology-m4-20261023/qa/coverage-matrix.json",
-      "bytes": 47334,
-      "sha256": "1343d5998f2900390590547c38bca2ae42a4729e025e2c8577a7eb796b09e96d"
+      "bytes": 48075,
+      "sha256": "e30232d9dce5668a8671408c6b688516ce6ad921b1ca9030aa35241a1bde4be8"
     },
     {
       "path": "research/rectification-methodology-m4-20261023/qa/final-review.md",
-      "bytes": 16125,
-      "sha256": "d385197b0141b3eb266d2bf1c07efc4c690ed958111e9a9d8c761c05432d674d"
+      "bytes": 18930,
+      "sha256": "723b0ce7e4f2ddad0efe075e8946d341cdff579906aaaa4fb889ad493d054670"
     },
     {
       "path": "research/rectification-methodology-m4-20261023/qa/independent-test-spec.json",
@@ -256,6 +296,11 @@
       "path": "research/rectification-methodology-m4-20261023/qa/independent_component_tests.py",
       "bytes": 24677,
       "sha256": "f8129cfe2afb82250fd357b1fa6ff329f16fc2eea3ad9a4a70d6169cc85d8811"
+    },
+    {
+      "path": "research/rectification-methodology-m4-20261023/qa/numpy-compatibility-review.md",
+      "bytes": 3317,
+      "sha256": "de7a1fa2fb3d2de119ed99a30d7cc84a31ccf4fdba3093873f79e0cfafb8ec91"
     },
     {
       "path": "research/rectification-methodology-m4-20261023/qa/protocol-review.md",
@@ -313,6 +358,51 @@
       "sha256": "6d44f5b8b8f1b44eab44dff6194a2ad8d19855c14d41db1eb8776e533c8fb6c7"
     },
     {
+      "path": "research/rectification-methodology-m4-20261023/qa/receipts/numpy-compat/historical-cross-reference.json",
+      "bytes": 532,
+      "sha256": "eeba5360db4ccb5e34312f3689478a6f1bf60a66ab6383ffc9e0248146ca7299"
+    },
+    {
+      "path": "research/rectification-methodology-m4-20261023/qa/receipts/numpy-compat/numpy235.json",
+      "bytes": 3745,
+      "sha256": "22ba8dde7bafd978cc35d66a3ed43df7ddd454bffe3c5e3d549fa840fca560d0"
+    },
+    {
+      "path": "research/rectification-methodology-m4-20261023/qa/receipts/numpy-compat/numpy235.log",
+      "bytes": 4126,
+      "sha256": "36619be75b5dbfbed9c83b90080f5e1a820823b8954278a377564afba9c8b5e5"
+    },
+    {
+      "path": "research/rectification-methodology-m4-20261023/qa/receipts/numpy-compat/numpy254.json",
+      "bytes": 3703,
+      "sha256": "a8a7eb0831e05809694e5379ba25dbd386628a56bb5d51e6eeecba77bc54b719"
+    },
+    {
+      "path": "research/rectification-methodology-m4-20261023/qa/receipts/numpy-compat/numpy254.log",
+      "bytes": 4126,
+      "sha256": "740e183b671854d77876e537d5bb4fa9741253a84e7d37a7372416ec1af815ee"
+    },
+    {
+      "path": "research/rectification-methodology-m4-20261023/qa/receipts/numpy-compat/prior-approval-bindings.json",
+      "bytes": 696,
+      "sha256": "146f7fe34a5fba7bccfc4468a4703b8c4986f75fab94f550bf7872f59369f91f"
+    },
+    {
+      "path": "research/rectification-methodology-m4-20261023/qa/receipts/numpy-compat/reference-generation.log",
+      "bytes": 514,
+      "sha256": "65928a52b273c4eeb4fc525cb0c9cbb6e1cdd413da34b3f66cc0720d58ba28b7"
+    },
+    {
+      "path": "research/rectification-methodology-m4-20261023/qa/receipts/numpy-compat/results-parity-audit.json",
+      "bytes": 1299,
+      "sha256": "195b547f52d36b9c089209ae13b185dcd178704b864a3313389cf5b2d162d4ad"
+    },
+    {
+      "path": "research/rectification-methodology-m4-20261023/qa/receipts/numpy-compat/results-parity-audit.log",
+      "bytes": 158,
+      "sha256": "b3101793837662f238dabf45453b361662e56b572eea570c7d4fadf1e13e1916"
+    },
+    {
       "path": "research/rectification-methodology-m4-20261023/qa/receipts/sampling-result-audit.json",
       "bytes": 2163,
       "sha256": "6da86aa922b59a0720571b005af18067ed649d2ec6c76b8f3f7bd9684bf66534"
@@ -321,6 +411,16 @@
       "path": "research/rectification-methodology-m4-20261023/qa/receipts/sampling-result-audit.log",
       "bytes": 165,
       "sha256": "5f202768a4d5c20157808e66b3986c1ef7e063c501a66619c6bcf2048e1f4ad0"
+    },
+    {
+      "path": "research/rectification-methodology-m4-20261023/qa/review_numpy_compatibility.py",
+      "bytes": 8763,
+      "sha256": "7d64ab15d90b99d36311bcdea4d7e6b44cafd2f9b86c84c930ee080eb7e983d8"
+    },
+    {
+      "path": "research/rectification-methodology-m4-20261023/qa/snapshots/geometry_selector-guard-v2-before-numpy-compat.py",
+      "bytes": 16284,
+      "sha256": "0ce6062797c5e25dd9ce3d7b26a6a9fabe7779ca72b5ea4e55fcda564bed9e87"
     },
     {
       "path": "research/rectification-methodology-m4-20261023/qa/snapshots/geometry_selector-pre-boundary-review.py",

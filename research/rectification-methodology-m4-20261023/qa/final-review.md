@@ -15,6 +15,7 @@ No neural pipeline, frozen M3 file, reference waveform or production module was 
 | Saved sampling/replay audit | 23,819 checks pass | Schedule and counter audit for 3,360 archived comparisons, 12 quality summaries independently recomputed and 192 selected outputs rerun from direct affine coordinates |
 | Separate exact-axis-area suite | 5 tests pass | 160 output pixels checked against independent source-cell rectangle clipping, RGB/RGBA, borders, anisotropy/flips, tile invariance, rejection of shear/singular maps and unresolved tiny footprints |
 | Final-source cost and full replay receipts | 67 checks pass | Final sampler identity, three-repeat medians, original/final cost hashes and the complete 3,360-output final replay audited without remeasuring runtime or RSS |
+| NumPy compatibility follow-up | Same 26 tests pass in both NumPy 2.3.5 and actual 2.5.4 | Narrow determinant replacement, 8,204 float64 triangle results bit-identical to the historical cross in each runtime, followed by 3,096 independent checks of both 19-scene reruns |
 | Prior M3 results | Read-only continuity review | Retrospective synthetic diagnostic results remain unchanged, including one compatible Kaggle case and known renderer-family training advantage |
 | Identifiability witnesses | Source/report interpretation reviewed | Finite mathematical/contract examples, not a new detector or photographic endpoint evaluation |
 
@@ -78,11 +79,24 @@ The final-source checkpoint is separately retained at `m4/sampling/results/final
 
 The 16-million-pixel old-cache value of 8.192 GB is an allocation formula, not a completed 16M-frame measurement. All measurements remain shared-host CPU evidence, with no GPU or full-neural-pipeline speed claim. The integrator's complete final-source replay subsequently finished at `m4/integration/final-sampling-replay/parity.json`. Its 3,360 comparisons, counters, zero mismatches, 12 quality summaries and component hashes exactly match the original replay. The final-checkpoint audit now passes 67 checks in `receipts/final-checkpoints-audit.json`. This strengthens final source/measurement binding. The independent 192-output direct-affine rerun remains separate evidence and was not repeated.
 
+## NumPy compatibility follow-up
+
+After the initial approval, the integrator recorded actual CI failures with NumPy 2.5.4 in the old two-vector `np.cross` call. The failure record remains at `m4/integration/ci-numpy25-failure.json`. The compatibility change replaces that one call with `edge_a[:,0]*edge_b[:,1]-edge_a[:,1]*edge_b[:,0]`. An independent literal-source comparison confirms that nothing else in the approved guard-v2 file changed. No tolerance, guard, candidate, loss, selection rule, physical reference or frozen M2/M3 file was altered. No dependency pin, downgrade or NumPy API shim was used.
+
+The historical approval receipts remain unchanged, and the historical source remains SHA256 `0ce6062797c5e25dd9ce3d7b26a6a9fabe7779ca72b5ea4e55fcda564bed9e87`. The current compatible source is SHA256 `421ebe98bdd9b5c18daf039837297d8592e9fdb4f937b466311033a9f6be7fe0`. Historical and new identities are intentionally distinct.
+
+I generated an actual NumPy 2.3.5 cross reference for 8,204 finite float64 triangles, including broad exponents, near-degenerate thresholds, signed zero and subnormal products. The actual new assignments reproduce every result bit for bit in NumPy 2.3.5 and an isolated installation of actual NumPy 2.5.4. The unchanged 26 independent test methods also pass in both runtimes on Python 3.12.14. These are 26 repeated methods per runtime, not 52 new failure families or patient observations. Existing PNG failure injections remain in the tests. No patch replaces a NumPy operation.
+
+The geometry owner reran the same 19 scenes in both runtimes. My separate 3,096-check audit compares 1,444 saved arrays byte for byte across the two reruns against the previously independently scored guard-v2. Each rerun retains the same 19 selections, 342 candidate outputs, 722 arrays and all 76 complete primary score records. Every selection field other than elapsed time is identical. Both decision seals and protocol identities verify, with no scoring truth used in selection. This transfers the previous conditional component conclusions to the compatible implementation. It adds no accuracy or clinical claim. Actual remote CI for its full Python matrix remains a separate integration check.
+
+The new receipts and preserved reference are under `receipts/numpy-compat/`, with the readable follow-up at `numpy-compatibility-review.md`. The local principal environment remains unchanged.
+
 ## Approved component identities
 
 | Source | SHA256 |
 |---|---|
-| `m4/geometry/geometry_selector.py` | `0ce6062797c5e25dd9ce3d7b26a6a9fabe7779ca72b5ea4e55fcda564bed9e87` |
+| Current `m4/geometry/geometry_selector.py` | `421ebe98bdd9b5c18daf039837297d8592e9fdb4f937b466311033a9f6be7fe0` |
+| Historical approved guard-v2, preserved | `0ce6062797c5e25dd9ce3d7b26a6a9fabe7779ca72b5ea4e55fcda564bed9e87` |
 | `m4/sampling/streaming_sampler.py` | `b9a7a732533090271455d42fdc3b4784bf299e14f0b4fc82c564fadccc31f503` |
 | `m4/sampling/pngio.py` | `816c319d8bdd47ef82aff7057a4461d7b2b3249ce95d60a7a7fa3b93b3fd38b1` |
 | `m4/sampling/axis_aligned_area.py` | `d7b347d7733d91530babf518ab2987c2558b4aebed3b4f37773f6b8fee49cc26` |
