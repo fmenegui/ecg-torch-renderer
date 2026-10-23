@@ -28,7 +28,14 @@ def thin_trace():
         # Crop the original around the same physical interval. This is a
         # visual illustration, never a new pixel-error measurement.
         source=panels[0]
-        panels[0]=source[30:181,30:181]
+        # This selected example is isotropic and axis aligned. Crop original
+        # pixel centres to the same physical centre interval as the scored ROI.
+        a=z['source_per_mm']
+        roi=z['roi_xy_mm']
+        ends=(np.array([roi.min((0,1)),roi.max((0,1))])-10)@a.T+100
+        lower=np.rint(ends.min(0)).astype(int)
+        upper=np.rint(ends.max(0)).astype(int)
+        panels[0]=source[lower[1]:upper[1]+1,lower[0]:upper[0]+1]
     fig,axs=plt.subplots(1,4,figsize=(12,3.6),layout='constrained')
     for ax,panel,title in zip(axs,panels,
             ['Captura original (recorte)', 'Pontual: traço desaparece',

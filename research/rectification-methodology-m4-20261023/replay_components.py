@@ -40,6 +40,7 @@ def make_workspace(destination: Path):
         for path in sorted(source.iterdir()):
             if path.is_file() and path.suffix in ('.py', '.json'):
                 shutil.copyfile(path, target/path.name)
+    (destination/'m4/qa/receipts').mkdir()
     (destination/'ecg-torch-renderer').symlink_to(repo, target_is_directory=True)
     old = repo/'research/rectification-comparison-m3-20261023/composition_probe.py'
     if not old.is_file():
@@ -53,6 +54,7 @@ def make_workspace(destination: Path):
 def command(task, workspace):
     tasks = {
         'qa': [sys.executable, 'm4/qa/independent_component_tests.py'],
+        'qa-area': [sys.executable, 'm4/qa/independent_axis_area_tests.py'],
         'sampling-tests': [sys.executable, '-m', 'unittest', 'discover', '-s',
                            'm4/sampling', '-p', 'test_sampling_export.py', '-v'],
         'area-tests': [sys.executable, '-m', 'unittest', 'discover', '-s',
@@ -68,7 +70,7 @@ def command(task, workspace):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--task', choices=['qa', 'sampling-tests', 'area-tests',
+    parser.add_argument('--task', choices=['qa', 'qa-area', 'sampling-tests', 'area-tests',
                                          'geometry', 'identifiability'], default='qa')
     parser.add_argument('--workspace', type=Path,
                         help='New directory for a retained replay. Must not already exist.')

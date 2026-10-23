@@ -15,6 +15,7 @@ From an intact source checkout with Python, NumPy, SciPy, OpenCV and Pillow:
 
 ```bash
 python research/rectification-methodology-m4-20261023/replay_components.py --task qa
+python research/rectification-methodology-m4-20261023/replay_components.py --task qa-area
 python research/rectification-methodology-m4-20261023/replay_components.py --task sampling-tests
 python research/rectification-methodology-m4-20261023/replay_components.py --task area-tests
 python research/rectification-methodology-m4-20261023/replay_components.py --task identifiability
@@ -26,7 +27,7 @@ published M3 comparator. Receipts are created in that workspace and do not
 replace archived evidence. To retain them, supply a new `--workspace` path.
 `--task geometry` reruns the 19 analytical scenes and 18-candidate selector.
 
-`tests/test_rectification_m4_components.py` runs the four core tasks during
+`tests/test_rectification_m4_components.py` runs the five core tasks during
 unittest integration when optional dependencies are present. The independent
 QA script includes the retained fixed-quadrature failure as an expected attack,
 not as a content-preservation pass. Exact-axis-area is a restricted positive

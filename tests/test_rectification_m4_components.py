@@ -16,7 +16,7 @@ class RectificationM4Contracts(unittest.TestCase):
     def test_independent_component_and_area_contracts(self):
         root = Path(__file__).resolve().parents[1]
         launcher = root/'research/rectification-methodology-m4-20261023/replay_components.py'
-        for task in ('qa', 'sampling-tests', 'area-tests', 'identifiability'):
+        for task in ('qa', 'qa-area', 'sampling-tests', 'area-tests', 'identifiability'):
             with self.subTest(task=task):
                 completed = subprocess.run(
                     [sys.executable, str(launcher), '--task', task], cwd=root,
