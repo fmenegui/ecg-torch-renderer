@@ -1,0 +1,16 @@
+{
+  "reason": "separate original B0 rejected construction from a new refinement attempt failure",
+  "inference_or_selection_changed": false,
+  "validation_metrics_and_bootstrap_identical": true,
+  "all_original_case_CSV_fields_identical": true,
+  "source_sha256_before": "a70f7a155acf6f53612ba76c86a4c56031207cf6cc617bd29bec3b47988dee98",
+  "source_sha256_after": "1492798597361e1b1fa36af208b48aa4be6ed5a80bbadadc9ad500d42b0683b6",
+  "validation_json_sha256": "ecdabdcf12f9028d5c011b6609aa8046a8b2ed09ac6fab5416ef5e50161c1d16",
+  "counts": {
+    "input_only_construction_fallback_to_B0": 19,
+    "construction_fallback_after_refinement_attempt": 3,
+    "construction_fallback_with_refiner_unchanged": 16,
+    "fallback_count_note": "Runner fallback includes repeating a rejected B0 construction when the refiner already left points unchanged. Total is not the number of new refinement failures."
+  },
+  "test_results_opened": false
+}

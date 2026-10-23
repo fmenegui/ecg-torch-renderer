@@ -1,0 +1,1443 @@
+{
+  "selection": {
+    "purpose": "post-hoc qualitative illustration only, not method or threshold selection",
+    "read_after_complete_test_and_summary": true,
+    "selected_strength_unchanged": 1.0,
+    "domain_for_case_ranking": "grid",
+    "density_px_per_mm": 4.0,
+    "new_neural_inference": false,
+    "new_training": false,
+    "gold_use": "scoring, ranking illustrations and parity gauge only, never geometry fitting",
+    "captures_are_synthetic": true,
+    "external_clinical_photographs": false,
+    "source_sha256": {
+      "examples/rectify_denoising_grid.py": "5d69629728f45d2dd887da5cac182e8b1e184cb01c8ec0641e4343ffa708c129",
+      "ecg_gpu/digitization/robust_refinement.py": "0b2d2f15ba3f86e63d7532a47d6f87bccded1b5f65ac56499f2d6ed765241ced",
+      "ecg_gpu/digitization/complete_rectifier.py": "0c3e6025332eaf582a4f3d57218cbf7ed0bdabad1efc7e7503cce3e9646de2da"
+    },
+    "input_report_sha256": {
+      "validation": "ecdabdcf12f9028d5c011b6609aa8046a8b2ed09ac6fab5416ef5e50161c1d16",
+      "test": "836c5419dab77c8fe39fd0156febb6bf3cbaf5dd33ac1061252f0151c5ababb4"
+    },
+    "summary_sha256": "74e15a4fb373d3231b2ace421728589e8b05d739205726efdb843821b976c53d",
+    "renderer_sha256": "664713902108327f91b39366b7e6769cc7b61a2f1266052b6fd630e03753be57",
+    "presentation_density_note": "4 px/mm supplement follows visual undersampling observed at 2 px/mm, without changing maps or statistical selection",
+    "cases": [
+      {
+        "key": "01026-6",
+        "split": "validation",
+        "reason": "maior ΔG no domínio grid",
+        "delta_G": 0.148681640625,
+        "delta_W": 0.00146484375
+      },
+      {
+        "key": "01025-6",
+        "split": "validation",
+        "reason": "regressão de W explicitamente solicitada",
+        "delta_G": 0.044189453125,
+        "delta_W": 0.02734375
+      },
+      {
+        "key": "208114-6",
+        "split": "test",
+        "reason": "maior ΔG no domínio grid",
+        "delta_G": 0.046630859375,
+        "delta_W": -0.050537109375
+      },
+      {
+        "key": "208114-1",
+        "split": "test",
+        "reason": "menor ΔG, pois nenhum caso test tem aumento de W. Empate por key crescente",
+        "delta_G": -0.00048828125,
+        "delta_W": 0.0
+      }
+    ],
+    "presentation_builder_sha256": "879c23615b863939dd6fd260becc469204a560f0d699094b4c63ce24a45ebee6",
+    "presentation_update_reused_existing_geometry_outputs": true,
+    "geometry_renderer_sha256": "664713902108327f91b39366b7e6769cc7b61a2f1266052b6fd630e03753be57"
+  },
+  "cases": [
+    {
+      "key": "01026-6",
+      "split": "validation",
+      "backend": "offline",
+      "layout": "4x3+r2",
+      "selection_reason": "maior ΔG no domínio grid",
+      "source_file": "bank/01026-6.npz",
+      "source_array_sha256": "89c0df07bc1628f5e8fbe1276267b4126d4899d3ecb6bc79c0d8ccb480b59814",
+      "source_archive_sha256": "8ed65852c8cc2565aab6c9b6e4d5ac63729545377db4f462e33ae70891491a2f",
+      "cached_query_map_sha256": "8a63a9da67d1329274491b429e9428c30f9ca9ea2acb5d0d9b9d84b7d82b466a",
+      "density_px_per_mm": 4.0,
+      "methods": {
+        "B0": {
+          "report": {
+            "output_mode": "full",
+            "source_for_rectification": "original RGB",
+            "status": "original-preserved",
+            "output_image": "original-preserved.png",
+            "complete_geometry": {
+              "status": "original-preserved",
+              "reason": "no orientation-preserving completion of a grid gap",
+              "physical_coordinates_available": false,
+              "rgb_source": "original input",
+              "grid_mask_erases_rgb": false,
+              "geometry_is_inferred": true,
+              "resampled": false,
+              "source_coverage": 1.0,
+              "observed_cell_coordinates_available": true
+            },
+            "original_image": "original-rgb.png",
+            "geometry_accuracy_verified": false,
+            "evidence_map_erases_rgb": false,
+            "sampled_map_roundtrip_checked": false,
+            "coordinate_mode": "observed-cells-only",
+            "observed_cell_coordinate_data": "observed-grid-geometry.npz",
+            "evidence_legend": {
+              "0": "outside sampled frame or original unrectified",
+              "1": "extrapolated geometry",
+              "2": "interpolated geometry",
+              "3": "observed grid cell, not an accuracy certificate"
+            }
+          },
+          "accepted_full_map": false,
+          "rgb_resampled": false,
+          "output_status": "original-preserved",
+          "output_image": "B0/original-preserved.png",
+          "original_array_exact": true,
+          "original_array_sha256": "89c0df07bc1628f5e8fbe1276267b4126d4899d3ecb6bc79c0d8ccb480b59814",
+          "geometry_evaluator_parity": {
+            "grid": {
+              "finite_mask_equal": true,
+              "eligibility_mask_equal": true,
+              "maximum_absolute_coordinate_difference_mm": 0.0,
+              "passed_at_1e_minus_8_mm": true
+            },
+            "paper": {
+              "finite_mask_equal": true,
+              "eligibility_mask_equal": true,
+              "maximum_absolute_coordinate_difference_mm": 0.0,
+              "passed_at_1e_minus_8_mm": true
+            }
+          },
+          "evaluation_grid_metrics": {
+            "queries": 4096,
+            "g": 0.12451171875,
+            "w": 0.006591796875,
+            "c": 0.131103515625,
+            "r": 0.05027932960893855,
+            "p95_mm": 0.500002111449343,
+            "p99_mm": 0.9129348090816952,
+            "rmse_mm": 0.2637645629190984,
+            "unrestricted_good": 0.12451171875,
+            "unrestricted_wrong": 0.006591796875,
+            "common_with_B0_queries": 537,
+            "common_rmse_mm": 0.2637645629190984,
+            "B0_common_rmse_mm": 0.2637645629190984
+          },
+          "output_size": [
+            1024,
+            704
+          ],
+          "evaluation_paper_metrics": {
+            "queries": 4096,
+            "g": 0.086669921875,
+            "w": 0.00732421875,
+            "c": 0.093994140625,
+            "r": 0.07792207792207792,
+            "p95_mm": 0.5726184115072145,
+            "p99_mm": 1.0304819317666332,
+            "rmse_mm": 0.2830584480563099,
+            "unrestricted_good": 0.086669921875,
+            "unrestricted_wrong": 0.00732421875,
+            "common_with_B0_queries": 385,
+            "common_rmse_mm": 0.2830584480563099,
+            "B0_common_rmse_mm": 0.2830584480563099
+          }
+        },
+        "soft-1.0": {
+          "report": {
+            "output_mode": "full",
+            "source_for_rectification": "original RGB",
+            "point_refinement": {
+              "requested_strength": 1.0,
+              "crease_guard_enabled": true,
+              "applied": true,
+              "gold_used": false,
+              "fallback_to_baseline": false,
+              "fallback_count": 0,
+              "fallback_reason": null,
+              "effective_positions": "refined detector positions",
+              "original_detection_positions_preserved": false,
+              "original_detection_data": "detected-grid-geometry.npz",
+              "candidate_data": "refined-grid-candidate.npz",
+              "candidate_fit": {
+                "status": "full-frame-rectification",
+                "reason": null,
+                "physical_coordinates_available": true,
+                "rgb_source": "original input",
+                "grid_mask_erases_rgb": false,
+                "geometry_is_inferred": true,
+                "global_inlier_fraction": 0.9181286549707602,
+                "method": "constrained completion preserving original observed-cell triangles",
+                "global_prior": "projective",
+                "mesh_triangles": 236,
+                "minimum_triangle_area_ratio": 0.8841042521006561,
+                "boundary": "full source image boundary, with finite projective target",
+                "boundary_self_intersections_checked": true,
+                "all_mesh_triangles_orientation_checked": true,
+                "mesh_node_layout": "observed vertices and full-frame boundary",
+                "observed_cell_map_changed": false,
+                "output_boundary_crops_to_detected_grid": false,
+                "evidence_is_accuracy_certificate": false
+              },
+              "refiner": {
+                "status": "refined",
+                "reason": null,
+                "input_points": 171,
+                "method": "sparse robust projective-residual curvature refinement",
+                "fixed_lattice_ids": true,
+                "gold_used": false,
+                "score_weights": "bounded rank, not calibrated probability or covariance",
+                "physical_accuracy_certified": false,
+                "global_injectivity_checked": false,
+                "strength": 1.0,
+                "iteration_limit": 5,
+                "max_shift_fraction": 0.2,
+                "max_points": 8192,
+                "iterations": 5,
+                "constraints": 233,
+                "cells_guarded": 62,
+                "maximum_shift_px": 4.60718070089597,
+                "maximum_shift_fraction": 0.2000000000000012,
+                "converged": false,
+                "iteration_limit_reached": true,
+                "convergence_scope": "IRLS residual iterates before shift cap and cell guard",
+                "crease_guard_enabled": true,
+                "crease_guard_triggered": false,
+                "budget_exhausted": true,
+                "curvature_guard": {
+                  "families": [
+                    {
+                      "difference_axis": 0,
+                      "adjacent_lines_required": 4,
+                      "windows_checked": 6,
+                      "coherent_windows": 0,
+                      "robust_tuning_scale_px": 1.0532068962203773,
+                      "curvature_threshold_px": 3.159620688661132,
+                      "peak_coherent_second_difference_px": 0.0
+                    },
+                    {
+                      "difference_axis": 1,
+                      "adjacent_lines_required": 4,
+                      "windows_checked": 7,
+                      "coherent_windows": 0,
+                      "robust_tuning_scale_px": 1.0501588349418025,
+                      "curvature_threshold_px": 3.1504765048254075,
+                      "peak_coherent_second_difference_px": 0.0
+                    }
+                  ],
+                  "meaning": "coherent curvature conflicts with smoothing prior",
+                  "true_crease_certified": false,
+                  "scope": "four adjacent grid-line consensus, weak/noisy/oblique bends may escape"
+                },
+                "backtracking_factor": 1.0,
+                "median_shift_px": 0.4690559947871565,
+                "score_weight_min": 0.25,
+                "score_weight_max": 1.0,
+                "robust_downweighted_points": 15,
+                "robust_cutoff_px": 0.9951516157230251,
+                "clipped_points": 8,
+                "invalid_original_cells_unguarded": 0
+              },
+              "candidate_positions_changed": true
+            },
+            "status": "rectification-proposal",
+            "output_image": "rectified-original-rgb.png",
+            "complete_geometry": {
+              "status": "full-frame-rectification",
+              "reason": null,
+              "physical_coordinates_available": true,
+              "rgb_source": "original input",
+              "grid_mask_erases_rgb": false,
+              "geometry_is_inferred": true,
+              "global_inlier_fraction": 0.9181286549707602,
+              "method": "constrained completion preserving supplied refined-cell triangles",
+              "global_prior": "projective",
+              "mesh_triangles": 236,
+              "minimum_triangle_area_ratio": 0.8841042521006561,
+              "boundary": "full source image boundary, with finite projective target",
+              "boundary_self_intersections_checked": true,
+              "all_mesh_triangles_orientation_checked": true,
+              "mesh_node_layout": "observed vertices and full-frame boundary",
+              "observed_cell_map_changed": true,
+              "output_boundary_crops_to_detected_grid": false,
+              "evidence_is_accuracy_certificate": false,
+              "output_origin_mm": [
+                -110.75,
+                -80.5
+              ],
+              "pixels_per_mm": 4.0,
+              "resampled": true,
+              "sampling_valid_fraction": 0.9054072073874054,
+              "observed_cell_fraction": 0.021189618961896188,
+              "interpolated_fraction": 0.0661916191619162,
+              "extrapolated_fraction": 0.8180259692635931,
+              "geometric_eligibility_fraction": 0.047405573890722405,
+              "eligibility_is_accuracy_certificate": false,
+              "effective_input_cell_map_changed": false,
+              "observed_cell_map_changed_reference": "original detector positions",
+              "original_detection_positions_preserved": false,
+              "effective_observation_positions": "refined detector positions"
+            },
+            "original_image": "original-rgb.png",
+            "geometry_accuracy_verified": false,
+            "evidence_map_erases_rgb": false,
+            "sampled_map_roundtrip_checked": false,
+            "coordinate_mode": "complete-map-with-eligibility",
+            "observed_cell_coordinate_data": "observed-grid-geometry.npz",
+            "evidence_legend": {
+              "0": "outside sampled frame or original unrectified",
+              "1": "extrapolated geometry",
+              "2": "interpolated geometry",
+              "3": "cell fitted from refined detector positions, not an accuracy certificate"
+            }
+          },
+          "accepted_full_map": true,
+          "rgb_resampled": true,
+          "output_status": "rectification-proposal",
+          "output_image": "soft-1.0/rectified-original-rgb.png",
+          "original_array_exact": true,
+          "original_array_sha256": "89c0df07bc1628f5e8fbe1276267b4126d4899d3ecb6bc79c0d8ccb480b59814",
+          "geometry_evaluator_parity": {
+            "grid": {
+              "finite_mask_equal": true,
+              "eligibility_mask_equal": true,
+              "maximum_absolute_coordinate_difference_mm": 0.0,
+              "passed_at_1e_minus_8_mm": true
+            },
+            "paper": {
+              "finite_mask_equal": true,
+              "eligibility_mask_equal": true,
+              "maximum_absolute_coordinate_difference_mm": 0.0,
+              "passed_at_1e_minus_8_mm": true
+            }
+          },
+          "evaluation_grid_metrics": {
+            "queries": 4096,
+            "g": 0.273193359375,
+            "w": 0.008056640625,
+            "c": 0.28125,
+            "r": 0.028645833333333332,
+            "p95_mm": 0.4218517847399837,
+            "p99_mm": 0.5789086434944493,
+            "rmse_mm": 0.18555689375009063,
+            "unrestricted_good": 0.514892578125,
+            "unrestricted_wrong": 0.485107421875,
+            "common_with_B0_queries": 537,
+            "common_rmse_mm": 0.15714641084744768,
+            "B0_common_rmse_mm": 0.2637645629190984
+          },
+          "output_size": [
+            1320,
+            909
+          ],
+          "evaluation_paper_metrics": {
+            "queries": 4096,
+            "g": 0.215087890625,
+            "w": 0.006591796875,
+            "c": 0.2216796875,
+            "r": 0.02973568281938326,
+            "p95_mm": 0.3996922486397059,
+            "p99_mm": 0.5930260292310018,
+            "rmse_mm": 0.18584944609925333,
+            "unrestricted_good": 0.450439453125,
+            "unrestricted_wrong": 0.549560546875,
+            "common_with_B0_queries": 384,
+            "common_rmse_mm": 0.15945996557281558,
+            "B0_common_rmse_mm": 0.2814522388579698
+          }
+        }
+      },
+      "mosaic": {
+        "file": "comparison.jpg",
+        "size": [
+          2352,
+          793
+        ],
+        "sha256": "d30e79c84a70ac3343bcfeb5c2e0b71e0a8939d4422ff85f667735314bebe174",
+        "preview_resize_only": true,
+        "no_content_crop": true,
+        "selection_reason": "maior ΔG no domínio grid"
+      },
+      "post_hoc_illustration": true,
+      "selection_domain": "grid",
+      "metric_deltas_soft_minus_B0": {
+        "grid": {
+          "g": 0.148681640625,
+          "w": 0.00146484375,
+          "c": 0.150146484375
+        },
+        "paper": {
+          "g": 0.12841796875,
+          "w": -0.000732421875,
+          "c": 0.127685546875
+        }
+      },
+      "geometry_renderer_sha256": "664713902108327f91b39366b7e6769cc7b61a2f1266052b6fd630e03753be57",
+      "presentation_builder_sha256": "879c23615b863939dd6fd260becc469204a560f0d699094b4c63ce24a45ebee6",
+      "report_artifacts": {
+        "mosaic": "validation-01026-6-comparison.jpg",
+        "metadata": "validation-01026-6-comparison.json",
+        "case_directory": "density4/validation/01026-6",
+        "mosaic_sha256": "d30e79c84a70ac3343bcfeb5c2e0b71e0a8939d4422ff85f667735314bebe174"
+      }
+    },
+    {
+      "key": "01025-6",
+      "split": "validation",
+      "backend": "offline",
+      "layout": "4x3+r1",
+      "selection_reason": "regressão de W explicitamente solicitada",
+      "source_file": "bank/01025-6.npz",
+      "source_array_sha256": "d2d110edb64a71ffaceede489962920254892620c4b3cc777d4ff5a1c847821a",
+      "source_archive_sha256": "4b80e16a21016a529c4ada86def195056f696a0564e1144533cb942bb180799b",
+      "cached_query_map_sha256": "9b30020af9b391c89e2ebbaa4b53c141edda4b4b7b8b9e2164e966a970efb4f3",
+      "density_px_per_mm": 4.0,
+      "methods": {
+        "B0": {
+          "report": {
+            "output_mode": "full",
+            "source_for_rectification": "original RGB",
+            "status": "original-preserved",
+            "output_image": "original-preserved.png",
+            "complete_geometry": {
+              "status": "original-preserved",
+              "reason": "no orientation-preserving completion of a grid gap",
+              "physical_coordinates_available": false,
+              "rgb_source": "original input",
+              "grid_mask_erases_rgb": false,
+              "geometry_is_inferred": true,
+              "resampled": false,
+              "source_coverage": 1.0,
+              "observed_cell_coordinates_available": true
+            },
+            "original_image": "original-rgb.png",
+            "geometry_accuracy_verified": false,
+            "evidence_map_erases_rgb": false,
+            "sampled_map_roundtrip_checked": false,
+            "coordinate_mode": "observed-cells-only",
+            "observed_cell_coordinate_data": "observed-grid-geometry.npz",
+            "evidence_legend": {
+              "0": "outside sampled frame or original unrectified",
+              "1": "extrapolated geometry",
+              "2": "interpolated geometry",
+              "3": "observed grid cell, not an accuracy certificate"
+            }
+          },
+          "accepted_full_map": false,
+          "rgb_resampled": false,
+          "output_status": "original-preserved",
+          "output_image": "B0/original-preserved.png",
+          "original_array_exact": true,
+          "original_array_sha256": "d2d110edb64a71ffaceede489962920254892620c4b3cc777d4ff5a1c847821a",
+          "geometry_evaluator_parity": {
+            "grid": {
+              "finite_mask_equal": true,
+              "eligibility_mask_equal": true,
+              "maximum_absolute_coordinate_difference_mm": 0.0,
+              "passed_at_1e_minus_8_mm": true
+            },
+            "paper": {
+              "finite_mask_equal": true,
+              "eligibility_mask_equal": true,
+              "maximum_absolute_coordinate_difference_mm": 0.0,
+              "passed_at_1e_minus_8_mm": true
+            }
+          },
+          "evaluation_grid_metrics": {
+            "queries": 4096,
+            "g": 0.020751953125,
+            "w": 0.014892578125,
+            "c": 0.03564453125,
+            "r": 0.4178082191780822,
+            "p95_mm": 5.200475155148149,
+            "p99_mm": 5.853121378808952,
+            "rmse_mm": 2.636768043609297,
+            "unrestricted_good": 0.020751953125,
+            "unrestricted_wrong": 0.014892578125,
+            "common_with_B0_queries": 146,
+            "common_rmse_mm": 2.636768043609297,
+            "B0_common_rmse_mm": 2.636768043609297
+          },
+          "output_size": [
+            1024,
+            704
+          ],
+          "evaluation_paper_metrics": {
+            "queries": 4096,
+            "g": 0.014892578125,
+            "w": 0.017578125,
+            "c": 0.032470703125,
+            "r": 0.5413533834586466,
+            "p95_mm": 5.378618351661842,
+            "p99_mm": 5.979750694850518,
+            "rmse_mm": 3.0680275627594815,
+            "unrestricted_good": 0.014892578125,
+            "unrestricted_wrong": 0.017578125,
+            "common_with_B0_queries": 133,
+            "common_rmse_mm": 3.0680275627594815,
+            "B0_common_rmse_mm": 3.0680275627594815
+          }
+        },
+        "soft-1.0": {
+          "report": {
+            "output_mode": "full",
+            "source_for_rectification": "original RGB",
+            "point_refinement": {
+              "requested_strength": 1.0,
+              "crease_guard_enabled": true,
+              "applied": true,
+              "gold_used": false,
+              "fallback_to_baseline": false,
+              "fallback_count": 0,
+              "fallback_reason": null,
+              "effective_positions": "refined detector positions",
+              "original_detection_positions_preserved": false,
+              "original_detection_data": "detected-grid-geometry.npz",
+              "candidate_data": "refined-grid-candidate.npz",
+              "candidate_fit": {
+                "status": "full-frame-rectification",
+                "reason": null,
+                "physical_coordinates_available": true,
+                "rgb_source": "original input",
+                "grid_mask_erases_rgb": false,
+                "geometry_is_inferred": true,
+                "global_inlier_fraction": 0.6851063829787234,
+                "method": "constrained completion preserving original observed-cell triangles",
+                "global_prior": "projective",
+                "mesh_triangles": 278,
+                "minimum_triangle_area_ratio": 0.7164811777095679,
+                "boundary": "full source image boundary, with finite projective target",
+                "boundary_self_intersections_checked": true,
+                "all_mesh_triangles_orientation_checked": true,
+                "mesh_node_layout": "observed vertices and full-frame boundary",
+                "observed_cell_map_changed": false,
+                "output_boundary_crops_to_detected_grid": false,
+                "evidence_is_accuracy_certificate": false
+              },
+              "refiner": {
+                "status": "refined",
+                "reason": null,
+                "input_points": 235,
+                "method": "sparse robust projective-residual curvature refinement",
+                "fixed_lattice_ids": true,
+                "gold_used": false,
+                "score_weights": "bounded rank, not calibrated probability or covariance",
+                "physical_accuracy_certified": false,
+                "global_injectivity_checked": false,
+                "strength": 1.0,
+                "iteration_limit": 5,
+                "max_shift_fraction": 0.2,
+                "max_points": 8192,
+                "iterations": 5,
+                "constraints": 268,
+                "cells_guarded": 65,
+                "maximum_shift_px": 2.5341344785424633,
+                "maximum_shift_fraction": 0.2000000000000028,
+                "converged": false,
+                "iteration_limit_reached": true,
+                "convergence_scope": "IRLS residual iterates before shift cap and cell guard",
+                "crease_guard_enabled": true,
+                "crease_guard_triggered": false,
+                "budget_exhausted": true,
+                "curvature_guard": {
+                  "families": [
+                    {
+                      "difference_axis": 0,
+                      "adjacent_lines_required": 4,
+                      "windows_checked": 6,
+                      "coherent_windows": 0,
+                      "robust_tuning_scale_px": 1.0968266652491812,
+                      "curvature_threshold_px": 3.2904799957475435,
+                      "peak_coherent_second_difference_px": 0.0
+                    },
+                    {
+                      "difference_axis": 1,
+                      "adjacent_lines_required": 4,
+                      "windows_checked": 9,
+                      "coherent_windows": 0,
+                      "robust_tuning_scale_px": 1.1842850234387747,
+                      "curvature_threshold_px": 3.5528550703163244,
+                      "peak_coherent_second_difference_px": 0.0
+                    }
+                  ],
+                  "meaning": "coherent curvature conflicts with smoothing prior",
+                  "true_crease_certified": false,
+                  "scope": "four adjacent grid-line consensus, weak/noisy/oblique bends may escape"
+                },
+                "backtracking_factor": 1.0,
+                "median_shift_px": 0.47048848894434314,
+                "score_weight_min": 0.25,
+                "score_weight_max": 1.0,
+                "robust_downweighted_points": 19,
+                "robust_cutoff_px": 0.8881464555149874,
+                "clipped_points": 17,
+                "invalid_original_cells_unguarded": 0
+              },
+              "candidate_positions_changed": true
+            },
+            "status": "rectification-proposal",
+            "output_image": "rectified-original-rgb.png",
+            "complete_geometry": {
+              "status": "full-frame-rectification",
+              "reason": null,
+              "physical_coordinates_available": true,
+              "rgb_source": "original input",
+              "grid_mask_erases_rgb": false,
+              "geometry_is_inferred": true,
+              "global_inlier_fraction": 0.6851063829787234,
+              "method": "constrained completion preserving supplied refined-cell triangles",
+              "global_prior": "projective",
+              "mesh_triangles": 278,
+              "minimum_triangle_area_ratio": 0.7164811777095679,
+              "boundary": "full source image boundary, with finite projective target",
+              "boundary_self_intersections_checked": true,
+              "all_mesh_triangles_orientation_checked": true,
+              "mesh_node_layout": "observed vertices and full-frame boundary",
+              "observed_cell_map_changed": true,
+              "output_boundary_crops_to_detected_grid": false,
+              "evidence_is_accuracy_certificate": false,
+              "output_origin_mm": [
+                -85.25,
+                -109.75
+              ],
+              "pixels_per_mm": 4.0,
+              "resampled": true,
+              "sampling_valid_fraction": 0.8856218625449395,
+              "observed_cell_fraction": 0.005415166953628492,
+              "interpolated_fraction": 0.04269618115771962,
+              "extrapolated_fraction": 0.8375105144335914,
+              "geometric_eligibility_fraction": 0.015766561920408075,
+              "eligibility_is_accuracy_certificate": false,
+              "effective_input_cell_map_changed": false,
+              "observed_cell_map_changed_reference": "original detector positions",
+              "original_detection_positions_preserved": false,
+              "effective_observation_positions": "refined detector positions"
+            },
+            "original_image": "original-rgb.png",
+            "geometry_accuracy_verified": false,
+            "evidence_map_erases_rgb": false,
+            "sampled_map_roundtrip_checked": false,
+            "coordinate_mode": "complete-map-with-eligibility",
+            "observed_cell_coordinate_data": "observed-grid-geometry.npz",
+            "evidence_legend": {
+              "0": "outside sampled frame or original unrectified",
+              "1": "extrapolated geometry",
+              "2": "interpolated geometry",
+              "3": "cell fitted from refined detector positions, not an accuracy certificate"
+            }
+          },
+          "accepted_full_map": true,
+          "rgb_resampled": true,
+          "output_status": "rectification-proposal",
+          "output_image": "soft-1.0/rectified-original-rgb.png",
+          "original_array_exact": true,
+          "original_array_sha256": "d2d110edb64a71ffaceede489962920254892620c4b3cc777d4ff5a1c847821a",
+          "geometry_evaluator_parity": {
+            "grid": {
+              "finite_mask_equal": true,
+              "eligibility_mask_equal": true,
+              "maximum_absolute_coordinate_difference_mm": 0.0,
+              "passed_at_1e_minus_8_mm": true
+            },
+            "paper": {
+              "finite_mask_equal": true,
+              "eligibility_mask_equal": true,
+              "maximum_absolute_coordinate_difference_mm": 0.0,
+              "passed_at_1e_minus_8_mm": true
+            }
+          },
+          "evaluation_grid_metrics": {
+            "queries": 4096,
+            "g": 0.06494140625,
+            "w": 0.042236328125,
+            "c": 0.107177734375,
+            "r": 0.3940774487471526,
+            "p95_mm": 5.2769805084440335,
+            "p99_mm": 5.424041807409505,
+            "rmse_mm": 2.610327626810634,
+            "unrestricted_good": 0.169921875,
+            "unrestricted_wrong": 0.830078125,
+            "common_with_B0_queries": 146,
+            "common_rmse_mm": 2.5294970495823863,
+            "B0_common_rmse_mm": 2.636768043609297
+          },
+          "output_size": [
+            2590,
+            1859
+          ],
+          "evaluation_paper_metrics": {
+            "queries": 4096,
+            "g": 0.04541015625,
+            "w": 0.04150390625,
+            "c": 0.0869140625,
+            "r": 0.47752808988764045,
+            "p95_mm": 5.355160632357233,
+            "p99_mm": 5.471857557375584,
+            "rmse_mm": 2.9430457776321615,
+            "unrestricted_good": 0.13623046875,
+            "unrestricted_wrong": 0.86376953125,
+            "common_with_B0_queries": 133,
+            "common_rmse_mm": 3.0025607986507734,
+            "B0_common_rmse_mm": 3.0680275627594815
+          }
+        }
+      },
+      "mosaic": {
+        "file": "comparison.jpg",
+        "size": [
+          2352,
+          793
+        ],
+        "sha256": "cd15de5a978a6f136759d85be4717ec9908ea0ceeed06b60e20f903f20e32a05",
+        "preview_resize_only": true,
+        "no_content_crop": true,
+        "selection_reason": "regressão de W explicitamente solicitada"
+      },
+      "post_hoc_illustration": true,
+      "selection_domain": "grid",
+      "metric_deltas_soft_minus_B0": {
+        "grid": {
+          "g": 0.044189453125,
+          "w": 0.02734375,
+          "c": 0.071533203125
+        },
+        "paper": {
+          "g": 0.030517578125,
+          "w": 0.02392578125,
+          "c": 0.054443359375
+        }
+      },
+      "geometry_renderer_sha256": "664713902108327f91b39366b7e6769cc7b61a2f1266052b6fd630e03753be57",
+      "presentation_builder_sha256": "879c23615b863939dd6fd260becc469204a560f0d699094b4c63ce24a45ebee6",
+      "report_artifacts": {
+        "mosaic": "validation-01025-6-comparison.jpg",
+        "metadata": "validation-01025-6-comparison.json",
+        "case_directory": "density4/validation/01025-6",
+        "mosaic_sha256": "cd15de5a978a6f136759d85be4717ec9908ea0ceeed06b60e20f903f20e32a05"
+      }
+    },
+    {
+      "key": "208114-6",
+      "split": "test",
+      "backend": "offline",
+      "layout": "4x3",
+      "selection_reason": "maior ΔG no domínio grid",
+      "source_file": "bank/208114-6.npz",
+      "source_array_sha256": "aa4002c48fc30f16b2dda494b8e5eec55ef09212dc163fba0be1ce88e1b82b71",
+      "source_archive_sha256": "b088595b33637c617da3b633d063e242d2a3b5f47edf9cf3e032dd92df668fa5",
+      "cached_query_map_sha256": "404cb3b1739616c5668eea038d24d18984b0d055972fee0ad014935ab7470f82",
+      "density_px_per_mm": 4.0,
+      "methods": {
+        "B0": {
+          "report": {
+            "output_mode": "full",
+            "source_for_rectification": "original RGB",
+            "status": "rectification-proposal",
+            "output_image": "rectified-original-rgb.png",
+            "complete_geometry": {
+              "status": "full-frame-rectification",
+              "reason": null,
+              "physical_coordinates_available": true,
+              "rgb_source": "original input",
+              "grid_mask_erases_rgb": false,
+              "geometry_is_inferred": true,
+              "global_inlier_fraction": 0.980246913580247,
+              "method": "constrained completion preserving original observed-cell triangles",
+              "global_prior": "projective",
+              "mesh_triangles": 752,
+              "minimum_triangle_area_ratio": 0.623752513264527,
+              "boundary": "full source image boundary, with finite projective target",
+              "boundary_self_intersections_checked": true,
+              "all_mesh_triangles_orientation_checked": true,
+              "mesh_node_layout": "observed vertices and full-frame boundary",
+              "observed_cell_map_changed": false,
+              "output_boundary_crops_to_detected_grid": false,
+              "evidence_is_accuracy_certificate": false,
+              "output_origin_mm": [
+                -117.25,
+                -96.0
+              ],
+              "pixels_per_mm": 4.0,
+              "resampled": true,
+              "sampling_valid_fraction": 0.9175370719519452,
+              "observed_cell_fraction": 0.07326631897206355,
+              "interpolated_fraction": 0.054501095645402266,
+              "extrapolated_fraction": 0.7897696573344795,
+              "geometric_eligibility_fraction": 0.10745806927310723,
+              "eligibility_is_accuracy_certificate": false
+            },
+            "original_image": "original-rgb.png",
+            "geometry_accuracy_verified": false,
+            "evidence_map_erases_rgb": false,
+            "sampled_map_roundtrip_checked": false,
+            "coordinate_mode": "complete-map-with-eligibility",
+            "observed_cell_coordinate_data": "observed-grid-geometry.npz",
+            "evidence_legend": {
+              "0": "outside sampled frame or original unrectified",
+              "1": "extrapolated geometry",
+              "2": "interpolated geometry",
+              "3": "observed grid cell, not an accuracy certificate"
+            }
+          },
+          "accepted_full_map": true,
+          "rgb_resampled": true,
+          "output_status": "rectification-proposal",
+          "output_image": "B0/rectified-original-rgb.png",
+          "original_array_exact": true,
+          "original_array_sha256": "aa4002c48fc30f16b2dda494b8e5eec55ef09212dc163fba0be1ce88e1b82b71",
+          "geometry_evaluator_parity": {
+            "grid": {
+              "finite_mask_equal": true,
+              "eligibility_mask_equal": true,
+              "maximum_absolute_coordinate_difference_mm": 0.0,
+              "passed_at_1e_minus_8_mm": true
+            },
+            "paper": {
+              "finite_mask_equal": true,
+              "eligibility_mask_equal": true,
+              "maximum_absolute_coordinate_difference_mm": 0.0,
+              "passed_at_1e_minus_8_mm": true
+            }
+          },
+          "evaluation_grid_metrics": {
+            "queries": 4096,
+            "g": 0.781005859375,
+            "w": 0.063720703125,
+            "c": 0.8447265625,
+            "r": 0.0754335260115607,
+            "p95_mm": 0.5759011930367561,
+            "p99_mm": 0.9782246867527806,
+            "rmse_mm": 0.2840233087033552,
+            "unrestricted_good": 0.917236328125,
+            "unrestricted_wrong": 0.082763671875,
+            "common_with_B0_queries": 3460,
+            "common_rmse_mm": 0.2840233087033552,
+            "B0_common_rmse_mm": 0.2840233087033552
+          },
+          "output_size": [
+            1481,
+            1011
+          ],
+          "evaluation_paper_metrics": {
+            "queries": 4096,
+            "g": 0.63818359375,
+            "w": 0.059326171875,
+            "c": 0.697509765625,
+            "r": 0.08505425271263563,
+            "p95_mm": 0.6539467591107163,
+            "p99_mm": 1.2692471201372792,
+            "rmse_mm": 0.32463827145251634,
+            "unrestricted_good": 0.814697265625,
+            "unrestricted_wrong": 0.185302734375,
+            "common_with_B0_queries": 2857,
+            "common_rmse_mm": 0.32463827145251634,
+            "B0_common_rmse_mm": 0.32463827145251634
+          }
+        },
+        "soft-1.0": {
+          "report": {
+            "output_mode": "full",
+            "source_for_rectification": "original RGB",
+            "point_refinement": {
+              "requested_strength": 1.0,
+              "crease_guard_enabled": true,
+              "applied": true,
+              "gold_used": false,
+              "fallback_to_baseline": false,
+              "fallback_count": 0,
+              "fallback_reason": null,
+              "effective_positions": "refined detector positions",
+              "original_detection_positions_preserved": false,
+              "original_detection_data": "detected-grid-geometry.npz",
+              "candidate_data": "refined-grid-candidate.npz",
+              "candidate_fit": {
+                "status": "full-frame-rectification",
+                "reason": null,
+                "physical_coordinates_available": true,
+                "rgb_source": "original input",
+                "grid_mask_erases_rgb": false,
+                "geometry_is_inferred": true,
+                "global_inlier_fraction": 0.9901234567901235,
+                "method": "constrained completion preserving original observed-cell triangles",
+                "global_prior": "projective",
+                "mesh_triangles": 752,
+                "minimum_triangle_area_ratio": 0.8403493276504846,
+                "boundary": "full source image boundary, with finite projective target",
+                "boundary_self_intersections_checked": true,
+                "all_mesh_triangles_orientation_checked": true,
+                "mesh_node_layout": "observed vertices and full-frame boundary",
+                "observed_cell_map_changed": false,
+                "output_boundary_crops_to_detected_grid": false,
+                "evidence_is_accuracy_certificate": false
+              },
+              "refiner": {
+                "status": "refined",
+                "reason": null,
+                "input_points": 405,
+                "method": "sparse robust projective-residual curvature refinement",
+                "fixed_lattice_ids": true,
+                "gold_used": false,
+                "score_weights": "bounded rank, not calibrated probability or covariance",
+                "physical_accuracy_certified": false,
+                "global_injectivity_checked": false,
+                "strength": 1.0,
+                "iteration_limit": 5,
+                "max_shift_fraction": 0.2,
+                "max_points": 8192,
+                "iterations": 5,
+                "constraints": 844,
+                "cells_guarded": 269,
+                "maximum_shift_px": 3.55262338549703,
+                "maximum_shift_fraction": 0.20000000000000123,
+                "converged": false,
+                "iteration_limit_reached": true,
+                "convergence_scope": "IRLS residual iterates before shift cap and cell guard",
+                "crease_guard_enabled": true,
+                "crease_guard_triggered": false,
+                "budget_exhausted": true,
+                "curvature_guard": {
+                  "families": [
+                    {
+                      "difference_axis": 0,
+                      "adjacent_lines_required": 4,
+                      "windows_checked": 124,
+                      "coherent_windows": 0,
+                      "robust_tuning_scale_px": 0.9925764961516602,
+                      "curvature_threshold_px": 2.9777294884549805,
+                      "peak_coherent_second_difference_px": 0.0
+                    },
+                    {
+                      "difference_axis": 1,
+                      "adjacent_lines_required": 4,
+                      "windows_checked": 123,
+                      "coherent_windows": 0,
+                      "robust_tuning_scale_px": 0.8192624516315838,
+                      "curvature_threshold_px": 2.4577873548947515,
+                      "peak_coherent_second_difference_px": 0.0
+                    }
+                  ],
+                  "meaning": "coherent curvature conflicts with smoothing prior",
+                  "true_crease_certified": false,
+                  "scope": "four adjacent grid-line consensus, weak/noisy/oblique bends may escape"
+                },
+                "backtracking_factor": 1.0,
+                "median_shift_px": 0.41406499855178247,
+                "score_weight_min": 0.25,
+                "score_weight_max": 1.0,
+                "robust_downweighted_points": 22,
+                "robust_cutoff_px": 0.838543137698027,
+                "clipped_points": 8,
+                "invalid_original_cells_unguarded": 0
+              },
+              "candidate_positions_changed": true
+            },
+            "status": "rectification-proposal",
+            "output_image": "rectified-original-rgb.png",
+            "complete_geometry": {
+              "status": "full-frame-rectification",
+              "reason": null,
+              "physical_coordinates_available": true,
+              "rgb_source": "original input",
+              "grid_mask_erases_rgb": false,
+              "geometry_is_inferred": true,
+              "global_inlier_fraction": 0.9901234567901235,
+              "method": "constrained completion preserving supplied refined-cell triangles",
+              "global_prior": "projective",
+              "mesh_triangles": 752,
+              "minimum_triangle_area_ratio": 0.8403493276504846,
+              "boundary": "full source image boundary, with finite projective target",
+              "boundary_self_intersections_checked": true,
+              "all_mesh_triangles_orientation_checked": true,
+              "mesh_node_layout": "observed vertices and full-frame boundary",
+              "observed_cell_map_changed": true,
+              "output_boundary_crops_to_detected_grid": false,
+              "evidence_is_accuracy_certificate": false,
+              "output_origin_mm": [
+                -116.5,
+                -95.75
+              ],
+              "pixels_per_mm": 4.0,
+              "resampled": true,
+              "sampling_valid_fraction": 0.9207081426344113,
+              "observed_cell_fraction": 0.07356435145601771,
+              "interpolated_fraction": 0.05513923116900535,
+              "extrapolated_fraction": 0.7920045600093882,
+              "geometric_eligibility_fraction": 0.10771815118442891,
+              "eligibility_is_accuracy_certificate": false,
+              "effective_input_cell_map_changed": false,
+              "observed_cell_map_changed_reference": "original detector positions",
+              "original_detection_positions_preserved": false,
+              "effective_observation_positions": "refined detector positions"
+            },
+            "original_image": "original-rgb.png",
+            "geometry_accuracy_verified": false,
+            "evidence_map_erases_rgb": false,
+            "sampled_map_roundtrip_checked": false,
+            "coordinate_mode": "complete-map-with-eligibility",
+            "observed_cell_coordinate_data": "observed-grid-geometry.npz",
+            "evidence_legend": {
+              "0": "outside sampled frame or original unrectified",
+              "1": "extrapolated geometry",
+              "2": "interpolated geometry",
+              "3": "cell fitted from refined detector positions, not an accuracy certificate"
+            }
+          },
+          "accepted_full_map": true,
+          "rgb_resampled": true,
+          "output_status": "rectification-proposal",
+          "output_image": "soft-1.0/rectified-original-rgb.png",
+          "original_array_exact": true,
+          "original_array_sha256": "aa4002c48fc30f16b2dda494b8e5eec55ef09212dc163fba0be1ce88e1b82b71",
+          "geometry_evaluator_parity": {
+            "grid": {
+              "finite_mask_equal": true,
+              "eligibility_mask_equal": true,
+              "maximum_absolute_coordinate_difference_mm": 0.0,
+              "passed_at_1e_minus_8_mm": true
+            },
+            "paper": {
+              "finite_mask_equal": true,
+              "eligibility_mask_equal": true,
+              "maximum_absolute_coordinate_difference_mm": 0.0,
+              "passed_at_1e_minus_8_mm": true
+            }
+          },
+          "evaluation_grid_metrics": {
+            "queries": 4096,
+            "g": 0.82763671875,
+            "w": 0.01318359375,
+            "c": 0.8408203125,
+            "r": 0.0156794425087108,
+            "p95_mm": 0.3083530627566712,
+            "p99_mm": 0.5643416956814752,
+            "rmse_mm": 0.1644465668744384,
+            "unrestricted_good": 0.976318359375,
+            "unrestricted_wrong": 0.023681640625,
+            "common_with_B0_queries": 3429,
+            "common_rmse_mm": 0.1631246442824051,
+            "B0_common_rmse_mm": 0.28349583422632685
+          },
+          "output_size": [
+            1475,
+            1011
+          ],
+          "evaluation_paper_metrics": {
+            "queries": 4096,
+            "g": 0.676513671875,
+            "w": 0.02001953125,
+            "c": 0.696533203125,
+            "r": 0.02874167542937259,
+            "p95_mm": 0.3757221978033019,
+            "p99_mm": 0.6420046039114105,
+            "rmse_mm": 0.18563774859849597,
+            "unrestricted_good": 0.891357421875,
+            "unrestricted_wrong": 0.108642578125,
+            "common_with_B0_queries": 2827,
+            "common_rmse_mm": 0.18148052443687282,
+            "B0_common_rmse_mm": 0.31864242117392994
+          }
+        }
+      },
+      "mosaic": {
+        "file": "comparison.jpg",
+        "size": [
+          2352,
+          793
+        ],
+        "sha256": "efde46cbfa01e32e3a0da71d4f861f153ff26ce5639f7b40f780e79e9a6535fe",
+        "preview_resize_only": true,
+        "no_content_crop": true,
+        "selection_reason": "maior ΔG no domínio grid"
+      },
+      "post_hoc_illustration": true,
+      "selection_domain": "grid",
+      "metric_deltas_soft_minus_B0": {
+        "grid": {
+          "g": 0.046630859375,
+          "w": -0.050537109375,
+          "c": -0.00390625
+        },
+        "paper": {
+          "g": 0.038330078125,
+          "w": -0.039306640625,
+          "c": -0.0009765625
+        }
+      },
+      "geometry_renderer_sha256": "664713902108327f91b39366b7e6769cc7b61a2f1266052b6fd630e03753be57",
+      "presentation_builder_sha256": "879c23615b863939dd6fd260becc469204a560f0d699094b4c63ce24a45ebee6",
+      "report_artifacts": {
+        "mosaic": "test-208114-6-comparison.jpg",
+        "metadata": "test-208114-6-comparison.json",
+        "case_directory": "density4/test/208114-6",
+        "mosaic_sha256": "efde46cbfa01e32e3a0da71d4f861f153ff26ce5639f7b40f780e79e9a6535fe"
+      }
+    },
+    {
+      "key": "208114-1",
+      "split": "test",
+      "backend": "torch-cached",
+      "layout": "12x1+r2",
+      "selection_reason": "menor ΔG, pois nenhum caso test tem aumento de W. Empate por key crescente",
+      "source_file": "bank/208114-1.npz",
+      "source_array_sha256": "93b00a4d614a687504f06a7694f08178e5925547b35de5b2e54242cd60541789",
+      "source_archive_sha256": "5492f8b98cf2ad75aa8edec22cd9d6282ce266d60749821e573f068169052805",
+      "cached_query_map_sha256": "2e875544a771bfe6cd94d5835d855b2061ed7aa2ae5a54796aa539c9fad6e723",
+      "density_px_per_mm": 4.0,
+      "methods": {
+        "B0": {
+          "report": {
+            "output_mode": "full",
+            "source_for_rectification": "original RGB",
+            "status": "rectification-proposal",
+            "output_image": "rectified-original-rgb.png",
+            "complete_geometry": {
+              "status": "full-frame-rectification",
+              "reason": null,
+              "physical_coordinates_available": true,
+              "rgb_source": "original input",
+              "grid_mask_erases_rgb": false,
+              "geometry_is_inferred": true,
+              "global_inlier_fraction": 1.0,
+              "method": "constrained completion preserving original observed-cell triangles",
+              "global_prior": "projective",
+              "mesh_triangles": 910,
+              "minimum_triangle_area_ratio": 0.9279516705736064,
+              "boundary": "full source image boundary, with finite projective target",
+              "boundary_self_intersections_checked": true,
+              "all_mesh_triangles_orientation_checked": true,
+              "mesh_node_layout": "observed vertices and full-frame boundary",
+              "observed_cell_map_changed": false,
+              "output_boundary_crops_to_detected_grid": false,
+              "evidence_is_accuracy_certificate": false,
+              "output_origin_mm": [
+                -24.75,
+                -39.75
+              ],
+              "pixels_per_mm": 4.0,
+              "resampled": true,
+              "sampling_valid_fraction": 0.8167849260154765,
+              "observed_cell_fraction": 0.40123895763207384,
+              "interpolated_fraction": 0.07836459699637056,
+              "extrapolated_fraction": 0.337181371387032,
+              "geometric_eligibility_fraction": 0.4631183594346729,
+              "eligibility_is_accuracy_certificate": false
+            },
+            "original_image": "original-rgb.png",
+            "geometry_accuracy_verified": false,
+            "evidence_map_erases_rgb": false,
+            "sampled_map_roundtrip_checked": false,
+            "coordinate_mode": "complete-map-with-eligibility",
+            "observed_cell_coordinate_data": "observed-grid-geometry.npz",
+            "evidence_legend": {
+              "0": "outside sampled frame or original unrectified",
+              "1": "extrapolated geometry",
+              "2": "interpolated geometry",
+              "3": "observed grid cell, not an accuracy certificate"
+            }
+          },
+          "accepted_full_map": true,
+          "rgb_resampled": true,
+          "output_status": "rectification-proposal",
+          "output_image": "B0/rectified-original-rgb.png",
+          "original_array_exact": true,
+          "original_array_sha256": "93b00a4d614a687504f06a7694f08178e5925547b35de5b2e54242cd60541789",
+          "geometry_evaluator_parity": {
+            "grid": {
+              "finite_mask_equal": true,
+              "eligibility_mask_equal": true,
+              "maximum_absolute_coordinate_difference_mm": 0.0,
+              "passed_at_1e_minus_8_mm": true
+            },
+            "paper": {
+              "finite_mask_equal": true,
+              "eligibility_mask_equal": true,
+              "maximum_absolute_coordinate_difference_mm": 0.0,
+              "passed_at_1e_minus_8_mm": true
+            }
+          },
+          "evaluation_grid_metrics": {
+            "queries": 4096,
+            "g": 0.951904296875,
+            "w": 0.0,
+            "c": 0.951904296875,
+            "r": 0.0,
+            "p95_mm": 0.06905726936559797,
+            "p99_mm": 0.11756010630966994,
+            "rmse_mm": 0.04156636427431027,
+            "unrestricted_good": 0.98779296875,
+            "unrestricted_wrong": 0.01220703125,
+            "common_with_B0_queries": 3899,
+            "common_rmse_mm": 0.04156636427431027,
+            "B0_common_rmse_mm": 0.04156636427431027
+          },
+          "output_size": [
+            711,
+            534
+          ],
+          "evaluation_paper_metrics": {
+            "queries": 4096,
+            "g": 0.784912109375,
+            "w": 0.006103515625,
+            "c": 0.791015625,
+            "r": 0.007716049382716049,
+            "p95_mm": 0.08395112727678325,
+            "p99_mm": 0.377585960231667,
+            "rmse_mm": 0.08618806324083615,
+            "unrestricted_good": 0.84716796875,
+            "unrestricted_wrong": 0.15283203125,
+            "common_with_B0_queries": 3240,
+            "common_rmse_mm": 0.08618806324083615,
+            "B0_common_rmse_mm": 0.08618806324083615
+          }
+        },
+        "soft-1.0": {
+          "report": {
+            "output_mode": "full",
+            "source_for_rectification": "original RGB",
+            "point_refinement": {
+              "requested_strength": 1.0,
+              "crease_guard_enabled": true,
+              "applied": true,
+              "gold_used": false,
+              "fallback_to_baseline": false,
+              "fallback_count": 0,
+              "fallback_reason": null,
+              "effective_positions": "refined detector positions",
+              "original_detection_positions_preserved": false,
+              "original_detection_data": "detected-grid-geometry.npz",
+              "candidate_data": "refined-grid-candidate.npz",
+              "candidate_fit": {
+                "status": "full-frame-rectification",
+                "reason": null,
+                "physical_coordinates_available": true,
+                "rgb_source": "original input",
+                "grid_mask_erases_rgb": false,
+                "geometry_is_inferred": true,
+                "global_inlier_fraction": 1.0,
+                "method": "constrained completion preserving original observed-cell triangles",
+                "global_prior": "projective",
+                "mesh_triangles": 910,
+                "minimum_triangle_area_ratio": 0.9865504160653094,
+                "boundary": "full source image boundary, with finite projective target",
+                "boundary_self_intersections_checked": true,
+                "all_mesh_triangles_orientation_checked": true,
+                "mesh_node_layout": "observed vertices and full-frame boundary",
+                "observed_cell_map_changed": false,
+                "output_boundary_crops_to_detected_grid": false,
+                "evidence_is_accuracy_certificate": false
+              },
+              "refiner": {
+                "status": "refined",
+                "reason": null,
+                "input_points": 459,
+                "method": "sparse robust projective-residual curvature refinement",
+                "fixed_lattice_ids": true,
+                "gold_used": false,
+                "score_weights": "bounded rank, not calibrated probability or covariance",
+                "physical_accuracy_certified": false,
+                "global_injectivity_checked": false,
+                "strength": 1.0,
+                "iteration_limit": 5,
+                "max_shift_fraction": 0.2,
+                "max_points": 8192,
+                "iterations": 5,
+                "constraints": 1148,
+                "cells_guarded": 377,
+                "maximum_shift_px": 5.240735874762025,
+                "maximum_shift_fraction": 0.2000000000000006,
+                "converged": false,
+                "iteration_limit_reached": true,
+                "convergence_scope": "IRLS residual iterates before shift cap and cell guard",
+                "crease_guard_enabled": true,
+                "crease_guard_triggered": false,
+                "budget_exhausted": true,
+                "curvature_guard": {
+                  "families": [
+                    {
+                      "difference_axis": 0,
+                      "adjacent_lines_required": 4,
+                      "windows_checked": 269,
+                      "coherent_windows": 0,
+                      "robust_tuning_scale_px": 0.3013719039376492,
+                      "curvature_threshold_px": 1.2054876157505967,
+                      "peak_coherent_second_difference_px": 0.0
+                    },
+                    {
+                      "difference_axis": 1,
+                      "adjacent_lines_required": 4,
+                      "windows_checked": 266,
+                      "coherent_windows": 0,
+                      "robust_tuning_scale_px": 0.3013719039376492,
+                      "curvature_threshold_px": 1.2054876157505967,
+                      "peak_coherent_second_difference_px": 0.0
+                    }
+                  ],
+                  "meaning": "coherent curvature conflicts with smoothing prior",
+                  "true_crease_certified": false,
+                  "scope": "four adjacent grid-line consensus, weak/noisy/oblique bends may escape"
+                },
+                "backtracking_factor": 1.0,
+                "median_shift_px": 0.112363693106509,
+                "score_weight_min": 0.25,
+                "score_weight_max": 1.0,
+                "robust_downweighted_points": 11,
+                "robust_cutoff_px": 0.3013719039376492,
+                "clipped_points": 1,
+                "invalid_original_cells_unguarded": 0
+              },
+              "candidate_positions_changed": true
+            },
+            "status": "rectification-proposal",
+            "output_image": "rectified-original-rgb.png",
+            "complete_geometry": {
+              "status": "full-frame-rectification",
+              "reason": null,
+              "physical_coordinates_available": true,
+              "rgb_source": "original input",
+              "grid_mask_erases_rgb": false,
+              "geometry_is_inferred": true,
+              "global_inlier_fraction": 1.0,
+              "method": "constrained completion preserving supplied refined-cell triangles",
+              "global_prior": "projective",
+              "mesh_triangles": 910,
+              "minimum_triangle_area_ratio": 0.9865504160653094,
+              "boundary": "full source image boundary, with finite projective target",
+              "boundary_self_intersections_checked": true,
+              "all_mesh_triangles_orientation_checked": true,
+              "mesh_node_layout": "observed vertices and full-frame boundary",
+              "observed_cell_map_changed": true,
+              "output_boundary_crops_to_detected_grid": false,
+              "evidence_is_accuracy_certificate": false,
+              "output_origin_mm": [
+                -24.75,
+                -39.75
+              ],
+              "pixels_per_mm": 4.0,
+              "resampled": true,
+              "sampling_valid_fraction": 0.8167111785373768,
+              "observed_cell_fraction": 0.40123895763207384,
+              "interpolated_fraction": 0.08088781428277944,
+              "extrapolated_fraction": 0.33458440662252353,
+              "geometric_eligibility_fraction": 0.46520172569098756,
+              "eligibility_is_accuracy_certificate": false,
+              "effective_input_cell_map_changed": false,
+              "observed_cell_map_changed_reference": "original detector positions",
+              "original_detection_positions_preserved": false,
+              "effective_observation_positions": "refined detector positions"
+            },
+            "original_image": "original-rgb.png",
+            "geometry_accuracy_verified": false,
+            "evidence_map_erases_rgb": false,
+            "sampled_map_roundtrip_checked": false,
+            "coordinate_mode": "complete-map-with-eligibility",
+            "observed_cell_coordinate_data": "observed-grid-geometry.npz",
+            "evidence_legend": {
+              "0": "outside sampled frame or original unrectified",
+              "1": "extrapolated geometry",
+              "2": "interpolated geometry",
+              "3": "cell fitted from refined detector positions, not an accuracy certificate"
+            }
+          },
+          "accepted_full_map": true,
+          "rgb_resampled": true,
+          "output_status": "rectification-proposal",
+          "output_image": "soft-1.0/rectified-original-rgb.png",
+          "original_array_exact": true,
+          "original_array_sha256": "93b00a4d614a687504f06a7694f08178e5925547b35de5b2e54242cd60541789",
+          "geometry_evaluator_parity": {
+            "grid": {
+              "finite_mask_equal": true,
+              "eligibility_mask_equal": true,
+              "maximum_absolute_coordinate_difference_mm": 0.0,
+              "passed_at_1e_minus_8_mm": true
+            },
+            "paper": {
+              "finite_mask_equal": true,
+              "eligibility_mask_equal": true,
+              "maximum_absolute_coordinate_difference_mm": 0.0,
+              "passed_at_1e_minus_8_mm": true
+            }
+          },
+          "evaluation_grid_metrics": {
+            "queries": 4096,
+            "g": 0.951416015625,
+            "w": 0.0,
+            "c": 0.951416015625,
+            "r": 0.0,
+            "p95_mm": 0.047708518121688394,
+            "p99_mm": 0.056017068946405534,
+            "rmse_mm": 0.030490307671873183,
+            "unrestricted_good": 0.98779296875,
+            "unrestricted_wrong": 0.01220703125,
+            "common_with_B0_queries": 3895,
+            "common_rmse_mm": 0.030495571890490458,
+            "B0_common_rmse_mm": 0.04157011472268589
+          },
+          "output_size": [
+            711,
+            534
+          ],
+          "evaluation_paper_metrics": {
+            "queries": 4096,
+            "g": 0.78662109375,
+            "w": 0.008056640625,
+            "c": 0.794677734375,
+            "r": 0.010138248847926268,
+            "p95_mm": 0.05282673396316773,
+            "p99_mm": 0.4866352511361601,
+            "rmse_mm": 0.09069731646837931,
+            "unrestricted_good": 0.846923828125,
+            "unrestricted_wrong": 0.153076171875,
+            "common_with_B0_queries": 3237,
+            "common_rmse_mm": 0.08192668754732821,
+            "B0_common_rmse_mm": 0.08620938456138044
+          }
+        }
+      },
+      "mosaic": {
+        "file": "comparison.jpg",
+        "size": [
+          2352,
+          793
+        ],
+        "sha256": "844fff4a38bd3e6ad9d4a52b7c9ed1bd16651b9208b7df36a84cd92723011ecd",
+        "preview_resize_only": true,
+        "no_content_crop": true,
+        "selection_reason": "menor ΔG, pois nenhum caso test tem aumento de W. Empate por key crescente"
+      },
+      "post_hoc_illustration": true,
+      "selection_domain": "grid",
+      "metric_deltas_soft_minus_B0": {
+        "grid": {
+          "g": -0.00048828125,
+          "w": 0.0,
+          "c": -0.00048828125
+        },
+        "paper": {
+          "g": 0.001708984375,
+          "w": 0.001953125,
+          "c": 0.003662109375
+        }
+      },
+      "geometry_renderer_sha256": "664713902108327f91b39366b7e6769cc7b61a2f1266052b6fd630e03753be57",
+      "presentation_builder_sha256": "879c23615b863939dd6fd260becc469204a560f0d699094b4c63ce24a45ebee6",
+      "report_artifacts": {
+        "mosaic": "test-208114-1-comparison.jpg",
+        "metadata": "test-208114-1-comparison.json",
+        "case_directory": "density4/test/208114-1",
+        "mosaic_sha256": "844fff4a38bd3e6ad9d4a52b7c9ed1bd16651b9208b7df36a84cd92723011ecd"
+      }
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "source_sha256": "1492798597361e1b1fa36af208b48aa4be6ed5a80bbadadc9ad500d42b0683b6",
+  "input_sha256": {
+    "validation.json": "ecdabdcf12f9028d5c011b6609aa8046a8b2ed09ac6fab5416ef5e50161c1d16",
+    "test.json": "836c5419dab77c8fe39fd0156febb6bf3cbaf5dd33ac1061252f0151c5ababb4"
+  },
+  "selection_sha256": "c808d97eacf0e20f2d3aa60e92e2005ac664bc8a979d6cd5891d4c9ea2d95052",
+  "test_postprocessing_runs": 1,
+  "inference_or_selection_changes": false,
+  "files_sha256": {
+    "summary.json": "74e15a4fb373d3231b2ace421728589e8b05d739205726efdb843821b976c53d",
+    "cases.csv": "8c3681a1b6be36f006abef9effc39171c53b7525229d211949de22705cd1b78c"
+  },
+  "bootstrap_repetitions": 20000,
+  "bootstrap_seed": 1973,
+  "patient_counts": {
+    "validation": 6,
+    "test": 8
+  },
+  "independent_QA_review": "tensor, patient-cluster paired bootstrap and aggregate R ratio reviewed, no material blocker",
+  "interval_scope": "descriptive conditional intervals, no multiplicity adjustment or population/clinical guarantee"
+}
