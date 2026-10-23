@@ -1,0 +1,41 @@
+{
+  "schema": "M3-single-PNG-export-recovery-v1",
+  "authorization": "Root explicitly authorized reversible artifact-only recovery after read-only evidence capture.",
+  "execution": "/workspace/scratch/a57599a3e70e/ecg-torch-renderer/build/m3-comparison",
+  "case": "211723-2",
+  "method": "our-B0",
+  "target": "/workspace/scratch/a57599a3e70e/ecg-torch-renderer/build/m3-comparison/cases/211723-2/our-B0/original-preserved.png",
+  "backup": "/workspace/scratch/a57599a3e70e/m3/qa/artifact-incidents/211723-2-our-B0-original-preserved.truncated.png",
+  "pre_sha256": "da634ca2aebd211cdd6738a1a74228900eac1f93e26bdd4f8439050a01292b01",
+  "post_sha256": "a5d0b664bd7ee75d244d0da8f21ad84c2e65948254d0c7a45220d42f3ca6f9d6",
+  "backup_sha256": "da634ca2aebd211cdd6738a1a74228900eac1f93e26bdd4f8439050a01292b01",
+  "source_duplicate": "/workspace/scratch/a57599a3e70e/ecg-torch-renderer/build/m3-comparison/cases/211723-2/our-B0/output-original-rgb.png",
+  "source_duplicate_sha256": "a5d0b664bd7ee75d244d0da8f21ad84c2e65948254d0c7a45220d42f3ca6f9d6",
+  "pre_bytes": 589961,
+  "post_bytes": 820726,
+  "original_stat": {
+    "st_size": 589961,
+    "st_mtime_ns": 1792749840520490392,
+    "st_ctime_ns": 1792749843272463085,
+    "st_ino": 657505
+  },
+  "capture_sha256": "5a3746d212ffe3d15799ec9df113b216bc5d8331e258623193530bbce85fec85",
+  "decoded_RGB_sha256": "a9e806b68befb9f8357a3f5bc5364401a5bac102115ea232d632bab0b229ad12",
+  "original_archive_and_native_duplicate_byte_identical": true,
+  "both_native_duplicates_equal_decoded_bank_RGB": true,
+  "immutable_before": {
+    "/workspace/scratch/a57599a3e70e/ecg-torch-renderer/build/m3-comparison/lock.json": "a667f1cbbe3dc3334df1721a821af063691240eb0b3fdd7b72af5150f1127b3c",
+    "/workspace/scratch/a57599a3e70e/ecg-torch-renderer/build/m3-comparison/cases/211723-2/our-B0/result.json": "adf5534123ac331106dac1f6ea629745fb7271a0cf04c4bb0045f50698622367",
+    "/workspace/scratch/a57599a3e70e/ecg-torch-renderer/build/m3-comparison/cases/211723-2/our-B0/query-predictions.npz": "c2f5727f497929d7260b452fb41f40f08a1006c2d64813dbd311d83e3e0de92f"
+  },
+  "immutable_after": {
+    "/workspace/scratch/a57599a3e70e/ecg-torch-renderer/build/m3-comparison/lock.json": "a667f1cbbe3dc3334df1721a821af063691240eb0b3fdd7b72af5150f1127b3c",
+    "/workspace/scratch/a57599a3e70e/ecg-torch-renderer/build/m3-comparison/cases/211723-2/our-B0/result.json": "adf5534123ac331106dac1f6ea629745fb7271a0cf04c4bb0045f50698622367",
+    "/workspace/scratch/a57599a3e70e/ecg-torch-renderer/build/m3-comparison/cases/211723-2/our-B0/query-predictions.npz": "c2f5727f497929d7260b452fb41f40f08a1006c2d64813dbd311d83e3e0de92f"
+  },
+  "result_status_timing_predictions_scores_source_and_weights_changed": false,
+  "inference_or_geometry_reexecuted": false,
+  "reason": "One selected original-preserved PNG ended during its ninth IDAT and lacked the remaining data and IEND. Two independently saved native copies were complete and exactly matched frozen input RGB. Cause is unknown.",
+  "scope": "Recover a duplicate export atomically for review. This is not a rectification algorithm change, a repeated model run, or evidence that the original export had been valid.",
+  "future_fix": "Use atomic image output and full pixel decode validation. Do not accept a PNG from its dimensions alone."
+}

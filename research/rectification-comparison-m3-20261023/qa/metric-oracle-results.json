@@ -1,0 +1,129 @@
+{
+  "status": "pass",
+  "checks": 50,
+  "cases": {
+    "exact": {
+      "N": 4,
+      "correct": 4,
+      "wrong": 0,
+      "returned": 4,
+      "finite_returned": 4,
+      "accepted_nonfinite": 0,
+      "G": 1.0,
+      "W": 0.0,
+      "C": 1.0,
+      "R": 0.0,
+      "rmse_mm": 0.0
+    },
+    "all_abstain": {
+      "N": 4,
+      "correct": 0,
+      "wrong": 0,
+      "returned": 0,
+      "finite_returned": 0,
+      "accepted_nonfinite": 0,
+      "G": 0.0,
+      "W": 0.0,
+      "C": 0.0,
+      "R": null,
+      "rmse_mm": null
+    },
+    "half_coverage_exact": {
+      "N": 4,
+      "correct": 2,
+      "wrong": 0,
+      "returned": 2,
+      "finite_returned": 2,
+      "accepted_nonfinite": 0,
+      "G": 0.5,
+      "W": 0.0,
+      "C": 0.5,
+      "R": 0.0,
+      "rmse_mm": 0.0
+    },
+    "half_wrong": {
+      "N": 4,
+      "correct": 2,
+      "wrong": 2,
+      "returned": 4,
+      "finite_returned": 4,
+      "accepted_nonfinite": 0,
+      "G": 0.5,
+      "W": 0.5,
+      "C": 1.0,
+      "R": 0.5,
+      "rmse_mm": 3.5355339059327378
+    },
+    "reject_wrong_half": {
+      "N": 4,
+      "correct": 2,
+      "wrong": 0,
+      "returned": 2,
+      "finite_returned": 2,
+      "accepted_nonfinite": 0,
+      "G": 0.5,
+      "W": 0.0,
+      "C": 0.5,
+      "R": 0.0,
+      "rmse_mm": 0.0
+    },
+    "accepted_nonfinite": {
+      "N": 4,
+      "correct": 3,
+      "wrong": 1,
+      "returned": 4,
+      "finite_returned": 3,
+      "accepted_nonfinite": 1,
+      "G": 0.75,
+      "W": 0.25,
+      "C": 1.0,
+      "R": 0.25,
+      "rmse_mm": 0.0
+    },
+    "major_minor_pitch_alias": {
+      "N": 4,
+      "correct": 1,
+      "wrong": 3,
+      "returned": 4,
+      "finite_returned": 4,
+      "accepted_nonfinite": 0,
+      "G": 0.25,
+      "W": 0.75,
+      "C": 1.0,
+      "R": 0.75,
+      "rmse_mm": 4.0
+    },
+    "strict_reflection": {
+      "N": 4,
+      "correct": 2,
+      "wrong": 2,
+      "returned": 4,
+      "finite_returned": 4,
+      "accepted_nonfinite": 0,
+      "G": 0.5,
+      "W": 0.5,
+      "C": 1.0,
+      "R": 0.5,
+      "rmse_mm": 1.4142135623730951
+    },
+    "wrong_scale_perfect_roundtrip": {
+      "roundtrip_max_px": 0.0,
+      "physical_wrong_fraction": 0.75,
+      "claim": "Internal invertibility cannot certify physical coordinates"
+    },
+    "patient_clustering": {
+      "patient_mean_G": 0.5,
+      "incorrect_view_pooled_G": 0.9
+    },
+    "M2_legacy_nonfinite_convention": {
+      "G": 0.75,
+      "W": 0.0,
+      "C": 0.75,
+      "R": 0.0,
+      "note": "M2 excludes nonfinite claimed coordinates. M3 counts them as wrong when registration is available."
+    }
+  },
+  "metric_version": "M3 claimed eligibility, nonfinite accepted output counts as wrong",
+  "production_scorer_exercised": false,
+  "scope": "Analytical expected values, not benchmark or method performance"
+}

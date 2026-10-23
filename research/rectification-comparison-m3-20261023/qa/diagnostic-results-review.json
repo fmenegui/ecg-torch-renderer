@@ -1,0 +1,913 @@
+{
+  "schema": "M3-independent-saved-result-audit-v1",
+  "status": "pass",
+  "checks": 50223,
+  "failures": [],
+  "execution": "/workspace/scratch/a57599a3e70e/ecg-torch-renderer/build/m3-comparison",
+  "split": "test",
+  "lock_sha256": "a667f1cbbe3dc3334df1721a821af063691240eb0b3fdd7b72af5150f1127b3c",
+  "protocol_sha256": "83debefdb2b1bd33735c8883c0f0d3d17acc590a309ba82e79ac55a785013be0",
+  "expected_case_method_results": 160,
+  "actual_case_method_results": 160,
+  "missing": [],
+  "wall_overruns_cooperative_deadline": [],
+  "native_pipeline_overruns_including_shared_CNN_cost": [],
+  "actual_resampled_image_count": 103,
+  "image_receipts": [
+    {
+      "case": "220288-0/our-B0",
+      "width": 2087,
+      "height": 1435,
+      "sha256": "388770c7c7bdfd14c5622aa6cf71f70be0929bc38deaebf1aab9b9f635abf4ae"
+    },
+    {
+      "case": "220288-0/our-M2",
+      "width": 2087,
+      "height": 1435,
+      "sha256": "388770c7c7bdfd14c5622aa6cf71f70be0929bc38deaebf1aab9b9f635abf4ae"
+    },
+    {
+      "case": "220288-0/npj-generic",
+      "width": 1024,
+      "height": 704,
+      "sha256": "a0034eeddea25e8dcd382cd74f1d06ff0836d8427ec85a1ad108ae7aae8b44f9"
+    },
+    {
+      "case": "220288-0/npj-george-moody-2024",
+      "width": 1024,
+      "height": 704,
+      "sha256": "a0034eeddea25e8dcd382cd74f1d06ff0836d8427ec85a1ad108ae7aae8b44f9"
+    },
+    {
+      "case": "220288-1/our-B0",
+      "width": 657,
+      "height": 460,
+      "sha256": "a8df72d6576aa9329f67021b64ab65c93a65247a7ee5c97568f4974d26707fab"
+    },
+    {
+      "case": "220288-1/our-M2",
+      "width": 657,
+      "height": 460,
+      "sha256": "1642efa089ef2df40ebb3922655a6ac8f637aabfd9b927ab9455a5c8be4ff725"
+    },
+    {
+      "case": "220288-1/npj-generic",
+      "width": 1024,
+      "height": 682,
+      "sha256": "ae6160e11874f52170d7348c6b98ddb52ed81b0b3acb704fb3a6273c62b41999"
+    },
+    {
+      "case": "220288-1/npj-george-moody-2024",
+      "width": 1024,
+      "height": 682,
+      "sha256": "ae6160e11874f52170d7348c6b98ddb52ed81b0b3acb704fb3a6273c62b41999"
+    },
+    {
+      "case": "220288-2/our-B0",
+      "width": 1590,
+      "height": 1074,
+      "sha256": "345f364d69ea8b8013e37cd23c712f956ff94392393074a8b380dfdf755b10f3"
+    },
+    {
+      "case": "220288-2/our-M2",
+      "width": 1585,
+      "height": 1075,
+      "sha256": "22de0760f5347f6c08452dd5d0a9cb6e73718e36e94583c7bf5495cdef02ea4f"
+    },
+    {
+      "case": "220288-2/npj-generic",
+      "width": 1024,
+      "height": 649,
+      "sha256": "fbda3694de0ad2b1b0c481018a6deab36ce8b21a2aea85b4c6cfd2b78d164d41"
+    },
+    {
+      "case": "220288-2/npj-george-moody-2024",
+      "width": 1024,
+      "height": 649,
+      "sha256": "fbda3694de0ad2b1b0c481018a6deab36ce8b21a2aea85b4c6cfd2b78d164d41"
+    },
+    {
+      "case": "220288-6/npj-generic",
+      "width": 1024,
+      "height": 590,
+      "sha256": "59dce230ec5e81916c365f648ec82f3ee76a989f7efc17211e03b6db1d16b67c"
+    },
+    {
+      "case": "220288-6/npj-george-moody-2024",
+      "width": 1024,
+      "height": 590,
+      "sha256": "59dce230ec5e81916c365f648ec82f3ee76a989f7efc17211e03b6db1d16b67c"
+    },
+    {
+      "case": "208777-0/our-B0",
+      "width": 1409,
+      "height": 987,
+      "sha256": "ba5cec1ca536f3465ab2cf7217cf2a1ddb03176038628c7884f47737b2edc37e"
+    },
+    {
+      "case": "208777-0/our-M2",
+      "width": 1409,
+      "height": 987,
+      "sha256": "ba5cec1ca536f3465ab2cf7217cf2a1ddb03176038628c7884f47737b2edc37e"
+    },
+    {
+      "case": "208777-0/npj-generic",
+      "width": 1024,
+      "height": 695,
+      "sha256": "2632c56a178b20420b95f9b1c28620022600f626a485a6d22d5902d4cfc3b598"
+    },
+    {
+      "case": "208777-0/npj-george-moody-2024",
+      "width": 1024,
+      "height": 695,
+      "sha256": "2632c56a178b20420b95f9b1c28620022600f626a485a6d22d5902d4cfc3b598"
+    },
+    {
+      "case": "208777-1/npj-generic",
+      "width": 1024,
+      "height": 623,
+      "sha256": "2315d6bce4cf8d617932116e9d7c280c60742b82d208fcacad017af5f2c8bd4b"
+    },
+    {
+      "case": "208777-1/npj-george-moody-2024",
+      "width": 1024,
+      "height": 623,
+      "sha256": "2315d6bce4cf8d617932116e9d7c280c60742b82d208fcacad017af5f2c8bd4b"
+    },
+    {
+      "case": "208777-2/npj-generic",
+      "width": 1024,
+      "height": 584,
+      "sha256": "c7ba8cbe731b6f10f27487c469d0d21f8c30c78990fab8dc0865056010eca118"
+    },
+    {
+      "case": "208777-2/npj-george-moody-2024",
+      "width": 1024,
+      "height": 584,
+      "sha256": "c7ba8cbe731b6f10f27487c469d0d21f8c30c78990fab8dc0865056010eca118"
+    },
+    {
+      "case": "208777-6/npj-generic",
+      "width": 1024,
+      "height": 631,
+      "sha256": "0ce389d998f395f7c142f9c63a85f0a8d8941f89e222ead373586cbd1a2624db"
+    },
+    {
+      "case": "208777-6/npj-george-moody-2024",
+      "width": 1024,
+      "height": 631,
+      "sha256": "0ce389d998f395f7c142f9c63a85f0a8d8941f89e222ead373586cbd1a2624db"
+    },
+    {
+      "case": "206852-0/our-B0",
+      "width": 684,
+      "height": 476,
+      "sha256": "41b2dd50da7b2222d68a0574fae5219cac107f20d7fe5f7fd1548e55f6aae278"
+    },
+    {
+      "case": "206852-0/our-M2",
+      "width": 684,
+      "height": 476,
+      "sha256": "41b2dd50da7b2222d68a0574fae5219cac107f20d7fe5f7fd1548e55f6aae278"
+    },
+    {
+      "case": "206852-0/npj-generic",
+      "width": 1024,
+      "height": 604,
+      "sha256": "aa4190bbd73909b740a2b57b968d9c61da6eb97d8c0d4686d3df3aa4e338200b"
+    },
+    {
+      "case": "206852-0/npj-george-moody-2024",
+      "width": 1024,
+      "height": 604,
+      "sha256": "aa4190bbd73909b740a2b57b968d9c61da6eb97d8c0d4686d3df3aa4e338200b"
+    },
+    {
+      "case": "206852-0/kaggle-third",
+      "width": 4400,
+      "height": 1700,
+      "sha256": "c2e377c9474ab81302a67ceea3e8661f313f85b7c04ffeb4cd5d0274d727c734"
+    },
+    {
+      "case": "206852-1/our-B0",
+      "width": 2719,
+      "height": 1816,
+      "sha256": "c66058710cc5bb780c8a9914e181b84ed26ad8870eeb03b6b7d56fbdacb9ac14"
+    },
+    {
+      "case": "206852-1/our-M2",
+      "width": 2719,
+      "height": 1816,
+      "sha256": "c66058710cc5bb780c8a9914e181b84ed26ad8870eeb03b6b7d56fbdacb9ac14"
+    },
+    {
+      "case": "206852-1/npj-generic",
+      "width": 1024,
+      "height": 628,
+      "sha256": "61faeacad263d15bf5917b56e2b64ac2bf64d117cc61dd1f907582e578c05315"
+    },
+    {
+      "case": "206852-1/npj-george-moody-2024",
+      "width": 1024,
+      "height": 628,
+      "sha256": "61faeacad263d15bf5917b56e2b64ac2bf64d117cc61dd1f907582e578c05315"
+    },
+    {
+      "case": "206852-2/npj-generic",
+      "width": 1024,
+      "height": 624,
+      "sha256": "464f6731ff350d85a46bf510ffd8b2d8acbf515fcab98e7dc44ebd42ae415710"
+    },
+    {
+      "case": "206852-2/npj-george-moody-2024",
+      "width": 1024,
+      "height": 624,
+      "sha256": "464f6731ff350d85a46bf510ffd8b2d8acbf515fcab98e7dc44ebd42ae415710"
+    },
+    {
+      "case": "206852-6/our-B0",
+      "width": 1387,
+      "height": 922,
+      "sha256": "2f2ae757da127da335ebb2ac3a03ef9d59cc8d54887942a371cafee1b6fa3152"
+    },
+    {
+      "case": "206852-6/our-M2",
+      "width": 1387,
+      "height": 922,
+      "sha256": "2f2ae757da127da335ebb2ac3a03ef9d59cc8d54887942a371cafee1b6fa3152"
+    },
+    {
+      "case": "206852-6/npj-generic",
+      "width": 1024,
+      "height": 648,
+      "sha256": "17343d1d03ad278f8a900eb8e6442891f60b714adcd3f4abb245664796851306"
+    },
+    {
+      "case": "206852-6/npj-george-moody-2024",
+      "width": 1024,
+      "height": 648,
+      "sha256": "17343d1d03ad278f8a900eb8e6442891f60b714adcd3f4abb245664796851306"
+    },
+    {
+      "case": "208114-0/our-B0",
+      "width": 743,
+      "height": 507,
+      "sha256": "cc657f22ebb21fc19e2ecb8401a6af3ed2666c37d86a7f1cd994e99a07df94a7"
+    },
+    {
+      "case": "208114-0/our-M2",
+      "width": 743,
+      "height": 507,
+      "sha256": "82b3420e7de134bcff9546ff19cd873a26c8f9f93dc23977ef6f3cd381af91c6"
+    },
+    {
+      "case": "208114-0/npj-generic",
+      "width": 1024,
+      "height": 666,
+      "sha256": "629277f4c5b411517e29ab1c8c855115580db646bed7615459b24e199ea73cc3"
+    },
+    {
+      "case": "208114-0/npj-george-moody-2024",
+      "width": 1024,
+      "height": 666,
+      "sha256": "629277f4c5b411517e29ab1c8c855115580db646bed7615459b24e199ea73cc3"
+    },
+    {
+      "case": "208114-0/kaggle-third",
+      "width": 4400,
+      "height": 1700,
+      "sha256": "98b352531e7f9ac0b98172186f40d36410e52fb87df77bb50f427694f507dd5c"
+    },
+    {
+      "case": "208114-1/our-B0",
+      "width": 711,
+      "height": 534,
+      "sha256": "8d921a6bcf52b52c287c8000ffa130b83ac40878be2e88bfc71ff5a43778172e"
+    },
+    {
+      "case": "208114-1/our-M2",
+      "width": 711,
+      "height": 534,
+      "sha256": "33b7a76f55e86d0fe25969e768acde8bf7425f6a8b5d1683e912bdd637cd2948"
+    },
+    {
+      "case": "208114-1/npj-generic",
+      "width": 1024,
+      "height": 633,
+      "sha256": "d2785e5022ca596ad9a3de2cf38e7f74f075e1bdddc662d10d85f3a5de7cc511"
+    },
+    {
+      "case": "208114-1/npj-george-moody-2024",
+      "width": 1024,
+      "height": 633,
+      "sha256": "d2785e5022ca596ad9a3de2cf38e7f74f075e1bdddc662d10d85f3a5de7cc511"
+    },
+    {
+      "case": "208114-2/our-B0",
+      "width": 1315,
+      "height": 884,
+      "sha256": "3d81473dc9201e74b0898f0323028cf1a3ba8fb2d31682405c7f8d2832b1525d"
+    },
+    {
+      "case": "208114-2/our-M2",
+      "width": 1315,
+      "height": 885,
+      "sha256": "9eb62bd60277c03bd78dfb283ed9d4cd10c3e02d8ce8e0123e473fad902ffc96"
+    },
+    {
+      "case": "208114-2/npj-generic",
+      "width": 1024,
+      "height": 660,
+      "sha256": "8860516d0f5aaef80391d9749c64999d4bc9d2974aec7b463f287403ed1fba52"
+    },
+    {
+      "case": "208114-2/npj-george-moody-2024",
+      "width": 1024,
+      "height": 660,
+      "sha256": "8860516d0f5aaef80391d9749c64999d4bc9d2974aec7b463f287403ed1fba52"
+    },
+    {
+      "case": "208114-6/our-B0",
+      "width": 1481,
+      "height": 1011,
+      "sha256": "c7d9200c94edaef84269a037d944ca1f78bd70e83949454e5b701aef259964ce"
+    },
+    {
+      "case": "208114-6/our-M2",
+      "width": 1475,
+      "height": 1011,
+      "sha256": "09ef6eeae9020a3b219bc248103888bfe81cb639b08030a7bca1b3c8f88dab56"
+    },
+    {
+      "case": "208114-6/npj-generic",
+      "width": 1024,
+      "height": 704,
+      "sha256": "b0c5ff144e9ab98b08a57eb3985e3e3016c9d3fd27a122dd432ac4856f387cea"
+    },
+    {
+      "case": "208114-6/npj-george-moody-2024",
+      "width": 1024,
+      "height": 704,
+      "sha256": "b0c5ff144e9ab98b08a57eb3985e3e3016c9d3fd27a122dd432ac4856f387cea"
+    },
+    {
+      "case": "215864-0/npj-generic",
+      "width": 1024,
+      "height": 619,
+      "sha256": "91616b0712221336ce784bb68794d90be2af9648a90281d52a3255c059e430d4"
+    },
+    {
+      "case": "215864-0/npj-george-moody-2024",
+      "width": 1024,
+      "height": 619,
+      "sha256": "91616b0712221336ce784bb68794d90be2af9648a90281d52a3255c059e430d4"
+    },
+    {
+      "case": "215864-1/our-B0",
+      "width": 657,
+      "height": 460,
+      "sha256": "942bd5a4a5b239d33079dabc3e51e50ca8b04cab4ec5df35657fb1f2e161f583"
+    },
+    {
+      "case": "215864-1/our-M2",
+      "width": 657,
+      "height": 460,
+      "sha256": "942bd5a4a5b239d33079dabc3e51e50ca8b04cab4ec5df35657fb1f2e161f583"
+    },
+    {
+      "case": "215864-1/npj-generic",
+      "width": 1024,
+      "height": 677,
+      "sha256": "5da09bc57d3823d749dbb2ae8af65fa6fc1e5a5a84b0537fd7726796691b87c8"
+    },
+    {
+      "case": "215864-1/npj-george-moody-2024",
+      "width": 1024,
+      "height": 677,
+      "sha256": "5da09bc57d3823d749dbb2ae8af65fa6fc1e5a5a84b0537fd7726796691b87c8"
+    },
+    {
+      "case": "215864-2/npj-generic",
+      "width": 1024,
+      "height": 584,
+      "sha256": "f477d2e10526a40940251a888100d5d582092677d683bb340bd9745e9306898c"
+    },
+    {
+      "case": "215864-2/npj-george-moody-2024",
+      "width": 1024,
+      "height": 584,
+      "sha256": "f477d2e10526a40940251a888100d5d582092677d683bb340bd9745e9306898c"
+    },
+    {
+      "case": "215864-6/npj-generic",
+      "width": 1024,
+      "height": 606,
+      "sha256": "2d37dc057b6949b6693569b2820dc5e30b5c16b0f3a0226da4802196d97124f5"
+    },
+    {
+      "case": "215864-6/npj-george-moody-2024",
+      "width": 1024,
+      "height": 606,
+      "sha256": "2d37dc057b6949b6693569b2820dc5e30b5c16b0f3a0226da4802196d97124f5"
+    },
+    {
+      "case": "211723-0/our-B0",
+      "width": 2663,
+      "height": 1922,
+      "sha256": "e4a721a4019805ea1fb47bbea8b70bf146f7e98cd1328bd7ad6f2083fc4a32eb"
+    },
+    {
+      "case": "211723-0/our-M2",
+      "width": 2663,
+      "height": 1922,
+      "sha256": "e4a721a4019805ea1fb47bbea8b70bf146f7e98cd1328bd7ad6f2083fc4a32eb"
+    },
+    {
+      "case": "211723-0/npj-generic",
+      "width": 1024,
+      "height": 628,
+      "sha256": "966090e65f766b1f0116be852b413cfda19cb410c8a87d240191f730bf71d76b"
+    },
+    {
+      "case": "211723-0/npj-george-moody-2024",
+      "width": 1024,
+      "height": 628,
+      "sha256": "966090e65f766b1f0116be852b413cfda19cb410c8a87d240191f730bf71d76b"
+    },
+    {
+      "case": "211723-1/our-B0",
+      "width": 1434,
+      "height": 1028,
+      "sha256": "ce7864d09ce118d717f47c75078df3d8b4b6533c27f0be59f0d3d66ae07a64bb"
+    },
+    {
+      "case": "211723-1/our-M2",
+      "width": 1434,
+      "height": 1028,
+      "sha256": "ce7864d09ce118d717f47c75078df3d8b4b6533c27f0be59f0d3d66ae07a64bb"
+    },
+    {
+      "case": "211723-1/npj-generic",
+      "width": 1024,
+      "height": 641,
+      "sha256": "b6f28558c1f845ece2f00bf1ddfea3bba4a7515ae2e7e654f6458071d9e1097a"
+    },
+    {
+      "case": "211723-1/npj-george-moody-2024",
+      "width": 1024,
+      "height": 641,
+      "sha256": "b6f28558c1f845ece2f00bf1ddfea3bba4a7515ae2e7e654f6458071d9e1097a"
+    },
+    {
+      "case": "211723-2/npj-generic",
+      "width": 1024,
+      "height": 691,
+      "sha256": "7ae54fa7c377e411bef13217e2cedeb7e9a553c8e81e48a73bf51f091db10a78"
+    },
+    {
+      "case": "211723-2/npj-george-moody-2024",
+      "width": 1024,
+      "height": 691,
+      "sha256": "7ae54fa7c377e411bef13217e2cedeb7e9a553c8e81e48a73bf51f091db10a78"
+    },
+    {
+      "case": "211723-6/npj-generic",
+      "width": 1024,
+      "height": 649,
+      "sha256": "5f1fbe8b48ad849a7a606db35c2b56a6efeece29624ff59a3545430b82ceb7f2"
+    },
+    {
+      "case": "211723-6/npj-george-moody-2024",
+      "width": 1024,
+      "height": 649,
+      "sha256": "5f1fbe8b48ad849a7a606db35c2b56a6efeece29624ff59a3545430b82ceb7f2"
+    },
+    {
+      "case": "211855-0/our-B0",
+      "width": 766,
+      "height": 554,
+      "sha256": "b722580e87b8c9496393d16af289b05a926f2d58ed2b8abae9870dd4ef4d565b"
+    },
+    {
+      "case": "211855-0/our-M2",
+      "width": 766,
+      "height": 554,
+      "sha256": "b722580e87b8c9496393d16af289b05a926f2d58ed2b8abae9870dd4ef4d565b"
+    },
+    {
+      "case": "211855-0/npj-generic",
+      "width": 1024,
+      "height": 658,
+      "sha256": "9fd23fa609c2ac9a15b1660082a3151d3022c1e5e45968cb8cdfadb42388950c"
+    },
+    {
+      "case": "211855-0/npj-george-moody-2024",
+      "width": 1024,
+      "height": 658,
+      "sha256": "9fd23fa609c2ac9a15b1660082a3151d3022c1e5e45968cb8cdfadb42388950c"
+    },
+    {
+      "case": "211855-1/npj-generic",
+      "width": 1024,
+      "height": 673,
+      "sha256": "022d39ed0157dc1e91a7b493940ff6216244388ace5fd26560eeeda8e54d81bb"
+    },
+    {
+      "case": "211855-1/npj-george-moody-2024",
+      "width": 1024,
+      "height": 673,
+      "sha256": "022d39ed0157dc1e91a7b493940ff6216244388ace5fd26560eeeda8e54d81bb"
+    },
+    {
+      "case": "211855-2/npj-generic",
+      "width": 1024,
+      "height": 598,
+      "sha256": "c4834aa55f84915e31ea67d960ca31db46a8c9adf0fd9c99eecade07488496cb"
+    },
+    {
+      "case": "211855-2/npj-george-moody-2024",
+      "width": 1024,
+      "height": 598,
+      "sha256": "c4834aa55f84915e31ea67d960ca31db46a8c9adf0fd9c99eecade07488496cb"
+    },
+    {
+      "case": "211855-2/kaggle-third",
+      "width": 4400,
+      "height": 1700,
+      "sha256": "29c6f7952ba1ba7a746434c49386b4842b7226ad29fc9f384c21dba79fdcfa6d"
+    },
+    {
+      "case": "211855-6/npj-generic",
+      "width": 1024,
+      "height": 704,
+      "sha256": "4d88ffc4fad34a6363dc2e0394ceaf9eda30bec11bc700e06d417af45962d40b"
+    },
+    {
+      "case": "211855-6/npj-george-moody-2024",
+      "width": 1024,
+      "height": 704,
+      "sha256": "4d88ffc4fad34a6363dc2e0394ceaf9eda30bec11bc700e06d417af45962d40b"
+    },
+    {
+      "case": "206056-0/our-B0",
+      "width": 767,
+      "height": 551,
+      "sha256": "13504381884c44b6c0c2a7fdcd28da2cf8cf2ca70de90d77fcebe0a4736da48c"
+    },
+    {
+      "case": "206056-0/our-M2",
+      "width": 767,
+      "height": 551,
+      "sha256": "13504381884c44b6c0c2a7fdcd28da2cf8cf2ca70de90d77fcebe0a4736da48c"
+    },
+    {
+      "case": "206056-0/npj-generic",
+      "width": 1024,
+      "height": 683,
+      "sha256": "dc29a9eb6f5c6d62b4be6b6ba7e7256aed481f5d7c32daf9a11a9cc73612f463"
+    },
+    {
+      "case": "206056-0/npj-george-moody-2024",
+      "width": 1024,
+      "height": 683,
+      "sha256": "dc29a9eb6f5c6d62b4be6b6ba7e7256aed481f5d7c32daf9a11a9cc73612f463"
+    },
+    {
+      "case": "206056-1/npj-generic",
+      "width": 1024,
+      "height": 684,
+      "sha256": "b62d604ebc88189c6406f60be520935c36945d3fa22e1272c99dff679177390a"
+    },
+    {
+      "case": "206056-1/npj-george-moody-2024",
+      "width": 1024,
+      "height": 684,
+      "sha256": "b62d604ebc88189c6406f60be520935c36945d3fa22e1272c99dff679177390a"
+    },
+    {
+      "case": "206056-2/our-B0",
+      "width": 1501,
+      "height": 1001,
+      "sha256": "8c9d600954c3a9f79013467ae982dd03b76519e74bedba2922fd16b72d6607e0"
+    },
+    {
+      "case": "206056-2/our-M2",
+      "width": 1501,
+      "height": 1001,
+      "sha256": "8c9d600954c3a9f79013467ae982dd03b76519e74bedba2922fd16b72d6607e0"
+    },
+    {
+      "case": "206056-2/npj-generic",
+      "width": 1024,
+      "height": 630,
+      "sha256": "19d4084fe1cd7a4f39462ff7cdc9e47b5e519454cfed0bf40c2078920121c3b9"
+    },
+    {
+      "case": "206056-2/npj-george-moody-2024",
+      "width": 1024,
+      "height": 630,
+      "sha256": "19d4084fe1cd7a4f39462ff7cdc9e47b5e519454cfed0bf40c2078920121c3b9"
+    },
+    {
+      "case": "206056-6/our-B0",
+      "width": 1507,
+      "height": 1041,
+      "sha256": "1850baf1d34c4d21cdd236c6c94dee54c16d4cb2e6b0bd7b7ac28a79b1dac3ce"
+    },
+    {
+      "case": "206056-6/our-M2",
+      "width": 1504,
+      "height": 1042,
+      "sha256": "23daa2391525515d1a0a2b4b377d8b2962fb27f52d0829b838923cafb095f957"
+    },
+    {
+      "case": "206056-6/npj-generic",
+      "width": 1024,
+      "height": 621,
+      "sha256": "718f643128159877e1252723808a39575354d6ec62af3902355f03c1009fde56"
+    },
+    {
+      "case": "206056-6/npj-george-moody-2024",
+      "width": 1024,
+      "height": 621,
+      "sha256": "718f643128159877e1252723808a39575354d6ec62af3902355f03c1009fde56"
+    }
+  ],
+  "aggregates_primary_paper": {
+    "our-B0": {
+      "status_counts": {
+        "completed": 18,
+        "original_preserved_partial_coordinates": 14
+      },
+      "RGB_actually_resampled": 18,
+      "primary": {
+        "g": 0.550201416015625,
+        "w": 0.159515380859375,
+        "c": 0.709716796875,
+        "r": 0.2247592019263846,
+        "cases": 32,
+        "patients": 8,
+        "backends": [
+          "offline",
+          "torch-cached"
+        ]
+      },
+      "secondary_D4": {
+        "g": 0.6786270141601562,
+        "w": 0.03108978271484375,
+        "c": 0.709716796875,
+        "r": 0.043805899552803576,
+        "cases": 32,
+        "patients": 8,
+        "backends": [
+          "offline",
+          "torch-cached"
+        ]
+      },
+      "unrestricted_finite_field": {
+        "g": 0.46437835693359375,
+        "w": 0.09812164306640625,
+        "c": 0.5625,
+        "r": 0.1744384765625,
+        "cases": 32,
+        "patients": 8,
+        "backends": [
+          "offline",
+          "torch-cached"
+        ]
+      },
+      "operational_RGB": {
+        "g": 0.46437835693359375,
+        "w": 0.09812164306640625,
+        "c": 0.5625,
+        "r": 0.1744384765625,
+        "cases": 32,
+        "patients": 8,
+        "backends": [
+          "offline",
+          "torch-cached"
+        ]
+      }
+    },
+    "our-M2": {
+      "status_counts": {
+        "completed": 18,
+        "original_preserved_partial_coordinates": 14
+      },
+      "RGB_actually_resampled": 18,
+      "primary": {
+        "g": 0.5527191162109375,
+        "w": 0.156646728515625,
+        "c": 0.7093658447265625,
+        "r": 0.2208264320591968,
+        "cases": 32,
+        "patients": 8,
+        "backends": [
+          "offline",
+          "torch-cached"
+        ]
+      },
+      "secondary_D4": {
+        "g": 0.6816635131835938,
+        "w": 0.02770233154296875,
+        "c": 0.7093658447265625,
+        "r": 0.03905224891909914,
+        "cases": 32,
+        "patients": 8,
+        "backends": [
+          "offline",
+          "torch-cached"
+        ]
+      },
+      "unrestricted_finite_field": {
+        "g": 0.4693145751953125,
+        "w": 0.0931854248046875,
+        "c": 0.5625,
+        "r": 0.16566297743055555,
+        "cases": 32,
+        "patients": 8,
+        "backends": [
+          "offline",
+          "torch-cached"
+        ]
+      },
+      "operational_RGB": {
+        "g": 0.4693145751953125,
+        "w": 0.0931854248046875,
+        "c": 0.5625,
+        "r": 0.16566297743055555,
+        "cases": 32,
+        "patients": 8,
+        "backends": [
+          "offline",
+          "torch-cached"
+        ]
+      }
+    },
+    "npj-generic": {
+      "status_counts": {
+        "completed": 32
+      },
+      "RGB_actually_resampled": 32,
+      "primary": {
+        "g": 0.1066741943359375,
+        "w": 0.7702484130859375,
+        "c": 0.876922607421875,
+        "r": 0.8783539237863233,
+        "cases": 32,
+        "patients": 8,
+        "backends": [
+          "offline",
+          "torch-cached"
+        ]
+      },
+      "secondary_D4": {
+        "g": 0.126312255859375,
+        "w": 0.7506103515625,
+        "c": 0.876922607421875,
+        "r": 0.8559596311118844,
+        "cases": 32,
+        "patients": 8,
+        "backends": [
+          "offline",
+          "torch-cached"
+        ]
+      },
+      "unrestricted_finite_field": {
+        "g": 0.1066741943359375,
+        "w": 0.7702484130859375,
+        "c": 0.876922607421875,
+        "r": 0.8783539237863233,
+        "cases": 32,
+        "patients": 8,
+        "backends": [
+          "offline",
+          "torch-cached"
+        ]
+      },
+      "operational_RGB": {
+        "g": 0.1066741943359375,
+        "w": 0.7702484130859375,
+        "c": 0.876922607421875,
+        "r": 0.8783539237863233,
+        "cases": 32,
+        "patients": 8,
+        "backends": [
+          "offline",
+          "torch-cached"
+        ]
+      }
+    },
+    "npj-george-moody-2024": {
+      "status_counts": {
+        "completed": 32
+      },
+      "RGB_actually_resampled": 32,
+      "primary": {
+        "g": 0.1063079833984375,
+        "w": 0.7706146240234375,
+        "c": 0.876922607421875,
+        "r": 0.8787715329737255,
+        "cases": 32,
+        "patients": 8,
+        "backends": [
+          "offline",
+          "torch-cached"
+        ]
+      },
+      "secondary_D4": {
+        "g": 0.1259613037109375,
+        "w": 0.7509613037109375,
+        "c": 0.876922607421875,
+        "r": 0.8563598399164781,
+        "cases": 32,
+        "patients": 8,
+        "backends": [
+          "offline",
+          "torch-cached"
+        ]
+      },
+      "unrestricted_finite_field": {
+        "g": 0.1063079833984375,
+        "w": 0.7706146240234375,
+        "c": 0.876922607421875,
+        "r": 0.8787715329737255,
+        "cases": 32,
+        "patients": 8,
+        "backends": [
+          "offline",
+          "torch-cached"
+        ]
+      },
+      "operational_RGB": {
+        "g": 0.1063079833984375,
+        "w": 0.7706146240234375,
+        "c": 0.876922607421875,
+        "r": 0.8787715329737255,
+        "cases": 32,
+        "patients": 8,
+        "backends": [
+          "offline",
+          "torch-cached"
+        ]
+      }
+    },
+    "kaggle-third": {
+      "status_counts": {
+        "failed": 29,
+        "completed": 3
+      },
+      "RGB_actually_resampled": 3,
+      "primary": {
+        "g": 0.0,
+        "w": 0.0,
+        "c": 0.0,
+        "r": null,
+        "cases": 32,
+        "patients": 8,
+        "backends": [
+          "offline",
+          "torch-cached"
+        ]
+      },
+      "secondary_D4": {
+        "g": 0.0,
+        "w": 0.0,
+        "c": 0.0,
+        "r": null,
+        "cases": 32,
+        "patients": 8,
+        "backends": [
+          "offline",
+          "torch-cached"
+        ]
+      },
+      "unrestricted_finite_field": {
+        "g": 0.0,
+        "w": 0.0,
+        "c": 0.0,
+        "r": null,
+        "cases": 32,
+        "patients": 8,
+        "backends": [
+          "offline",
+          "torch-cached"
+        ]
+      },
+      "operational_RGB": {
+        "g": 0.0,
+        "w": 0.0,
+        "c": 0.0,
+        "r": null,
+        "cases": 32,
+        "patients": 8,
+        "backends": [
+          "offline",
+          "torch-cached"
+        ]
+      }
+    }
+  },
+  "scope": "Exact source/weight/input/query/prediction lineage, every archived score replayed, primary registration and G/W/C/R independently computed, RGB file/budget and original-fallback checks. No neural rerun, real-camera truth or waveform-fidelity certification.",
+  "reviewer_source_sha256": "aefd762fcd504d796e43abf7f9fa26a9f8cec382f1115d80c787a39d146a7607"
+}

@@ -1,0 +1,48 @@
+{
+  "schema": "m3-sampling-component-v1",
+  "date": "2026-10-23",
+  "status": "frozen_before_first_scores",
+  "purpose": "Test bounded area quadrature of the original RGB at the same4px/mm output density after an exact analytical map; isolate sampling, not detector or warp accuracy",
+  "source_commit": "f4f6caef3b59b5830e93284cccadbc6855fc701e",
+  "native_source_sha256": "0c3e6025332eaf582a4f3d57218cbf7ed0bdabad1efc7e7503cce3e9646de2da",
+  "native_source": "ecg_gpu/digitization/complete_rectifier.py",
+  "native_baseline": "Unmodified render_complete at pixels_per_mm4, uint8 RGB, INTER_LINEAR",
+  "candidate_arms": [
+    {"id": "area-bilinear-2", "subgrid": 2, "reconstruction": "bilinear"},
+    {"id": "area-bilinear-4", "subgrid": 4, "reconstruction": "bilinear"},
+    {"id": "area-bilinear-8", "subgrid": 8, "reconstruction": "bilinear"},
+    {"id": "area-boxhold-2", "subgrid": 2, "reconstruction": "nearest_pixel_cell"},
+    {"id": "area-boxhold-4", "subgrid": 4, "reconstruction": "nearest_pixel_cell"},
+    {"id": "area-boxhold-8", "subgrid": 8, "reconstruction": "nearest_pixel_cell"}
+  ],
+  "candidate_rule": "Equal-weight midpoint quadrature on a2x2,4x4or8x8 grid inside each physical output pixel. Compose each physical subpoint through the exact map inverse to the original RGB. Cast original uint8 to float for reconstruction, average in float, round once to uint8. No intermediate warped raster, NN, tuning or learned weights. Boxhold and bilinear families are both predefined, not selected from results.",
+  "input": {"shape": [201,201,3], "uint8": true, "source_center_pixels": [100,100], "material_center_mm": [10,10]},
+  "maps": [
+    {"id": "affine-isotropic", "source_pixels_per_physical_mm_matrix": [[10,0],[0,10]]},
+    {"id": "affine-anisotropic-shear", "source_pixels_per_physical_mm_matrix": [[11,1],[0.4,9]]}
+  ],
+  "map_scope": "Both are exact affine maps represented by the actual CompleteMap two-triangle complex; second tests anisotropy/shear, not nonlinear deformation or photorealistic optics",
+  "observed_evidence_square_mm": [[12,12],[17,12],[17,17],[12,17]],
+  "thin_strip_scenes": {
+    "strip_width_mm": [0.1,1.0],
+    "normal_angles_degrees": [0,15,30,45,60,75,90],
+    "offsets_mm": [0,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45],
+    "strip_center_point_mm": [7,7],
+    "extent": "Infinite strip, clipped only by source frame and fixed scoring ROI",
+    "source_observation": "Exact area-average of the ideal strip over each source1x1pixel cell under the affine map, quantized once to uint8 RGB",
+    "scene_count": 280
+  },
+  "constant_control_rgb": [47,128,219],
+  "reference": "Independent closed-form strip coverage in each0.25x0.25mm output pixel square: difference of CDFs of the sum of two independent centered uniforms; zero-component limit is exact interval overlap. Source observation uses the same physical strip but its source-pixel footprint, not candidate supersampling. Scores are against ideal strip area, so finite observation/uint8 information loss remains explicit.",
+  "scoring": {
+    "domain": "Every output pixel centre with both physical axes in[2,12]mm, independent of source evidence. Every subpixel footprint is strictly inside both source maps.",
+    "density_pixels_per_mm": 4,
+    "metrics": ["complete_disappearance", "peak_darkness", "peak_darkness_absolute_error", "pixel_MAE", "pixel_RMSE", "pixel_max_abs_error", "integrated_dark_area_mm2", "relative_line_energy_error", "dark_energy_outside_nonzero_ideal_pixels"],
+    "constant_control": "Exact RGB equality in ROI for every arm and map",
+    "retain_all": "All280scenes and all7arms retained, including any disappearance or degradation; no best-per-case selection"
+  },
+  "numerical_checks_before_scores": ["CDF axis interval and diagonal-square closed forms", "unit strip conservation on full source-pixel columns", "map inverse agrees with independent affine formula", "ROI footprints inside input", "native frame/origin agrees with independently computed bounds", "constant RGB"],
+  "cost": "One thread. Record map-coordinate preparation wall-time, sample count and cache bytes per geometry/subgrid, candidate RGB application wall-time and native full-render wall-time separately. Caching across analytical images is disclosed; these are component CPU measurements, not comparable end-to-end production latency. No timing winner claim.",
+  "contact_sheet": "Predetermined isotropic vertical0.1mm strip offsets0.1and0.4mm plus oblique45degree0.1mm offset0.15mm, all7arms and exact ideal area reference, same physical crop. Nearest-neighbor display enlargement only.",
+  "limits": ["No capture bank, CNN, waveform extraction, clinical score, nonlinear paper deformation or production-default change", "No claim that a finite quadrature or8px/mm is universally sufficient", "Finite supersampling can alias, bilinear integration can blur, pixel-cell reconstruction is a model assumption, and uint8 quantization can erase arbitrarily weak observations", "No inference of information that the input raster did not preserve", "No settings changed after scores"]
+}

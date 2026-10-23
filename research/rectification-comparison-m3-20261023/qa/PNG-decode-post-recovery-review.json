@@ -1,0 +1,6 @@
+{
+  "status": "pass",
+  "images_checked": 131,
+  "failures": [],
+  "scope": "Full PNG pixel decode after one disclosed atomic duplicate recovery. Pre-repair failure and bad bytes remain preserved. Does not prove resampled waveform fidelity."
+}

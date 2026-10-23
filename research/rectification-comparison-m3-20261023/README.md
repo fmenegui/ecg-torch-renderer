@@ -10,6 +10,49 @@ The frozen assessment contract is [protocol.json](protocol.json). Every case,
 query archive, source, checkpoint, configuration and runtime version is bound by
 [execution-lock.json](execution-lock.json).
 
+## Completed diagnostic results
+
+The 160 scheduled case/configuration outputs are complete and independently
+audited. See [results-interpretation-pt.md](results-interpretation-pt.md),
+[results-summary.json](results-summary.json) and [native-cases.csv](native-cases.csv).
+The primary paper-domain results preserve native orientation/scale and remove
+only the predeclared global translation:
+
+| Configuration | G correct | W wrong | C coverage | R = W/C | RGB emitted |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| B0 | 55.02% | 15.95% | 70.97% | 22.48% | 18/32 |
+| M2 | 55.27% | 15.66% | 70.94% | 22.08% | 18/32 |
+| npj Generic | 10.67% | 77.02% | 87.69% | 87.84% | 32/32 |
+| npj George Moody 2024 | 10.63% | 77.06% | 87.69% | 87.88% | 32/32 |
+| Kaggle third-place | 0% | 0% | 0% | undefined | 3/32 |
+
+Rounded percentages need not sum exactly. These are already-inspected synthetic
+format-stress data. The predeclared Kaggle-compatible stratum has only one
+capture/patient/backend and cannot assess its original supported task. Its three
+emitted rasters have no observed grid nodes, all 2,508 nodes filled with zero
+coordinates and 2,408 degenerate cells each. Emission is not correct geometry.
+The two configurations of each architecture are correlated operating choices,
+not independent replications. Different trained frontends remain confounded in
+the native lane; matched-observation component lanes isolate geometric choices.
+
+M2's gain over B0 is 0.252 percentage points of G, with a descriptive paired
+patient-bootstrap interval [0, 0.690] pp. D4 diagnostic help raises M2 G to
+68.17%, showing a much larger unresolved orientation issue. In the actual-RGB
+full-field endpoint M2 G is 46.93%, W 9.32%, C 56.25% and R 16.57%.
+Partial coordinates are useful but the 14 original-preserved cases are not
+successful full-image rectifications.
+
+Independent QA passed 50,223 saved-result checks and 821 post-summary checks,
+including the 20,000 paired bootstrap draws. All 131 emitted/retained selected
+PNGs decode fully after one disclosed fallback-file recovery from a verified
+native duplicate. The truncated bytes and recovery receipt are retained in the
+measurement archive. No inference, metrics, times, statuses or frozen files
+changed. There were no wall or standalone-pipeline budget overruns.
+
+These results do not establish external, clinical, leaderboard or commercial
+superiority. The supplied archive retains every failure, full precision,
+predictions, queries and native raster outputs.
+
 ## Scope and comparisons
 
 - Primary diagnostic panel: 32 existing M2 captures, eight patient groups,
@@ -57,6 +100,23 @@ Inverse-valid geometry alone does not certify waveform or text preservation.
 5. Orientation semantics, scale, support provenance and actual sampling status
    need independent contracts. A smooth invertible map is not necessarily a
    physically correct map.
+6. The actual bilinear sampler at 4 px/mm can erase 0.1 mm strokes despite
+   exact affine geometry and no confidence-mask erasure. A separate 280-scene
+   sampling probe retains 1,960 measurements and all negative controls.
+   Area integration removes the four native thin-strip disappearances in the
+   140 declared thin-strip controls, but costs more and does not improve every
+   endpoint monotonically. This is a component prototype, not a default change.
+
+See [sampling/README.md](sampling/README.md) for the explicit synthetic RGB
+formation/reconstruction contract, quality/cost table and limitations. The
+independent audit passed 32,558 checks. Source quantization ties of one uint8
+level and the first run's unbounded BLAS timing were retained and disclosed.
+
+```bash
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+  python research/rectification-comparison-m3-20261023/sampling/sampling_component.py \
+  --geometry-dir ecg_gpu/digitization --out build/m3-sampling
+```
 
 ## Reproduction
 

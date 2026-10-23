@@ -1,0 +1,13 @@
+{
+  "status": "pass",
+  "checks": 821,
+  "failures": [],
+  "summary_sha256": "f23de9fbba72d75b36a13553b9147c35dd82953f7c83ae6e88fbefdb42c240c5",
+  "postprocessing_receipt_sha256": "d8f9679eced034f0ff7f7ae0519eb5d97f328a756b9b6756d39b519f61a2a55c",
+  "scope": "All160 source-result hashes,1280CSV-row count, all patient/backend point estimates and all20000 paired patient-bootstrap draws recomputed independently for5methods\u00d74tracks\u00d72domains\u00d74metrics. No inference or selection changed.",
+  "independent_patients": 8,
+  "methods": 5,
+  "repetitions": 20000,
+  "undefined_Kaggle_R_draws": 20000,
+  "limit": "A reproduced descriptive interval does not confer external or confirmatory validity."
+}
