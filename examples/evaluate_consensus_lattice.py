@@ -10,7 +10,9 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 from pathlib import Path
+import shutil
 import sys
 import time
 
@@ -106,6 +108,10 @@ def run(
         "primary_threshold_mm": 0.5,
         "primary_domain": "paper",
         "render_requested": render,
+        "full_refinement_strength": 0.0,
+        "full_baseline": "B0, existing CLI default without optional point refinement",
+        "full_geometry_seed": 1973,
+        "RGB_cache": "within-case exact selected indices, IDs and supported cells, no approximate reuse",
         "candidate_selection": "supported cells minus twice conflicting constraints, no query scoring",
         "source_sha256": {
             p: digest(ROOT / p)
@@ -167,6 +173,7 @@ def run(
         folder.mkdir(parents=True, exist_ok=True)
         with np.load(bank / case["file"], allow_pickle=False) as z:
             image = z["image"].copy() if render else None
+        full_cache = {}
         for name, topology in topologies.items():
             selected = np.asarray(topology["selected_indices"], int)
             ids = np.asarray(topology["ids"], int).reshape(-1, 2)
@@ -190,20 +197,45 @@ def run(
                 from examples.rectify_denoising_grid import write_geometry_output
 
                 target = folder / name.replace("-cells", "-full")
-                target.mkdir()
+                full_key = hashlib.sha256(
+                    selected.astype(np.int64).tobytes()
+                    + ids.astype(np.int64).tobytes()
+                    + np.asarray(sorted(map(tuple, topology["cells"])), np.int64)
+                    .reshape(-1, 2)
+                    .tobytes()
+                ).hexdigest()
+                shared_from = None
                 try:
-                    report = write_geometry_output(
-                        image, xy, confidence, topology, target, pixels_per_mm=4.0
-                    )
-                    mapping = OurNativeMap(target, report)
-                    full = {}
-                    for domain, q in queries.items():
-                        coords, eligible, footprint = mapping.predict(q["source"])
-                        full[domain] = {
-                            "coords": coords,
-                            "claimed_eligible": eligible,
-                            "native_footprint": footprint,
-                        }
+                    if full_key in full_cache:
+                        previous, report, full = full_cache[full_key]
+                        shutil.copytree(previous, target, copy_function=os.link)
+                        shared_from = previous.name
+                    else:
+                        from examples.compare_rectification_methods import deadline
+
+                        target.mkdir()
+                        cv2.setRNGSeed(1973)
+                        with deadline(180):
+                            report = write_geometry_output(
+                                image,
+                                xy,
+                                confidence,
+                                topology,
+                                target,
+                                pixels_per_mm=4.0,
+                            )
+                            mapping = OurNativeMap(target, report)
+                            full = {}
+                            for domain, q in queries.items():
+                                coords, eligible, footprint = mapping.predict(
+                                    q["source"]
+                                )
+                                full[domain] = {
+                                    "coords": coords,
+                                    "claimed_eligible": eligible,
+                                    "native_footprint": footprint,
+                                }
+                        full_cache[full_key] = (target, report, full)
                 except Exception as exc:
                     from PIL import Image
 
@@ -224,6 +256,7 @@ def run(
                         "method": name.replace("-cells", "-full"),
                         "resampled": report["complete_geometry"]["resampled"],
                         "reason": report["complete_geometry"].get("reason"),
+                        "shared_exact_geometry_from": shared_from,
                     }
                 )
             for method, prediction in variants.items():
