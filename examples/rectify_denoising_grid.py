@@ -21,6 +21,8 @@ from ecg_gpu.digitization.complete_rectifier import fit_complete_map, render_com
 from ecg_gpu.digitization.cell_mesh import CellMap, cell_triangles
 from ecg_gpu.digitization.lattice import organize_lattice
 from ecg_gpu.digitization.cycle_lattice import organize_cycle_lattice
+from ecg_gpu.digitization.consensus_lattice import organize_consensus_lattice
+from ecg_gpu.digitization.page_orientation import infer_text_orientation, rotate_lattice_ids
 from ecg_gpu.digitization.observation import remove_periodic_banding
 from ecg_gpu.digitization.local_cells import locally_supported_cells
 from ecg_gpu.digitization.support import cell_support_summary
@@ -174,7 +176,11 @@ def write_geometry_output(rgb, xy, scores, local, out, *, pixels_per_mm=8., outp
 
 
 def rectify(checkpoint, image, out, device='cpu', pixels_per_mm=8., profile='banding', output_mode='full',
-            refinement_strength=0.):
+            refinement_strength=0., organizer='baseline', page_orientation='none'):
+    if organizer not in ('baseline', 'consensus'):
+        raise ValueError('Unknown lattice organizer')
+    if page_orientation not in ('none', 'text'):
+        raise ValueError('Unknown page orientation method')
     refinement_strength = _refinement_strength(refinement_strength)
     if refinement_strength > 0 and output_mode == 'cells':
         raise ValueError('Soft refinement requires full output mode')
@@ -242,7 +248,15 @@ def rectify(checkpoint, image, out, device='cpu', pixels_per_mm=8., profile='ban
             fallback = 'original pilot, unavailable geometry hint'
     else:
         native = organize_lattice(xy, scores)
-    local = locally_supported_cells(xy, native)
+    if organizer == 'consensus':
+        native = organize_consensus_lattice(xy, scores)
+        local = native
+    else:
+        local = locally_supported_cells(xy, native)
+    orientation = None
+    if page_orientation == 'text':
+        orientation = infer_text_orientation(rgb, artifact_dir=out/'orientation')
+        local = rotate_lattice_ids(local, orientation['quarter_turns_ccw'])
     report = {'model_class': state['model_class'], 'joint_training': state['joint'],
         'checkpoint_sha256': sha256_file(checkpoint), 'input_sha256': sha256_file(image),
         'device': device, 'point_count': len(xy), 'threshold': state['threshold'],
@@ -255,6 +269,14 @@ def rectify(checkpoint, image, out, device='cpu', pixels_per_mm=8., profile='ban
     report.update(detection_profile=profile, point_threshold=point_threshold,
                   background_banding=banding, inference_fallback=fallback,
                   sampled_map_roundtrip_checked=True)
+    if organizer == 'consensus':
+        report.update(lattice_organizer='consensus', semantic_orientation_inferred=False,
+                      lattice_hypotheses=native['hypotheses'],
+                      lattice_selected_hypothesis=native.get('selected_hypothesis'),
+                      lattice_merged_components=native.get('merged_components', 0))
+    if orientation is not None:
+        report.update(page_orientation=orientation,
+                      semantic_orientation_inferred=orientation['semantic_orientation_inferred'])
     report['cell_support'] = cell_support_summary(local)
     np.savez_compressed(out/'points.npz', xy=xy, scores=scores,
                         selected=np.asarray(local['selected_indices']), ids=np.asarray(local['ids']), cells=np.asarray(local['cells']))
@@ -274,6 +296,10 @@ if __name__ == '__main__':
     parser.add_argument('--device', choices=('cpu', 'cuda'), default='cpu')
     parser.add_argument('--pixels-per-mm', type=float, default=8.)
     parser.add_argument('--profile', choices=('baseline', 'threshold-70', 'banding', 'banding-recall', 'geometry-recall'), default='banding')
+    parser.add_argument('--organizer', choices=('baseline', 'consensus'), default='baseline',
+                        help='Experimental relative-ID organizer, no semantic page orientation inference')
+    parser.add_argument('--page-orientation', choices=('none', 'text'), default='none',
+                        help='Optional ECG-text quarter rotation, requires local Tesseract English data')
     parser.add_argument('--output-mode', choices=('full', 'cells'), default='full',
                         help='Full original-RGB frame with separate evidence, or cell-only diagnostic')
     parser.add_argument('--refinement-strength', type=float, default=0.,
