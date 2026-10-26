@@ -1,0 +1,898 @@
+[
+  {
+    "key": "220288-0",
+    "method": "baseline-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "220288-0",
+    "method": "consensus-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "220288-0",
+    "method": "baseline-text-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "220288-0",
+    "method": "consensus-text-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "220288-1",
+    "method": "baseline-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "220288-1",
+    "method": "consensus-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "220288-1",
+    "method": "baseline-text-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "220288-1",
+    "method": "consensus-text-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "consensus-full"
+  },
+  {
+    "key": "220288-2",
+    "method": "baseline-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "220288-2",
+    "method": "consensus-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "220288-2",
+    "method": "baseline-text-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "220288-2",
+    "method": "consensus-text-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "consensus-full"
+  },
+  {
+    "key": "220288-6",
+    "method": "baseline-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "220288-6",
+    "method": "consensus-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "220288-6",
+    "method": "baseline-text-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "220288-6",
+    "method": "consensus-text-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "208777-0",
+    "method": "baseline-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "208777-0",
+    "method": "consensus-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "208777-0",
+    "method": "baseline-text-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "208777-0",
+    "method": "consensus-text-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "208777-1",
+    "method": "baseline-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "208777-1",
+    "method": "consensus-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "208777-1",
+    "method": "baseline-text-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "208777-1",
+    "method": "consensus-text-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "208777-2",
+    "method": "baseline-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "208777-2",
+    "method": "consensus-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "208777-2",
+    "method": "baseline-text-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "208777-2",
+    "method": "consensus-text-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "208777-6",
+    "method": "baseline-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "208777-6",
+    "method": "consensus-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "208777-6",
+    "method": "baseline-text-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "208777-6",
+    "method": "consensus-text-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "206852-0",
+    "method": "baseline-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "206852-0",
+    "method": "consensus-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "206852-0",
+    "method": "baseline-text-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "206852-0",
+    "method": "consensus-text-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "consensus-full"
+  },
+  {
+    "key": "206852-1",
+    "method": "baseline-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "206852-1",
+    "method": "consensus-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "206852-1",
+    "method": "baseline-text-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "206852-1",
+    "method": "consensus-text-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "206852-2",
+    "method": "baseline-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "206852-2",
+    "method": "consensus-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "206852-2",
+    "method": "baseline-text-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "206852-2",
+    "method": "consensus-text-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": "consensus-full"
+  },
+  {
+    "key": "206852-6",
+    "method": "baseline-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "206852-6",
+    "method": "consensus-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "206852-6",
+    "method": "baseline-text-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "206852-6",
+    "method": "consensus-text-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "baseline-text-full"
+  },
+  {
+    "key": "208114-0",
+    "method": "baseline-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "208114-0",
+    "method": "consensus-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "208114-0",
+    "method": "baseline-text-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "208114-0",
+    "method": "consensus-text-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "208114-1",
+    "method": "baseline-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "208114-1",
+    "method": "consensus-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "208114-1",
+    "method": "baseline-text-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "208114-1",
+    "method": "consensus-text-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "208114-2",
+    "method": "baseline-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "208114-2",
+    "method": "consensus-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "208114-2",
+    "method": "baseline-text-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "208114-2",
+    "method": "consensus-text-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "consensus-full"
+  },
+  {
+    "key": "208114-6",
+    "method": "baseline-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "208114-6",
+    "method": "consensus-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "208114-6",
+    "method": "baseline-text-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "208114-6",
+    "method": "consensus-text-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "consensus-full"
+  },
+  {
+    "key": "215864-0",
+    "method": "baseline-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "215864-0",
+    "method": "consensus-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "215864-0",
+    "method": "baseline-text-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "215864-0",
+    "method": "consensus-text-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "215864-1",
+    "method": "baseline-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "215864-1",
+    "method": "consensus-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "215864-1",
+    "method": "baseline-text-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "215864-1",
+    "method": "consensus-text-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "215864-2",
+    "method": "baseline-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "215864-2",
+    "method": "consensus-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "215864-2",
+    "method": "baseline-text-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "215864-2",
+    "method": "consensus-text-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": "consensus-full"
+  },
+  {
+    "key": "215864-6",
+    "method": "baseline-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "215864-6",
+    "method": "consensus-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "215864-6",
+    "method": "baseline-text-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "215864-6",
+    "method": "consensus-text-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": "consensus-full"
+  },
+  {
+    "key": "211723-0",
+    "method": "baseline-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "211723-0",
+    "method": "consensus-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "211723-0",
+    "method": "baseline-text-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "211723-0",
+    "method": "consensus-text-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "211723-1",
+    "method": "baseline-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "211723-1",
+    "method": "consensus-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "211723-1",
+    "method": "baseline-text-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "211723-1",
+    "method": "consensus-text-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "consensus-full"
+  },
+  {
+    "key": "211723-2",
+    "method": "baseline-full",
+    "resampled": false,
+    "reason": "insufficient 2D grid evidence",
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "211723-2",
+    "method": "consensus-full",
+    "resampled": false,
+    "reason": "insufficient 2D grid evidence",
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "211723-2",
+    "method": "baseline-text-full",
+    "resampled": false,
+    "reason": "insufficient 2D grid evidence",
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "211723-2",
+    "method": "consensus-text-full",
+    "resampled": false,
+    "reason": "insufficient 2D grid evidence",
+    "shared_exact_geometry_from": "consensus-full"
+  },
+  {
+    "key": "211723-6",
+    "method": "baseline-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "211723-6",
+    "method": "consensus-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "211723-6",
+    "method": "baseline-text-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "211723-6",
+    "method": "consensus-text-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": "consensus-full"
+  },
+  {
+    "key": "211855-0",
+    "method": "baseline-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "211855-0",
+    "method": "consensus-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "211855-0",
+    "method": "baseline-text-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "211855-0",
+    "method": "consensus-text-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "211855-1",
+    "method": "baseline-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "211855-1",
+    "method": "consensus-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "211855-1",
+    "method": "baseline-text-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "211855-1",
+    "method": "consensus-text-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": "consensus-full"
+  },
+  {
+    "key": "211855-2",
+    "method": "baseline-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "211855-2",
+    "method": "consensus-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "211855-2",
+    "method": "baseline-text-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "211855-2",
+    "method": "consensus-text-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": "consensus-full"
+  },
+  {
+    "key": "211855-6",
+    "method": "baseline-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "211855-6",
+    "method": "consensus-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "211855-6",
+    "method": "baseline-text-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "211855-6",
+    "method": "consensus-text-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "206056-0",
+    "method": "baseline-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "206056-0",
+    "method": "consensus-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "206056-0",
+    "method": "baseline-text-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "206056-0",
+    "method": "consensus-text-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "consensus-full"
+  },
+  {
+    "key": "206056-1",
+    "method": "baseline-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "206056-1",
+    "method": "consensus-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "206056-1",
+    "method": "baseline-text-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "206056-1",
+    "method": "consensus-text-full",
+    "resampled": false,
+    "reason": "no orientation-preserving completion of a grid gap",
+    "shared_exact_geometry_from": "consensus-full"
+  },
+  {
+    "key": "206056-2",
+    "method": "baseline-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "206056-2",
+    "method": "consensus-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "206056-2",
+    "method": "baseline-text-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "206056-2",
+    "method": "consensus-text-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "206056-6",
+    "method": "baseline-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "206056-6",
+    "method": "consensus-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": null
+  },
+  {
+    "key": "206056-6",
+    "method": "baseline-text-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "baseline-full"
+  },
+  {
+    "key": "206056-6",
+    "method": "consensus-text-full",
+    "resampled": true,
+    "reason": null,
+    "shared_exact_geometry_from": "consensus-full"
+  }
+]

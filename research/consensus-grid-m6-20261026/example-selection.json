@@ -1,0 +1,11 @@
+{
+  "scope": "post-hoc illustration, no representative-sample claim",
+  "fixed_example": "220288-0",
+  "largest_gain_among_resampled": "206852-6",
+  "largest_loss_all_cases": "206056-1",
+  "examples": [
+    "220288-0",
+    "206852-6",
+    "206056-1"
+  ]
+}
