@@ -32,6 +32,18 @@ from ecg_gpu.grid_point_learning import decode_grid_points
 from examples.digitization_grid_rectification import grid_remap
 
 
+def _write_rgb_png(rgb, path):
+    """Publish a complete PNG only after checking every decoded RGB value."""
+    path = Path(path)
+    temporary = path.with_name('.'+path.name+'.part.png')
+    Image.fromarray(rgb).save(temporary, format='PNG')
+    with Image.open(temporary) as decoded:
+        decoded.load()
+        if not np.array_equal(np.asarray(decoded), rgb):
+            raise OSError('Saved PNG does not preserve the supplied RGB pixels')
+    temporary.replace(path)
+
+
 def _refinement_strength(value):
     if (isinstance(value, bool) or not isinstance(value, Real)
             or not np.isfinite(value) or not 0 <= value <= 1):
@@ -101,7 +113,7 @@ def write_geometry_output(rgb, xy, scores, local, out, *, pixels_per_mm=8., outp
     ids = np.asarray(local['ids'], int).reshape(-1, 2)
     observed = xy[chosen]
     report = {'output_mode': output_mode, 'source_for_rectification': 'original RGB'}
-    Image.fromarray(rgb).save(out/'original-rgb.png')
+    _write_rgb_png(rgb, out/'original-rgb.png')
     if refinement_strength > 0:
         np.savez_compressed(out/'detected-grid-geometry.npz', xy=observed, scores=scores[chosen],
                             ids=ids, canonical_mm=ids[:, ::-1]*5.,
@@ -120,7 +132,7 @@ def write_geometry_output(rgb, xy, scores, local, out, *, pixels_per_mm=8., outp
             if max(size) <= 4096:
                 warped, support = grid_remap(rgb, xy[chosen], canonical, ids,
                                             tuple(size), allowed_cells=local['cells'])
-                Image.fromarray(warped).save(out/'rectified-original-rgb.png')
+                _write_rgb_png(warped, out/'rectified-original-rgb.png')
                 Image.fromarray(support.astype(np.uint8)*255).save(out/'output-support.png')
                 report.update(status='partial-rectification',
                               supported_output_canvas_fraction=float(support.mean()))
@@ -150,8 +162,8 @@ def write_geometry_output(rgb, xy, scores, local, out, *, pixels_per_mm=8., outp
             evidence[start:start+len(yy)].reshape(-1)[keep] = 3
         details['observed_cell_coordinates_available'] = bool(eligible.any())
     filename = 'rectified-original-rgb.png' if details['resampled'] else 'original-preserved.png'
-    Image.fromarray(warped).save(out/filename)
-    Image.fromarray(warped).save(out/'output-original-rgb.png')
+    _write_rgb_png(warped, out/filename)
+    _write_rgb_png(warped, out/'output-original-rgb.png')
     Image.fromarray(valid.astype(np.uint8)*255).save(out/'sampling-valid.png')
     colors = np.array([[225, 229, 231], [227, 150, 85], [104, 160, 207], [49, 145, 109]], np.uint8)
     Image.fromarray(colors[evidence]).save(out/'geometry-evidence.png')
