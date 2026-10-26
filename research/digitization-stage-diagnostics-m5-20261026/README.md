@@ -77,8 +77,66 @@ The approximation error and support are measured on held-out M3 queries for
 every case. It compares bilinear source sampling with fixed 2x2 output
 quadrature. E6 measures the canonical-page extraction floor. E5/E6 differences
 include capture damage, visibility, sampling and extractor transfer. Fixed
-2x2 sampling is not a universal preservation rule. Conditional signal results
-will be added after the complete scheduled panel finishes.
+2x2 sampling is not a universal preservation rule. The complete panel finished with 96 case/method results, 32 cases and eight patients.
+
+
+
+### Completed conditional waveform measurements
+
+| Input to the common extractor | Printed-time coverage | Conditional RMSE (mV) | Common-support RMSE (mV) |
+| --- | ---: | ---: | ---: |
+| Reference-field warp, bilinear | 62.6199% | 0.49171 | 0.46441 |
+| Reference-field warp, 2x2 quadrature | 62.3915% | 0.49357 | 0.46386 |
+| Regenerated canonical page | 80.9774% | 0.06715 | 0.05812 |
+
+All-case coverage is patient/backend balanced. RMSE is conditional on observed
+printed samples. Common support is the same 58.4927% of printed times in all
+three arms, with defined common-support errors in all 32 cases. The reporting
+script independently verifies the saved reference/time arrays and recounts
+coverage/errors with 2,484 checks.
+
+The 2x2 arm changes coverage by -0.2284 pp, paired descriptive 95% interval
+[-0.6001, +0.0998] pp, and common-support RMSE by -0.00055 mV
+[-0.00271, +0.00201]. This does not support promoting it as a better complete
+signal method on this panel.
+
+Severe failures are retained. For the bilinear arm, 215864-6 has RMSE 6.81044 mV
+at 59.11% coverage, and 206852-2 has RMSE 4.02439 mV at 23.00% coverage.
+The global average must not hide these falsely accepted trace peaks. A post-hoc
+alignment check warps the archived clean target in these two cases and finds
+MAE 0.830 and 1.534 encoded channel levels against the regenerated canonical
+page on full source support. It supports alignment in these two examples,
+without proving every waveform point or establishing a camera model. No
+parameters were tuned from this check.
+
+The reference-field approximation has maximum case p95 error 0.04429 mm on
+the saved geometric queries, and minimum query coverage 94.4580%. It is still
+an approximation of renderer-exported truth, not independent physical metrology.
+All data are synthetic. The E5/E6 comparison combines capture damage,
+visibility, sampling and extractor transfer, so it does not identify any one
+of those causes alone. The missing-aware decoder and fixed crops used here
+are a conditional diagnostic backend, not the original npj end-to-end method.
+
+![Geometry component diagnostics](geometry-diagnostics.svg)
+
+![Conditional waveform diagnostics](signal-diagnostics.svg)
+
+![Fixed waveform example](waveform-example.svg)
+
+## Validation and artifacts
+
+All seven remote CI jobs pass on source commit
+`de801305d261e0126bdf7c4935b55a16e29a7204`, including all three Python/Torch CPU
+matrices, quality, documentation, optional integrations and the authentic
+digitization reference chain. The final result supplement changes tables,
+figures, reporting and documentation, with no inference-driver changes.
+See `validation.json` for the local incomplete broad-checkout attempts and
+original-fixture limitations. No expected binary fixture was regenerated.
+
+The full measurement archive contains raw new coordinate and waveform arrays,
+conditional raster outputs, source provenance and per-case support. Repository
+source is not duplicated in that archive. The self-contained Portuguese report
+is delivered separately. All original measurement banks remain unchanged.
 
 ## Reproduction commands
 

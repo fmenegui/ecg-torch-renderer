@@ -1,0 +1,50 @@
+{
+  "code_commit": "de801305d261e0126bdf7c4935b55a16e29a7204",
+  "github_CI": {
+    "Library_contracts_run": 40408656301,
+    "Digitization_reference_run": 40408656485,
+    "jobs": {
+      "cpu_Python310_Torch260": "success",
+      "cpu_Python312_latestTorch": "success",
+      "cpu_Python313_latestTorch": "success",
+      "quality": "success",
+      "documentation": "success",
+      "optional_integrations": "success",
+      "authentic_digitization_reference": "success"
+    }
+  },
+  "new_analytical_driver_tests": {
+    "tests": 6,
+    "passed": true
+  },
+  "M4_replays": {
+    "independent_geometry_sampling_export_tests": 21,
+    "independent_axis_area_tests": 5,
+    "sampling_export_unit_tests": 19,
+    "identifiability_controls": 16,
+    "passed": true
+  },
+  "strict_E_F_lint": true,
+  "new_geometry_saved_array_recount": {
+    "checks": 1280,
+    "passed": true
+  },
+  "gallery": {
+    "generated_scenarios": 16,
+    "visually_inspected": true
+  },
+  "local_broad_integration": {
+    "initial_attempt": {
+      "tests_run": 473,
+      "errors": 18,
+      "skipped": 25,
+      "causes": "16 missing Shapely dependency errors and 2 unavailable original binary artifacts in reconstructed checkout. Not a passing full run."
+    },
+    "subsequent_attempt": "Shapely installed and original reference ZIP restored with Git blob verification. Broad rerun exited without a unittest summary. Remote CI on complete original checkout passed all jobs.",
+    "original_fixtures_regenerated": false
+  },
+  "scope": "CPU synthetic development diagnostics. No new training or external clinical validation.",
+  "conditional_signal_array_checks": 2484,
+  "conditional_signal_case_method_results": 96,
+  "inference_driver_source_unchanged_since_CI_commit": true
+}
