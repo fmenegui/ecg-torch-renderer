@@ -25,6 +25,12 @@ def summarize(manifest, run, out):
     out.mkdir(parents=True, exist_ok=True)
     cases = {r["image_id"]: r for r in data["cases"]}
     rows = []
+    expected_layout = {
+        "3x4": "standard_3x4",
+        "3x4+1R": "standard_3x4_with_r1",
+        "6x2": "standard_6x2",
+        "12x1": "standard_12x1",
+    }
     for record in report["cases"]:
         case = cases[record["image_id"]]
         with np.load(manifest.parent / case["reference"], allow_pickle=False) as z:
@@ -45,6 +51,10 @@ def summarize(manifest, run, out):
                 "layout": case["reference_layout_scoring_only"],
                 "arm": record["arm"],
                 "status": record["status"],
+                "predicted_layout": record.get("predicted_layout"),
+                "compatible_layout_label": record.get("predicted_layout")
+                == expected_layout[case["reference_layout_scoring_only"]],
+                "layout_fallback": record.get("layout_fallback"),
                 "coverage": e["coverage"],
                 "raw_all_printed_rmse_mv": e["raw_all_printed_zero_missing"]["rmse_mv"],
                 "raw_all_printed_nrmse": e["raw_all_printed_zero_missing"]["rmse_mv"]
@@ -114,6 +124,10 @@ def summarize(manifest, run, out):
                 for p in patient.values()
             ),
             "exceptions": sum(r["status"] == "failed" for r in group),
+            "compatible_layout_labels": sum(
+                r["compatible_layout_label"] for r in group
+            ),
+            "layout_fallbacks": sum(r["layout_fallback"] is True for r in group),
             "empty_returned_images": sum(
                 r["status"] != "failed" and r["coverage"] == 0 for r in group
             ),
@@ -195,6 +209,50 @@ def summarize(manifest, run, out):
             }
         )
     summary["common_support_all_arms"] = common_rows
+    common_patients = {}
+    for patient in patients:
+        group = [r for r in common_rows if r["patient_id"] == patient]
+        common_patients[patient] = {
+            "coverage": float(np.mean([r["coverage"] for r in group])),
+            "raw_rmse_mv": {
+                arm: float(
+                    np.mean(
+                        [
+                            r["raw_rmse_mv"][arm]
+                            for r in group
+                            if r["raw_rmse_mv"][arm] is not None
+                        ]
+                    )
+                )
+                if any(r["raw_rmse_mv"][arm] is not None for r in group)
+                else None
+                for arm in report["arms"]
+            },
+        }
+    summary["common_support_summary"] = {
+        "patient_macro_coverage": float(
+            np.mean([r["coverage"] for r in common_patients.values()])
+        ),
+        "patients_with_common_samples": sum(
+            r["raw_rmse_mv"][report["arms"][0]] is not None
+            for r in common_patients.values()
+        ),
+        "patient_macro_raw_rmse_mv": {
+            arm: float(
+                np.mean(
+                    [
+                        r["raw_rmse_mv"][arm]
+                        for r in common_patients.values()
+                        if r["raw_rmse_mv"][arm] is not None
+                    ]
+                )
+            )
+            if any(r["raw_rmse_mv"][arm] is not None for r in common_patients.values())
+            else None
+            for arm in report["arms"]
+        },
+        "per_patient": common_patients,
+    }
     (out / "summary.json").write_text(
         json.dumps(summary, indent=2, allow_nan=False) + "\n"
     )

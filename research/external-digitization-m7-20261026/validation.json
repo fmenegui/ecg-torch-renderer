@@ -22,7 +22,7 @@
     "skipped": 25,
     "errors": 2,
     "passed": false,
-    "reason": "Two original raster-v021.npz fixture files absent in reconstructed checkout, same original fixture used by two tests. Remote complete checkouts passed.",
+    "reason": "One original raster-v021.npz fixture is absent from the reconstructed checkout, causing two tests to error. The same tests passed on complete remote checkouts.",
     "fixtures_regenerated": false
   },
   "renderer_gallery": {
@@ -52,5 +52,24 @@
     "lead_checks": 96,
     "passed": true
   },
-  "external_run": "in_progress"
+  "external_run": {
+    "status": "completed",
+    "images": 24,
+    "patients": 8,
+    "case_method_results": 72,
+    "exceptions": 0,
+    "independent_recount_checks": 3745,
+    "exact_RGB_cache_replays_verified": 27,
+    "native_forward_calls": 45,
+    "M6_images_actually_resampled": 21,
+    "no_scheduled_failure_dropped": true,
+    "all_frozen_inference_preparation_scoring_hashes_match": true,
+    "checkpoint_hash_matches_protocol": true
+  },
+  "later_code_CI": {
+    "commit": "1bdacaa4a4aea80ad1438bb8b273cf4e8a1924f2",
+    "Library_contracts_run": 40430506373,
+    "Digitization_reference_run": 40430506390,
+    "all_7_jobs_passed": true
+  }
 }

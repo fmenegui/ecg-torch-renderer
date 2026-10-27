@@ -144,3 +144,50 @@ python examples/audit_pm_ecg_sources.py \
 for publication checks decoded input pixels and exact cached prediction parity
 as well. Both modes independently recount coverage, raw errors and the declared
 aligned errors, without importing the evaluator implementation.
+
+## Completed pilot results
+
+All 72 scheduled outcomes completed, with no execution exceptions. This is
+not a claim that all images were correctly digitized. The independent audit
+verified 3745 measurements, all decoded native RGB inputs and 27 exact-RGB
+prediction cache replays. There were 45 actual native forward calls, with the
+same 72 scheduled outcomes retained. M6 resampled 21 images and preserved
+three originals.
+
+| Patient-macro outcome | Published CPU profile | Text + same profile | M6 + same profile |
+| --- | ---: | ---: | ---: |
+| Finite printed-sample coverage | 56.57% | 56.57% | 46.55% |
+| Raw all-printed NRMSE, missing samples score as zero | 1.2153 | 1.2153 | 1.1032 |
+| Leads below 90% coverage | 167 / 288 | 167 / 288 | 196 / 288 |
+| Entirely missing leads | 81 / 288 | 81 / 288 | 125 / 288 |
+| Compatible coarse layout label | 13 / 24 | 13 / 24 | 7 / 24 |
+
+Text orientation was unresolved on all 24 images, so all its predictions were
+exact aliases of the native RGB inputs. This is an abstention result, not
+24 false rotation decisions.
+
+M6 reduced coverage by 10.01 percentage points. The descriptive paired
+patient-bootstrap 95% interval is [-17.24, -3.54] percentage points. Its NRMSE
+delta is -0.1121, interval [-0.2467, -0.0206]. Lower all-printed error alongside
+lower coverage does not establish better reconstruction. Missing samples
+receive a zero scoring penalty, not an inferred waveform.
+
+On the exact common support, covering only 39.39% of printed samples on average
+by patient, raw RMSE was 0.4126 mV for the native path and 0.3642 mV after M6.
+This secondary comparison shows a local benefit and also makes its limited
+coverage explicit. A matching layout label does not prove correct lead identity,
+polarity or timing. These CPU-pilot scores cannot be ranked against paper or
+commercial headline results.
+
+The current M6 configuration remains experimental. The next engineering
+questions are orientation/lead recognition on these fonts, resolution and
+resampling sensitivity, and rejection of transforms that reduce full-pipeline
+coverage. Candidate changes need a separate, uninspected patient cohort.
+
+![Patient-level coverage and NRMSE](patient-comparison.svg)
+
+![Acquisition-condition strata](condition-comparison.svg)
+
+![Largest gain and largest loss with missing samples retained](signal-examples.svg)
+
+Completed deliverables: [self-contained report](https://chatgpt.com/library?file_id=libfile_c6785ff652948191bd9587fd3d6d6bf2&account_id=personal) and [hash-verified waveform measurements](https://chatgpt.com/library?file_id=libfile_98e63e0adad48191879db92d2a8588d5&account_id=personal).

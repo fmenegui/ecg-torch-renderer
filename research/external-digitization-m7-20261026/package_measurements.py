@@ -29,14 +29,23 @@ def package(dataset, run, results, out):
             if path.is_file():
                 files.append((path, "inputs/" + directory + "/" + path.name))
     files += [(dataset / "manifest.json", "inputs/manifest.json")]
+    gpl = Path("/usr/share/common-licenses/GPL-3")
+    if not gpl.is_file():
+        raise FileNotFoundError(
+            "GPL-3 license text required for redistributed PM reference arrays"
+        )
+    files.append((gpl, "LICENSES/PM-ECG-ID-GPL-3.txt"))
     for path in sorted(results.glob("*")):
-        if path.is_file() and path.suffix in (
-            ".json",
-            ".csv",
-            ".md",
-            ".py",
-            ".svg",
-            ".png",
+        if (
+            path.is_file()
+            and path.suffix
+            in (
+                ".json",
+                ".csv",
+                ".svg",
+                ".png",
+            )
+            and path.name != "measurement-archive.json"
         ):
             files.append((path, "summary/" + path.name))
     for name in ("run.log", "full-unittest.log", "prepare-final.log"):
@@ -48,6 +57,8 @@ def package(dataset, run, results, out):
         "patients": source_manifest["patients"],
         "case_method_results": len(report["cases"]),
         "original_photos_included": False,
+        "project_source_code_included": False,
+        "project_code": "https://github.com/fmenegui/ecg-torch-renderer/pull/26",
         "photo_replay": "Download the 24 SHA256-pinned original JPEGs from PM-ECG-ID with prepare_pm_ecg_external.py. Paths in inputs/manifest.json are relative to the acquired dataset root.",
         "reference_license": "PM-ECG-ID, Iring et al., DOI 10.5281/zenodo.13617673, GPL-3.0-or-later",
         "original_WFDB_license": "PTB-XL 1.0.3, CC-BY-4.0",
