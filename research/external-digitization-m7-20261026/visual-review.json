@@ -1,0 +1,21 @@
+{
+  "renderer_gallery": {
+    "scenarios": 16,
+    "visually_inspected": true,
+    "all_twelve_leads_active": true
+  },
+  "external_original_scans": {
+    "initial_scan_contact_reviewed": true,
+    "multipage_excluded": true,
+    "two_overlapping_initial_examples_replaced_before_inference": true
+  },
+  "external_rgb_pair": {
+    "case": "pm-9-photos_scans",
+    "original_and_actual_M6_RGB_inspected": true,
+    "gross_ink_erasure_not_observed_visually": true,
+    "native_predicted_layout": "standard_6x2",
+    "M6_then_native_predicted_layout": "standard_6x1_limb",
+    "interpretation": "Visually similar image/grid does not establish waveform fidelity or successful lead ownership. Resampling and geometry are coupled in this ablation."
+  },
+  "final_signal_figures": "pending completion"
+}

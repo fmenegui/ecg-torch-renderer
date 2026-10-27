@@ -123,3 +123,24 @@ Sources:
   https://github.com/Ahus-AIM/Open-ECG-Digitizer, CC BY-SA 4.0.
 - Demolder et al., Journal of Electrocardiology (2025),
   DOI 10.1016/j.jelectrocard.2025.153900.
+
+The compact measurement archive contains saved waveform arrays, reference
+arrays, original WFDB files, geometry arrays, logs and summary figures. It
+excludes source photographs and reconstructed RGB pages. After extracting it,
+waveform and source-data audits can be replayed without running any network:
+
+```bash
+python examples/audit_external_digitization.py \
+  --manifest /path/to/extracted/inputs/manifest.json \
+  --run /path/to/extracted/run --out /path/to/recount.json --signals-only
+
+python examples/audit_pm_ecg_sources.py \
+  --root /path/to/extracted/inputs \
+  --original-wfdb /path/to/extracted/inputs/original-wfdb \
+  --out /path/to/source-recount.json
+```
+
+`--signals-only` explicitly omits decoded-RGB input checks. The full audit used
+for publication checks decoded input pixels and exact cached prediction parity
+as well. Both modes independently recount coverage, raw errors and the declared
+aligned errors, without importing the evaluator implementation.

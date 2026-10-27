@@ -15,7 +15,7 @@ def digest(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
-def audit(manifest, run, out):
+def audit(manifest, run, out, verify_rgb=True):
     manifest, run = Path(manifest), Path(run)
     data = json.loads(manifest.read_text())
     report = json.loads((run / "report.json").read_text())
@@ -58,18 +58,19 @@ def audit(manifest, run, out):
                 input_path = (
                     arm_root / "rectification" / record["rectification"]["output_image"]
                 )
-            with Image.open(input_path) as image:
-                rgb = np.asarray(image.convert("RGB"))
-            key = (rgb.shape, hashlib.sha256(rgb.tobytes()).hexdigest())
-            assert list(rgb.shape) == record["input_shape"]
-            assert key[1] == record["decoded_rgb_sha256"]
+            key = (tuple(record["input_shape"]), record["decoded_rgb_sha256"])
+            if verify_rgb:
+                with Image.open(input_path) as image:
+                    rgb = np.asarray(image.convert("RGB"))
+                assert tuple(rgb.shape) == key[0]
+                assert hashlib.sha256(rgb.tobytes()).hexdigest() == key[1]
+                checks += 2
             if record["exact_rgb_prediction_cache_hit"]:
                 assert key in decoded_predictions
                 assert np.array_equal(decoded_predictions[key], pred, equal_nan=True)
                 cache_replays += 1
             else:
                 decoded_predictions[key] = pred.copy()
-            checks += 2
         expected = np.isfinite(truth)
         covered = expected & np.isfinite(pred)
         e = record["evaluation"]
@@ -110,6 +111,24 @@ def audit(manifest, run, out):
                     atol=1e-12,
                 )
                 checks += 1
+            aligned = lead["aligned_observed_dc_centered"]
+            if aligned is not None:
+                shift = aligned["shift_samples"]
+                assert abs(shift) <= round(0.1 * e["fs"])
+                indices = np.flatnonzero(expected[i])
+                indices = indices[
+                    (indices + shift >= 0) & (indices + shift < pred.shape[1])
+                ]
+                indices = indices[np.isfinite(pred[i, indices + shift])]
+                assert len(indices) >= np.ceil(0.9 * lead["printed_samples"])
+                xx = truth[i, indices]
+                yy = pred[i, indices + shift]
+                xx = xx - xx.mean()
+                yy = yy - yy.mean()
+                assert np.isclose(
+                    np.sqrt(np.mean((yy - xx) ** 2)), aligned["rmse_mv"], atol=1e-12
+                )
+                checks += 3
             checks += 2
     result = {
         "schema": "external-m7-independent-audit-v1",
@@ -119,6 +138,7 @@ def audit(manifest, run, out):
         "patients": data["patients"],
         "recount_checks": checks,
         "exact_rgb_cache_replays_verified": cache_replays,
+        "decoded_RGB_inputs_checked": verify_rgb,
         "manifest_sha256": digest(manifest),
         "report_sha256": digest(run / "report.json"),
         "scorer_imported": False,
@@ -133,4 +153,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     for name in ("manifest", "run", "out"):
         parser.add_argument("--" + name, type=Path, required=True)
-    audit(**vars(parser.parse_args()))
+    parser.add_argument(
+        "--signals-only",
+        action="store_true",
+        help="Recount the portable waveform archive without original RGB inputs",
+    )
+    args = vars(parser.parse_args())
+    verify_rgb = not args.pop("signals_only")
+    audit(**args, verify_rgb=verify_rgb)
