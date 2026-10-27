@@ -1,0 +1,56 @@
+{
+  "inference_code_commit": "1709fd205ad418617d2ddaef94dbc0d01b609721",
+  "new_analytical_tests": {
+    "tests": 10,
+    "passed": true
+  },
+  "strict_new_file_lint": "E,F with E501 ignored, passed",
+  "remote_integration": {
+    "Library_contracts_run": 40428728373,
+    "Digitization_reference_run": 40428728445,
+    "all_seven_jobs_passed": true,
+    "Python312_full_suite": {
+      "tests": 497,
+      "skipped": 25,
+      "passed": true,
+      "job_id": 121940916866
+    }
+  },
+  "local_full_suite": {
+    "tests": 497,
+    "seconds": 62.154,
+    "skipped": 25,
+    "errors": 2,
+    "passed": false,
+    "reason": "Two original raster-v021.npz fixture files absent in reconstructed checkout, same original fixture used by two tests. Remote complete checkouts passed.",
+    "fixtures_regenerated": false
+  },
+  "renderer_gallery": {
+    "scenarios": 16,
+    "all_12_leads_active": true,
+    "visually_inspected": true
+  },
+  "runtime_versions": {
+    "torch": "2.8.0+cpu",
+    "torchvision": "0.23.0+cpu",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "Pillow": "12.3.0",
+    "scikit-image": "0.26.0",
+    "scikit-learn": "1.8.0",
+    "matplotlib": "3.10.8",
+    "networkx": "3.6.1",
+    "yacs": "0.1.8",
+    "torch-tps": "1.2.2",
+    "ray": "2.59.0",
+    "opencv-python-headless": "4.11.0.86",
+    "tesseract": "tesseract 5.3.4"
+  },
+  "training_this_cycle": false,
+  "GPU_checks": "unavailable, CPU only",
+  "source_data_audit": {
+    "lead_checks": 96,
+    "passed": true
+  },
+  "external_run": "in_progress"
+}
