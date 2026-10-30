@@ -108,6 +108,10 @@
     "cohort_identity_verified": false,
     "metadata_sha256": "f522ad8b8a736bf0caca24acf379dfec9531ce6cd66394422f970c00b7b33047",
     "file_bytes_acquired": false,
-    "license": "CC-BY-ND-4.0 per current dataset metadata"
+    "license": "CC-BY-ND-4.0 per current dataset metadata",
+    "complete_file_inventory": true,
+    "full_file_manifest_sha256": "bef39f1bef067825692a582dde3d11d4b000df923739e6726cfd7f7c03377499",
+    "enumerated_D0_D1_raster_files": 13770,
+    "enumerated_D0_D1_pdf_files": 2954
   }
 }

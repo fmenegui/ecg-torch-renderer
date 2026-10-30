@@ -77,6 +77,12 @@ Keep dataset version 2 fixed. Verify the imaging-variant workbook, original
 image identities, device/page labels and scorer mapping before declaring the
 public release an exact replay of either article cohort. The combined
 35,595-image component includes both D0 PTB-XL and D1 Emory, not D1 alone.
+The completed public file inventory is retained in
+`evidence/public-clinical-file-inventory.json`. Its 22,806 files sum exactly to
+the advertised byte count. D2 contains the expected 1,596 raster images.
+D0/D1 exposes 13,770 raster images and 2,954 PDFs, so it cannot yet be equated
+with the article's 35,595 images. PDF contents and release/subset composition
+need reconciliation. File enumeration alone does not explain that difference.
 
 Read [`npj/README.md`](npj/README.md),
 [`powerful_medical/README.md`](powerful_medical/README.md) and

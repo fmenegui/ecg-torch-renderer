@@ -30,7 +30,7 @@
   "file_bytes_acquired": false,
   "license": "CC-BY-ND-4.0 per current dataset metadata",
   "metadata_access": "Public Kaggle dataset view API, no account credential supplied",
-  "provenance_warning": "Counts and component descriptions are publisher-reported. A complete file inventory and original cohort crosswalk have not yet been validated.",
+  "provenance_warning": "Image/record totals under components are publisher-reported. The complete public file inventory is separately retained and byte totals agree. Original cohort/variant identities and PDF contents remain unverified.",
   "acquisition_entrypoint": "python -m reproductions.fetch_catalog --out build/ecg-image-database-catalog",
   "required_reconciliation": [
     "dataset_description.xlsx imaging-variant and device/page mapping",
@@ -40,5 +40,29 @@
     "native per-lead/device or 2024 challenge scorer and aggregation"
   ],
   "gpu_execution_completed": false,
-  "headline_metrics_reproduced": false
+  "headline_metrics_reproduced": false,
+  "complete_file_inventory": true,
+  "enumerated_files": 22806,
+  "enumerated_byte_sum": 36436614076,
+  "by_source": {
+    "D0": {
+      "files": 13678,
+      "image_files": 9770,
+      "bytes": 22112094858,
+      "records": 977
+    },
+    "D1": {
+      "files": 7000,
+      "image_files": 4000,
+      "bytes": 9094925063,
+      "records": 1000
+    },
+    "D2": {
+      "files": 2128,
+      "image_files": 1596,
+      "bytes": 5229594155,
+      "records": 266
+    }
+  },
+  "original_cohort_crosswalk": "D2 counts agree nominally. D0/D1 enumerates 13,770 raster files and 2,954 PDFs, requiring reconciliation with 35,595 reported images. No exact cohort match is asserted."
 }

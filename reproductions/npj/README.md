@@ -118,10 +118,16 @@ only D1 would not recreate that denominator. The native 2024 scoring protocol
 and the exact original subset/variant crosswalk still need reconciliation.
 Capture-condition targets remain in `../reported-results.json`.
 
-Version 2 metadata was retrieved and a resumable file-inventory acquisition was
-started. Full image/reference acquisition and original-cohort scoring have not
-completed. Data availability is therefore not the current access blocker. See
-`../fetch_catalog.py` and `../evidence/public-clinical-data-release.json`.
+Version 2 file enumeration completed across 115 pages and 22,806 unique files.
+Its byte sum matches the dataset's advertised 36,436,614,076 bytes. D2 has 266
+records and 1,596 raster images. D0/D1 has 13,770 raster images and 2,954 PDFs,
+which does not directly identify the original 35,595-image cohort. The PDF
+contents and public-release/subset mapping require further audit.
+
+Full image/reference acquisition and original-cohort scoring have not
+completed. Public availability supplies a data acquisition route. See
+`../fetch_catalog.py`, `../evidence/public-clinical-data-release.json` and the
+complete enumeration receipt `../evidence/public-clinical-file-inventory.json`.
 
 The local native fixture run returns a `[12,5000]` array in uV. No reference or
 printed-lead mask accompanied that smoke test, so its finite fraction is not a
