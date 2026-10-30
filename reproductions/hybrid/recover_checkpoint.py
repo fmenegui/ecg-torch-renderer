@@ -8,8 +8,6 @@ holds the credential in memory only and can delete only this execution's pod.
 import argparse
 import hashlib
 import json
-from pathlib import Path
-import shlex
 import time
 
 from reproductions.runpod.controller import Controller
@@ -77,10 +75,7 @@ class Recovery(Controller):
             time.sleep(10)
         else:
             raise TimeoutError("Checkpoint recovery did not become SSH-ready")
-        self.scp(Path(__file__).parents[1] / "runpod/watchdog.py", "/tmp/ecg-watchdog.py")
-        armed = self.ssh("python3 /tmp/ecg-watchdog.py --pod-id " + shlex.quote(pod["id"])
-                         + " --deadline " + str(self.ledger["deadline"]), input=self.key + "\n")
-        self.ledger["watchdog"] = json.loads(armed.stdout)
+        self.arm_watchdog()
         self.ledger["status"] = "ready"
         self.save()
 

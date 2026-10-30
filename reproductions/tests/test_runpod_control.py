@@ -1,8 +1,12 @@
 from copy import deepcopy
 import json
 from pathlib import Path
+import subprocess
+import sys
 import tempfile
+import time
 import unittest
+from unittest.mock import patch
 
 from reproductions.runpod.controller import Controller, choice, pod_creation_args, public_ssh_port, validate_ownership, validate_plan
 from reproductions.runpod.admission import first_eligible
@@ -14,6 +18,57 @@ class RunpodControlTests(unittest.TestCase):
         self.gpus = [{"gpuId": "NVIDIA A40", "securePricePerHr": 0.59, "dataCenterAvailability": [{"dataCenterId": "EU-SE-1", "stockStatus": "Medium"}]}]
         self.templates = [{"id": "torch", "imageName": "runpod/pytorch:pinned"}]
         self.datacenters = [{"id": "EU-SE-1", "networkVolumeTypes": ["STANDARD"]}]
+
+    def test_transport_timeout_stops_descendant_side_effects(self):
+        controller = Controller.__new__(Controller)
+        controller.key = 'test-only-dummy-credential'
+        with tempfile.TemporaryDirectory() as directory:
+            marker = Path(directory)/'late-side-effect'
+            child = "from pathlib import Path; import time; time.sleep(1.3); Path(" + repr(str(marker)) + ").write_text('late-action')"
+            code = "import subprocess,sys,time; subprocess.Popen([sys.executable,'-c'," + repr(child) + "]); time.sleep(4)"
+            started = time.monotonic()
+            with self.assertRaises(subprocess.TimeoutExpired):
+                controller.command([sys.executable, '-c', code], timeout=1.)
+            self.assertLess(time.monotonic() - started, 2.)
+            time.sleep(.6)
+            self.assertFalse(marker.exists(), 'A timed-out transport must not leave a descendant performing late actions')
+
+    def test_deadline_guard_is_armed_before_a_failing_source_transfer(self):
+        plan = dict(self.plan, schema='ecg-runpod-pilot-plan-v1', worker_module='reproductions.hybrid.worker',
+                    storage_mode='container_disk', volume_gb=0, container_disk_gb=40)
+        with tempfile.TemporaryDirectory() as directory:
+            controller = Controller.__new__(Controller)
+            controller.root = Path(directory)
+            controller.plan_path = controller.root/'plan.json'
+            controller.plan_path.write_text(json.dumps(plan))
+            controller.ledger = {'name': 'ecg-repro-owned'}
+            controller.key, controller.cli = 'test-only-dummy-credential', 'unused-cli'
+            controller.save = lambda: None
+            controller.rest = lambda method, path: {'dataCenters': self.datacenters}
+            def call(args):
+                if args[0] == 'gpu':
+                    return self.gpus
+                if args[0] == 'template':
+                    return self.templates
+                if args[:2] == ['pod', 'create']:
+                    return {'id': 'owned-pod', 'costPerHr': .59}
+                return []
+            controller.call = call
+            controller.runtime_connection = lambda identity: {'ip': '192.0.2.1', 'port': 22}
+            def command(args, **kwargs):
+                if args[:2] == ['git', 'archive']:
+                    (controller.root/'source.tar.gz').write_bytes(b'independent-source-fixture')
+                return subprocess.CompletedProcess(args, 0, 'fixture-commit', '')
+            controller.command = command
+            controller.ssh = lambda code, **kwargs: subprocess.CompletedProcess([], 0, json.dumps({'watchdog_armed': True}), '')
+            def fail_transfer(*args, **kwargs):
+                self.assertTrue(controller.ledger.get('watchdog', {}).get('watchdog_armed'),
+                                'The pod must be protected before transferring source files')
+                raise RuntimeError('Independent source transfer failure')
+            controller.scp = fail_transfer
+            with patch('reproductions.runpod.controller.Path.home', return_value=controller.root):
+                with self.assertRaisesRegex(RuntimeError, 'Independent source transfer failure'):
+                    controller.provision()
 
     def test_price_and_observed_location_must_both_match(self):
         self.assertEqual(choice(self.plan, self.gpus, self.templates, self.datacenters)["gpu_price_per_hour"], 0.59)

@@ -26,9 +26,10 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument("--cli", required=True)
     p.add_argument("--out", required=True)
+    p.add_argument("--plan", help="Explicit separately bounded continuation of the frozen protocol")
     p.add_argument("action", choices=["provision", "execute", "cleanup", "delete-volume"])
     args = p.parse_args()
-    controller = HybridController(args.cli, args.out, Path(__file__).with_name("plan.json"))
+    controller = HybridController(args.cli, args.out, args.plan or Path(__file__).with_name("plan.json"))
     try:
         if args.action in ["cleanup", "delete-volume"]:
             controller.cleanup(delete_volume=args.action == "delete-volume")

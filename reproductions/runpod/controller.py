@@ -11,6 +11,7 @@ import json
 import os
 from pathlib import Path
 import shlex
+import signal
 import subprocess
 import time
 import urllib.error
@@ -24,9 +25,15 @@ def validate_plan(plan):
     storage = plan.get("storage_mode", "network_volume")
     if storage not in ["network_volume", "container_disk"]:
         raise ValueError("Unknown storage mode")
+    inference_workers = {"reproductions.hybrid.worker", "reproductions.hybrid.worker_completion"}
     if storage == "container_disk" and (full or plan.get("schema") != "ecg-runpod-pilot-plan-v1"
-            or plan.get("worker_module") != "reproductions.hybrid.worker" or plan.get("container_disk_gb") != 40):
+            or plan.get("worker_module") not in inference_workers or plan.get("container_disk_gb") != 40):
         raise ValueError("Ephemeral storage is limited to the bounded hybrid inference pilot")
+    if plan.get("worker_module") == "reproductions.hybrid.worker_completion":
+        prior = plan.get("prior_gpu_time_cost_upper_bound_usd", -1)
+        total = prior + plan["maximum_pod_seconds"] * plan["maximum_gpu_price_per_hour"] / 3600
+        if not .2782 <= prior <= .45 or not 0 < total <= .45 or plan.get("combined_gpu_cost_cap_usd") != .45:
+            raise ValueError("Completion must fit the remaining original GPU envelope")
     maximum = 18000 if full else 1800
     volume = 0 if storage == "container_disk" else (220 if full else 30)
     if not 0 < plan["maximum_pod_seconds"] <= maximum or plan["volume_gb"] != volume:
@@ -106,7 +113,20 @@ class Controller:
         print(json.dumps({k: self.ledger[k] for k in ["name", "pod_id", "volume_id", "status", "deadline", "pod_absent_verified", "volume_absent_verified"] if k in self.ledger}), flush=True)
 
     def command(self, args, timeout=120, check=True, input=None):
-        result = subprocess.run(args, input=input, capture_output=True, text=True, timeout=timeout)
+        process = subprocess.Popen(args, stdin=subprocess.PIPE if input is not None else None,
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, start_new_session=True)
+        try:
+            stdout, stderr = process.communicate(input=input, timeout=timeout)
+        except subprocess.TimeoutExpired:
+            # SCP and CLI helpers can spawn SSH children. A timed-out parent
+            # must not leave them performing operations after cleanup begins.
+            try:
+                os.killpg(process.pid, signal.SIGKILL)
+            except ProcessLookupError:
+                pass
+            process.communicate(timeout=5)
+            raise
+        result = subprocess.CompletedProcess(args, process.returncode, stdout, stderr)
         if check and result.returncode:
             raise RuntimeError(result.stderr.replace(self.key, "[redacted]")[:2000])
         return result
@@ -146,6 +166,14 @@ class Controller:
         remote_path = "root@" + c["ip"] + ":" + remote
         pair = [remote_path, str(local)] if download else [str(local), remote_path]
         self.command(["scp", "-i", self.ledger["private_key"], "-o", "BatchMode=yes", "-o", "StrictHostKeyChecking=accept-new", "-P", str(c["port"]), *pair], timeout=timeout)
+
+    def arm_watchdog(self):
+        source = Path(__file__).with_name("watchdog.py").read_text()
+        command = "python3 -c " + shlex.quote(source) + " --pod-id " + shlex.quote(self.ledger["pod_id"]) + " --deadline " + str(self.ledger["deadline"])
+        armed = self.ssh(command, input=self.key + "\n")
+        self.ledger["watchdog"] = json.loads(armed.stdout)
+        self.ledger["watchdog_source_sha256"] = hashlib.sha256(source.encode()).hexdigest()
+        self.save()
 
     def provision(self):
         plan = json.loads(self.plan_path.read_text())
@@ -220,6 +248,7 @@ class Controller:
             time.sleep(10)
         else:
             raise TimeoutError("Pod did not become SSH-ready within the boot budget")
+        self.arm_watchdog()
         archive = self.root / "source.tar.gz"
         source_paths = plan.get("source_paths", ["reproductions"])
         self.command(["git", "archive", "--format=tar.gz", "-o", str(archive), "HEAD", *source_paths])
@@ -231,8 +260,6 @@ class Controller:
         execution = self.root / "execution.json"
         write_json(execution, {"deadline": self.ledger["deadline"], "plan": plan})
         self.scp(execution, "/workspace/execution.json")
-        armed = self.ssh("python3 /workspace/ecg-code/reproductions/runpod/watchdog.py --pod-id " + shlex.quote(pod["id"]) + " --deadline " + str(self.ledger["deadline"]), input=self.key + "\n")
-        self.ledger["watchdog"] = json.loads(armed.stdout)
         self.ledger["status"] = "ready"
         self.save()
 

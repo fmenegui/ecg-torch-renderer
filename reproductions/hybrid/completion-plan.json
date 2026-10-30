@@ -1,0 +1,27 @@
+{
+  "schema": "ecg-runpod-pilot-plan-v1",
+  "generation": 1,
+  "worker_module": "reproductions.hybrid.worker_completion",
+  "source_paths": [
+    "reproductions",
+    "ecg_gpu",
+    "examples"
+  ],
+  "gpu_candidates": [
+    "NVIDIA A40",
+    "NVIDIA L4"
+  ],
+  "gpu_id": "NVIDIA A40",
+  "minimum_gpu_memory_gb": 24,
+  "maximum_gpu_price_per_hour": 0.6,
+  "template_id": "runpod-torch-v280",
+  "storage_mode": "container_disk",
+  "volume_gb": 0,
+  "checkpoint_artifact_run_id": 41105577589,
+  "container_disk_gb": 40,
+  "maximum_pod_seconds": 1020,
+  "checkpoint_recovery_maximum_seconds": 900,
+  "combined_gpu_cost_cap_usd": 0.45,
+  "purpose": "Complete only deadline-skipped inference from frozen run 41106791069. Same original models, caller axes, native 3000 pixels, sealed eligibility and policy. Original run and all failures remain intact. No reference enters the worker.",
+  "prior_gpu_time_cost_upper_bound_usd": 0.2782
+}

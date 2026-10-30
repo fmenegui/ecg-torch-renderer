@@ -131,6 +131,16 @@ available for a faithful repeat. This is not a durable training configuration.
 
 The grid branch now retains initial/final detections, confidence, relative IDs,
 selected points, supported cells and complete meshes in `geometry-observations.npz`.
+
+Run `41106791069` completed the primary frozen GPU pilot. One image exceeded
+the inference deadline and the six eligible Kaggle images had insufficient
+remaining batch time. The original measurements and failures are preserved in
+`research/hybrid-digitizer-20261030/prospective`. The separately admitted
+`hybrid-completion-runpod.yml` executes only these pending stages, using
+`completion-inputs.json`, the same weights and policy, and a 1020-second maximum.
+Its planned GPU-time cost plus a conservative bound for the previous two owned
+pods stays below the original USD 0.45 envelope. This is a completion after
+primary-result inspection, not another independent cohort or a tuned model.
 A rejection keeps the available observations and the last attempted stage.
 The new `RectifiedNpjBackend` and `LandscapeRectifiedNpjBackend` are separately
 named development controls. They do not replace the frozen pilot's native
