@@ -66,6 +66,10 @@ def infer_images(image_only, data, out, backend, rectifier, specialist_batch, po
         direct_seconds = time.perf_counter() - started
         write_json(folder / "direct-metadata.json", direct.metadata)
         candidate, evidence, geometry_error = None, None, None
+        # A deadline may prevent __call__, which normally resets these fields.
+        # Never attach a previous image's geometry to a skipped candidate.
+        rectifier.last_report = None
+        rectifier.last_observations = {}
         started = time.perf_counter()
         with contextlib.redirect_stdout(log):
             try:

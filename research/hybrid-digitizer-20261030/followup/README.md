@@ -121,6 +121,27 @@ abrupta antes da cópia pode perder resultados parciais. Esse modo não é permi
 para treinamento e não altera a execução de treinamento já ativa. Os três novos
 contratos de armazenamento elevam os testes de reprodução para 72.
 
+## Isolamento das observações entre imagens
+
+Um controle adversarial encerra o prazo logo depois da primeira imagem. Ele
+reproduziu uma falha no worker: se a próxima retificação não chegasse a começar,
+o recibo podia conter observações da imagem anterior. O worker agora limpa o
+relatório e os arrays antes de verificar o prazo da candidata. O teste falhou
+antes da correção e passou depois. São 73 testes de reprodução passando com o
+código original disponível. Predições e política de seleção não foram alteradas.
+
+O ensaio GPU já iniciado conserva seu commit congelado, anterior a essa correção
+de recibos. Seus resultados serão auditados por ID de origem. Uma eventual
+observação de outra imagem não será usada como evidência geométrica da imagem
+atual, e o recibo original será preservado. O controle está registrado em
+`timeout-geometry-regression.json`.
+
+A CLI completa também foi executada com pesos reais, CPU e resolução de 1500
+pixels em `pm-9-photos_scans`, uma imagem já conhecida. A candidata ganhou 456
+amostras finitas, mas perdeu 375 da leitura direta e foi rejeitada. O resultado
+direto foi conservado. Esse é um teste de integração, sem comparação de precisão
+com referência. Seu recibo é `known-image-cli-smoke.json`.
+
 Os números completos, os intervalos descritivos por paciente e os protocolos
 estão nos arquivos JSON desta pasta. Os novos scripts são
 `examples/hybrid_downstream_study.py`, `examples/summarize_downstream_controls.py`

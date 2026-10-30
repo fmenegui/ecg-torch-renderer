@@ -6,6 +6,7 @@ from pathlib import Path
 import tempfile
 import time
 import unittest
+from unittest.mock import patch
 
 import numpy as np
 from PIL import Image
@@ -46,6 +47,48 @@ class RecoveryTests(unittest.TestCase):
 
 
 class BlindedPipelineTests(unittest.TestCase):
+    def test_timeout_before_rectification_cannot_export_previous_image_observations(self):
+        clock = [1790000000.]
+        deadline = clock[0] + 1000
+        values = np.tile(np.sin(np.arange(5000) / 31), (12, 1))
+
+        class Backend:
+            def predict(self, image, *, fs, samples, source_id):
+                return SignalProposal(values, fs, source_id, "12x1")
+
+        class Rectifier:
+            last_report = None
+            last_observations = {}
+
+            def __call__(self, image, *, source_id):
+                self.last_report = {"original_source_id": source_id, "status": "rectified"}
+                self.last_observations = {"observed_xy": np.array([[7., 9.]])}
+                clock[0] = deadline + 1
+                return image, None
+
+        def no_specialist(*args):
+            raise AssertionError("Ineligible layout must not invoke the specialist")
+
+        with tempfile.TemporaryDirectory() as directory:
+            root, cases = Path(directory), []
+            for name, color in [("first", 129), ("expired", 130)]:
+                image = root / (name + ".png")
+                Image.fromarray(np.full((32, 48, 3), color, np.uint8)).save(image)
+                cases.append({"image_id": name, "image": image.name,
+                              "image_sha256": hashlib.sha256(image.read_bytes()).hexdigest()})
+            with patch("reproductions.hybrid.worker.time.time", side_effect=lambda: clock[0]):
+                report = infer_images(cases, root, root / "run", Backend(), Rectifier(), no_specialist,
+                                      SelectionPolicy(), deadline)
+            self.assertEqual(len(report["cases"]), 8)
+            self.assertTrue((root / "run/first/geometry-observations.npz").is_file())
+            self.assertFalse((root / "run/expired/geometry-observations.npz").exists())
+            expired = json.loads((root / "run/expired/geometry.json").read_text())
+            self.assertIsNone(expired["report"])
+            self.assertNotIn("observations", expired)
+            self.assertIn("TimeoutError", expired["error"])
+            with np.load(root / "run/expired/grid_adaptive.npz", allow_pickle=False) as z:
+                self.assertTrue(np.isnan(z["values_mv"]).all())
+
     def test_reference_fields_cannot_enter_the_inference_boundary(self):
         for extra in ["reference", "true_layout", "printed_mask", "reference_waveforms"]:
             with self.assertRaises(ValueError):
