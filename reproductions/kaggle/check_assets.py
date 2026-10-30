@@ -24,6 +24,10 @@ def main():
             raise ValueError("Asset digest mismatch")
     sys.path.insert(0, str(root / "heng"))
     sys.path.insert(0, str(root / "second"))
+    helpers = []
+    for module in ["stage0_common", "stage1_common", "stage2_common"]:
+        importlib.import_module(module)
+        helpers.append({"module": module, "status": "imported_original_helper"})
     records = []
     targets = [
         ("heng/weight/stage0-last.checkpoint.pth", "stage0_model", {"pretrained": False}),
@@ -49,7 +53,7 @@ def main():
         except Exception as error:
             row.update(status="failed", error_type=type(error).__name__, error=str(error))
         records.append(row)
-        write_json(args.out, {"schema": "kaggle-native-checkpoint-audit-v1", "environment": environment(), "assets_lock_sha256": sha256(root / "assets.lock.json"), "native_inference_completed": False, "records": records})
+        write_json(args.out, {"schema": "kaggle-native-checkpoint-audit-v1", "environment": environment(), "assets_lock_sha256": sha256(root / "assets.lock.json"), "native_inference_completed": False, "original_helpers": helpers, "records": records})
     if any(r["status"] != "strict_load_passed" for r in records):
         raise SystemExit(2)
 

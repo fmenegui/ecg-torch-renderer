@@ -31,8 +31,22 @@ shutil.rmtree(OUT_DIR)
         tree = ast.parse(result)
         self.assertNotIn("rmtree", result)
         self.assertIn("/tmp/retained", result)
-        self.assertEqual(len([x for x in tree.body if isinstance(x, ast.FunctionDef)]), 4)
+        native = {x.name: ast.dump(x, include_attributes=False) for x in ast.parse(code).body if isinstance(x, ast.FunctionDef)}
+        transformed = {x.name: ast.dump(x, include_attributes=False) for x in tree.body if isinstance(x, ast.FunctionDef)}
+        for name, definition in native.items():
+            self.assertEqual(transformed[name], definition)
         self.assertEqual(len(receipt["notebook_source_sha256"]), 64)
+
+    def test_serial_stages_preserve_previous_native_failures(self):
+        source = "A = run_stage0_parallel()\nB = run_stage1_parallel(prev_fail_ids=A)\nC = run_stage2_parallel(prev_fail_ids=B)\nshutil.rmtree(OUT_DIR)\n"
+        code, _ = adapt(document(source), {})
+        definitions = [x for x in ast.parse(code).body if isinstance(x, ast.FunctionDef) and x.name.startswith("_ecg_serial_")]
+        namespace = {"run_stage0": lambda: ["stage0-failure"], "run_stage1": lambda prev_fail_ids: ["stage1-failure"], "run_stage2": lambda prev_fail_ids: []}
+        exec(compile(ast.Module(body=definitions, type_ignores=[]), "serial-failure-control", "exec"), namespace)
+        a = namespace["_ecg_serial_run_stage0"]()
+        b = namespace["_ecg_serial_run_stage1"](prev_fail_ids=a)
+        c = namespace["_ecg_serial_run_stage2"](prev_fail_ids=b)
+        self.assertEqual(c, ["stage1-failure", "stage0-failure"])
 
     def test_new_notebook_version_is_rejected(self):
         with self.assertRaises(ValueError):

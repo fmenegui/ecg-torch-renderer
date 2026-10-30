@@ -26,6 +26,7 @@ def main():
     parser.add_argument("--layout-hint", help="Native public filename hint, never a scoring reference")
     parser.add_argument("--segmentation-checkpoint", help="Explicit retrained main-network ablation")
     parser.add_argument("--lead-checkpoint", help="Explicit retrained lead-name-network ablation")
+    parser.add_argument("--target-num-samples", type=int, help="Explicit public sampling metadata override, native preset is retained by default")
     args = parser.parse_args()
     upstream = Path(args.upstream).resolve()
     source = verify_source(upstream, COMMIT)
@@ -41,7 +42,7 @@ def main():
     from src.model.inference_wrapper import InferenceWrapper
     torch.set_num_threads(args.threads)
     torch.manual_seed(1973)
-    config = inference_config(upstream, args.preset, args.device)
+    config = inference_config(upstream, args.preset, args.device, args.target_num_samples)
     components = config["MODEL"]["KWARGS"]["config"]
     if args.segmentation_checkpoint:
         components["SEGMENTATION_MODEL"]["weight_path"] = str(Path(args.segmentation_checkpoint).resolve())
@@ -80,7 +81,7 @@ def main():
             row.update(status="exception", error_type=type(error).__name__, error=str(error))
         row["seconds_including_native_forward"] = time.perf_counter() - start
         results.append(row)
-        write_json(out / "receipt.json", {"schema": "npj-native-inference-v1", "source": source, "environment": environment(), "preset": args.preset, "layout_hint": args.layout_hint, "active_weight_sha256": active_weights, "retrained_weight_ablation": bool(args.segmentation_checkpoint or args.lead_checkpoint), "output_unit": "uV", "results": results, "scheduled_images": len(args.image), "paper_cohort_reproduction_completed": False})
+        write_json(out / "receipt.json", {"schema": "npj-native-inference-v1", "source": source, "environment": environment(), "preset": args.preset, "layout_hint": args.layout_hint, "public_output_sample_count_override": args.target_num_samples, "active_weight_sha256": active_weights, "retrained_weight_ablation": bool(args.segmentation_checkpoint or args.lead_checkpoint), "output_unit": "uV", "results": results, "scheduled_images": len(args.image), "paper_cohort_reproduction_completed": False})
     if any(r["status"] == "exception" for r in results):
         raise SystemExit(2)
 

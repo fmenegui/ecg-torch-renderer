@@ -145,7 +145,7 @@ def main():
             np.random.set_state(state["numpy_rng"])
             torch.set_rng_state(state["torch_rng"].cpu())
             if args.device.startswith("cuda"):
-                torch.cuda.set_rng_state_all(state["cuda_rng"])
+                torch.cuda.set_rng_state_all([item.cpu() for item in state["cuda_rng"]])
             start_epoch, best = state["completed_epochs"], state["best_validation_loss"]
         receipt["train_images"] = len(train_loader.dataset)
         receipt["validation_images"] = len(val_loader.dataset)

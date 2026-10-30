@@ -1,0 +1,17 @@
+import ok!!!
+valid_id: 1
+	 ['D0_000022_02'] ...
+setting ok!!!
+
+*** STARTING STAGE0 ***
+THIS_DIR: /workspace/kaggle-assets/heng
+Traceback (most recent call last):
+  File "/workspace/outputs/kaggle-d0/adapted-native-submission.py", line 52, in <module>
+    from stage0_common import *
+  File "/workspace/kaggle-assets/heng/stage0_common.py", line 122, in <module>
+    gridpoint0001_xy = np.load(f'{THIS_DIR}/640106434-0001.gridpoint_xy.npy')
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ecg-reproduction/lib/python3.12/site-packages/numpy/lib/_npyio_impl.py", line 454, in load
+    fid = stack.enter_context(open(os.fspath(file), "rb"))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/kaggle-assets/heng/640106434-0001.gridpoint_xy.npy'

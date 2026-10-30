@@ -24,12 +24,14 @@ FILES = {
 }
 
 
-def fetch(root):
+def fetch(root, include_ahus=True):
     root = Path(root)
     raw = root / "raw"
     raw.mkdir(parents=True, exist_ok=True)
     rows = []
     for source, size in FILES.items():
+        if not include_ahus and source.startswith("D2/"):
+            continue
         path = raw / Path(source).name
         if not path.exists():
             url = "https://www.kaggle.com/api/v1/datasets/download/physionet/ecg-image-database/" + urllib.parse.quote(source, safe="") + "?datasetVersionNumber=2"
@@ -51,7 +53,7 @@ def fetch(root):
     return raw
 
 
-def prepare(root):
+def prepare(root, include_ahus=True):
     import numpy as np
     import pandas as pd
     # WFDB 4.3.0 builds annotation tables with ndarray string indexers at import.
@@ -59,10 +61,12 @@ def prepare(root):
     with pd.option_context("future.infer_string", False):
         import wfdb
     root = Path(root)
-    raw = fetch(root)
+    raw = fetch(root, include_ahus)
     (root / "gold").mkdir(exist_ok=True)
     groups = {"d0": [], "limb": [], "precordial": []}
     for record in ["D0_000022", "D2_000001"]:
+        if not include_ahus and record.startswith("D2"):
+            continue
         reference = wfdb.rdrecord(str(raw / record))
         order = [reference.sig_name.index(next(n for n in reference.sig_name if n.upper() == lead.upper())) for lead in LEADS]
         if any(reference.units[i] != "mV" for i in order) or reference.sig_len != 5000:

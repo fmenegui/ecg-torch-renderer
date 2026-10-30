@@ -32,7 +32,7 @@ def training_config(upstream, profile, train_dir=None, validation_dir=None, devi
     return config
 
 
-def inference_config(upstream, preset, device):
+def inference_config(upstream, preset, device, target_num_samples=None):
     import yaml
     if preset not in ["ahus", "george-moody-2024", "generic"]:
         raise ValueError("Use a named native preset")
@@ -47,4 +47,8 @@ def inference_config(upstream, preset, device):
         for key in ["weight_path", "config_path", "unet_config_path", "unet_weight_path"]:
             if key in node:
                 node[key] = str(upstream / node[key])
+    if target_num_samples is not None:
+        if not isinstance(target_num_samples, int) or target_num_samples <= 0:
+            raise ValueError("An explicit positive public output sample count is required")
+        components["LAYOUT_IDENTIFIER"]["KWARGS"]["target_num_samples"] = target_num_samples
     return config

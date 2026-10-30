@@ -59,7 +59,7 @@ class ReplayTransform(ast.NodeTransformer):
         if isinstance(node.func, ast.Name) and node.func.id in ["run_stage0_parallel", "run_stage1_parallel", "run_stage2_parallel"]:
             name = node.func.id.replace("_parallel", "")
             self.serial_replacements.append(name)
-            return ast.copy_location(ast.Call(func=ast.Name(id=name, ctx=ast.Load()), args=[], keywords=node.keywords), node)
+            return ast.copy_location(ast.Call(func=ast.Name(id="_ecg_serial_" + name, ctx=ast.Load()), args=[], keywords=node.keywords), node)
         if isinstance(node.func, ast.Attribute) and isinstance(node.func.value, ast.Name):
             if node.func.value.id == "shutil" and node.func.attr == "rmtree":
                 if len(node.args) != 1 or not isinstance(node.args[0], ast.Name) or node.args[0].id != "OUT_DIR":
@@ -90,8 +90,14 @@ def _verified_load_state_dict(self, state_dict, strict=True, assign=False):
         raise RuntimeError('Native checkpoint architecture mismatch: ' + str(result))
     return result
 torch.nn.Module.load_state_dict = _verified_load_state_dict
+def _ecg_serial_run_stage0(**kwargs):
+    return run_stage0(**kwargs)
+def _ecg_serial_run_stage1(prev_fail_ids=None, **kwargs):
+    return run_stage1(prev_fail_ids=prev_fail_ids, **kwargs) + list(prev_fail_ids or [])
+def _ecg_serial_run_stage2(prev_fail_ids=None, **kwargs):
+    return run_stage2(prev_fail_ids=prev_fail_ids, **kwargs) + list(prev_fail_ids or [])
 """
-    return preamble + ast.unparse(tree) + "\n", {"notebook_source_sha256": source_hash, "adaptations": ["mount path substitution", "serial GPU-0 execution of native stages", "retain native intermediate outputs", "headless diagnostic plotting", "refuse missing or unexpected native checkpoint keys"]}
+    return preamble + ast.unparse(tree) + "\n", {"notebook_source_sha256": source_hash, "adaptations": ["mount path substitution", "serial GPU-0 execution of native stages preserving accumulated failure IDs", "retain native intermediate outputs", "headless diagnostic plotting", "refuse missing or unexpected native checkpoint keys"]}
 
 
 def main():

@@ -1,0 +1,22 @@
+{
+  "schema": "runpod-gpu-pilot-context-v1",
+  "source_commit": "615466d61fe005a091dc295dc4bcc055b1b5acaf",
+  "workflow_url": "https://github.com/fmenegui/ecg-torch-renderer/actions/runs/41064387591",
+  "artifact_id": 12981513609,
+  "artifact_sha256": "67d1119b16bece0bd8666a8a998b9cc66726370ad06f6f30564827279443df31",
+  "gpu": "NVIDIA L4",
+  "gpu_hourly_usd": 0.59,
+  "published_weight_inference_completed": true,
+  "reduced_gpu_training_both_networks_completed": true,
+  "full_training_completed": false,
+  "kaggle_failure": "Original helper imports a fixed reference-grid NPY omitted from the first asset manifest. Native GPU waveform inference did not run in this attempt.",
+  "d0_evaluation_failure": "The original George Moody preset returns 10,000 samples. The public WFDB reference is 5,000 samples at 500 Hz. No implicit resampling was applied. This is an incompatible assessment time grid, not zero numeric source output.",
+  "cleanup_verified": {
+    "pod_id": "6mwiw1chqb7zfm",
+    "pod_absent": true,
+    "network_volume_id": "15s2v1m2jv",
+    "network_volume_absent": true,
+    "source": "completed Actions job 124092518594 cleanup log"
+  },
+  "paper_or_leaderboard_reproduction_completed": false
+}

@@ -16,4 +16,5 @@ export OMP_NUM_THREADS=2
 export MKL_NUM_THREADS=2
 export MPLBACKEND=Agg
 export HF_HOME=/workspace/hf-cache
-/opt/ecg-reproduction/bin/python -u -m reproductions.runpod.worker --workspace /workspace
+worker_module=$(/opt/ecg-reproduction/bin/python -c "import json; print(json.load(open('reproductions/runpod/plan.json')).get('worker_module', 'reproductions.runpod.worker'))")
+/opt/ecg-reproduction/bin/python -u -m "$worker_module" --workspace /workspace

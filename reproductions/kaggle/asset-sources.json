@@ -101,6 +101,12 @@
       "url": "https://www.kaggle.com/api/v1/datasets/download/takashisomeya/physionet-final-submission-models/series_v2_l_conv2d_lb22.85.pth?datasetVersionNumber=2",
       "size": 517698748,
       "sha256": "5d604c80f855cd0dd671bfb318b2b3bd35b133e3e4b3c770f2656f2d37c7ab6a"
+    },
+    {
+      "path": "heng/640106434-0001.gridpoint_xy.npy",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hengck23/hengck23-demo-submit-physionet/640106434-0001.gridpoint_xy.npy?datasetVersionNumber=3",
+      "size": 40256,
+      "sha256": "e695f580bd0de4df2fe2e2ba8c89809af819127b2e5936c2716830f421cef4ad"
     }
   ]
 }

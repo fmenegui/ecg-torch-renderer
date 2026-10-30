@@ -23,6 +23,7 @@
     "second/series_b6_shared_conv2d_lb23.10.pth": "528f14903b404dd50184a7e0475cae9c315c87c3778d7bbd406f0cd1b553d953",
     "second/series_b6_shared_conv2d_lb23.00.pth": "c1a8aa211374c379817374d8fe0709c44cd6afecaa4a0f98968c84781535c6ba",
     "second/series_v2_l_conv3d_lb22.92.pth": "bc4531572f4e70e13d6f150ce256eb7a1e41810bbfd6943ff53964cf920ce737",
-    "second/series_v2_l_conv2d_lb22.85.pth": "5d604c80f855cd0dd671bfb318b2b3bd35b133e3e4b3c770f2656f2d37c7ab6a"
+    "second/series_v2_l_conv2d_lb22.85.pth": "5d604c80f855cd0dd671bfb318b2b3bd35b133e3e4b3c770f2656f2d37c7ab6a",
+    "heng/640106434-0001.gridpoint_xy.npy": "e695f580bd0de4df2fe2e2ba8c89809af819127b2e5936c2716830f421cef4ad"
   }
 }

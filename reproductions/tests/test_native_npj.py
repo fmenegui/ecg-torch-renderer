@@ -34,6 +34,14 @@ class NativeNpjTests(unittest.TestCase):
             self.assertFalse(cfg["MODEL"]["KWARGS"]["apply_dewarping"])
             self.assertEqual(cfg["MODEL"]["KWARGS"]["resample_size"], 3000)
 
+    def test_public_sampling_override_does_not_change_native_default(self):
+        default = inference_config(UPSTREAM, "george-moody-2024", "cpu")
+        adapted = inference_config(UPSTREAM, "george-moody-2024", "cpu", 5000)
+        self.assertEqual(default["MODEL"]["KWARGS"]["config"]["LAYOUT_IDENTIFIER"]["KWARGS"]["target_num_samples"], 10000)
+        self.assertEqual(adapted["MODEL"]["KWARGS"]["config"]["LAYOUT_IDENTIFIER"]["KWARGS"]["target_num_samples"], 5000)
+        with self.assertRaises(ValueError):
+            inference_config(UPSTREAM, "george-moody-2024", "cpu", 0)
+
     def test_inner_optimizer_resume_matches_uninterrupted(self):
         import torch
         from src.optimizer.adammuon import AdamMuon
