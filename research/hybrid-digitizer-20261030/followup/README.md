@@ -85,3 +85,7 @@ Os números completos, os intervalos descritivos por paciente e os protocolos
 estão nos arquivos JSON desta pasta. Os novos scripts são
 `examples/hybrid_downstream_study.py`, `examples/summarize_downstream_controls.py`
 e `examples/audit_digitizer_time_axis.py`.
+
+O banco completo desta continuação tem 275 arquivos, com sinais, referências,
+decisões, diagnósticos e logs. Sua identidade está em
+[`measurement-archive.json`](measurement-archive.json).

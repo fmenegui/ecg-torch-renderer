@@ -2,7 +2,7 @@
 
 import unittest
 
-from reproductions.hybrid.retire_pending import pending_candidates
+from reproductions.hybrid.retire_pending import force_cancel_eligible, pending_candidates
 
 
 class PendingPilotRetirementTests(unittest.TestCase):
@@ -23,6 +23,14 @@ class PendingPilotRetirementTests(unittest.TestCase):
     def test_original_training_is_never_touched_even_when_it_is_active(self):
         runs = [self.run_record(1, name="Full original ECG training", status="in_progress")]
         self.assertEqual(pending_candidates(runs, 10, "current", "research/hybrid-digitizer-test"), [])
+
+    def test_forced_retirement_is_impossible_after_any_job_or_for_an_active_or_other_workflow(self):
+        branch = "research/hybrid-digitizer-test"
+        run = self.run_record(1)
+        self.assertTrue(force_cancel_eligible(run, [], branch))
+        self.assertFalse(force_cancel_eligible(run, [{"name": "admit"}], branch))
+        self.assertFalse(force_cancel_eligible(dict(run, status="in_progress"), [], branch))
+        self.assertFalse(force_cancel_eligible(dict(run, name="Full original ECG training"), [], branch))
 
 
 if __name__ == "__main__":
