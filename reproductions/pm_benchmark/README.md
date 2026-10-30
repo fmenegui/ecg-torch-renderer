@@ -8,7 +8,7 @@ reference, not the corresponding clean waveform.
 
 ## Rebuild the complete reference catalog
 
-Use the hash-pinned environment in `reproductions/requirements.txt`. Prepare
+Use the pinned environment in `reproductions/requirements-common.txt`. Prepare
 the public ZIP index, metadata and signal banks with
 `examples.prepare_pm_ecg_external`. Do not download the entire image archive
 onto a host without sufficient disk space. Image acquisition supports CRC
@@ -35,6 +35,19 @@ scoring. A single-page layout's time offsets cannot be assumed for a
 multi-page print. `contracts.join_pages` accepts only predicted lead ownership
 and sample coordinates. It abstains on conflicting samples and never fills
 missing samples with zero or averages overlapping pages.
+
+Source-window examples, used for scoring only:
+
+| Public format | Pages | Original time windows verified from source waveforms |
+| --- | ---: | --- |
+| 3x4 | 4 | All 12 leads span the complete 10 seconds |
+| 3x4 | 2 | Groups I/II/III and V1/V2/V3 start at 0 s, other groups at 5 s, with 5 s per short lead |
+| 6x2 | 2 | All 12 leads span the complete 10 seconds |
+| 6x2 | 1 | First six leads start at 0 s, last six at 5 s, with 5 s per short lead |
+| 3x4+1R | 1 | Four groups of three short leads start at 0, 2.5, 5 and 7.5 s, plus a 10 s rhythm lead |
+
+These are verified examples, not reference metadata supplied to a digitizer.
+The generated catalog stores the individual result for every original record.
 
 `training-exclusions.json` excludes all 97 benchmark patients, including their
 other recordings and every synthetic rendering. Use
@@ -80,7 +93,38 @@ summary, source hashes, CPU bit-exact integration receipt and experiment
 results. The catalog marks image acquisition separately from reference
 completeness. It does not imply that all 6,600 images have been evaluated.
 
+The complete reference bank, original WFDB sources, metadata, ZIP member index
+and CPU control are available in the
+[reference bundle](https://chatgpt.com/library?file_id=libfile_4180411680e48191abe9bba1466f21b9&account_id=personal).
+Its outer SHA256 is
+`b3bf69af5aee92969ae065ce168cd07e5b1d65d69f2963502ad50539352951df`.
+The bundle includes 915 files and does not contain all image bytes or the
+subsequent GPU experiment. Its README is the pre-upload snapshot.
+
+Post-seal evaluation verifies the frozen page schedule, image identities,
+prediction hashes, sample rates and reference hashes before scoring:
+
+```bash
+python -m reproductions.pm_benchmark.score_clock \
+  --catalog /data/pm-complete \
+  --saved /data/physical-clock/outputs \
+  --catalog-sha256 CATALOG_SHA256_FROM_RECORDED_SUMMARY \
+  --out /data/physical-clock/scored.json
+```
+
+All 12 exams and all 22 pages remain scheduled, including complete failures.
+The report includes patient-macro error and support decomposition, as well as
+condition and page-count strata. It fits no time shift or amplitude scale.
+Any internally DC-centered, zero-shift diagnostics are secondary to the raw
+physical-axis measurements.
+
 The author-specific alignment and failure protocol is not fully reproduced.
 Raw physical-axis scores and support audits must be reported before any
 secondary alignment diagnostic. No result here establishes superiority to
 PMcardio, Kaggle winners or the original npj method.
+
+The first GPU attempt, Actions run 41133083365, passed CPU admission but Runpod
+rejected pod creation with HTTP 402 because account balance was too low. It
+produced no new GPU predictions. After the account permits allocation, rerun
+the failed benchmark job 124330441527 with the same immutable plan. Do not
+change the cohort or manufacture an accuracy report from CPU controls.

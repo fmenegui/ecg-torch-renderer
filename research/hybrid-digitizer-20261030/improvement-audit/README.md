@@ -1,5 +1,10 @@
 # Auditoria de melhorias para um digitalizador de ECG de uso geral
 
+Continuação implementada: [integração temporal física e catálogo completo do PM-ECG-ID](../physical-clock/README.md).
+Essa etapa inclui controles novos e a tentativa de GPU bloqueada por saldo
+insuficiente do Runpod. Os resultados históricos desta auditoria permanecem
+preservados.
+
 Revisão de 30/10/2026. Objetivo: reduzir erro de sinal e falhas em ECGs reais, preservando as derivações, a calibração e os trechos observados. Liderança precisa ser demonstrada em avaliações comparáveis e independentes. Resultados em outro banco, scores de classificação e métricas de qualidade visual não estabelecem essa liderança.
 
 Esta revisão questiona a métrica, a composição dos modelos, nossas hipóteses geométricas e o critério de seleção. Não representa uma nova validação externa. As 24 imagens cujos resultados já foram abertos passam a servir ao desenvolvimento. Nenhuma predição original foi alterada nesta auditoria.

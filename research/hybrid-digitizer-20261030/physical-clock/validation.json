@@ -7,11 +7,11 @@
     "log_sha256": "1f63266e0fed6d37090f80885a1b463c08cd119f76ebb16482997f97053d3fd3"
   },
   "reproduction_tests": {
-    "run": 96,
+    "run": 101,
     "skipped": 0,
     "passed": true,
     "pinned_original_source_enabled": true,
-    "log_sha256": "29c92ec989a45d3af5775b2397c4775c7449993603ed61fff293998752a7811b"
+    "log_sha256": "5c08d9ae6429fdeadd596fa524c3b9c8fea942abd4d8815d7f439e7b5f1c3400"
   },
   "ruff_changed_code_passed": true,
   "adverse_gallery": {
@@ -20,6 +20,8 @@
     "visually_inspected": true,
     "contact_sheet_sha256": "95ab8b8f4c055b6329151874b9751b8b1b4ded2986239ec84955dc288b72b93f"
   },
-  "gpu_clock_integration_status": "not_yet_executed",
-  "candidate_superiority_established": false
+  "gpu_clock_integration_status": "blocked_before_allocation_runpod_account_balance_http_402",
+  "candidate_superiority_established": false,
+  "ruff_repository_code_E_F_passed": true,
+  "read_only_training_status_check": "pending"
 }

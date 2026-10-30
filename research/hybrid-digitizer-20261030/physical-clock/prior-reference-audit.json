@@ -1,0 +1,153 @@
+{
+  "schema": "prior-pm-cohort-reference-audit-v1",
+  "cases": [
+    {
+      "image_id": "pm-6-photos_scans",
+      "bit_exact": true,
+      "support_equal": true,
+      "maximum_common_difference_mv": 0.0
+    },
+    {
+      "image_id": "pm-6-photos_samsung",
+      "bit_exact": true,
+      "support_equal": true,
+      "maximum_common_difference_mv": 0.0
+    },
+    {
+      "image_id": "pm-6-photos_bents",
+      "bit_exact": true,
+      "support_equal": true,
+      "maximum_common_difference_mv": 0.0
+    },
+    {
+      "image_id": "pm-25-photos_scans",
+      "bit_exact": true,
+      "support_equal": true,
+      "maximum_common_difference_mv": 0.0
+    },
+    {
+      "image_id": "pm-25-photos_samsung",
+      "bit_exact": true,
+      "support_equal": true,
+      "maximum_common_difference_mv": 0.0
+    },
+    {
+      "image_id": "pm-25-photos_bents",
+      "bit_exact": true,
+      "support_equal": true,
+      "maximum_common_difference_mv": 0.0
+    },
+    {
+      "image_id": "pm-27-photos_scans",
+      "bit_exact": true,
+      "support_equal": true,
+      "maximum_common_difference_mv": 0.0
+    },
+    {
+      "image_id": "pm-27-photos_samsung",
+      "bit_exact": true,
+      "support_equal": true,
+      "maximum_common_difference_mv": 0.0
+    },
+    {
+      "image_id": "pm-27-photos_bents",
+      "bit_exact": true,
+      "support_equal": true,
+      "maximum_common_difference_mv": 0.0
+    },
+    {
+      "image_id": "pm-46-photos_scans",
+      "bit_exact": true,
+      "support_equal": true,
+      "maximum_common_difference_mv": 0.0
+    },
+    {
+      "image_id": "pm-46-photos_samsung",
+      "bit_exact": true,
+      "support_equal": true,
+      "maximum_common_difference_mv": 0.0
+    },
+    {
+      "image_id": "pm-46-photos_bents",
+      "bit_exact": true,
+      "support_equal": true,
+      "maximum_common_difference_mv": 0.0
+    },
+    {
+      "image_id": "pm-56-photos_scans",
+      "bit_exact": true,
+      "support_equal": true,
+      "maximum_common_difference_mv": 0.0
+    },
+    {
+      "image_id": "pm-56-photos_samsung",
+      "bit_exact": true,
+      "support_equal": true,
+      "maximum_common_difference_mv": 0.0
+    },
+    {
+      "image_id": "pm-56-photos_bents",
+      "bit_exact": true,
+      "support_equal": true,
+      "maximum_common_difference_mv": 0.0
+    },
+    {
+      "image_id": "pm-58-photos_scans",
+      "bit_exact": true,
+      "support_equal": true,
+      "maximum_common_difference_mv": 0.0
+    },
+    {
+      "image_id": "pm-58-photos_samsung",
+      "bit_exact": true,
+      "support_equal": true,
+      "maximum_common_difference_mv": 0.0
+    },
+    {
+      "image_id": "pm-58-photos_bents",
+      "bit_exact": true,
+      "support_equal": true,
+      "maximum_common_difference_mv": 0.0
+    },
+    {
+      "image_id": "pm-80-photos_scans",
+      "bit_exact": true,
+      "support_equal": true,
+      "maximum_common_difference_mv": 0.0
+    },
+    {
+      "image_id": "pm-80-photos_samsung",
+      "bit_exact": true,
+      "support_equal": true,
+      "maximum_common_difference_mv": 0.0
+    },
+    {
+      "image_id": "pm-80-photos_bents",
+      "bit_exact": true,
+      "support_equal": true,
+      "maximum_common_difference_mv": 0.0
+    },
+    {
+      "image_id": "pm-99-photos_scans",
+      "bit_exact": true,
+      "support_equal": true,
+      "maximum_common_difference_mv": 0.0
+    },
+    {
+      "image_id": "pm-99-photos_samsung",
+      "bit_exact": true,
+      "support_equal": true,
+      "maximum_common_difference_mv": 0.0
+    },
+    {
+      "image_id": "pm-99-photos_bents",
+      "bit_exact": true,
+      "support_equal": true,
+      "maximum_common_difference_mv": 0.0
+    }
+  ],
+  "prior_manifest_sha256": "d4af2217478fb7ea2cdf03c4474b988e9102607edeb98fafd34f9d5dee44b7ba",
+  "complete_catalog_sha256": "8be4c2305a6d2efeeab19def58cf4ee170e7acd54954941bdf40504ed555d1f4",
+  "prior_reference_hashes_verified": true,
+  "all_24_waveform_arrays_and_printed_support_bit_exact": true
+}
