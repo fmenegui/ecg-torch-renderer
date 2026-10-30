@@ -1,0 +1,127 @@
+{
+  "schema": "reported-comparison-targets-v1",
+  "all_numbers_are": "author_reported_not_reproduced",
+  "benchmarks": [
+    {
+      "id": "npj_ahus_scanner",
+      "source": "10.1038/s41746-025-02327-1 Table 1",
+      "method_profile": "npj_original_ahus",
+      "dataset": "Ahus-paper-digitization",
+      "cohort": "266-ECGs-1596-images-original-two-page-six-lead-device-strata",
+      "metric_protocol": "native-per-lead-max-SNR-shift-plusminus100ms-independent-DC",
+      "aggregation": "author-per-lead-device-mean",
+      "unit": "uV",
+      "stratum": "scanner",
+      "metrics": {
+        "snr_db": 19.65,
+        "rmse_uv": 19.3,
+        "pcc": 0.987
+      },
+      "reproduced": false
+    },
+    {
+      "id": "npj_ahus_oneplus",
+      "source": "10.1038/s41746-025-02327-1 Table 1",
+      "method_profile": "npj_original_ahus",
+      "dataset": "Ahus-paper-digitization",
+      "cohort": "266-ECGs-1596-images-original-two-page-six-lead-device-strata",
+      "metric_protocol": "native-per-lead-max-SNR-shift-plusminus100ms-independent-DC",
+      "aggregation": "author-per-lead-device-mean",
+      "unit": "uV",
+      "stratum": "oneplus",
+      "metrics": {
+        "snr_db": 12.19,
+        "rmse_uv": 42.8,
+        "pcc": 0.947
+      },
+      "reproduced": false
+    },
+    {
+      "id": "npj_ahus_iphone",
+      "source": "10.1038/s41746-025-02327-1 Table 1",
+      "method_profile": "npj_original_ahus",
+      "dataset": "Ahus-paper-digitization",
+      "cohort": "266-ECGs-1596-images-original-two-page-six-lead-device-strata",
+      "metric_protocol": "native-per-lead-max-SNR-shift-plusminus100ms-independent-DC",
+      "aggregation": "author-per-lead-device-mean",
+      "unit": "uV",
+      "stratum": "iphone",
+      "metrics": {
+        "snr_db": 10.47,
+        "rmse_uv": 51.3,
+        "pcc": 0.935
+      },
+      "reproduced": false
+    },
+    {
+      "id": "npj_emory",
+      "source": "10.1038/s41746-025-02327-1 Table 2",
+      "method_profile": "npj_original_george_moody_2024",
+      "dataset": "Emory-paper-digitization",
+      "cohort": "35595-original-images",
+      "metric_protocol": "original-2024-challenge-shifted-SNR",
+      "aggregation": "author-condition-aggregation",
+      "unit": "dB",
+      "metrics": {
+        "colour_scan_clean": 7.34,
+        "colour_scan_deteriorated": 1.82,
+        "bw_scan_clean": 7.24,
+        "bw_scan_deteriorated": 1.73,
+        "phone_clean": 1.05,
+        "phone_stained": 2.03,
+        "phone_deteriorated": 1.59,
+        "screenshot_clean": 2.11
+      },
+      "reproduced": false
+    },
+    {
+      "id": "pm_full_pipeline",
+      "source": "10.1016/j.jelectrocard.2025.153900 published abstract",
+      "method_profile": "commercial-Dotter-Gridder-Leader-full",
+      "dataset": "PM-ECG-ID-v1",
+      "cohort": "100-records-6000-condition-images-with-multipage-semantics",
+      "metric_protocol": "author-alignment-and-failure-definition-needs-full-reconciliation",
+      "aggregation": "author-lead-and-condition",
+      "unit": "mV",
+      "metrics": {
+        "pcc_reported_lower_bound": 0.91,
+        "snr_db_reported_lower_bound": 12.5,
+        "rmse_mv_reported_upper_bound": 0.1,
+        "failure_rate_percent": 6.62,
+        "runtime_seconds_reported_upper_bound": 7
+      },
+      "comparison_gate": "Dotter/Gridder component controls do not reproduce full waveform metrics",
+      "reproduced": false
+    },
+    {
+      "id": "kaggle_second_final_six",
+      "source": "official second-place writeup, Results",
+      "method_profile": "kaggle-second-final_six",
+      "dataset": "Kaggle-PhysioNet-2025-2026",
+      "cohort": "original-public-and-private-leaderboard-cohorts",
+      "metric_protocol": "official-2025-ECG-signal-extraction-score",
+      "aggregation": "log10-of-image-mean-capped-power-ratio",
+      "unit": "dB",
+      "metrics": {
+        "public_db": 23.37,
+        "private_db": 23.27
+      },
+      "reproduced": false
+    },
+    {
+      "id": "kaggle_second_single_whole_b7",
+      "source": "official second-place writeup, Results",
+      "method_profile": "kaggle-second-single_whole_b7",
+      "dataset": "Kaggle-PhysioNet-2025-2026",
+      "cohort": "original-public-and-private-leaderboard-cohorts",
+      "metric_protocol": "official-2025-ECG-signal-extraction-score",
+      "aggregation": "log10-of-image-mean-capped-power-ratio",
+      "unit": "dB",
+      "metrics": {
+        "public_db": 22.93,
+        "private_db": 22.65
+      },
+      "reproduced": false
+    }
+  ]
+}

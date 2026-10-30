@@ -1,0 +1,75 @@
+{
+  "schema": "ecg-reproduction-sources-v1",
+  "reviewed_on": "2026-10-30",
+  "base_repository_commit": "6a4e0cbc011234e31592a9ba79f45e09187389b2",
+  "repositories": {
+    "npj": {
+      "url": "https://github.com/Ahus-AIM/Open-ECG-Digitizer.git",
+      "commit": "97a15087d4abcda843da8c58ee74b1d8f47e6f9a"
+    },
+    "kaggle_second": {
+      "url": "https://github.com/someya-takashi/physionet-image-digitization.git",
+      "commit": "9a7ce35b6cb80529c3555efdee434bbbf76a9baf"
+    },
+    "kaggle_third_review_only": {
+      "url": "https://github.com/tanghaozhe/physionet-ecg-image-digitization-3rd-place.git",
+      "commit": "f2b4ac2823007e3fb387a7e188e748ad832bb2b7"
+    }
+  },
+  "papers": [
+    {
+      "id": "npj",
+      "doi": "10.1038/s41746-025-02327-1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12891466/",
+      "fulltext_xml_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12891466/fullTextXML",
+      "xml_sha256": "c2e92623d9f6ade7548865aab2f675f485da33ddaa4ee2dfb68f05d28b1eea01"
+    },
+    {
+      "id": "pm_published",
+      "doi": "10.1016/j.jelectrocard.2025.153900",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0022073625000287"
+    },
+    {
+      "id": "pm_preprint",
+      "doi": "10.1101/2024.08.31.24312876",
+      "url": "https://www.medrxiv.org/content/10.1101/2024.08.31.24312876v1.full",
+      "direct_fetch_status": "HTTP_403",
+      "mechanism_text_access": "primary indexed full text retrieved by search, published abstract independently read"
+    }
+  ],
+  "patents": [
+    {
+      "publication": "US20240144417A1",
+      "url": "https://patents.google.com/patent/US20240144417A1/en"
+    },
+    {
+      "publication": "US12614244B2",
+      "url": "https://patents.google.com/patent/US12614244B2/en"
+    }
+  ],
+  "npj_data": {
+    "repository": "Ahus-AIM/Open-ECG-Digitizer-Development-Dataset",
+    "url": "https://huggingface.co/datasets/Ahus-AIM/Open-ECG-Digitizer-Development-Dataset",
+    "train_rows": 4112,
+    "validation_rows": 217,
+    "views_per_row": 2,
+    "total_image_mask_pairs": 8658,
+    "advertised_download_bytes": 75032904415,
+    "patient_independence": "not_established_from_public_row_identifiers",
+    "clinical_cohort": "article states availability upon reasonable request, not acquired in this execution"
+  },
+  "kaggle_notebook": {
+    "kernel": "takashisomeya/physionet-2nd-place-submission",
+    "version": 6,
+    "notebook_source_sha256": "f77d7d7b3a7afea6acc3973993568cd1efdcaafe94ee0377c4afcaac7ff68ccb",
+    "assets_dataset": "takashisomeya/physionet-final-submission-models",
+    "assets_version": 2,
+    "heng_assets_version": 3
+  },
+  "licences": {
+    "npj_code": "CC-BY-SA-4.0 as supplied by upstream",
+    "npj_development_data": "Apache-2.0 per dataset card",
+    "pm_ecg_id": "GPL-3.0-or-later per publisher metadata",
+    "external_source_and_weight_redistribution": "not included in this change, fetched into ignored working directories"
+  }
+}

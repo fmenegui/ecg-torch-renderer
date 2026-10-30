@@ -1,0 +1,48 @@
+{
+  "schema": "top5-selection-v1",
+  "selected_rank": 2,
+  "selected_method": "Takashi Someya Submission A, six waveform models plus Heng stages",
+  "initial_ablation": "one Whole B7 model, distinctly labeled and never called the final six-model method",
+  "reported_single_b7_private_db": 22.65,
+  "reported_final_public_db": 23.37,
+  "reported_final_private_db": 23.27,
+  "choice_is": "engineering judgment from public implementation availability and complexity",
+  "robustness_on_common_external_cohort": "not_yet_measured",
+  "candidates": [
+    {
+      "rank": 1,
+      "url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/writeups/1st-place-solution",
+      "official_writeup_markdown_sha256": "0c1d714d8f61d0b814e1351b17f21a3c8eb51a5504bc7cf37472dc27a2c4553c"
+    },
+    {
+      "rank": 2,
+      "url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/writeups/2nd-place-solution",
+      "official_writeup_markdown_sha256": "8b0c100a4ab0bd2f18bfb93cb7777261a900d78293202b2aa8884d5aa26fb20a"
+    },
+    {
+      "rank": 3,
+      "url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/writeups/3rd-place-solution",
+      "official_writeup_markdown_sha256": "6dd785da2e7872b9bf5584274765ff690f3e69a84c67b2d21f7b08c4271f735c",
+      "actual_notebook_version": 15,
+      "active_waveform_checkpoints": 15
+    },
+    {
+      "rank": 4,
+      "url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/writeups/4th-place-solution",
+      "official_writeup_markdown_sha256": "af387f6bcfe7f7756c041e4a668ddf3dd76a6b019919401018cd7966a6e43ca9"
+    },
+    {
+      "rank": 5,
+      "url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/writeups/5th-place-solution",
+      "official_writeup_markdown_sha256": "28cf8fbe6df8dac13be074c21e81af4b1d6833192e2b32f9cb6194c0f30a2fc1"
+    }
+  ],
+  "comparison_notes": {
+    "1": "ten-model ensemble, complete training release not identified in consulted writeup",
+    "2": "six-model final A, single-model ablation and training/inference available, refactor parity warning retained",
+    "3": "original final notebook has fifteen waveform checkpoints, public GitHub train.py selects only one configuration by default",
+    "4": "separate annotation, FCMAE and five-fold grid/index plus waveform pipelines",
+    "5": "nine learned components in the final path including five keypoint folds, orientation and three waveform models, pseudo-label registration pipeline"
+  },
+  "why_not_claim_simplest_proven": "No common runtime/robustness experiment has yet established a universal ordering."
+}

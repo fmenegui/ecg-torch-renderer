@@ -1,0 +1,106 @@
+{
+  "schema": "kaggle-second-asset-sources-v1",
+  "dataset_versions": {
+    "heng": 3,
+    "second": 2
+  },
+  "notebook_source_sha256": "f77d7d7b3a7afea6acc3973993568cd1efdcaafe94ee0377c4afcaac7ff68ccb",
+  "files": [
+    {
+      "path": "heng/stage0_common.py",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hengck23/hengck23-demo-submit-physionet/stage0_common.py?datasetVersionNumber=3",
+      "size": 7741,
+      "sha256": "b34cf950fc0173c0154466a846db5835ff27aa8540e4e4490eca5f0b1a66fbd2"
+    },
+    {
+      "path": "heng/stage0_model.py",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hengck23/hengck23-demo-submit-physionet/stage0_model.py?datasetVersionNumber=3",
+      "size": 6151,
+      "sha256": "0cf35589870cd2a83d440ed3bbc5e503378509086c9023fc05a0d4181a327432"
+    },
+    {
+      "path": "heng/stage1_common.py",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hengck23/hengck23-demo-submit-physionet/stage1_common.py?datasetVersionNumber=3",
+      "size": 13933,
+      "sha256": "f2af444fe85214848eda47dc0d2ac115cbc52170baf8899a7cb2156d3bceee71"
+    },
+    {
+      "path": "heng/stage1_model.py",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hengck23/hengck23-demo-submit-physionet/stage1_model.py?datasetVersionNumber=3",
+      "size": 7448,
+      "sha256": "5dbbc2d6338329bf5a5357fbb909bc76df0bf9cb1430002e8c16bd27a894b42b"
+    },
+    {
+      "path": "heng/stage2_common.py",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hengck23/hengck23-demo-submit-physionet/stage2_common.py?datasetVersionNumber=3",
+      "size": 4022,
+      "sha256": "37387f214020362e1b63ed5712ef13eb0b251efc1f85680af6c95b32ecc5d7f0"
+    },
+    {
+      "path": "heng/stage2_model.py",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hengck23/hengck23-demo-submit-physionet/stage2_model.py?datasetVersionNumber=3",
+      "size": 10873,
+      "sha256": "6bd8f4cc2027ca15901d409b08aa8137f9c02841b70e2e3e367afa1f1abfb0f7"
+    },
+    {
+      "path": "second/stage2_lead_model.py",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/takashisomeya/physionet-final-submission-models/stage2_lead_model.py?datasetVersionNumber=2",
+      "size": 24861,
+      "sha256": "87c61c5fcde1aca212caf5387bcfa80f68c420746b753c8b4458ff5968f736fe"
+    },
+    {
+      "path": "second/stage2_smp_model.py",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/takashisomeya/physionet-final-submission-models/stage2_smp_model.py?datasetVersionNumber=2",
+      "size": 23483,
+      "sha256": "6a9c671c0ef87ff097d934aafc9f6dcbac72972702e085ed8280a23c395ebfd8"
+    },
+    {
+      "path": "heng/weight/stage0-last.checkpoint.pth",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hengck23/hengck23-demo-submit-physionet/weight%2Fstage0-last.checkpoint.pth?datasetVersionNumber=3",
+      "size": 57420817,
+      "sha256": "b7360dfce9c49305b54272cf242e93e5728823f439a8e5ad59c03b073988cfc9"
+    },
+    {
+      "path": "heng/weight/stage1-last.checkpoint.pth",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hengck23/hengck23-demo-submit-physionet/weight%2Fstage1-last.checkpoint.pth?datasetVersionNumber=3",
+      "size": 97834657,
+      "sha256": "313f1e5dafdc212977e4586ce118453866830be0fa32664e36054f7f4568a46a"
+    },
+    {
+      "path": "second/whole_b7_lb22.93.pth",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/takashisomeya/physionet-final-submission-models/whole_b7_lb22.93.pth?datasetVersionNumber=2",
+      "size": 263469234,
+      "sha256": "339e36b0e2d5c031b40118c329ae206ca2932785e1f1f1fce7137197153ecc11"
+    },
+    {
+      "path": "second/whole_v2_l_lb22.60.pth",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/takashisomeya/physionet-final-submission-models/whole_v2_l_lb22.60.pth?datasetVersionNumber=2",
+      "size": 481613406,
+      "sha256": "80bc0b3290bc2d6bad06ea7274c1bd85a2aa13f679a6faf903f7c42a7b17d4b0"
+    },
+    {
+      "path": "second/series_b6_shared_conv2d_lb23.10.pth",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/takashisomeya/physionet-final-submission-models/series_b6_shared_conv2d_lb23.10.pth?datasetVersionNumber=2",
+      "size": 198932554,
+      "sha256": "528f14903b404dd50184a7e0475cae9c315c87c3778d7bbd406f0cd1b553d953"
+    },
+    {
+      "path": "second/series_b6_shared_conv2d_lb23.00.pth",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/takashisomeya/physionet-final-submission-models/series_b6_shared_conv2d_lb23.00.pth?datasetVersionNumber=2",
+      "size": 198932554,
+      "sha256": "c1a8aa211374c379817374d8fe0709c44cd6afecaa4a0f98968c84781535c6ba"
+    },
+    {
+      "path": "second/series_v2_l_conv3d_lb22.92.pth",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/takashisomeya/physionet-final-submission-models/series_v2_l_conv3d_lb22.92.pth?datasetVersionNumber=2",
+      "size": 583879004,
+      "sha256": "bc4531572f4e70e13d6f150ce256eb7a1e41810bbfd6943ff53964cf920ce737"
+    },
+    {
+      "path": "second/series_v2_l_conv2d_lb22.85.pth",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/takashisomeya/physionet-final-submission-models/series_v2_l_conv2d_lb22.85.pth?datasetVersionNumber=2",
+      "size": 517698748,
+      "sha256": "5d604c80f855cd0dd671bfb318b2b3bd35b133e3e4b3c770f2656f2d37c7ab6a"
+    }
+  ]
+}

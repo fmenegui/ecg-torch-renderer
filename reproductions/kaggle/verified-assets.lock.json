@@ -1,0 +1,28 @@
+{
+  "schema": "kaggle-second-assets-v1",
+  "method": "kaggle-second-final-six",
+  "notebook_source_sha256": "f77d7d7b3a7afea6acc3973993568cd1efdcaafe94ee0377c4afcaac7ff68ccb",
+  "dataset_versions": {
+    "heng": 3,
+    "second": 2
+  },
+  "first_digests_captured_this_invocation": true,
+  "files": {
+    "heng/stage0_common.py": "b34cf950fc0173c0154466a846db5835ff27aa8540e4e4490eca5f0b1a66fbd2",
+    "heng/stage0_model.py": "0cf35589870cd2a83d440ed3bbc5e503378509086c9023fc05a0d4181a327432",
+    "heng/stage1_common.py": "f2af444fe85214848eda47dc0d2ac115cbc52170baf8899a7cb2156d3bceee71",
+    "heng/stage1_model.py": "5dbbc2d6338329bf5a5357fbb909bc76df0bf9cb1430002e8c16bd27a894b42b",
+    "heng/stage2_common.py": "37387f214020362e1b63ed5712ef13eb0b251efc1f85680af6c95b32ecc5d7f0",
+    "heng/stage2_model.py": "6bd8f4cc2027ca15901d409b08aa8137f9c02841b70e2e3e367afa1f1abfb0f7",
+    "second/stage2_lead_model.py": "87c61c5fcde1aca212caf5387bcfa80f68c420746b753c8b4458ff5968f736fe",
+    "second/stage2_smp_model.py": "6a9c671c0ef87ff097d934aafc9f6dcbac72972702e085ed8280a23c395ebfd8",
+    "heng/weight/stage0-last.checkpoint.pth": "b7360dfce9c49305b54272cf242e93e5728823f439a8e5ad59c03b073988cfc9",
+    "heng/weight/stage1-last.checkpoint.pth": "313f1e5dafdc212977e4586ce118453866830be0fa32664e36054f7f4568a46a",
+    "second/whole_b7_lb22.93.pth": "339e36b0e2d5c031b40118c329ae206ca2932785e1f1f1fce7137197153ecc11",
+    "second/whole_v2_l_lb22.60.pth": "80bc0b3290bc2d6bad06ea7274c1bd85a2aa13f679a6faf903f7c42a7b17d4b0",
+    "second/series_b6_shared_conv2d_lb23.10.pth": "528f14903b404dd50184a7e0475cae9c315c87c3778d7bbd406f0cd1b553d953",
+    "second/series_b6_shared_conv2d_lb23.00.pth": "c1a8aa211374c379817374d8fe0709c44cd6afecaa4a0f98968c84781535c6ba",
+    "second/series_v2_l_conv3d_lb22.92.pth": "bc4531572f4e70e13d6f150ce256eb7a1e41810bbfd6943ff53964cf920ce737",
+    "second/series_v2_l_conv2d_lb22.85.pth": "5d604c80f855cd0dd671bfb318b2b3bd35b133e3e4b3c770f2656f2d37c7ab6a"
+  }
+}
