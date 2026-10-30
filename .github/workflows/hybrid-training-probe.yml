@@ -1,0 +1,27 @@
+name: Read owned ECG training telemetry
+on:
+  push:
+    branches: ['research/hybrid-digitizer-*']
+    paths:
+      - '.github/workflows/hybrid-training-probe.yml'
+      - 'reproductions/runpod/training_probe.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  read:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Read the exact owned pod, schema-discovered telemetry and boot logs
+        env:
+          RUNPOD_API_KEY: ${{ secrets.RUNPOD_API }}
+        run: python -m reproductions.runpod.training_probe --out build/training-probe.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: owned-training-probe
+          path: build/training-probe.json
