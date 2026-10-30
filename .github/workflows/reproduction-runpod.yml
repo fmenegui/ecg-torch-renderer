@@ -1,0 +1,39 @@
+name: Runpod ECG execution
+on:
+  push:
+    branches: ['research/reproduce-ecg-methods-from-zero-*']
+    paths:
+      - '.github/workflows/reproduction-runpod.yml'
+      - 'reproductions/runpod/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ecg-reproduction-runpod-control
+  cancel-in-progress: false
+jobs:
+  catalog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install verified Runpod CLI 3.0.1
+        run: |
+          curl --fail --location --silent --show-error https://github.com/runpod/runpodctl/releases/download/v3.0.1/runpodctl-linux-amd64 --output /tmp/runpodctl
+          echo 'b66d11eca8cacbf18a2de6943c6e18a79ffbdc8a3c30aa13a49dc6cfc15d4239  /tmp/runpodctl' | sha256sum --check
+          chmod 755 /tmp/runpodctl
+          /tmp/runpodctl version
+      - name: Read authenticated stock, price and image catalogs
+        env:
+          RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY || secrets.RUNPOD_API || secrets.RUNPOD_KEY || secrets.RUNPOD_API_TOKEN || secrets.RUNPOD_TOKEN || secrets.RUNPOD || secrets.RUNPOD_APIKEY || secrets.API_RUNPOD || secrets.API_KEY_RUNPOD || vars.RUNPOD_API_KEY || vars.RUNPOD_API || vars.RUNPOD_KEY || vars.RUNPOD_TOKEN || vars.RUNPOD }}
+        run: python -m reproductions.runpod.catalog --cli /tmp/runpodctl --out build/runpod-catalog
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: runpod-live-catalog
+          path: build/runpod-catalog

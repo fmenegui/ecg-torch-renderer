@@ -41,7 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     env:
-      RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY }}
+      RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY || secrets.RUNPOD_API || secrets.RUNPOD_KEY || secrets.RUNPOD_API_TOKEN || secrets.RUNPOD_TOKEN || secrets.RUNPOD || secrets.RUNPOD_APIKEY || secrets.API_RUNPOD || secrets.API_KEY_RUNPOD || vars.RUNPOD_API_KEY || vars.RUNPOD_API || vars.RUNPOD_KEY || vars.RUNPOD_TOKEN || vars.RUNPOD }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
