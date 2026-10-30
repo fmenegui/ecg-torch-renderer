@@ -1,0 +1,73 @@
+name: Read exact owned hybrid pilot status
+on:
+  push:
+    branches: ['research/hybrid-digitizer-*']
+    paths: ['.github/workflows/hybrid-pilot-observe.yml']
+permissions:
+  contents: read
+jobs:
+  observe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Read only the exact pilot name and its boot logs
+        env:
+          RUNPOD_API_KEY: ${{ secrets.RUNPOD_API }}
+        run: |
+          python - <<'PY'
+          from datetime import datetime, timezone
+          import json, os, urllib.request
+          from pathlib import Path
+          from reproductions.runpod.training_probe import redact
+          key = os.environ['RUNPOD_API_KEY']
+          target = 'ecg-repro-41106791069-1'
+          def request(url, body=None):
+              req = urllib.request.Request(url, data=json.dumps(body).encode() if body else None,
+                  headers={'Authorization': 'Bearer '+key, 'Content-Type': 'application/json'})
+              with urllib.request.urlopen(req, timeout=25) as response:
+                  return json.load(response)
+          query = 'query { myself { pods { id name runtime { ports { ip isIpPublic privatePort publicPort type } } } } }'
+          graph = request('https://api.runpod.io/graphql', {'query': query})
+          if graph.get('errors'):
+              raise RuntimeError(redact(json.dumps(graph['errors']), key))
+          matches = [p for p in graph['data']['myself']['pods'] if p.get('name') == target]
+          if len(matches) > 1:
+              raise ValueError('Ambiguous exact pilot name')
+          result = {'schema': 'owned-pilot-read-only-observation-v1', 'read_at_utc': datetime.now(timezone.utc).isoformat(),
+                    'workflow_run': 41106791069, 'target_name': target, 'matches': len(matches), 'mutations': []}
+          if matches:
+              observed = matches[0]
+              pod = request('https://api.runpod.io/v2/pods/'+observed['id'])
+              if pod['id'] != observed['id'] or pod['name'] != target:
+                  raise ValueError('Exact pilot identity changed')
+              result['pod'] = {k: pod[k] for k in ['id','name','status','gpu','cost','dataCenterId','createdAt'] if k in pod}
+              result['runtime'] = observed.get('runtime')
+              result['system_logs'] = []
+              req = urllib.request.Request('https://api.runpod.io/v2/pods/'+pod['id']+'/logs?source=system&tail=20',
+                  headers={'Authorization': 'Bearer '+key})
+              try:
+                  with urllib.request.urlopen(req, timeout=5) as response:
+                      for _ in range(70):
+                          line = response.readline()
+                          if not line:
+                              break
+                          line = line.decode(errors='replace').strip()
+                          if line.startswith('data:'):
+                              result['system_logs'].append(redact(line[5:].strip(), key))
+                          if len(result['system_logs']) >= 20:
+                              break
+              except OSError as error:
+                  result['logs_error'] = redact(str(error), key)
+          path = Path('build/owned-pilot-observation.json')
+          path.parent.mkdir(exist_ok=True)
+          path.write_text(json.dumps(result, indent=2)+'\n')
+          print(json.dumps(result))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: exact-owned-pilot-observation
+          path: build/owned-pilot-observation.json
