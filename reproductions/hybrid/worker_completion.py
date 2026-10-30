@@ -50,6 +50,16 @@ def validate_inputs(manifest):
     return cases
 
 
+def scheduled_inputs(manifest, plan):
+    cases = validate_inputs(manifest)
+    reuse = plan.get("reuse_repair_from_run")
+    if reuse is None:
+        return cases, True
+    if reuse != 41113820943:
+        raise ValueError("Only the already verified repair result may be reused")
+    return list(manifest["specialist_images"]), False
+
+
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--workspace", required=True)
@@ -57,9 +67,10 @@ def main():
     root = Path(args.workspace)
     out = root / "outputs"
     out.mkdir(exist_ok=True)
-    deadline = json.loads((root / "execution.json").read_text())["deadline"]
+    execution = json.loads((root / "execution.json").read_text())
+    deadline = execution["deadline"]
     manifest = json.loads((ROOT / "completion-inputs.json").read_text())
-    cases = validate_inputs(manifest)
+    cases, do_repair = scheduled_inputs(manifest, execution["plan"])
     if not torch.cuda.is_available():
         raise RuntimeError("The continuation requires actual CUDA inference")
     torch.set_num_threads(2)
@@ -82,11 +93,12 @@ def main():
 
     write_json(out / "receipt.json", receipt)
     try:
-        stage("geometry-dependency", [sys.executable, "-m", "pip", "install", "--no-deps", "shapely==2.1.2"])
-        if not shutil.which("tesseract"):
-            stage("ocr-catalog", ["apt-get", "update"])
-            stage("ocr-install", ["apt-get", "install", "-y", "tesseract-ocr"])
-        stage("source-bootstrap", [sys.executable, "-m", "reproductions.bootstrap", "--method", "npj", "--dest", str(root / "sources")])
+        if do_repair:
+            stage("geometry-dependency", [sys.executable, "-m", "pip", "install", "--no-deps", "shapely==2.1.2"])
+            if not shutil.which("tesseract"):
+                stage("ocr-catalog", ["apt-get", "update"])
+                stage("ocr-install", ["apt-get", "install", "-y", "tesseract-ocr"])
+            stage("source-bootstrap", [sys.executable, "-m", "reproductions.bootstrap", "--method", "npj", "--dest", str(root / "sources")])
         stage("kaggle-pinned-assets", [sys.executable, "-m", "reproductions.kaggle.fetch_assets", "--dest", str(root / "kaggle-assets")])
         stage("kaggle-compatible-timm", [sys.executable, "-m", "pip", "install", "--no-deps", "--target", str(root / "kaggle-timm-compat"), "timm==1.0.22"])
         data = root / "completion-image-only"
@@ -99,16 +111,20 @@ def main():
         with ThreadPoolExecutor(max_workers=3) as pool:
             list(pool.map(fetch, cases))
         eligible = list(manifest["specialist_images"])
-        backend = NativeNpjBackend(root / "sources/npj", device="cuda", max_side=3000)
-        rectifier = AdaptiveGridRectifier(root / "grid-checkpoint.pt", device="cuda", max_side=3000)
-        repair = infer_images(manifest["repair_images"], data, out / "repair", backend, rectifier,
-                              lambda *args: {}, SelectionPolicy(), deadline)
-        for row in repair["cases"]:
-            if row["arm"] == "npj_native" and row["status"] == "returned" and row["predicted_layout"] == "standard_3x4_with_r1" and not row["layout_fallback"]:
-                eligible.extend(c for c in manifest["repair_images"] if c["image_id"] == row["image_id"])
-        del backend, rectifier
-        gc.collect()
-        torch.cuda.empty_cache()
+        if do_repair:
+            backend = NativeNpjBackend(root / "sources/npj", device="cuda", max_side=3000)
+            rectifier = AdaptiveGridRectifier(root / "grid-checkpoint.pt", device="cuda", max_side=3000)
+            repair = infer_images(manifest["repair_images"], data, out / "repair", backend, rectifier,
+                                  lambda *args: {}, SelectionPolicy(), deadline)
+            for row in repair["cases"]:
+                if row["arm"] == "npj_native" and row["status"] == "returned" and row["predicted_layout"] == "standard_3x4_with_r1" and not row["layout_fallback"]:
+                    eligible.extend(c for c in manifest["repair_images"] if c["image_id"] == row["image_id"])
+            receipt["repair_phase1_sha256"] = sha256(out / "repair/phase1-decisions.json")
+            del backend, rectifier
+            gc.collect()
+            torch.cuda.empty_cache()
+        else:
+            receipt["reused_repair_workflow_run"] = execution["plan"]["reuse_repair_from_run"]
         write_json(out / "sealed-specialist-inputs.json", eligible)
         if time.time() >= deadline - 180:
             raise TimeoutError("No bounded time remains for the unchanged native specialist")
@@ -132,11 +148,15 @@ def main():
             "eligible_inputs_sha256": sha256(out / "sealed-specialist-inputs.json"),
             "batch_seconds": time.perf_counter() - started})
         receipt.update(status="completed_inference_continuation", specialist_images=len(eligible),
-            specialist_returned=len(returned), prediction_seal_sha256=sha256(out / "phase1-completion-predictions.json"),
-            repair_phase1_sha256=sha256(out / "repair/phase1-decisions.json"))
+            specialist_returned=len(returned), prediction_seal_sha256=sha256(out / "phase1-completion-predictions.json"))
         if len(returned) != len(eligible):
-            receipt["status"] = "completed_with_missing_outputs"
-            raise RuntimeError("Native specialist did not return every sealed eligible input")
+            native = json.loads((out / "kaggle-native/receipt.json").read_text())
+            receipt["native_batch_status"] = native["status"]
+            if native["status"] == "completed":
+                receipt["status"] = "completed_with_native_failures"
+            else:
+                receipt["status"] = "completed_with_missing_outputs"
+                raise RuntimeError("Native specialist did not return every sealed eligible input")
     except BaseException as error:
         receipt.update(error_type=type(error).__name__, error=str(error))
         if receipt["status"] == "started":

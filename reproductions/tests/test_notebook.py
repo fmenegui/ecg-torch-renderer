@@ -1,6 +1,8 @@
 import ast
+import hashlib
 import json
 import unittest
+from unittest.mock import patch
 
 import numpy as np
 
@@ -13,6 +15,34 @@ def document(code, version=6):
 
 
 class NotebookTests(unittest.TestCase):
+    def test_reviewed_demo_failure_cannot_abort_unchanged_numerical_results(self):
+        source = """def run_stage0(n=0, gpu_id=0):
+    result = numerical_step()
+    if n < 10 and gpu_id == 0:
+        overlay = draw_results_stage0(rotated, keypoint)
+        plt.imshow(overlay)
+        plt.show()
+    return result
+A = run_stage0_parallel()
+B = run_stage1_parallel(prev_fail_ids=A)
+C = run_stage2_parallel(prev_fail_ids=B)
+shutil.rmtree(OUT_DIR)
+"""
+        branch = next(n for n in ast.walk(ast.parse(source)) if isinstance(n, ast.If))
+        digest = hashlib.sha256(ast.dump(branch, include_attributes=False).encode()).hexdigest()
+        with patch('reproductions.kaggle.replay.REVIEWED_DEMO_BLOCKS', {digest}):
+            code, receipt = adapt(document(source), {})
+        function = next(n for n in ast.parse(code).body if isinstance(n, ast.FunctionDef) and n.name == 'run_stage0')
+        expected = np.array([.1, .3, .2])
+        namespace = {'numerical_step': lambda: expected}
+        exec(compile(ast.Module(body=[function], type_ignores=[]), 'reviewed-demo-control', 'exec'), namespace)
+        self.assertIs(namespace['run_stage0'](), expected)
+        self.assertEqual(receipt['removed_demo_block_sha256'], [digest])
+
+    def test_unreviewed_demo_with_numerical_work_is_rejected(self):
+        with self.assertRaisesRegex(ValueError, 'Unreviewed numerical'):
+            adapt(document('if n < 10 and gpu_id == 0:\n    signal = change_signal(signal)\n'), {})
+
     def test_only_execution_paths_are_changed(self):
         code = """import shutil
 OUT_DIR = '/kaggle/working/outputs'

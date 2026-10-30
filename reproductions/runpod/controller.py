@@ -31,8 +31,9 @@ def validate_plan(plan):
         raise ValueError("Ephemeral storage is limited to the bounded hybrid inference pilot")
     if plan.get("worker_module") == "reproductions.hybrid.worker_completion":
         prior = plan.get("prior_gpu_time_cost_upper_bound_usd", -1)
+        minimum_prior = .3337 if plan.get("reuse_repair_from_run") == 41113820943 else .2782
         total = prior + plan["maximum_pod_seconds"] * plan["maximum_gpu_price_per_hour"] / 3600
-        if not .2782 <= prior <= .45 or not 0 < total <= .45 or plan.get("combined_gpu_cost_cap_usd") != .45:
+        if not minimum_prior <= prior <= .45 or not 0 < total <= .45 or plan.get("combined_gpu_cost_cap_usd") != .45:
             raise ValueError("Completion must fit the remaining original GPU envelope")
     maximum = 18000 if full else 1800
     volume = 0 if storage == "container_disk" else (220 if full else 30)

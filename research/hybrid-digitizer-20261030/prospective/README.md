@@ -49,3 +49,23 @@ um descendente podia continuar após o timeout de seu processo pai, e uma falha
 na cópia de código podia ocorrer antes de armar o guardião. O controlador agora
 encerra o grupo de processos e arma o guardião antes das transferências. Esses
 controles não demonstram a causa de qualquer demora do ensaio concluído.
+
+
+A execução de continuação `41113820943` concluiu a leitura direta e retificada
+que faltava. O notebook Kaggle iniciou, carregou o checkpoint da primeira etapa
+e encontrou rotação desconhecida. O código nativo registrou a falha, mas sua
+demonstração gráfica depois do tratamento de erro esperou cinco campos onde
+havia quatro e encerrou o batch antes de processar os outros casos.
+
+Foram revisados os três blocos de demonstração gráfica do notebook v6. Eles
+apenas desenham e exibem intermediários, inclusive intermediários indefinidos
+quando uma etapa falha. A adaptação agora omite somente esses blocos, reconhecidos
+por seus hashes de AST. Cálculos numéricos, checkpoints e listas nativas de falhas
+são conservados. Um bloco diferente é recusado. O erro original permanece no
+arquivo da primeira continuação.
+
+A nova invocação executa apenas as seis imagens elegíveis e reutiliza a leitura
+reparada. Seu limite é 660 segundos e US$ 0,11 de tempo de GPU. Somado ao limite
+conservador de US$ 0,3337 para os recursos já encerrados, o envelope fica em
+US$ 0,4437. Não são iniciados novos treinos nem repetida a imagem já reparada.
+Falhas nativas de normalização permanecem falhas, sem preenchimento como sinal.

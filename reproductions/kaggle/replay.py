@@ -18,6 +18,15 @@ from reproductions.common import environment, new_run, require_cuda, run_bounded
 KERNEL_VERSION = 6
 KERNEL = "takashisomeya/physionet-2nd-place-submission"
 
+# Reviewed v6 demonstration-only blocks. They draw diagnostics after native
+# failure handling and can reference incomplete or unbound intermediate data.
+# Keep all numerical inference and accumulated failure IDs unchanged.
+REVIEWED_DEMO_BLOCKS = {
+    "5f6572dedb8451c8913622fe9a806a53136214d01326fc06204f0d260b7122b3",
+    "6e50734c640eae8fbe7a4208a09ff51626d1669bcbb9f1113031c659ed0362a3",
+    "52616c345ce7ce2aad647579a080314076d8aec865f28455d663f08e88fc435f",
+}
+
 
 def notebook_code(document):
     version = document.get("metadata", {}).get("currentVersionNumber")
@@ -45,6 +54,16 @@ class ReplayTransform(ast.NodeTransformer):
         self.paths = paths
         self.serial_replacements = []
         self.retained_outputs = 0
+        self.removed_demo_blocks = []
+
+    def visit_If(self, node):
+        if ast.unparse(node.test) == "n < 10 and gpu_id == 0":
+            digest = hashlib.sha256(ast.dump(node, include_attributes=False).encode()).hexdigest()
+            if digest not in REVIEWED_DEMO_BLOCKS:
+                raise ValueError("Unreviewed numerical or diagnostic work in notebook demo branch")
+            self.removed_demo_blocks.append(digest)
+            return ast.copy_location(ast.Pass(), node)
+        return self.generic_visit(node)
 
     def visit_Constant(self, node):
         if isinstance(node.value, str):
@@ -97,7 +116,9 @@ def _ecg_serial_run_stage1(prev_fail_ids=None, **kwargs):
 def _ecg_serial_run_stage2(prev_fail_ids=None, **kwargs):
     return run_stage2(prev_fail_ids=prev_fail_ids, **kwargs) + list(prev_fail_ids or [])
 """
-    return preamble + ast.unparse(tree) + "\n", {"notebook_source_sha256": source_hash, "adaptations": ["mount path substitution", "serial GPU-0 execution of native stages preserving accumulated failure IDs", "retain native intermediate outputs", "headless diagnostic plotting", "refuse missing or unexpected native checkpoint keys"]}
+    return preamble + ast.unparse(tree) + "\n", {"notebook_source_sha256": source_hash,
+        "removed_demo_block_sha256": transform.removed_demo_blocks,
+        "adaptations": ["mount path substitution", "serial GPU-0 execution of native stages preserving accumulated failure IDs", "retain native intermediate outputs", "headless diagnostic plotting", "omit only three hash-reviewed demonstration blocks, preserving native numerical code and failure handling", "refuse missing or unexpected native checkpoint keys"]}
 
 
 def main():

@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 import unittest
 
-from reproductions.hybrid.worker_completion import validate_inputs
+from reproductions.hybrid.worker_completion import scheduled_inputs, validate_inputs
 from reproductions.runpod.controller import validate_plan
 
 
@@ -40,12 +40,23 @@ class CompletionContracts(unittest.TestCase):
         plan = json.loads((ROOT / "completion-plan.json").read_text())
         validate_plan(plan)
         total = plan["prior_gpu_time_cost_upper_bound_usd"] + plan["maximum_pod_seconds"] * plan["maximum_gpu_price_per_hour"] / 3600
-        self.assertAlmostEqual(total, .4482)
         self.assertLess(total, .45)
         for bad in [dict(plan, maximum_pod_seconds=1080), dict(plan, prior_gpu_time_cost_upper_bound_usd=.1),
+                    dict(plan, prior_gpu_time_cost_upper_bound_usd=.2782),
                     dict(plan, combined_gpu_cost_cap_usd=.5)]:
             with self.assertRaises(ValueError):
                 validate_plan(bad)
+
+    def test_successful_repair_is_reused_without_another_neural_pass(self):
+        manifest = json.loads((ROOT / 'completion-inputs.json').read_text())
+        cases, repair = scheduled_inputs(manifest, {'reuse_repair_from_run': 41113820943})
+        self.assertEqual(len(cases), 6)
+        self.assertFalse(repair)
+        cases, repair = scheduled_inputs(manifest, {})
+        self.assertEqual(len(cases), 7)
+        self.assertTrue(repair)
+        with self.assertRaises(ValueError):
+            scheduled_inputs(manifest, {'reuse_repair_from_run': 123})
 
 
 if __name__ == "__main__":
