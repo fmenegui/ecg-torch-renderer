@@ -11,7 +11,7 @@ This work does not promote the existing rectifier or change production defaults.
 | --- | --- | --- |
 | npj Digital Medicine | Original source and both published weight files verified. Complete native chain executed on one original test fixture. Both original networks trained in explicitly reduced CPU engineering checks. Native evaluator controls executed. | Original 45-epoch and public-config training, lead-text training at full scale, GPU execution, original Ahus and Emory cohort scoring. |
 | Powerful Medical | Independent public-description Gridder, declared Dotter hypothesis, training/inference entrypoints, analytical geometry controls. | Original annotated Dotter bank, exact architecture and checkpoint, full normalization and waveform validation. This is not the commercial implementation. |
-| Kaggle | Top-five review, second-place selection, original six-model notebook replay adapter, six training profiles, source audit against the later refactor. | GPU replay and retraining, native original-cohort scoring, refactor/checkpoint parity. A single B7 model is an ablation, not the six-model final submission. |
+| Kaggle | Top-five review, second-place selection, original six-model notebook replay adapter, six training profiles, source audit against the later refactor. All eight preprocessing/waveform checkpoints strictly loaded in the separately pinned compatible environment. | GPU replay and retraining, native original-cohort scoring, refactor/checkpoint parity. A single B7 model is an ablation, not the six-model final submission. |
 
 **No headline result has been reproduced yet.** Every target in
 [`reported-results.json`](reported-results.json) is labeled author-reported.
@@ -62,6 +62,22 @@ Source hashes and provenance are in [`sources.lock.json`](sources.lock.json).
 Original third-party code and weights are fetched outside the tracked source.
 Their original attribution and licences remain attached to those upstreams.
 
+The subsequent public ECG-Image-Database version 2 provides the Ahus clinical
+component and the combined PTB-XL/Emory component. It is a data acquisition
+route, not evidence that our original-cohort scoring has completed. The pinned
+metadata and cohort-reconciliation questions are in `sources.lock.json` and
+`evidence/public-clinical-data-release.json`. A resumable metadata-only inventory
+can be obtained without downloading the 36.4 GB of file bytes:
+
+```bash
+python -m reproductions.fetch_catalog --out build/ecg-image-database-catalog
+```
+
+Keep dataset version 2 fixed. Verify the imaging-variant workbook, original
+image identities, device/page labels and scorer mapping before declaring the
+public release an exact replay of either article cohort. The combined
+35,595-image component includes both D0 PTB-XL and D1 Emory, not D1 alone.
+
 Read [`npj/README.md`](npj/README.md),
 [`powerful_medical/README.md`](powerful_medical/README.md) and
 [`kaggle/README.md`](kaggle/README.md) for exact entrypoints and open questions.
@@ -76,6 +92,9 @@ The `Independent ECG reproductions` workflow performs a read-only Runpod
 preflight using the repository's `RUNPOD_API_KEY` secret, if one is configured.
 It prints no credential and creates no pod, endpoint or volume. This checks a
 second execution route without requiring a key to be copied into this workspace.
+The completed initial Actions probe returned `missing_credential`. A successful
+CI job means that the probe executed, not that Runpod authentication succeeded.
+No Runpod infrastructure tool is exposed in the current connected session.
 
 Provision only after a fresh stock, template, region and price read. Use one
 GPU at a time. Save data, configuration, logs and checkpoints on a network

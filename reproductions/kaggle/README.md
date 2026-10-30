@@ -38,6 +38,10 @@ silently accepting a partially loaded network.
 Use a separate environment with `../requirements-kaggle.txt`. The retained first
 checkpoint audit documents a model-name parsing incompatibility with current
 timm 1.0.30. This is an environment failure, not a digitization score.
+With timm 1.0.22, all eight original checkpoints strictly loaded: two shared
+preprocessing models and all six waveform models. The successful audit and
+the earlier dependency failure are both retained under `../evidence/`.
+Loading weights on CPU does not establish GPU execution or signal accuracy.
 
 ```bash
 python -m reproductions.kaggle.fetch_assets --dest /workspace/kaggle-assets

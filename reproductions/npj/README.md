@@ -98,11 +98,24 @@ not establish why the authors obtained any particular cohort score.
 | OnePlus | 12.19 dB | 42.8 uV | 0.947 | Pending |
 | iPhone | 10.47 dB | 51.3 uV | 0.935 | Pending |
 
-The original Ahus cohort contains 266 ECGs and 1596 device/page images. The
-paper's data availability statement provides access upon reasonable request.
-It was not acquired in this execution. The Emory benchmark is a distinct
-35,595-image cohort with its own capture-condition scores registered in
-`../reported-results.json`.
+The original Ahus cohort contains 266 ECGs and 1596 device/page images. Although
+the npj article offered access upon reasonable request, the subsequent
+[ECG-Image-Database release](https://www.kaggle.com/datasets/physionet/ecg-image-database)
+now provides the Ahus component publicly as D2. Its
+[data paper](https://pmc.ncbi.nlm.nih.gov/articles/PMC13402943/) describes 266
+records and 1596 images. The full 5-second trace of all 12 leads is printed
+across two six-lead pages. Device and page mappings must come from the released
+metadata and must preserve the original layout-hint policy.
+
+The distinct 35,595-image component combines D0 PTB-XL and D1 Emory. Selecting
+only D1 would not recreate that denominator. The native 2024 scoring protocol
+and the exact original subset/variant crosswalk still need reconciliation.
+Capture-condition targets remain in `../reported-results.json`.
+
+Version 2 metadata was retrieved and a resumable file-inventory acquisition was
+started. Full image/reference acquisition and original-cohort scoring have not
+completed. Data availability is therefore not the current access blocker. See
+`../fetch_catalog.py` and `../evidence/public-clinical-data-release.json`.
 
 The local native fixture run returns a `[12,5000]` array in uV. No reference or
 printed-lead mask accompanied that smoke test, so its finite fraction is not a

@@ -35,6 +35,11 @@
       "url": "https://www.medrxiv.org/content/10.1101/2024.08.31.24312876v1.full",
       "direct_fetch_status": "HTTP_403",
       "mechanism_text_access": "primary indexed full text retrieved by search, published abstract independently read"
+    },
+    {
+      "id": "public_clinical_dataset",
+      "doi": "10.1088/1361-6579/ae85b2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13402943/"
     }
   ],
   "patents": [
@@ -56,7 +61,7 @@
     "total_image_mask_pairs": 8658,
     "advertised_download_bytes": 75032904415,
     "patient_independence": "not_established_from_public_row_identifiers",
-    "clinical_cohort": "article states availability upon reasonable request, not acquired in this execution"
+    "clinical_cohort": "Subsequent ECG-Image-Database version 2 publicly includes Ahus D2 and combined D0/D1. Metadata retrieved, full file acquisition and original-cohort scoring incomplete. Exact original-cohort crosswalk not yet verified."
   },
   "kaggle_notebook": {
     "kernel": "takashisomeya/physionet-2nd-place-submission",
@@ -71,5 +76,35 @@
     "npj_development_data": "Apache-2.0 per dataset card",
     "pm_ecg_id": "GPL-3.0-or-later per publisher metadata",
     "external_source_and_weight_redistribution": "not included in this change, fetched into ignored working directories"
+  },
+  "public_clinical_release": {
+    "dataset": "physionet/ecg-image-database",
+    "version": 2,
+    "url": "https://www.kaggle.com/datasets/physionet/ecg-image-database",
+    "paper_doi": "10.1088/1361-6579/ae85b2",
+    "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13402943/",
+    "advertised_bytes": 36436614076,
+    "records": 2243,
+    "image_count": 37191,
+    "components": {
+      "D0": {
+        "source": "PTB-XL",
+        "records": 977
+      },
+      "D1": {
+        "source": "Emory",
+        "records": 1000
+      },
+      "D2": {
+        "source": "Ahus",
+        "records": 266,
+        "images": 1596
+      }
+    },
+    "combined_D0_D1_images": 35595,
+    "cohort_identity_verified": false,
+    "metadata_sha256": "f522ad8b8a736bf0caca24acf379dfec9531ce6cd66394422f970c00b7b33047",
+    "file_bytes_acquired": false,
+    "license": "CC-BY-ND-4.0 per current dataset metadata"
   }
 }

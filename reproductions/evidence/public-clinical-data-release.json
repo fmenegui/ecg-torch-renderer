@@ -1,0 +1,44 @@
+{
+  "schema": "public-clinical-data-release-review-v1",
+  "reviewed_on": "2026-10-30",
+  "dataset": "physionet/ecg-image-database",
+  "version": 2,
+  "url": "https://www.kaggle.com/datasets/physionet/ecg-image-database",
+  "paper_doi": "10.1088/1361-6579/ae85b2",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13402943/",
+  "advertised_bytes": 36436614076,
+  "records": 2243,
+  "image_count": 37191,
+  "components": {
+    "D0": {
+      "source": "PTB-XL",
+      "records": 977
+    },
+    "D1": {
+      "source": "Emory",
+      "records": 1000
+    },
+    "D2": {
+      "source": "Ahus",
+      "records": 266,
+      "images": 1596
+    }
+  },
+  "combined_D0_D1_images": 35595,
+  "cohort_identity_verified": false,
+  "metadata_sha256": "f522ad8b8a736bf0caca24acf379dfec9531ce6cd66394422f970c00b7b33047",
+  "file_bytes_acquired": false,
+  "license": "CC-BY-ND-4.0 per current dataset metadata",
+  "metadata_access": "Public Kaggle dataset view API, no account credential supplied",
+  "provenance_warning": "Counts and component descriptions are publisher-reported. A complete file inventory and original cohort crosswalk have not yet been validated.",
+  "acquisition_entrypoint": "python -m reproductions.fetch_catalog --out build/ecg-image-database-catalog",
+  "required_reconciliation": [
+    "dataset_description.xlsx imaging-variant and device/page mapping",
+    "original npj Ahus image names and supplied six-lead layout hints",
+    "D0 plus D1 original 2024 challenge subset and condition mapping",
+    "WFDB lead order, sampling frequency, physical units and printed time windows",
+    "native per-lead/device or 2024 challenge scorer and aggregation"
+  ],
+  "gpu_execution_completed": false,
+  "headline_metrics_reproduced": false
+}

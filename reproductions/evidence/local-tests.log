@@ -1,3 +1,4 @@
+test_inventory_separates_records_images_and_sources (test_catalog.CatalogTests.test_inventory_separates_records_images_and_sources) ... ok
 test_declared_network_trains_and_retains_odd_pixel_shape (test_dotter.DotterTests.test_declared_network_trains_and_retains_odd_pixel_shape) ... ok
 test_tile_boundaries_preserve_pointwise_probabilities (test_dotter.DotterTests.test_tile_boundaries_preserve_pointwise_probabilities) ... ok
 test_preflight_never_returns_a_credential (test_execution.ExecutionTests.test_preflight_never_returns_a_credential) ... ok
@@ -42,6 +43,6 @@ test_unexpected_deletion_is_rejected (test_notebook.NotebookTests.test_unexpecte
 test_unreviewed_shell_command_is_rejected (test_notebook.NotebookTests.test_unreviewed_shell_command_is_rejected) ... ok
 
 ----------------------------------------------------------------------
-Ran 42 tests in 3.958s
+Ran 43 tests in 4.277s
 
 OK

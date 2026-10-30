@@ -18,7 +18,8 @@
       "mount path substitution",
       "serial GPU-0 execution of native stages",
       "retain native intermediate outputs",
-      "headless diagnostic plotting"
+      "headless diagnostic plotting",
+      "refuse missing or unexpected native checkpoint keys"
     ]
   },
   "interpretation": "The later public predict.py and original final notebook do not implement identical waveform decoding on this finite control. This does not establish a leaderboard-score change.",
