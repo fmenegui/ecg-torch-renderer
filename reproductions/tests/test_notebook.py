@@ -1,6 +1,9 @@
 import ast
+from contextlib import redirect_stdout
 import hashlib
+import io
 import json
+import traceback
 import unittest
 from unittest.mock import patch
 
@@ -15,6 +18,38 @@ def document(code, version=6):
 
 
 class NotebookTests(unittest.TestCase):
+    def test_caught_native_exception_is_logged_without_changing_failure_ids(self):
+        source = '''def run_stage0():
+    local_fail_id = []
+    sample_id = 'photo'
+    try:
+        raise ValueError('native-control')
+    except:
+        local_fail_id.append(sample_id)
+    return local_fail_id
+A = run_stage0_parallel()
+B = run_stage1_parallel(prev_fail_ids=A)
+C = run_stage2_parallel(prev_fail_ids=B)
+shutil.rmtree(OUT_DIR)
+'''
+        code, receipt = adapt(document(source), {})
+        definitions = [n for n in ast.parse(code).body if isinstance(n, ast.FunctionDef)
+                       and n.name in ['run_stage0', '_ecg_log_native_failure']]
+        namespace = {'_ecg_json': json, '_ecg_traceback': traceback}
+        exec(compile(ast.Module(body=definitions, type_ignores=[]), 'native-exception-control', 'exec'), namespace)
+        output = io.StringIO()
+        with redirect_stdout(output):
+            self.assertEqual(namespace['run_stage0'](), ['photo'])
+        diagnostic = json.loads(output.getvalue().strip().removeprefix('ECG_NATIVE_FAILURE '))
+        self.assertEqual(diagnostic['stage'], 'run_stage0')
+        self.assertEqual(diagnostic['sample_id'], 'photo')
+        self.assertIn('ValueError: native-control', diagnostic['traceback'])
+        self.assertEqual(receipt['logged_native_failure_stages'], ['run_stage0'])
+
+    def test_unreviewed_native_handler_is_rejected(self):
+        with self.assertRaisesRegex(ValueError, 'Unreviewed native failure'):
+            adapt(document('def run_stage0():\n    try:\n        step()\n    except:\n        change_signal()\n'), {})
+
     def test_reviewed_demo_failure_cannot_abort_unchanged_numerical_results(self):
         source = """def run_stage0(n=0, gpu_id=0):
     result = numerical_step()

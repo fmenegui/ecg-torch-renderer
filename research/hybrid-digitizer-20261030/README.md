@@ -118,3 +118,10 @@ arquivo está em [`measurement-archive.json`](measurement-archive.json).
 
 Os controles seguintes de orientação, composição downstream e diagnóstico do
 eixo temporal estão na [continuação do estudo](followup/README.md).
+
+## Auditoria do erro e melhorias
+
+A [revisão de 17 fontes primárias e dos componentes](improvement-audit/README.md)
+separa a redução de erro no suporte comum da redução obtida por perder amostras.
+Inclui decomposição exata, componente experimental de tempo físico, instrumentação
+de falhas nativas e experimentos com critérios de avanço.

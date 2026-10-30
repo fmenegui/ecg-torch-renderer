@@ -1,9 +1,11 @@
 """Missing-aware signal scores for externally acquired ECG images.
 
 Reference NaNs mark unprinted time, prediction NaNs mark unrecovered samples.
-The primary score retains every printed sample. Missing predictions receive a
-zero-valued *scoring penalty*, never a fabricated waveform. Conditional scores
-and a bounded, DC-centered alignment are explicitly secondary measurements.
+The primary score retains every printed sample. Missing predictions use zero
+only as a scoring convention, never as a fabricated waveform. This convention
+can reward dropping an erroneous observation. Paired support/error audits are
+required for interpreting improvements. Conditional scores and a bounded,
+DC-centered alignment are explicitly secondary measurements.
 This is not a Kaggle leaderboard metric or a clinical acceptance criterion.
 """
 
@@ -124,6 +126,7 @@ def score_external_signals(
         }
     return {
         "schema": "ecg-external-signal-scores-v1",
+        "missing_data_warning": "The zero-missing scalar error can improve when observations are dropped. Inspect paired support loss/gain and common-support error before claiming improvement.",
         "fs": float(fs),
         "printed_samples": expected_total,
         "observed_samples": covered_total,

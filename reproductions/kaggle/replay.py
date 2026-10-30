@@ -55,6 +55,26 @@ class ReplayTransform(ast.NodeTransformer):
         self.serial_replacements = []
         self.retained_outputs = 0
         self.removed_demo_blocks = []
+        self.native_stage = None
+        self.logged_native_failure_stages = []
+
+    def visit_FunctionDef(self, node):
+        previous = self.native_stage
+        self.native_stage = node.name if node.name in ('run_stage0', 'run_stage1', 'run_stage2') else None
+        try:
+            return self.generic_visit(node)
+        finally:
+            self.native_stage = previous
+
+    def visit_ExceptHandler(self, node):
+        if self.native_stage and node.type is None:
+            if len(node.body) != 1 or ast.unparse(node.body[0]) != 'local_fail_id.append(sample_id)':
+                raise ValueError('Unreviewed native failure handler')
+            self.logged_native_failure_stages.append(self.native_stage)
+            diagnostic = ast.Expr(value=ast.Call(func=ast.Name(id='_ecg_log_native_failure', ctx=ast.Load()),
+                args=[ast.Constant(value=self.native_stage), ast.Name(id='sample_id', ctx=ast.Load())], keywords=[]))
+            node.body.insert(0, ast.copy_location(diagnostic, node.body[0]))
+        return self.generic_visit(node)
 
     def visit_If(self, node):
         if ast.unparse(node.test) == "n < 10 and gpu_id == 0":
@@ -109,6 +129,14 @@ def _verified_load_state_dict(self, state_dict, strict=True, assign=False):
         raise RuntimeError('Native checkpoint architecture mismatch: ' + str(result))
     return result
 torch.nn.Module.load_state_dict = _verified_load_state_dict
+import json as _ecg_json
+import traceback as _ecg_traceback
+def _ecg_log_native_failure(stage, sample_id):
+    try:
+        print('\\nECG_NATIVE_FAILURE ' + _ecg_json.dumps({'stage': stage, 'sample_id': str(sample_id),
+              'traceback': _ecg_traceback.format_exc()}), flush=True)
+    except Exception:
+        pass
 def _ecg_serial_run_stage0(**kwargs):
     return run_stage0(**kwargs)
 def _ecg_serial_run_stage1(prev_fail_ids=None, **kwargs):
@@ -118,7 +146,8 @@ def _ecg_serial_run_stage2(prev_fail_ids=None, **kwargs):
 """
     return preamble + ast.unparse(tree) + "\n", {"notebook_source_sha256": source_hash,
         "removed_demo_block_sha256": transform.removed_demo_blocks,
-        "adaptations": ["mount path substitution", "serial GPU-0 execution of native stages preserving accumulated failure IDs", "retain native intermediate outputs", "headless diagnostic plotting", "omit only three hash-reviewed demonstration blocks, preserving native numerical code and failure handling", "refuse missing or unexpected native checkpoint keys"]}
+        "logged_native_failure_stages": transform.logged_native_failure_stages,
+        "adaptations": ["mount path substitution", "serial GPU-0 execution of native stages preserving accumulated failure IDs", "retain native intermediate outputs", "headless diagnostic plotting", "omit only three hash-reviewed demonstration blocks, preserving native numerical code and failure handling", "log caught native exceptions without changing native failure IDs", "refuse missing or unexpected native checkpoint keys"]}
 
 
 def main():
@@ -157,6 +186,8 @@ def main():
     code, changes = adapt(document, paths)
     if changes["notebook_source_sha256"] != lock.get("notebook_source_sha256"):
         raise ValueError("Notebook source identity differs from asset receipt")
+    if sorted(changes["logged_native_failure_stages"]) != ['run_stage0', 'run_stage1', 'run_stage2']:
+        raise ValueError('Native stage diagnostics contract changed')
     script = out / "adapted-native-submission.py"
     script.write_text(code)
     receipt = {"schema": "kaggle-native-replay-v1", "method": "second-place-final-six", "environment": environment(), "assets_lock_sha256": sha256(args.assets_lock), "images_sha256": images, "scheduled_images": len(ids), "native_submission_zeros_are_not_observed_samples": True, **changes, "adapted_script_sha256": sha256(script), "status": "started"}

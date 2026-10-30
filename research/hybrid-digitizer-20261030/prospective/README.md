@@ -10,6 +10,8 @@ Executamos o npj original, nosso detector de grade seguido do npj e o notebook o
 | Grade seguida do npj, após completar a última imagem | 68,65% | 0,9133 |
 | Seleção conservadora, após o complemento | 85,29% | 1,1498 |
 
+A [auditoria posterior de suporte](../improvement-audit/README.md) decompõe essa redução: 53,93% da queda de NRMSE corresponde a amostras diretas que a candidata perdeu e que o avaliador pontua como zero. No suporte comum, o RMSE cai de 0,21049 para 0,17452 mV, condicionado a 19 imagens. As predições e métricas originais foram preservadas.
+
 O seletor mantém exatamente o sinal direto em todas as imagens. A grade tem menor erro agregado, mas perde 16,64 pontos percentuais de cobertura. Isso não demonstra superioridade. Cobertura é suporte numérico finito, não correção. O erro bruto mantém a origem temporal e usa zero somente dentro do cálculo da métrica para ausências. Os sinais salvos conservam NaNs. Não há alinhamento, ajuste de ganho ou de linha de base nos resultados primários. Diagnósticos alinhados permanecem separados.
 
 A execução primária [41106791069](https://github.com/fmenegui/ecg-torch-renderer/actions/runs/41106791069) terminou normalmente, mas seu limite interno deixou a última imagem sem leitura direta e impediu o início do batch Kaggle. Esses casos continuam no denominador original em `primary-summary.json`. A continuação [41113820943](https://github.com/fmenegui/ecg-torch-renderer/actions/runs/41113820943) concluiu a imagem interrompida. A avaliação combinada é um complemento após a abertura dos resultados primários, não um segundo teste independente.

@@ -9,6 +9,8 @@ from pathlib import Path
 
 import numpy as np
 
+from ecg_gpu.digitization.support_audit import aggregate_patient_audits, audit_support
+
 
 def summarize(manifest, run, out):
     manifest, run, out = Path(manifest), Path(run), Path(out)
@@ -148,6 +150,8 @@ def summarize(manifest, run, out):
         "images": data["images"],
         "case_method_results": len(rows),
         "cpu_max_side": report["cpu_max_side"],
+        "inference_device": report.get("inference_device", "unspecified_in_saved_report"),
+        "native_max_side": report.get("native_max_side", report["cpu_max_side"]),
         "arms": {},
         "paired": {},
         "warning": "Descriptive development pilot. Eight patients, unknown upstream training overlap. Alignment metrics are conditional and exclude leads below 90% support.",
@@ -181,6 +185,8 @@ def summarize(manifest, run, out):
     # Common support compares errors on precisely the same printed samples.
     # It is secondary and cannot replace the full denominator primary scores.
     common_rows = []
+    baseline = "npj_native" if "npj_native" in report["arms"] else report["arms"][0]
+    paired_support_rows = {arm: [] for arm in report["arms"] if arm != baseline}
     for image_id, case in cases.items():
         with np.load(manifest.parent / case["reference"], allow_pickle=False) as z:
             truth = z["values_mv"]
@@ -195,6 +201,10 @@ def summarize(manifest, run, out):
         mask = np.isfinite(truth)
         for values in predictions.values():
             mask &= np.isfinite(values)
+        for arm, paired_rows in paired_support_rows.items():
+            audit = audit_support(truth, predictions[baseline], predictions[arm])
+            audit.update(image_id=image_id, patient_id=case["patient_id"], condition=case["condition"])
+            paired_rows.append(audit)
         common_rows.append(
             {
                 "image_id": image_id,
@@ -208,6 +218,16 @@ def summarize(manifest, run, out):
                 },
             }
         )
+    summary["paired_support_audits"] = {
+        arm + " minus " + baseline: {
+            "patient_macro": aggregate_patient_audits(group),
+            "per_patient": {patient: aggregate_patient_audits([r for r in group if r["patient_id"] == patient])
+                            for patient in patients},
+            "per_image": group,
+        }
+        for arm, group in paired_support_rows.items()
+    }
+    summary["zero_missing_score_warning"] = "Lower scalar error may reflect dropped observations. Read paired_support_audits before claiming improvement."
     summary["common_support_all_arms"] = common_rows
     common_patients = {}
     for patient in patients:
@@ -263,7 +283,12 @@ def summarize(manifest, run, out):
         writer = csv.DictWriter(stream, fieldnames=list(rows[0]))
         writer.writeheader()
         writer.writerows(rows)
-    print(json.dumps({arm: s["macro"] for arm, s in summary["arms"].items()}))
+    console = {arm: s["macro"] for arm, s in summary["arms"].items()}
+    console["paired_support_error_audits"] = {
+        name: audit["patient_macro"] for name, audit in summary["paired_support_audits"].items()
+    }
+    console["warning"] = summary["zero_missing_score_warning"]
+    print(json.dumps(console))
     return summary
 
 
