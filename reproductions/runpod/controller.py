@@ -46,6 +46,13 @@ def validate_ownership(ledger, run_id):
         raise ValueError("Refusing to mutate a resource outside this execution")
 
 
+def public_ssh_port(pod):
+    for port in (pod.get("runtime") or {}).get("ports", []):
+        if port.get("privatePort") == 22 and port.get("isIpPublic") and port.get("type", "tcp").lower() == "tcp":
+            return {"ip": port["ip"], "port": int(port["publicPort"])}
+    return None
+
+
 class Controller:
     def __init__(self, cli, root):
         self.cli, self.root = cli, Path(root).resolve()
@@ -79,6 +86,18 @@ class Controller:
         except urllib.error.HTTPError as error:
             message = error.read(3000).decode(errors="replace").replace(self.key, "[redacted]")
             raise RuntimeError(f"Runpod HTTP {error.code}: {message}") from error
+
+    def runtime_connection(self, pod_id):
+        # Observed API discrepancy: REST v2 runtime=null while GraphQL already
+        # exposes a live mapped SSH port. Keep this corroborated fallback explicit.
+        query = "query { myself { pods { id runtime { ports { ip isIpPublic privatePort publicPort type } } } } }"
+        request = urllib.request.Request("https://api.runpod.io/graphql", data=json.dumps({"query": query}).encode(), headers={"Authorization": "Bearer " + self.key, "Content-Type": "application/json"})
+        with urllib.request.urlopen(request, timeout=30) as response:
+            result = json.load(response)
+        if result.get("errors"):
+            raise RuntimeError("Runpod GraphQL runtime query was rejected")
+        pod = next((p for p in result["data"]["myself"]["pods"] if p["id"] == pod_id), {})
+        return public_ssh_port(pod)
 
     def ssh(self, command, timeout=60, input=None, check=True):
         c = self.ledger["connection"]
@@ -117,13 +136,12 @@ class Controller:
         self.save()
         until = min(time.time() + 540, self.ledger["deadline"] - 120)
         while time.time() < until:
-            info = self.command([self.cli, "ssh", "info", pod["id"]], check=False)
-            if info.returncode == 0:
-                conn = json.loads(info.stdout)
-                if conn.get("ip") and conn.get("port"):
-                    self.ledger["connection"] = {"ip": conn["ip"], "port": conn["port"]}
-                    if self.ssh("true", check=False).returncode == 0:
-                        break
+            conn = self.runtime_connection(pod["id"])
+            if conn:
+                self.ledger["connection"] = conn
+                self.ledger["runtime_connection_source"] = "GraphQL live SSH mapping, REST v2 telemetry unavailable"
+                if self.ssh("true", check=False).returncode == 0:
+                    break
             time.sleep(10)
         else:
             raise TimeoutError("Pod did not become SSH-ready within the boot budget")

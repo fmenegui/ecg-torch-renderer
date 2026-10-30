@@ -1,7 +1,7 @@
 from copy import deepcopy
 import unittest
 
-from reproductions.runpod.controller import choice, validate_ownership
+from reproductions.runpod.controller import choice, public_ssh_port, validate_ownership
 
 
 class RunpodControlTests(unittest.TestCase):
@@ -33,6 +33,15 @@ class RunpodControlTests(unittest.TestCase):
         validate_ownership({"run_id": "123-1", "name": "ecg-repro-123-1"}, "123-1")
         with self.assertRaises(ValueError):
             validate_ownership({"run_id": "another-run", "name": "someone-elses-pod"}, "123-1")
+
+    def test_ssh_does_not_use_http_or_private_port_mappings(self):
+        ports = [
+            {"ip": "100.65.1.1", "isIpPublic": False, "privatePort": 22, "publicPort": 123, "type": "tcp"},
+            {"ip": "1.2.3.4", "isIpPublic": True, "privatePort": 19123, "publicPort": 456, "type": "http"},
+            {"ip": "1.2.3.4", "isIpPublic": True, "privatePort": 22, "publicPort": 789, "type": "tcp"},
+        ]
+        self.assertIsNone(public_ssh_port({"runtime": None}))
+        self.assertEqual(public_ssh_port({"runtime": {"ports": ports}}), {"ip": "1.2.3.4", "port": 789})
 
 
 if __name__ == "__main__":
