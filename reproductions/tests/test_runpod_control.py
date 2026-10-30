@@ -9,22 +9,27 @@ class RunpodControlTests(unittest.TestCase):
         self.plan = {"maximum_pod_seconds": 1800, "volume_gb": 30, "gpu_id": "NVIDIA A40", "data_center": "EU-SE-1", "maximum_gpu_price_per_hour": 0.60, "template_id": "torch"}
         self.gpus = [{"gpuId": "NVIDIA A40", "securePricePerHr": 0.59, "dataCenterAvailability": [{"dataCenterId": "EU-SE-1", "stockStatus": "Medium"}]}]
         self.templates = [{"id": "torch", "imageName": "runpod/pytorch:pinned"}]
+        self.datacenters = [{"id": "EU-SE-1", "networkVolumeTypes": ["STANDARD"]}]
 
     def test_price_and_observed_location_must_both_match(self):
-        self.assertEqual(choice(self.plan, self.gpus, self.templates)["gpu_price_per_hour"], 0.59)
+        self.assertEqual(choice(self.plan, self.gpus, self.templates, self.datacenters)["gpu_price_per_hour"], 0.59)
         other = deepcopy(self.gpus)
         other[0]["securePricePerHr"] = 0.61
         with self.assertRaises(ValueError):
-            choice(self.plan, other, self.templates)
+            choice(self.plan, other, self.templates, self.datacenters)
         other = deepcopy(self.gpus)
         other[0]["dataCenterAvailability"][0]["dataCenterId"] = "another-dc"
         with self.assertRaises(ValueError):
-            choice(self.plan, other, self.templates)
+            choice(self.plan, other, self.templates, self.datacenters)
+
+    def test_gpu_stock_without_storage_cannot_start_training(self):
+        with self.assertRaises(ValueError):
+            choice(self.plan, self.gpus, self.templates, [{"id": "EU-SE-1", "networkVolumeTypes": []}])
 
     def test_budget_and_ownership_cannot_silently_expand(self):
         other = dict(self.plan, maximum_pod_seconds=3600)
         with self.assertRaises(ValueError):
-            choice(other, self.gpus, self.templates)
+            choice(other, self.gpus, self.templates, self.datacenters)
         validate_ownership({"run_id": "123-1", "name": "ecg-repro-123-1"}, "123-1")
         with self.assertRaises(ValueError):
             validate_ownership({"run_id": "another-run", "name": "someone-elses-pod"}, "123-1")

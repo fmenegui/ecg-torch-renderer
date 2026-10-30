@@ -13,24 +13,32 @@ from pathlib import Path
 import shlex
 import subprocess
 import time
+import urllib.error
 import urllib.request
 
 from reproductions.common import write_json
 
 
-def choice(plan, gpus, templates):
+def choice(plan, gpus, templates, datacenters):
     if not 0 < plan["maximum_pod_seconds"] <= 1800 or plan["volume_gb"] != 30:
         raise ValueError("Pilot exceeds its bounded resource envelope")
-    gpu = next(g for g in gpus if g["gpuId"] == plan["gpu_id"])
-    price = gpu.get("securePricePerHr")
-    if price is None or not 0 < price <= plan["maximum_gpu_price_per_hour"]:
-        raise ValueError("Current GPU price exceeds the declared cap")
-    if not any(d["dataCenterId"] == plan["data_center"] and d.get("stockStatus", "").lower() in ["low", "medium", "high"] for d in gpu.get("dataCenterAvailability", [])):
-        raise ValueError("No observed GPU stock in the selected data center")
     template = next(t for t in templates if t["id"] == plan["template_id"])
     if not template["imageName"].startswith("runpod/pytorch:"):
         raise ValueError("Expected the observed official PyTorch image")
-    return {"gpu": gpu, "template": template, "data_center": plan["data_center"], "gpu_price_per_hour": price, "read_at": datetime.now(timezone.utc).isoformat()}
+    for identity in plan.get("gpu_candidates", [plan["gpu_id"]]):
+        for gpu in gpus:
+            if gpu["gpuId"] != identity:
+                continue
+            price = gpu.get("securePricePerHr")
+            if price is None or not 0 < price <= plan["maximum_gpu_price_per_hour"]:
+                continue
+            for availability in gpu.get("dataCenterAvailability", []):
+                if availability.get("stockStatus", "").lower() not in ["low", "medium", "high"]:
+                    continue
+                dc = next((d for d in datacenters if d["id"] == availability["dataCenterId"]), None)
+                if dc and "STANDARD" in dc.get("networkVolumeTypes", []):
+                    return {"gpu": gpu, "template": template, "data_center": dc["id"], "data_center_metadata": dc, "gpu_price_per_hour": price, "read_at": datetime.now(timezone.utc).isoformat()}
+    raise ValueError("No observed candidate has both acceptable price and standard network storage in the same data center")
 
 
 def validate_ownership(ledger, run_id):
@@ -65,8 +73,12 @@ class Controller:
     def rest(self, method, path, body=None):
         data = json.dumps(body).encode() if body is not None else None
         request = urllib.request.Request("https://api.runpod.io/v2" + path, data=data, method=method, headers={"Authorization": "Bearer " + self.key, "Content-Type": "application/json"})
-        with urllib.request.urlopen(request, timeout=40) as response:
-            return json.load(response)
+        try:
+            with urllib.request.urlopen(request, timeout=40) as response:
+                return json.load(response)
+        except urllib.error.HTTPError as error:
+            message = error.read(3000).decode(errors="replace").replace(self.key, "[redacted]")
+            raise RuntimeError(f"Runpod HTTP {error.code}: {message}") from error
 
     def ssh(self, command, timeout=60, input=None, check=True):
         c = self.ledger["connection"]
@@ -82,9 +94,8 @@ class Controller:
         if self.ledger.get("pod_id") or self.ledger.get("volume_id"):
             raise ValueError("This execution already provisioned resources")
         plan = json.loads(Path(__file__).with_name("plan.json").read_text())
-        selected = choice(plan, self.call(["gpu", "list", "--include-unavailable"]), self.call(["template", "search", "pytorch", "--type", "official", "--limit", "20"]))
         raw_catalog = self.rest("GET", "/catalog/datacenters")
-        selected["data_center_metadata"] = next(d for d in raw_catalog["dataCenters"] if d["id"] == plan["data_center"])
+        selected = choice(plan, self.call(["gpu", "list", "--include-unavailable"]), self.call(["template", "search", "pytorch", "--type", "official", "--limit", "20"]), raw_catalog["dataCenters"])
         selected["storage_price_reference"] = {"type": "STANDARD", "usd_per_gb_month": 0.07, "volume_gb": plan["volume_gb"], "source": "https://www.runpod.io/pricing"}
         self.ledger.update(selection=selected, status="selected", plan=plan)
         self.save()
@@ -97,11 +108,11 @@ class Controller:
         self.call(["ssh", "add-key", "--key-file", str(key) + ".pub"])
         self.ledger["ssh_key_added"] = True
         self.save()
-        volume = self.rest("POST", "/network-volumes", {"name": self.ledger["name"], "size": plan["volume_gb"], "dataCenter": plan["data_center"], "type": "STANDARD"})
+        volume = self.rest("POST", "/network-volumes", {"name": self.ledger["name"], "size": plan["volume_gb"], "dataCenter": selected["data_center"], "type": "STANDARD"})
         self.ledger["volume_id"] = volume["id"]
         self.ledger["deadline"] = time.time() + plan["maximum_pod_seconds"]
         self.save()
-        pod = self.call(["pod", "create", "--name", self.ledger["name"], "--image", selected["template"]["imageName"], "--gpu-id", plan["gpu_id"], "--gpu-count", "1", "--cloud-type", "SECURE", "--data-center-ids", plan["data_center"], "--network-volume-id", volume["id"], "--volume-mount-path", "/workspace", "--container-disk-in-gb", str(plan["container_disk_gb"]), "--ports", "22/tcp", "--ssh", "--min-cuda-version", "12.8"])
+        pod = self.call(["pod", "create", "--name", self.ledger["name"], "--image", selected["template"]["imageName"], "--gpu-id", selected["gpu"]["gpuId"], "--gpu-count", "1", "--cloud-type", "SECURE", "--data-center-ids", selected["data_center"], "--network-volume-id", volume["id"], "--volume-mount-path", "/workspace", "--container-disk-in-gb", str(plan["container_disk_gb"]), "--ports", "22/tcp", "--ssh", "--min-cuda-version", "12.8"])
         self.ledger.update(pod_id=pod["id"], status="booting")
         self.save()
         until = min(time.time() + 540, self.ledger["deadline"] - 120)

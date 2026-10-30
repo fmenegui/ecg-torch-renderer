@@ -1,6 +1,7 @@
 {
   "schema": "ecg-runpod-pilot-plan-v1",
-  "generation": 1,
+  "generation": 2,
+  "gpu_candidates": ["NVIDIA A40", "NVIDIA L4"],
   "gpu_id": "NVIDIA A40",
   "data_center": "EU-SE-1",
   "maximum_gpu_price_per_hour": 0.60,
