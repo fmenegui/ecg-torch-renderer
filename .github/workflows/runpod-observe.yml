@@ -1,0 +1,27 @@
+name: Observe ECG Runpod resources
+on:
+  push:
+    branches: ['research/reproduce-ecg-methods-from-zero-*']
+    paths: ['.github/workflows/runpod-observe.yml', 'reproductions/runpod/observe.py']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  observe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Read only owned reproduction resources
+        env:
+          RUNPOD_API_KEY: ${{ secrets.RUNPOD_API }}
+        run: python -m reproductions.runpod.observe --out build/runpod-observation.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: runpod-owned-observation
+          path: build/runpod-observation.json

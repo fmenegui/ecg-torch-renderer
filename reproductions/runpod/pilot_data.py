@@ -54,7 +54,10 @@ def fetch(root):
 def prepare(root):
     import numpy as np
     import pandas as pd
-    import wfdb
+    # WFDB 4.3.0 builds annotation tables with ndarray string indexers at import.
+    # Keep its import compatible with pandas 3 without changing signal reading.
+    with pd.option_context("future.infer_string", False):
+        import wfdb
     root = Path(root)
     raw = fetch(root)
     (root / "gold").mkdir(exist_ok=True)
