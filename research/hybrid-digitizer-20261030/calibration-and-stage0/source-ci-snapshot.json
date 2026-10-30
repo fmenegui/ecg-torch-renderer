@@ -1,0 +1,43 @@
+{
+  "schema": "calibration-stage0-source-ci-v1",
+  "source_commit": "b51ef1f75b58bea5a4f00d4edf8ce0b6ba1b1621",
+  "all_completed_successfully": true,
+  "runs": [
+    {
+      "id": 41141796586,
+      "name": "Hybrid source and reference contracts",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 41141796728,
+      "name": "Digitization reference",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 41141796598,
+      "name": "Library contracts",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 41141788606,
+      "name": "Read exact ongoing ECG training status",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 41141788598,
+      "name": "Hybrid source and reference contracts",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 41141788554,
+      "name": "Library contracts",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ]
+}

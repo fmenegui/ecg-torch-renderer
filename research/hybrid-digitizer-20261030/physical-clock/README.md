@@ -1,5 +1,7 @@
 # Integração temporal física e benchmark PM-ECG-ID completo
 
+Continuação: [calibração explícita, orientação EXIF e diagnóstico da etapa zero](../calibration-and-stage0/README.md).
+
 Avanço de 30/10/2026. Código e controles executados. A comparação em GPU desta
 alteração foi bloqueada pelo Runpod antes da inferência, por saldo insuficiente
 na conta, com HTTP 402. Nenhum resultado de precisão em GPU foi produzido por

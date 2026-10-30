@@ -140,3 +140,15 @@ de reprodução com fontes npj e assets Kaggle habilitados, sem skips.
 Os 16 cenários adversos foram exportados e inspecionados. A consulta ao treino
 foi corrigida para incluir pods parados e conferir os metadados do volume
 exato, sem iniciar, parar ou remover recursos.
+
+A consulta corrigida das 20h00 de São Paulo confirmou o volume original de
+220 GB, com identidade e local verificados. Nenhum pod com o nome esperado
+foi encontrado, inclusive entre os parados. O último checkpoint recuperado e
+verificado continua na época 13. `training-status.json` preserva o recibo.
+
+O [pacote reproduzível desta etapa](https://chatgpt.com/library?file_id=libfile_82c28a815b108191bc18e79f04c48dc7&account_id=personal)
+contém 196 arquivos e 283.088.989 bytes, com entradas originais, assets da
+etapa zero, observações e exceções nativas, OCR bruto, partição de fontes,
+testes e consultas de recursos. Não contém predições novas em GPU ou treino
+novo. SHA256: `a534b6d3fad672246ef03688e72b23d797854797c5e1467fa3cd4b97a33f0f21`.
+O código está no commit `b51ef1f75b58bea5a4f00d4edf8ce0b6ba1b1621`.

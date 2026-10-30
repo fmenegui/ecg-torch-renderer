@@ -7,6 +7,12 @@ This work does not promote the existing rectifier or change production defaults.
 
 ## Current status
 
+The [current calibration and stage-zero report](../research/hybrid-digitizer-20261030/calibration-and-stage0/README.md)
+adds an EXIF-aware file entrypoint, explicit physical calibration, native
+landmark diagnostics and a patient-exclusive candidate source split. These
+components have local controls. New training and the new GPU clock comparison
+remain pending after Runpod rejected allocation for account balance.
+
 | Work | Implemented and locally executed | Still needed |
 | --- | --- | --- |
 | npj Digital Medicine | Original source and both published weight files verified. Complete native chain executed on one original test fixture. Both original networks trained in explicitly reduced CPU and Runpod L4 GPU engineering checks. Full native inference executed on an author fixture and public development images. A new 24-photo, eight-patient GPU cohort is saved separately. Full-data training has a safely verified epoch-13 checkpoint out of 45 main epochs. Native evaluator controls executed. | Original 45-epoch and public-config training, lead-text training at full scale, original Ahus and Emory cohort scoring. |

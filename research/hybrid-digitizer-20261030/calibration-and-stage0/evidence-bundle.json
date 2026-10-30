@@ -1,0 +1,11 @@
+{
+  "file_name": "ecg-calibracao-orientacao-diagnostico-2026-10-30.zip",
+  "bytes": 283088989,
+  "sha256": "a534b6d3fad672246ef03688e72b23d797854797c5e1467fa3cd4b97a33f0f21",
+  "files": 196,
+  "library_file_id": "libfile_82c28a815b108191bc18e79f04c48dc7",
+  "url": "https://chatgpt.com/library?file_id=libfile_82c28a815b108191bc18e79f04c48dc7&account_id=personal",
+  "source_commit": "b51ef1f75b58bea5a4f00d4edf8ce0b6ba1b1621",
+  "new_training_executed": false,
+  "new_gpu_predictions_included": false
+}
