@@ -1,0 +1,25 @@
+{
+  "schema": "pm-clock-pre-gpu-validation-v1",
+  "root_tests": {
+    "run": 541,
+    "skipped": 25,
+    "passed": true,
+    "log_sha256": "1f63266e0fed6d37090f80885a1b463c08cd119f76ebb16482997f97053d3fd3"
+  },
+  "reproduction_tests": {
+    "run": 96,
+    "skipped": 0,
+    "passed": true,
+    "pinned_original_source_enabled": true,
+    "log_sha256": "29c92ec989a45d3af5775b2397c4775c7449993603ed61fff293998752a7811b"
+  },
+  "ruff_changed_code_passed": true,
+  "adverse_gallery": {
+    "cases": 16,
+    "device": "cpu",
+    "visually_inspected": true,
+    "contact_sheet_sha256": "95ab8b8f4c055b6329151874b9751b8b1b4ded2986239ec84955dc288b72b93f"
+  },
+  "gpu_clock_integration_status": "not_yet_executed",
+  "candidate_superiority_established": false
+}

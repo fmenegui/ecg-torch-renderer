@@ -1,0 +1,56 @@
+{
+  "schema": "physical-clock-cohort-selection-v1",
+  "selection": "SHA256 seed, rare page-count profiles first, no prediction or reference scoring",
+  "base_records": [
+    {
+      "image_id": "88",
+      "recording_id": 14304,
+      "patient_id": "17745.0",
+      "layout_scoring_only": "3x4",
+      "page_count": 4
+    },
+    {
+      "image_id": "54",
+      "recording_id": 17269,
+      "patient_id": "19842.0",
+      "layout_scoring_only": "3x4",
+      "page_count": 2
+    },
+    {
+      "image_id": "75",
+      "recording_id": 2444,
+      "patient_id": "21362.0",
+      "layout_scoring_only": "6x2",
+      "page_count": 2
+    },
+    {
+      "image_id": "25",
+      "recording_id": 5441,
+      "patient_id": "19125.0",
+      "layout_scoring_only": "12x1",
+      "page_count": 1
+    },
+    {
+      "image_id": "59",
+      "recording_id": 18073,
+      "patient_id": "19957.0",
+      "layout_scoring_only": "6x2",
+      "page_count": 1
+    },
+    {
+      "image_id": "42",
+      "recording_id": 9545,
+      "patient_id": "15269.0",
+      "layout_scoring_only": "3x4+1R",
+      "page_count": 1
+    }
+  ],
+  "patients": 6,
+  "conditions": [
+    "photos_scans",
+    "photos_bents"
+  ],
+  "exam_entries": 12,
+  "page_files": 22,
+  "input_sha256": "492c44d446a7945c2c366cfc56a858b3bcb9f3eebf96df55058b9815ec27de4f"
+}

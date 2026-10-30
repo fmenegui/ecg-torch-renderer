@@ -5,17 +5,17 @@ on the owned pod. It is absent from experiment env, source and artifact files.
 """
 
 import argparse
-from datetime import datetime, timezone
 import hashlib
 import json
 import os
-from pathlib import Path
 import shlex
 import signal
 import subprocess
 import time
 import urllib.error
 import urllib.request
+from datetime import datetime, timezone
+from pathlib import Path
 
 from reproductions.common import write_json
 
@@ -25,10 +25,16 @@ def validate_plan(plan):
     storage = plan.get("storage_mode", "network_volume")
     if storage not in ["network_volume", "container_disk"]:
         raise ValueError("Unknown storage mode")
-    inference_workers = {"reproductions.hybrid.worker", "reproductions.hybrid.worker_completion"}
+    inference_workers = {"reproductions.hybrid.worker", "reproductions.hybrid.worker_completion", "reproductions.pm_benchmark.worker_clock"}
     if storage == "container_disk" and (full or plan.get("schema") != "ecg-runpod-pilot-plan-v1"
             or plan.get("worker_module") not in inference_workers or plan.get("container_disk_gb") != 40):
         raise ValueError("Ephemeral storage is limited to the bounded hybrid inference pilot")
+    if plan.get('worker_module') == 'reproductions.pm_benchmark.worker_clock':
+        total = plan['maximum_pod_seconds'] * plan['maximum_gpu_price_per_hour'] / 3600
+        if (plan.get('gpu_time_cost_cap_usd') != .30 or not 0 < total <= .30
+                or plan['maximum_gpu_price_per_hour'] > .60 or plan.get('scheduled_pages') != 22
+                or plan.get('new_training') is not False or storage != 'container_disk'):
+            raise ValueError('Physical-clock ablation exceeds its independent USD 0.30 GPU-time cap')
     if plan.get("worker_module") == "reproductions.hybrid.worker_completion":
         prior = plan.get("prior_gpu_time_cost_upper_bound_usd", -1)
         minimum_prior = .3337 if plan.get("reuse_repair_from_run") == 41113820943 else .2782

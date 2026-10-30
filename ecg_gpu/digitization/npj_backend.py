@@ -1,10 +1,10 @@
 """Pinned native Open-ECG-Digitizer behind the common hybrid signal contract."""
 
 import hashlib
-from pathlib import Path
 import subprocess
 import sys
 import threading
+from pathlib import Path
 
 import numpy as np
 import torch
@@ -67,31 +67,55 @@ class NativeNpjBackend:
         self.max_side, self.device, self.config = max_side, device, cfg
         self._lock = threading.Lock()
 
-    def predict(self, rgb, *, fs, samples, source_id):
+    def _validate_image(self, rgb, samples):
         if type(samples) is not int or samples < 1:
             raise ValueError("Explicit positive public output length required")
         array = np.asarray(rgb)
         if array.dtype != np.uint8 or array.ndim != 3 or array.shape[2] != 3:
             raise ValueError("uint8 RGB required")
-        with self._lock, torch.inference_mode():
-            self.model.identifier.target_num_samples = samples
-            tensor = torch.from_numpy(array.copy()).permute(2, 0, 1)[None].float()
-            torch.manual_seed(20261026)
-            result = self.model(tensor, layout_should_include_substring=None)
-            canonical = result["signal"]["canonical_lines"]
-            if canonical is None:
-                raise ValueError("Native pipeline returned no canonical waveform")
-            values = canonical.detach().cpu().numpy().astype(np.float64).squeeze() / 1000.0
-            if values.shape != (12, samples):
-                raise ValueError("Native result changed the requested canonical time axis")
-            raw_layout = result["layout_name"]
-            layout = canonical_layout(raw_layout)
-            cost = float(result["signal"]["layout_matching_cost"])
-            metadata = {"backend": "npj-native", "source_commit": NPJ_COMMIT,
-                        "published_weights_sha256": NPJ_WEIGHTS, "native_layout": raw_layout,
-                        "layout_matching_cost": cost if np.isfinite(cost) else None,
-                        "layout_fallback": not np.isfinite(cost), "max_side": self.max_side,
-                        "device": self.device, "native_output_unit": "uV", "public_sample_count": samples,
-                        "assumed_gain_mm_per_mv": 10.0, "print_gain_inferred_from_image": False,
-                        "pixel_spacing_mm": {k: float(v) for k, v in result["pixel_spacing_mm"].items()}}
+        return array
+
+    def _infer(self, array, samples):
+        self.model.identifier.target_num_samples = samples
+        tensor = torch.from_numpy(array.copy()).permute(2, 0, 1)[None].float()
+        torch.manual_seed(20261026)
+        result = self.model(tensor, layout_should_include_substring=None)
+        return result
+
+    def _proposal(self, result, fs, samples, source_id):
+        canonical = result["signal"]["canonical_lines"]
+        if canonical is None:
+            raise ValueError("Native pipeline returned no canonical waveform")
+        values = canonical.detach().cpu().numpy().astype(np.float64).squeeze() / 1000.0
+        if values.shape != (12, samples):
+            raise ValueError("Native result changed the requested canonical time axis")
+        raw_layout = result["layout_name"]
+        layout = canonical_layout(raw_layout)
+        cost = float(result["signal"]["layout_matching_cost"])
+        metadata = {"backend": "npj-native", "source_commit": NPJ_COMMIT,
+                    "published_weights_sha256": NPJ_WEIGHTS, "native_layout": raw_layout,
+                    "layout_matching_cost": cost if np.isfinite(cost) else None,
+                    "layout_fallback": not np.isfinite(cost), "max_side": self.max_side,
+                    "device": self.device, "native_output_unit": "uV", "public_sample_count": samples,
+                    "assumed_gain_mm_per_mv": 10.0, "print_gain_inferred_from_image": False,
+                    "pixel_spacing_mm": {k: float(v) for k, v in result["pixel_spacing_mm"].items()}}
         return SignalProposal(values, fs, source_id, layout, metadata=metadata)
+
+    def predict(self, rgb, *, fs, samples, source_id):
+        array = self._validate_image(rgb, samples)
+        with self._lock, torch.inference_mode():
+            result = self._infer(array, samples)
+            return self._proposal(result, fs, samples, source_id)
+
+    def predict_observed(self, rgb, *, fs, samples, source_id):
+        from .npj_trace import NativeTraceObserver
+        array = self._validate_image(rgb, samples)
+        with self._lock, torch.inference_mode():
+            with NativeTraceObserver(self.model) as observer:
+                result = self._infer(array, samples)
+            direct = self._proposal(result, fs, samples, source_id)
+            observer.report['pixel_spacing_mm'] = {k: float(v) for k, v in result['pixel_spacing_mm'].items()}
+            observer.arrays['source_points'] = result['source_points'].detach().cpu().numpy().copy()
+            observer.report['source_id'] = source_id
+            observer.report['observation_shapes'] = {k: list(v.shape) for k, v in observer.arrays.items()}
+            return direct, observer

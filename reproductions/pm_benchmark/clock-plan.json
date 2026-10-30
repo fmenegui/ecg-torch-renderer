@@ -1,0 +1,19 @@
+{
+  "schema": "ecg-runpod-pilot-plan-v1",
+  "generation": 1,
+  "worker_module": "reproductions.pm_benchmark.worker_clock",
+  "source_paths": ["reproductions", "ecg_gpu", "examples"],
+  "gpu_candidates": ["NVIDIA A40", "NVIDIA L4"],
+  "gpu_id": "NVIDIA A40",
+  "minimum_gpu_memory_gb": 24,
+  "maximum_gpu_price_per_hour": 0.60,
+  "template_id": "runpod-torch-v280",
+  "storage_mode": "container_disk",
+  "volume_gb": 0,
+  "container_disk_gb": 40,
+  "maximum_pod_seconds": 1800,
+  "gpu_time_cost_cap_usd": 0.30,
+  "scheduled_pages": 22,
+  "new_training": false,
+  "purpose": "Separate bounded integration ablation of native extraction versus a physical x clock. Twelve exam entries, six patients, two capture conditions and all one/two/four-page profiles. The frame origin is a declared hypothesis, not an independently validated print-zero detector. No references acquired by worker, no new model training."
+}
