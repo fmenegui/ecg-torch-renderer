@@ -1,0 +1,46 @@
+name: Hybrid source and reference contracts
+on:
+  push:
+    branches: ['research/hybrid-digitizer-*']
+  pull_request:
+    paths:
+      - 'ecg_gpu/digitization/**'
+      - 'reproductions/**'
+      - '.github/workflows/hybrid-contracts.yml'
+permissions:
+  contents: read
+concurrency:
+  group: hybrid-contracts-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      OMP_NUM_THREADS: '2'
+      MKL_NUM_THREADS: '2'
+      ECG_REPRO_NPJ_UPSTREAM: ${{ github.workspace }}/build/sources/npj
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned original-source verification stack
+        run: |
+          python -m pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install -r reproductions/requirements-common.txt shapely==2.1.2
+      - name: Fetch hash-verified original npj source and checkpoints
+        run: python -m reproductions.bootstrap --method npj --dest build/sources
+      - name: Reproduction, no-reference selection and physical mesh controls
+        run: |
+          python -m unittest discover -s reproductions/tests -v
+          python -m unittest tests.test_selective_digitizer tests.test_adaptive_sampling tests.test_grid_backend -v
+          python -m reproductions.npj.audit --upstream "$ECG_REPRO_NPJ_UPSTREAM" --out build/npj-source-audit.json
+          python -m ruff check reproductions ecg_gpu/digitization examples/hybrid*.py --select E,F --ignore E501
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: hybrid-native-source-audit
+          path: build/npj-source-audit.json

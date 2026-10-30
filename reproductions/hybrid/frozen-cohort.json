@@ -1,0 +1,421 @@
+{
+  "schema": "pm-ecg-external-pilot-v1",
+  "source": "https://zenodo.org/records/13617673",
+  "doi": "10.5281/zenodo.13617673",
+  "source_license": "GPL-3.0-or-later",
+  "status": "frozen_before_inference",
+  "selection": "Two patients per layout, SHA256 external-pilot-v1/ECG-ID order",
+  "conditions": [
+    "photos_scans",
+    "photos_samsung",
+    "photos_bents"
+  ],
+  "layouts": [
+    "3x4",
+    "3x4+1R",
+    "6x2",
+    "12x1"
+  ],
+  "patients": 8,
+  "images": 24,
+  "source_metadata_rows": 6600,
+  "source_metadata_sha256": "6d89d1990692767eef15560737e2c0ebce517a22b4da7068a2bcd68ae231daea",
+  "ptbxl_metadata_sha256": "7600de9c1b27d181d850b3c6038a35d7c3ddb6bb33b702e3a20252a6859d216b",
+  "excluded_manifest_sha256": {
+    "selection-exclusions.json": "b095fa1500bb744adada163fd520c52e62a8b473478fa1dbe1d32937fdf12c76"
+  },
+  "exclusions_before_inference": [
+    {
+      "recording_id": 6303,
+      "patient_id": "ptbxl-patient-391.0",
+      "reason": "previously used recording/patient or duplicate patient"
+    },
+    {
+      "recording_id": 12186,
+      "patient_id": "ptbxl-patient-16629.0",
+      "reason": "previously used recording/patient or duplicate patient"
+    },
+    {
+      "recording_id": 20748,
+      "patient_id": "ptbxl-patient-8220.0",
+      "reason": "previously used recording/patient or duplicate patient"
+    },
+    {
+      "recording_id": 12629,
+      "patient_id": "ptbxl-patient-3213.0",
+      "reason": "previously used recording/patient or duplicate patient"
+    },
+    {
+      "recording_id": 21468,
+      "patient_id": "ptbxl-patient-16806.0",
+      "reason": "previously used recording/patient or duplicate patient"
+    },
+    {
+      "recording_id": 4733,
+      "patient_id": "ptbxl-patient-21541.0",
+      "reason": "previously used recording/patient or duplicate patient"
+    },
+    {
+      "recording_id": 10598,
+      "patient_id": "ptbxl-patient-3609.0",
+      "reason": "previously used recording/patient or duplicate patient"
+    },
+    {
+      "recording_id": 9331,
+      "patient_id": "ptbxl-patient-16429.0",
+      "reason": "previously used recording/patient or duplicate patient"
+    },
+    {
+      "recording_id": 20159,
+      "patient_id": "ptbxl-patient-18616.0",
+      "reason": "previously used recording/patient or duplicate patient"
+    },
+    {
+      "recording_id": 19138,
+      "patient_id": "ptbxl-patient-9641.0",
+      "reason": "previously used recording/patient or duplicate patient"
+    },
+    {
+      "recording_id": 19202,
+      "patient_id": "ptbxl-patient-15393.0",
+      "reason": "previously used recording/patient or duplicate patient"
+    }
+  ],
+  "our_prior_patient_overlap": false,
+  "upstream_training_overlap": "unknown",
+  "reference_fs": 500,
+  "reference_units": "mV",
+  "reference_time": "Printed document horizontal time axis, columns retained. Long rhythm identity checked by exact source samples.",
+  "source_arrays_sha256": {
+    "leads.npz": "0b2046c21b4dfdc90dcef5a023504af294769c0555adbbb1810ecf359a7c4be5",
+    "rhythms.npz": "cd9d24d280870961e37ebd1cfa9f188e74482827bfaad8ed45da613ab0b61b24"
+  },
+  "whole_archive_md5_verified": false,
+  "partial_download_crc_checked": true,
+  "cases": [
+    {
+      "image_id": "pm-6-photos_scans",
+      "patient_id": "ptbxl-patient-10345.0",
+      "recording_id": 2926,
+      "condition": "photos_scans",
+      "image": "final_data/visual_data/photos_scans/img_6_page_0.jpeg",
+      "image_sha256": "f5d412d0ddedd5fa144420b58a0208f402d90ea3d9e2774ffe87f6c67ad17661",
+      "reference": "references/LPAE_02926_hr.npz",
+      "reference_sha256": "d1f983ec8202716ae88a1cdb413d0037f6277e4bc8aaf5eec391e6ed8fec446e",
+      "reference_layout_scoring_only": "12x1",
+      "reference_rhythm_leads_scoring_only": [],
+      "reference_printed_samples": 60000
+    },
+    {
+      "image_id": "pm-6-photos_samsung",
+      "patient_id": "ptbxl-patient-10345.0",
+      "recording_id": 2926,
+      "condition": "photos_samsung",
+      "image": "final_data/visual_data/photos_samsung/img_6_page_0.jpeg",
+      "image_sha256": "2819a8e98d04c37f7c0a520211381c38cf45eb14fd8f82a44ab36266e4ab5297",
+      "reference": "references/LPAE_02926_hr.npz",
+      "reference_sha256": "d1f983ec8202716ae88a1cdb413d0037f6277e4bc8aaf5eec391e6ed8fec446e",
+      "reference_layout_scoring_only": "12x1",
+      "reference_rhythm_leads_scoring_only": [],
+      "reference_printed_samples": 60000
+    },
+    {
+      "image_id": "pm-6-photos_bents",
+      "patient_id": "ptbxl-patient-10345.0",
+      "recording_id": 2926,
+      "condition": "photos_bents",
+      "image": "final_data/visual_data/photos_bents/img_6_page_0.jpeg",
+      "image_sha256": "e4dd9cb32dc9f69dd284a4556927e4c874aaab923393979068785e7c505fb111",
+      "reference": "references/LPAE_02926_hr.npz",
+      "reference_sha256": "d1f983ec8202716ae88a1cdb413d0037f6277e4bc8aaf5eec391e6ed8fec446e",
+      "reference_layout_scoring_only": "12x1",
+      "reference_rhythm_leads_scoring_only": [],
+      "reference_printed_samples": 60000
+    },
+    {
+      "image_id": "pm-25-photos_scans",
+      "patient_id": "ptbxl-patient-19125.0",
+      "recording_id": 5441,
+      "condition": "photos_scans",
+      "image": "final_data/visual_data/photos_scans/img_25_page_0.jpeg",
+      "image_sha256": "b35eb388b4f9b14eebe2f1f2babb073e0b45497a8b05e7625d4ed60fe5a319b6",
+      "reference": "references/LPAE_05441_hr.npz",
+      "reference_sha256": "e307ddf1fac0a118a2d4d38cc3251b9839e72317dd158e995769c0112722bc86",
+      "reference_layout_scoring_only": "12x1",
+      "reference_rhythm_leads_scoring_only": [],
+      "reference_printed_samples": 60000
+    },
+    {
+      "image_id": "pm-25-photos_samsung",
+      "patient_id": "ptbxl-patient-19125.0",
+      "recording_id": 5441,
+      "condition": "photos_samsung",
+      "image": "final_data/visual_data/photos_samsung/img_25_page_0.jpeg",
+      "image_sha256": "8bf84564067c6f6edc92fb6c7de43063b5b557c57769b8b5ac216a5a252a4d65",
+      "reference": "references/LPAE_05441_hr.npz",
+      "reference_sha256": "e307ddf1fac0a118a2d4d38cc3251b9839e72317dd158e995769c0112722bc86",
+      "reference_layout_scoring_only": "12x1",
+      "reference_rhythm_leads_scoring_only": [],
+      "reference_printed_samples": 60000
+    },
+    {
+      "image_id": "pm-25-photos_bents",
+      "patient_id": "ptbxl-patient-19125.0",
+      "recording_id": 5441,
+      "condition": "photos_bents",
+      "image": "final_data/visual_data/photos_bents/img_25_page_0.jpeg",
+      "image_sha256": "3d34868d501d996e9d514c2831ad3073f45831609762ceb5ce654faab325fba7",
+      "reference": "references/LPAE_05441_hr.npz",
+      "reference_sha256": "e307ddf1fac0a118a2d4d38cc3251b9839e72317dd158e995769c0112722bc86",
+      "reference_layout_scoring_only": "12x1",
+      "reference_rhythm_leads_scoring_only": [],
+      "reference_printed_samples": 60000
+    },
+    {
+      "image_id": "pm-27-photos_scans",
+      "patient_id": "ptbxl-patient-19155.0",
+      "recording_id": 20680,
+      "condition": "photos_scans",
+      "image": "final_data/visual_data/photos_scans/img_27_page_0.jpeg",
+      "image_sha256": "44144636e9041b65a48c4a266d73baae74f0de5458682ccc5fa94966f036ff4a",
+      "reference": "references/LPAE_20680_hr.npz",
+      "reference_sha256": "d87605d01a45faaae9a85aede9d1bdec678f42ee59d906a34a800a565e870b06",
+      "reference_layout_scoring_only": "3x4",
+      "reference_rhythm_leads_scoring_only": [],
+      "reference_printed_samples": 15000
+    },
+    {
+      "image_id": "pm-27-photos_samsung",
+      "patient_id": "ptbxl-patient-19155.0",
+      "recording_id": 20680,
+      "condition": "photos_samsung",
+      "image": "final_data/visual_data/photos_samsung/img_27_page_0.jpeg",
+      "image_sha256": "1269191cd5de874f282528874c78f69712103401145c21082d09339be9e87e3b",
+      "reference": "references/LPAE_20680_hr.npz",
+      "reference_sha256": "d87605d01a45faaae9a85aede9d1bdec678f42ee59d906a34a800a565e870b06",
+      "reference_layout_scoring_only": "3x4",
+      "reference_rhythm_leads_scoring_only": [],
+      "reference_printed_samples": 15000
+    },
+    {
+      "image_id": "pm-27-photos_bents",
+      "patient_id": "ptbxl-patient-19155.0",
+      "recording_id": 20680,
+      "condition": "photos_bents",
+      "image": "final_data/visual_data/photos_bents/img_27_page_0.jpeg",
+      "image_sha256": "234713c1b04a9d9a1c49c3f8dc16d0f6851b83176f43ba7e63f897c91c27e5d6",
+      "reference": "references/LPAE_20680_hr.npz",
+      "reference_sha256": "d87605d01a45faaae9a85aede9d1bdec678f42ee59d906a34a800a565e870b06",
+      "reference_layout_scoring_only": "3x4",
+      "reference_rhythm_leads_scoring_only": [],
+      "reference_printed_samples": 15000
+    },
+    {
+      "image_id": "pm-46-photos_scans",
+      "patient_id": "ptbxl-patient-19264.0",
+      "recording_id": 10306,
+      "condition": "photos_scans",
+      "image": "final_data/visual_data/photos_scans/img_46_page_0.jpeg",
+      "image_sha256": "39fe680249c0702f0f610840fe04d4d7b44501c114cb8c677da5a5068bc3d8ae",
+      "reference": "references/LPAE_10306_hr.npz",
+      "reference_sha256": "16eb811c1f92f730e2202dabb21d51a99689cb3ea5247b63f389b2dbeedf45ec",
+      "reference_layout_scoring_only": "3x4+1R",
+      "reference_rhythm_leads_scoring_only": [
+        "II"
+      ],
+      "reference_printed_samples": 18750
+    },
+    {
+      "image_id": "pm-46-photos_samsung",
+      "patient_id": "ptbxl-patient-19264.0",
+      "recording_id": 10306,
+      "condition": "photos_samsung",
+      "image": "final_data/visual_data/photos_samsung/img_46_page_0.jpeg",
+      "image_sha256": "28d7b4dda7e6f52b6864789deb5795421ab0937797c32e388a9507978da079fa",
+      "reference": "references/LPAE_10306_hr.npz",
+      "reference_sha256": "16eb811c1f92f730e2202dabb21d51a99689cb3ea5247b63f389b2dbeedf45ec",
+      "reference_layout_scoring_only": "3x4+1R",
+      "reference_rhythm_leads_scoring_only": [
+        "II"
+      ],
+      "reference_printed_samples": 18750
+    },
+    {
+      "image_id": "pm-46-photos_bents",
+      "patient_id": "ptbxl-patient-19264.0",
+      "recording_id": 10306,
+      "condition": "photos_bents",
+      "image": "final_data/visual_data/photos_bents/img_46_page_0.jpeg",
+      "image_sha256": "ea7aaab33e8120074729219c0864fb616b3e6c6236165d367ef6c3a33fe199cf",
+      "reference": "references/LPAE_10306_hr.npz",
+      "reference_sha256": "16eb811c1f92f730e2202dabb21d51a99689cb3ea5247b63f389b2dbeedf45ec",
+      "reference_layout_scoring_only": "3x4+1R",
+      "reference_rhythm_leads_scoring_only": [
+        "II"
+      ],
+      "reference_printed_samples": 18750
+    },
+    {
+      "image_id": "pm-56-photos_scans",
+      "patient_id": "ptbxl-patient-17505.0",
+      "recording_id": 10564,
+      "condition": "photos_scans",
+      "image": "final_data/visual_data/photos_scans/img_56_page_0.jpeg",
+      "image_sha256": "7dbaf28fe2f1577ff8d3b4ba0bb2eaa3e8a23d02f6e13d02c2a357b06ce9279b",
+      "reference": "references/LPAE_10564_hr.npz",
+      "reference_sha256": "2c143fa8c0f39d3948e241bb477e356680acfd9b1dd4f259bcfcc2088b39c954",
+      "reference_layout_scoring_only": "6x2",
+      "reference_rhythm_leads_scoring_only": [],
+      "reference_printed_samples": 30000
+    },
+    {
+      "image_id": "pm-56-photos_samsung",
+      "patient_id": "ptbxl-patient-17505.0",
+      "recording_id": 10564,
+      "condition": "photos_samsung",
+      "image": "final_data/visual_data/photos_samsung/img_56_page_0.jpeg",
+      "image_sha256": "b8dd516bf7655599e202d87be0888f66de59098b5c9ce580222b3fbfff9d95cc",
+      "reference": "references/LPAE_10564_hr.npz",
+      "reference_sha256": "2c143fa8c0f39d3948e241bb477e356680acfd9b1dd4f259bcfcc2088b39c954",
+      "reference_layout_scoring_only": "6x2",
+      "reference_rhythm_leads_scoring_only": [],
+      "reference_printed_samples": 30000
+    },
+    {
+      "image_id": "pm-56-photos_bents",
+      "patient_id": "ptbxl-patient-17505.0",
+      "recording_id": 10564,
+      "condition": "photos_bents",
+      "image": "final_data/visual_data/photos_bents/img_56_page_0.jpeg",
+      "image_sha256": "c8bd4ec6091740340a4de9b569bf8ac488f1fa39c072b70b690f5be1c9a86b9e",
+      "reference": "references/LPAE_10564_hr.npz",
+      "reference_sha256": "2c143fa8c0f39d3948e241bb477e356680acfd9b1dd4f259bcfcc2088b39c954",
+      "reference_layout_scoring_only": "6x2",
+      "reference_rhythm_leads_scoring_only": [],
+      "reference_printed_samples": 30000
+    },
+    {
+      "image_id": "pm-58-photos_scans",
+      "patient_id": "ptbxl-patient-15654.0",
+      "recording_id": 10943,
+      "condition": "photos_scans",
+      "image": "final_data/visual_data/photos_scans/img_58_page_0.jpeg",
+      "image_sha256": "174b8c2f3fafdf054e8617d84cea2094148ade3c33571fd522750f1809fa2e7c",
+      "reference": "references/LPAE_10943_hr.npz",
+      "reference_sha256": "18a217a9be6bc68b36dbcd51a1cc1a12872ac97183141717463ecd13ffcc2b36",
+      "reference_layout_scoring_only": "3x4",
+      "reference_rhythm_leads_scoring_only": [],
+      "reference_printed_samples": 15000
+    },
+    {
+      "image_id": "pm-58-photos_samsung",
+      "patient_id": "ptbxl-patient-15654.0",
+      "recording_id": 10943,
+      "condition": "photos_samsung",
+      "image": "final_data/visual_data/photos_samsung/img_58_page_0.jpeg",
+      "image_sha256": "65dbf49ba76507894c2c1779c1c353b7a2d16229ce0a870604d4778f29ce9fe3",
+      "reference": "references/LPAE_10943_hr.npz",
+      "reference_sha256": "18a217a9be6bc68b36dbcd51a1cc1a12872ac97183141717463ecd13ffcc2b36",
+      "reference_layout_scoring_only": "3x4",
+      "reference_rhythm_leads_scoring_only": [],
+      "reference_printed_samples": 15000
+    },
+    {
+      "image_id": "pm-58-photos_bents",
+      "patient_id": "ptbxl-patient-15654.0",
+      "recording_id": 10943,
+      "condition": "photos_bents",
+      "image": "final_data/visual_data/photos_bents/img_58_page_0.jpeg",
+      "image_sha256": "194e646466f009a258a54ef034700f6843c9e3fc7db54c255e600855c4c2057d",
+      "reference": "references/LPAE_10943_hr.npz",
+      "reference_sha256": "18a217a9be6bc68b36dbcd51a1cc1a12872ac97183141717463ecd13ffcc2b36",
+      "reference_layout_scoring_only": "3x4",
+      "reference_rhythm_leads_scoring_only": [],
+      "reference_printed_samples": 15000
+    },
+    {
+      "image_id": "pm-80-photos_scans",
+      "patient_id": "ptbxl-patient-19108.0",
+      "recording_id": 19394,
+      "condition": "photos_scans",
+      "image": "final_data/visual_data/photos_scans/img_80_page_0.jpeg",
+      "image_sha256": "e0c5d7ea4b508d30219ae60cd58ebdd826b5c3dc4989ecdbae3bbd41d6183f4d",
+      "reference": "references/LPAE_19394_hr.npz",
+      "reference_sha256": "956bb02a4f2d27b9d38e6e459e9597cc4f795884c4720551f0bcd91dd9fc7282",
+      "reference_layout_scoring_only": "3x4+1R",
+      "reference_rhythm_leads_scoring_only": [
+        "II"
+      ],
+      "reference_printed_samples": 18750
+    },
+    {
+      "image_id": "pm-80-photos_samsung",
+      "patient_id": "ptbxl-patient-19108.0",
+      "recording_id": 19394,
+      "condition": "photos_samsung",
+      "image": "final_data/visual_data/photos_samsung/img_80_page_0.jpeg",
+      "image_sha256": "a8eadfec520746e3e7d5b1d28e3080ca2d3792e49ea5a284182adb111e2c803d",
+      "reference": "references/LPAE_19394_hr.npz",
+      "reference_sha256": "956bb02a4f2d27b9d38e6e459e9597cc4f795884c4720551f0bcd91dd9fc7282",
+      "reference_layout_scoring_only": "3x4+1R",
+      "reference_rhythm_leads_scoring_only": [
+        "II"
+      ],
+      "reference_printed_samples": 18750
+    },
+    {
+      "image_id": "pm-80-photos_bents",
+      "patient_id": "ptbxl-patient-19108.0",
+      "recording_id": 19394,
+      "condition": "photos_bents",
+      "image": "final_data/visual_data/photos_bents/img_80_page_0.jpeg",
+      "image_sha256": "c1d9da5e768188d21172bc4a8ed458caa772c39791ecd5ad77cd217aad5bb949",
+      "reference": "references/LPAE_19394_hr.npz",
+      "reference_sha256": "956bb02a4f2d27b9d38e6e459e9597cc4f795884c4720551f0bcd91dd9fc7282",
+      "reference_layout_scoring_only": "3x4+1R",
+      "reference_rhythm_leads_scoring_only": [
+        "II"
+      ],
+      "reference_printed_samples": 18750
+    },
+    {
+      "image_id": "pm-99-photos_scans",
+      "patient_id": "ptbxl-patient-9810.0",
+      "recording_id": 19326,
+      "condition": "photos_scans",
+      "image": "final_data/visual_data/photos_scans/img_99_page_0.jpeg",
+      "image_sha256": "b18d0dcd4af74ea055fd769fd796956337ed08368de45f333d01788f1389fea4",
+      "reference": "references/LPAE_19326_hr.npz",
+      "reference_sha256": "b6c56f3b77393409088b66903b68e85c7b4d1f24b0684f7115ff5e73fda0538b",
+      "reference_layout_scoring_only": "6x2",
+      "reference_rhythm_leads_scoring_only": [],
+      "reference_printed_samples": 30000
+    },
+    {
+      "image_id": "pm-99-photos_samsung",
+      "patient_id": "ptbxl-patient-9810.0",
+      "recording_id": 19326,
+      "condition": "photos_samsung",
+      "image": "final_data/visual_data/photos_samsung/img_99_page_0.jpeg",
+      "image_sha256": "8b2f875249ff096787aefd1e7f6c1025ed363cca97eea141519ee40d061cc4d6",
+      "reference": "references/LPAE_19326_hr.npz",
+      "reference_sha256": "b6c56f3b77393409088b66903b68e85c7b4d1f24b0684f7115ff5e73fda0538b",
+      "reference_layout_scoring_only": "6x2",
+      "reference_rhythm_leads_scoring_only": [],
+      "reference_printed_samples": 30000
+    },
+    {
+      "image_id": "pm-99-photos_bents",
+      "patient_id": "ptbxl-patient-9810.0",
+      "recording_id": 19326,
+      "condition": "photos_bents",
+      "image": "final_data/visual_data/photos_bents/img_99_page_0.jpeg",
+      "image_sha256": "930e52b546ed714f432d4ad77f261c3fc25f72fa613cbdbd4e941985ff2d1e01",
+      "reference": "references/LPAE_19326_hr.npz",
+      "reference_sha256": "b6c56f3b77393409088b66903b68e85c7b4d1f24b0684f7115ff5e73fda0538b",
+      "reference_layout_scoring_only": "6x2",
+      "reference_rhythm_leads_scoring_only": [],
+      "reference_printed_samples": 30000
+    }
+  ]
+}

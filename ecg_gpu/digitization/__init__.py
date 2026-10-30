@@ -5,6 +5,8 @@ Optional reference networks are loaded only when explicitly requested.
 
 from .signals import LeadSignal, DigitizationResult, decode_waveform_rows, split_rows
 from .regions import TraceCalibration, TraceObservation, decode_trace_region, resample_trace
+from .selective import SignalProposal, SelectionPolicy, SelectiveDigitizer
 
 __all__ = ['LeadSignal', 'DigitizationResult', 'decode_waveform_rows', 'split_rows',
-           'TraceCalibration', 'TraceObservation', 'decode_trace_region', 'resample_trace']
+           'TraceCalibration', 'TraceObservation', 'decode_trace_region', 'resample_trace',
+           'SignalProposal', 'SelectionPolicy', 'SelectiveDigitizer']

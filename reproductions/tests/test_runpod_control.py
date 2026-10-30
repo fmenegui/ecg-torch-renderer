@@ -54,6 +54,12 @@ class RunpodControlTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 validate_plan(invalid)
 
+    def test_source_archive_cannot_include_data_or_secret_paths(self):
+        validate_plan(dict(self.plan, source_paths=["reproductions", "ecg_gpu", "examples"]))
+        for paths in [[], ["reproductions", "private-data"], ["."], ["reproductions", "reproductions"]]:
+            with self.assertRaises(ValueError):
+                validate_plan(dict(self.plan, source_paths=paths))
+
     def test_a_cheaper_gpu_below_the_required_memory_is_rejected(self):
         plan = dict(self.plan, minimum_gpu_memory_gb=48)
         small = deepcopy(self.gpus)

@@ -1,5 +1,6 @@
 """Read-only admission: identical training plans never allocate twice on push."""
 
+import argparse
 import hashlib
 import json
 import os
@@ -21,6 +22,10 @@ def first_eligible(runs, plan_sha, plan_for_commit):
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--workflow", default="reproduction-full-training.yml")
+    parser.add_argument("--plan", default="reproductions/runpod/training-plan.json")
+    args = parser.parse_args()
     token = os.environ["GITHUB_TOKEN"]
     repository = os.environ["GITHUB_REPOSITORY"]
     run_id = int(os.environ["GITHUB_RUN_ID"])
@@ -32,15 +37,15 @@ def main():
             return json.load(response)
 
     branch = urllib.parse.quote(os.environ["GITHUB_REF_NAME"], safe="")
-    path = "/actions/workflows/reproduction-full-training.yml/runs?branch=" + branch + "&per_page=100"
+    path = "/actions/workflows/" + urllib.parse.quote(args.workflow, safe="") + "/runs?branch=" + branch + "&per_page=100"
     runs = read(path)["workflow_runs"]
-    payload = Path("reproductions/runpod/training-plan.json").read_bytes()
+    payload = Path(args.plan).read_bytes()
     plan_sha = hashlib.sha1(b"blob " + str(len(payload)).encode() + b"\0" + payload).hexdigest()
     cache = {}
 
     def plan_for_commit(commit):
         if commit not in cache:
-            cache[commit] = read("/contents/reproductions/runpod/training-plan.json?ref=" + commit)["sha"]
+            cache[commit] = read("/contents/" + urllib.parse.quote(args.plan, safe="/") + "?ref=" + commit)["sha"]
         return cache[commit]
 
     first = first_eligible(runs, plan_sha, plan_for_commit)

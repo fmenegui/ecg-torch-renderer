@@ -1,0 +1,15 @@
+{
+  "policy": {
+    "schema": "ecg-selective-policy-v1",
+    "minimum_new_samples": 10,
+    "minimum_common_samples_per_lead": 100,
+    "minimum_correlation": 0.98,
+    "amplitude_ratio_low": 0.85,
+    "amplitude_ratio_high": 1.18,
+    "maximum_dc_difference_mv": 0.02,
+    "maximum_timing_difference_s": 0.004,
+    "maximum_extrapolated_fraction": 0.35
+  },
+  "sha256": "1e368f978f8ec4d85104ff222454ca572b9ff51de84481541ff707ebdac2ccf7",
+  "observation": "Strict zero-lag agreement rejects the two native D0 backends for a 6 ms relative timing difference. This is retained development history, not a held-out result."
+}

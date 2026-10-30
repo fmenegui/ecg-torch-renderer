@@ -27,6 +27,10 @@ def validate_plan(plan):
         raise ValueError("Execution exceeds its bounded resource envelope")
     if full and (plan.get("segments") != 5 or plan["maximum_gpu_price_per_hour"] > 1.00):
         raise ValueError("Full training must retain its five-segment price envelope")
+    source_paths = plan.get("source_paths", ["reproductions"])
+    if (not source_paths or len(set(source_paths)) != len(source_paths)
+            or set(source_paths) - {"reproductions", "ecg_gpu", "examples"}):
+        raise ValueError("Only declared source-code directories can be transferred")
 
 
 def choice(plan, gpus, templates, datacenters):
@@ -171,6 +175,11 @@ class Controller:
         self.save()
         pod = self.call(["pod", "create", "--name", self.ledger["name"], "--image", selected["template"]["imageName"], "--gpu-id", selected["gpu"]["gpuId"], "--gpu-count", "1", "--cloud-type", "SECURE", "--data-center-ids", selected["data_center"], "--network-volume-id", volume["id"], "--volume-mount-path", "/workspace", "--container-disk-in-gb", str(plan["container_disk_gb"]), "--ports", "22/tcp", "--ssh", "--min-cuda-version", "12.8"])
         self.ledger.update(pod_id=pod["id"], status="booting")
+        actual_price = pod.get("costPerHr")
+        self.ledger["created_pod_price_per_hour"] = actual_price
+        self.save()
+        if not isinstance(actual_price, (int, float)) or not 0 < actual_price <= plan["maximum_gpu_price_per_hour"]:
+            raise ValueError("Created pod price is missing or exceeds the frozen hourly cap")
         if full:
             self.ledger["segments"][-1].update(pod_id=pod["id"], deadline=self.ledger["deadline"])
         self.save()
@@ -186,7 +195,10 @@ class Controller:
         else:
             raise TimeoutError("Pod did not become SSH-ready within the boot budget")
         archive = self.root / "source.tar.gz"
-        self.command(["git", "archive", "--format=tar.gz", "-o", str(archive), "HEAD", "reproductions"])
+        source_paths = plan.get("source_paths", ["reproductions"])
+        self.command(["git", "archive", "--format=tar.gz", "-o", str(archive), "HEAD", *source_paths])
+        self.ledger["source_commit"] = self.command(["git", "rev-parse", "HEAD"]).stdout.strip()
+        self.ledger["source_archive_sha256"] = hashlib.sha256(archive.read_bytes()).hexdigest()
         self.ssh("mkdir -p /workspace/ecg-code /workspace/outputs")
         self.scp(archive, "/workspace/source.tar.gz")
         self.ssh("tar -xzf /workspace/source.tar.gz -C /workspace/ecg-code")
