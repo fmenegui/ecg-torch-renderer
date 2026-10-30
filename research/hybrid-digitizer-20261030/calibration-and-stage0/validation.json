@@ -1,0 +1,24 @@
+{
+  "schema": "document-calibration-and-stage0-validation-v1",
+  "root_tests": {
+    "run": 541,
+    "skipped": 25,
+    "passed": true,
+    "log_sha256": "0499fa894739a0cac3cc0d0a5f96e892a399492005b1a3592c3035d71864f1b2"
+  },
+  "reproduction_tests": {
+    "run": 120,
+    "skipped": 0,
+    "passed": true,
+    "original_npj_and_kaggle_assets_enabled": true,
+    "log_sha256": "03f388861f9bf780e9d16d3d036f8a47a77fb99be0311fe74831983bfea6a87d"
+  },
+  "ruff_E_F_passed": true,
+  "adverse_gallery": {
+    "cases": 16,
+    "visually_inspected": true,
+    "sha256": "95ab8b8f4c055b6329151874b9751b8b1b4ded2986239ec84955dc288b72b93f"
+  },
+  "cuda_clock_inference": "blocked_Runpod_HTTP_402",
+  "clinical_superiority_demonstrated": false
+}

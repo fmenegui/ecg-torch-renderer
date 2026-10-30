@@ -107,6 +107,19 @@ class NativeNpjBackend:
             result = self._infer(array, samples)
             return self._proposal(result, fs, samples, source_id)
 
+    def predict_file(self, path, *, fs, samples):
+        """Decode EXIF orientation once, then run the unchanged native model.
+
+        Source identity remains the original file hash. The pixel permutation
+        is retained as input provenance. No waveform-reference information is
+        used to choose orientation, and no output timing origin is inferred.
+        """
+        from .image_io import decode_ecg_rgb
+        rgb, decoding = decode_ecg_rgb(path)
+        proposal = self.predict(rgb, fs=fs, samples=samples, source_id=decoding['source_id'])
+        proposal.metadata['input_rgb_decoding'] = decoding
+        return proposal
+
     def predict_observed(self, rgb, *, fs, samples, source_id):
         from .npj_trace import NativeTraceObserver
         array = self._validate_image(rgb, samples)

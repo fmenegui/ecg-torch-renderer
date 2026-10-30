@@ -1,0 +1,206 @@
+{
+  "schema": "native-stage0-diagnosis-v1",
+  "environment": {
+    "python": "3.12.14",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+    "packages": {
+      "numpy": "2.5.4",
+      "scipy": "1.18.1",
+      "torch": "2.7.0+cpu",
+      "torchvision": "0.22.0+cpu",
+      "pillow": "13.0.0",
+      "opencv-python-headless": "4.11.0.86",
+      "timm": "1.0.22",
+      "albumentations": null
+    },
+    "cuda_available": false,
+    "cuda_build": null
+  },
+  "device": "cpu",
+  "precision": "float32",
+  "native_tta_count": 4,
+  "source_and_weights_modified": false,
+  "tta_chunk_size": 1,
+  "small_batch_serial_maximum_absolute_difference": {
+    "marker": 1.1920928955078125e-07,
+    "orientation": 5.960464477539063e-08
+  },
+  "waveform_benchmark": false,
+  "gpu_fp16_failure_reproduction_claim": false,
+  "reference_received": false,
+  "input_manifest_sha256": "98302b477bd0c55fd48f807b3ac8daaf59f904e2fa7aa2784cf143b10064abde",
+  "assets": {
+    "heng/stage0_common.py": "b34cf950fc0173c0154466a846db5835ff27aa8540e4e4490eca5f0b1a66fbd2",
+    "heng/stage0_model.py": "0cf35589870cd2a83d440ed3bbc5e503378509086c9023fc05a0d4181a327432",
+    "heng/640106434-0001.gridpoint_xy.npy": "e695f580bd0de4df2fe2e2ba8c89809af819127b2e5936c2716830f421cef4ad",
+    "heng/weight/stage0-last.checkpoint.pth": "b7360dfce9c49305b54272cf242e93e5728823f439a8e5ad59c03b073988cfc9"
+  },
+  "positive_geometry_control": {
+    "schema": "native-stage0-landmark-positive-control-v1",
+    "points": 9,
+    "matched_points": 9,
+    "maximum_reprojection_error_px": 0.2141169393034218,
+    "network_inference_performed": false,
+    "photographic_accuracy_claim": false
+  },
+  "cases": [
+    {
+      "image_id": "pm-46-photos_scans",
+      "image_sha256": "262db05e5169fae1158a6a8cef09025e2254ab552b2807459943e5aba02eeb7d",
+      "orientation_class": 6,
+      "native_orientation_distribution": [
+        0.2694660425186157,
+        0.00010575343912933022,
+        0.1901140809059143,
+        9.063625839189626e-06,
+        0.2411426603794098,
+        1.4890553757140879e-05,
+        0.2991303503513336,
+        1.7173762898892164e-05
+      ],
+      "native_landmarks": [
+        [
+          0.0,
+          0.0,
+          2,
+          "aVR"
+        ],
+        [
+          0.0,
+          0.0,
+          3,
+          "V1"
+        ],
+        [
+          0.0,
+          0.0,
+          4,
+          "V4"
+        ],
+        [
+          0.0,
+          0.0,
+          6,
+          "aVL"
+        ],
+        [
+          0.0,
+          0.0,
+          7,
+          "V2"
+        ],
+        [
+          0.0,
+          0.0,
+          8,
+          "V5"
+        ],
+        [
+          0.0,
+          0.0,
+          10,
+          "aVF"
+        ],
+        [
+          0.0,
+          0.0,
+          11,
+          "V3"
+        ],
+        [
+          0.0,
+          0.0,
+          12,
+          "V6"
+        ]
+      ],
+      "nonzero_landmarks": 0,
+      "distinct_landmark_positions": 1,
+      "landmark_affine_rank": 1,
+      "status": "native_postprocessing_failed",
+      "error": "error(\"OpenCV(4.11.0) /io/opencv/modules/imgproc/src/imgwarp.cpp:3399: error: (-215:Assertion failed) (M0.type() == CV_32F || M0.type() == CV_64F) && M0.rows == 3 && M0.cols == 3 in function 'warpPerspective'\\n\")",
+      "traceback": "Traceback (most recent call last):\n  File \"/workspace/scratch/a16c73e785e3/ecg-hybrid/reproductions/kaggle/stage0_diagnose.py\", line 165, in main\n    normalized, matches, matrix = native.normalise_by_homography(rotated, points)\n                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/a16c73e785e3/repro-assets/heng/stage0_common.py\", line 295, in normalise_by_homography\n    normalised, homo, match = normalise_image(image, pt9)\n                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/a16c73e785e3/repro-assets/heng/stage0_common.py\", line 155, in normalise_image\n    aligned = cv2.warpPerspective(image, homo, (WIDTH, HEIGHT))\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\ncv2.error: OpenCV(4.11.0) /io/opencv/modules/imgproc/src/imgwarp.cpp:3399: error: (-215:Assertion failed) (M0.type() == CV_32F || M0.type() == CV_64F) && M0.rows == 3 && M0.cols == 3 in function 'warpPerspective'\n\n",
+      "seconds": 30.54224066700408,
+      "observations_sha256": "6c0c34fba256d7f25e368fc1eaf24a1d95d992b30022c4f342dd5d66e613030e"
+    },
+    {
+      "image_id": "pm-80-photos_scans",
+      "image_sha256": "2280ceaafa28904c55d00536ceee1fa8486beff82751f7a5e1f3e8f3f2a1e454",
+      "orientation_class": 4,
+      "native_orientation_distribution": [
+        0.17165875434875488,
+        0.001516683492809534,
+        0.21040837466716766,
+        0.00024165214563254267,
+        0.3650989532470703,
+        0.0003003059246111661,
+        0.2503463625907898,
+        0.00042890338227152824
+      ],
+      "native_landmarks": [
+        [
+          0.0,
+          0.0,
+          2,
+          "aVR"
+        ],
+        [
+          0.0,
+          0.0,
+          3,
+          "V1"
+        ],
+        [
+          0.0,
+          0.0,
+          4,
+          "V4"
+        ],
+        [
+          0.0,
+          0.0,
+          6,
+          "aVL"
+        ],
+        [
+          0.0,
+          0.0,
+          7,
+          "V2"
+        ],
+        [
+          0.0,
+          0.0,
+          8,
+          "V5"
+        ],
+        [
+          0.0,
+          0.0,
+          10,
+          "aVF"
+        ],
+        [
+          0.0,
+          0.0,
+          11,
+          "V3"
+        ],
+        [
+          0.0,
+          0.0,
+          12,
+          "V6"
+        ]
+      ],
+      "nonzero_landmarks": 0,
+      "distinct_landmark_positions": 1,
+      "landmark_affine_rank": 1,
+      "status": "native_postprocessing_failed",
+      "error": "error(\"OpenCV(4.11.0) /io/opencv/modules/imgproc/src/imgwarp.cpp:3399: error: (-215:Assertion failed) (M0.type() == CV_32F || M0.type() == CV_64F) && M0.rows == 3 && M0.cols == 3 in function 'warpPerspective'\\n\")",
+      "traceback": "Traceback (most recent call last):\n  File \"/workspace/scratch/a16c73e785e3/ecg-hybrid/reproductions/kaggle/stage0_diagnose.py\", line 165, in main\n    normalized, matches, matrix = native.normalise_by_homography(rotated, points)\n                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/a16c73e785e3/repro-assets/heng/stage0_common.py\", line 295, in normalise_by_homography\n    normalised, homo, match = normalise_image(image, pt9)\n                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/a16c73e785e3/repro-assets/heng/stage0_common.py\", line 155, in normalise_image\n    aligned = cv2.warpPerspective(image, homo, (WIDTH, HEIGHT))\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\ncv2.error: OpenCV(4.11.0) /io/opencv/modules/imgproc/src/imgwarp.cpp:3399: error: (-215:Assertion failed) (M0.type() == CV_32F || M0.type() == CV_64F) && M0.rows == 3 && M0.cols == 3 in function 'warpPerspective'\n\n",
+      "seconds": 28.818758674999117,
+      "observations_sha256": "d2b5410521a4d33cd7e00998429f40d12edace40840c7c32fb822739c9ed7417"
+    }
+  ]
+}
