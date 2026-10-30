@@ -1,0 +1,12 @@
+{
+  "schema": "ecg-runpod-pilot-plan-v1",
+  "generation": 1,
+  "gpu_id": "NVIDIA A40",
+  "data_center": "EU-SE-1",
+  "maximum_gpu_price_per_hour": 0.60,
+  "template_id": "runpod-torch-v280",
+  "volume_gb": 30,
+  "container_disk_gb": 40,
+  "maximum_pod_seconds": 1800,
+  "purpose": "GPU engineering pilot and explicitly small public development cohort, not a headline reproduction"
+}

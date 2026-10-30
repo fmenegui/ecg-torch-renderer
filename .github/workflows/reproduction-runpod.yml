@@ -4,7 +4,7 @@ on:
     branches: ['research/reproduce-ecg-methods-from-zero-*']
     paths:
       - '.github/workflows/reproduction-runpod.yml'
-      - 'reproductions/runpod/**'
+      - 'reproductions/runpod/plan.json'
   workflow_dispatch:
 permissions:
   contents: read
@@ -37,3 +37,46 @@ jobs:
         with:
           name: runpod-live-catalog
           path: build/runpod-catalog
+  pilot:
+    needs: catalog
+    runs-on: ubuntu-latest
+    timeout-minutes: 38
+    env:
+      RUNPOD_API_KEY: ${{ secrets.RUNPOD_API }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install verified Runpod CLI 3.0.1
+        run: |
+          curl --fail --location --silent --show-error https://github.com/runpod/runpodctl/releases/download/v3.0.1/runpodctl-linux-amd64 --output /tmp/runpodctl
+          echo 'b66d11eca8cacbf18a2de6943c6e18a79ffbdc8a3c30aa13a49dc6cfc15d4239  /tmp/runpodctl' | sha256sum --check
+          chmod 755 /tmp/runpodctl
+      - name: Verify current price and stock, create one bounded owned pod
+        timeout-minutes: 11
+        run: python -u -m reproductions.runpod.controller --cli /tmp/runpodctl --out build/runpod-pilot provision
+      - name: GPU inference, engineering training and public pilot comparisons
+        timeout-minutes: 28
+        run: python -u -m reproductions.runpod.controller --cli /tmp/runpodctl --out build/runpod-pilot execute
+      - name: Terminate and externally verify the owned GPU pod
+        if: always()
+        run: python -u -m reproductions.runpod.controller --cli /tmp/runpodctl --out build/runpod-pilot cleanup
+      - uses: actions/upload-artifact@v4
+        id: upload
+        if: always()
+        with:
+          name: runpod-gpu-pilot
+          path: |
+            build/runpod-pilot/control.json
+            build/runpod-pilot/results.tar.gz
+      - name: Remove temporary volume after artifact upload
+        if: always() && steps.upload.outcome == 'success'
+        run: python -u -m reproductions.runpod.controller --cli /tmp/runpodctl --out build/runpod-pilot delete-volume
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: runpod-cleanup-receipt
+          path: build/runpod-pilot/control.json
