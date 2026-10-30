@@ -1,6 +1,6 @@
 {
   "schema": "ecg-runpod-pilot-plan-v1",
-  "generation": 3,
+  "generation": 4,
   "worker_module": "reproductions.hybrid.worker",
   "source_paths": [
     "reproductions",

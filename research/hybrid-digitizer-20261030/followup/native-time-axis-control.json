@@ -1,0 +1,55 @@
+{
+  "schema": "native-normalization-time-axis-control-v1",
+  "scope": "unchanged native normalization, no neural network or image inference",
+  "source": {
+    "commit": "97a15087d4abcda843da8c58ee74b1d8f47e6f9a",
+    "tracked_files_clean": true
+  },
+  "native_module_sha256": "dace2ea2f52468efba81e8ab20a0793c35a1376c51c35ca0a002e7fcd0a07c85",
+  "fs": 500,
+  "pixels_per_mm": 20,
+  "assumed_speed_mm_per_s": 25,
+  "output_samples": 5000,
+  "physical_signal_changed": false,
+  "only_leading_visibility_changed": true,
+  "rows": [
+    {
+      "leading_missing_columns": 0,
+      "physical_missing_duration_s": 0.0,
+      "true_peak_s": 4.0,
+      "native_peak_s": 4.0,
+      "native_peak_error_ms": 0.0,
+      "input_missing_samples": 0,
+      "native_output_missing_samples": 0
+    },
+    {
+      "leading_missing_columns": 100,
+      "physical_missing_duration_s": 0.2,
+      "true_peak_s": 4.0,
+      "native_peak_s": 3.878,
+      "native_peak_error_ms": -121.99999999999989,
+      "input_missing_samples": 300,
+      "native_output_missing_samples": 0
+    },
+    {
+      "leading_missing_columns": 200,
+      "physical_missing_duration_s": 0.4,
+      "true_peak_s": 4.0,
+      "native_peak_s": 3.75,
+      "native_peak_error_ms": -250.0,
+      "input_missing_samples": 600,
+      "native_output_missing_samples": 0
+    },
+    {
+      "leading_missing_columns": 500,
+      "physical_missing_duration_s": 1.0,
+      "true_peak_s": 4.0,
+      "native_peak_s": 3.334,
+      "native_peak_error_ms": -665.9999999999999,
+      "input_missing_samples": 1500,
+      "native_output_missing_samples": 0
+    }
+  ],
+  "real_photo_error_cause_proven": false,
+  "limitation": "This proves the mechanism on a specified analytical fixture, not that it explains every real-image delay"
+}

@@ -70,6 +70,17 @@ class NativeNpjTests(unittest.TestCase):
         native = compute_metrics(y.copy(), y.copy(), n_translations=0)
         self.assertTrue(np.isnan(native["snr_db"][0]))
 
+    def test_native_extent_normalization_time_control_is_not_silently_replaced(self):
+        from reproductions.npj.time_axis_control import measure
+        result = measure(UPSTREAM)
+        self.assertEqual(result["rows"][0]["native_peak_s"], 4.)
+        hidden = result["rows"][2]
+        self.assertEqual(hidden["physical_missing_duration_s"], .4)
+        self.assertEqual(hidden["input_missing_samples"], 600)
+        self.assertEqual(hidden["native_output_missing_samples"], 0)
+        self.assertGreater(abs(hidden["native_peak_error_ms"]), 200)
+        self.assertFalse(result["real_photo_error_cause_proven"])
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -58,12 +58,29 @@ para 0,479 no melhor deslocamento. Isso sugere investigar origem e escala tempor
 mas não demonstra que o traçado esteja correto depois de uma simples translação.
 Ritmos periódicos podem gerar picos concorrentes. Seus valores são preservados.
 
-O próximo mecanismo a investigar é a definição do intervalo físico de tempo.
-O identificador original recorta a extensão com pelo menos três linhas válidas
-e a interpola para o número de amostras solicitado. Isso pode alterar a escala
-temporal quando essa extensão não corresponde ao intervalo realmente impresso.
-É uma hipótese para teste com controles de tempo conhecidos, não uma causa já
-comprovada para todo erro observado.
+## Controle analítico da normalização original
+
+Executamos `LeadIdentifier.normalize` do commit original verificado, sem alterar
+seu código, sobre três linhas de pixels com um pico físico fixo em 4 segundos.
+A escala é de 20 pixels/mm e 25 mm/s, equivalente a 500 amostras/s. Somente as
+observações do início são ocultadas, conservando o sinal e seu intervalo físico.
+
+| Início oculto | Pico retornado | Erro temporal | NaNs na entrada | NaNs na saída |
+| --- | ---: | ---: | ---: | ---: |
+| 0 ms | 4,000 s | 0 ms | 0 | 0 |
+| 200 ms | 3,878 s | -122 ms | 300 | 0 |
+| 400 ms | 3,750 s | -250 ms | 600 | 0 |
+| 1000 ms | 3,334 s | -666 ms | 1500 | 0 |
+
+O identificador recorta a extensão com pelo menos três linhas válidas e a
+interpola para o número de amostras solicitado. O controle demonstra que esse
+mecanismo pode mudar o tempo e apagar a informação de ausência. Não é inferência
+neural nem prova da causa dos atrasos nas fotografias. A reprodução original
+permanece intacta. Uma alternativa deverá conservar a origem física, a escala
+pixels/mm e os trechos ausentes e ser comparada em um braço experimental separado.
+
+O script é `reproductions/npj/time_axis_control.py`. O resultado completo, com
+commit e hash do módulo original, está em `native-time-axis-control.json`.
 
 ## Rastreabilidade e execução
 
@@ -75,11 +92,21 @@ A leitura do pod de treinamento às 14:33 de São Paulo, 17:33 UTC, confirmou `R
 US$ 0,82/h. O endpoint não permitiu introspecção de telemetria. Esse recibo não
 comprova épocas concluídas nem uso efetivo da GPU. O treinamento não foi alterado.
 
-A revisão 2 do piloto mantém as mesmas imagens, modelos publicados e política
+A geração 4 do piloto mantém as mesmas imagens, modelos publicados e política
 congelada. Seu teto adicional continua US$ 0,45 de GPU, mais armazenamento. Ele
 passa a ter fila própria para executar em paralelo ao treinamento. A admissão
 cancela apenas cópias antigas do piloto que ainda não têm jobs. Um piloto já
 iniciado provoca adiamento. Nenhum treinamento é cancelado por esse procedimento.
+
+A execução da geração 3 passou pela admissão, mas falhou antes de alocar GPU
+no controle independente de interpolação M4. Seu ambiente instalou OpenCV 5.0,
+enquanto o ambiente das medições usa 4.11. A geração 4 fixa as versões numéricas
+já verificadas. O teste, os resultados esperados e a tolerância foram mantidos.
+Um controle local alterando somente OpenCV reproduziu a falha com 5.0 e passou
+os mesmos 21 testes com 4.11. O recibo é `validation-environment-control.json`.
+Com o novo controle temporal, os 69 testes de reprodução passam com o código
+original disponível. A suíte integrada permanece com 530 testes, dos quais 25
+exigem recursos indisponíveis localmente e estão explicitamente pulados.
 
 Os números completos, os intervalos descritivos por paciente e os protocolos
 estão nos arquivos JSON desta pasta. Os novos scripts são
