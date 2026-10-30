@@ -5,6 +5,7 @@ import tempfile
 import unittest
 
 from reproductions.runpod.controller import Controller, choice, public_ssh_port, validate_ownership, validate_plan
+from reproductions.runpod.admission import first_eligible
 
 
 class RunpodControlTests(unittest.TestCase):
@@ -85,6 +86,13 @@ class RunpodControlTests(unittest.TestCase):
             controller.provision()
             controller.execute()
             self.assertEqual(controller.ledger["status"], "already_completed")
+
+    def test_duplicate_pushes_and_doc_commits_do_not_restart_paid_training(self):
+        runs = [{"id": 3, "head_sha": "docs", "conclusion": None}, {"id": 2, "head_sha": "original", "conclusion": "success"}, {"id": 1, "head_sha": "original", "conclusion": "cancelled"}]
+        self.assertEqual(first_eligible(runs, "same-plan", lambda commit: "same-plan"), 2)
+        self.assertEqual(first_eligible(runs, "new-plan", lambda commit: "new-plan" if commit == "docs" else "same-plan"), 3)
+        with self.assertRaises(ValueError):
+            first_eligible([], "same-plan", lambda commit: "same-plan")
 
 
 if __name__ == "__main__":

@@ -8,19 +8,35 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+  actions: read
 concurrency:
   group: ecg-reproduction-runpod-control
   cancel-in-progress: false
 jobs:
+  admit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      admitted: ${{ steps.admission.outputs.admitted }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - id: admission
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python -m reproductions.runpod.admission
   segment1:
+    needs: admit
+    if: needs.admit.outputs.admitted == 'true'
     uses: ./.github/workflows/reproduction-training-segment.yml
     with:
       segment: '1'
     secrets:
       RUNPOD_API: ${{ secrets.RUNPOD_API }}
   segment2:
-    needs: segment1
-    if: ${{ !cancelled() }}
+    needs: [admit, segment1]
+    if: ${{ !cancelled() && needs.admit.outputs.admitted == 'true' }}
     uses: ./.github/workflows/reproduction-training-segment.yml
     with:
       segment: '2'
@@ -28,8 +44,8 @@ jobs:
     secrets:
       RUNPOD_API: ${{ secrets.RUNPOD_API }}
   segment3:
-    needs: segment2
-    if: ${{ !cancelled() }}
+    needs: [admit, segment2]
+    if: ${{ !cancelled() && needs.admit.outputs.admitted == 'true' }}
     uses: ./.github/workflows/reproduction-training-segment.yml
     with:
       segment: '3'
@@ -37,8 +53,8 @@ jobs:
     secrets:
       RUNPOD_API: ${{ secrets.RUNPOD_API }}
   segment4:
-    needs: segment3
-    if: ${{ !cancelled() }}
+    needs: [admit, segment3]
+    if: ${{ !cancelled() && needs.admit.outputs.admitted == 'true' }}
     uses: ./.github/workflows/reproduction-training-segment.yml
     with:
       segment: '4'
@@ -46,8 +62,8 @@ jobs:
     secrets:
       RUNPOD_API: ${{ secrets.RUNPOD_API }}
   segment5:
-    needs: segment4
-    if: ${{ !cancelled() }}
+    needs: [admit, segment4]
+    if: ${{ !cancelled() && needs.admit.outputs.admitted == 'true' }}
     uses: ./.github/workflows/reproduction-training-segment.yml
     with:
       segment: '5'

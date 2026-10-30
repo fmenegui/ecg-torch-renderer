@@ -48,6 +48,7 @@ test_unexpected_deletion_is_rejected (test_notebook.NotebookTests.test_unexpecte
 test_unreviewed_shell_command_is_rejected (test_notebook.NotebookTests.test_unreviewed_shell_command_is_rejected) ... ok
 test_a_cheaper_gpu_below_the_required_memory_is_rejected (test_runpod_control.RunpodControlTests.test_a_cheaper_gpu_below_the_required_memory_is_rejected) ... ok
 test_budget_and_ownership_cannot_silently_expand (test_runpod_control.RunpodControlTests.test_budget_and_ownership_cannot_silently_expand) ... ok
+test_duplicate_pushes_and_doc_commits_do_not_restart_paid_training (test_runpod_control.RunpodControlTests.test_duplicate_pushes_and_doc_commits_do_not_restart_paid_training) ... ok
 test_finished_training_does_not_allocate_another_gpu (test_runpod_control.RunpodControlTests.test_finished_training_does_not_allocate_another_gpu) ... ok
 test_full_training_envelope_needs_explicit_schema_and_caps (test_runpod_control.RunpodControlTests.test_full_training_envelope_needs_explicit_schema_and_caps) ... ok
 test_gpu_stock_without_storage_cannot_start_training (test_runpod_control.RunpodControlTests.test_gpu_stock_without_storage_cannot_start_training) ... ok
@@ -56,6 +57,6 @@ test_resume_cannot_take_another_volume_or_change_its_location (test_runpod_contr
 test_ssh_does_not_use_http_or_private_port_mappings (test_runpod_control.RunpodControlTests.test_ssh_does_not_use_http_or_private_port_mappings) ... ok
 
 ----------------------------------------------------------------------
-Ran 56 tests in 3.746s
+Ran 57 tests in 4.811s
 
 OK
