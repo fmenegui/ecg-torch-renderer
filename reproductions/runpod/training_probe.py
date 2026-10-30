@@ -7,6 +7,7 @@ import os
 import re
 import socket
 import time
+import urllib.error
 import urllib.request
 
 from reproductions.common import write_json
@@ -39,7 +40,10 @@ def main():
             return json.load(response)
 
     def graph(query):
-        return request_json("https://api.runpod.io/graphql", {"query": query})
+        try:
+            return request_json("https://api.runpod.io/graphql", {"query": query})
+        except urllib.error.HTTPError as error:
+            return {"errors": [{"http_status": error.code, "message": redact(error.read(2500).decode(errors="replace"), key)}]}
 
     result = {"schema": "owned-training-probe-v1", "read_at_utc": datetime.now(timezone.utc).isoformat(),
               "pod_id": POD_ID, "mutations": [], "optimizer_progress_verified": False,
@@ -47,6 +51,7 @@ def main():
     pod = request_json("https://api.runpod.io/v2/pods/" + POD_ID)
     verify_pod(pod)
     result["pod"] = {k: pod[k] for k in ["id", "name", "status", "gpu", "cost", "dataCenterId", "createdAt"] if k in pod}
+    write_json(args.out, result)
     base = graph("query { myself { pods { id runtime { __typename } } } }")
     if base.get("errors"):
         result["schema_read_errors"] = base["errors"]
@@ -56,6 +61,8 @@ def main():
         if runtime:
             type_name = runtime["__typename"]
             schema = graph('query { __type(name: ' + json.dumps(type_name) + ') { fields { name type { kind name ofType { name kind ofType { name kind ofType { name kind } } } } } } }')
+            if schema.get("errors"):
+                result["schema_read_errors"] = schema["errors"]
             fields = (schema.get("data", {}).get("__type") or {}).get("fields", [])
             result["runtime_field_names"] = [f["name"] for f in fields]
             selections = [f["name"] for f in fields if f["name"] in ["uptimeInSeconds", "cpuPercent", "memoryPercent"]]
