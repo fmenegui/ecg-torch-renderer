@@ -16,9 +16,9 @@ TRAINING_VOLUME = 'wbbmw9kpkg'
 
 def verify_training_volume(volume):
     if (volume.get('id') != TRAINING_VOLUME or volume.get('name') != TRAINING_NAME
-            or volume.get('size') != 220 or volume.get('dataCenter') != 'US-KS-2'):
+            or volume.get('size') != 220 or volume.get('dataCenterId') != 'US-KS-2'):
         raise ValueError('Original training volume identity or placement changed')
-    return {key: volume[key] for key in ['id', 'name', 'size', 'dataCenter']}
+    return {key: volume[key] for key in ['id', 'name', 'size', 'dataCenterId']}
 
 
 def select_training_pod(rows):

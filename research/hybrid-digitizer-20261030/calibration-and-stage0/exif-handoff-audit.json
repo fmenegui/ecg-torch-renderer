@@ -1,0 +1,38 @@
+{
+  "schema": "original-jpeg-to-native-png-exif-audit-v1",
+  "cases": [
+    {
+      "image_id": "pm-46-photos_scans",
+      "original_jpeg_sha256": "39fe680249c0702f0f610840fe04d4d7b44501c114cb8c677da5a5068bc3d8ae",
+      "original_exif_orientation": 6,
+      "staged_png_sha256": "07714cf67427d6d66aa0708311237689bb43b97549d82926ed602cfef9e8bef2",
+      "staged_png_size_wh": [
+        2480,
+        3507
+      ],
+      "staged_png_exif_orientation": null,
+      "oriented_size_wh": [
+        3507,
+        2480
+      ],
+      "staged_png_matches_original_gpu_input": true
+    },
+    {
+      "image_id": "pm-80-photos_scans",
+      "original_jpeg_sha256": "e0c5d7ea4b508d30219ae60cd58ebdd826b5c3dc4989ecdbae3bbd41d6183f4d",
+      "original_exif_orientation": 8,
+      "staged_png_sha256": "22819821a2c6eb88057cb5b21c1b3935de27dea06b155cb9b7b89a320b89bcce",
+      "staged_png_size_wh": [
+        2480,
+        3507
+      ],
+      "staged_png_exif_orientation": null,
+      "oriented_size_wh": [
+        3507,
+        2480
+      ],
+      "staged_png_matches_original_gpu_input": true
+    }
+  ],
+  "prior_measurements_preserved": true
+}

@@ -19,9 +19,9 @@ class OwnedTrainingStatusChecks(unittest.TestCase):
                 select_training_pod(rows)
 
     def test_volume_status_cannot_expand_beyond_the_verified_training_volume(self):
-        original = {'id': TRAINING_VOLUME, 'name': TRAINING_NAME, 'size': 220, 'dataCenter': 'US-KS-2'}
+        original = {'id': TRAINING_VOLUME, 'name': TRAINING_NAME, 'size': 220, 'dataCenterId': 'US-KS-2'}
         self.assertEqual(verify_training_volume(original), original)
-        for field, value in [('id', 'another'), ('name', TRAINING_NAME + '-other'), ('size', 50), ('dataCenter', 'US-CA-1')]:
+        for field, value in [('id', 'another'), ('name', TRAINING_NAME + '-other'), ('size', 50), ('dataCenterId', 'US-CA-1')]:
             with self.assertRaises(ValueError):
                 verify_training_volume(dict(original, **{field: value}))
 
