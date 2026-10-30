@@ -99,13 +99,18 @@ training. Before allocation, superseded pending hybrid workflows are cancelled
 only if they have no jobs. An already running hybrid pilot instead defers the
 new one. The original training workflow is never cancelled by this admission.
 
-1. The cheapest observed co-located NVIDIA GPU meeting the bounded recovery
-   requirements reads one hash-verified selected checkpoint from the existing
-   `ecg-diverse-offline-bank` volume in CA-MTL-1, mounted at `/archive`. It does
-   not modify or delete that borrowed volume. The recovery pod is limited to
-   900 seconds and USD 0.60/hour, or USD 0.15 GPU maximum.
+1. Run `41105577589` recovered the hash-verified selected checkpoint from the
+   existing `ecg-diverse-offline-bank` volume in CA-MTL-1, mounted at `/archive`.
+   Its owned recovery pod was deleted and the borrowed volume's presence was
+   verified. The recovery was limited to 900 seconds and USD 0.60/hour, or USD
+   0.15 GPU maximum. Generation 5 reuses that run's checkpoint artifact and
+   verifies its exact hash before allocation, without another recovery pod.
 2. A separate one-GPU pilot has at most 1800 seconds at USD 0.60/hour, or USD
-   0.30 GPU maximum. Its own 30 GB network volume holds outputs temporarily.
+   0.30 GPU maximum. Generation 5 uses 40 GB of container disk and no persistent
+   or network volume. The prior network-volume creation was rejected by Runpod's
+   USD 5 minimum-balance rule before any benchmark pod was allocated. Ephemeral
+   mode is restricted to this short inference profile and cannot apply to full
+   training, which keeps its durable checkpoints and network volume.
 
 Stock and prices are read immediately before creation and created-pod prices
 are checked again. Each owned pod has an independent deadline watchdog and
@@ -118,8 +123,11 @@ The account credential stays in Actions and the watchdog's memory. It is not
 part of source archives, experiment environments, receipts or checkpoints.
 Only source-code directories are transferred. The worker fetches the pinned
 public photographs itself and verifies the frozen manifest byte-for-byte.
-Failed runs preserve their receipts and partial outputs. The owned pilot
-volume is deleted only after results have been copied and uploaded.
+The controller copies and hash-verifies results before deleting the inference
+pod, then uploads them as Actions artifacts. The independent deadline remains
+active if the controller fails. An abrupt pod failure before collection can
+lose partial outputs on container disk. The frozen inputs and checkpoint remain
+available for a faithful repeat. This is not a durable training configuration.
 
 The grid branch now retains initial/final detections, confidence, relative IDs,
 selected points, supported cells and complete meshes in `geometry-observations.npz`.

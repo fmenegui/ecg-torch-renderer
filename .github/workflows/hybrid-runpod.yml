@@ -64,25 +64,20 @@ jobs:
   recover:
     needs: validate
     runs-on: ubuntu-latest
-    timeout-minutes: 20
-    env:
-      RUNPOD_API_KEY: ${{ secrets.RUNPOD_API }}
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
-      - name: Install hash-verified Runpod CLI
-        run: |
-          curl --fail --location --silent --show-error https://github.com/runpod/runpodctl/releases/download/v3.0.1/runpodctl-linux-amd64 --output /tmp/runpodctl
-          echo 'b66d11eca8cacbf18a2de6943c6e18a79ffbdc8a3c30aa13a49dc6cfc15d4239  /tmp/runpodctl' | sha256sum --check
-          chmod 755 /tmp/runpodctl
-      - name: Fresh co-located price and stock, bounded checkpoint recovery pod
-        run: python -u -m reproductions.hybrid.recover_checkpoint --cli /tmp/runpodctl --out build/grid-recovery provision
-      - name: Read and hash-verify the existing selected grid checkpoint
-        run: python -u -m reproductions.hybrid.recover_checkpoint --cli /tmp/runpodctl --out build/grid-recovery execute
-      - name: Remove our recovery pod and verify borrowed volume still exists
-        if: always()
-        run: python -u -m reproductions.hybrid.recover_checkpoint --cli /tmp/runpodctl --out build/grid-recovery cleanup
+      - name: Reuse the checkpoint already recovered without another paid pod
+        uses: actions/download-artifact@v4
+        with:
+          name: hybrid-grid-recovery
+          run-id: 41105577589
+          github-token: ${{ github.token }}
+          path: build/grid-recovery
+      - name: Verify exact selected checkpoint before any new allocation
+        run: echo '8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8  build/grid-recovery/grid-checkpoint.pt' | sha256sum --check
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -124,9 +119,6 @@ jobs:
           path: |
             build/hybrid-run/control.json
             build/hybrid-run/results.tar.gz
-      - name: Delete our temporary volume after verified measurement transfer
-        if: always() && steps.upload.outcome == 'success'
-        run: python -u -m reproductions.hybrid.controller --cli /tmp/runpodctl --out build/hybrid-run delete-volume
       - uses: actions/upload-artifact@v4
         if: always()
         with:

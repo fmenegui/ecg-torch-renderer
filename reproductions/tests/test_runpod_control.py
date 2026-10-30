@@ -4,7 +4,7 @@ from pathlib import Path
 import tempfile
 import unittest
 
-from reproductions.runpod.controller import Controller, choice, public_ssh_port, validate_ownership, validate_plan
+from reproductions.runpod.controller import Controller, choice, pod_creation_args, public_ssh_port, validate_ownership, validate_plan
 from reproductions.runpod.admission import first_eligible
 
 
@@ -29,6 +29,35 @@ class RunpodControlTests(unittest.TestCase):
     def test_gpu_stock_without_storage_cannot_start_training(self):
         with self.assertRaises(ValueError):
             choice(self.plan, self.gpus, self.templates, [{"id": "EU-SE-1", "networkVolumeTypes": []}])
+
+    def test_ephemeral_inference_does_not_require_network_storage_stock(self):
+        plan = dict(self.plan, schema="ecg-runpod-pilot-plan-v1", worker_module="reproductions.hybrid.worker",
+                    storage_mode="container_disk", volume_gb=0, container_disk_gb=40)
+        result = choice(plan, self.gpus, self.templates, [{"id": "EU-SE-1", "networkVolumeTypes": []}])
+        args = pod_creation_args(plan, result, "our-pilot")
+        self.assertEqual(args[args.index("--volume-in-gb") + 1], "0")
+        self.assertNotIn("--network-volume-id", args)
+        with self.assertRaises(ValueError):
+            pod_creation_args(plan, result, "our-pilot", "borrowed-volume")
+
+    def test_ephemeral_mode_cannot_remove_training_durability_or_expand_the_pilot(self):
+        plan = dict(self.plan, schema="ecg-runpod-pilot-plan-v1", worker_module="reproductions.hybrid.worker",
+                    storage_mode="container_disk", volume_gb=0, container_disk_gb=40)
+        for invalid in [dict(plan, schema="ecg-runpod-full-training-plan-v1", volume_gb=220, maximum_pod_seconds=18000, segments=5),
+                        dict(plan, worker_module="reproductions.runpod.worker"), dict(plan, maximum_pod_seconds=1801),
+                        dict(plan, volume_gb=30), dict(plan, container_disk_gb=400), dict(plan, storage_mode="unknown")]:
+            with self.assertRaises(ValueError):
+                validate_plan(invalid)
+
+    def test_training_pod_arguments_keep_the_owned_network_volume(self):
+        plan = dict(self.plan, schema="ecg-runpod-full-training-plan-v1", volume_gb=220,
+                    maximum_pod_seconds=18000, segments=5, container_disk_gb=40)
+        selected = choice(plan, self.gpus, self.templates, self.datacenters)
+        args = pod_creation_args(plan, selected, "our-training", "owned-volume")
+        self.assertEqual(args[args.index("--network-volume-id") + 1], "owned-volume")
+        self.assertNotIn("--volume-in-gb", args)
+        with self.assertRaises(ValueError):
+            pod_creation_args(plan, selected, "our-training")
 
     def test_budget_and_ownership_cannot_silently_expand(self):
         other = dict(self.plan, maximum_pod_seconds=3600)

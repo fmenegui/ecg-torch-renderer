@@ -1,6 +1,6 @@
 {
   "schema": "ecg-runpod-pilot-plan-v1",
-  "generation": 4,
+  "generation": 5,
   "worker_module": "reproductions.hybrid.worker",
   "source_paths": [
     "reproductions",
@@ -15,7 +15,9 @@
   "minimum_gpu_memory_gb": 24,
   "maximum_gpu_price_per_hour": 0.6,
   "template_id": "runpod-torch-v280",
-  "volume_gb": 30,
+  "storage_mode": "container_disk",
+  "volume_gb": 0,
+  "checkpoint_artifact_run_id": 41105577589,
   "container_disk_gb": 40,
   "maximum_pod_seconds": 1800,
   "checkpoint_recovery_maximum_seconds": 900,

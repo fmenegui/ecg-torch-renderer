@@ -21,8 +21,14 @@ from reproductions.common import write_json
 
 def validate_plan(plan):
     full = plan.get("schema") == "ecg-runpod-full-training-plan-v1"
+    storage = plan.get("storage_mode", "network_volume")
+    if storage not in ["network_volume", "container_disk"]:
+        raise ValueError("Unknown storage mode")
+    if storage == "container_disk" and (full or plan.get("schema") != "ecg-runpod-pilot-plan-v1"
+            or plan.get("worker_module") != "reproductions.hybrid.worker" or plan.get("container_disk_gb") != 40):
+        raise ValueError("Ephemeral storage is limited to the bounded hybrid inference pilot")
     maximum = 18000 if full else 1800
-    volume = 220 if full else 30
+    volume = 0 if storage == "container_disk" else (220 if full else 30)
     if not 0 < plan["maximum_pod_seconds"] <= maximum or plan["volume_gb"] != volume:
         raise ValueError("Execution exceeds its bounded resource envelope")
     if full and (plan.get("segments") != 5 or plan["maximum_gpu_price_per_hour"] > 1.00):
@@ -51,9 +57,25 @@ def choice(plan, gpus, templates, datacenters):
                 if availability.get("stockStatus", "").lower() not in ["low", "medium", "high"]:
                     continue
                 dc = next((d for d in datacenters if d["id"] == availability["dataCenterId"]), None)
-                if dc and "STANDARD" in dc.get("networkVolumeTypes", []):
+                if dc and (plan.get("storage_mode") == "container_disk" or "STANDARD" in dc.get("networkVolumeTypes", [])):
                     return {"gpu": gpu, "template": template, "data_center": dc["id"], "data_center_metadata": dc, "gpu_price_per_hour": price, "read_at": datetime.now(timezone.utc).isoformat()}
-    raise ValueError("No observed candidate has both acceptable price and standard network storage in the same data center")
+    raise ValueError("No observed candidate has acceptable GPU capacity, price and requested storage in the same data center")
+
+
+def pod_creation_args(plan, selected, name, volume_id=None):
+    validate_plan(plan)
+    ephemeral = plan.get("storage_mode") == "container_disk"
+    if ephemeral == bool(volume_id):
+        raise ValueError("Storage mode and network volume identity disagree")
+    args = ["pod", "create", "--name", name, "--image", selected["template"]["imageName"],
+            "--gpu-id", selected["gpu"]["gpuId"], "--gpu-count", "1", "--cloud-type", "SECURE",
+            "--data-center-ids", selected["data_center"], "--container-disk-in-gb", str(plan["container_disk_gb"]),
+            "--ports", "22/tcp", "--ssh", "--min-cuda-version", "12.8"]
+    if ephemeral:
+        args += ["--volume-in-gb", "0"]
+    else:
+        args += ["--network-volume-id", volume_id, "--volume-mount-path", "/workspace"]
+    return args
 
 
 def validate_ownership(ledger, run_id):
@@ -150,7 +172,10 @@ class Controller:
                 raise ValueError("Persisted training volume ownership or capacity changed")
             raw_catalog["dataCenters"] = [d for d in raw_catalog["dataCenters"] if d["id"] == existing_volume["dataCenter"]]
         selected = choice(plan, self.call(["gpu", "list", "--include-unavailable"]), self.call(["template", "search", "pytorch", "--type", "official", "--limit", "20"]), raw_catalog["dataCenters"])
-        selected["storage_price_reference"] = {"type": "STANDARD", "usd_per_gb_month": 0.07, "volume_gb": plan["volume_gb"], "source": "https://www.runpod.io/pricing"}
+        ephemeral = plan.get("storage_mode") == "container_disk"
+        if not ephemeral:
+            selected["storage_price_reference"] = {"type": "STANDARD", "usd_per_gb_month": 0.07, "volume_gb": plan["volume_gb"], "source": "https://www.runpod.io/pricing"}
+        self.ledger["storage_mode"] = "container_disk" if ephemeral else "network_volume"
         self.ledger.update(selection=selected, status="selected", plan=plan)
         if full:
             segments = self.ledger.setdefault("segments", [])
@@ -169,11 +194,12 @@ class Controller:
         self.call(["ssh", "add-key", "--key-file", str(key) + ".pub"])
         self.ledger["ssh_key_added"] = True
         self.save()
-        volume = existing_volume or self.rest("POST", "/network-volumes", {"name": self.ledger["name"], "size": plan["volume_gb"], "dataCenter": selected["data_center"], "type": "STANDARD"})
-        self.ledger["volume_id"] = volume["id"]
+        if not ephemeral:
+            volume = existing_volume or self.rest("POST", "/network-volumes", {"name": self.ledger["name"], "size": plan["volume_gb"], "dataCenter": selected["data_center"], "type": "STANDARD"})
+            self.ledger["volume_id"] = volume["id"]
         self.ledger["deadline"] = time.time() + plan["maximum_pod_seconds"]
         self.save()
-        pod = self.call(["pod", "create", "--name", self.ledger["name"], "--image", selected["template"]["imageName"], "--gpu-id", selected["gpu"]["gpuId"], "--gpu-count", "1", "--cloud-type", "SECURE", "--data-center-ids", selected["data_center"], "--network-volume-id", volume["id"], "--volume-mount-path", "/workspace", "--container-disk-in-gb", str(plan["container_disk_gb"]), "--ports", "22/tcp", "--ssh", "--min-cuda-version", "12.8"])
+        pod = self.call(pod_creation_args(plan, selected, self.ledger["name"], self.ledger.get("volume_id")))
         self.ledger.update(pod_id=pod["id"], status="booting")
         actual_price = pod.get("costPerHr")
         self.ledger["created_pod_price_per_hour"] = actual_price

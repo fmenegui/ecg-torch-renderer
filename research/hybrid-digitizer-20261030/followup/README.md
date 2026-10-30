@@ -92,7 +92,7 @@ A leitura do pod de treinamento às 14:33 de São Paulo, 17:33 UTC, confirmou `R
 US$ 0,82/h. O endpoint não permitiu introspecção de telemetria. Esse recibo não
 comprova épocas concluídas nem uso efetivo da GPU. O treinamento não foi alterado.
 
-A geração 4 do piloto mantém as mesmas imagens, modelos publicados e política
+A geração 5 do piloto mantém as mesmas imagens, modelos publicados e política
 congelada. Seu teto adicional continua US$ 0,45 de GPU, mais armazenamento. Ele
 passa a ter fila própria para executar em paralelo ao treinamento. A admissão
 cancela apenas cópias antigas do piloto que ainda não têm jobs. Um piloto já
@@ -107,6 +107,19 @@ os mesmos 21 testes com 4.11. O recibo é `validation-environment-control.json`.
 Com o novo controle temporal, os 69 testes de reprodução passam com o código
 original disponível. A suíte integrada permanece com 530 testes, dos quais 25
 exigem recursos indisponíveis localmente e estão explicitamente pulados.
+
+Na execução `41105577589`, a recuperação do checkpoint terminou com hash correto,
+ausência do pod confirmada e volume original preservado. O ensaio seguinte foi
+recusado antes de criar GPU porque a API exige saldo mínimo de US$ 5 para criar
+um novo volume de rede. Nenhuma inferência desse ensaio foi executada.
+
+A geração 5 reutiliza o artefato de checkpoint dessa execução. A inferência curta
+usa somente 40 GB de disco do contêiner, sem criar volume de rede ou volume
+persistente de pod. O orçamento e o encerramento automático são mantidos. Os
+resultados devem ser copiados e verificados antes da remoção do pod. Uma queda
+abrupta antes da cópia pode perder resultados parciais. Esse modo não é permitido
+para treinamento e não altera a execução de treinamento já ativa. Os três novos
+contratos de armazenamento elevam os testes de reprodução para 72.
 
 Os números completos, os intervalos descritivos por paciente e os protocolos
 estão nos arquivos JSON desta pasta. Os novos scripts são
