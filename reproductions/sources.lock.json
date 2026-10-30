@@ -61,7 +61,10 @@
     "total_image_mask_pairs": 8658,
     "advertised_download_bytes": 75032904415,
     "patient_independence": "not_established_from_public_row_identifiers",
-    "clinical_cohort": "Subsequent ECG-Image-Database version 2 publicly includes Ahus D2 and combined D0/D1. Metadata retrieved, full file acquisition and original-cohort scoring incomplete. Exact original-cohort crosswalk not yet verified."
+    "clinical_cohort": "Subsequent ECG-Image-Database version 2 publicly includes Ahus D2 and combined D0/D1. Metadata retrieved, full file acquisition and original-cohort scoring incomplete. Exact original-cohort crosswalk not yet verified.",
+    "revision": "c9665befe4d79eb0295602c568ddae73bcce1014",
+    "parquet_shards": 72,
+    "shard_lock_sha256": "d485a7df40f888312becda67292e5f9b4d20fa58b9ff14991da130399fd5cfaa"
   },
   "kaggle_notebook": {
     "kernel": "takashisomeya/physionet-2nd-place-submission",

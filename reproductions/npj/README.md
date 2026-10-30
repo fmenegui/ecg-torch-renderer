@@ -35,12 +35,18 @@ The release contains 4112 training and 217 validation rows, each with original
 and T0 image/mask pairs. Thus the 4329 rows represent 8658 image/mask pairs.
 The dataset card advertises 75,032,904,415 download bytes. This release was not
 fully downloaded in the CPU preparation phase.
+The 72 Parquet shards are pinned to dataset revision
+`c9665befe4d79eb0295602c568ddae73bcce1014`, with official LFS SHA256 hashes
+and byte lengths in `development-data.lock.json`. The download and extraction
+commands verify these identities. Counts alone do not establish original data.
 
 `prepare_data.py` extracts both pairs without resizing or re-splitting. It
 retains byte hashes and rejects repeated source row IDs across the supplied
 shards. Row IDs alone do not establish biological patient separation.
 
 ```bash
+python -m reproductions.npj.fetch_data --dest /workspace/npj-parquets
+
 python -m reproductions.npj.prepare_data --parquet-root /workspace/npj-parquets \
   --out /workspace/npj-data --require-complete
 

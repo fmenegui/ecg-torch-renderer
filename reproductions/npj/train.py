@@ -18,6 +18,7 @@ import time
 import numpy as np
 
 from reproductions.common import environment, new_run, require_cuda, sha256, verify_source, write_json
+from reproductions.npj.data_identity import validate_receipt_source
 from reproductions.npj.protocol import COMMIT, training_config
 
 
@@ -84,6 +85,7 @@ def main():
         data_identity = json.loads(Path(args.data_receipt).read_text())
         if data_identity.get("schema") != "npj-public-data-extraction-v1" or not data_identity.get("complete_public_release"):
             raise ValueError("Incomplete or unknown development-data release")
+        validate_receipt_source(data_identity)
         dataset_root = Path(args.data_receipt).resolve().parent
         if Path(args.train_dir).resolve() != dataset_root / "train" or Path(args.validation_dir).resolve() != dataset_root / "val":
             raise ValueError("Training paths differ from the extracted original split")

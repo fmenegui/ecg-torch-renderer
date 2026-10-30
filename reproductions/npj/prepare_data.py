@@ -10,6 +10,7 @@ import io
 from pathlib import Path
 
 from reproductions.common import new_run, sha256, write_json
+from reproductions.npj.data_identity import load_lock, source_identity, verify_shards
 
 
 def main():
@@ -21,9 +22,11 @@ def main():
     import pyarrow.parquet as parquet
     from PIL import Image
     root = Path(args.parquet_root)
+    lock = load_lock()
+    shards, complete_shards = verify_shards(root, lock, require_complete=args.require_complete)
     out = new_run(args.out)
     ownership = {}
-    rows, images, shards = {}, [], []
+    rows, images = {}, []
     for split in ["train", "val"]:
         folder = out / split
         folder.mkdir()
@@ -32,7 +35,6 @@ def main():
         if not files:
             raise ValueError(f"No original {split} shards supplied")
         for path in files:
-            shards.append({"file": path.name, "sha256": sha256(path)})
             for batch in parquet.ParquetFile(path).iter_batches(batch_size=1, columns=["id", "img", "mask", "img_T0", "mask_T0"]):
                 record = batch.to_pylist()[0]
                 identity = str(record["id"])
@@ -58,8 +60,8 @@ def main():
                         images.append({"source_id": identity, "source_view": suffix or "original", "split": split, "file": str(destination.relative_to(out)), "sha256": sha256(destination)})
                     if dimensions[0] != dimensions[1]:
                         raise ValueError("Image and mask dimensions differ")
-    complete = rows == {"train": 4112, "val": 217} and len(images) == 4 * 4329
-    receipt = {"schema": "npj-public-data-extraction-v1", "rows": rows, "image_mask_pairs": len(images) // 2, "complete_public_release": complete, "patient_independence": "not_established_by_row_ids", "shards": shards, "files": images}
+    complete = complete_shards and rows == {"train": 4112, "val": 217} and len(images) == 4 * 4329
+    receipt = {"schema": "npj-public-data-extraction-v1", "source_release": source_identity(lock), "rows": rows, "image_mask_pairs": len(images) // 2, "complete_public_release": complete, "patient_independence": "not_established_by_row_ids", "shards": shards, "files": images}
     write_json(out / "data-receipt.json", receipt)
     if args.require_complete and not complete:
         raise ValueError("Incomplete original public dataset, see retained receipt")
