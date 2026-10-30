@@ -1,0 +1,428 @@
+{
+  "schema": "post-primary-frozen-policy-completion-v1",
+  "original_selection_replay_verified": true,
+  "reference_received_by_selection": false,
+  "policy": {
+    "schema": "ecg-selective-policy-v2-development",
+    "minimum_new_samples": 10,
+    "minimum_common_samples_per_lead": 100,
+    "minimum_correlation": 0.97,
+    "amplitude_ratio_low": 0.85,
+    "amplitude_ratio_high": 1.18,
+    "maximum_dc_difference_mv": 0.05,
+    "maximum_timing_difference_s": 0.02,
+    "maximum_extrapolated_fraction": 0.35
+  },
+  "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+  "decisions": [
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "excessive_geometric_extrapolation",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "route": "external_rectification",
+      "specialist_decision": {
+        "selected": "direct",
+        "reason": "no_accepted_candidate",
+        "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+        "reference_used": false
+      },
+      "image_id": "pm-6-photos_scans",
+      "source_id": "f5d412d0ddedd5fa144420b58a0208f402d90ea3d9e2774ffe87f6c67ad17661",
+      "specialist_eligible": false
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "layout_identity_not_preserved",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "specialist_decision": {
+        "selected": "direct",
+        "reason": "no_accepted_candidate",
+        "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+        "reference_used": false
+      },
+      "image_id": "pm-6-photos_samsung",
+      "source_id": "2819a8e98d04c37f7c0a520211381c38cf45eb14fd8f82a44ab36266e4ab5297",
+      "specialist_eligible": false
+    },
+    {
+      "selected": "direct",
+      "reason": "no_accepted_candidate",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "reference_used": false,
+      "geometry_branch_error": "Grid completion rejected: no orientation-preserving completion of a grid gap",
+      "image_id": "pm-6-photos_bents",
+      "source_id": "e4dd9cb32dc9f69dd284a4556927e4c874aaab923393979068785e7c505fb111",
+      "specialist_eligible": false
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "excessive_geometric_extrapolation",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "route": "external_rectification",
+      "specialist_decision": {
+        "selected": "direct",
+        "reason": "no_accepted_candidate",
+        "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+        "reference_used": false
+      },
+      "image_id": "pm-25-photos_scans",
+      "source_id": "b35eb388b4f9b14eebe2f1f2babb073e0b45497a8b05e7625d4ed60fe5a319b6",
+      "specialist_eligible": false
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "excessive_geometric_extrapolation",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "route": "external_rectification",
+      "specialist_decision": {
+        "selected": "direct",
+        "reason": "no_accepted_candidate",
+        "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+        "reference_used": false
+      },
+      "image_id": "pm-25-photos_samsung",
+      "source_id": "8bf84564067c6f6edc92fb6c7de43063b5b557c57769b8b5ac216a5a252a4d65",
+      "specialist_eligible": false
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "layout_identity_not_preserved",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "specialist_decision": {
+        "selected": "direct",
+        "reason": "no_accepted_candidate",
+        "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+        "reference_used": false
+      },
+      "image_id": "pm-25-photos_bents",
+      "source_id": "3d34868d501d996e9d514c2831ad3073f45831609762ceb5ce654faab325fba7",
+      "specialist_eligible": false
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "excessive_geometric_extrapolation",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "route": "external_rectification",
+      "specialist_decision": {
+        "selected": "direct",
+        "reason": "no_accepted_candidate",
+        "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+        "reference_used": false
+      },
+      "image_id": "pm-27-photos_scans",
+      "source_id": "44144636e9041b65a48c4a266d73baae74f0de5458682ccc5fa94966f036ff4a",
+      "specialist_eligible": false
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "excessive_geometric_extrapolation",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "route": "external_rectification",
+      "specialist_decision": {
+        "selected": "direct",
+        "reason": "no_accepted_candidate",
+        "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+        "reference_used": false
+      },
+      "image_id": "pm-27-photos_samsung",
+      "source_id": "1269191cd5de874f282528874c78f69712103401145c21082d09339be9e87e3b",
+      "specialist_eligible": false
+    },
+    {
+      "selected": "direct",
+      "reason": "no_accepted_candidate",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "reference_used": false,
+      "geometry_branch_error": "Grid completion rejected: no orientation-preserving completion of a grid gap",
+      "image_id": "pm-27-photos_bents",
+      "source_id": "234713c1b04a9d9a1c49c3f8dc16d0f6851b83176f43ba7e63f897c91c27e5d6",
+      "specialist_eligible": false
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "excessive_geometric_extrapolation",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "route": "external_rectification",
+      "specialist_decision": {
+        "selected": "direct",
+        "reason": "no_accepted_candidate",
+        "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+        "reference_used": false
+      },
+      "image_id": "pm-46-photos_scans",
+      "source_id": "39fe680249c0702f0f610840fe04d4d7b44501c114cb8c677da5a5068bc3d8ae",
+      "specialist_eligible": true
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "excessive_geometric_extrapolation",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "route": "external_rectification",
+      "specialist_decision": {
+        "selected": "direct",
+        "reason": "no_accepted_candidate",
+        "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+        "reference_used": false
+      },
+      "image_id": "pm-46-photos_samsung",
+      "source_id": "28d7b4dda7e6f52b6864789deb5795421ab0937797c32e388a9507978da079fa",
+      "specialist_eligible": true
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "excessive_geometric_extrapolation",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "route": "external_rectification",
+      "specialist_decision": {
+        "selected": "direct",
+        "reason": "no_accepted_candidate",
+        "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+        "reference_used": false
+      },
+      "image_id": "pm-46-photos_bents",
+      "source_id": "ea7aaab33e8120074729219c0864fb616b3e6c6236165d367ef6c3a33fe199cf",
+      "specialist_eligible": true
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "excessive_geometric_extrapolation",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "route": "external_rectification",
+      "specialist_decision": {
+        "selected": "direct",
+        "reason": "no_accepted_candidate",
+        "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+        "reference_used": false
+      },
+      "image_id": "pm-56-photos_scans",
+      "source_id": "7dbaf28fe2f1577ff8d3b4ba0bb2eaa3e8a23d02f6e13d02c2a357b06ce9279b",
+      "specialist_eligible": false
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "excessive_geometric_extrapolation",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "route": "external_rectification",
+      "specialist_decision": {
+        "selected": "direct",
+        "reason": "no_accepted_candidate",
+        "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+        "reference_used": false
+      },
+      "image_id": "pm-56-photos_samsung",
+      "source_id": "b8dd516bf7655599e202d87be0888f66de59098b5c9ce580222b3fbfff9d95cc",
+      "specialist_eligible": false
+    },
+    {
+      "selected": "direct",
+      "reason": "no_accepted_candidate",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "reference_used": false,
+      "geometry_branch_error": "Grid completion rejected: no orientation-preserving completion of a grid gap",
+      "image_id": "pm-56-photos_bents",
+      "source_id": "c8bd4ec6091740340a4de9b569bf8ac488f1fa39c072b70b690f5be1c9a86b9e",
+      "specialist_eligible": false
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "excessive_geometric_extrapolation",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "route": "external_rectification",
+      "specialist_decision": {
+        "selected": "direct",
+        "reason": "no_accepted_candidate",
+        "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+        "reference_used": false
+      },
+      "image_id": "pm-58-photos_scans",
+      "source_id": "174b8c2f3fafdf054e8617d84cea2094148ade3c33571fd522750f1809fa2e7c",
+      "specialist_eligible": false
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "excessive_geometric_extrapolation",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "route": "external_rectification",
+      "specialist_decision": {
+        "selected": "direct",
+        "reason": "no_accepted_candidate",
+        "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+        "reference_used": false
+      },
+      "image_id": "pm-58-photos_samsung",
+      "source_id": "65dbf49ba76507894c2c1779c1c353b7a2d16229ce0a870604d4778f29ce9fe3",
+      "specialist_eligible": false
+    },
+    {
+      "selected": "direct",
+      "reason": "no_accepted_candidate",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "reference_used": false,
+      "geometry_branch_error": "Grid completion rejected: no orientation-preserving completion of a grid gap",
+      "image_id": "pm-58-photos_bents",
+      "source_id": "194e646466f009a258a54ef034700f6843c9e3fc7db54c255e600855c4c2057d",
+      "specialist_eligible": false
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "excessive_geometric_extrapolation",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "route": "external_rectification",
+      "specialist_decision": {
+        "selected": "direct",
+        "reason": "no_accepted_candidate",
+        "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+        "reference_used": false
+      },
+      "image_id": "pm-80-photos_scans",
+      "source_id": "e0c5d7ea4b508d30219ae60cd58ebdd826b5c3dc4989ecdbae3bbd41d6183f4d",
+      "specialist_eligible": true
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "excessive_geometric_extrapolation",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "route": "external_rectification",
+      "specialist_decision": {
+        "selected": "direct",
+        "reason": "no_accepted_candidate",
+        "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+        "reference_used": false
+      },
+      "image_id": "pm-80-photos_samsung",
+      "source_id": "a8eadfec520746e3e7d5b1d28e3080ca2d3792e49ea5a284182adb111e2c803d",
+      "specialist_eligible": true
+    },
+    {
+      "selected": "direct",
+      "reason": "no_accepted_candidate",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "reference_used": false,
+      "geometry_branch_error": "Grid completion rejected: inconsistent grid identities",
+      "image_id": "pm-80-photos_bents",
+      "source_id": "c1d9da5e768188d21172bc4a8ed458caa772c39791ecd5ad77cd217aad5bb949",
+      "specialist_eligible": true
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "excessive_geometric_extrapolation",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "route": "external_rectification",
+      "specialist_decision": {
+        "selected": "direct",
+        "reason": "no_accepted_candidate",
+        "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+        "reference_used": false
+      },
+      "image_id": "pm-99-photos_scans",
+      "source_id": "b18d0dcd4af74ea055fd769fd796956337ed08368de45f333d01788f1389fea4",
+      "specialist_eligible": false
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "excessive_geometric_extrapolation",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "route": "external_rectification",
+      "specialist_decision": {
+        "selected": "direct",
+        "reason": "no_accepted_candidate",
+        "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+        "reference_used": false
+      },
+      "image_id": "pm-99-photos_samsung",
+      "source_id": "8b2f875249ff096787aefd1e7f6c1025ed363cca97eea141519ee40d061cc4d6",
+      "specialist_eligible": false
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "excessive_geometric_extrapolation",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "route": "external_rectification",
+      "specialist_decision": {
+        "selected": "direct",
+        "reason": "no_accepted_candidate",
+        "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+        "reference_used": false
+      },
+      "image_id": "pm-99-photos_bents",
+      "source_id": "930e52b546ed714f432d4ad77f261c3fc25f72fa613cbdbd4e941985ff2d1e01",
+      "specialist_eligible": false
+    }
+  ]
+}

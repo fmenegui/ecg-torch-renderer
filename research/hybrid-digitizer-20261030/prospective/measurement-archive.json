@@ -1,0 +1,21 @@
+{
+  "schema": "persisted-ecg-reproduction-artifacts-v1",
+  "artifacts": [
+    {
+      "file_name": "ecg-reproducao-prospectiva-2026-10-30.zip",
+      "bytes": 281046465,
+      "sha256": "0156009fb7b4cd3a5a096c07f068e7c22cdc984798279e3da2f52ddeed5e1208",
+      "library_file_id": "libfile_afaf32e0928081919ce3b158829fa671",
+      "library_url": "https://chatgpt.com/library?file_id=libfile_afaf32e0928081919ce3b158829fa671&account_id=personal",
+      "persisted": true
+    },
+    {
+      "file_name": "ecg-npj-checkpoint-epoca13-2026-10-30.zip",
+      "bytes": 248255549,
+      "sha256": "0d285c51e3d7a6378d219cd6e65f953ef43d8df6e5c470f73f2112e31d2d13a7",
+      "library_file_id": "libfile_5d6801b46d0481918fc4e5ad8f12c16a",
+      "library_url": "https://chatgpt.com/library?file_id=libfile_5d6801b46d0481918fc4e5ad8f12c16a&account_id=personal",
+      "persisted": true
+    }
+  ]
+}

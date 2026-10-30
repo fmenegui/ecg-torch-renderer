@@ -1,71 +1,63 @@
-# Ensaio prospectivo em GPU e conclusão das etapas interrompidas
+# Ensaio prospectivo em GPU e complementos posteriores
 
-A execução 41106791069 usou uma A40 real com Torch 2.7.0/CUDA 12.8, 3000 pixels,
-os pesos originais e a política previamente congelada. São 24 fotografias de
-oito pacientes fora dos nossos grupos anteriores. O compartilhamento com dados
-de treinamento dos autores permanece desconhecido. Todas as imagens continuam
-no denominador, incluindo as que excederam o prazo.
+Executamos o npj original, nosso detector de grade seguido do npj e o notebook original do segundo colocado do Kaggle em uma A40. São 24 fotografias, oito pacientes e quatro layouts. Os pacientes não participaram dos nossos grupos anteriores. O compartilhamento com o treinamento dos autores permanece desconhecido. Modelos, pesos, escala de 3000 pixels e política foram congelados antes da inferência. O worker recebe imagens e não recebe referências.
 
-| Todas as 24 imagens, média por paciente | Cobertura impressa | NRMSE bruto |
+| Média por paciente, todas as 24 imagens | Cobertura impressa | NRMSE bruto |
 | --- | ---: | ---: |
-| npj direto | 81,43% | 1,1276 |
-| Grade e RGB adaptativo seguidos do npj | 64,72% | 0,9178 |
-| Seleção conservadora | 81,43% | 1,1276 |
+| npj direto, ensaio primário | 81,43% | 1,1276 |
+| Grade seguida do npj, ensaio primário | 64,72% | 0,9178 |
+| npj direto, após completar a última imagem | 85,29% | 1,1498 |
+| Grade seguida do npj, após completar a última imagem | 68,65% | 0,9133 |
+| Seleção conservadora, após o complemento | 85,29% | 1,1498 |
 
-O retificador reduz o erro agregado, mas perde suporte. O seletor não aceitou
-candidatas: 16 decisões citaram extrapolação geométrica, duas identidade de layout
-e seis ausência de candidata aceita. Isso não demonstra uma biblioteca melhor.
-A inferência direta retornou em 23 imagens. A retificada retornou em 18, com
-cinco rejeições de malha e uma interrupção por prazo. A última imagem também
-ficou sem leitura direta por prazo.
+O seletor mantém exatamente o sinal direto em todas as imagens. A grade tem menor erro agregado, mas perde 16,64 pontos percentuais de cobertura. Isso não demonstra superioridade. Cobertura é suporte numérico finito, não correção. O erro bruto mantém a origem temporal e usa zero somente dentro do cálculo da métrica para ausências. Os sinais salvos conservam NaNs. Não há alinhamento, ajuste de ganho ou de linha de base nos resultados primários. Diagnósticos alinhados permanecem separados.
 
-A solução Kaggle tinha seis imagens elegíveis pelo layout inferido e congelado,
-mas seu batch não começou por falta de tempo. Seus zeros de cobertura e NRMSE
-igual a 1 representam ausência de predição, e não medem a precisão do algoritmo.
-Os 18 casos fora do escopo também permanecem explícitos.
+A execução primária [41106791069](https://github.com/fmenegui/ecg-torch-renderer/actions/runs/41106791069) terminou normalmente, mas seu limite interno deixou a última imagem sem leitura direta e impediu o início do batch Kaggle. Esses casos continuam no denominador original em `primary-summary.json`. A continuação [41113820943](https://github.com/fmenegui/ecg-torch-renderer/actions/runs/41113820943) concluiu a imagem interrompida. A avaliação combinada é um complemento após a abertura dos resultados primários, não um segundo teste independente.
 
-A continuação executa somente essa imagem interrompida e o especialista nos seis
-casos já elegíveis. Se a leitura reparada inferir o layout elegível, ela também
-entra no batch conforme a regra original. Modelos, pesos, escala e política são
-mantidos. Nenhuma referência é adquirida pelo worker. O ensaio original e suas
-falhas são preservados. A conclusão posterior é reportada separadamente, depois
-da abertura dos resultados primários, sem alegar um segundo teste independente.
+## Kaggle: execução completa e falha de normalização
 
-O teto planejado de GPU da continuação é US$ 0,17, dentro dos US$ 0,45 originais
-quando somado ao limite conservador de tempo e preço dos recursos já encerrados.
-Esse cálculo não é uma auditoria da fatura. Armazenamento temporário fica separado.
+O layout inferido e congelado tornou seis imagens de dois pacientes elegíveis. As outras 18 permanecem explicitamente fora do escopo do especialista. Na primeira continuação, a normalização falhou e um bloco de demonstração gráfica depois do tratamento de erro encerrou o notebook: esperava cinco campos onde havia quatro. Essa execução e seu erro estão preservados.
 
-A auditoria encontrou um recibo com observações da imagem anterior em
-`pm-99-photos_bents`, que não chegou à retificação por prazo. Essas observações
-não são usadas como evidência da imagem atual. Seus hashes e o arquivo original
-foram conservados. A correção de isolamento já tem teste adversarial.
+Revisamos os três blocos de demonstração gráfica do notebook v6. A adaptação omite somente esses blocos, reconhecidos por hashes de AST. Um bloco diferente é recusado. Cálculos numéricos, checkpoints e listas nativas de falhas são mantidos. Os testes verificam que as chamadas numéricas e o ensemble permanecem no código.
 
-A ausência do pod foi verificada pelo controlador e por uma leitura externa.
-A leitura externa não precisou executar DELETE. Os detalhes de etapas recebidos
-durante a execução estavam atrasados e não provaram travamento do pod.
+A execução [41116353783](https://github.com/fmenegui/ecg-torch-renderer/actions/runs/41116353783) completou o notebook na GPU. Os oito modelos tiveram todas as chaves dos pesos carregadas, com timm 1.0.22 no subprocesso nativo. As seis imagens falharam na etapa zero, portanto as etapas seguintes não processaram imagens válidas. Quatro emitiram mensagens de orientação desconhecida. O tratamento de erro original não fornece exceções completas, então a causa de cada falha não está estabelecida. Nenhum arquivo nativo de sinal foi produzido.
 
-Os controles adicionais de infraestrutura demonstraram duas lacunas independentes:
-um descendente podia continuar após o timeout de seu processo pai, e uma falha
-na cópia de código podia ocorrer antes de armar o guardião. O controlador agora
-encerra o grupo de processos e arma o guardião antes das transferências. Esses
-controles não demonstram a causa de qualquer demora do ensaio concluído.
+O CSV final contém o fallback de zeros do notebook, preservado para auditoria. Esses zeros não contam como amostras observadas. Não há medida de precisão Kaggle válida neste grupo. Isso tampouco reproduz ou refuta o score publicado, que usa outra coorte e outro protocolo. O sucesso anterior em uma imagem pública de desenvolvimento continua sendo apenas uma verificação de execução.
 
+## Integridade, reprodução e recursos
 
-A execução de continuação `41113820943` concluiu a leitura direta e retificada
-que faltava. O notebook Kaggle iniciou, carregou o checkpoint da primeira etapa
-e encontrou rotação desconhecida. O código nativo registrou a falha, mas sua
-demonstração gráfica depois do tratamento de erro esperou cinco campos onde
-havia quatro e encerrou o batch antes de processar os outros casos.
+`examples/merge_hybrid_inference.py` reconstrói as decisões com a política congelada. Primeiro verifica que as 24 seleções originais são idênticas às salvas. Depois usa os complementos, sela as decisões e só então abre referências para avaliação. Os 96 hashes das predições combinadas foram verificados. As 24 seleções finais são idênticas às leituras diretas, inclusive as ausências.
 
-Foram revisados os três blocos de demonstração gráfica do notebook v6. Eles
-apenas desenham e exibem intermediários, inclusive intermediários indefinidos
-quando uma etapa falha. A adaptação agora omite somente esses blocos, reconhecidos
-por seus hashes de AST. Cálculos numéricos, checkpoints e listas nativas de falhas
-são conservados. Um bloco diferente é recusado. O erro original permanece no
-arquivo da primeira continuação.
+Um recibo primário de `pm-99-photos_bents`, interrompida antes da retificação, reteve observações geométricas da imagem anterior. Seus bytes foram preservados e a evidência foi colocada em quarentena. Isso não alterou predições ou métricas. A correção de isolamento tem teste adversarial.
 
-A nova invocação executa apenas as seis imagens elegíveis e reutiliza a leitura
-reparada. Seu limite é 660 segundos e US$ 0,11 de tempo de GPU. Somado ao limite
-conservador de US$ 0,3337 para os recursos já encerrados, o envelope fica em
-US$ 0,4437. Não são iniciados novos treinos nem repetida a imagem já reparada.
-Falhas nativas de normalização permanecem falhas, sem preenchimento como sinal.
+Os três pods de inferência foram excluídos e a ausência de cada um foi verificada. O guardião externo primário não precisou executar DELETE. O envelope planejado acumulado foi US$ 0,4437 de tempo de GPU, abaixo dos US$ 0,45 originais. Esse envelope conservador não é uma auditoria de fatura. Armazenamento e arredondamento ficam separados. O volume do treinamento em andamento foi preservado.
+
+Controles independentes corrigiram o encerramento de descendentes após timeout e a instalação do guardião antes de transferir código. Eles não provam a causa de qualquer demora. As informações de etapas recebidas durante a execução primária estavam atrasadas, enquanto os logs completos mostram uma execução normal.
+
+O pacote de medições conserva entradas, referências, detector selecionado, três arquivos brutos de execução, predições, recibos, falhas, relatórios e hashes. Extraia os arquivos brutos em diretórios separados e execute, da raiz do repositório:
+
+```bash
+python -m examples.merge_hybrid_inference \
+  --primary /dados/primary \
+  --repair /dados/repair \
+  --specialist /dados/specialist \
+  --data /dados/pacote/original-inputs \
+  --out /dados/reavaliacao-nova
+```
+
+Os caminhos `primary`, `repair` e `specialist` são os diretórios de conteúdo de cada `.tar.gz`. O destino deve ser novo. O script não faz novas inferências. `completion-summary.json` contém resultados compactos e limites. O pacote também tem resultados por imagem, paciente, condição e layout. A chave histórica `cpu_max_side` nos resumos completos é mantida por compatibilidade. Essas execuções usaram CUDA e 3000 pixels.
+
+## Treinamento e próxima hipótese
+
+O primeiro segmento do treinamento original concluiu 13 das 45 épocas do modelo principal, usando a liberação pública completa de 72 shards. O checkpoint foi baixado, verificado e inspecionado com carregamento seguro. Inclui otimizador, scheduler, scaler e estados aleatórios para retomada. O segundo segmento segue em execução. O banco histórico de fontes dos autores está indisponível e sua substituição foi registrada. O treino e a reprodução dos resultados do artigo continuam incompletos.
+
+O controle analítico da normalização original mostrou que uma ocultação de 400 ms deslocou um pico físico de 4,000 s para 3,750 s e eliminou as ausências da saída. Isso demonstra um mecanismo no controle, sem estabelecer a causa de todas as falhas reais. A próxima hipótese é preservar coordenadas temporais e máscaras de visibilidade na extração, seguida de avaliação separada de amplitude e normalização geométrica. O algoritmo original não foi alterado para melhorar esta reprodução.
+
+Os 81 testes de reprodução e 27 contratos de geometria e seleção passaram no commit `c266e20e71049e7bb056cf103ad75689442d328c`. A CI da biblioteca passou em três combinações de Python/Torch. A suíte integrada tem 530 testes e 25 skips explícitos. A galeria de 16 casos permanece idêntica à versão inspecionada.
+
+## Arquivos preservados
+
+- [Pacote completo de medições](https://chatgpt.com/library?file_id=libfile_afaf32e0928081919ce3b158829fa671&account_id=personal), 281 MB, 188 arquivos.
+- [Checkpoint original após 13 épocas](https://chatgpt.com/library?file_id=libfile_5d6801b46d0481918fc4e5ad8f12c16a&account_id=personal), 248 MB.
+
+Identidades, tamanhos e SHA256 estão em `measurement-archive.json`.

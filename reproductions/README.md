@@ -9,9 +9,9 @@ This work does not promote the existing rectifier or change production defaults.
 
 | Work | Implemented and locally executed | Still needed |
 | --- | --- | --- |
-| npj Digital Medicine | Original source and both published weight files verified. Complete native chain executed on one original test fixture. Both original networks trained in explicitly reduced CPU and Runpod L4 GPU engineering checks. Full native inference executed on an author fixture and seven public development images. Native evaluator controls executed. | Original 45-epoch and public-config training, lead-text training at full scale, original Ahus and Emory cohort scoring. |
+| npj Digital Medicine | Original source and both published weight files verified. Complete native chain executed on one original test fixture. Both original networks trained in explicitly reduced CPU and Runpod L4 GPU engineering checks. Full native inference executed on an author fixture and public development images. A new 24-photo, eight-patient GPU cohort is saved separately. Full-data training has a safely verified epoch-13 checkpoint out of 45 main epochs. Native evaluator controls executed. | Original 45-epoch and public-config training, lead-text training at full scale, original Ahus and Emory cohort scoring. |
 | Powerful Medical | Independent public-description Gridder, declared Dotter hypothesis, training/inference entrypoints, analytical geometry controls. | Original annotated Dotter bank, exact architecture and checkpoint, full normalization and waveform validation. This is not the commercial implementation. |
-| Kaggle | Top-five review, second-place selection, original six-model notebook replay adapter, six training profiles, source audit against the later refactor. All eight preprocessing/waveform checkpoints strictly loaded. Native six-model notebook executed on a Runpod L4 and produced a waveform for one public development image. The first missing-asset failure is retained. | Full retraining, native original-cohort scoring, refactor/checkpoint parity. A single B7 model is an ablation, not the six-model final submission. |
+| Kaggle | Top-five review, second-place selection, original six-model notebook replay adapter, six training profiles, source audit against the later refactor. All eight preprocessing/waveform checkpoints strictly loaded. Native six-model notebook executed on a Runpod L4 and produced a waveform for one public development image. A separate A40 replay completed all eight checkpoint loads but all six eligible external photos failed native stage-zero normalization. Fallback zeros are not recovered signals. Earlier failures are retained. | Full retraining, native original-cohort scoring, refactor/checkpoint parity. A single B7 model is an ablation, not the six-model final submission. |
 
 **No headline result has been reproduced yet.** Every target in
 [`reported-results.json`](reported-results.json) is labeled author-reported.
@@ -21,6 +21,8 @@ claims. The real GPU receipts and the retained first replay failure are under
 `evidence/runpod-gpu-pilot-2026-10-30/` and
 `evidence/runpod-native-replay-2026-10-30/`. Full article scores remain unverified.
 See [the GPU review](evidence/GPU_REVIEW.md) for the measured pilot and limits.
+The later [prospective GPU study](../research/hybrid-digitizer-20261030/prospective/README.md)
+preserves the primary bank, separately labeled continuations and training progress.
 
 ## Scientific rules
 

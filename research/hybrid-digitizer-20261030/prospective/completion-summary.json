@@ -1,0 +1,116 @@
+{
+  "schema": "post-primary-hybrid-completion-summary-v1",
+  "primary_workflow_run": 41106791069,
+  "repair_workflow_run": 41113820943,
+  "specialist_workflow_run": 41116353783,
+  "cohort_images": 24,
+  "cohort_patients": 8,
+  "inference_device": "cuda",
+  "native_max_side": 3000,
+  "primary_unchanged": true,
+  "continuation_after_primary_results_opened": true,
+  "original_selection_replay_verified": true,
+  "completed_selection_identical_to_direct": true,
+  "selection_received_reference": false,
+  "phase2_decisions_sha256": "c98028268e20eca51d88885723dbe29d1b53a4b4809a054519ade43378fdc62d",
+  "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+  "arms": {
+    "npj_native": {
+      "patient_macro": {
+        "coverage": 0.8528768055555556,
+        "raw_all_printed_nrmse": 1.1498355473175264,
+        "raw_all_printed_rmse_mv": 0.24710090695968484,
+        "raw_all_printed_snr_db": -0.882765705542933,
+        "raw_observed_rmse_mv": 0.27447897248330655,
+        "raw_observed_pcc": 0.32784633286209264,
+        "mean_eligible_aligned_lead_snr_db": 2.7902338821219264,
+        "mean_eligible_aligned_lead_rmse_mv": 0.19494878324450404
+      },
+      "exception_images": 0,
+      "correct_layout_labels": 21,
+      "leads_entirely_missing": 21
+    },
+    "grid_adaptive": {
+      "patient_macro": {
+        "coverage": 0.6865206944444444,
+        "raw_all_printed_nrmse": 0.9133194777042241,
+        "raw_all_printed_rmse_mv": 0.19345614717824888,
+        "raw_all_printed_snr_db": 1.0585848481454774,
+        "raw_observed_rmse_mv": 0.18052977914735643,
+        "raw_observed_pcc": 0.515943704842283,
+        "mean_eligible_aligned_lead_snr_db": 5.608771384491517,
+        "mean_eligible_aligned_lead_rmse_mv": 0.12703188907820184
+      },
+      "exception_images": 5,
+      "correct_layout_labels": 17,
+      "leads_entirely_missing": 73
+    },
+    "kaggle_native_eligible": {
+      "patient_macro": {
+        "coverage": 0.0,
+        "raw_all_printed_nrmse": 1.0,
+        "raw_all_printed_rmse_mv": 0.21890963684002607,
+        "raw_all_printed_snr_db": 0.0,
+        "raw_observed_rmse_mv": null,
+        "raw_observed_pcc": null,
+        "mean_eligible_aligned_lead_snr_db": null,
+        "mean_eligible_aligned_lead_rmse_mv": null
+      },
+      "exception_images": 6,
+      "correct_layout_labels": 0,
+      "leads_entirely_missing": 288
+    },
+    "selective": {
+      "patient_macro": {
+        "coverage": 0.8528768055555556,
+        "raw_all_printed_nrmse": 1.1498355473175264,
+        "raw_all_printed_rmse_mv": 0.24710090695968484,
+        "raw_all_printed_snr_db": -0.882765705542933,
+        "raw_observed_rmse_mv": 0.27447897248330655,
+        "raw_observed_pcc": 0.32784633286209264,
+        "mean_eligible_aligned_lead_snr_db": 2.7902338821219264,
+        "mean_eligible_aligned_lead_rmse_mv": 0.19494878324450404
+      },
+      "exception_images": 0,
+      "correct_layout_labels": 21,
+      "leads_entirely_missing": 21
+    }
+  },
+  "selection_reasons": {
+    "excessive_geometric_extrapolation": 17,
+    "layout_identity_not_preserved": 2,
+    "no_accepted_candidate": 5
+  },
+  "kaggle": {
+    "eligible_images": 6,
+    "eligible_patients": 2,
+    "ineligible_images": 18,
+    "native_signal_files": 0,
+    "native_batch_status": "completed",
+    "all_eight_model_state_dicts_matched": true,
+    "stage0_failed_images": 6,
+    "stage1_and_stage2_images_processed": 0,
+    "unknown_orientation_messages": 4,
+    "remaining_stage0_exceptions_not_reported_by_native_source": true,
+    "submission_fallback_zeros_count_as_observed": false,
+    "accuracy_score_available": false,
+    "native_log_sha256": "9de03c01ac4a6f874406cd17d813b3ce2d0221152b9cbee1a8117286ab92b724",
+    "notebook_source_sha256": "f77d7d7b3a7afea6acc3973993568cd1efdcaafe94ee0377c4afcaac7ff68ccb",
+    "adapted_script_sha256": "1dffccd15feb68814f6b97e4f44f291a7b2c92b87c3e2b1e74a14e814c1cacfe",
+    "waveform_models": 6,
+    "preprocessing_models": 2,
+    "specialist_timm": "1.0.22",
+    "benchmark_is_original_leaderboard_cohort": false
+  },
+  "all_owned_inference_pods_deleted_and_absence_verified": true,
+  "limitations": [
+    "This is a small external cohort, not the article or competition headline evaluation.",
+    "Upstream model training overlap is unknown.",
+    "The primary deadline failures remain in the original bank. Continuation is a separate post-primary report.",
+    "Raw all-printed metrics use zero only inside the missing-data scorer. Stored missing predictions remain NaN.",
+    "Coverage measures finite numerical support, not correctness. Lower error with lost support is not overall superiority.",
+    "The combined timing reuses measured branches and amortizes the specialist batch. It is not a new end-to-end latency benchmark.",
+    "The historical summary key cpu_max_side is retained for compatibility. These source runs used CUDA and native_max_side 3000.",
+    "No published headline or clinical result has been reproduced."
+  ]
+}
