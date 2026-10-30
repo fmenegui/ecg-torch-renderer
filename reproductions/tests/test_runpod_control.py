@@ -1,7 +1,10 @@
 from copy import deepcopy
+import json
+from pathlib import Path
+import tempfile
 import unittest
 
-from reproductions.runpod.controller import choice, public_ssh_port, validate_ownership
+from reproductions.runpod.controller import Controller, choice, public_ssh_port, validate_ownership, validate_plan
 
 
 class RunpodControlTests(unittest.TestCase):
@@ -42,6 +45,46 @@ class RunpodControlTests(unittest.TestCase):
         ]
         self.assertIsNone(public_ssh_port({"runtime": None}))
         self.assertEqual(public_ssh_port({"runtime": {"ports": ports}}), {"ip": "1.2.3.4", "port": 789})
+
+    def test_full_training_envelope_needs_explicit_schema_and_caps(self):
+        full = dict(self.plan, schema="ecg-runpod-full-training-plan-v1", volume_gb=220, maximum_pod_seconds=18000, segments=5)
+        validate_plan(full)
+        for invalid in [dict(full, segments=6), dict(full, maximum_pod_seconds=18001), dict(full, maximum_gpu_price_per_hour=1.01), dict(full, volume_gb=500), dict(full, schema="pilot")]:
+            with self.assertRaises(ValueError):
+                validate_plan(invalid)
+
+    def test_a_cheaper_gpu_below_the_required_memory_is_rejected(self):
+        plan = dict(self.plan, minimum_gpu_memory_gb=48)
+        small = deepcopy(self.gpus)
+        small[0]["memoryInGb"] = 24
+        with self.assertRaises(ValueError):
+            choice(plan, small, self.templates, self.datacenters)
+
+    def test_resume_cannot_take_another_volume_or_change_its_location(self):
+        full = dict(self.plan, schema="ecg-runpod-full-training-plan-v1", volume_gb=220, maximum_pod_seconds=18000, segments=5)
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "plan.json"
+            path.write_text(json.dumps(full))
+            for volume in [{"name": "another-run", "size": 220, "dataCenter": "EU-SE-1"}, {"name": "ecg-repro-123-1", "size": 220, "dataCenter": "another-dc"}]:
+                controller = Controller.__new__(Controller)
+                controller.plan_path = path
+                controller.ledger = {"name": "ecg-repro-123-1", "volume_id": "ours", "pod_id": "previous", "pod_absent_verified": True, "selection": {"data_center": "EU-SE-1"}}
+                controller.rest = lambda method, endpoint: {"dataCenters": self.datacenters} if endpoint == "/catalog/datacenters" else volume
+                with self.assertRaises(ValueError):
+                    controller.provision()
+
+    def test_finished_training_does_not_allocate_another_gpu(self):
+        full = dict(self.plan, schema="ecg-runpod-full-training-plan-v1", volume_gb=220, maximum_pod_seconds=18000, segments=5)
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "plan.json"
+            path.write_text(json.dumps(full))
+            controller = Controller.__new__(Controller)
+            controller.plan_path = path
+            controller.ledger = {"full_training_completed": True}
+            controller.save = lambda: None
+            controller.provision()
+            controller.execute()
+            self.assertEqual(controller.ledger["status"], "already_completed")
 
 
 if __name__ == "__main__":

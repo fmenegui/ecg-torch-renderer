@@ -1,0 +1,56 @@
+name: Full npj training on Runpod
+on:
+  push:
+    branches: ['research/reproduce-ecg-methods-from-zero-*']
+    paths:
+      - '.github/workflows/reproduction-full-training.yml'
+      - 'reproductions/runpod/training-plan.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ecg-reproduction-runpod-control
+  cancel-in-progress: false
+jobs:
+  segment1:
+    uses: ./.github/workflows/reproduction-training-segment.yml
+    with:
+      segment: '1'
+    secrets:
+      RUNPOD_API: ${{ secrets.RUNPOD_API }}
+  segment2:
+    needs: segment1
+    if: ${{ !cancelled() }}
+    uses: ./.github/workflows/reproduction-training-segment.yml
+    with:
+      segment: '2'
+      previous: '1'
+    secrets:
+      RUNPOD_API: ${{ secrets.RUNPOD_API }}
+  segment3:
+    needs: segment2
+    if: ${{ !cancelled() }}
+    uses: ./.github/workflows/reproduction-training-segment.yml
+    with:
+      segment: '3'
+      previous: '2'
+    secrets:
+      RUNPOD_API: ${{ secrets.RUNPOD_API }}
+  segment4:
+    needs: segment3
+    if: ${{ !cancelled() }}
+    uses: ./.github/workflows/reproduction-training-segment.yml
+    with:
+      segment: '4'
+      previous: '3'
+    secrets:
+      RUNPOD_API: ${{ secrets.RUNPOD_API }}
+  segment5:
+    needs: segment4
+    if: ${{ !cancelled() }}
+    uses: ./.github/workflows/reproduction-training-segment.yml
+    with:
+      segment: '5'
+      previous: '4'
+    secrets:
+      RUNPOD_API: ${{ secrets.RUNPOD_API }}

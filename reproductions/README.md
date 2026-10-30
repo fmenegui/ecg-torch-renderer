@@ -9,15 +9,18 @@ This work does not promote the existing rectifier or change production defaults.
 
 | Work | Implemented and locally executed | Still needed |
 | --- | --- | --- |
-| npj Digital Medicine | Original source and both published weight files verified. Complete native chain executed on one original test fixture. Both original networks trained in explicitly reduced CPU engineering checks. Native evaluator controls executed. | Original 45-epoch and public-config training, lead-text training at full scale, GPU execution, original Ahus and Emory cohort scoring. |
+| npj Digital Medicine | Original source and both published weight files verified. Complete native chain executed on one original test fixture. Both original networks trained in explicitly reduced CPU and Runpod L4 GPU engineering checks. Full native inference executed on an author fixture and seven public development images. Native evaluator controls executed. | Original 45-epoch and public-config training, lead-text training at full scale, original Ahus and Emory cohort scoring. |
 | Powerful Medical | Independent public-description Gridder, declared Dotter hypothesis, training/inference entrypoints, analytical geometry controls. | Original annotated Dotter bank, exact architecture and checkpoint, full normalization and waveform validation. This is not the commercial implementation. |
-| Kaggle | Top-five review, second-place selection, original six-model notebook replay adapter, six training profiles, source audit against the later refactor. All eight preprocessing/waveform checkpoints strictly loaded in the separately pinned compatible environment. | GPU replay and retraining, native original-cohort scoring, refactor/checkpoint parity. A single B7 model is an ablation, not the six-model final submission. |
+| Kaggle | Top-five review, second-place selection, original six-model notebook replay adapter, six training profiles, source audit against the later refactor. All eight preprocessing/waveform checkpoints strictly loaded. Native six-model notebook executed on a Runpod L4 and produced a waveform for one public development image. The first missing-asset failure is retained. | Full retraining, native original-cohort scoring, refactor/checkpoint parity. A single B7 model is an ablation, not the six-model final submission. |
 
 **No headline result has been reproduced yet.** Every target in
 [`reported-results.json`](reported-results.json) is labeled author-reported.
 Every execution has its own receipt under [`evidence/`](evidence/).
 Control tests, training completion and matched-cohort reproduction are separate
-claims. No GPU was provisioned in the local preparation phase.
+claims. The real GPU receipts and the retained first replay failure are under
+`evidence/runpod-gpu-pilot-2026-10-30/` and
+`evidence/runpod-native-replay-2026-10-30/`. Full article scores remain unverified.
+See [the GPU review](evidence/GPU_REVIEW.md) for the measured pilot and limits.
 
 ## Scientific rules
 
@@ -94,13 +97,31 @@ The requested GPU lane is Runpod. A local missing credential or unavailable
 CUDA is recorded as a blocker. GPU commands refuse a silent CPU substitution.
 The small CPU runs under `evidence/` are engineering checks only.
 
-The `Independent ECG reproductions` workflow performs a read-only Runpod
-preflight using the repository's `RUNPOD_API_KEY` secret, if one is configured.
-It prints no credential and creates no pod, endpoint or volume. This checks a
-second execution route without requiring a key to be copied into this workspace.
-The completed initial Actions probe returned `missing_credential`. A successful
-CI job means that the probe executed, not that Runpod authentication succeeded.
-No Runpod infrastructure tool is exposed in the current connected session.
+The repository Actions secret is `RUNPOD_API`. It authenticates successfully.
+The secret is read inside Actions and never printed or copied to tracked code.
+`Runpod ECG execution` reads live stock, prices and the official image catalog,
+then runs a bounded 30-minute engineering pilot on one GPU with a temporary
+30 GB durable volume. An independent pod deadline guard and the Actions
+controller both enforce shutdown. Each owned pod is externally checked absent.
+Results are hash-verified and uploaded before its temporary volume is deleted.
+The current CLI 3.0.1 does not expose the older advertised terminate flags.
+REST v2 returned null runtime telemetry while GraphQL exposed working SSH,
+so the controller uses the corroborated GraphQL port mapping explicitly.
+
+The separately bounded full-training workflow uses the complete 72-shard,
+75 GB original release, a 220 GB volume and at most five five-hour segments.
+It retains batch 12, 1024-pixel patches and the 45-epoch `paper_table4` profile,
+then the 30-epoch `lead_text_public` profile. Every resumed invocation reloads
+a completed-epoch checkpoint. An unfinished epoch is discarded and restarted.
+The public source's historical font bank and stochastic author run are not
+available, so font hashes and these limitations remain in the receipts.
+The original batch failed the 24 GB L4 capacity control, so full training
+requires at least 48 GB. The maximum GPU price is USD 0.99/hour and the total
+GPU envelope is USD 24.75. A new full-shape control runs before data acquisition.
+Storage and provider rounding are additional. After all segments, an unfinished
+training volume is retained for recovery and is still billable. Completed
+training volumes are deleted only after checkpoint artifact upload.
+No source-profile completion is treated as a matched-cohort result.
 
 Provision only after a fresh stock, template, region and price read. Use one
 GPU at a time. Save data, configuration, logs and checkpoints on a network

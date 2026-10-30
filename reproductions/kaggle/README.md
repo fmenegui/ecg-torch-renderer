@@ -93,5 +93,20 @@ conversion. It is not the mean of per-lead dB values. Scoring our fixed-denomina
 audit on another cohort is a separate result.
 
 The original public and private leaderboard cohorts have not been scored in
-this execution. No native six-model GPU forward pass or full retraining has
-completed. All comparison targets remain pending in `../reported-results.json`.
+this execution. A native six-model GPU forward pass completed on a Runpod L4 and produced a
+signal for one public D0 development image. Full retraining has not completed. All comparison targets remain pending in `../reported-results.json`.
+
+## Executed GPU development replay
+
+The completed replay retains all six original waveform models, both original
+preprocessing models and the original native decoder. All checkpoints loaded
+with no missing or unexpected keys. The original helper also imports a fixed
+44-by-57 reference grid. That NPY is now included in the 17-asset sealed manifest.
+The original missing-file GPU attempt remains alongside the corrected replay.
+
+The one D0 development image produced a native signal file and submission CSV,
+with 100% finite returned output on the declared printed support. The common
+audit gives 29.565 dB as a mean of 12 aligned, DC-centered per-lead diagnostics.
+This is not the official metric, the 23.27 dB private leaderboard, or an external
+generalization result. The source PTB-XL record may overlap original training.
+See `../evidence/runpod-native-replay-2026-10-30/context.json`.

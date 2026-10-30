@@ -48,6 +48,10 @@ def _resolve(name):
     return getattr(importlib.import_module(module), attribute)
 
 
+class PauseTraining(Exception):
+    """Discard an unfinished epoch and resume its saved starting state later."""
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--upstream", required=True)
@@ -60,6 +64,7 @@ def main():
     parser.add_argument("--seed", type=int, default=1973)
     parser.add_argument("--smoke", action="store_true")
     parser.add_argument("--resume", action="store_true")
+    parser.add_argument("--invocation-deadline", type=float, help="Unix time to pause this invocation without changing the full training profile")
     args = parser.parse_args()
     require_cuda(args.device)
     upstream = Path(args.upstream).resolve()
@@ -159,6 +164,8 @@ def main():
                 model.train(split == "train")
                 total, count = 0.0, 0
                 for image, target in loader:
+                    if args.invocation_deadline and time.time() >= args.invocation_deadline:
+                        raise PauseTraining()
                     image, target = image.to(args.device), target.to(args.device)
                     optimizer.zero_grad()
                     with torch.set_grad_enabled(split == "train"):
@@ -187,6 +194,8 @@ def main():
             receipt.update(completed_epochs=epoch + 1, last_epoch=metrics)
             write_json(out / "receipt.json", receipt)
         receipt["status"] = "completed_engineering_smoke" if args.smoke else "completed_training"
+    except PauseTraining:
+        receipt.update(status="paused_training", resume_requires_completed_epoch=True)
     except Exception as error:
         receipt.update(status="failed", error_type=type(error).__name__, error=str(error))
         raise

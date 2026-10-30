@@ -23,7 +23,7 @@ def main():
     if not re.fullmatch(r"[A-Za-z0-9_-]+", args.pod_id):
         raise ValueError("Invalid pod identity")
     key = sys.stdin.readline().strip()
-    if not key or not 1 < args.deadline - time.time() <= 1800:
+    if not key or not 1 < args.deadline - time.time() <= 18000:
         raise ValueError("A credential and bounded future deadline are required")
     child = os.fork()
     if child:

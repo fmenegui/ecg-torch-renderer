@@ -27,7 +27,9 @@ scores or silently describe the public YAML as the paper's exact training run.
 The audited training harness explicitly initializes GradScaler and serializes
 both inner AdamMuon optimizer states. Its completed-epoch resume is tested on
 an independent tiny interrupted-versus-uninterrupted optimizer control.
-CUDA training/resume parity and original-run stochastic parity remain untested.
+Reduced CUDA training completed for both original architectures. The CUDA RNG
+checkpoint control is separate from complete training/resume or author-run
+stochastic parity, which remain unverified.
 
 ## Original dataset
 
@@ -100,7 +102,7 @@ not establish why the authors obtained any particular cohort score.
 
 | Original Ahus stratum | Reported SNR | Reported RMSE | Reported PCC | Reproduced here |
 | --- | ---: | ---: | ---: | --- |
-| Scanner | 19.65 dB | 19.3 uV | 0.987 | Pending original cohort and GPU execution |
+| Scanner | 19.65 dB | 19.3 uV | 0.987 | Pending original cohort scoring |
 | OnePlus | 12.19 dB | 42.8 uV | 0.947 | Pending |
 | iPhone | 10.47 dB | 51.3 uV | 0.935 | Pending |
 
@@ -132,3 +134,24 @@ complete enumeration receipt `../evidence/public-clinical-file-inventory.json`.
 The local native fixture run returns a `[12,5000]` array in uV. No reference or
 printed-lead mask accompanied that smoke test, so its finite fraction is not a
 digitization-accuracy or printed-support-coverage result.
+
+## Real Runpod engineering pilot
+
+A Runpod L4 executed both original published networks and the full native
+inference chain. Both architectures also completed explicitly reduced GPU
+training checks, two training patches and one validation patch each. These are
+execution controls, not full 45/100-epoch retraining.
+
+Seven public development images came from only two source records. On the six
+Ahus images, mean finite output coverage on independently declared printed
+support was 99.95% for limb pages and 77.76% for precordial pages. These are
+numeric coverage figures, not accuracy, confidence or cohort performance.
+
+The original George Moody preset returned 10,000 samples for the 5,000-sample
+500 Hz public D0 reference. The first comparison correctly retained that
+incompatible-grid failure. `--target-num-samples 5000` is an explicit metadata
+adaptation for a separate public development track. It changes no waveform
+values by reference fitting and does not alter the default native preset.
+
+See `../evidence/runpod-gpu-pilot-2026-10-30/context.json` and its linked Actions
+artifact for raw training checkpoints, inputs, outputs and logs.

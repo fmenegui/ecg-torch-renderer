@@ -1,0 +1,70 @@
+name: Bounded npj training segment
+on:
+  workflow_call:
+    inputs:
+      segment:
+        required: true
+        type: string
+      previous:
+        required: false
+        default: ''
+        type: string
+    secrets:
+      RUNPOD_API:
+        required: true
+permissions:
+  contents: read
+jobs:
+  train:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    env:
+      RUNPOD_API_KEY: ${{ secrets.RUNPOD_API }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        if: inputs.previous != ''
+        with:
+          name: runpod-training-state-${{ inputs.previous }}
+          path: build/runpod-training
+      - name: Install hash-verified Runpod CLI
+        run: |
+          curl --fail --location --silent --show-error https://github.com/runpod/runpodctl/releases/download/v3.0.1/runpodctl-linux-amd64 --output /tmp/runpodctl
+          echo 'b66d11eca8cacbf18a2de6943c6e18a79ffbdc8a3c30aa13a49dc6cfc15d4239  /tmp/runpodctl' | sha256sum --check
+          chmod 755 /tmp/runpodctl
+      - name: Fresh stock and price read, then provision or resume the owned volume
+        timeout-minutes: 11
+        run: python -u -m reproductions.runpod.controller --cli /tmp/runpodctl --out build/runpod-training --plan reproductions/runpod/training-plan.json provision
+      - name: Full original profiles, bounded invocation and completed-epoch checkpoints
+        timeout-minutes: 310
+        run: python -u -m reproductions.runpod.controller --cli /tmp/runpodctl --out build/runpod-training --plan reproductions/runpod/training-plan.json execute
+      - name: Delete the owned GPU and verify its absence
+        if: always()
+        run: python -u -m reproductions.runpod.controller --cli /tmp/runpodctl --out build/runpod-training --plan reproductions/runpod/training-plan.json cleanup
+      - uses: actions/upload-artifact@v4
+        id: results
+        if: always()
+        with:
+          name: runpod-full-training-results-${{ inputs.segment }}
+          path: build/runpod-training/results.tar.gz
+          if-no-files-found: warn
+      - name: Remove completed training volume after checkpoint artifact upload
+        if: always() && steps.results.outcome == 'success'
+        run: |
+          python - <<'PY'
+          import json, pathlib, subprocess, sys
+          path = pathlib.Path('build/runpod-training/control.json')
+          if path.exists() and json.loads(path.read_text()).get('full_training_completed'):
+              subprocess.run([sys.executable, '-m', 'reproductions.runpod.controller', '--cli', '/tmp/runpodctl', '--out', 'build/runpod-training', '--plan', 'reproductions/runpod/training-plan.json', 'delete-volume'], check=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: runpod-training-state-${{ inputs.segment }}
+          path: build/runpod-training/control.json
+          if-no-files-found: error

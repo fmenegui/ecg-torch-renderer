@@ -18,18 +18,20 @@ def main():
     parser.add_argument("--parquet-root", required=True)
     parser.add_argument("--out", required=True)
     parser.add_argument("--require-complete", action="store_true")
+    parser.add_argument("--resume", action="store_true", help="Verify and reuse byte-identical files from an interrupted extraction")
     args = parser.parse_args()
     import pyarrow.parquet as parquet
     from PIL import Image
     root = Path(args.parquet_root)
     lock = load_lock()
     shards, complete_shards = verify_shards(root, lock, require_complete=args.require_complete)
-    out = new_run(args.out)
+    out = Path(args.out).resolve() if args.resume else new_run(args.out)
+    out.mkdir(parents=True, exist_ok=True)
     ownership = {}
     rows, images = {}, []
     for split in ["train", "val"]:
         folder = out / split
-        folder.mkdir()
+        folder.mkdir(exist_ok=args.resume)
         rows[split] = 0
         files = sorted(root.rglob(split + "-*.parquet"))
         if not files:
@@ -56,7 +58,13 @@ def main():
                             if im.format != "PNG":
                                 raise ValueError("Native dataset expects PNG, no implicit transcoding")
                         destination = folder / name
-                        destination.write_bytes(payload)
+                        if destination.exists():
+                            if not args.resume or destination.read_bytes() != payload:
+                                raise ValueError("Existing extraction bytes differ from the original shard")
+                        else:
+                            temporary = destination.with_suffix(".png.partial")
+                            temporary.write_bytes(payload)
+                            temporary.replace(destination)
                         images.append({"source_id": identity, "source_view": suffix or "original", "split": split, "file": str(destination.relative_to(out)), "sha256": sha256(destination)})
                     if dimensions[0] != dimensions[1]:
                         raise ValueError("Image and mask dimensions differ")
