@@ -23,5 +23,5 @@
   "gpu_clock_integration_status": "blocked_before_allocation_runpod_account_balance_http_402",
   "candidate_superiority_established": false,
   "ruff_repository_code_E_F_passed": true,
-  "read_only_training_status_check": "pending"
+  "read_only_training_status_check": "completed_no_exact_matching_pod_found"
 }

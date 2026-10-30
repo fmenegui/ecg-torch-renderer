@@ -80,6 +80,13 @@ permitir alocação. Não é necessário alterar a seleção, ampliar o orçamen
 criar outra geração de plano. Os resultados só poderão ser avaliados depois
 do selo de predições, com todos os exames e páginas no denominador.
 
+Uma consulta direta e sem alterações ao Runpod em 30/10/2026, 21:51:56 UTC,
+não encontrou um pod com o nome exato do treinamento original. O Actions ainda
+marcava a etapa 2 como em andamento, mas seus logs não estavam disponíveis.
+Essa combinação não comprova progresso de otimizador. O último checkpoint
+recuperado e verificado permanece na época 13, com cópia durável e hash em
+`training-status.json`. A consulta não interrompeu nem alterou recursos.
+
 O avaliador verifica hashes, identidade das imagens, taxa de amostragem,
 paridade do observador e correspondência da montagem por páginas. Os controles
 rejeitam a remoção de um exame, a troca de imagens, alteração de arquivos e
@@ -97,6 +104,14 @@ O [pacote completo de referências](https://chatgpt.com/library?file_id=libfile_
 contém 915 arquivos, incluindo sinais originais, bancos fornecidos, catálogo,
 metadados, índice de imagens e controle em CPU. Tamanho: 157.552.136 bytes.
 SHA256: `b3bf69af5aee92969ae065ce168cd07e5b1d65d69f2963502ad50539352951df`.
+
+O [pacote desta integração e da tentativa Runpod](https://chatgpt.com/library?file_id=libfile_1cd4bfd22f948191b8e4923998ad1871&account_id=personal)
+contém as 22 páginas originais, o controle em CPU, fontes da integração, logs
+de testes, galeria adversa e recibos da recusa de alocação e da consulta de
+treinamento. São 63 arquivos e 71.516.457 bytes, sem predições novas em GPU.
+SHA256: `aa1b3ca7642741e75bc24cdb232c639abbafcfda52cfae3b4c794e6abe31f831`.
+Os pacotes preservam os snapshots anteriores à inclusão dos seus próprios
+links e hashes no relatório.
 
 Validação local: 541 testes integrados, com 25 skips explícitos, e 101 testes
 de reprodução, com o código original habilitado. Os 16 cenários adversos foram
