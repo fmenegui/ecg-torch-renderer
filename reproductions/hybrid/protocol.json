@@ -60,5 +60,14 @@
   ],
   "clinical_validation": false,
   "superiority_established": false,
-  "cohort_role": "Small prospective engineering evaluation relative to our own model. Not an upstream-independent clinical validation."
+  "cohort_role": "Small prospective engineering evaluation relative to our own model. Not an upstream-independent clinical validation.",
+  "receipt_revision": 2,
+  "retained_geometry_observations": [
+    "initial/final original-sensor point coordinates and confidence",
+    "native and semantically oriented relative grid IDs",
+    "selected points and supported cells",
+    "complete source/target mesh and triangle connectivity",
+    "last attempted stage on a rejected or incomplete candidate"
+  ],
+  "new_downstream_experiments": "Development controls only. Production pilot still uses the original native downstream geometry, unchanged policy and unchanged published weights."
 }

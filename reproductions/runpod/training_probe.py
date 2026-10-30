@@ -96,10 +96,13 @@ def main():
         try:
             with urllib.request.urlopen(request, timeout=5) as response:
                 for _ in range(100):
-                    line = response.readline().decode(errors="replace").strip()
+                    wire = response.readline()
+                    if not wire:
+                        break
+                    line = wire.decode(errors="replace").strip()
                     if line.startswith("data:"):
                         rows.append(redact(line[5:].strip(), key))
-                    if len(rows) >= 30 or not line:
+                    if len(rows) >= 30:
                         break
         except (OSError, socket.timeout) as error:
             result["logs"][source + "_error"] = {"type": type(error).__name__, "message": redact(str(error), key)}

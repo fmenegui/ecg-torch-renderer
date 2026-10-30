@@ -59,6 +59,11 @@ def main():
                "wall_seconds_including_branches": time.perf_counter() - started}
     if rectifier is not None:
         receipt["geometry"] = rectifier.last_report
+        if rectifier.last_observations:
+            observations = args.out / "geometry-observations.npz"
+            _write_prediction(observations, rectifier.last_observations)
+            receipt["geometry_observations"] = {"file": observations.name,
+                "sha256": hashlib.sha256(observations.read_bytes()).hexdigest(), "reference_used": False}
     _write_json(args.out / "receipt.json", receipt)
     print(json.dumps({"output": str(args.out), "selected": decision["selected"], "reason": decision["reason"]}))
 

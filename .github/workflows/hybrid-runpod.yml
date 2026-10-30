@@ -10,22 +10,34 @@ permissions:
   contents: read
   actions: read
 concurrency:
-  group: ecg-reproduction-runpod-control
+  group: ecg-hybrid-runpod-control
   cancel-in-progress: false
 jobs:
   admit:
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    permissions:
+      contents: read
+      actions: write
     outputs:
       admitted: ${{ steps.admission.outputs.admitted }}
     steps:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+      - name: Retire superseded hybrid runs only while they have no jobs
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python -m reproductions.hybrid.retire_pending
       - id: admission
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: python -m reproductions.runpod.admission --workflow hybrid-runpod.yml --plan reproductions/hybrid/plan.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: hybrid-admission-receipt
+          path: build/retired-pending-pilots.json
   validate:
     needs: admit
     if: needs.admit.outputs.admitted == 'true'

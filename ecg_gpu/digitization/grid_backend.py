@@ -42,41 +42,62 @@ class AdaptiveGridRectifier:
         self.threshold, self.text_orientation = float(state["threshold"]), text_orientation
         self.checkpoint_sha256 = expected_sha256
         self.last_report = None
+        self.last_observations = {}
 
     def __call__(self, rgb, *, source_id):
         import shapely
-        self.last_report = None
+        self.last_report = {"schema": "adaptive-grid-candidate-v2", "original_source_id": source_id,
+            "checkpoint_sha256": self.checkpoint_sha256, "status": "incomplete", "stage": "point_detection",
+            "assumed_major_grid_mm": 5.0, "reference_used": False, "learned_rgb_restoration_used": False,
+            "geometry_accuracy_verified": False}
+        self.last_observations = {}
         image = np.asarray(rgb)
         xy, scores, detection = detect_native_grid(self.model, image, device=self.device,
             threshold=self.threshold, global_size=(704, 1024), max_tiles=0, max_points=16384)
+        self.last_observations.update(initial_xy=xy.copy(), initial_scores=scores.copy())
+        self.last_report.update(initial_detector=detection, stage="banding_observation")
         filtered, banding = remove_periodic_banding(image, xy)
         if banding["applied"]:
             xy, scores, detection = detect_native_grid(self.model, filtered, device=self.device,
                 threshold=self.threshold, global_size=(704, 1024), max_tiles=0, max_points=16384)
+        self.last_observations.update(detected_xy=xy.copy(), detected_scores=scores.copy())
+        self.last_report.update(detector=detection, banding=banding, stage="lattice_organization")
         native = organize_lattice(xy, scores)
+        self.last_observations["native_ids"] = np.asarray(native.get("ids", []), int).reshape(-1, 2)
+        self.last_report["organization"] = {k: native[k] for k in ["status", "reason", "input_points", "spacing_px", "orientation_radians"] if k in native}
         local = locally_supported_cells(xy, native)
+        self.last_report["stage"] = "text_orientation"
         orientation = infer_text_orientation(image) if self.text_orientation else {"quarter_turns_ccw": 0, "status": "disabled"}
         local = rotate_lattice_ids(local, orientation["quarter_turns_ccw"])
         ids = local.get("ids")
         chosen = np.asarray(local.get("selected_indices", []), int)
         observed = xy[chosen]
+        self.last_observations.update(selected_indices=chosen, observed_xy=observed.copy(),
+            relative_ids=np.asarray(ids if ids is not None else [], int).reshape(-1, 2),
+            cells=np.asarray(local.get("cells", []), int).reshape(-1, 2))
+        self.last_report.update(orientation=orientation, stage="complete_mesh_fit")
         if ids is None or len(observed) < 16:
+            self.last_report.update(status="rejected", reason="Insufficient supported grid correspondences")
             raise ValueError("Insufficient supported grid correspondences")
         ids, observed = np.asarray(ids), np.asarray(observed)
         mapping, fit = fit_complete_map(observed, ids[:, ::-1] * 5.0, ids, image.shape,
             scores=scores[chosen], cells=local["cells"], global_prior="projective")
+        self.last_report["fit"] = fit
         if mapping is None:
+            self.last_report.update(status="rejected", reason=str(fit.get("reason")))
             raise ValueError("Grid completion rejected: " + str(fit.get("reason")))
+        self.last_observations.update(source=mapping.source.copy(), target_mm=mapping.target.copy(),
+                                      triangles=mapping.triangles.copy())
+        self.last_report["stage"] = "original_rgb_sampling"
         corrected, _, sampling = render_mesh(image, mapping.source, mapping.target, mapping.triangles, max_side=self.max_side)
         polygon = shapely.union_all(shapely.polygons(mapping.target[mapping.triangles]))
         known = mapping.forward(observed)
         hull = shapely.convex_hull(shapely.multipoints(known[np.isfinite(known).all(1)]))
         outside = float(np.clip(1 - polygon.intersection(hull).area / polygon.area, 0, 1))
-        self.last_report = {"schema": "adaptive-grid-candidate-v1", "checkpoint_sha256": self.checkpoint_sha256,
-            "assumed_major_grid_mm": 5.0, "detector": detection, "banding": banding,
-            "orientation": orientation, "fit": fit, "sampling": sampling,
+        self.last_report.update(status="rectified", stage="complete", sampling=sampling,
+            **{
             "outside_observed_hull_fraction": outside, "outside_hull_denominator": "continuous target mesh area",
             "reference_used": False, "learned_rgb_restoration_used": False,
-            "geometry_accuracy_verified": False}
+            "geometry_accuracy_verified": False})
         evidence = GeometryEvidence(source_id, True, True, True, True, outside)
         return corrected, evidence

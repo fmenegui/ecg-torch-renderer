@@ -1,0 +1,39 @@
+{
+  "schema": "hybrid-followup-validation-v1",
+  "read_at_utc": "2026-10-30T17:55:37.947893+00:00",
+  "library_tests": {
+    "scheduled_tests": 530,
+    "tests_run": 530,
+    "failures": 0,
+    "errors": 0,
+    "skips": 25,
+    "seconds": 64.28129696846008,
+    "successful": true
+  },
+  "reproduction_tests": {
+    "count": 67,
+    "passed": true,
+    "native_source_enabled": true,
+    "log_sha256": "50c921c97b1e233cc95cce70b4a6ef1d2fbfae4445cbbb290e488a7ae477d829"
+  },
+  "new_downstream_inferences": {
+    "images_per_control": 24,
+    "controls": 2,
+    "device": "cpu",
+    "max_side": 1500,
+    "prior_meshes_reused": true,
+    "new_detector_training": false
+  },
+  "new_external_validation": false,
+  "cuda_available_on_local_host": false,
+  "selection_policy_changed": false,
+  "public_model_weights_changed": false,
+  "source_sha256": {
+    "ecg_gpu/digitization/rectified_backend.py": "5398ed836f51719c2c66972b88a77a0cb3d494c9d3d07ef55e713c4e6abc27eb",
+    "ecg_gpu/digitization/oriented_rectified_backend.py": "d67ee9af54090053cf101825c7b9f82f4c1387a591d5472887b5f67cd32065f0",
+    "ecg_gpu/digitization/grid_backend.py": "b6268a9706a436a206ff20807b279d11d1f347ebb4b4d264eef0332608a80ed0",
+    "ecg_gpu/digitization/selective.py": "2bf84453a7a84c1de69cb598d5f140aabd953d3c821eec5233d4dcebccf0253c",
+    "examples/hybrid_downstream_study.py": "614da8ca765e75f59f963dbbb30d75c0a678d0f426d3623f0071e7b1b2a3f534",
+    "examples/audit_digitizer_time_axis.py": "bb288f1ca8c12f5f655eb7ae03df274594392739093c47bc1a4fb8657a6f7ddb"
+  }
+}

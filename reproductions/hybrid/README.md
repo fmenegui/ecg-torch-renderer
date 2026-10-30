@@ -94,9 +94,13 @@ does not silently lower resolution or substitute CPU for CUDA.
 `.github/workflows/hybrid-runpod.yml` runs on a changed immutable `plan.json`.
 Admission suppresses duplicate paid allocations for the same plan. Full local
 contracts must pass before GPU provisioning. The global concurrency group is
-shared with the original full npj training, so this pilot waits behind it.
+dedicated to the hybrid pilot. The bounded pilot may run alongside the original
+training. Before allocation, superseded pending hybrid workflows are cancelled
+only if they have no jobs. An already running hybrid pilot instead defers the
+new one. The original training workflow is never cancelled by this admission.
 
-1. A recovery pod reads one hash-verified selected checkpoint from the existing
+1. The cheapest observed co-located NVIDIA GPU meeting the bounded recovery
+   requirements reads one hash-verified selected checkpoint from the existing
    `ecg-diverse-offline-bank` volume in CA-MTL-1, mounted at `/archive`. It does
    not modify or delete that borrowed volume. The recovery pod is limited to
    900 seconds and USD 0.60/hour, or USD 0.15 GPU maximum.
@@ -116,3 +120,12 @@ Only source-code directories are transferred. The worker fetches the pinned
 public photographs itself and verifies the frozen manifest byte-for-byte.
 Failed runs preserve their receipts and partial outputs. The owned pilot
 volume is deleted only after results have been copied and uploaded.
+
+The grid branch now retains initial/final detections, confidence, relative IDs,
+selected points, supported cells and complete meshes in `geometry-observations.npz`.
+A rejection keeps the available observations and the last attempted stage.
+The new `RectifiedNpjBackend` and `LandscapeRectifiedNpjBackend` are separately
+named development controls. They do not replace the frozen pilot's native
+downstream path or its selection policy. Their development runner is
+`examples/hybrid_downstream_study.py`. The wider reference-assisted lag diagnosis
+in `examples/audit_digitizer_time_axis.py` does not alter inference or scoring.

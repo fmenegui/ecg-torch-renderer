@@ -17,13 +17,15 @@ from reproductions.hybrid.worker import infer_images
 
 class RecoveryTests(unittest.TestCase):
     def setUp(self):
-        self.gpus = [{"gpuId": "NVIDIA A40", "securePricePerHr": .59,
+        self.gpus = [{"gpuId": "NVIDIA A40", "securePricePerHr": .59, "memoryInGb": 48,
                       "dataCenterAvailability": [{"dataCenterId": "CA-MTL-1", "stockStatus": "Medium"}]}]
         self.templates = [{"id": "runpod-torch-v280", "imageName": "runpod/pytorch:catalog"}]
         self.volume = {"id": VOLUME, "name": "ecg-diverse-offline-bank", "dataCenter": "CA-MTL-1", "size": 50}
 
     def test_recovery_requires_observed_price_stock_and_exact_borrowed_volume(self):
         self.assertEqual(choose_recovery(self.gpus, self.templates, self.volume)["gpu_cost_cap_usd"], .15)
+        cheaper = dict(self.gpus[0], gpuId="NVIDIA L4", securePricePerHr=.39, memoryInGb=24)
+        self.assertEqual(choose_recovery([*self.gpus, cheaper], self.templates, self.volume)["gpu"]["gpuId"], "NVIDIA L4")
         for volume in [dict(self.volume, size=60), dict(self.volume, id="someone-else"), dict(self.volume, dataCenter="elsewhere")]:
             with self.assertRaises(ValueError):
                 choose_recovery(self.gpus, self.templates, volume)

@@ -1,0 +1,247 @@
+{
+  "decisions": [
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "layout_identity_not_preserved",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "image_id": "pm-9-photos_scans"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "layout_identity_not_preserved",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "image_id": "pm-9-photos_samsung"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "layout_identity_not_preserved",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "image_id": "pm-9-photos_bents"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "layout_identity_not_preserved",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "image_id": "pm-29-photos_scans"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "excessive_geometric_extrapolation",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "route": "external_rectification",
+      "image_id": "pm-29-photos_samsung"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "layout_identity_not_preserved",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "image_id": "pm-29-photos_bents"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "layout_identity_not_preserved",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "image_id": "pm-37-photos_scans"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "excessive_geometric_extrapolation",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "route": "external_rectification",
+      "image_id": "pm-37-photos_samsung"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "excessive_geometric_extrapolation",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "route": "external_rectification",
+      "image_id": "pm-37-photos_bents"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "layout_identity_not_preserved",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "image_id": "pm-53-photos_scans"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "excessive_geometric_extrapolation",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "route": "external_rectification",
+      "image_id": "pm-53-photos_samsung"
+    },
+    {
+      "selected": "direct",
+      "reason": "downstream_branch_failed",
+      "error_type": "FileNotFoundError",
+      "error": "No previously accepted mesh for this image",
+      "reference_used": false,
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "image_id": "pm-53-photos_bents"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "layout_identity_not_preserved",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "image_id": "pm-69-photos_scans"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "layout_identity_not_preserved",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "image_id": "pm-69-photos_samsung"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "layout_identity_not_preserved",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "image_id": "pm-69-photos_bents"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "layout_identity_not_preserved",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "image_id": "pm-77-photos_scans"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "layout_identity_not_preserved",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "image_id": "pm-77-photos_samsung"
+    },
+    {
+      "selected": "direct",
+      "reason": "downstream_branch_failed",
+      "error_type": "FileNotFoundError",
+      "error": "No previously accepted mesh for this image",
+      "reference_used": false,
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "image_id": "pm-77-photos_bents"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "layout_identity_not_preserved",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "image_id": "pm-94-photos_scans"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "excessive_geometric_extrapolation",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "route": "external_rectification",
+      "image_id": "pm-94-photos_samsung"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "layout_identity_not_preserved",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "image_id": "pm-94-photos_bents"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "layout_identity_not_preserved",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "image_id": "pm-97-photos_scans"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "layout_identity_not_preserved",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "image_id": "pm-97-photos_samsung"
+    },
+    {
+      "selected": "direct",
+      "reason": "downstream_branch_failed",
+      "error_type": "FileNotFoundError",
+      "error": "No previously accepted mesh for this image",
+      "reference_used": false,
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "image_id": "pm-97-photos_bents"
+    }
+  ],
+  "inference_received_references": false
+}

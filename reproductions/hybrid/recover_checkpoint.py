@@ -25,16 +25,17 @@ def choose_recovery(gpus, templates, volume):
     template = next(t for t in templates if t["id"] == "runpod-torch-v280")
     if not template["imageName"].startswith("runpod/pytorch:"):
         raise ValueError("Expected a catalog-observed official PyTorch image")
-    for gpu in gpus:
+    for gpu in sorted(gpus, key=lambda row: row.get("securePricePerHr") or float("inf")):
         price = gpu.get("securePricePerHr")
-        if gpu.get("gpuId") != "NVIDIA A40" or price is None or not 0 < price <= .60:
+        if (not str(gpu.get("gpuId", "")).startswith("NVIDIA") or gpu.get("memoryInGb", 0) < 8
+                or price is None or not 0 < price <= .60):
             continue
         if any(a.get("dataCenterId") == volume["dataCenter"] and a.get("stockStatus", "").lower()
                in ["low", "medium", "high"] for a in gpu.get("dataCenterAvailability", [])):
             return {"gpu": gpu, "template": template, "data_center": volume["dataCenter"],
                     "gpu_price_per_hour": price, "maximum_pod_seconds": 900,
                     "gpu_cost_cap_usd": .15, "borrowed_volume_mutations": []}
-    raise ValueError("No in-stock co-located A40 at or below USD 0.60/hour")
+    raise ValueError("No in-stock co-located NVIDIA GPU at or below USD 0.60/hour")
 
 
 class Recovery(Controller):
@@ -56,7 +57,7 @@ class Recovery(Controller):
         self.ledger["deadline"] = time.time() + 900
         self.save()
         pod = self.call(["pod", "create", "--name", self.ledger["name"], "--image", selected["template"]["imageName"],
-            "--gpu-id", "NVIDIA A40", "--gpu-count", "1", "--cloud-type", "SECURE", "--data-center-ids", "CA-MTL-1",
+            "--gpu-id", selected["gpu"]["gpuId"], "--gpu-count", "1", "--cloud-type", "SECURE", "--data-center-ids", "CA-MTL-1",
             "--network-volume-id", VOLUME, "--volume-mount-path", "/archive", "--container-disk-in-gb", "20",
             "--ports", "22/tcp", "--ssh", "--min-cuda-version", "12.8"])
         self.ledger.update(pod_id=pod["id"], status="booting")

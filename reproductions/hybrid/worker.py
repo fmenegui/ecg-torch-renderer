@@ -79,7 +79,12 @@ def infer_images(image_only, data, out, backend, rectifier, specialist_batch, po
                 candidate, geometry_status = empty(identity, error, "grid-adaptive"), "failed"
                 geometry_error = type(error).__name__ + ": " + str(error)
         (folder / "inference.log").write_text(log.getvalue())
-        write_json(folder / "geometry.json", {"report": rectifier.last_report, "error": geometry_error})
+        geometry_receipt = {"report": rectifier.last_report, "error": geometry_error}
+        if getattr(rectifier, "last_observations", None):
+            path = folder / "geometry-observations.npz"
+            np.savez_compressed(path, **rectifier.last_observations)
+            geometry_receipt["observations"] = {"file": path.name, "sha256": sha256(path), "reference_used": False}
+        write_json(folder / "geometry.json", geometry_receipt)
         predictions[name] = {"npj_native": (direct, direct_status), "grid_adaptive": (candidate, geometry_status)}
         geometries[name] = evidence
         times[name] = {"npj_native": direct_seconds, "grid_adaptive": time.perf_counter() - started}

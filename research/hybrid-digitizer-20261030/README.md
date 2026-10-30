@@ -85,7 +85,10 @@ foi usado para escolher regras ou parâmetros.
 
 A comparação usa quatro braços, conserva falhas no denominador e só abre as
 referências para pontuar depois de salvar todas as predições e decisões. O
-pipeline Runpod compartilha a fila com o treinamento completo npj já iniciado.
+pipeline Runpod tem fila própria para executar esse ensaio limitado em paralelo
+ao treinamento npj já iniciado. Cópias antigas do ensaio são canceladas apenas
+enquanto ainda não têm nenhum job. Um ensaio híbrido já iniciado bloqueia a nova
+execução. O treinamento original não é cancelado por esse controle.
 O limite adicional é US$ 0,45 de GPU, mais armazenamento temporário. A fila e
 os recibos de execução são a fonte de verdade sobre início e conclusão.
 
@@ -112,3 +115,6 @@ clínica ou uma execução local em GPU.
 medições de 351 arquivos inclui as saídas completas, fotografias de origem,
 referências de avaliação, malhas anteriores, logs e decisões. A identidade do
 arquivo está em [`measurement-archive.json`](measurement-archive.json).
+
+Os controles seguintes de orientação, composição downstream e diagnóstico do
+eixo temporal estão na [continuação do estudo](followup/README.md).
