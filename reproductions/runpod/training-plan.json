@@ -1,0 +1,17 @@
+{
+  "schema": "ecg-runpod-full-training-plan-v1",
+  "generation": 1,
+  "worker_module": "reproductions.runpod.worker_training",
+  "gpu_candidates": ["NVIDIA A40", "NVIDIA RTX A6000", "NVIDIA L40", "NVIDIA RTX 6000 Ada Generation"],
+  "gpu_id": "NVIDIA A40",
+  "minimum_gpu_memory_gb": 48,
+  "maximum_gpu_price_per_hour": 0.99,
+  "template_id": "runpod-torch-v280",
+  "volume_gb": 220,
+  "container_disk_gb": 40,
+  "maximum_pod_seconds": 18000,
+  "segments": 5,
+  "maximum_total_gpu_hours": 25,
+  "maximum_total_gpu_usd": 24.75,
+  "purpose": "Original complete development-data release, 45-epoch Table 4 main profile and 30-epoch public lead-name profile. Checkpoints resume between bounded segments. Completion does not imply matched-cohort paper scores."
+}

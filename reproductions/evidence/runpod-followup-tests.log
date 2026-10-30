@@ -1,0 +1,57 @@
+test_inventory_separates_records_images_and_sources (test_catalog.CatalogTests.test_inventory_separates_records_images_and_sources) ... ok
+test_complete_byte_verified_release_and_receipt (test_data_identity.DataIdentityTests.test_complete_byte_verified_release_and_receipt) ... ok
+test_matching_length_and_filename_do_not_accept_changed_bytes (test_data_identity.DataIdentityTests.test_matching_length_and_filename_do_not_accept_changed_bytes) ... ok
+test_partial_and_duplicate_shards_cannot_be_complete (test_data_identity.DataIdentityTests.test_partial_and_duplicate_shards_cannot_be_complete) ... ok
+test_declared_network_trains_and_retains_odd_pixel_shape (test_dotter.DotterTests.test_declared_network_trains_and_retains_odd_pixel_shape) ... ok
+test_tile_boundaries_preserve_pointwise_probabilities (test_dotter.DotterTests.test_tile_boundaries_preserve_pointwise_probabilities) ... ok
+test_preflight_never_returns_a_credential (test_execution.ExecutionTests.test_preflight_never_returns_a_credential) ... ok
+test_success_return_code_is_kept (test_execution.ExecutionTests.test_success_return_code_is_kept) ... ok
+test_timeout_is_a_failure (test_execution.ExecutionTests.test_timeout_is_a_failure) ... ok
+test_duplicate_detections_are_not_separate_nodes (test_gridder.GridderTests.test_duplicate_detections_are_not_separate_nodes) ... ok
+test_grid_identity_collisions_are_rejected (test_gridder.GridderTests.test_grid_identity_collisions_are_rejected) ... ok
+test_identity_cell_samples_original_colour (test_gridder.GridderTests.test_identity_cell_samples_original_colour) ... ok
+test_inferred_cells_are_explicit_and_opt_in (test_gridder.GridderTests.test_inferred_cells_are_explicit_and_opt_in) ... ok
+test_inferred_nodes_have_distinct_provenance (test_gridder.GridderTests.test_inferred_nodes_have_distinct_provenance) ... ok
+test_no_closed_cell_is_rejected (test_gridder.GridderTests.test_no_closed_cell_is_rejected) ... ok
+test_probability_and_byte_masks_agree (test_gridder.GridderTests.test_probability_and_byte_masks_agree) ... ok
+test_regular_grid_preserves_relative_identity (test_gridder.GridderTests.test_regular_grid_preserves_relative_identity) ... ok
+test_shuffled_observations_keep_identity (test_gridder.GridderTests.test_shuffled_observations_keep_identity) ... ok
+test_weighted_centroid_is_fractional (test_gridder.GridderTests.test_weighted_centroid_is_fractional) ... ok
+test_gold_is_excluded_from_inference (test_manifest.ManifestTests.test_gold_is_excluded_from_inference) ... ok
+test_json_perfect_status_remains_interoperable (test_manifest.ManifestTests.test_json_perfect_status_remains_interoperable) ... ok
+test_mutated_input_rejected (test_manifest.ManifestTests.test_mutated_input_rejected) ... ok
+test_patient_leakage_rejected (test_manifest.ManifestTests.test_patient_leakage_rejected) ... ok
+test_unknown_metadata_cannot_leak (test_manifest.ManifestTests.test_unknown_metadata_cannot_leak) ... ok
+test_unknown_units_rejected (test_manifest.ManifestTests.test_unknown_units_rejected) ... ok
+test_valid_bytes (test_manifest.ManifestTests.test_valid_bytes) ... ok
+test_bad_reference_is_rejected (test_metrics.MetricsTests.test_bad_reference_is_rejected) ... ok
+test_dc_alignment_does_not_fit_gain (test_metrics.MetricsTests.test_dc_alignment_does_not_fit_gain) ... ok
+test_different_cohort_cannot_reproduce_a_headline (test_metrics.MetricsTests.test_different_cohort_cannot_reproduce_a_headline) ... ok
+test_entirely_missing_retains_denominator (test_metrics.MetricsTests.test_entirely_missing_retains_denominator) ... ok
+test_grouped_aggregation_uses_patient_units (test_metrics.MetricsTests.test_grouped_aggregation_uses_patient_units) ... ok
+test_holes_not_rewarded_as_finite_predictions (test_metrics.MetricsTests.test_holes_not_rewarded_as_finite_predictions) ... ok
+test_missing_metric_is_visible (test_metrics.MetricsTests.test_missing_metric_is_visible) ... ok
+test_only_printed_intervals_count (test_metrics.MetricsTests.test_only_printed_intervals_count) ... ok
+test_perfect_is_perfect (test_metrics.MetricsTests.test_perfect_is_perfect) ... ok
+test_shift_does_not_wrap_or_shrink_denominator (test_metrics.MetricsTests.test_shift_does_not_wrap_or_shrink_denominator) ... ok
+test_inner_optimizer_resume_matches_uninterrupted (test_native_npj.NativeNpjTests.test_inner_optimizer_resume_matches_uninterrupted) ... ok
+test_native_evaluator_control_is_preserved (test_native_npj.NativeNpjTests.test_native_evaluator_control_is_preserved) ... ok
+test_original_perspective_presets_disable_experimental_tps (test_native_npj.NativeNpjTests.test_original_perspective_presets_disable_experimental_tps) ... ok
+test_public_sampling_override_does_not_change_native_default (test_native_npj.NativeNpjTests.test_public_sampling_override_does_not_change_native_default) ... ok
+test_table4_and_public_config_are_distinct (test_native_npj.NativeNpjTests.test_table4_and_public_config_are_distinct) ... ok
+test_changed_stage_sequence_is_rejected (test_notebook.NotebookTests.test_changed_stage_sequence_is_rejected) ... ok
+test_new_notebook_version_is_rejected (test_notebook.NotebookTests.test_new_notebook_version_is_rejected) ... ok
+test_only_execution_paths_are_changed (test_notebook.NotebookTests.test_only_execution_paths_are_changed) ... ok
+test_quarter_windows_and_rhythm_keep_time_axis (test_notebook.NotebookTests.test_quarter_windows_and_rhythm_keep_time_axis) ... ok
+test_serial_stages_preserve_previous_native_failures (test_notebook.NotebookTests.test_serial_stages_preserve_previous_native_failures) ... ok
+test_unexpected_deletion_is_rejected (test_notebook.NotebookTests.test_unexpected_deletion_is_rejected) ... ok
+test_unreviewed_shell_command_is_rejected (test_notebook.NotebookTests.test_unreviewed_shell_command_is_rejected) ... ok
+test_budget_and_ownership_cannot_silently_expand (test_runpod_control.RunpodControlTests.test_budget_and_ownership_cannot_silently_expand) ... ok
+test_gpu_stock_without_storage_cannot_start_training (test_runpod_control.RunpodControlTests.test_gpu_stock_without_storage_cannot_start_training) ... ok
+test_price_and_observed_location_must_both_match (test_runpod_control.RunpodControlTests.test_price_and_observed_location_must_both_match) ... ok
+test_ssh_does_not_use_http_or_private_port_mappings (test_runpod_control.RunpodControlTests.test_ssh_does_not_use_http_or_private_port_mappings) ... ok
+
+----------------------------------------------------------------------
+Ran 52 tests in 3.851s
+
+OK

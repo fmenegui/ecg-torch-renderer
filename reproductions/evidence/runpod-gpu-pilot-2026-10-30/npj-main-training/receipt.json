@@ -1,0 +1,43 @@
+{
+  "schema": "npj-training-v1",
+  "status": "completed_engineering_smoke",
+  "profile": "paper_table4",
+  "seed": 1973,
+  "engineering_smoke": true,
+  "source_commit": "97a15087d4abcda843da8c58ee74b1d8f47e6f9a",
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.39",
+    "packages": {
+      "numpy": "2.5.4",
+      "scipy": "1.18.1",
+      "torch": "2.7.0+cu128",
+      "torchvision": "0.22.0+cu128",
+      "pillow": "13.0.0",
+      "opencv-python-headless": "4.11.0.86",
+      "timm": "1.0.30",
+      "albumentations": "1.4.24"
+    },
+    "cuda_available": true,
+    "cuda_build": "12.8",
+    "gpu": "NVIDIA L4"
+  },
+  "harness_changes": [
+    "explicit torch.amp.GradScaler device and arguments",
+    "no storage of epoch predictions",
+    "atomic completed-epoch checkpoint with both inner optimizer states and RNG",
+    "explicit seed and effective configuration"
+  ],
+  "paper_cohort_reproduction_completed": false,
+  "data_receipt_sha256": null,
+  "parameters": 22604352,
+  "train_images": 2,
+  "validation_images": 1,
+  "completed_epochs": 1,
+  "last_epoch": {
+    "epoch": 1,
+    "train_loss": 1.4749802947044373,
+    "validation_loss": 1.3822554349899292
+  },
+  "wall_seconds_this_invocation": 5.226713397074491
+}

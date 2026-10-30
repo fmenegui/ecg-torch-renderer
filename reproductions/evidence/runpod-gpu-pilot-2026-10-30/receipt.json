@@ -1,0 +1,316 @@
+{
+  "schema": "ecg-real-gpu-pilot-v1",
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.39",
+    "packages": {
+      "numpy": "2.5.4",
+      "scipy": "1.18.1",
+      "torch": "2.7.0+cu128",
+      "torchvision": "0.22.0+cu128",
+      "pillow": "13.0.0",
+      "opencv-python-headless": "4.11.0.86",
+      "timm": "1.0.30",
+      "albumentations": "1.4.24"
+    },
+    "cuda_available": true,
+    "cuda_build": "12.8",
+    "gpu": "NVIDIA L4"
+  },
+  "stages": [
+    {
+      "name": "source-bootstrap",
+      "status": "completed",
+      "command": [
+        "/opt/ecg-reproduction/bin/python",
+        "-m",
+        "reproductions.bootstrap",
+        "--method",
+        "npj",
+        "--dest",
+        "/workspace/sources"
+      ],
+      "returncode": 0,
+      "seconds": 33.54568632505834
+    },
+    {
+      "name": "npj-native-gpu-fixture",
+      "status": "completed",
+      "command": [
+        "/opt/ecg-reproduction/bin/python",
+        "-m",
+        "reproductions.npj.infer",
+        "--upstream",
+        "/workspace/sources/npj",
+        "--preset",
+        "generic",
+        "--image",
+        "/workspace/sources/npj/test/test_data/data/ecg_data/10_1.png",
+        "--out",
+        "/workspace/outputs/npj-native-fixture"
+      ],
+      "returncode": 0,
+      "seconds": 20.411486145108938
+    },
+    {
+      "name": "npj-main-gpu-engineering-training",
+      "status": "completed",
+      "command": [
+        "/opt/ecg-reproduction/bin/python",
+        "-m",
+        "reproductions.npj.train",
+        "--upstream",
+        "/workspace/sources/npj",
+        "--profile",
+        "paper_table4",
+        "--train-dir",
+        "/workspace/training-engineering-fixtures/train",
+        "--validation-dir",
+        "/workspace/training-engineering-fixtures/val",
+        "--smoke",
+        "--out",
+        "/workspace/outputs/npj-main-training"
+      ],
+      "returncode": 0,
+      "seconds": 11.407601941842586
+    },
+    {
+      "name": "npj-lead-gpu-engineering-training",
+      "status": "completed",
+      "command": [
+        "/opt/ecg-reproduction/bin/python",
+        "-m",
+        "reproductions.npj.train",
+        "--upstream",
+        "/workspace/sources/npj",
+        "--profile",
+        "lead_text_public",
+        "--smoke",
+        "--out",
+        "/workspace/outputs/npj-lead-training"
+      ],
+      "returncode": 0,
+      "seconds": 9.522112217033282
+    },
+    {
+      "name": "pm-disclosed-geometry-controls",
+      "status": "completed",
+      "command": [
+        "/opt/ecg-reproduction/bin/python",
+        "-m",
+        "reproductions.powerful_medical.controls",
+        "--out",
+        "/workspace/outputs/pm-controls"
+      ],
+      "returncode": 0,
+      "seconds": 2.77275856398046
+    },
+    {
+      "name": "npj-public-d0",
+      "status": "completed",
+      "command": [
+        "/opt/ecg-reproduction/bin/python",
+        "-m",
+        "reproductions.npj.infer",
+        "--upstream",
+        "/workspace/sources/npj",
+        "--preset",
+        "george-moody-2024",
+        "--out",
+        "/workspace/outputs/npj-d0",
+        "--image",
+        "/workspace/public-development-pilot/raw/D0_000022_02.png"
+      ],
+      "returncode": 0,
+      "seconds": 17.99642922799103
+    },
+    {
+      "name": "npj-audited-d0",
+      "status": "completed",
+      "command": [
+        "/opt/ecg-reproduction/bin/python",
+        "-m",
+        "reproductions.evaluate",
+        "--manifest",
+        "/workspace/public-development-pilot/d0.json",
+        "--method",
+        "npj",
+        "--predictions",
+        "/workspace/outputs/npj-d0",
+        "--out",
+        "/workspace/outputs/evaluation-npj-d0"
+      ],
+      "returncode": 0,
+      "seconds": 0.7652317620813847
+    },
+    {
+      "name": "npj-public-limb",
+      "status": "completed",
+      "command": [
+        "/opt/ecg-reproduction/bin/python",
+        "-m",
+        "reproductions.npj.infer",
+        "--upstream",
+        "/workspace/sources/npj",
+        "--preset",
+        "ahus",
+        "--out",
+        "/workspace/outputs/npj-limb",
+        "--layout-hint",
+        "limb",
+        "--image",
+        "/workspace/public-development-pilot/raw/D2_000001_l00.jpg",
+        "--image",
+        "/workspace/public-development-pilot/raw/D2_000001_l01.jpg",
+        "--image",
+        "/workspace/public-development-pilot/raw/D2_000001_l02.jpg"
+      ],
+      "returncode": 0,
+      "seconds": 55.61517099617049
+    },
+    {
+      "name": "npj-audited-limb",
+      "status": "completed",
+      "command": [
+        "/opt/ecg-reproduction/bin/python",
+        "-m",
+        "reproductions.evaluate",
+        "--manifest",
+        "/workspace/public-development-pilot/limb.json",
+        "--method",
+        "npj",
+        "--predictions",
+        "/workspace/outputs/npj-limb",
+        "--out",
+        "/workspace/outputs/evaluation-npj-limb"
+      ],
+      "returncode": 0,
+      "seconds": 1.3553396288771182
+    },
+    {
+      "name": "npj-public-precordial",
+      "status": "completed",
+      "command": [
+        "/opt/ecg-reproduction/bin/python",
+        "-m",
+        "reproductions.npj.infer",
+        "--upstream",
+        "/workspace/sources/npj",
+        "--preset",
+        "ahus",
+        "--out",
+        "/workspace/outputs/npj-precordial",
+        "--layout-hint",
+        "precordial",
+        "--image",
+        "/workspace/public-development-pilot/raw/D2_000001_p00.jpg",
+        "--image",
+        "/workspace/public-development-pilot/raw/D2_000001_p01.jpg",
+        "--image",
+        "/workspace/public-development-pilot/raw/D2_000001_p02.jpg"
+      ],
+      "returncode": 0,
+      "seconds": 78.59434842714109
+    },
+    {
+      "name": "npj-audited-precordial",
+      "status": "completed",
+      "command": [
+        "/opt/ecg-reproduction/bin/python",
+        "-m",
+        "reproductions.evaluate",
+        "--manifest",
+        "/workspace/public-development-pilot/precordial.json",
+        "--method",
+        "npj",
+        "--predictions",
+        "/workspace/outputs/npj-precordial",
+        "--out",
+        "/workspace/outputs/evaluation-npj-precordial"
+      ],
+      "returncode": 0,
+      "seconds": 1.117035527015105
+    },
+    {
+      "name": "kaggle-asset-download",
+      "status": "completed",
+      "command": [
+        "/opt/ecg-reproduction/bin/python",
+        "-m",
+        "reproductions.kaggle.fetch_assets",
+        "--dest",
+        "/workspace/kaggle-assets"
+      ],
+      "returncode": 0,
+      "seconds": 49.02244543004781
+    },
+    {
+      "name": "kaggle-compatible-timm",
+      "status": "completed",
+      "command": [
+        "/opt/ecg-reproduction/bin/python",
+        "-m",
+        "pip",
+        "install",
+        "--no-deps",
+        "--target",
+        "/workspace/kaggle-timm-compat",
+        "timm==1.0.22"
+      ],
+      "returncode": 0,
+      "seconds": 25.9743760030251
+    },
+    {
+      "name": "kaggle-native-six-gpu",
+      "status": "failed",
+      "command": [
+        "/opt/ecg-reproduction/bin/python",
+        "-m",
+        "reproductions.kaggle.replay",
+        "--notebook",
+        "/workspace/kaggle-assets/notebook.api.json",
+        "--assets",
+        "/workspace/kaggle-assets",
+        "--assets-lock",
+        "/workspace/kaggle-assets/assets.lock.json",
+        "--competition-data",
+        "/workspace/public-development-pilot/kaggle-image-only",
+        "--out",
+        "/workspace/outputs/kaggle-d0",
+        "--timeout-seconds",
+        "600"
+      ],
+      "returncode": 2,
+      "seconds": 15.955327533883974
+    },
+    {
+      "name": "kaggle-audited-d0",
+      "status": "completed",
+      "command": [
+        "/opt/ecg-reproduction/bin/python",
+        "-m",
+        "reproductions.evaluate",
+        "--manifest",
+        "/workspace/public-development-pilot/d0.json",
+        "--method",
+        "kaggle-second",
+        "--predictions",
+        "/workspace/outputs/kaggle-d0",
+        "--out",
+        "/workspace/outputs/evaluation-kaggle-d0"
+      ],
+      "returncode": 0,
+      "seconds": 0.6762608699500561
+    }
+  ],
+  "full_training_completed": false,
+  "author_headline_result_reproduced": false,
+  "public_data_acquisition_sha256": "a71b162b6a06e30b650216c03bcc4d65be6bc6a5b5619d9f34145d7890bdbf17",
+  "status": "completed_with_failures",
+  "limitations": [
+    "Training is explicitly reduced and not the 45/100 epoch reproduction",
+    "Public scoring uses two source records in development, not original article or hidden leaderboard cohorts",
+    "Dotter annotations/weights are unavailable, geometry control is not learned detection performance",
+    "Device IDs are retained as release variant codes without an unverified device-name crosswalk"
+  ]
+}

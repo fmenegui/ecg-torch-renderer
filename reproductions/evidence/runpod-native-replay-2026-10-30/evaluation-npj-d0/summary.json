@@ -1,0 +1,22 @@
+{
+  "schema": "audited-common-evaluation-v1",
+  "method": "npj",
+  "manifest_sha256": "3f0cc7fa665a30876a4710e3638fa7258daa46a76fb936b8a6d763fb7b859203",
+  "native_receipt_sha256": "b92305dd4087fb35a7170e4a7da644b4b292602780befd273fe989750cb920d9",
+  "scheduled_images": 1,
+  "retained_images": 1,
+  "coverage": {
+    "patients_scheduled": 1,
+    "patients_with_defined_metric": 1,
+    "mean": 0.9940266666666666,
+    "per_patient": {
+      "source-record:D0_000022": {
+        "scheduled": 1,
+        "defined": 1,
+        "mean": 0.9940266666666666
+      }
+    }
+  },
+  "same_as_native_paper_or_kaggle_metric": false,
+  "paper_result_reproduced": false
+}

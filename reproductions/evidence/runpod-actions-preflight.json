@@ -1,0 +1,16 @@
+{
+  "schema": "runpod-actions-preflight-evidence-v1",
+  "repository": "fmenegui/ecg-torch-renderer",
+  "tested_commit": "23fc3d839d82f5e64acbe50060ffb159c572f9c8",
+  "workflow_run": "https://github.com/fmenegui/ecg-torch-renderer/actions/runs/41052191823",
+  "job": "https://github.com/fmenegui/ecg-torch-renderer/actions/runs/41052191823/job/124050729662",
+  "probe": {
+    "schema": "runpod-control-preflight-v1",
+    "credential_present": false,
+    "authenticated": false,
+    "resources_created": [],
+    "gpu_execution_started": false,
+    "status": "missing_credential"
+  },
+  "interpretation": "The read-only workflow probe completed, but RUNPOD_API_KEY was absent. A successful CI job does not mean Runpod authentication, provisioning or GPU execution succeeded."
+}
