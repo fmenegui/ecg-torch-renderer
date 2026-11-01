@@ -567,7 +567,8 @@ class ECGRenderer(nn.Module):
             vertices = torch.cat([main, secondary], 1) * visible
         return grid, alpha, vertices
 
-    def _stamp(self, tokens, x, y, size, present, channels=None, patch=None, rotation=None):
+    def _stamp(self, tokens, x, y, size, present, channels=None, patch=None, rotation=None,
+               channel_count=12):
         """Rasterize small glyph patches then max-splat, avoiding full-page atlases."""
         b, jobs = tokens.shape
         ph, pw = self.lead_patch if patch is None else patch
@@ -588,7 +589,7 @@ class ECGRenderer(nn.Module):
         ix = (x[...,None,None]+sx).round().long()
         iy = (y[...,None,None]+sy).round().long()
         inside = (ix >= 0) & (ix < self.config.width) & (iy >= 0) & (iy < self.config.height)
-        count = 1 if channels is None else 12
+        count = 1 if channels is None else channel_count
         offsets = torch.arange(b, device=self.device)[:, None, None, None] * count
         if channels is not None:
             offsets = offsets + channels[..., None, None]
@@ -597,7 +598,7 @@ class ECGRenderer(nn.Module):
         output.scatter_reduce_(0, index.expand_as(glyph).reshape(-1), (glyph * inside).reshape(-1), reduce='amax', include_self=True)
         return output.reshape(b, count, self.config.height, self.config.width)
 
-    def _text(self, instances, p, need_labels, need_units=True):
+    def _text(self, instances, p, need_labels, need_units=True, need_name_instances=False):
         b = len(p['font'])
         lead_tokens = torch.where(instances['amplitude_sign']<0,23+instances['lead_id'],instances['lead_id'])
         tokens = p['font'][:, None] * len(self.tokens) + lead_tokens
@@ -606,8 +607,20 @@ class ECGRenderer(nn.Module):
                         instances['baseline'] - instances['cell_height'][:, None] * .39)
         size = p['font_size'][:, None].expand(b, self.instance_count)
         present = instances['active'] * p['label_present']
-        label_masks = self._stamp(tokens, x, y, size, present, instances['lead_id'] if need_labels else None)
-        label_ink = label_masks.amax(1, keepdim=True) if need_labels else label_masks
+        name_instances = None
+        if need_name_instances:
+            slots = torch.arange(self.instance_count, device=self.device)[None].expand(b, -1)
+            name_instances = self._stamp(tokens, x, y, size, present, slots,
+                                         channel_count=self.instance_count)
+            label_ink = name_instances.amax(1, keepdim=True)
+            label_masks = None
+            if need_labels:
+                label_masks = torch.zeros(b, 12, self.config.height, self.config.width, device=self.device)
+                label_masks.scatter_reduce_(1, instances['lead_id'][..., None, None].expand_as(name_instances),
+                                            name_instances, reduce='amax', include_self=True)
+        else:
+            label_masks = self._stamp(tokens, x, y, size, present, instances['lead_id'] if need_labels else None)
+            label_ink = label_masks.amax(1, keepdim=True) if need_labels else label_masks
         units = 12 + p['speed_index'].long() * 3 + p['gain_index'].long()
         tokens = p['font'][:, None] * len(self.tokens) + torch.stack([units, torch.full_like(units, 21)], 1)
         header_x = torch.stack([instances['left'], torch.full_like(instances['left'], self.config.width * .68)], 1)
@@ -633,7 +646,8 @@ class ECGRenderer(nn.Module):
                                     torch.ones_like(extra_size), patch=self.template_patch))
         # Keep the unit glyph support separately to test cropping/occlusion.
         unit_mask = self._stamp(tokens[:, :1], header_x[:, :1], header_y[:, :1], header_size[:, :1], p['header_present'][:, None], patch=self.header_patch) if need_units else None
-        return torch.maximum(label_ink, headers), label_masks if need_labels else None, unit_mask
+        result = (torch.maximum(label_ink, headers), label_masks if need_labels else None, unit_mask)
+        return (*result, name_instances) if need_name_instances else result
 
     def _texture(self, bank, b, generator, paper):
         h, w = self.config.height, self.config.width
@@ -681,7 +695,7 @@ class ECGRenderer(nn.Module):
                 parameters: Optional[Mapping] = None, severity=None, return_field=False, return_canonical=False,
                 return_scene=False, return_instances=False, return_baselines=True,
                 return_instance_boxes=True, as_texture=False, return_visibility_fraction=None,
-                return_grid_points=False, grid_point_config=None):
+                return_grid_points=False, grid_point_config=None, return_name_instances=False):
         # Keep geometric inversion, glyphs and radiometry in float32 even when
         # the caller trains its image network inside an AMP context.
         if self.atlas.dtype!=torch.float32:
@@ -692,13 +706,16 @@ class ECGRenderer(nn.Module):
                                 return_canonical=return_canonical,return_scene=return_scene,return_instances=return_instances,
                                 return_baselines=return_baselines,return_instance_boxes=return_instance_boxes,
                                 as_texture=as_texture,return_visibility_fraction=return_visibility_fraction,
-                                return_grid_points=return_grid_points,grid_point_config=grid_point_config)
+                                return_grid_points=return_grid_points,grid_point_config=grid_point_config,
+                                return_name_instances=return_name_instances)
 
     def _render(self, signals, fs, *, lengths=None, stage='all', photo=True, generator=None,
                 parameters: Optional[Mapping] = None, severity=None, return_field=False, return_canonical=False,
                 return_scene=False, return_instances=False, return_baselines=True,
                 return_instance_boxes=True, as_texture=False, return_visibility_fraction=None,
-                return_grid_points=False, grid_point_config=None):
+                return_grid_points=False, grid_point_config=None, return_name_instances=False):
+        if type(return_name_instances) is not bool:
+            raise ValueError('return_name_instances must be bool')
         if type(return_grid_points) is not bool:
             raise ValueError('return_grid_points must be bool')
         if grid_point_config is not None and not isinstance(grid_point_config, GridPointConfig):
@@ -878,7 +895,9 @@ class ECGRenderer(nn.Module):
         ink, pulse, targets = self._curves(working_signals, rates, lengths, instances, p, stage,return_instances,return_baselines)
         source_instance_area = targets['instances'].sum((-1, -2)) if return_visibility_fraction else None
         grid, grid_alpha, vertices = self._grid(instances, p, stage in {'geometry', 'all'})
-        text, labels, unit_mask = self._text(instances, p, stage in {'metadata', 'all'},stage!='image')
+        text_result = self._text(instances, p, stage in {'metadata', 'all'}, stage!='image', return_name_instances)
+        text, labels, unit_mask = text_result[:3]
+        name_instances = text_result[3] if return_name_instances else None
         paper, paper_id = self._texture(self.paper_textures, b, generator, True)
         paper *= self.document.paper_colors[p['paper_palette'].long()][:,:,None,None]*p['paper_color'][:,:,None,None]
         paper = paper - p['paper_tint'][:, :, None, None]
@@ -936,6 +955,8 @@ class ECGRenderer(nn.Module):
             targets.update(vertices=vertices, grid=grid)
         if labels is not None:
             targets['labels'] = labels
+        if name_instances is not None:
+            targets['name_instances'] = name_instances
         if not photo and stage != 'image':
             # Rectified substrate support lets the offline 3D backend remove
             # the same physical paper, independently of its printed texture.
@@ -949,7 +970,7 @@ class ECGRenderer(nn.Module):
             # Fractional coverage antialiases the sheet silhouette. The same
             # coverage gates targets, cast shadows and RGB compositing.
             valid = F.grid_sample(torch.ones_like(ink), field, align_corners=False)
-            frame_coverage = valid.clone() if stage != 'image' or return_instances else None
+            frame_coverage = valid.clone() if stage != 'image' or return_instances or return_name_instances else None
             image = F.grid_sample(srgb_to_linear(canonical), field, align_corners=False, padding_mode='border')
             if scene is None:
                 scene = {'field':field,'solver_valid':torch.ones_like(valid),
@@ -1001,7 +1022,7 @@ class ECGRenderer(nn.Module):
                  & (yy >= column('occlusion_y')) & (yy <= column('occlusion_y') + column('occlusion_h'))).float() * column('occlusion_active')
         image = torch.lerp(image, p['occlusion_color'][:, :, None, None], cover)
         valid *= (1-cover)*material_valid
-        if stage!='image' or return_grid_points:
+        if stage!='image' or return_grid_points or return_name_instances:
             targets['valid'] = valid
         area = material_pixel_area(field, self.config.height, self.config.width) if photo and (
             unit_mask is not None or return_visibility_fraction) else 1.

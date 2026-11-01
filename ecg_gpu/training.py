@@ -124,3 +124,20 @@ def masked_segmentation_loss(logits, targets, valid, *, channel_valid=None, pos_
     losses = F.binary_cross_entropy_with_logits(logits.float(), targets.float(),
                                                 reduction='none', pos_weight=pos_weight)
     return (losses * support).sum() / support.sum().clamp_min(1.)
+
+
+def lead_name_detection_targets(batch, *, format='yolo', label_offset=None):
+    """Detect each printed lead-name occurrence, including repeated rhythm labels.
+
+    Classes are canonical 0..11 in YOLO and 1..12 in torchvision. Inverted
+    Cabrera labels retain canonical aVR identity. ``name_amplitude_sign``
+    records their printed polarity. Boxes describe geometric glyph support,
+    not optical readability. No host copies occur here.
+    """
+    required = {'image', 'name_boxes', 'name_box_valid', 'name_active', 'name_lead_ids'}
+    if required - batch.keys():
+        raise ValueError(f'Missing lead-name fields: {sorted(required - batch.keys())}')
+    mapped = {'image': batch['image'], 'instance_boxes': batch['name_boxes'],
+              'instance_box_valid': batch['name_box_valid'],
+              'instance_active': batch['name_active'], 'instance_lead_ids': batch['name_lead_ids']}
+    return detection_targets(mapped, format=format, label_offset=label_offset)

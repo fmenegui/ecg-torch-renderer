@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.13.0
+
+- Add opt-in per-occurrence lead-name masks, boxes and detection adapters.
+  Repeated rhythm labels and inverted Cabrera aVR retain explicit identities.
+- Export paired digitization pages, joint waveform/name YOLO detection and
+  single-instance segmentation crops with PNG/BMP masks and JSON signals.
+- Separate crops containing foreign traces from single-instance crops, and
+  count exact crossing pixels independently. Targets keep clean ownership.
+- Preserve original mV samples, absolute source times, physical calibration,
+  printed polarity, visibility, inverse geometry and file/source hashes.
+- Add patient-group train/validation/test splits and staged streaming export
+  that checks every capture against a source plan before publishing output.
+- Provide ecg-dataset, an artificial integration example and contract tests.
+  Task organization acknowledges SynthECG. No upstream code or data is bundled.
+
 ## 0.8.1
 
 - Recompose quarter-turn overrides and derive orientation from absolute angles.
