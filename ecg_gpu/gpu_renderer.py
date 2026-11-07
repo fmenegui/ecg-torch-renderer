@@ -76,6 +76,11 @@ class RenderConfig:
     # in millimeters and adds a paper-feed speed error between trace and grid.
     page_model: str = 'legacy'
     plot_width_mm: float = 250.
+    # 'legacy' measures each pixel's distance to its own column's curve only,
+    # which thins steep strokes. 'isotropic' also checks stroke_radius
+    # neighbouring columns so width is close to line_width at any slope.
+    stroke: str = 'legacy'
+    stroke_radius: int = 3
 
     def __post_init__(self):
         for name in ('height', 'width', 'antialias_samples', 'lead_chunk_size',
@@ -109,6 +114,10 @@ class RenderConfig:
             raise ValueError('damage_detail must be rich or edge')
         if not 32 <= self.surface_resolution <= 256 or not 2 <= self.inverse_iterations <= 12 or not 0 <= self.shadow_samples <= 32:
             raise ValueError('Use surface resolution 32..256, inverse iterations 2..12 and shadow samples 0..32')
+        if self.stroke not in {'legacy', 'isotropic'}:
+            raise ValueError('stroke must be legacy or isotropic')
+        if type(self.stroke_radius) is not int or not 1 <= self.stroke_radius <= 8:
+            raise ValueError('stroke_radius must be an integer in 1..8')
         if self.page_model not in {'legacy', 'physical'}:
             raise ValueError('page_model must be legacy or physical')
         if (isinstance(self.plot_width_mm, bool) or not isinstance(self.plot_width_mm, (int, float))
@@ -208,7 +217,8 @@ class ECGRenderer(nn.Module):
         self.document_template = document_template
         self.measured_paper = measured_paper
         self.display = EmissiveDisplay(display) if display is not None else None
-        self._curve_kernel,self._calibration_kernel=raster_kernels(compile_raster)
+        self._curve_kernel,self._calibration_kernel=raster_kernels(
+            compile_raster, stroke=self.config.stroke, radius=self.config.stroke_radius)
         self.compile_raster=compile_raster
         self.compile_scene=compile_scene
         if not artifact_texts or any(not isinstance(value,str) or not value or len(value)>80 for value in artifact_texts):
@@ -307,6 +317,9 @@ class ECGRenderer(nn.Module):
             # Keep legacy specifications, and therefore saved layer states, unchanged.
             config.pop('page_model')
             config.pop('plot_width_mm')
+        if self.config.stroke == 'legacy':
+            config.pop('stroke')
+            config.pop('stroke_radius')
         return {'schema': 'ecg-replot-torch-renderer-v3', 'config': config, 'fonts': self.fonts,
                 'signal_units': 'mV', 'signal_order': LEADS, 'font_initialization': 'CPU once',
                 'hot_path': 'torch on input device', 'jpeg': 'DCT simulation, not a JPEG bitstream',

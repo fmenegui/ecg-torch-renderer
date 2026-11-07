@@ -32,7 +32,7 @@ criterion; "done" means the criterion was measured, not that code exists.
 | --- | --- | --- | --- |
 | 6 | Fixed paper width; speed sets time window | 12.5/25/50 mm/s show 20/10/5 s on 250 mm | implemented, 0.14.0 `page_model="physical"` |
 | 7 | Stroke and grid widths in mm | Flat-line coverage integral equals width at every resolution | implemented, 0.14.0 |
-| 8 | Isotropic strokes | Perpendicular width within 5 % for slopes 0-50 | planned |
+| 8 | Isotropic strokes | Perpendicular width within 5 % for slopes 0-10 | implemented, 0.15.0 `stroke="isotropic"` |
 | 9 | Trace-to-grid registration error | Feed-speed error | implemented, 0.14.0 (feed error); skew planned |
 | 10 | Lead-switch marks and segment breaks | Marks in masks' complement, separate target | planned |
 | 11 | Generated text: header, measurements consistent with signal, statements, footers, languages | OCR boxes and transcripts as targets | planned |
