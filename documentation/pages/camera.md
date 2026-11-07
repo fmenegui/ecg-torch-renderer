@@ -143,3 +143,14 @@ Shadowed or blurred pixels remain geometrically valid. Visibility does not mean 
 `photo=False` produces a canonical page and disables the camera geometry, surface deformation and external document warps. It is useful for rectified training targets. It does not automatically remove every configured print artifact.
 
 
+
+## Scanner modes
+
+`RenderConfig(scan_modes=True)` adds flatbed scanner observation to records captured without photographic geometry. `scan_mode` selects color (0), grayscale (1) or bilevel black-and-white (2), sampled at 50/30/20 %. `scan_dpi` (log-uniform 72–600) sets the scanner resolution: when it is below the page's pixel density, each scanner pixel is integrated and held, as in an upscaled low-resolution scan. `scan_threshold` (0.45–0.70) is the bilevel luminance cut. Targets are unchanged.
+
+```python
+from ecg_gpu import ECGImageLayer, RenderConfig
+
+layer = ECGImageLayer(fs=500, config=RenderConfig(profile="scan", scan_modes=True),
+                      parameters={"scan_mode": 2, "scan_dpi": 150.}, photo=False)
+```
