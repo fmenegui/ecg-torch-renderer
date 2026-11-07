@@ -41,8 +41,8 @@ class FilterResponseTests(unittest.TestCase):
         x = torch.sin(2 * math.pi * 50 * self.t)[None, None].expand(2, 1, -1)
         y = printed_signal(x, self.rates.expand(2), torch.tensor([.05, .05]), torch.tensor([150., 150.]),
                            torch.tensor([0., 50.]))
-        self.assertGreater(amplitude(y[0]), .95)
-        self.assertLess(amplitude(y[1]), .01)
+        self.assertGreater(amplitude(y[0]) / amplitude(x[0]), .98)
+        self.assertLess(amplitude(y[1]) / amplitude(x[1]), .01)
 
 
 @unittest.skipUnless(TORCH, 'Torch required')
