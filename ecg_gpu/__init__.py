@@ -24,7 +24,7 @@ from .convenience import prepare_signals, render_ecg, to_pil, describe_parameter
 from .schema_v05 import LEADS
 from .report_text import decode_report_text
 
-__version__ = "0.20.0"
+__version__ = "0.21.0"
 
 __all__ = [
     'ECGRenderer',
