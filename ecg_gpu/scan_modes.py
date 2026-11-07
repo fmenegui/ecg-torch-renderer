@@ -63,8 +63,8 @@ def scan_observation(image, ppm, mode, dpi, threshold, kernel_size=15):
     """
     scale = (dpi / 25.4 / ppm).clamp(max=1)
     resampled = scan_resolution(image, scale, kernel_size)
-    luma = torch.tensor(LUMA, device=image.device, dtype=image.dtype)[None, :, None, None]
-    gray = (resampled * luma).sum(1, keepdim=True).expand_as(resampled)
+    gray = (LUMA[0] * resampled[:, :1] + LUMA[1] * resampled[:, 1:2]
+            + LUMA[2] * resampled[:, 2:3]).expand_as(resampled)
     bilevel = (gray > threshold[:, None, None, None]).to(image.dtype)
     mode = mode.long()[:, None, None, None]
     return torch.where(mode == COLOR, resampled, torch.where(mode == GRAYSCALE, gray, bilevel))

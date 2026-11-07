@@ -38,7 +38,7 @@ criterion; "done" means the criterion was measured, not that code exists.
 | 11 | Generated text: header, measurements consistent with signal, statements, footers, languages | OCR boxes and transcripts as targets | implemented, 0.19.0 `report_text=True` (rate from signal; other intervals fictional; no statements by policy) |
 | 12 | Vendor-style layouts, calibration pulse variants | At least 8 generic styles | planned |
 | 13 | Multi-page prints | Page index and cross-page time mapping | planned |
-| 14 | Print technologies: laser halftone, inkjet, dot matrix, fax, photocopy generations | Visual references per technology | planned |
+| 14 | Print technologies: laser halftone, inkjet, dot matrix, fax, photocopy generations | Visual references per technology | in progress: laser halftone, photocopy, fax in 0.23.0 `print_technology=True`; inkjet, dot matrix planned |
 | 15 | Handwriting, stamps, stickers, barcodes | Separate occlusion target | planned |
 
 ## 3. Signal
