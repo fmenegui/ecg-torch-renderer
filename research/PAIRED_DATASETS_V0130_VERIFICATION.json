@@ -1,0 +1,41 @@
+{
+  "schema": "ecg-paired-dataset-verification-v1",
+  "base_commit": "6a4e0cbc011234e31592a9ba79f45e09187389b2",
+  "upstream_commit": "fa6998d26ce87a62dc921cde69ffc6f67a23ae2e",
+  "runtime": {
+    "torch": "2.15.0+cpu",
+    "numpy": "2.5.4",
+    "pillow": "13.0.0",
+    "cuda_available": false
+  },
+  "targeted_tests": {
+    "total": 16,
+    "passed": 16
+  },
+  "local_integration": {
+    "total": 312,
+    "passed": 304,
+    "skipped_cuda": 6,
+    "errors_missing_original_raster_fixture": 2
+  },
+  "artificial_demo": {
+    "pages": 8,
+    "crops": 100,
+    "with_foreign_trace": 94,
+    "without_foreign_trace": 6,
+    "width": 512,
+    "height": 384,
+    "gain_mm_per_mv": 20,
+    "threshold": 0.05,
+    "crop_padding": 4
+  },
+  "adverse_gallery": {
+    "scenarios": 16,
+    "width": 512,
+    "height": 384,
+    "visually_inspected": true
+  },
+  "external_real_image_accuracy_measured": false,
+  "upstream_dataset_evaluated": false,
+  "gpu_performance_measured": false
+}

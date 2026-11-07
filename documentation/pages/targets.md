@@ -49,6 +49,12 @@ The default requests only `lead_masks`. RGB and the visibility mask are always r
 | `instance_active` | `[B,15]` | Whether the layout/slot is enabled before capture |
 | `instance_windows_s` | `[B,15,2]` | Printed source window `[start_s,end_s]` |
 | `instance_amplitude_sign` | `[B,15]` | Printed polarity, including inverted aVR |
+| `name_masks` | `[B,15,H,W]` | Independent glyph coverage per printed lead-name occurrence |
+| `name_boxes` | `[B,15,4]` | Visible lead-name glyph boxes, xyxy exclusive edges |
+| `name_box_valid` | `[B,15]` | Whether name pixels survive visibility and threshold |
+| `name_lead_ids` | `[B,15]` | Canonical identity of each printed name |
+| `name_active` | `[B,15]` | Slot and label enabled before capture |
+| `name_amplitude_sign` | `[B,15]` | Printed sign, including the minus in Cabrera aVR |
 
 Instance metadata is returned when you request instance masks or boxes. Slots have fixed shapes for batching. Unused or invisible slots have false box-valid flags and boxes filled with `-1`.
 
@@ -138,3 +144,26 @@ boxes = batch.metadata["report_text"]["boxes"]            # [B,7,4] xyxy per lin
 ## Time and voltage maps
 
 `RenderConfig(coordinate_targets=True)` returns `time_s` and `voltage_mv`, `[B,1,H,W]` maps that give, for every pixel inside a layout cell, the source time and the voltage relative to that cell's baseline, plus `coordinate_valid`. Combined with a waveform mask, they turn digitization into dense regression: on trace pixels, `voltage_mv` matches the source signal at `time_s` within about half a stroke width divided by pixels per mV.
+
+## Lead-name detection
+
+```python
+from ecg_gpu import ECGSupervisionLayer, SupervisionConfig, lead_name_detection_targets
+
+names = ECGSupervisionLayer(supervision=SupervisionConfig(
+    outputs=("name_masks", "name_boxes")
+)).to(signals.device)
+batch = names(signals)
+targets = lead_name_detection_targets(batch)
+```
+
+Names are separate objects for each short lead and rhythm strip. The adapter
+uses classes 0..11 in YOLO and 1..12 in torchvision. Canonical aVR remains aVR
+when its printed label is `-aVR`, with the sign supplied separately. Missing,
+fully hidden and below-threshold labels produce no detections. Targets describe
+geometric glyph support, not OCR readability under blur or fading.
+
+For an existing RenderBatch, request `return_name_instances=True` before calling
+`supervise`. Names use the same inverse geometry and visibility as the ECG.
+Existing RGB and targets are unchanged when enabling these additional targets.
+

@@ -25,6 +25,14 @@ M2-M7. Entries below were written for that line, which was labelled
 - Add calibrated arbitrary lead-region decoding with subpixel peaks, explicit
   polarity/time ownership and gap-preserving partial observations. Add matched
   device paper-profile controls and paired online/offline experiment inputs.
+- From #29: add opt-in per-occurrence lead-name masks, boxes and detection
+  adapters (`return_name_instances`, `lead_name_detection_targets`); repeated
+  rhythm labels and inverted Cabrera aVR keep explicit identities.
+- From #29: export paired digitization pages, joint waveform/name YOLO
+  detection and single-instance segmentation crops (`export_paired_dataset`,
+  `ecg-dataset`), with patient-group splits, staged streaming export checked
+  against a source plan, and crops with foreign traces kept separate. Task
+  organization acknowledges SynthECG; no upstream code or data is bundled.
 
 ## 0.23.0
 

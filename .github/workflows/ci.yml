@@ -41,6 +41,8 @@ jobs:
           python examples/grid_point_unet.py --steps 3 --mask-shape disk --radius 2
       - name: Independent material geometry audit
         run: python documentation/paper_audit.py --out build/paper-audit.json
+      - name: Paired digitization, joint detection and segmentation export
+        run: python examples/export_paired_dataset.py --out build/paired-demo --width 256 --height 192
   docs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -127,7 +129,11 @@ jobs:
           ecg_gpu/grid_evaluation.py ecg_gpu/grid_benchmark.py tests/test_grid_benchmark.py
           examples/prepare_grid_benchmark.py examples/annotate_red_grid_scan.py examples/grid_benchmark_smoke.py
           examples/summarize_grid_benchmark.py examples/grid_benchmark_spp.py
+<<<<<<< HEAD
           examples/grid_sampling_study.py examples/prepare_grid_external.py examples/grid_external_review.py tests/test_grid_tolerances.py
+=======
+          ecg_gpu/paired_dataset.py ecg_gpu/paired_cli.py tests/test_paired_dataset.py examples/export_paired_dataset.py
+>>>>>>> refs/pr/29
           tests/test_realism_v090.py tests/test_pathtrace_v090.py examples/physical_realism.py
       - name: Branch-aware coverage of model contracts
         run: |

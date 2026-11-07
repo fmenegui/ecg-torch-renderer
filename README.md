@@ -7,6 +7,14 @@ a training loop. Input `[B,12,T]` signals in mV, get RGB with optional independe
 lead masks, black/white views and detection boxes. Rendering and target
 generation stay on the signal device.
 
+Version **0.13.0** adds per-occurrence **lead-name detection** and a paired
+dataset exporter for digitization, joint waveform/name detection and cropped
+waveform segmentation. Crops are separated by foreign-trace presence and keep
+original mV samples, source times, printed polarity and patient-group splits.
+The CLI streams captures from a frozen source plan. See
+[paired datasets](documentation/pages/training.md#paired-task-datasets) or run
+`python examples/export_paired_dataset.py --out build/paired-demo`.
+
 Both torch and offline rendering can export identified **5 mm grid
 intersections**, their visible image coordinates and a point-only mask.
 See [the grid-point guide](documentation/pages/grid-points.md) and

@@ -8,7 +8,9 @@ from .gpu_profiling import profile_layer
 from .gpu_supervision import ECGSupervisionLayer, SupervisionConfig, mask_bounding_boxes
 from .scenarios import CAPTURE_SCENARIOS, capture_scenario
 from .training import detection_targets, padded_detection_targets, masked_segmentation_loss
+from .training import lead_name_detection_targets
 from .dataset_export import export_yolo_dataset, samples_from_batch
+from .paired_dataset import paired_samples_from_render, export_paired_dataset
 from .assets import load_rgb_bank
 from .seeding import render_seed
 from .document_templates import DocumentTemplate, DOCUMENT_TEMPLATES
@@ -75,5 +77,8 @@ __all__ = [
     'describe_parameters',
     'LEADS',
     'decode_report_text',
+    'lead_name_detection_targets',
+    'paired_samples_from_render',
+    'export_paired_dataset',
     '__version__',
 ]
