@@ -86,6 +86,7 @@ jobs:
       - name: Grid benchmark export and deterministic cache replay
         run: |
           python -m coverage run --branch -m unittest discover -s tests -p test_grid_benchmark.py -v
+          python -m coverage run --branch --append -m unittest discover -s tests -p test_grid_tolerances.py -v
           python -m coverage run --branch --append examples/grid_benchmark_smoke.py
           python -m coverage report --fail-under=85 --include='*/ecg_gpu/grid_evaluation.py,*/ecg_gpu/grid_benchmark.py'
           python -m coverage json -o build/benchmark-coverage.json --include='*/ecg_gpu/grid_evaluation.py,*/ecg_gpu/grid_benchmark.py'
@@ -126,6 +127,7 @@ jobs:
           ecg_gpu/grid_evaluation.py ecg_gpu/grid_benchmark.py tests/test_grid_benchmark.py
           examples/prepare_grid_benchmark.py examples/annotate_red_grid_scan.py examples/grid_benchmark_smoke.py
           examples/summarize_grid_benchmark.py examples/grid_benchmark_spp.py
+          examples/grid_sampling_study.py examples/prepare_grid_external.py examples/grid_external_review.py tests/test_grid_tolerances.py
           tests/test_realism_v090.py tests/test_pathtrace_v090.py examples/physical_realism.py
       - name: Branch-aware coverage of model contracts
         run: |

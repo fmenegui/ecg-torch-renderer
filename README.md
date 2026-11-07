@@ -390,4 +390,10 @@ The renderer remains an image/target generator. The optional research reference
 does not establish superiority to a commercial system.
 [Contributing](CONTRIBUTING.md) · [Changelog](CHANGELOG.md) · MIT for this package's code.
 
+The [paired sampling study](research/grid-sampling-study/README.md) extends
+the detector pilot to all eight offline test images at 16/32/64/128 SPP, with
+frozen weights and thresholds. `examples/grid_sampling_study.py` exports
+multi-radius scoring, patient-paired bootstrap differences and CPU capture
+timing. Decimal coordinates alone do not establish physical subpixel accuracy.
+
 

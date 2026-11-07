@@ -71,6 +71,32 @@ def summarize_grid_matches(matches):
             'localization_population': 'matched points only'}
 
 
+def evaluate_grid_tolerances(predicted, reference, *, radii=(.25, .5, 1., 1.5)):
+    """Rescore fixed detections at each tolerance in output-pixel units.
+
+    Recompute the one-to-one assignment at EVERY radius. Filtering an assignment
+    made at a wider radius can undercount valid matches at a smaller radius.
+    Signed bias is prediction minus reference, conditional on matched points.
+    These are geometric/reference errors, not a claim of physical accuracy.
+    """
+    predicted, reference = _points(predicted, 'predicted'), _points(reference, 'reference')
+    radii = tuple(radii)
+    if not radii or any(isinstance(r, bool) or not isinstance(r, (int, float))
+                        or not math.isfinite(r) or r <= 0 for r in radii):
+        raise ValueError('Nonempty positive finite matching radii required')
+    if len(set(radii)) != len(radii):
+        raise ValueError('Matching radii must be unique')
+    results = []
+    for radius in sorted(radii):
+        match = match_grid_points(predicted, reference, radius=radius)
+        delta = predicted[match['prediction_indices']]-reference[match['reference_indices']]
+        results.append({'radius_px': float(radius), **summarize_grid_matches([match]),
+            'mean_dx_px': float(delta[:, 0].mean()) if len(delta) else None,
+            'mean_dy_px': float(delta[:, 1].mean()) if len(delta) else None,
+            'rmse_error_px': float(np.sqrt(np.mean(match['errors_px']**2))) if len(delta) else None})
+    return results
+
+
 def rectification_diagnostic(observed, canonical, ids):
     """Held-out checkerboard-node interpolation with ORACLE lattice identities.
 
@@ -109,8 +135,8 @@ def rectify_grid_image(image, observed, canonical, *, output_size):
     not a complete unwarping pipeline. Returns RGB and interpolation support.
     """
     import torch
-    from torch.nn import functional as F
     from scipy.interpolate import LinearNDInterpolator
+    from torch.nn import functional as F
     observed, canonical = _points(observed, 'observed'), _points(canonical, 'canonical')
     if observed.shape != canonical.shape or len(observed) < 3:
         raise ValueError('At least three corresponding points required')
