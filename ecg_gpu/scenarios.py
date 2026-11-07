@@ -19,7 +19,7 @@ CAPTURE_SCENARIOS = (
 )
 
 
-def capture_scenario(name, *, height=768, width=1024, severity=.6):
+def capture_scenario(name, *, height=768, width=1024, severity=.6, page_model='legacy'):
     """Return a fresh ``(RenderConfig, parameters)`` pair for ECGImageLayer.
 
     ``severity`` scales adverse effects within a scenario. It is not a
@@ -27,6 +27,8 @@ def capture_scenario(name, *, height=768, width=1024, severity=.6):
     Layout, speed and gain can be overridden in the returned dictionary.
     Explicit missing-lead, label and pulse dropout is disabled. Damage and
     shadows can still hide printed content, tracked by the usual valid mask.
+    ``page_model='physical'`` uses fixed paper width, millimeter stroke widths
+    and paper-feed error (see ``RenderConfig.page_model``).
     """
     if name not in CAPTURE_SCENARIOS:
         raise ValueError(f'Unknown capture scenario {name!r}. Choose from {CAPTURE_SCENARIOS}.'
@@ -43,7 +45,7 @@ def capture_scenario(name, *, height=768, width=1024, severity=.6):
     config = RenderConfig(height=height, width=width, profile=profile,
                           severity=s, surface_mode=surface,
                           camera_mode='direct' if name == 'clean_print' else 'sensor',
-                          jpeg_enabled=photo)
+                          jpeg_enabled=photo, page_model=page_model)
     p = {
         'layout': Choice(['3x4+r1', '6x2', '12x1']),
         'speed_index': 1, 'gain_index': 1, 'sequential': True,
@@ -172,5 +174,9 @@ def capture_scenario(name, *, height=768, width=1024, severity=.6):
         p.update(paper_age=.12*s, thermal_darkening_strength=.65*s,
                  thermal_fade=.6*s, fade_position=.70, fade_width=.13,
                  foxing_strength=.18*s, object_shadow='none')
+    if page_model == 'physical':
+        # Physical widths replace the pixel widths, which would change with resolution.
+        del p['line_width'], p['grid_width']
+        p.update(trace_width_mm=Uniform(.2, .3), grid_line_mm=Uniform(.06, .1))
     return config, p
 

@@ -23,7 +23,7 @@ from .grid_point_learning import grid_point_loss, decode_grid_points
 from .convenience import prepare_signals, render_ecg, to_pil, describe_parameters
 from .schema_v05 import LEADS
 
-__version__ = "0.13.0"
+__version__ = "0.14.0"
 
 __all__ = [
     'ECGRenderer',

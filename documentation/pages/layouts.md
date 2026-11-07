@@ -47,3 +47,23 @@ render = ECGImageLayer(parameters={
 `pulse_present` controls the 1 mV, 0.2 s calibration mark. Headers and labels can be hidden independently. For classification targets, unknown units are represented when explicit unit-text support is unavailable. This support test measures geometry, not OCR readability.
 
 Long and dense arrangements need an appropriate aspect ratio. Use a tall page for `12x1` and a wide page for `1x12`. The layout does not automatically increase image resolution.
+
+## Physical page model
+
+By default the whole record is fitted to the image width, so a 50 mm/s page shows the same seconds as a 25 mm/s page on a longer sheet. `RenderConfig(page_model="physical")` keeps the plotted paper width fixed instead, like a real recorder:
+
+```python
+from ecg_gpu import ECGImageLayer, RenderConfig
+
+layer = ECGImageLayer(fs=500, config=RenderConfig(page_model="physical", plot_width_mm=250.),
+                      parameters={"speed_index": 2, "trace_width_mm": 0.25})
+```
+
+| Control | Meaning |
+| --- | --- |
+| `plot_width_mm` | Plotted width; 250 mm shows 20, 10 and 5 s at 12.5, 25 and 50 mm/s |
+| `trace_width_mm` | Trace and pulse stroke width, sampled in 0.18–0.35 mm |
+| `grid_line_mm` | Minor grid line width, sampled in 0.05–0.12 mm; major lines are twice as wide |
+| `feed_error` | Relative paper-feed speed error of the trace against the pre-printed grid, sampled in ±1.5 % |
+
+Records shorter than the window end early and later columns stay empty. Pixel `line_width` and `grid_width` overrides are rejected in this mode. `capture_scenario(name, page_model="physical")` and `render_ecg(..., page_model="physical")` select it too.

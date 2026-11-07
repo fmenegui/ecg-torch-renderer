@@ -70,6 +70,12 @@ class RenderConfig:
     max_font_size: Optional[float] = None
     camera_mode: str = 'full'
     jpeg_enabled: bool = True
+    # 'legacy' fits the whole record to the image width with pixel stroke
+    # widths. 'physical' fixes the plotted paper width in millimeters, derives
+    # the shown time window from paper speed, specifies stroke and grid widths
+    # in millimeters and adds a paper-feed speed error between trace and grid.
+    page_model: str = 'legacy'
+    plot_width_mm: float = 250.
 
     def __post_init__(self):
         for name in ('height', 'width', 'antialias_samples', 'lead_chunk_size',
@@ -103,6 +109,11 @@ class RenderConfig:
             raise ValueError('damage_detail must be rich or edge')
         if not 32 <= self.surface_resolution <= 256 or not 2 <= self.inverse_iterations <= 12 or not 0 <= self.shadow_samples <= 32:
             raise ValueError('Use surface resolution 32..256, inverse iterations 2..12 and shadow samples 0..32')
+        if self.page_model not in {'legacy', 'physical'}:
+            raise ValueError('page_model must be legacy or physical')
+        if (isinstance(self.plot_width_mm, bool) or not isinstance(self.plot_width_mm, (int, float))
+                or not math.isfinite(self.plot_width_mm) or not 50 <= self.plot_width_mm <= 1000):
+            raise ValueError('plot_width_mm must be finite and in 50..1000')
 
 
 @dataclass
@@ -291,7 +302,12 @@ class ECGRenderer(nn.Module):
         return self.xx.device
 
     def specification(self):
-        return {'schema': 'ecg-replot-torch-renderer-v3', 'config': asdict(self.config), 'fonts': self.fonts,
+        config = asdict(self.config)
+        if self.config.page_model == 'legacy':
+            # Keep legacy specifications, and therefore saved layer states, unchanged.
+            config.pop('page_model')
+            config.pop('plot_width_mm')
+        return {'schema': 'ecg-replot-torch-renderer-v3', 'config': config, 'fonts': self.fonts,
                 'signal_units': 'mV', 'signal_order': LEADS, 'font_initialization': 'CPU once',
                 'hot_path': 'torch on input device', 'jpeg': 'DCT simulation, not a JPEG bitstream',
                 'optical_model': 'linear-light-finite-shutter-gaussian-v2',
@@ -438,6 +454,13 @@ class ECGRenderer(nn.Module):
         p['crease_sin'] = (1 - p['crease_cos'].square()).clamp_min(0).sqrt()
         p['shadow_sin'] = (1 - p['shadow_cos'].square()).clamp_min(0).sqrt()
         p['zoom'] = torch.where(geometry > 0, p['zoom'], torch.ones_like(p['zoom']))
+        if self.config.page_model == 'physical':
+            # Drawn after every legacy control so the legacy random stream is unchanged.
+            # Thermal and laser ECG traces are roughly 0.2-0.35 mm wide. Minor grid
+            # lines are thinner than major lines, which are drawn twice as wide.
+            p.update(trace_width_mm=.18 + rand() * .17,
+                     grid_line_mm=.05 + rand() * .07,
+                     feed_error=(rand() * 2 - 1) * .015)
         return self.material_history.parameters(p) if self.material_history else p
 
     def _instances(self, p, duration):
@@ -447,7 +470,12 @@ class ECGRenderer(nn.Module):
         # One pixel/mm value governs both axes and the calibration pulse.
         template = self.document_template
         margin_mm = template.left_mm + template.right_mm if template else 21.
-        ppm = (w - 1) / (duration * speed + margin_mm)
+        physical = self.config.page_model == 'physical'
+        if physical:
+            # Fixed paper: the plotted width is a physical length at every speed.
+            ppm = torch.full_like(duration, (w - 1) / (self.config.plot_width_mm + margin_mm))
+        else:
+            ppm = (w - 1) / (duration * speed + margin_mm)
         left, right = ppm * 14, w - 1 - ppm * 7
         top = (ppm * 15).clamp(max=h * .17)
         bottom = h - 1 - (ppm * 6).clamp(max=h * .07)
@@ -461,15 +489,31 @@ class ECGRenderer(nn.Module):
         x0 = left[:, None] + ci * cw
         x1 = x0 + cw
         baseline = top[:, None] + (ri + .57) * ch[:, None]
-        spans = duration[:,None] / cols
-        starts = torch.where(p['sequential'][:, None],ci*spans,0.)
         active = self.active_table[layout].bool() & p['lead_present'].bool()
+        extra = {}
+        if physical:
+            # The paper feed moves at the nominal speed times (1 + feed_error),
+            # while the grid is pre-printed. Each cell shows the time its width
+            # covers at the actual feed rate, and a short record ends early.
+            trace_speed = speed * (1 + p['feed_error'])
+            pixels_per_second = (ppm * trace_speed)[:, None]
+            spans = cw / pixels_per_second
+            starts = torch.where(p['sequential'][:, None], ci * spans, 0.)
+            shown = (duration[:, None] - starts).clamp_min(0).minimum(spans)
+            x1 = x0 + shown * pixels_per_second
+            active = active & (shown > 0)
+            ends = starts + shown
+            extra['trace_speed'] = trace_speed
+        else:
+            spans = duration[:,None] / cols
+            starts = torch.where(p['sequential'][:, None],ci*spans,0.)
+            ends = starts + spans
         lead_ids = self.lead_table[layout].clone()
         lead_ids[:,12:] = torch.where(p['rhythm_leads']>=0,p['rhythm_leads'],lead_ids[:,12:])
         return {'lead_id': lead_ids, 'amplitude_sign':self.sign_table[layout], 'row': ri, 'column': ci,
                 'x0': x0, 'x1': x1, 'baseline': baseline, 'start_s': starts,
-                'end_s': starts + spans, 'active': active, 'cell_height': ch,
-                'ppm': ppm, 'speed': speed, 'gain': gain, 'top': top, 'left': left}
+                'end_s': ends, 'active': active, 'cell_height': ch,
+                'ppm': ppm, 'speed': speed, 'gain': gain, 'top': top, 'left': left, **extra}
 
     @staticmethod
     def _sample_signal(signals, times, rates, lengths):
@@ -491,7 +535,8 @@ class ECGRenderer(nn.Module):
         dense_masks = trace_target is not None or instance_target is not None
         thickness = p['line_width'][:,None,None,None]/2+.5
         scale = (instances['gain']*instances['ppm'])[:,None]
-        slope_time = 1/(instances['speed']*instances['ppm'])[:,None]
+        trace_speed = instances.get('trace_speed', instances['speed'])
+        slope_time = 1/(trace_speed*instances['ppm'])[:,None]
         # Keep the original float32 x arithmetic, including non-power-of-two AA.
         axes = torch.stack([self.xx[0,0,0]-.5+sample/samples for sample in range(samples)])
         next_axes = axes+1/samples
@@ -534,7 +579,7 @@ class ECGRenderer(nn.Module):
                 if baseline_target is not None:
                     baselines=(1-(self.yy-base[:,:,None,None]).abs()).clamp(0,1)*within
                     baseline_target.scatter_reduce_(1,index,baselines,reduce='amax',include_self=True)
-            pulse=self._calibration_kernel(base,scale,instances['left'],instances['ppm'],instances['speed'],
+            pulse=self._calibration_kernel(base,scale,instances['left'],instances['ppm'],trace_speed,
                     thickness,p['pulse_present'][:,first:last],active&(instances['column'][:,first:last]==0),self.xx,self.yy)
             calibration=torch.maximum(calibration,pulse)
         targets={} if trace_target is None else {'traces':trace_target}
@@ -815,6 +860,12 @@ class ECGRenderer(nn.Module):
                 torch._assert_async(((p[key]>=0)&(p[key]<=1)).all(),f'RGB {key} must be in [0,1]')
             torch._assert_async(((p['surface_strength']>=0)&(p['surface_strength']<=1)).all(),'Surface strength must be in [0,1]')
             torch._assert_async(((p['crease_count']>=0)&(p['crease_count']<=8)).all(),'Crease count must be in 0..8')
+            if self.config.page_model == 'physical':
+                torch._assert_async(((p['trace_width_mm']>0)&(p['trace_width_mm']<=2)).all(),
+                                    'trace_width_mm must be in (0,2]')
+                torch._assert_async(((p['grid_line_mm']>0)&(p['grid_line_mm']<=1)).all(),
+                                    'grid_line_mm must be in (0,1]')
+                torch._assert_async((p['feed_error'].abs()<=.1).all(), 'feed_error must be in [-0.1,0.1]')
             for key, maximum in [('tear_count',4), ('missing_corner_index',3)]:
                 torch._assert_async(((p[key]>=0)&(p[key]<=maximum)).all(),f'{key} outside supported range')
             for key in ['hole_center','cut_center']:
@@ -878,8 +929,16 @@ class ECGRenderer(nn.Module):
                 if parameters and key in parameters:
                     torch._assert_async((p[key] == 0).all(), 'Display requires a rigid flat panel')
                 p[key] = torch.zeros_like(p[key])
-        duration = ((lengths - 1) / rates).clamp(max=self.config.max_duration_s)
+        duration = (lengths - 1) / rates
+        if self.config.page_model == 'legacy':
+            duration = duration.clamp(max=self.config.max_duration_s)
         instances = self._instances(p, duration)
+        if self.config.page_model == 'physical':
+            if parameters and {'line_width', 'grid_width'} & set(parameters):
+                raise ValueError('page_model="physical" specifies widths in millimeters. Use trace_width_mm '
+                                 'and grid_line_mm instead of line_width and grid_width')
+            p['line_width'] = p['trace_width_mm'] * instances['ppm']
+            p['grid_width'] = p['grid_line_mm'] * instances['ppm']
         if self.document_template:
             p['font_size'] = instances['ppm'] * self.document_template.font_mm
             torch._assert_async((p['font_size'] * 1.15 <= self.font_limit).all(),
@@ -1045,9 +1104,9 @@ class ECGRenderer(nn.Module):
             image = self.camera(image, p, generator, depth_m=depth_m)
         metadata = {**instances, 'rectified_mode': 'texture' if as_texture else 'document',
                     'sample_rate_hz': rates, 'source_length': lengths, 'duration_s': duration,
-                    'canonical_pixels_per_second': instances['ppm'] * instances['speed'],
+                    'canonical_pixels_per_second': instances['ppm'] * instances.get('trace_speed', instances['speed']),
                     'canonical_millivolts_per_pixel': (instances['ppm'] * instances['gain']).reciprocal(),
-                    'source_samples_per_canonical_pixel': rates / (instances['ppm'] * instances['speed']),
+                    'source_samples_per_canonical_pixel': rates / (instances['ppm'] * instances.get('trace_speed', instances['speed'])),
                     'layout_class': self.class_table[p['layout'].long()], 'orientation_class': p['quarter'].long(),
                     'sequential': p['sequential'], 'unit_text_visible': unit_evidence,
                     'paper_texture_id': paper_id, 'background_id': background_id,

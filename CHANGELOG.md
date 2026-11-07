@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.14.0
+
+- Add `RenderConfig(page_model="physical")`, opt-in. The plotted paper width
+  is fixed (`plot_width_mm`, default 250 mm), so paper speed selects the shown
+  time window: 20, 10 and 5 s at 12.5, 25 and 50 mm/s. Records shorter than
+  the window end early and later columns stay empty.
+- In the physical page model, trace and grid widths are millimeters
+  (`trace_width_mm`, `grid_line_mm`; major grid lines twice the minor width),
+  so physical stroke width no longer changes with resolution, duration or
+  speed. Pixel `line_width`/`grid_width` overrides are rejected there.
+- Add a paper-feed speed error (`feed_error`, default ±1.5 %) that scales the
+  printed trace and calibration pulse against the pre-printed grid. Metadata
+  reports the actual pixels per second.
+- `capture_scenario(..., page_model=...)` and `render_ecg(..., page_model=...)`
+  accept the new model.
+- The legacy model is unchanged: same random stream, same specification and
+  saved-state signature, same frozen v0.2.1 raster fixture.
+- Add `research/STATE_OF_THE_ART_ROADMAP.md` with acceptance criteria.
+
 ## 0.13.0
 
 - Add exploration and data-preparation helpers in `ecg_gpu.convenience`,
