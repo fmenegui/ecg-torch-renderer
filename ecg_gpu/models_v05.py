@@ -4,7 +4,7 @@ import torch
 from torch import nn
 from torch.nn import functional as F
 
-from .schema_v05 import LEADS, SPEEDS, GAINS, LAYOUTS
+from .schema_v05 import SPEEDS, GAINS, LAYOUTS
 
 
 class ResidualBlock(nn.Module):

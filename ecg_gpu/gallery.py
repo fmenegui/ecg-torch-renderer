@@ -5,7 +5,6 @@ The bundled waveform is entirely artificial. No patient record is downloaded.
 """
 import argparse
 from dataclasses import asdict
-import hashlib
 import json
 from pathlib import Path
 import zipfile

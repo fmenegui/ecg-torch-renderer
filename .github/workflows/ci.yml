@@ -111,8 +111,10 @@ jobs:
           cache: pip
       - run: python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
       - run: python -m pip install -e '.[dev,benchmark]'
-      - name: Fatal-error lint across library, tests and examples
-        run: python -m ruff check ecg_gpu tests examples --select E9,F63,F7,F82
+      - name: Lint the whole repository (rules in pyproject.toml)
+        run: python -m ruff check .
+      - name: Package version agrees with __version__ and CHANGELOG
+        run: python tools/check_version.py
       - name: Strict lint for the new model boundaries
         run: >-
           python -m ruff check --select E,F --ignore E501

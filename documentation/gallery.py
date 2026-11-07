@@ -15,7 +15,7 @@ import numpy as np
 from PIL import Image
 import torch
 
-from ecg_gpu import ECGRenderer, RenderConfig, LayoutSpec, DocumentAssets, __version__
+from ecg_gpu import ECGRenderer, RenderConfig, __version__
 from ecg_gpu.demo import demo_signals
 from ecg_gpu.gpu_document import SURFACES, BACKGROUNDS, SHADOWS
 

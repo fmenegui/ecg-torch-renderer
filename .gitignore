@@ -11,3 +11,7 @@ ecg-colab-results*/
 node_modules/
 .coverage
 htmlcov/
+.ruff_cache/
+.pytest_cache/
+.ipynb_checkpoints/
+.DS_Store

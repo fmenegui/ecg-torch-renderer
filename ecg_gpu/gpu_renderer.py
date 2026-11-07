@@ -7,7 +7,6 @@ construction, then the atlas and every per-batch operation live in torch.
 from dataclasses import asdict, dataclass
 import hashlib
 import math
-from pathlib import Path
 from typing import Mapping, Optional, Sequence
 
 import torch
@@ -22,7 +21,7 @@ from .material_history import MaterialHistory
 from .assets import SceneBank
 from .emissive_display import EmissiveDisplay, DisplayConfig
 from .measured_paper import MeasuredPaperBank
-from .gpu_document import DocumentAssets, DocumentScene, SURFACES, BACKGROUNDS, SHADOWS
+from .gpu_document import DocumentAssets, DocumentScene, SURFACES, BACKGROUNDS, SHADOWS  # noqa: F401 (DocumentAssets re-exported for gpu_cli and callers)
 from .gpu_layouts import LayoutSpec, standard_layouts
 from .gpu_raster import raster_kernels
 from .schema_v05 import LEADS, SPEEDS, GAINS, LAYOUTS
@@ -437,7 +436,7 @@ class ECGRenderer(nn.Module):
         return self.material_history.parameters(p) if self.material_history else p
 
     def _instances(self, p, duration):
-        b, w, h = len(duration), self.config.width, self.config.height
+        w, h = self.config.width, self.config.height
         layout = p['layout'].long()
         speed, gain = self.speed_values[p['speed_index'].long()], self.gain_values[p['gain_index'].long()]
         # One pixel/mm value governs both axes and the calibration pulse.

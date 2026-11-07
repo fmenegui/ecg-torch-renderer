@@ -1,6 +1,5 @@
 """Measure the actual device and export illustrative images outside the loop."""
 import argparse
-from dataclasses import asdict
 import hashlib
 import json
 import platform
