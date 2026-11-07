@@ -30,6 +30,7 @@ from .convenience import did_you_mean, lead_index
 from .scan_modes import scan_observation
 from .device_filters import HIGHPASS_HZ, LOWPASS_HZ, NOTCH_HZ, printed_signal
 from .report_text import ReportText, ventricular_rate
+from .phone_isp import phone_observation
 
 
 def _conditional_visibility(valid, frame_coverage=None):
@@ -93,6 +94,9 @@ class RenderConfig:
     # Generated header, measurement and footer lines (fictional fields; the
     # rate is estimated from the printed lead II). No interpretation text.
     report_text: bool = False
+    # Phone processing on photographed records: chromatic aberration,
+    # sharpening halos and specular glare.
+    phone_isp: bool = False
 
     def __post_init__(self):
         for name in ('height', 'width', 'antialias_samples', 'lead_chunk_size',
@@ -100,7 +104,7 @@ class RenderConfig:
             if type(getattr(self, name)) is not int:
                 raise ValueError(f'{name} must be an integer')
         for name in ('preserve_extrema', 'validate_inputs', 'jpeg_enabled', 'lead_marks', 'scan_modes',
-                     'device_filters', 'report_text'):
+                     'device_filters', 'report_text', 'phone_isp'):
             if type(getattr(self, name)) is not bool:
                 raise ValueError(f'{name} must be bool')
         if self.camera_mode not in {'full', 'direct', 'sensor'}:
@@ -346,6 +350,8 @@ class ECGRenderer(nn.Module):
             config.pop('device_filters')
         if not self.config.report_text:
             config.pop('report_text')
+        if not self.config.phone_isp:
+            config.pop('phone_isp')
         return {'schema': 'ecg-replot-torch-renderer-v3', 'config': config, 'fonts': self.fonts,
                 'signal_units': 'mV', 'signal_order': LEADS, 'font_initialization': 'CPU once',
                 'hot_path': 'torch on input device', 'jpeg': 'DCT simulation, not a JPEG bitstream',
@@ -518,6 +524,11 @@ class ECGRenderer(nn.Module):
                      filter_notch_hz=pick(NOTCH_HZ))
         if self.report_text is not None:
             p.update(self.report_text.sample(b, rand))
+        if self.config.phone_isp:
+            phone = (p['photo'] > 0).float()
+            p.update(ca_px=rand() * 1.5 * phone, sharpen_amount=rand() * .8 * phone,
+                     sharpen_sigma=.6 + rand(), glare_strength=(rand() < .35).float() * rand() * .35 * phone,
+                     glare_x=rand(), glare_y=rand(), glare_radius=.08 + rand() * .25)
         return self.material_history.parameters(p) if self.material_history else p
 
     def _instances(self, p, duration):
@@ -944,6 +955,15 @@ class ECGRenderer(nn.Module):
                 torch._assert_async(((p['grid_line_mm']>0)&(p['grid_line_mm']<=1)).all(),
                                     'grid_line_mm must be in (0,1]')
                 torch._assert_async((p['feed_error'].abs()<=.1).all(), 'feed_error must be in [-0.1,0.1]')
+            if self.config.phone_isp:
+                torch._assert_async(((p['ca_px']>=0)&(p['ca_px']<=8)).all(), 'ca_px must be in [0,8]')
+                torch._assert_async(((p['sharpen_amount']>=0)&(p['sharpen_amount']<=3)).all(),
+                                    'sharpen_amount must be in [0,3]')
+                torch._assert_async(((p['sharpen_sigma']>0)&(p['sharpen_sigma']<=2.5)).all(),
+                                    'sharpen_sigma must be in (0,2.5]')
+                torch._assert_async(((p['glare_strength']>=0)&(p['glare_strength']<=1)).all(),
+                                    'glare_strength must be in [0,1]')
+                torch._assert_async((p['glare_radius']>0).all(), 'glare_radius must be positive')
             if self.report_text is not None:
                 bank = self.report_text.header_count + self.report_text.measure_count
                 torch._assert_async(((p['report_lines']>=0)&(p['report_lines']<bank)).all(), 'Invalid report_lines')
@@ -1216,6 +1236,8 @@ class ECGRenderer(nn.Module):
         else:
             depth_m = self.camera.scene_depth(scene, instances['ppm'], self.config.width, valid)
             image = self.camera(image, p, generator, depth_m=depth_m)
+        if self.config.phone_isp:
+            image = phone_observation(image, p)
         if self.config.scan_modes:
             image = scan_observation(image, instances['ppm'], p['scan_mode'], p['scan_dpi'], p['scan_threshold'])
         metadata = {**instances, 'rectified_mode': 'texture' if as_texture else 'document',

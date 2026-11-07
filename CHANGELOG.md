@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.20.0
+
+- Add `RenderConfig(phone_isp=True)`, opt-in phone processing on
+  photographed records: lateral chromatic aberration (`ca_px`, up to 1.5 px
+  at the corners), unsharp-mask sharpening halos (`sharpen_amount`,
+  `sharpen_sigma`) and specular glare from glossy paper or flash
+  (`glare_strength`, 35 % of photos, with `glare_x`, `glare_y`,
+  `glare_radius`). Observation only; targets are unchanged.
+- New module `ecg_gpu.phone_isp`.
+
 ## 0.19.0
 
 - Add `RenderConfig(report_text=True)`, opt-in generated report text in the

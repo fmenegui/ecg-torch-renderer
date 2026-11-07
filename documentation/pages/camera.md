@@ -154,3 +154,7 @@ from ecg_gpu import ECGImageLayer, RenderConfig
 layer = ECGImageLayer(fs=500, config=RenderConfig(profile="scan", scan_modes=True),
                       parameters={"scan_mode": 2, "scan_dpi": 150.}, photo=False)
 ```
+
+## Phone processing
+
+`RenderConfig(phone_isp=True)` adds effects that phone photographs of printouts show and the base camera lacks, only on photographed records: lateral chromatic aberration (`ca_px`), sharpening halos (`sharpen_amount`, `sharpen_sigma`) and specular glare from glossy thermal paper or a flash (`glare_strength`, `glare_x`, `glare_y`, `glare_radius`). The stage runs after the base camera, so it approximates rather than reproduces a phone's processing order. Targets are unchanged.
