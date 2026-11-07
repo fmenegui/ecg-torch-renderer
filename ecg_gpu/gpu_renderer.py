@@ -28,6 +28,7 @@ from .schema_v05 import LEADS, SPEEDS, GAINS, LAYOUTS
 from .grid_points import GridPointConfig, grid_point_targets, identity_field
 from .convenience import did_you_mean, lead_index
 from .scan_modes import scan_observation
+from .device_filters import HIGHPASS_HZ, LOWPASS_HZ, NOTCH_HZ, printed_signal
 
 
 def _conditional_visibility(valid, frame_coverage=None):
@@ -86,13 +87,16 @@ class RenderConfig:
     lead_marks: bool = False
     # Flatbed scans in color, grayscale or bilevel at a sampled dpi.
     scan_modes: bool = False
+    # Print the recorder-filtered signal (high-pass, low-pass, mains notch).
+    device_filters: bool = False
 
     def __post_init__(self):
         for name in ('height', 'width', 'antialias_samples', 'lead_chunk_size',
                      'surface_resolution', 'inverse_iterations', 'shadow_samples'):
             if type(getattr(self, name)) is not int:
                 raise ValueError(f'{name} must be an integer')
-        for name in ('preserve_extrema', 'validate_inputs', 'jpeg_enabled', 'lead_marks', 'scan_modes'):
+        for name in ('preserve_extrema', 'validate_inputs', 'jpeg_enabled', 'lead_marks', 'scan_modes',
+                     'device_filters'):
             if type(getattr(self, name)) is not bool:
                 raise ValueError(f'{name} must be bool')
         if self.camera_mode not in {'full', 'direct', 'sensor'}:
@@ -329,6 +333,8 @@ class ECGRenderer(nn.Module):
             config.pop('lead_marks')
         if not self.config.scan_modes:
             config.pop('scan_modes')
+        if not self.config.device_filters:
+            config.pop('device_filters')
         return {'schema': 'ecg-replot-torch-renderer-v3', 'config': config, 'fonts': self.fonts,
                 'signal_units': 'mV', 'signal_order': LEADS, 'font_initialization': 'CPU once',
                 'hot_path': 'torch on input device', 'jpeg': 'DCT simulation, not a JPEG bitstream',
@@ -493,6 +499,11 @@ class ECGRenderer(nn.Module):
             p.update(scan_mode=((choice > .5).long() + (choice > .8).long()) * (p['photo'] == 0).long(),
                      scan_dpi=torch.exp(math.log(72.) + rand() * math.log(600. / 72.)),
                      scan_threshold=.45 + rand() * .25)
+        if self.config.device_filters:
+            # Common recorder settings: 0.05/0.15/0.5 Hz, 40/100/150 Hz, none/50/60 Hz.
+            pick = lambda values: torch.tensor(values, device=d)[integer(len(values))]
+            p.update(filter_highpass_hz=pick(HIGHPASS_HZ), filter_lowpass_hz=pick(LOWPASS_HZ),
+                     filter_notch_hz=pick(NOTCH_HZ))
         return self.material_history.parameters(p) if self.material_history else p
 
     def _instances(self, p, duration):
@@ -919,6 +930,13 @@ class ECGRenderer(nn.Module):
                 torch._assert_async(((p['grid_line_mm']>0)&(p['grid_line_mm']<=1)).all(),
                                     'grid_line_mm must be in (0,1]')
                 torch._assert_async((p['feed_error'].abs()<=.1).all(), 'feed_error must be in [-0.1,0.1]')
+            if self.config.device_filters:
+                torch._assert_async(((p['filter_highpass_hz']>=0)&(p['filter_highpass_hz']<=5)).all(),
+                                    'filter_highpass_hz must be in [0,5]')
+                torch._assert_async(((p['filter_lowpass_hz']>=5)&(p['filter_lowpass_hz']<=1000)).all(),
+                                    'filter_lowpass_hz must be in [5,1000]')
+                torch._assert_async(((p['filter_notch_hz']>=0)&(p['filter_notch_hz']<=100)).all(),
+                                    'filter_notch_hz must be in [0,100]')
             if self.config.scan_modes:
                 torch._assert_async(((p['scan_mode']>=0)&(p['scan_mode']<=2)).all(), 'scan_mode must be 0, 1 or 2')
                 torch._assert_async(((p['scan_dpi']>=25)&(p['scan_dpi']<=2400)).all(), 'scan_dpi must be in [25,2400]')
@@ -991,6 +1009,12 @@ class ECGRenderer(nn.Module):
                 if parameters and key in parameters:
                     torch._assert_async((p[key] == 0).all(), 'Display requires a rigid flat panel')
                 p[key] = torch.zeros_like(p[key])
+        printed = None
+        if self.config.device_filters:
+            # The image shows what a recorder prints; the source reference is untouched.
+            printed = printed_signal(working_signals, rates, p['filter_highpass_hz'],
+                                     p['filter_lowpass_hz'], p['filter_notch_hz'])
+            working_signals = printed
         duration = (lengths - 1) / rates
         if self.config.page_model == 'legacy':
             duration = duration.clamp(max=self.config.max_duration_s)
@@ -1177,6 +1201,8 @@ class ECGRenderer(nn.Module):
                     'capture_medium': 'display' if self.display is not None else 'paper',
                     'document_asset_id':scene['asset_id'] if scene else torch.full((b,),-1,device=self.device,dtype=torch.long),
                     'parameters': p}
+        if printed is not None:
+            metadata['printed_signals'] = printed
         if return_grid_points:
             point_field = field if photo else identity_field(b, self.config.height, self.config.width, device=self.device)
             targets.update(grid_point_targets(point_field, valid,

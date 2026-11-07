@@ -116,3 +116,7 @@ ecg-render --input signal.npz --output ecg.png \
 
 Inside training, use tensors directly. File export, NumPy conversion and JSON serialization belong outside the hot path.
 
+
+## Printed versus source signal
+
+With `RenderConfig(device_filters=True)` the page shows the recorder-filtered signal: a high-pass (`filter_highpass_hz`, 0.05/0.15/0.5 Hz), a low-pass (`filter_lowpass_hz`, 40/100/150 Hz) and an optional mains notch (`filter_notch_hz`, 0/50/60 Hz). Waveform masks follow the printed trace. `batch.reference` remains the untouched source signal and `batch.metadata["printed_signals"]` holds the printed one, so a digitizer can be trained against either.
