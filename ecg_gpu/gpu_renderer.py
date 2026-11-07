@@ -26,6 +26,7 @@ from .gpu_layouts import LayoutSpec, standard_layouts
 from .gpu_raster import raster_kernels
 from .schema_v05 import LEADS, SPEEDS, GAINS, LAYOUTS
 from .grid_points import GridPointConfig, grid_point_targets, identity_field
+from .convenience import did_you_mean, lead_index
 
 
 def _conditional_visibility(valid, frame_coverage=None):
@@ -324,13 +325,17 @@ class ECGRenderer(nn.Module):
         """Resolve human-readable constants without reading a device tensor."""
         if key=='layout' and isinstance(value,str):
             if value not in self.layout_names:
-                raise ValueError(f'Unknown layout: {value}')
+                raise ValueError(f'Unknown layout: {value}.'+did_you_mean(value,self.layout_names)
+                                 +' List them with ECGRenderer().layout_names')
             return self.layout_names.index(value)
         choices={'surface_mode':SURFACES,'background_type':BACKGROUNDS,'object_shadow':SHADOWS}
         if key in choices and isinstance(value,str):
+            if value not in choices[key]:
+                raise ValueError(f'Unknown {key}: {value!r}. Choose from {list(choices[key])}.'
+                                 +did_you_mean(value,choices[key]))
             return choices[key].index(value)
         if key=='rhythm_leads' and isinstance(value,(list,tuple)) and value and isinstance(value[0],str):
-            return [LEADS.index(name) for name in value]
+            return [lead_index(name) for name in value]
         return value
 
     def sample_parameters(self, batch_size, *, generator=None, photo=True, severity=None):
@@ -712,10 +717,21 @@ class ECGRenderer(nn.Module):
             raise ValueError('Visibility fractions require return_instances=True')
         if stage not in {'image','geometry', 'trace', 'metadata', 'all'}:
             raise ValueError('stage must be image, geometry, trace, metadata or all')
+        if not isinstance(signals, torch.Tensor):
+            raise TypeError(f'Signals must be a torch tensor, got {type(signals).__name__}. '
+                            'Convert arrays with ecg_gpu.prepare_signals(values, lead_names=..., units=...)')
         if signals.ndim != 3 or signals.shape[0] < 1 or signals.shape[1] != 12 or signals.shape[2] < 2:
-            raise ValueError('Signals must have shape [B,12,T], T>=2, in standard lead order')
-        if signals.device != self.device or not signals.is_floating_point():
-            raise ValueError('Floating signals and renderer must be on the same device')
+            hint = ' Add a batch axis with signals[None].' if signals.ndim == 2 and signals.shape[0] == 12 else ''
+            if signals.ndim == 3 and signals.shape[-1] == 12 and signals.shape[1] != 12:
+                hint = ' Channels look last; use signals.transpose(1, 2).'
+            raise ValueError('Signals must have shape [B,12,T], T>=2, in standard lead order; '
+                             f'got {tuple(signals.shape)}.' + hint)
+        if not signals.is_floating_point():
+            raise ValueError(f'Floating signals and renderer must be on the same device; got dtype {signals.dtype}. '
+                             'Use signals.float()')
+        if signals.device != self.device:
+            raise ValueError(f'Floating signals and renderer must be on the same device; signals are on '
+                             f'{signals.device}, renderer on {self.device}. Move the layer once with .to(device)')
         b, _, n = signals.shape
         rates = torch.as_tensor(fs, device=self.device, dtype=torch.float32)
         if rates.ndim > 1 or rates.numel() not in (1, b):
@@ -746,7 +762,9 @@ class ECGRenderer(nn.Module):
         if parameters:
             unknown = set(parameters) - p.keys()
             if unknown:
-                raise ValueError(f'Unknown rendering parameters: {sorted(unknown)}')
+                hints = ''.join(did_you_mean(name, p.keys()) for name in sorted(unknown))
+                raise ValueError(f'Unknown rendering parameters: {sorted(unknown)}.{hints}'
+                                 ' List valid names with ecg_gpu.describe_parameters()')
             for key, value in parameters.items():
                 raw_value = self.resolve_parameter(key,value)
                 value = torch.as_tensor(raw_value, device=self.device)

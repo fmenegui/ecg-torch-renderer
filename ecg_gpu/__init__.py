@@ -20,8 +20,10 @@ from .material_history import MaterialHistory
 from .assets import SceneBank
 from .grid_points import GridPointConfig, grid_point_targets, rasterize_grid_points
 from .grid_point_learning import grid_point_loss, decode_grid_points
+from .convenience import prepare_signals, render_ecg, to_pil, describe_parameters
+from .schema_v05 import LEADS
 
-__version__ = "0.12.0"
+__version__ = "0.13.0"
 
 __all__ = [
     'ECGRenderer',
@@ -66,5 +68,10 @@ __all__ = [
     'rasterize_grid_points',
     'grid_point_loss',
     'decode_grid_points',
+    'prepare_signals',
+    'render_ecg',
+    'to_pil',
+    'describe_parameters',
+    'LEADS',
     '__version__',
 ]

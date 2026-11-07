@@ -61,6 +61,21 @@ Fixed values and distributions become registered buffers. Training calls
 randomize the capture. `.eval()` repeats the base seed. The layer has no
 trainable parameters. Gradients train the downstream image network.
 
+For a quick look outside training, `render_ecg` takes arrays in any lead order
+and unit and returns images in one call:
+
+```python
+from ecg_gpu import render_ecg, to_pil, prepare_signals, describe_parameters
+
+image = render_ecg(values, fs, scenario="phone_photo", seed=0)  # [1,3,768,1024]
+to_pil(image)[0].save("ecg.png")
+signals = prepare_signals(record.p_signal.T, lead_names=record.sig_name)  # WFDB
+describe_parameters()  # every name accepted in parameters=...
+```
+
+Misspelled parameters, layouts, scenarios and lead names raise errors that
+suggest the closest valid names.
+
 ## Input and U-Net target in one forward
 
 ```python

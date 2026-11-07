@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.13.0
+
+- Add exploration and data-preparation helpers in `ecg_gpu.convenience`,
+  exported from the package: `prepare_signals` (arrays in any lead order and
+  mV/uV/V to a `[B,12,T]` mV tensor), `render_ecg` (one-call rendering with an
+  optional capture scenario), `to_pil` and `describe_parameters`. `LEADS` is
+  exported too.
+- Error messages for unknown parameters, layouts, scenarios, surface and
+  background names and lead names now suggest the closest valid names.
+  Signal shape, dtype and device errors report what was received and how to
+  fix it. Non-tensor signals raise `TypeError` instead of `AttributeError`.
+  Original message prefixes are unchanged.
+- `rhythm_leads` accepts lead names in any letter case.
+- `demo_signals` gains optional `heart_rate`, `hrv`, `baseline_wander_mv`,
+  `noise_mv` and `seed`. The defaults reproduce the previous output exactly,
+  and limb-lead identities hold with every option.
+- Record a visual realism assessment of 0.12.0 in
+  `research/REALISM_ASSESSMENT_V0120.md`.
+
 ## 0.12.0
 
 - Add a reproducible grid-detector benchmark (`ecg-grid-benchmark`): patient-

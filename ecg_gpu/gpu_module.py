@@ -8,6 +8,7 @@ from torch import nn
 
 from .gpu_renderer import ECGRenderer, RenderConfig
 from .gpu_parameters import Uniform, Choice, Bernoulli, ParameterSampler, parameter_tensor
+from .convenience import did_you_mean
 
 
 class ECGImageLayer(nn.Module):
@@ -45,7 +46,8 @@ class ECGImageLayer(nn.Module):
         prototypes=self.renderer.sample_parameters(1,generator=torch.Generator(device=self.renderer.device).manual_seed(0))
         for key,value in (parameters or {}).items():
             if key not in prototypes:
-                raise ValueError(f'Unknown rendering parameter: {key}')
+                raise ValueError(f'Unknown rendering parameter: {key}.'+did_you_mean(key,prototypes)
+                                 +' List valid names with ecg_gpu.describe_parameters()')
             if isinstance(value,(Uniform,Choice,Bernoulli)):
                 self.samplers[key]=ParameterSampler(value,prototypes[key],lambda item: self.renderer.resolve_parameter(key,item))
                 continue
