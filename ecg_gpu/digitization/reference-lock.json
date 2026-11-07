@@ -1,0 +1,256 @@
+{
+  "schema_version": 1,
+  "profile": "heng-tang",
+  "upstream": {
+    "heng_dataset_version": 3,
+    "tang_dataset_version": 35,
+    "tang_notebook_version_reviewed": 15,
+    "official_metric_version": 7,
+    "official_metric_ratio_cap": 1000000.0,
+    "dataset_license_metadata": "Unknown, downloaded externally and not redistributed"
+  },
+  "artifacts": [
+    {
+      "path": "heng/640106434-0001.gridpoint_xy.npy",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hengck23/hengck23-demo-submit-physionet/640106434-0001.gridpoint_xy.npy?datasetVersionNumber=3",
+      "format": "bytes",
+      "size": 40256,
+      "sha256": "e695f580bd0de4df2fe2e2ba8c89809af819127b2e5936c2716830f421cef4ad"
+    },
+    {
+      "path": "heng/stage0_common.py",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hengck23/hengck23-demo-submit-physionet/stage0_common.py?datasetVersionNumber=3",
+      "format": "bytes",
+      "size": 7741,
+      "sha256": "b34cf950fc0173c0154466a846db5835ff27aa8540e4e4490eca5f0b1a66fbd2"
+    },
+    {
+      "path": "heng/stage0_model.py",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hengck23/hengck23-demo-submit-physionet/stage0_model.py?datasetVersionNumber=3",
+      "format": "bytes",
+      "size": 6151,
+      "sha256": "0cf35589870cd2a83d440ed3bbc5e503378509086c9023fc05a0d4181a327432"
+    },
+    {
+      "path": "heng/stage1_common.py",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hengck23/hengck23-demo-submit-physionet/stage1_common.py?datasetVersionNumber=3",
+      "format": "bytes",
+      "size": 13933,
+      "sha256": "f2af444fe85214848eda47dc0d2ac115cbc52170baf8899a7cb2156d3bceee71"
+    },
+    {
+      "path": "heng/stage1_model.py",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hengck23/hengck23-demo-submit-physionet/stage1_model.py?datasetVersionNumber=3",
+      "format": "bytes",
+      "size": 7448,
+      "sha256": "5dbbc2d6338329bf5a5357fbb909bc76df0bf9cb1430002e8c16bd27a894b42b"
+    },
+    {
+      "path": "heng/weight/stage0-last.checkpoint.pth",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hengck23/hengck23-demo-submit-physionet/weight%2Fstage0-last.checkpoint.pth?datasetVersionNumber=3",
+      "format": "bytes",
+      "size": 57420817,
+      "sha256": "b7360dfce9c49305b54272cf242e93e5728823f439a8e5ad59c03b073988cfc9"
+    },
+    {
+      "path": "heng/weight/stage1-last.checkpoint.pth",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hengck23/hengck23-demo-submit-physionet/weight%2Fstage1-last.checkpoint.pth?datasetVersionNumber=3",
+      "format": "bytes",
+      "size": 97834657,
+      "sha256": "313f1e5dafdc212977e4586ce118453866830be0fa32664e36054f7f4568a46a"
+    },
+    {
+      "path": "official_metric.py",
+      "url": "https://www.kaggle.com/api/v1/kernels/pull/metric/physionet-ecg-signal-extraction-metric",
+      "format": "kaggle-notebook-python",
+      "size": 9632,
+      "sha256": "2313548daed2fb2219f8b863791915670b25e67cf32988dd75799c3b2ec5c306"
+    },
+    {
+      "path": "third/configs/base.py",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hirotetsu/physionet-data/configs%2Fbase.py?datasetVersionNumber=35",
+      "format": "bytes",
+      "size": 664,
+      "sha256": "6a46869f87147d859d4a92beeac5af6e481f52e9c82d3f53d40fd07b4d814331"
+    },
+    {
+      "path": "third/configs/stage2.py",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hirotetsu/physionet-data/configs%2Fstage2.py?datasetVersionNumber=35",
+      "format": "bytes",
+      "size": 10259,
+      "sha256": "2bdaf9289a19b6acfd9e637de9352601715ce103d03b0d7162c8e75f5340c720"
+    },
+    {
+      "path": "third/models/backbones.py",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hirotetsu/physionet-data/models%2Fbackbones.py?datasetVersionNumber=35",
+      "format": "bytes",
+      "size": 368,
+      "sha256": "d9514d55d3a3ee744d049fd267a6a6a9dbd5541ecbddcae6b216c98dfba36be1"
+    },
+    {
+      "path": "third/models/decoders.py",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hirotetsu/physionet-data/models%2Fdecoders.py?datasetVersionNumber=35",
+      "format": "bytes",
+      "size": 3929,
+      "sha256": "8b3d37616921d1e0738f559b9b87ad6663c25e197956e47367c269e0f31e9ceb"
+    },
+    {
+      "path": "third/models/stage2_net.py",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hirotetsu/physionet-data/models%2Fstage2_net.py?datasetVersionNumber=35",
+      "format": "bytes",
+      "size": 16464,
+      "sha256": "de02a2c0f190bab9407356b5179c67b2b5182bbc82bf041ed7e5adba3597fb6e"
+    },
+    {
+      "path": "third/run15/fold_0/epoch_0024.pth",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hirotetsu/physionet-data/run15%2Ffold_0%2Fepoch_0024.pth?datasetVersionNumber=35",
+      "format": "bytes",
+      "size": 384255298,
+      "sha256": "cfe1e04aadf72177496e801433ce35256f7765759f3d75cd789ab93f341e24a4"
+    },
+    {
+      "path": "third/run15/fold_1/epoch_0023.pth",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hirotetsu/physionet-data/run15%2Ffold_1%2Fepoch_0023.pth?datasetVersionNumber=35",
+      "format": "bytes",
+      "profiles": [
+        "full"
+      ],
+      "size": 384255298,
+      "sha256": "fcd1d37bb411ba1634f2c5a84f207baec7b5257ba5bcdd11c8eb419a359a3c7f"
+    },
+    {
+      "path": "third/run15/fold_2/epoch_0028.pth",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hirotetsu/physionet-data/run15%2Ffold_2%2Fepoch_0028.pth?datasetVersionNumber=35",
+      "format": "bytes",
+      "profiles": [
+        "full"
+      ],
+      "size": 384255298,
+      "sha256": "a04140de0ef8807a40bcbd418e3a4f3e1184d12d8f1b520121bee7a58ff6e989"
+    },
+    {
+      "path": "third/run15/fold_3/epoch_0025.pth",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hirotetsu/physionet-data/run15%2Ffold_3%2Fepoch_0025.pth?datasetVersionNumber=35",
+      "format": "bytes",
+      "profiles": [
+        "full"
+      ],
+      "size": 384255298,
+      "sha256": "9010ffe25d81f549c6b30d4ac04a2ecb0962553b79ccf6aa12bcbeae3cbd92fd"
+    },
+    {
+      "path": "third/run15/fold_4/epoch_0026.pth",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hirotetsu/physionet-data/run15%2Ffold_4%2Fepoch_0026.pth?datasetVersionNumber=35",
+      "format": "bytes",
+      "profiles": [
+        "full"
+      ],
+      "size": 384255298,
+      "sha256": "cb7168fa10751b007efa862dccfaa530fb59222f76237c1f2e477a148c6abcc4"
+    },
+    {
+      "path": "third/run13/fold_0/epoch_0029.pth",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hirotetsu/physionet-data/run13%2Ffold_0%2Fepoch_0029.pth?datasetVersionNumber=35",
+      "format": "bytes",
+      "profiles": [
+        "full"
+      ],
+      "size": 384255298,
+      "sha256": "1299a9080b9af042ad9153c99242916bcc573e3f3e432ef2515c05d3b5f54fb5"
+    },
+    {
+      "path": "third/run13/fold_1/epoch_0032.pth",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hirotetsu/physionet-data/run13%2Ffold_1%2Fepoch_0032.pth?datasetVersionNumber=35",
+      "format": "bytes",
+      "profiles": [
+        "full"
+      ],
+      "size": 384255298,
+      "sha256": "79d94fd0e2b872efd8b700e9fba61fc2067dd55dc9d997cf3124ea423f4c1e6d"
+    },
+    {
+      "path": "third/run13/fold_2/epoch_0030.pth",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hirotetsu/physionet-data/run13%2Ffold_2%2Fepoch_0030.pth?datasetVersionNumber=35",
+      "format": "bytes",
+      "profiles": [
+        "full"
+      ],
+      "size": 384255298,
+      "sha256": "47ebbf3dcf48f9067893232f56f0eb8d28be5060239d37485a473d3e61a4df68"
+    },
+    {
+      "path": "third/run13/fold_3/epoch_0030.pth",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hirotetsu/physionet-data/run13%2Ffold_3%2Fepoch_0030.pth?datasetVersionNumber=35",
+      "format": "bytes",
+      "profiles": [
+        "full"
+      ],
+      "size": 384255298,
+      "sha256": "08bb905078f8c642a511d7880009c071906894d7da4312329bc45d17789c636e"
+    },
+    {
+      "path": "third/run13/fold_4/epoch_0032.pth",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hirotetsu/physionet-data/run13%2Ffold_4%2Fepoch_0032.pth?datasetVersionNumber=35",
+      "format": "bytes",
+      "profiles": [
+        "full"
+      ],
+      "size": 384255298,
+      "sha256": "7769af31e5e3dcca96c7403307fc9ae1394093c64c8a347f7e1a7bce29021864"
+    },
+    {
+      "path": "third/run10/fold_0/epoch_0026.pth",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hirotetsu/physionet-data/run10%2Ffold_0%2Fepoch_0026.pth?datasetVersionNumber=35",
+      "format": "bytes",
+      "profiles": [
+        "full"
+      ],
+      "size": 395985881,
+      "sha256": "d646b06adc14ffbc6a6d1872832fe05147c2e2ed73c7a0e0a92fcd2ce9ad7941"
+    },
+    {
+      "path": "third/run10/fold_1/epoch_0029.pth",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hirotetsu/physionet-data/run10%2Ffold_1%2Fepoch_0029.pth?datasetVersionNumber=35",
+      "format": "bytes",
+      "profiles": [
+        "full"
+      ],
+      "size": 395985881,
+      "sha256": "e529a32cd764cd30ca4da6fe9f374764334dded693fff569262b9caf53a16b52"
+    },
+    {
+      "path": "third/run10/fold_2/epoch_0028.pth",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hirotetsu/physionet-data/run10%2Ffold_2%2Fepoch_0028.pth?datasetVersionNumber=35",
+      "format": "bytes",
+      "profiles": [
+        "full"
+      ],
+      "size": 395985881,
+      "sha256": "96de7e4be54664e2ac04ef2f27872902d17666df7798835e99f7af95b629ff4f"
+    },
+    {
+      "path": "third/run10/fold_3/epoch_0019.pth",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hirotetsu/physionet-data/run10%2Ffold_3%2Fepoch_0019.pth?datasetVersionNumber=35",
+      "format": "bytes",
+      "profiles": [
+        "full"
+      ],
+      "size": 395985881,
+      "sha256": "acf7d6dff01a91523baac38e6ea4d651cf535415edc82b36e282e9932852e76a"
+    },
+    {
+      "path": "third/run10/fold_4/epoch_0028.pth",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hirotetsu/physionet-data/run10%2Ffold_4%2Fepoch_0028.pth?datasetVersionNumber=35",
+      "format": "bytes",
+      "profiles": [
+        "full"
+      ],
+      "size": 395985881,
+      "sha256": "36092bfdf08001527af6bf4b5d82200fdd009193faa2fdb47a7ef460ab02d097"
+    }
+  ],
+  "profiles": {
+    "single": "run15/fold0, no waveform TTA unless explicitly enabled",
+    "full": "5 folds run15 TTA, 5 run13, 5 HRNet run10, weights .5/.3/.2, notebook v15"
+  }
+}

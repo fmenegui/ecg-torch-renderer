@@ -1,0 +1,27 @@
+{
+  "schema": "pm-clock-pre-gpu-validation-v1",
+  "root_tests": {
+    "run": 541,
+    "skipped": 25,
+    "passed": true,
+    "log_sha256": "1f63266e0fed6d37090f80885a1b463c08cd119f76ebb16482997f97053d3fd3"
+  },
+  "reproduction_tests": {
+    "run": 101,
+    "skipped": 0,
+    "passed": true,
+    "pinned_original_source_enabled": true,
+    "log_sha256": "5c08d9ae6429fdeadd596fa524c3b9c8fea942abd4d8815d7f439e7b5f1c3400"
+  },
+  "ruff_changed_code_passed": true,
+  "adverse_gallery": {
+    "cases": 16,
+    "device": "cpu",
+    "visually_inspected": true,
+    "contact_sheet_sha256": "95ab8b8f4c055b6329151874b9751b8b1b4ded2986239ec84955dc288b72b93f"
+  },
+  "gpu_clock_integration_status": "blocked_before_allocation_runpod_account_balance_http_402",
+  "candidate_superiority_established": false,
+  "ruff_repository_code_E_F_passed": true,
+  "read_only_training_status_check": "completed_no_exact_matching_pod_found"
+}

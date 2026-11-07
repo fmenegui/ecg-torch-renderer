@@ -1,0 +1,245 @@
+{
+  "cases": [
+    {
+      "name": "raw-point-1973",
+      "id": "real-04",
+      "source_id": "ptbxl-22",
+      "group_id": "ptbxl-patient-20978.0",
+      "image_sha256": "abacc8ede0dd499c8c489532713aedfa3d96cc4df6b6441a493b7b7a1ec29f58",
+      "predictions": 2092,
+      "metrics": {
+        "images": 1,
+        "tp": 202,
+        "fp": 19,
+        "fn": 32,
+        "precision": 0.9140271493212669,
+        "recall": 0.8632478632478633,
+        "f1": 0.8879120879120879,
+        "median_error_px": 0.46741109316573337,
+        "p95_error_px": 1.2564912971701026,
+        "localization_population": "matched points only"
+      },
+      "annotation_method": "Silver reference: major red profile peaks and local intensity centers. Requires visual review. Not expert gold annotations"
+    },
+    {
+      "name": "raw-point-1973",
+      "id": "real-05",
+      "source_id": "ptbxl-22",
+      "group_id": "ptbxl-patient-20978.0",
+      "image_sha256": "d0b81b0619c6db71472c4aef6e706eb9d25ec509283b4b27939dfefd58c4816e",
+      "predictions": 2031,
+      "metrics": null
+    },
+    {
+      "name": "raw-point-1973",
+      "id": "real-06",
+      "source_id": "ptbxl-22",
+      "group_id": "ptbxl-patient-20978.0",
+      "image_sha256": "4e9ad3b03bbd13f7ef494f1d142726b40879d903bb70c103b6732ab2455ffe60",
+      "predictions": 1679,
+      "metrics": null
+    },
+    {
+      "name": "raw-point-20261021",
+      "id": "real-04",
+      "source_id": "ptbxl-22",
+      "group_id": "ptbxl-patient-20978.0",
+      "image_sha256": "abacc8ede0dd499c8c489532713aedfa3d96cc4df6b6441a493b7b7a1ec29f58",
+      "predictions": 1810,
+      "metrics": {
+        "images": 1,
+        "tp": 65,
+        "fp": 137,
+        "fn": 169,
+        "precision": 0.3217821782178218,
+        "recall": 0.2777777777777778,
+        "f1": 0.2981651376146789,
+        "median_error_px": 0.47323250936805206,
+        "p95_error_px": 1.1138199946711989,
+        "localization_population": "matched points only"
+      },
+      "annotation_method": "Silver reference: major red profile peaks and local intensity centers. Requires visual review. Not expert gold annotations"
+    },
+    {
+      "name": "raw-point-20261021",
+      "id": "real-05",
+      "source_id": "ptbxl-22",
+      "group_id": "ptbxl-patient-20978.0",
+      "image_sha256": "d0b81b0619c6db71472c4aef6e706eb9d25ec509283b4b27939dfefd58c4816e",
+      "predictions": 1893,
+      "metrics": null
+    },
+    {
+      "name": "raw-point-20261021",
+      "id": "real-06",
+      "source_id": "ptbxl-22",
+      "group_id": "ptbxl-patient-20978.0",
+      "image_sha256": "4e9ad3b03bbd13f7ef494f1d142726b40879d903bb70c103b6732ab2455ffe60",
+      "predictions": 1751,
+      "metrics": null
+    },
+    {
+      "name": "contrast-point-1973",
+      "id": "real-04",
+      "source_id": "ptbxl-22",
+      "group_id": "ptbxl-patient-20978.0",
+      "image_sha256": "abacc8ede0dd499c8c489532713aedfa3d96cc4df6b6441a493b7b7a1ec29f58",
+      "predictions": 2273,
+      "metrics": {
+        "images": 1,
+        "tp": 234,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "median_error_px": 0.20162664202980696,
+        "p95_error_px": 0.4295750218222575,
+        "localization_population": "matched points only"
+      },
+      "annotation_method": "Silver reference: major red profile peaks and local intensity centers. Requires visual review. Not expert gold annotations"
+    },
+    {
+      "name": "contrast-point-1973",
+      "id": "real-05",
+      "source_id": "ptbxl-22",
+      "group_id": "ptbxl-patient-20978.0",
+      "image_sha256": "d0b81b0619c6db71472c4aef6e706eb9d25ec509283b4b27939dfefd58c4816e",
+      "predictions": 2084,
+      "metrics": null
+    },
+    {
+      "name": "contrast-point-1973",
+      "id": "real-06",
+      "source_id": "ptbxl-22",
+      "group_id": "ptbxl-patient-20978.0",
+      "image_sha256": "4e9ad3b03bbd13f7ef494f1d142726b40879d903bb70c103b6732ab2455ffe60",
+      "predictions": 1759,
+      "metrics": null
+    },
+    {
+      "name": "contrast-point-20261021",
+      "id": "real-04",
+      "source_id": "ptbxl-22",
+      "group_id": "ptbxl-patient-20978.0",
+      "image_sha256": "abacc8ede0dd499c8c489532713aedfa3d96cc4df6b6441a493b7b7a1ec29f58",
+      "predictions": 2414,
+      "metrics": {
+        "images": 1,
+        "tp": 234,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "median_error_px": 0.19711339321901752,
+        "p95_error_px": 0.413473222605286,
+        "localization_population": "matched points only"
+      },
+      "annotation_method": "Silver reference: major red profile peaks and local intensity centers. Requires visual review. Not expert gold annotations"
+    },
+    {
+      "name": "contrast-point-20261021",
+      "id": "real-05",
+      "source_id": "ptbxl-22",
+      "group_id": "ptbxl-patient-20978.0",
+      "image_sha256": "d0b81b0619c6db71472c4aef6e706eb9d25ec509283b4b27939dfefd58c4816e",
+      "predictions": 2393,
+      "metrics": null
+    },
+    {
+      "name": "contrast-point-20261021",
+      "id": "real-06",
+      "source_id": "ptbxl-22",
+      "group_id": "ptbxl-patient-20978.0",
+      "image_sha256": "4e9ad3b03bbd13f7ef494f1d142726b40879d903bb70c103b6732ab2455ffe60",
+      "predictions": 1874,
+      "metrics": null
+    },
+    {
+      "name": "contrast-global-1973",
+      "id": "real-04",
+      "source_id": "ptbxl-22",
+      "group_id": "ptbxl-patient-20978.0",
+      "image_sha256": "abacc8ede0dd499c8c489532713aedfa3d96cc4df6b6441a493b7b7a1ec29f58",
+      "predictions": 2297,
+      "metrics": {
+        "images": 1,
+        "tp": 234,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "median_error_px": 0.3709566224298071,
+        "p95_error_px": 0.8447407637824451,
+        "localization_population": "matched points only"
+      },
+      "annotation_method": "Silver reference: major red profile peaks and local intensity centers. Requires visual review. Not expert gold annotations"
+    },
+    {
+      "name": "contrast-global-1973",
+      "id": "real-05",
+      "source_id": "ptbxl-22",
+      "group_id": "ptbxl-patient-20978.0",
+      "image_sha256": "d0b81b0619c6db71472c4aef6e706eb9d25ec509283b4b27939dfefd58c4816e",
+      "predictions": 2228,
+      "metrics": null
+    },
+    {
+      "name": "contrast-global-1973",
+      "id": "real-06",
+      "source_id": "ptbxl-22",
+      "group_id": "ptbxl-patient-20978.0",
+      "image_sha256": "4e9ad3b03bbd13f7ef494f1d142726b40879d903bb70c103b6732ab2455ffe60",
+      "predictions": 1774,
+      "metrics": null
+    },
+    {
+      "name": "contrast-global-20261021",
+      "id": "real-04",
+      "source_id": "ptbxl-22",
+      "group_id": "ptbxl-patient-20978.0",
+      "image_sha256": "abacc8ede0dd499c8c489532713aedfa3d96cc4df6b6441a493b7b7a1ec29f58",
+      "predictions": 2337,
+      "metrics": {
+        "images": 1,
+        "tp": 234,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "median_error_px": 0.31824588897206463,
+        "p95_error_px": 0.6099495563511088,
+        "localization_population": "matched points only"
+      },
+      "annotation_method": "Silver reference: major red profile peaks and local intensity centers. Requires visual review. Not expert gold annotations"
+    },
+    {
+      "name": "contrast-global-20261021",
+      "id": "real-05",
+      "source_id": "ptbxl-22",
+      "group_id": "ptbxl-patient-20978.0",
+      "image_sha256": "d0b81b0619c6db71472c4aef6e706eb9d25ec509283b4b27939dfefd58c4816e",
+      "predictions": 2313,
+      "metrics": null
+    },
+    {
+      "name": "contrast-global-20261021",
+      "id": "real-06",
+      "source_id": "ptbxl-22",
+      "group_id": "ptbxl-patient-20978.0",
+      "image_sha256": "4e9ad3b03bbd13f7ef494f1d142726b40879d903bb70c103b6732ab2455ffe60",
+      "predictions": 1780,
+      "metrics": null
+    }
+  ],
+  "limits": [
+    "Exploratory transfer, previously examined physical captures of one synthetic printed ECG",
+    "One complete ROI has automatic silver annotations, not expert gold standard",
+    "Other two images are unannotated, prediction counts are not accuracy",
+    "Matching radius is 1.5 pixels after aspect-preserving resize to 768x512",
+    "No adapted source images or overlays are redistributed"
+  ]
+}

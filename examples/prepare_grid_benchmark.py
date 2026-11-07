@@ -8,11 +8,12 @@ import argparse
 import csv
 import hashlib
 import json
-from pathlib import Path
 import re
+import shutil
 import subprocess
 import sys
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, wait, FIRST_COMPLETED
+from pathlib import Path
 
 import numpy as np
 
@@ -20,7 +21,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from ecg_gpu.schema_v05 import LEADS
 
 
-def prepare(metadata, out, *, train=16, validation=4, test=4, seed=1973):
+def prepare(metadata, out, *, train=16, validation=4, test=4, seed=1973, wfdb_cache=None,
+            excluded_patients=None):
     counts = {'train': train, 'validation': validation, 'test': test}
     if any(type(n) is not int or n < 1 for n in counts.values()):
         raise ValueError('Positive source counts required')
@@ -29,6 +31,8 @@ def prepare(metadata, out, *, train=16, validation=4, test=4, seed=1973):
         raise FileExistsError('Choose a new or empty cohort directory')
     with Path(metadata).open() as stream:
         rows = list(csv.DictReader(stream))
+    excluded = {str(int(float(p))) for p in (excluded_patients or [])}
+    rows = [r for r in rows if str(int(float(r['patient_id']))) not in excluded]
     rng = np.random.default_rng(seed)
     rng.shuffle(rows)
     selected, used = [], set()
@@ -36,8 +40,9 @@ def prepare(metadata, out, *, train=16, validation=4, test=4, seed=1973):
         candidates = [r for r in rows if ('train' if int(r['strat_fold']) <= 8 else 'validation' if int(r['strat_fold']) == 9 else 'test') == split]
         chosen = 0
         for row in candidates:
-            if row['patient_id'] not in used:
-                used.add(row['patient_id'])
+            patient = str(int(float(row['patient_id'])))
+            if patient not in used:
+                used.add(patient)
                 selected.append((row, split))
                 chosen += 1
                 if chosen == count:
@@ -57,11 +62,18 @@ def prepare(metadata, out, *, train=16, validation=4, test=4, seed=1973):
         for suffix in ('.hea', '.dat'):
             path = raw/(Path(stem).name+suffix)
             url = 'https://physionet.org/files/ptb-xl/1.0.3/'+stem+suffix
-            subprocess.run(['curl', '--fail', '--silent', '--show-error', '--max-time', '35',
-                            '--max-filesize', '200000', '-o', str(path), url], check=True, timeout=40)
+            cached = Path(wfdb_cache)/path.name if wfdb_cache is not None else None
+            if cached is not None and cached.is_file():
+                shutil.copy2(cached, path)
+            else:
+                subprocess.run(['curl', '--fail', '--silent', '--show-error', '--retry', '3',
+                                '--connect-timeout', '10', '--max-time', '35',
+                                '--max-filesize', '200000', '-o', str(path), url], check=True, timeout=180)
             paths.append(path)
         lines = paths[0].read_text().splitlines()
-        _, leads, fs, samples = lines[0].split()[:4]
+        record_name, leads, fs, samples = lines[0].split()[:4]
+        if record_name != Path(stem).name:
+            raise ValueError('WFDB header record identity does not match selected source')
         if (int(leads), int(fs), int(samples)) != (12, 100, 1000):
             raise ValueError('Expected 12-lead, 100 Hz, 10-second PTB-XL record')
         values = np.frombuffer(paths[1].read_bytes(), dtype='<i2').reshape(1000, 12).T
@@ -69,7 +81,7 @@ def prepare(metadata, out, *, train=16, validation=4, test=4, seed=1973):
         for index, line in enumerate(lines[1:13]):
             parts = line.split()
             gain = re.fullmatch(r'([0-9.]+)\((-?[0-9]+)\)/mV', parts[2])
-            if parts[1] != '16' or gain is None or parts[-1].upper() != LEADS[index].upper():
+            if parts[0] != Path(stem).name+'.dat' or parts[1] != '16' or gain is None or parts[-1].upper() != LEADS[index].upper():
                 raise ValueError('Unexpected WFDB channel encoding')
             if (values[index, 0] != int(parts[5]) or int(values[index].astype(np.int64).sum()) % 65536 != int(parts[6]) % 65536
                     or (values[index] == -32768).any() or float(gain[1]) <= 0):
@@ -80,8 +92,21 @@ def prepare(metadata, out, *, train=16, validation=4, test=4, seed=1973):
             'header_sha256': hashlib.sha256(paths[0].read_bytes()).hexdigest(),
             'dat_sha256': hashlib.sha256(paths[1].read_bytes()).hexdigest()}
 
-    with ThreadPoolExecutor(6) as pool:
-        downloaded = list(pool.map(download, selected))
+    # Bound queued work. A denied download must not leave the whole cohort
+    # scheduled or retry HTTP 403 responses as if they were transient failures.
+    pool = ThreadPoolExecutor(6)
+    pending, downloaded, cursor = {}, [None]*len(selected), 0
+    try:
+        while cursor < len(selected) or pending:
+            while cursor < len(selected) and len(pending) < 6:
+                pending[pool.submit(download, selected[cursor])] = cursor
+                cursor += 1
+            completed, _ = wait(pending, return_when=FIRST_COMPLETED)
+            for future in completed:
+                index = pending.pop(future)
+                downloaded[index] = future.result()
+    finally:
+        pool.shutdown(wait=True, cancel_futures=True)
     provenance = [item[1] for item in downloaded]
     np.savez_compressed(out/'signals.npz', signals=np.stack([item[0] for item in downloaded]), fs=100.,
         source_ids=np.array([r['source_id'] for r in provenance]), group_ids=np.array([r['group_id'] for r in provenance]),
@@ -90,6 +115,7 @@ def prepare(metadata, out, *, train=16, validation=4, test=4, seed=1973):
         'license': 'CC BY 4.0', 'metadata_sha256': hashlib.sha256(Path(metadata).read_bytes()).hexdigest(),
         'signals_sha256': hashlib.sha256((out/'signals.npz').read_bytes()).hexdigest(),
         'seed': seed, 'counts': counts, 'records': provenance,
+        'excluded_patient_ids': sorted(excluded),
         'signal_processing': 'Original ADC-to-mV conversion only, no physiological augmentation'}
     (out/'sources.json').write_text(json.dumps(report, indent=2)+'\n')
     return report
@@ -99,6 +125,12 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--metadata', type=Path, required=True)
     parser.add_argument('--out', type=Path, required=True)
+    parser.add_argument('--wfdb-cache', type=Path)
+    parser.add_argument('--excluded-patients', type=Path,
+                        help='JSON list of PTB-XL patient IDs excluded before sampling')
     for name, default in (('train', 16), ('validation', 4), ('test', 4), ('seed', 1973)):
         parser.add_argument('--'+name, type=int, default=default)
-    print(json.dumps(prepare(**vars(parser.parse_args()))['counts']))
+    arguments = vars(parser.parse_args())
+    excluded_path = arguments.pop('excluded_patients')
+    arguments['excluded_patients'] = json.loads(excluded_path.read_text()) if excluded_path else None
+    print(json.dumps(prepare(**arguments)['counts']))

@@ -1,0 +1,99 @@
+{
+  "scope": "Conditional known-layout/calibration synthetic diagnostics, not native autonomous digitization.",
+  "cases": 32,
+  "patients": 8,
+  "backends": 2,
+  "source_fs_hz": 100,
+  "aggregation": "Equal patient and backend means. RMSE conditional on observed printed samples.",
+  "bootstrap": "20000 paired patient draws, descriptive, no multiplicity adjustment.",
+  "common_support": "Same printed-instance time samples finite in all three methods.",
+  "recomputed_array_checks": 2484,
+  "methods": {
+    "E5-reference-warp-bilinear": {
+      "coverage": 0.6261991673450007,
+      "coverage_95": {
+        "lower": 0.49794442269268663,
+        "upper": 0.744882516445015,
+        "defined_draws": 20000
+      },
+      "rmse_conditional_mv": 0.49171404922524287,
+      "rmse_defined_cases": 32,
+      "common_coverage": 0.5849273686079242,
+      "common_rmse_mv": 0.4644064780775785,
+      "common_rmse_defined_cases": 32,
+      "case_coverage_min": 0.05452118785452119
+    },
+    "E5-reference-warp-2x2": {
+      "coverage": 0.6239147305119528,
+      "coverage_95": {
+        "lower": 0.49615476091170535,
+        "upper": 0.7423487647445981,
+        "defined_draws": 20000
+      },
+      "rmse_conditional_mv": 0.4935723090173365,
+      "rmse_defined_cases": 32,
+      "common_coverage": 0.5849273686079242,
+      "common_rmse_mv": 0.46385712019065206,
+      "common_rmse_defined_cases": 32,
+      "case_coverage_min": 0.05618952285618952
+    },
+    "E6-regenerated-canonical": {
+      "coverage": 0.8097740846004735,
+      "coverage_95": {
+        "lower": 0.7173259674605161,
+        "upper": 0.8981497618650396,
+        "defined_draws": 20000
+      },
+      "rmse_conditional_mv": 0.0671543960514073,
+      "rmse_defined_cases": 32,
+      "common_coverage": 0.5849273686079242,
+      "common_rmse_mv": 0.05811769931189368,
+      "common_rmse_defined_cases": 32,
+      "case_coverage_min": 0.2171338004671338
+    }
+  },
+  "paired": {
+    "E5-reference-warp-2x2 minus E5-reference-warp-bilinear": {
+      "coverage": {
+        "delta": -0.002284436833047937,
+        "interval_95": {
+          "lower": -0.006000550401592056,
+          "upper": 0.000997525303080879,
+          "defined_draws": 20000
+        }
+      },
+      "common_rmse_mv": {
+        "delta": -0.0005493578869264128,
+        "interval_95": {
+          "lower": -0.0027111105804652966,
+          "upper": 0.0020121720504877563,
+          "defined_draws": 20000
+        }
+      }
+    },
+    "E5-reference-warp-bilinear minus E6-regenerated-canonical": {
+      "coverage": {
+        "delta": -0.1835749172554728,
+        "interval_95": {
+          "lower": -0.2492186860242416,
+          "upper": -0.12319342579759243,
+          "defined_draws": 20000
+        }
+      },
+      "common_rmse_mv": {
+        "delta": 0.4062887787656848,
+        "interval_95": {
+          "lower": 0.06433730719094165,
+          "upper": 0.8539973664073397,
+          "defined_draws": 20000
+        }
+      }
+    }
+  },
+  "reference_field_approximation": {
+    "max_case_p95_mm": 0.044293534275865576,
+    "min_query_coverage": 0.944580078125,
+    "queries_per_case": 4096,
+    "cases_p95_above_0_5_mm": []
+  }
+}

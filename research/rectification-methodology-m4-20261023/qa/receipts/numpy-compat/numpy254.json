@@ -1,0 +1,100 @@
+{
+  "schema": "m4-independent-numpy-compatibility-review-v1",
+  "label": "numpy254",
+  "passed": true,
+  "numpy": "2.5.4",
+  "numpy_path": "/workspace/scratch/a57599a3e70e/m4-numpy25-runtime/numpy/__init__.py",
+  "python": "3.12.14",
+  "test_methods": 26,
+  "historical_float64_cross_triangles": 8204,
+  "cross_bit_mismatches": 0,
+  "source_diff_exactly_the_reviewed_substitution": true,
+  "sources_stable_during_run": true,
+  "historical_approval_receipts_unchanged": true,
+  "source_sha256": {
+    "m4/geometry/geometry_selector.py": "421ebe98bdd9b5c18daf039837297d8592e9fdb4f937b466311033a9f6be7fe0",
+    "m4/sampling/streaming_sampler.py": "b9a7a732533090271455d42fdc3b4784bf299e14f0b4fc82c564fadccc31f503",
+    "m4/sampling/pngio.py": "816c319d8bdd47ef82aff7057a4461d7b2b3249ce95d60a7a7fa3b93b3fd38b1",
+    "m4/sampling/axis_aligned_area.py": "d7b347d7733d91530babf518ab2987c2558b4aebed3b4f37773f6b8fee49cc26",
+    "m4/qa/review_numpy_compatibility.py": "7d64ab15d90b99d36311bcdea4d7e6b44cafd2f9b86c84c930ee080eb7e983d8"
+  },
+  "prior_receipt_sha256": {
+    "independent-component-tests.json": "58f1e175d454d430e33b7b96577d00d7ab90bda0956cd635dfdd0b412ee8cc7e",
+    "independent-axis-area-tests.json": "3f03402b2c4922ab8c66130e4ec6d2054a08e22e2a94e988d696c3810558bec2"
+  },
+  "reference_sha256": "ffd5a97e08ab254b5212abf89c851fa39d72bf931a8e7ce77d1157ee062887f4",
+  "elapsed_seconds": 2.92966602100023,
+  "failures": [],
+  "errors": [],
+  "component_notes": {
+    "shared_edges": {
+      "checked": 173,
+      "two_sided_epsilon_limit_max_mm": 3.726780080196184e-07,
+      "epsilon": 1e-07,
+      "scope": "Finite regular continuous residual construction only."
+    },
+    "scalar_oracle": {
+      "outputs": 12,
+      "max_uint8_difference": 0,
+      "tolerance_reason": "Independent scalar arithmetic can differ at final half-LSB ties. No cv2 reference sampling call."
+    },
+    "streaming": {
+      "max_query_points": 31,
+      "points": 125504,
+      "max_explicit_coordinate_bytes": 1736,
+      "scope": "Explicit owned coordinate arrays only, excludes callbacks/allocator/source/output."
+    },
+    "retained_alias_counterexample": {
+      "source": "65x65 white, column32 black",
+      "inverse": "source_xy=32+32*physical_xy, one output pixel of spacing1",
+      "outputs": {
+        "2": [
+          255,
+          255,
+          255
+        ],
+        "4": [
+          255,
+          255,
+          255
+        ],
+        "8": [
+          255,
+          255,
+          255
+        ]
+      },
+      "exact_encoded_bilinear_area_mean": 247.03125,
+      "exact_boxhold_area_mean": 247.03125,
+      "consequence": "Agreement of2/4/8 finite quadratures is not an accuracy certificate. All erase an observed stroke at32x minification."
+    }
+  },
+  "axis_notes": {
+    "scalar_rectangle_clipping": {
+      "outputs": 8,
+      "output_pixels": 160,
+      "maximum_encoded_mean_difference": 1.2960299500264227e-11,
+      "uint8_pixel_mismatches": 0,
+      "model": "Exact integral of encoded source-cell constant reconstruction, not unknown optical ink."
+    },
+    "retained_counterexample_positive_control": {
+      "encoded_mean": [
+        247.03125,
+        247.03125,
+        247.03125
+      ],
+      "uint8": [
+        247,
+        247,
+        247
+      ],
+      "scope": "Diagonal affine32:1 and source-cell model only."
+    }
+  },
+  "limits": [
+    "Compatibility repair only, not a new methodology or fresh clinical result",
+    "No NumPy API shim, dependency pin or monkeypatch to replace np.cross",
+    "26existing tests include their original PNG failure injections",
+    "Finite IEEE754 parity controls and literal source diff support equivalence, not all possible arrays"
+  ]
+}

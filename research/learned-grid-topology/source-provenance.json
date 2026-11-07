@@ -1,0 +1,232 @@
+{
+  "source": "https://physionet.org/content/ptb-xl/1.0.3/",
+  "citation": "doi:10.1038/s41597-020-0495-6",
+  "license": "CC BY 4.0",
+  "metadata_sha256": "7600de9c1b27d181d850b3c6038a35d7c3ddb6bb33b702e3a20252a6859d216b",
+  "signals_sha256": "b550f383b220488ac94ca477739a9ed308319ae720da7c0f44359b8b29c79e37",
+  "seed": 1973,
+  "counts": {
+    "train": 16,
+    "validation": 4,
+    "test": 4
+  },
+  "records": [
+    {
+      "source_id": "ptbxl-1389",
+      "group_id": "ptbxl-patient-6386.0",
+      "split": "train",
+      "filename_lr": "records100/01000/01389_lr",
+      "strat_fold": 5,
+      "header_sha256": "a9d529353fab25c54fafc197343005cc0c03b0caf686186ace59e58a077a1cb5",
+      "dat_sha256": "10dfc9dbf1c65c0265a29715ae7c29ca92305eab7c50c069b45b93a05881b17d"
+    },
+    {
+      "source_id": "ptbxl-6411",
+      "group_id": "ptbxl-patient-8885.0",
+      "split": "train",
+      "filename_lr": "records100/06000/06411_lr",
+      "strat_fold": 7,
+      "header_sha256": "e78ed778c9ce4bebed9a5c1f5a5d470d2dcfd2ae51dc29e7e70b3ed67ee30173",
+      "dat_sha256": "2411ffae9c0f1d45c32b3c89019fcf79878738d4fd71b55bd8a9edde11c16688"
+    },
+    {
+      "source_id": "ptbxl-19548",
+      "group_id": "ptbxl-patient-17853.0",
+      "split": "train",
+      "filename_lr": "records100/19000/19548_lr",
+      "strat_fold": 1,
+      "header_sha256": "57f7abd96369d964b47cd377863dec76e97fefaa5ee0df583ce8d97ca98cca6d",
+      "dat_sha256": "da37710074f11499c95a401d73658b4a45ba54002c065e169a85e5f074c39f21"
+    },
+    {
+      "source_id": "ptbxl-1662",
+      "group_id": "ptbxl-patient-9960.0",
+      "split": "train",
+      "filename_lr": "records100/01000/01662_lr",
+      "strat_fold": 7,
+      "header_sha256": "e664d742f90739d5c3cd28d33153bb0de489144dc8d96fed4fc78640d5a68950",
+      "dat_sha256": "b6ef43ba4c4de6e42e45dbb13003d50a920f4cca04257cbbd0d150787bebf680"
+    },
+    {
+      "source_id": "ptbxl-13325",
+      "group_id": "ptbxl-patient-10127.0",
+      "split": "train",
+      "filename_lr": "records100/13000/13325_lr",
+      "strat_fold": 1,
+      "header_sha256": "300c65d08041d35b369517e6a0066b6f522fb932f7be81dc51323bf9f55a11e5",
+      "dat_sha256": "b92d4b4b555d7d408c03f59edb6c09833c5bd10bfb78dd7520e437478e8a0a05"
+    },
+    {
+      "source_id": "ptbxl-6408",
+      "group_id": "ptbxl-patient-13892.0",
+      "split": "train",
+      "filename_lr": "records100/06000/06408_lr",
+      "strat_fold": 3,
+      "header_sha256": "0853b2d21b91b95257ecb112edb939b4e2a02353242c9dd404fbc9067d9156d1",
+      "dat_sha256": "47b004d9cc7cbb29905d42a25f1a0236330adf0fe917f4bc0b092d8dd7baadc8"
+    },
+    {
+      "source_id": "ptbxl-5525",
+      "group_id": "ptbxl-patient-17372.0",
+      "split": "train",
+      "filename_lr": "records100/05000/05525_lr",
+      "strat_fold": 3,
+      "header_sha256": "ad4a3124238ecc2afb4e42b5c840725149b1c74dd5458dda37abf53b11d0fa4f",
+      "dat_sha256": "2b9d8cedf040afd1f9a63f6c50b918b2011c6afea13573810c935e18be6b6b40"
+    },
+    {
+      "source_id": "ptbxl-284",
+      "group_id": "ptbxl-patient-3192.0",
+      "split": "train",
+      "filename_lr": "records100/00000/00284_lr",
+      "strat_fold": 3,
+      "header_sha256": "cd712c42df8f92806724c250f8eff80035679f1a324ebce994bcf8c9b9e9dff2",
+      "dat_sha256": "d3bbd1bf347636e8285812a487f0604b26e95388f290164fd2b3f6c531c0a84a"
+    },
+    {
+      "source_id": "ptbxl-4043",
+      "group_id": "ptbxl-patient-4349.0",
+      "split": "train",
+      "filename_lr": "records100/04000/04043_lr",
+      "strat_fold": 3,
+      "header_sha256": "48b8b9f156585c7324f091a30d013e1a818acb6d4fc869a91c6f7ac3a81a9cab",
+      "dat_sha256": "1f4fb740b0b2320310feedc8500c3c38e6233fb2aa592daaeef1fc6ec805c250"
+    },
+    {
+      "source_id": "ptbxl-9328",
+      "group_id": "ptbxl-patient-15080.0",
+      "split": "train",
+      "filename_lr": "records100/09000/09328_lr",
+      "strat_fold": 7,
+      "header_sha256": "f037f503dd73918441923e8d59993f90f9bd89b65a961f10755d9ef980a1f2ce",
+      "dat_sha256": "4009ba7780cf443974abdda4397ff35e910de9507c2eb38a41b2e9b6fb210c28"
+    },
+    {
+      "source_id": "ptbxl-21495",
+      "group_id": "ptbxl-patient-19839.0",
+      "split": "train",
+      "filename_lr": "records100/21000/21495_lr",
+      "strat_fold": 4,
+      "header_sha256": "2fe87996030a6ef87c9c029c30f918dbebeb34296cb27092e9c11abc24af4397",
+      "dat_sha256": "759ccab415114c09560c2dfdeced544c65b6dbb5e9815126278e51dc15675dd1"
+    },
+    {
+      "source_id": "ptbxl-2393",
+      "group_id": "ptbxl-patient-16763.0",
+      "split": "train",
+      "filename_lr": "records100/02000/02393_lr",
+      "strat_fold": 8,
+      "header_sha256": "0c41a091ffd0d5b36fe77c1ea24949bf9c467401e76de3ad61096b624f5b3676",
+      "dat_sha256": "b4af4698b1e6a677a7509c5ee4bc3328394f43cbdb088fb7d62054f006906be8"
+    },
+    {
+      "source_id": "ptbxl-5167",
+      "group_id": "ptbxl-patient-12876.0",
+      "split": "train",
+      "filename_lr": "records100/05000/05167_lr",
+      "strat_fold": 2,
+      "header_sha256": "ad20e7ca90d3ad7ba2d5a195f05bbb81006574a0219875fc8018619707fc9ca3",
+      "dat_sha256": "7fd83fb95003333baf90e41ad976ec85b192306cd0aa59c63fd32d9dd1a9ca0e"
+    },
+    {
+      "source_id": "ptbxl-10864",
+      "group_id": "ptbxl-patient-9190.0",
+      "split": "train",
+      "filename_lr": "records100/10000/10864_lr",
+      "strat_fold": 5,
+      "header_sha256": "9f66a9435390b9d7d7e54eaffcadab2a5fd42b138d668a3fe0c6bc0e6bd48dae",
+      "dat_sha256": "c3b115587bbf48001a019e27dc099273868d483bbe66d678e6428c7ebdc02847"
+    },
+    {
+      "source_id": "ptbxl-9964",
+      "group_id": "ptbxl-patient-8964.0",
+      "split": "train",
+      "filename_lr": "records100/09000/09964_lr",
+      "strat_fold": 5,
+      "header_sha256": "e6de0d7c2dec0dc6c9c59debd7dcc1753ba132ec9bebd6dd15e6b189db927b6a",
+      "dat_sha256": "a36a793127f138ffbed843b4f9407d9f1e8dc1711923963b107653c4178ec9ca"
+    },
+    {
+      "source_id": "ptbxl-3823",
+      "group_id": "ptbxl-patient-3638.0",
+      "split": "train",
+      "filename_lr": "records100/03000/03823_lr",
+      "strat_fold": 5,
+      "header_sha256": "4a5c5a2d5c2ad527937eb4f3f6165f6ca5266d8604c808a2e423721213258673",
+      "dat_sha256": "c57e1da4421751946b70ec8215b18045d1cf7f34fe1607f3d412bdbd1ab75b82"
+    },
+    {
+      "source_id": "ptbxl-13682",
+      "group_id": "ptbxl-patient-19137.0",
+      "split": "validation",
+      "filename_lr": "records100/13000/13682_lr",
+      "strat_fold": 9,
+      "header_sha256": "5b27a44056270027c4f4d464dcee4810078c34454b6555e7926224c2b34f55e6",
+      "dat_sha256": "a43cd20152e8817cf26cccc36de53f7b20b7635ea0cff64fdaac6794a84916d1"
+    },
+    {
+      "source_id": "ptbxl-1502",
+      "group_id": "ptbxl-patient-984.0",
+      "split": "validation",
+      "filename_lr": "records100/01000/01502_lr",
+      "strat_fold": 9,
+      "header_sha256": "183f34976502427770ed35ae3f77f1050341c8c879f2a11743bf80cd064837ae",
+      "dat_sha256": "74cf18bf25374052f5bfe4a8cd9c2c431d7dbaa75635ccd21353663caf89e3d3"
+    },
+    {
+      "source_id": "ptbxl-7408",
+      "group_id": "ptbxl-patient-9068.0",
+      "split": "validation",
+      "filename_lr": "records100/07000/07408_lr",
+      "strat_fold": 9,
+      "header_sha256": "c64ab462379b32f70be01f9ee0ba2963d41c6886b5d99f75a551523236400572",
+      "dat_sha256": "dc978062f777af25b43e52ac343c6caf3e2a7ace22566275bebaf954d6112c78"
+    },
+    {
+      "source_id": "ptbxl-7871",
+      "group_id": "ptbxl-patient-10463.0",
+      "split": "validation",
+      "filename_lr": "records100/07000/07871_lr",
+      "strat_fold": 9,
+      "header_sha256": "a4bb82b5a0f88992bf33108a1ca79ac5fc8d4665a80702b18b1c4dfc777f2010",
+      "dat_sha256": "dbcce776b54bb617c0849a9458ebfd4ae6bb8e8503c698b73e0a7bd5d74cbeb4"
+    },
+    {
+      "source_id": "ptbxl-19334",
+      "group_id": "ptbxl-patient-12971.0",
+      "split": "test",
+      "filename_lr": "records100/19000/19334_lr",
+      "strat_fold": 10,
+      "header_sha256": "43ded95e79cf789e16fa446d46a50d5fc0bfcbf78e6e3e8e44c27cfa2192b9f6",
+      "dat_sha256": "685deb41b7c74d1718670032a5ec02c50aa00af682b284408964ce2e1dca2159"
+    },
+    {
+      "source_id": "ptbxl-14149",
+      "group_id": "ptbxl-patient-15879.0",
+      "split": "test",
+      "filename_lr": "records100/14000/14149_lr",
+      "strat_fold": 10,
+      "header_sha256": "8df28f958c12c9706651980ebeb5c18332898c0917917391cc8e4f1a5ccf3825",
+      "dat_sha256": "1a9e7535aa32d71460c847c63506e9f9848fae36278a01c44997a34f79211bd8"
+    },
+    {
+      "source_id": "ptbxl-12031",
+      "group_id": "ptbxl-patient-504.0",
+      "split": "test",
+      "filename_lr": "records100/12000/12031_lr",
+      "strat_fold": 10,
+      "header_sha256": "974f86ab4a5d1aa160902fd0340cfb6c25b3354583f919cb5e475453d7f7050a",
+      "dat_sha256": "cd2e3814818cb7758018bb480b7d38d043387899e7c059e36c193283be9a5498"
+    },
+    {
+      "source_id": "ptbxl-4893",
+      "group_id": "ptbxl-patient-5052.0",
+      "split": "test",
+      "filename_lr": "records100/04000/04893_lr",
+      "strat_fold": 10,
+      "header_sha256": "bdc3233addb61704b9641a9d22fac2695c1981909b14ddcb919ac3740d4189ac",
+      "dat_sha256": "422b35e8e7dc26efdc5616d628be89d0a67bdfc5802a49ac423a2d45a322b315"
+    }
+  ],
+  "signal_processing": "Original ADC-to-mV conversion only, no physiological augmentation"
+}

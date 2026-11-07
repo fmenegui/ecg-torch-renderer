@@ -1,0 +1,259 @@
+{
+  "decisions": [
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "direct_samples_would_be_lost",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "route": "external_rectification",
+      "direct_finite_samples": 28556,
+      "candidate_finite_samples": 28637,
+      "lost_finite_samples": 375,
+      "new_finite_samples": 456,
+      "image_id": "pm-9-photos_scans"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "excessive_geometric_extrapolation",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "route": "external_rectification",
+      "image_id": "pm-9-photos_samsung"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "layout_identity_not_preserved",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "image_id": "pm-9-photos_bents"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "excessive_geometric_extrapolation",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "route": "external_rectification",
+      "image_id": "pm-29-photos_scans"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "layout_identity_not_preserved",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "image_id": "pm-29-photos_samsung"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "layout_identity_not_preserved",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "image_id": "pm-29-photos_bents"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "excessive_geometric_extrapolation",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "route": "external_rectification",
+      "image_id": "pm-37-photos_scans"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "excessive_geometric_extrapolation",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "route": "external_rectification",
+      "image_id": "pm-37-photos_samsung"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "excessive_geometric_extrapolation",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "route": "external_rectification",
+      "image_id": "pm-37-photos_bents"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "direct_samples_would_be_lost",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "route": "external_rectification",
+      "direct_finite_samples": 26602,
+      "candidate_finite_samples": 23981,
+      "lost_finite_samples": 3807,
+      "new_finite_samples": 1186,
+      "image_id": "pm-53-photos_scans"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "excessive_geometric_extrapolation",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "route": "external_rectification",
+      "image_id": "pm-53-photos_samsung"
+    },
+    {
+      "selected": "direct",
+      "reason": "adaptive_branch_rejected",
+      "detail": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/a16c73e785e3/hybrid-measurements/m7/run/pm-53-photos_bents/m6_then_npj/rectification/full-frame-mesh.npz'",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "reference_used": false,
+      "image_id": "pm-53-photos_bents"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "layout_identity_not_preserved",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "image_id": "pm-69-photos_scans"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "layout_identity_not_preserved",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "image_id": "pm-69-photos_samsung"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "excessive_geometric_extrapolation",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "route": "external_rectification",
+      "image_id": "pm-69-photos_bents"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "excessive_geometric_extrapolation",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "route": "external_rectification",
+      "image_id": "pm-77-photos_scans"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "layout_identity_not_preserved",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "image_id": "pm-77-photos_samsung"
+    },
+    {
+      "selected": "direct",
+      "reason": "adaptive_branch_rejected",
+      "detail": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/a16c73e785e3/hybrid-measurements/m7/run/pm-77-photos_bents/m6_then_npj/rectification/full-frame-mesh.npz'",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "reference_used": false,
+      "image_id": "pm-77-photos_bents"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "layout_identity_not_preserved",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "image_id": "pm-94-photos_scans"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "excessive_geometric_extrapolation",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "route": "external_rectification",
+      "image_id": "pm-94-photos_samsung"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "excessive_geometric_extrapolation",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "route": "external_rectification",
+      "image_id": "pm-94-photos_bents"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "layout_identity_not_preserved",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "image_id": "pm-97-photos_scans"
+    },
+    {
+      "schema": "ecg-selective-decision-v1",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "selected": "direct",
+      "reason": "layout_identity_not_preserved",
+      "reference_used": false,
+      "numeric_support_is_not_accuracy": true,
+      "lead_checks": {},
+      "image_id": "pm-97-photos_samsung"
+    },
+    {
+      "selected": "direct",
+      "reason": "adaptive_branch_rejected",
+      "detail": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/a16c73e785e3/hybrid-measurements/m7/run/pm-97-photos_bents/m6_then_npj/rectification/full-frame-mesh.npz'",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "reference_used": false,
+      "image_id": "pm-97-photos_bents"
+    }
+  ],
+  "all_references_unopened": true
+}

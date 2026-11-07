@@ -1,0 +1,57 @@
+{
+  "cases": [
+    {
+      "case": "offline-flat",
+      "status": "verified",
+      "identity": {
+        "matched_nodes": 1661,
+        "consistent_nodes": 1661,
+        "relative_identity_consistency": 1.0,
+        "matching_uses_truth_for_evaluation_only": true
+      },
+      "detection": {
+        "images": 1,
+        "tp": 1661,
+        "fp": 43,
+        "fn": 44,
+        "precision": 0.9747652582159625,
+        "recall": 0.9741935483870968,
+        "f1": 0.9744793194485186,
+        "median_error_px": 0.43879176824801647,
+        "p95_error_px": 0.9879757281588486,
+        "localization_population": "matched points only"
+      },
+      "truth_not_used_for_inference": true
+    },
+    {
+      "case": "offline-fold",
+      "status": "verified",
+      "identity": {
+        "matched_nodes": 1533,
+        "consistent_nodes": 1533,
+        "relative_identity_consistency": 1.0,
+        "matching_uses_truth_for_evaluation_only": true
+      },
+      "detection": {
+        "images": 1,
+        "tp": 1535,
+        "fp": 190,
+        "fn": 170,
+        "precision": 0.8898550724637682,
+        "recall": 0.9002932551319648,
+        "f1": 0.8950437317784257,
+        "median_error_px": 0.5436196246308944,
+        "p95_error_px": 1.2290085675961677,
+        "localization_population": "matched points only"
+      },
+      "truth_not_used_for_inference": true
+    }
+  ],
+  "signal_extraction_evaluated": false,
+  "matching_radius_native_px": 1.5,
+  "limits": [
+    "Previously examined synthetic probes",
+    "Relative identity is conditional on matched selected nodes",
+    "No waveform recovery or clinical-accuracy claim"
+  ]
+}

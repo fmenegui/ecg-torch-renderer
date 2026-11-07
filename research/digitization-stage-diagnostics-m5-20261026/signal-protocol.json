@@ -1,0 +1,76 @@
+{
+  "schema": "ECG-conditional-signal-diagnostic-v1",
+  "date": "2026-10-26",
+  "cases": [
+    "220288-0",
+    "220288-1",
+    "220288-2",
+    "220288-6",
+    "208777-0",
+    "208777-1",
+    "208777-2",
+    "208777-6",
+    "206852-0",
+    "206852-1",
+    "206852-2",
+    "206852-6",
+    "208114-0",
+    "208114-1",
+    "208114-2",
+    "208114-6",
+    "215864-0",
+    "215864-1",
+    "215864-2",
+    "215864-6",
+    "211723-0",
+    "211723-1",
+    "211723-2",
+    "211723-6",
+    "211855-0",
+    "211855-1",
+    "211855-2",
+    "211855-6",
+    "206056-0",
+    "206056-1",
+    "206056-2",
+    "206056-6"
+  ],
+  "development_only": true,
+  "known_information": [
+    "print layout",
+    "lead labels",
+    "gain",
+    "speed",
+    "baselines",
+    "time windows",
+    "reference geometry"
+  ],
+  "scope": "Conditional extraction, not autonomous ECG digitization or official npj pipeline.",
+  "reference_field_mesh_step_px": 8,
+  "output_size": [
+    704,
+    1024
+  ],
+  "methods": [
+    "E5-reference-warp-bilinear",
+    "E5-reference-warp-2x2",
+    "E6-regenerated-canonical"
+  ],
+  "common_extractor": {
+    "segmentation_weight_sha256": "17fe7071ef270102631306127262fc08c250d79d4e3aeb572ab1719dd34d320b",
+    "segmentation_source_sha256": "549a06ed70eb1bc04a833c3fc0ec71f3cb46ba3e9fe6ad08262fd9dcd87b55a2",
+    "signal_class": 2,
+    "threshold": 0.15,
+    "ambiguity_ratio": 0.95,
+    "roi_half_cell_height": 0.44,
+    "no_gap_filling": true,
+    "no_time_DC_gain_alignment": true
+  },
+  "limitations": [
+    "E5 inverse is a validated piecewise-affine approximation of the saved dense field, not exact analytic geometry.",
+    "E5/E6 difference includes capture damage, visibility, resampling and extractor transfer.",
+    "E6 is a new canonical rendering with replayed print parameters, not original measured camera truth.",
+    "Fixed 2x2 quadrature is an experimental arm, not a preservation guarantee."
+  ],
+  "code_sha256": "53b762c64151d8a9060b5ea5479ab8256edcc84b418f3b9e6a914490ddf319ef"
+}

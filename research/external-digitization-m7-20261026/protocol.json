@@ -1,0 +1,73 @@
+{
+  "schema": "external-m7-protocol-v1",
+  "status": "frozen_before_external_result_inspection",
+  "date": "2026-10-26",
+  "patients": 8,
+  "images": 24,
+  "arms": [
+    "npj_native",
+    "text_then_npj",
+    "m6_then_npj"
+  ],
+  "input": "Identical original RGB. No reference waveform, true layout, lead labels, geometry or per-image gain provided to inference.",
+  "fixed_conventions": "10 seconds at 500 Hz, 10 mm/mV and 25 mm/s. Dataset source supports these conventions. Not an evaluation of variable speed or gain recognition.",
+  "predeclared_primary": [
+    "Patient-macro fraction of finite recovered printed samples",
+    "Patient-macro raw all-printed NRMSE, with zero scoring penalty for missing samples"
+  ],
+  "comparisons": [
+    "text_then_npj - npj_native",
+    "m6_then_npj - npj_native",
+    "m6_then_npj - text_then_npj"
+  ],
+  "alignment_secondary": {
+    "radius_seconds": 0.1,
+    "dc": "separate mean removal",
+    "amplitude_fit": false,
+    "minimum_original_printed_coverage": 0.9
+  },
+  "coverage_failure": "Expected lead with <90% finite printed samples. Engineering threshold, not clinical acceptance.",
+  "zero_missing": "Score-only zero penalty, never saved as a successful reconstructed waveform. Coverage and missing-lead counts always reported.",
+  "secondary": [
+    "Per-lead raw RMSE/PCC/SNR",
+    "Per-lead bounded aligned RMSE/PCC/SNR",
+    "all scheduled exception/failure/empty outputs",
+    "condition/layout strata",
+    "exact common-support errors"
+  ],
+  "aggregation": "First average images within each patient, then patients. Do not treat 24 captures as 24 patients.",
+  "uncertainty": "Paired patient bootstrap 20000 resamples seed 20261026. Descriptive development pilot intervals, no confirmatory significance claim.",
+  "promotion_rule": "No replacement of existing defaults in this pilot. Report coverage and all-printed error tradeoffs.",
+  "cpu": {
+    "threads": 2,
+    "native_max_side": 1500,
+    "device": "cpu",
+    "precision": "float32"
+  },
+  "native": "Unmodified pinned Open-ECG-Digitizer, generic preset, all-layout catalogue, dewarping disabled as published, no per-image configuration selection.",
+  "our_preprocessor": {
+    "profile": "banding",
+    "organizer": "baseline",
+    "page_orientation": "text",
+    "pixels_per_mm": 4,
+    "refinement_strength": 0
+  },
+  "exact_rgb_cache": "Reusing native predictions only for identical decoded RGB bytes and shape, same model/config/seed. Cache hits explicitly reported. Timing is pilot execution cost, not independent deployment latency.",
+  "preflight": "Previously used/excluded source LPAE_12629_hr scan used for dependency and CPU check.",
+  "setup_attempt": "A wrong working-directory path prevented the first protocol-file write while the shell continued into the scheduled runner. The protocol file was completed before inspecting any outputs, with no setting changes. The running output directory was briefly renamed and then restored. The runner continues, retaining every case and all measurements. This is a development pilot, not a preregistered prospective trial.",
+  "limitations": [
+    "Unknown overlap of external PTB-XL waveforms with upstream training",
+    "External capture source, not an unseen hospital/manufacturer guarantee",
+    "Four selected single-page layouts, three physical conditions, eight patients",
+    "Commercial PM product and full Kaggle ensemble not executed",
+    "Source ZIP has 6600 page rows versus 6000 ECG-condition entries, multipage records excluded",
+    "Whole 33.9 GB archive checksum not verified, selected member CRC and SHA checked"
+  ],
+  "manifest_sha256": "f556d6477ecc42e1bc2bdf455fcdf97501faa877861103cf455007a681ff8a34",
+  "source_files_sha256": {
+    "ecg_gpu/digitization/external_evaluation.py": "c96fdf532d8c2a08bdd15cdf51879cc55ef34d2e3e74017c696ed37691d8fb1c",
+    "examples/run_external_digitization.py": "a6a6b0c214593bba456afbffe3ee58ffdf09a769bbcba46c251f81c8c3d6ca2f",
+    "examples/prepare_pm_ecg_external.py": "add9413ab4d8005cd040ec107d9f432ec0762db6ae758a4f66759ef9ce9a34ad"
+  },
+  "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8"
+}

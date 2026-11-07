@@ -1,0 +1,87 @@
+{
+  "schema": "hybrid-validation-v1",
+  "validated_at_utc": "2026-10-30T15:25:50.874984+00:00",
+  "library_suite": {
+    "status": "completed",
+    "scheduled_tests": 523,
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "started": 1793373798.0776901,
+    "tests_run": 523,
+    "failures": 0,
+    "errors": 0,
+    "skips": 25,
+    "successful": true,
+    "seconds": 74.27503609657288
+  },
+  "reproduction_suite": {
+    "tests_run": 62,
+    "failures": 0,
+    "errors": 0,
+    "native_pinned_source_tests_enabled": true,
+    "complete_log_sha256": "7f65d38f37bb9d6c074b426d3d8c86b4ad1989b808354f5187fb6cd147f4530c"
+  },
+  "focused_new_contracts": {
+    "tests_run": 30,
+    "failures": 0,
+    "scope": "18 selector, 6 adaptive sampling, 2 grid adapter, 4 reproduction pipeline and recovery controls"
+  },
+  "lint": "E,F on digitizer, reproductions and hybrid scripts; E9,F63,F7,F82 over the full library/tests/examples passed",
+  "cpu_native_cli_smoke": {
+    "schema": "hybrid-digitizer-cli-v1",
+    "image_sha256": "980def1783fb599ac52f7e06c7ad22f0a5b3e4242ecf5f442222fbcdd4a4a469",
+    "signal_sha256": "aefbf7c250037de01daa5f15f1051ab884e665c0b70e90c1e300eb57af639b9c",
+    "fs": 500.0,
+    "samples": 5000,
+    "decision": {
+      "selected": "direct",
+      "reason": "no_rectifier",
+      "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+      "reference_used": false,
+      "source_id": "c848b219b90ee98429c8e92824fd861fb8b44aba66badb0e43fc63a3b0128d0b"
+    },
+    "finite_output_fraction": 0.4759333333333333,
+    "wall_seconds_including_branches": 20.058547688000544
+  },
+  "cuda_on_local_host_available": false,
+  "adverse_capture_gallery": {
+    "cases": 16,
+    "device": "cpu",
+    "contact_sheet_sha256": "95ab8b8f4c055b6329151874b9751b8b1b4ded2986239ec84955dc288b72b93f",
+    "visually_inspected": true,
+    "visual_findings": "All 16 labeled multi-layout captures render with the expected paper/grid/waveform, folds, tears, occlusions, low light and thermal damage. This is a procedural regression gallery, not a photographic-realism or digitizer-accuracy benchmark."
+  },
+  "source_sha256": {
+    "ecg_gpu/digitization/__init__.py": "57d46925bafd1783d4dd798b8ff18b17aa643d0e7f03ca7bf1e7cd99bffffe6e",
+    "ecg_gpu/digitization/adaptive_sampling.py": "84ce9fed2bcbbd5f1a8f00571d70e0a959be609fee6402a27e17d5cb17de857c",
+    "ecg_gpu/digitization/artifacts.py": "dc2abfaacbd75ea892a36a6ff654927fe2401a2dd044431f0655c66dadfe6a7b",
+    "ecg_gpu/digitization/cell_mesh.py": "566253fba786de84475f00d593b80876b3869499d3703c18a71c9a5396cf37d6",
+    "ecg_gpu/digitization/cli.py": "09404973932a40f00419edfba2bfff2d34d54ea81cc8bbf82275fd0d21cb608e",
+    "ecg_gpu/digitization/complete_rectifier.py": "0c3e6025332eaf582a4f3d57218cbf7ed0bdabad1efc7e7503cce3e9646de2da",
+    "ecg_gpu/digitization/consensus_lattice.py": "78f5094c14a9b6105617e24b4d1b08ac7d2cef7d8b0d72f9b7cf22f1ce7ad129",
+    "ecg_gpu/digitization/cycle_lattice.py": "0629e8e33c05d1485a77d17339f4c0041474af6edea0c6d089ce352c7ced10a6",
+    "ecg_gpu/digitization/data.py": "ef7f06d37a60ce03ef933c126cd872fd3c4e83941ccfa8e0be948366e28318ad",
+    "ecg_gpu/digitization/denoising_grid.py": "e79e6cc0c09c84319b2a6639a8c8e900f03ef0ddce118672ca7376ff77b0e153",
+    "ecg_gpu/digitization/evaluation.py": "42f99ed8a3901abfffd228155e2bcfccb2a40873c8dc1dddfe84dc9f87cdce86",
+    "ecg_gpu/digitization/external_evaluation.py": "c96fdf532d8c2a08bdd15cdf51879cc55ef34d2e3e74017c696ed37691d8fb1c",
+    "ecg_gpu/digitization/field_rectifier.py": "8ddb14a5bef4c2f9a8c3d6b9bc946b27e861b2aaed4af7cc8ec5c352b254f88e",
+    "ecg_gpu/digitization/frame_mesh.py": "89dc2e121bbdfca6c5b8eaa48a0f021375a2bd5c1e802c8c697f929ade733205",
+    "ecg_gpu/digitization/geometry.py": "bcce7ac0145eae35f77dcfe0090c63339ff743a6351aa4f4992d0791a727cba6",
+    "ecg_gpu/digitization/grid_backend.py": "859ff0f90bda72b963d105b6f434f01d13a0b6ac471679d3246f04d8b518c01e",
+    "ecg_gpu/digitization/hybrid_cli.py": "7a199da8ae5a0cc2e0a3b51c9b7b11368e17fe17d7c5b25e80927c731d61a3f7",
+    "ecg_gpu/digitization/hybrid_rectifier.py": "da293ab036023e7542f7a69cdf689c061e9cebdd13f6eafc490fc2d0bf1b2c06",
+    "ecg_gpu/digitization/lattice.py": "48a3e69fe00c5cfd5319c326ee83a97cf368fe4f879c82f62f7f7450e5a689b6",
+    "ecg_gpu/digitization/local_cells.py": "18ca49ff9c5c37ee2a67037fcc0e0fecbfa98939854e6fd1d97a5b164777109c",
+    "ecg_gpu/digitization/native_detection.py": "1da500a4445407338145c919710a16902cac7d3081ae08491076b742f684ee62",
+    "ecg_gpu/digitization/npj_backend.py": "53d9d7c49ec16579429ed3fe36f590848e9be3f0de54d872c62e3bd68bc44eb6",
+    "ecg_gpu/digitization/observation.py": "a841e312e2b2cb60aa818870d84989b1e0c052ed5c55f863b0de7d921af02607",
+    "ecg_gpu/digitization/page_orientation.py": "2b39ce5dbe5a9f6e15d1077e3cd40f781ecdc344ee1f73377c2abc5e568a4e1f",
+    "ecg_gpu/digitization/reference.py": "766c5e2e2d84d4821e78e48d2c62b46894704051eb0f368a90ac2d051a3c4acb",
+    "ecg_gpu/digitization/regions.py": "15edcc6cd2c6bdd6db291c6ac30014486c576f995255285e90e92a4e153bb911",
+    "ecg_gpu/digitization/robust_refinement.py": "0b2d2f15ba3f86e63d7532a47d6f87bccded1b5f65ac56499f2d6ed765241ced",
+    "ecg_gpu/digitization/runner.py": "9f986bf4ddb750be8f75114ed4c625f1af27b4b3ddbf3b1800679bc7db7bda48",
+    "ecg_gpu/digitization/selective.py": "2bf84453a7a84c1de69cb598d5f140aabd953d3c821eec5233d4dcebccf0253c",
+    "ecg_gpu/digitization/signals.py": "444c98853c0b0121092ace7b8738efabd671dbea627153668549614cc7550f5a",
+    "ecg_gpu/digitization/support.py": "54e45d2789009a91829f3fac1170c18e2eab873e98d8eaf9b0ead590c5ae9a50"
+  },
+  "first_full_suite_log": "Initial process returned zero but its log lacked a final summary. Not counted as complete. A repeat with an independent scheduled/run count receipt completed all 523 tests."
+}

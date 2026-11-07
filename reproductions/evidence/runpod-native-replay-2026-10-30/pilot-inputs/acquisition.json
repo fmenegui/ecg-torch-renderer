@@ -1,0 +1,24 @@
+{
+  "schema": "public-pilot-acquisition-v1",
+  "dataset": "physionet/ecg-image-database",
+  "version": 2,
+  "files": [
+    {
+      "source": "D0/D0_000022/D0_000022.dat",
+      "bytes": 120000,
+      "sha256": "844b98566196a53b2fc004a885bb43967afb60026c6e3d6d8a0f9c4728c00ac0"
+    },
+    {
+      "source": "D0/D0_000022/D0_000022.hea",
+      "bytes": 631,
+      "sha256": "eb708ee0d53321cfd1cea94eb0829b4fc272202d4739c367911aa0c55d269a51"
+    },
+    {
+      "source": "D0/D0_000022/D0_000022_02.png",
+      "bytes": 372153,
+      "sha256": "d6937484744c62aab24d627707aa7a056216671909e4c57d0bc9c5df3761625d"
+    }
+  ],
+  "digests": "first-observed and retained, original publisher SHA256 not supplied",
+  "cohort": "two source records, development pilot, not an exact article cohort"
+}

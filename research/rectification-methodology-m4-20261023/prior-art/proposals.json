@@ -1,0 +1,255 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-23",
+  "status": "research_proposals_not_executed",
+  "scope": "Prior-art and architecture proposals. No production or frozen M3 modifications.",
+  "recommendation": {
+    "label": "to_test",
+    "architecture": "Joint point-and-line evidence, explicit identity/pitch/orientation hypotheses, regularized hierarchy of geometric models, original-RGB footprint sampling and separate calibrated geometry support.",
+    "ordering": ["A01", "A02", "A05", "A03", "A04", "A06", "A07", "A08", "A09", "A10"],
+    "no_superiority_claim": true,
+    "no_novelty_claim": true
+  },
+  "proposals": [
+    {
+      "id": "A01",
+      "title": "Joint integer decoder with pitch and skipped-line hypotheses",
+      "label": "to_test",
+      "priority": "P0",
+      "references": ["P2", "K1", "N1"],
+      "documented_precursor": "Directional cycles, semantic IDs and major/minor periodicity are already disclosed mechanisms.",
+      "hypothesis": "Representing edge jumps as integers and keeping pitch hypotheses will reduce coherent 2x/5x scale failures without discarding physically correct sparse grids.",
+      "design": [
+        "Separate local position p_i and covariance from integer row/column n_i, major/minor class and physical pitch q.",
+        "Allow candidate jumps delta_ij in a bounded integer set, including skipped rows and columns.",
+        "Require cycle-integrable IDs and reciprocal compatibility, but do not use these as a scale certificate.",
+        "Score hypotheses with observed intervening lines and major/minor evidence, plus independent calibration cues when present.",
+        "Return multiple hypotheses or unresolved unit when the image is not identifying.",
+        "Use bounded candidate graphs and prune by an input-only beam. Report runtime and retained hypotheses."
+      ],
+      "failure_cases": ["F01", "F02", "F03", "F04", "F05", "F20"],
+      "fair_ablations": ["M2 fixed consecutive IDs", "integer jumps only", "jumps plus line evidence", "jumps plus independent scale cue"],
+      "acceptance": "More correct supported physical queries at a predeclared bound on wrong coverage and catastrophic scale error, on new held-out cases. Ambiguity controls must not receive confident incompatible units.",
+      "risks": ["Hypothesis growth", "Systematically wrong semantic class", "All candidates can share a wrong detector prior"],
+      "not_sufficient": "Cycles alone cannot resolve an observationally identical harmonic alias."
+    },
+    {
+      "id": "A02",
+      "title": "Independent semantic orientation and component phase",
+      "label": "to_test",
+      "priority": "P0",
+      "references": ["K1", "D4", "D3"],
+      "hypothesis": "Text orientation and verified layout cues can resolve D4 without gold, while explicit local gauges preserve useful disconnected geometry.",
+      "design": [
+        "Estimate D4 using readable text, lead names and metadata. Keep semantic orientation separate from lattice axis selection.",
+        "Do not fit a universal homography through lead-marker positions unless the exact metric template is established.",
+        "Retain every plausible grid component with its local row/column gauge.",
+        "Infer relative integer offset only from observed line continuation or a separately scored global/template hypothesis.",
+        "Export orientation_resolved and component_phase_resolved independently from map numerical validity."
+      ],
+      "failure_cases": ["F01", "F06", "F07", "F08", "F21"],
+      "fair_ablations": ["grid only", "grid plus text orientation", "grid plus cataloged template", "metadata-assisted track"],
+      "acceptance": "Correct orientation on observed semantic evidence, explicit ambiguity on symmetric evidence, and no silent component deletion or fabricated phase.",
+      "risks": ["OCR confidently misreads labels", "Unknown layouts resemble known layouts", "Photocopy reflection and image rotation combine"],
+      "not_sufficient": "A positive determinant cannot choose clinical direction."
+    },
+    {
+      "id": "A03",
+      "title": "Dual-family line evidence with original-resolution subpixel localization",
+      "label": "to_test",
+      "priority": "P0_P1",
+      "references": ["D6", "C1", "P2"],
+      "hypothesis": "Grid-line geometry and anisotropic localization improve association and physical accuracy over point heatmap centroids alone.",
+      "design": [
+        "Predict line families, intersection evidence and major/minor class in an economical-resolution frontend.",
+        "Refine crossing positions using patches from original RGB or grid probability at original coordinates.",
+        "Compare intensity centroids, robust local two-line intersections and learned offsets under identical downstream decoding.",
+        "Estimate or learn anisotropic localization covariance and retain association/pitch uncertainty separately.",
+        "Compare discrete line instances against continuous two-phase fields with anchored phase unwrapping.",
+        "Reserve whole line segments for independent geometric checks."
+      ],
+      "failure_cases": ["F04", "F09", "F10", "F11", "F12", "F22"],
+      "fair_ablations": ["point only", "line only", "point plus line", "each localizer at identical detector and topology", "same compute budget"],
+      "acceptance": "Lower independently measured source-coordinate bias and mm error, with reliability curves stratified by angle, blur and scale. No improvement credited solely to more output resolution.",
+      "risks": ["Heatmap resizing creates bias", "Trace overlaps grid", "Phase slips at occlusion", "A covariance model can miss systematic bias"],
+      "not_sufficient": "Subpixel precision does not imply correct row/column ID."
+    },
+    {
+      "id": "A04",
+      "title": "Regularized projective-residual model hierarchy with shared edges",
+      "label": "to_test",
+      "priority": "P1",
+      "references": ["D1", "D8", "N1"],
+      "hypothesis": "A residual that can shrink to zero will preserve planar denoising while allowing real nonplanar corrections.",
+      "design": [
+        "Compare H alone, current mesh, continuous T composed after H, and shared-curved-edge interpolation in the H-normalized domain.",
+        "Use weights derived from localization covariance, robust residual penalties and a declared residual regularizer.",
+        "Remove redundant affine/projective residual modes or otherwise fix the H/residual gauge.",
+        "Keep one forward/inverse representation with horizon, conditioning, fold and overlap checks.",
+        "Choose complexity using held-out line or region evidence. Never use per-image gold model selection.",
+        "Allow a crease discontinuity in derivatives when supported. Do not require global C1.",
+        "Retain all M3 negative controls, including noisy plane and coherent corruption."
+      ],
+      "failure_cases": ["F03", "F08", "F13", "F14", "F15", "F16", "F17"],
+      "fair_ablations": ["global weighted H", "M2 PWA", "interpolating residual", "regularized residual", "shared curved edges", "same observations and IDs"],
+      "acceptance": "Exact projective planar limit and C0 contracts, then improved G/W tail tradeoff across independently specified noise and nonplanarity. No universal promotion from lower average RMSE.",
+      "risks": ["Regularizer chosen from test results", "Flexible map fits wrong IDs", "Warp selection uncertainty ignored", "Inverse failures hidden by support erosion"],
+      "not_sufficient": "Held-out nodes with the same coherent wrong IDs cannot certify absolute scale."
+    },
+    {
+      "id": "A05",
+      "title": "Content-preserving canvas and provenance independent of grid evidence",
+      "label": "to_test",
+      "priority": "P0",
+      "references": ["D3", "P4"],
+      "hypothesis": "Separating content, canvas, sampling validity and metric evidence prevents avoidable deletion while keeping geometry claims honest.",
+      "design": [
+        "Never multiply original RGB by the grid confidence mask.",
+        "Compute canvas from visible paper/content and candidate mapping, not only detected grid bounding box.",
+        "Represent observed support, inferred holes, extrapolated margins, unresolved phase and occlusion as different states.",
+        "For nonidentifiable regions, retain the original image and declare partial geometry rather than fill valid coordinates with sentinel zero.",
+        "Audit the actual delivered RGB for crop, out-of-bounds remap, explicit zero write and sampling-contrast loss.",
+        "Do not count original preservation as completed rectification."
+      ],
+      "failure_cases": ["F07", "F08", "F18", "F19", "F23", "F24"],
+      "fair_ablations": ["current output", "same map with expanded canvas", "same map with provenance-only geometry mask", "identity-map content control"],
+      "acceptance": "All visible source markers in the declared paper domain remain accounted for. Unobserved geometric claims remain explicitly unsupported. No increase in correct coverage is created by changing denominator.",
+      "risks": ["Larger canvas dilutes averages", "Inaccurate extrapolation moves content off canvas", "A fallback is mistaken for successful warp"],
+      "not_sufficient": "Keeping the input file does not by itself prove that the delivered rectified view preserved content."
+    },
+    {
+      "id": "A06",
+      "title": "Original-RGB footprint sampling and physiology-preserving objectives",
+      "label": "to_test",
+      "priority": "P1",
+      "references": ["D5", "D7", "P3"],
+      "hypothesis": "Composed source sampling with anisotropic footprint integration reduces thin-trace loss without generating waveform pixels.",
+      "design": [
+        "Use restored/normalized images only as detector inputs and retain original RGB for final sampling.",
+        "Compose all geometric transforms into one map before RGB resampling.",
+        "Select adaptive tiled sampling from local Jacobian singular values and the source footprint.",
+        "Evaluate linear-light versus coded-RGB averaging separately if a radiometric claim is needed.",
+        "Use known grid/text straightness as geometric evidence, but preserve the original curvature of ECG traces.",
+        "If studying coordinate diffusion, sample original RGB using its map and audit all geometric failures. Do not treat generated map variability as calibrated error."
+      ],
+      "failure_cases": ["F09", "F18", "F19", "F22", "F23"],
+      "fair_ablations": ["bilinear point", "tiled footprint integration", "same exact map and output scale", "native comparator retained unchanged"],
+      "acceptance": "Better thin-trace/spike energy retention at fixed geometry, with bounded blur and runtime. Must retain M3 broad-line and phase controls.",
+      "risks": ["More integration blurs useful high frequencies", "Wrong map dominates sampling gain", "sRGB and linear-light results conflated"],
+      "not_sufficient": "Higher pixels/mm cannot recover information destroyed by an earlier resize or by capture."
+    },
+    {
+      "id": "A07",
+      "title": "Metric physical surface candidate with explicit crease and camera model",
+      "label": "to_test",
+      "priority": "P2_research",
+      "references": ["D8", "D2", "D9"],
+      "hypothesis": "A developable surface prior can improve physically plausible completion and crease localization when line evidence is sparse.",
+      "design": [
+        "Model material coordinates, 3D sheet and camera projection jointly, including a lens hypothesis when needed.",
+        "Penalize metric stretch in visible regions and allow normals to jump on explicit creases.",
+        "Use a learned coarse surface only as initialization/prior, then fit observed grid evidence.",
+        "Represent occlusion and visibility instead of forcing every material point into a single bijection.",
+        "Retain flat H and continuous 2D residual as simpler competitors."
+      ],
+      "failure_cases": ["F08", "F14", "F15", "F16", "F17", "F24"],
+      "fair_ablations": ["2D regularized residual", "3D smooth surface", "3D crease surface", "known versus unknown camera track"],
+      "acceptance": "Improved physical-coordinate accuracy on unseen 3D geometries and real captures with independent reference. Hidden regions must remain unobserved.",
+      "risks": ["Monocular nonidentifiability", "Paper stretch or printer deformation violates isometry", "Camera and surface distortion compensate each other", "Optimization cost"],
+      "not_sufficient": "A visually plausible or developable fitted surface need not be the true hidden surface."
+    },
+    {
+      "id": "A08",
+      "title": "Independent real and physical-reference evaluation",
+      "label": "to_test",
+      "priority": "P1_P2",
+      "references": ["D2", "D9", "E1"],
+      "hypothesis": "Independent physical geometry and real invisible-reference captures expose failures masked by matching renderer priors.",
+      "design": [
+        "Keep M3 retrospective only and reserve new patients, physical geometries, acquisition devices and texture/layout sources.",
+        "Use a separately implemented physical camera/surface reference and audit metric preservation.",
+        "Consider invisible-reference real capture inspired by UVDoc, with independently measured motion and localization error.",
+        "Deduplicate ECG-image-database, PM-ECG-ID and PTB-XL-derived datasets by original ECG/patient and capture lineage.",
+        "Use modest, stratified physical samples rather than downloading an entire multi-terabyte dataset without a clear experimental need."
+      ],
+      "failure_cases": ["F04", "F09", "F13", "F14", "F15", "F16", "F17", "F22"],
+      "fair_ablations": ["same texture across geometry split", "unseen texture and geometry", "independent camera", "real invisible-reference subset"],
+      "acceptance": "Frozen protocol, hash manifest, independent reference error budget and complete saved outputs. Report results by source and failure family.",
+      "risks": ["Physical-reference motion", "Calibration pattern leaks into normal image", "Texture split still shares patient", "Synthetic ground truth shares implementation with candidate"],
+      "not_sufficient": "A new publication date does not make an old dataset an unseen holdout."
+    },
+    {
+      "id": "A09",
+      "title": "Reliability calibrated by failure cause and support regime",
+      "label": "to_test",
+      "priority": "P1_P2",
+      "references": ["C1", "P4"],
+      "hypothesis": "Separate uncertainty components yield better input-only abstention than detector score or warp smoothness alone.",
+      "design": [
+        "Keep localization, association, unit, orientation, model-selection and extrapolation uncertainty distinct.",
+        "Predict or calibrate errors using independent development groups and source-stratified reliability diagrams.",
+        "Evaluate risk versus returned coverage at a fixed paper-query denominator.",
+        "Use whole image/patient groups for intervals and threshold calibration. Do not count pixels as independent observations.",
+        "Expose out-of-support states for unknown layouts, camera artifacts and ambiguous scale."
+      ],
+      "failure_cases": ["F01", "F02", "F06", "F08", "F10", "F12", "F20", "F21"],
+      "fair_ablations": ["detector score", "cycle score", "model residual score", "combined calibrated policy"],
+      "acceptance": "Wrong coverage and catastrophic error calibrated on held-out source groups, with appropriate uncertainty and no hidden zero-coverage success.",
+      "risks": ["Out-of-distribution guarantees overstated", "Correlated pixels cause false certainty", "Thresholds tuned from test results"],
+      "not_sufficient": "A calibrated score on one population is not a universal certificate under arbitrary domain shift."
+    },
+    {
+      "id": "A10",
+      "title": "Authentic comparison contract and bounded claims",
+      "label": "to_test",
+      "priority": "P0_protocol",
+      "references": ["N1", "N3", "P1", "P4", "K1"],
+      "hypothesis": "Explicit native support and complete accounting prevent a misleading superiority claim while exposing genuine gains.",
+      "design": [
+        "Distinguish published main npj, experimental TPS, each supported Kaggle solution and unavailable commercial access.",
+        "Run authentic public sources with pinned weights/configuration and preserve their native behavior.",
+        "Report supported-layout and full-deployment strata separately, without excluding failures from either scheduled denominator.",
+        "Score geometry, visible RGB preservation and waveform in separate tracks.",
+        "Do not call an independently coded primitive a commercial implementation.",
+        "Register allowed translation gauge and disallow oracle D4/scale in the primary endpoint."
+      ],
+      "failure_cases": ["F01", "F02", "F06", "F07", "F21", "F23"],
+      "fair_ablations": ["native method", "explicitly labeled adaptation", "same-observation primitive", "end-to-end pipeline"],
+      "acceptance": "All cases, warnings, failures, timeouts and unavailable arms are present. Claims match the tested endpoint, population and exact implementation.",
+      "risks": ["Unsupported Kaggle layouts mistaken for leaderboard reproduction", "Waveform alignment hides scale errors", "Unavailable commercial output replaced by simulation"],
+      "not_sufficient": "A better diagnostic synthetic score does not establish universal, clinical or commercial superiority."
+    }
+  ],
+  "falsification_cases": [
+    {"id":"F01","label":"to_test","name":"Indistinguishable evidence","construction":"Byte-identical raster assigned two different true pitches, or two clinical D4 orientations after deleting semantic cues.","falsifies":"Universal confident identification from a symmetric grid.","expected":"Ambiguity or multiple hypotheses. At least one hard answer must be wrong by construction."},
+    {"id":"F02","label":"to_test","name":"Coherent harmonic omission","construction":"Remove every second major line, remove minor lines, or make major/minor indistinguishable while retaining perfect cycles.","falsifies":"Cycle closure implies correct mm pitch.","expected":"Retain scale candidates unless independent evidence identifies the correct one."},
+    {"id":"F03","label":"to_test","name":"Exact strong perspective","construction":"Perfect observed points and line curves under a known nondegenerate homography, including large local spacing variation.","falsifies":"Global nearest-distance/angle clusters organize all valid grids.","expected":"Exact planar map or explicit unsupported status without fictitious node noise."},
+    {"id":"F04","label":"to_test","name":"Independent camera and backend","construction":"Unseen renderer/camera and physical surface families with fixed material coordinates.","falsifies":"Generalization inferred from a shared generator or viewed development bank.","expected":"Complete source-stratified geometry results."},
+    {"id":"F05","label":"to_test","name":"Variable skipped lines","construction":"Change missing-row counts across the same image and insert local false intersections.","falsifies":"One global pitch or consecutive IDs handle all gaps.","expected":"Correct integer jump estimates or bounded partial support."},
+    {"id":"F06","label":"to_test","name":"D4 with conflicting semantics","construction":"Rotate/reflect all inputs, obscure some lead labels, add a false text orientation cue, vary layout.","falsifies":"Landscape or lattice direction determines clinical orientation.","expected":"Use independent cues and expose unresolved conflicts."},
+    {"id":"F07","label":"to_test","name":"Separated components","construction":"Two equal or unequal correct grids separated by missing columns, with varied integer phase and a larger false grid elsewhere.","falsifies":"Largest component equals correct full-page geometry.","expected":"Retain components and explicitly unresolved relative phase."},
+    {"id":"F08","label":"to_test","name":"Unobservable fold inside hole","construction":"Different physical interiors with identical observed grid around an occluded or grid-free hole.","falsifies":"Regression or smoothness observes hidden geometry.","expected":"Mark completion as inferred and avoid confident physical coverage there."},
+    {"id":"F09","label":"to_test","name":"Blur and phase localization","construction":"Directional blur, subpixel line shifts, opening angles and input scales swept independently of the warp model.","falsifies":"Heatmap confidence or centroid precision implies unbiased crossing position.","expected":"Source-coordinate error and anisotropic uncertainty assessed independently."},
+    {"id":"F10","label":"to_test","name":"Trace/grid overlap","construction":"Dense QRS, long isoelectric segments, labels and ink crossings overlap grid nodes and lines.","falsifies":"Dark straight evidence always belongs to the grid.","expected":"Identity and localization uncertainty rise without deleting source content."},
+    {"id":"F11","label":"to_test","name":"Appearance harmonic artifacts","construction":"Monitor moire, JPEG, rescaling, screen subpixels, doubled scan or aliasing produce a second regular pattern.","falsifies":"Strong periodic response identifies the physical paper lattice.","expected":"Competing lattices exposed and independent cues used."},
+    {"id":"F12","label":"to_test","name":"Competing false grid","construction":"Background tablecloth or form table has more confident nodes than the ECG lattice.","falsifies":"Largest or most regular component is necessarily the target.","expected":"Paper/semantic support selects target or ambiguity is declared."},
+    {"id":"F13","label":"to_test","name":"Noisy plane","construction":"Planar H with independent heteroscedastic and correlated localization errors, including anisotropy.","falsifies":"Interpolating local residual always beats global H.","expected":"Regularized or zero residual can win, all losses retained."},
+    {"id":"F14","label":"to_test","name":"Smooth physical curvature","construction":"Cylinder, ruled sheet and inextensible nonplanar sheet under perspective with exact and noisy observations.","falsifies":"Global H sufficient for every image.","expected":"Meaningful physical improvement without seams or unit errors."},
+    {"id":"F15","label":"to_test","name":"True crease","construction":"Aligned and oblique crease, crease through a cell interior, varying camera obliquity.","falsifies":"Global C1 smoothness is always physically correct.","expected":"Preserve continuity while allowing derivative jump and explicit uncertain localization."},
+    {"id":"F16","label":"to_test","name":"Coherent wrong correspondence","construction":"Shift a whole row or half sheet by consistent integer IDs, preserving local closure and smoothness.","falsifies":"Robust residual, holdout points or positive Jacobian certify correct IDs.","expected":"Independent identity evidence catches it or false confidence remains visible."},
+    {"id":"F17","label":"to_test","name":"Lens and acquisition model mismatch","construction":"Radial lens distortion, rolling shutter, anisotropic scanner scale and photographed monitor over a known sheet.","falsifies":"All nonprojectivity is paper curvature.","expected":"Model mismatch reported and physically valid alternatives compared."},
+    {"id":"F18","label":"to_test","name":"Grid-free visible content","construction":"Place trace, text, pulse and margin markers outside detected grid or inside grid-free paper.","falsifies":"Missing grid permits blank RGB.","expected":"Every visible marker accounted for in original and declared output canvas."},
+    {"id":"F19","label":"to_test","name":"Thin strokes and spikes","construction":"Sweep subpixel phase, orientation and width at the same exact geometry and output px/mm.","falsifies":"Exact coordinates guarantee signal visibility after bilinear point sampling.","expected":"Independent footprint and contrast/energy measurements."},
+    {"id":"F20","label":"to_test","name":"Nonstandard calibration","construction":"25/50 mm/s, 5/10/20 mm/mV, variable pulse shapes/durations, mixed per-lead gain, OCR errors and cropped metadata.","falsifies":"A detected rectangular pulse automatically supplies a standard physical unit.","expected":"Declared calibration track and unresolved unit where evidence conflicts."},
+    {"id":"F21","label":"to_test","name":"Unknown and partial layout","construction":"Uncataloged lead order, partial lead strip, atypical paper dimensions, no complete border.","falsifies":"Known template can be applied universally.","expected":"Native support reported without forced semantic IDs."},
+    {"id":"F22","label":"to_test","name":"Pixel convention stress","construction":"Odd sizes, half-pixel translations, inclusive corners, portrait rotations and asymmetric local footprints.","falsifies":"A visually close adapter necessarily preserves source geometry.","expected":"Coordinate-ramp and saved pixel parity checks."},
+    {"id":"F23","label":"to_test","name":"Output accounting failures","construction":"Canvas crop, remap outside image, invalid-cell holes, zero sentinels and truncated saved PNG.","falsifies":"Successful return status or input preservation proves delivered RGB success.","expected":"Atomic save, full decode and explicit failure/provenance receipts."},
+    {"id":"F24","label":"to_test","name":"True occlusion and foldover","construction":"Opaque hand or self-overlapping fold with separate visibility ground truth.","falsifies":"Single-image rectification can recover the hidden waveform as measured content.","expected":"Visible geometry only, occlusion status and no invented signal."}
+  ],
+  "claim_boundaries": {
+    "documented": ["NPJ main and its experimental TPS are different arms", "Patent graph/cell mechanism exists", "Official modern document mechanisms and repository inventories were checked"],
+    "inferred": ["Coherent cycles do not identify pitch", "Grid symmetry does not identify clinical D4", "Unseen geometry inside a hole is not observed", "Original-RGB sampling does not make a wrong map physically correct"],
+    "to_test": ["All proposed architecture changes", "Any gain over M2", "Any gain over authentic npj, supported Kaggle or authorized Powerful Medical execution"],
+    "not_claimed": ["Universal SOTA", "Commercial superiority", "Clinical safety or diagnosis", "Patent novelty", "Freedom to operate", "Recovery of truly occluded signal"]
+  }
+}

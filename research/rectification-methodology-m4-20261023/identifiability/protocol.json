@@ -1,0 +1,111 @@
+{
+  "schema": "m4-identifiability-protocol-v1",
+  "frozen_utc": "2026-10-23T11:08:56.077501+00:00",
+  "controls_py_sha256": "3a245c823e98c2b918656736c7cff27ea337453b6afd4bb5bcd239f76739fcca",
+  "scope": "Analytical identifiability and model-limit witnesses. No newM3 arm, production changes, real capture claim or universal superiority claim.",
+  "design_frozen_before_results": true,
+  "evidence_classes": [
+    "exact_RGB",
+    "exact_RGB_under_explicit_world_class",
+    "extracted_points_only_with_recoverable_RGB_evidence",
+    "model_limit_with_input_metadata",
+    "content_policy_property",
+    "positive_added_evidence"
+  ],
+  "comparison_rule": "For each world class, construct indistinguishable observations and compare physically different targets. Distinguishable-input and model-limit controls are explicitly labeled and are not called information-theoretic impossibility.",
+  "failure_policy": "Execute all16 controls once in listed order. Retain every FAIL/ERROR with assertions or traceback. Any source repair requires new protocol/version and retention of prior outputs. No results-dependent threshold changes.",
+  "acceptance": "All predeclared Boolean checks in frozen source must pass. A passed negative witness confirms only the constructed case and its stated assumptions. It does not estimate population frequency, product inferiority, learned decoder performance or clinical acceptability.",
+  "parameters_frozen_in_source": true,
+  "numerical_policy": "float64 analytic geometry. Exactuint8 RGB equality where claimed. Fixed tolerances1e-28 cell boundary,1e-12 lattice arithmetic,1e-10 calibrated positive. No stochastic sampling.",
+  "controls": [
+    {
+      "id": "ID01",
+      "name": "unit_pitch_alias_1_5_10",
+      "expected": "Three exact identicalRGB worlds with three different physical query targets under absent unit evidence."
+    },
+    {
+      "id": "ID02",
+      "name": "square_grid_D4",
+      "expected": "Eight D4 orientations have identical pure square-gridRGB and eight different semantic query targets."
+    },
+    {
+      "id": "ID03",
+      "name": "integer_skipped_rows",
+      "expected": "Two point-only fits have zero residual and roundtrip but different units. OriginalRGB contains omitted intermediate lines."
+    },
+    {
+      "id": "ID04",
+      "name": "disconnected_component_phase",
+      "expected": "A hidden developable V bridge has5mm extra arc length with identical visibleRGB, shifting one component by one integer5mm step."
+    },
+    {
+      "id": "ID05",
+      "name": "visible_blank_fold",
+      "expected": "Under orthographic constant-radiance assumptions, flat and developable V blank strips have identicalRGB and different material coordinates."
+    },
+    {
+      "id": "ID06",
+      "name": "fixed_boundary_interior_bump",
+      "expected": "An orientation-preserving generalC1 map changes blank cell center by1mm while preserving all cell boundaries. No universal nonstretchable-paper claim."
+    },
+    {
+      "id": "ID07",
+      "name": "partial_crop_absolute_origin",
+      "expected": "Relative shape is identical while absolute origins differ without crop/timing/baseline evidence."
+    },
+    {
+      "id": "ID08",
+      "name": "mirrored_and_upside_down_text",
+      "expected": "SymmetricII token does not break mirror or180degree ambiguity. Known-upright asymmetricF has eight distinct D4 views."
+    },
+    {
+      "id": "ID09",
+      "name": "fold_overlap_visibility",
+      "expected": "Two material points project to one source location. A physically hidden ink change does not alterRGB."
+    },
+    {
+      "id": "ID10",
+      "name": "opaque_patch_hidden_content",
+      "expected": "Distinct hidden flat-document ink produces identical capturedRGB under an opaque patch."
+    },
+    {
+      "id": "ID11",
+      "name": "inconsistent_lead_labels",
+      "expected": "Declared uniqueI/II layout with reliableII/II observations has zero hard-consistent and two tied minimum-disagreement assignments."
+    },
+    {
+      "id": "ID12",
+      "name": "photocopy_stretch",
+      "expected": "Square5mm grid stretched1.1x0.9 and unknown rectangular grid can have identical observations. Trusted square5mm prior resolves original-grid distortion."
+    },
+    {
+      "id": "ID13",
+      "name": "mixed_panel_units_layout",
+      "expected": "One shared mm/px cannot satisfy known5mm and10mm panel intervals with equal20px spacing. Per-panel charts can."
+    },
+    {
+      "id": "ID14",
+      "name": "missing_speed_gain",
+      "expected": "Identical drawnRGB can represent different time/mV calibration absent speed/gain/pulse evidence."
+    },
+    {
+      "id": "ID15",
+      "name": "no_grid_does_not_mean_no_content",
+      "expected": "MaskingRGB with grid-support erases visible waveform/text. Identity fallback preserves all RGB exactly. No assertion about currentM3 behavior."
+    },
+    {
+      "id": "ID16",
+      "name": "ordered_independent_calibration_positive",
+      "expected": "Observed ordered physical fiducials reduce24 pitch-pose candidates to exactly one and recover an independent query numerically."
+    }
+  ],
+  "reproduction": "/workspace/scratch/a57599a3e70e/swarm-venv/bin/python /workspace/scratch/a57599a3e70e/m4/identifiability/controls.py",
+  "prior_evidence_read": [
+    "ecg-torch-renderer/AGENTS.md",
+    "m3/our-critique/critique.md",
+    "m3/our-critique/decision-matrix.json",
+    "m3/benchmark/protocol.json",
+    "m3/benchmark/final-interpretation-pt.md"
+  ],
+  "prior_evidence_interpretation": "M3 D4 is an evaluator-only diagnostic, roundtrip/cycle consistency is not physical calibration, sampled panel consumed as diagnosis, no commercialDotter/Gridder execution."
+}

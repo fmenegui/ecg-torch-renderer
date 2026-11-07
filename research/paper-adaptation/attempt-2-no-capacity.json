@@ -1,0 +1,26 @@
+{
+  "purpose": "ECG generated-paper model experiment",
+  "requested_gpu": "NVIDIA RTX 4000 Ada Generation",
+  "catalog_hourly_gpu_usd": 0.28,
+  "temporary_disk_gb": 50,
+  "bundle_sha256": "0dd034c8c04a7ca4331dc7dddf6ea2080cf368f1fcee7f25f5dd6a47fd05a6c2",
+  "events": [
+    {
+      "event": "capacity",
+      "time": 1792587024.3088746,
+      "availability": "NONE",
+      "price": {
+        "community": 0.2,
+        "secure": 0.28,
+        "serverless": 0.58
+      },
+      "data_centers": null
+    },
+    {
+      "event": "error",
+      "time": 1792587024.3096254,
+      "message": "RuntimeError: A40 no longer has capacity, no pod created"
+    }
+  ],
+  "experiment_status": "failed"
+}

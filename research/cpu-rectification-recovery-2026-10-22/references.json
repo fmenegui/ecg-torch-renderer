@@ -1,0 +1,138 @@
+[
+  {
+    "method": "kaggle",
+    "id": "01152-0",
+    "input_sha256": "801636f0a4e222da916104137d1d4046fcab24c531b82a88949a10295f5f591e",
+    "status": "failed",
+    "error": "ValueError: Fewer than four document references were detected"
+  },
+  {
+    "method": "kaggle",
+    "id": "01152-1",
+    "input_sha256": "cc77f1cbbcb4566e5f01aeb68a8b7351173443c0b5d560b463b104d8ac44f8f5",
+    "status": "failed",
+    "error": "ValueError: Fewer than four document references were detected"
+  },
+  {
+    "method": "kaggle",
+    "id": "01152-2",
+    "input_sha256": "adaa4b8844e68b38f38eddfd4e45a9b7707fd49a88c8776049b602d487957783",
+    "status": "failed",
+    "error": "ValueError: Fewer than four document references were detected"
+  },
+  {
+    "method": "kaggle",
+    "id": "01152-3",
+    "input_sha256": "8d731057274e4c43bd4518c2f111921ec8e9b65682fd62e76858a90adfaec30b",
+    "status": "failed",
+    "error": "ValueError: Fewer than four document references were detected"
+  },
+  {
+    "method": "kaggle",
+    "id": "01152-4",
+    "input_sha256": "ab3b719f37ba82daafad230d7a366489847fd4a557cb6864b259efb561936bbe",
+    "status": "failed",
+    "error": "ValueError: Fewer than four document references were detected"
+  },
+  {
+    "method": "kaggle",
+    "id": "01152-5",
+    "input_sha256": "6a9d3c82c09c6abb91f456e84d1fa3a8174be963a378bc733148377d25df3737",
+    "status": "failed",
+    "error": "ValueError: Fewer than four document references were detected"
+  },
+  {
+    "method": "kaggle",
+    "id": "01152-6",
+    "input_sha256": "fe0b66ba272959ddcb808e5b6d8d5ea84ac9d76a4db896bffde29cf9fd6a93bb",
+    "status": "failed",
+    "error": "ValueError: Fewer than four document references were detected"
+  },
+  {
+    "method": "kaggle",
+    "id": "01152-7",
+    "input_sha256": "1b1ce75fba8cba095213f5a574619155138924b2dbf84a49fc4f4e5420baa7ad",
+    "status": "failed",
+    "error": "ValueError: Fewer than four document references were detected"
+  },
+  {
+    "method": "npj",
+    "id": "01152-0",
+    "input_sha256": "801636f0a4e222da916104137d1d4046fcab24c531b82a88949a10295f5f591e",
+    "status": "returned",
+    "image": "npj/01152-0/rectified.png",
+    "waveform_extraction_invoked": false
+  },
+  {
+    "method": "npj",
+    "id": "01152-1",
+    "input_sha256": "cc77f1cbbcb4566e5f01aeb68a8b7351173443c0b5d560b463b104d8ac44f8f5",
+    "status": "returned",
+    "image": "npj/01152-1/rectified.png",
+    "waveform_extraction_invoked": false
+  },
+  {
+    "method": "npj",
+    "id": "01152-2",
+    "input_sha256": "adaa4b8844e68b38f38eddfd4e45a9b7707fd49a88c8776049b602d487957783",
+    "status": "returned",
+    "image": "npj/01152-2/rectified.png",
+    "waveform_extraction_invoked": false
+  },
+  {
+    "method": "npj",
+    "id": "01152-3",
+    "input_sha256": "8d731057274e4c43bd4518c2f111921ec8e9b65682fd62e76858a90adfaec30b",
+    "status": "returned",
+    "image": "npj/01152-3/rectified.png",
+    "waveform_extraction_invoked": false
+  },
+  {
+    "method": "npj",
+    "id": "01152-4",
+    "input_sha256": "ab3b719f37ba82daafad230d7a366489847fd4a557cb6864b259efb561936bbe",
+    "status": "returned",
+    "image": "npj/01152-4/rectified.png",
+    "waveform_extraction_invoked": false
+  },
+  {
+    "method": "npj",
+    "id": "01152-5",
+    "input_sha256": "6a9d3c82c09c6abb91f456e84d1fa3a8174be963a378bc733148377d25df3737",
+    "status": "returned",
+    "image": "npj/01152-5/rectified.png",
+    "phase": "inference",
+    "waveform_extraction_invoked": false,
+    "adapter_retry_reason": "IndexError: too many indices for array: array is 1-dimensional, but 2 were indexed",
+    "wall_seconds": 12.715460829000222,
+    "nonlinear_dewarping": false,
+    "identity_fallback_reported": true,
+    "dewarping_fit_warning": "Error fitting TPS: torch.linalg.solve: The solver failed because the input matrix is singular.. The dewarping failed.",
+    "rgb_warp_is_adapter": true,
+    "upstream_commit": "97a15087d4abcda843da8c58ee74b1d8f47e6f9a"
+  },
+  {
+    "method": "npj",
+    "id": "01152-6",
+    "input_sha256": "fe0b66ba272959ddcb808e5b6d8d5ea84ac9d76a4db896bffde29cf9fd6a93bb",
+    "status": "returned",
+    "image": "npj/01152-6/rectified.png",
+    "waveform_extraction_invoked": false
+  },
+  {
+    "method": "npj",
+    "id": "01152-7",
+    "input_sha256": "1b1ce75fba8cba095213f5a574619155138924b2dbf84a49fc4f4e5420baa7ad",
+    "status": "returned",
+    "image": "npj/01152-7/rectified.png",
+    "phase": "inference",
+    "waveform_extraction_invoked": false,
+    "adapter_retry_reason": "IndexError: too many indices for array: array is 1-dimensional, but 2 were indexed",
+    "wall_seconds": 14.71260321400041,
+    "nonlinear_dewarping": false,
+    "identity_fallback_reported": true,
+    "dewarping_fit_warning": "Error fitting TPS: torch.linalg.solve: The solver failed because the input matrix is singular.. The dewarping failed.",
+    "rgb_warp_is_adapter": true,
+    "upstream_commit": "97a15087d4abcda843da8c58ee74b1d8f47e6f9a"
+  }
+]

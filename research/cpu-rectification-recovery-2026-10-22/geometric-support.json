@@ -1,0 +1,82 @@
+[
+  {
+    "trial": "point-1973",
+    "backend": "torch-cached",
+    "cases": 768,
+    "median_true_node_support": 0.835407794554136,
+    "mean_true_node_support": 0.7300941194772449,
+    "zero_true_node_support": 14,
+    "topology_accepted": 702,
+    "definition": "Fraction of visible reference grid nodes covered by the locally supported map. Not full-page or waveform coverage."
+  },
+  {
+    "trial": "point-1973",
+    "backend": "offline",
+    "cases": 256,
+    "median_true_node_support": 0.32047052303025003,
+    "mean_true_node_support": 0.4067329265629895,
+    "zero_true_node_support": 71,
+    "topology_accepted": 197,
+    "definition": "Fraction of visible reference grid nodes covered by the locally supported map. Not full-page or waveform coverage."
+  },
+  {
+    "trial": "joint-1973",
+    "backend": "torch-cached",
+    "cases": 768,
+    "median_true_node_support": 0.9229624751764716,
+    "mean_true_node_support": 0.8369709044553472,
+    "zero_true_node_support": 12,
+    "topology_accepted": 703,
+    "definition": "Fraction of visible reference grid nodes covered by the locally supported map. Not full-page or waveform coverage."
+  },
+  {
+    "trial": "joint-1973",
+    "backend": "offline",
+    "cases": 256,
+    "median_true_node_support": 0.7584656084656085,
+    "mean_true_node_support": 0.5734290429907263,
+    "zero_true_node_support": 50,
+    "topology_accepted": 208,
+    "definition": "Fraction of visible reference grid nodes covered by the locally supported map. Not full-page or waveform coverage."
+  },
+  {
+    "trial": "point-20261021",
+    "backend": "torch-cached",
+    "cases": 768,
+    "median_true_node_support": 0.9294327895670607,
+    "mean_true_node_support": 0.8449052140765021,
+    "zero_true_node_support": 17,
+    "topology_accepted": 645,
+    "definition": "Fraction of visible reference grid nodes covered by the locally supported map. Not full-page or waveform coverage."
+  },
+  {
+    "trial": "point-20261021",
+    "backend": "offline",
+    "cases": 256,
+    "median_true_node_support": 0.8261631089217296,
+    "mean_true_node_support": 0.6373378385277235,
+    "zero_true_node_support": 27,
+    "topology_accepted": 154,
+    "definition": "Fraction of visible reference grid nodes covered by the locally supported map. Not full-page or waveform coverage."
+  },
+  {
+    "trial": "joint-20261021",
+    "backend": "torch-cached",
+    "cases": 768,
+    "median_true_node_support": 0.9358805744520031,
+    "mean_true_node_support": 0.85598905431545,
+    "zero_true_node_support": 13,
+    "topology_accepted": 671,
+    "definition": "Fraction of visible reference grid nodes covered by the locally supported map. Not full-page or waveform coverage."
+  },
+  {
+    "trial": "joint-20261021",
+    "backend": "offline",
+    "cases": 256,
+    "median_true_node_support": 0.8309303922220008,
+    "mean_true_node_support": 0.6452290346433822,
+    "zero_true_node_support": 14,
+    "topology_accepted": 157,
+    "definition": "Fraction of visible reference grid nodes covered by the locally supported map. Not full-page or waveform coverage."
+  }
+]

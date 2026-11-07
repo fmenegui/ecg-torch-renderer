@@ -1,0 +1,173 @@
+{
+  "schema": "m4-identifiability-independent-audit-v1",
+  "created_utc": "2026-10-23T11:17:35.294900+00:00",
+  "source_sha256": "9382a3fa7a7ff45c4b8480e4e2c0b480da3f89ed5f1698ce931dafdbc6cd5b55",
+  "protocol_sha256": "d7cb9db41dc01219ddd9b0cf4b45929d87f4ea218c98684a3950c5f681fc4d4b",
+  "scope": "No controls.py import. Hash-integrity and independent analytic3D arclength/material-grid render checks. No independent camera/photographic realism evidence.",
+  "checks_total": 36,
+  "checks_passed": 36,
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "main_protocol_unchanged",
+      "passed": true
+    },
+    {
+      "name": "main_source_unchanged",
+      "passed": true
+    },
+    {
+      "name": "all_registered_results_preserved",
+      "passed": true
+    },
+    {
+      "name": "ID01_saved_witness_hash",
+      "passed": true
+    },
+    {
+      "name": "ID02_saved_witness_hash",
+      "passed": true
+    },
+    {
+      "name": "ID03_saved_witness_hash",
+      "passed": true
+    },
+    {
+      "name": "ID04_saved_witness_hash",
+      "passed": true
+    },
+    {
+      "name": "ID05_saved_witness_hash",
+      "passed": true
+    },
+    {
+      "name": "ID06_saved_witness_hash",
+      "passed": true
+    },
+    {
+      "name": "ID07_saved_witness_hash",
+      "passed": true
+    },
+    {
+      "name": "ID08_saved_witness_hash",
+      "passed": true
+    },
+    {
+      "name": "ID09_saved_witness_hash",
+      "passed": true
+    },
+    {
+      "name": "ID10_saved_witness_hash",
+      "passed": true
+    },
+    {
+      "name": "ID11_saved_witness_hash",
+      "passed": true
+    },
+    {
+      "name": "ID12_saved_witness_hash",
+      "passed": true
+    },
+    {
+      "name": "ID13_saved_witness_hash",
+      "passed": true
+    },
+    {
+      "name": "ID14_saved_witness_hash",
+      "passed": true
+    },
+    {
+      "name": "ID15_saved_witness_hash",
+      "passed": true
+    },
+    {
+      "name": "ID16_saved_witness_hash",
+      "passed": true
+    },
+    {
+      "name": "ID01_world_0_independent_material_grid_render",
+      "passed": true
+    },
+    {
+      "name": "ID01_world_1_independent_material_grid_render",
+      "passed": true
+    },
+    {
+      "name": "ID01_world_2_independent_material_grid_render",
+      "passed": true
+    },
+    {
+      "name": "ID04_world_0_3D_render_matches_saved_RGB",
+      "passed": true,
+      "segment_arclengths_mm": [
+        10.0,
+        10.0
+      ]
+    },
+    {
+      "name": "ID04_world_0_3D_arclength_matches_target",
+      "passed": true
+    },
+    {
+      "name": "ID04_world_1_3D_render_matches_saved_RGB",
+      "passed": true,
+      "segment_arclengths_mm": [
+        12.5,
+        12.5
+      ]
+    },
+    {
+      "name": "ID04_world_1_3D_arclength_matches_target",
+      "passed": true
+    },
+    {
+      "name": "ID04_independently_rendered_worlds_identical",
+      "passed": true
+    },
+    {
+      "name": "ID05_world_0_3D_render_matches_saved_RGB",
+      "passed": true,
+      "segment_arclengths_mm": [
+        10.0,
+        10.0
+      ]
+    },
+    {
+      "name": "ID05_world_0_3D_arclength_matches_target",
+      "passed": true
+    },
+    {
+      "name": "ID05_world_1_3D_render_matches_saved_RGB",
+      "passed": true,
+      "segment_arclengths_mm": [
+        12.5,
+        12.5
+      ]
+    },
+    {
+      "name": "ID05_world_1_3D_arclength_matches_target",
+      "passed": true
+    },
+    {
+      "name": "ID05_independently_rendered_worlds_identical",
+      "passed": true
+    },
+    {
+      "name": "ID06_saved_rows_strictly_increasing",
+      "passed": true,
+      "min_step_mm": 0.0072606357385440745
+    },
+    {
+      "name": "ID06_analytic_bound_positive",
+      "passed": true
+    },
+    {
+      "name": "ID09_physical_strips_same_orthographic_projection",
+      "passed": true
+    },
+    {
+      "name": "ID09_physical_back_strip_is_deeper",
+      "passed": true
+    }
+  ]
+}

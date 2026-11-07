@@ -1,0 +1,754 @@
+{
+  "schema": "ecg-learned-grid-topology-v1",
+  "status": "completed",
+  "checkpoint_sha256": "959506fbd414a1cfeb0d3bb28a604c7678570a796e6dce5c206dda8e4a2b2b97",
+  "threshold": 0.85,
+  "source_test": [
+    {
+      "key": "00020-0-online",
+      "source_id": "ptbxl-19334",
+      "group_id": "ptbxl-patient-12971.0",
+      "backend": "online",
+      "topology": {
+        "status": "accepted",
+        "reason": null,
+        "input_points": 2028,
+        "component_points": 2027,
+        "components": 2,
+        "conflict_fraction": 0.0002653927813163482,
+        "invalid_cells": 0,
+        "retained_point_fraction": 0.9995069033530573,
+        "global_injectivity_checked": false
+      },
+      "valid_cells": 1679,
+      "identity_score": {
+        "matched_nodes": 1893,
+        "consistent_nodes": 1893,
+        "relative_identity_consistency": 1.0,
+        "matching_uses_truth_for_evaluation_only": true
+      }
+    },
+    {
+      "key": "00020-0-offline",
+      "source_id": "ptbxl-19334",
+      "group_id": "ptbxl-patient-12971.0",
+      "backend": "offline",
+      "topology": {
+        "status": "rejected",
+        "reason": "no valid cells or excessive cycle conflicts",
+        "input_points": 664,
+        "component_points": 72,
+        "components": 182,
+        "conflict_fraction": 0.03614457831325301,
+        "invalid_cells": 0,
+        "retained_point_fraction": 0.10843373493975904,
+        "global_injectivity_checked": false
+      },
+      "valid_cells": 13,
+      "identity_score": null
+    },
+    {
+      "key": "00020-1-online",
+      "source_id": "ptbxl-19334",
+      "group_id": "ptbxl-patient-12971.0",
+      "backend": "online",
+      "topology": {
+        "status": "accepted",
+        "reason": null,
+        "input_points": 2034,
+        "component_points": 2028,
+        "components": 3,
+        "conflict_fraction": 0.0,
+        "invalid_cells": 0,
+        "retained_point_fraction": 0.9970501474926253,
+        "global_injectivity_checked": false
+      },
+      "valid_cells": 1855,
+      "identity_score": {
+        "matched_nodes": 2015,
+        "consistent_nodes": 2015,
+        "relative_identity_consistency": 1.0,
+        "matching_uses_truth_for_evaluation_only": true
+      }
+    },
+    {
+      "key": "00020-1-offline",
+      "source_id": "ptbxl-19334",
+      "group_id": "ptbxl-patient-12971.0",
+      "backend": "offline",
+      "topology": {
+        "status": "rejected",
+        "reason": "no valid cells or excessive cycle conflicts",
+        "input_points": 814,
+        "component_points": 175,
+        "components": 158,
+        "conflict_fraction": 0.011990407673860911,
+        "invalid_cells": 0,
+        "retained_point_fraction": 0.214987714987715,
+        "global_injectivity_checked": false
+      },
+      "valid_cells": 47,
+      "identity_score": null
+    },
+    {
+      "key": "00021-0-online",
+      "source_id": "ptbxl-14149",
+      "group_id": "ptbxl-patient-15879.0",
+      "backend": "online",
+      "topology": {
+        "status": "accepted",
+        "reason": null,
+        "input_points": 2108,
+        "component_points": 2095,
+        "components": 10,
+        "conflict_fraction": 0.0005033979360684622,
+        "invalid_cells": 0,
+        "retained_point_fraction": 0.9938330170777988,
+        "global_injectivity_checked": false
+      },
+      "valid_cells": 1890,
+      "identity_score": {
+        "matched_nodes": 1929,
+        "consistent_nodes": 1929,
+        "relative_identity_consistency": 1.0,
+        "matching_uses_truth_for_evaluation_only": true
+      }
+    },
+    {
+      "key": "00021-0-offline",
+      "source_id": "ptbxl-14149",
+      "group_id": "ptbxl-patient-15879.0",
+      "backend": "offline",
+      "topology": {
+        "status": "rejected",
+        "reason": "no valid cells or excessive cycle conflicts",
+        "input_points": 817,
+        "component_points": 153,
+        "components": 195,
+        "conflict_fraction": 0.021505376344086023,
+        "invalid_cells": 1,
+        "retained_point_fraction": 0.18727050183598531,
+        "global_injectivity_checked": false
+      },
+      "valid_cells": 48,
+      "identity_score": null
+    },
+    {
+      "key": "00021-1-online",
+      "source_id": "ptbxl-14149",
+      "group_id": "ptbxl-patient-15879.0",
+      "backend": "online",
+      "topology": {
+        "status": "accepted",
+        "reason": null,
+        "input_points": 2018,
+        "component_points": 2017,
+        "components": 2,
+        "conflict_fraction": 0.0,
+        "invalid_cells": 0,
+        "retained_point_fraction": 0.9995044598612488,
+        "global_injectivity_checked": false
+      },
+      "valid_cells": 1814,
+      "identity_score": {
+        "matched_nodes": 1985,
+        "consistent_nodes": 1985,
+        "relative_identity_consistency": 1.0,
+        "matching_uses_truth_for_evaluation_only": true
+      }
+    },
+    {
+      "key": "00021-1-offline",
+      "source_id": "ptbxl-14149",
+      "group_id": "ptbxl-patient-15879.0",
+      "backend": "offline",
+      "topology": {
+        "status": "rejected",
+        "reason": "no valid cells or excessive cycle conflicts",
+        "input_points": 884,
+        "component_points": 421,
+        "components": 133,
+        "conflict_fraction": 0.029574861367837338,
+        "invalid_cells": 3,
+        "retained_point_fraction": 0.4762443438914027,
+        "global_injectivity_checked": false
+      },
+      "valid_cells": 157,
+      "identity_score": null
+    },
+    {
+      "key": "00022-0-online",
+      "source_id": "ptbxl-12031",
+      "group_id": "ptbxl-patient-504.0",
+      "backend": "online",
+      "topology": {
+        "status": "accepted",
+        "reason": null,
+        "input_points": 2025,
+        "component_points": 2017,
+        "components": 5,
+        "conflict_fraction": 0.0,
+        "invalid_cells": 0,
+        "retained_point_fraction": 0.9960493827160494,
+        "global_injectivity_checked": false
+      },
+      "valid_cells": 1827,
+      "identity_score": {
+        "matched_nodes": 1932,
+        "consistent_nodes": 1932,
+        "relative_identity_consistency": 1.0,
+        "matching_uses_truth_for_evaluation_only": true
+      }
+    },
+    {
+      "key": "00022-0-offline",
+      "source_id": "ptbxl-12031",
+      "group_id": "ptbxl-patient-504.0",
+      "backend": "offline",
+      "topology": {
+        "status": "rejected",
+        "reason": "no valid cells or excessive cycle conflicts",
+        "input_points": 786,
+        "component_points": 217,
+        "components": 156,
+        "conflict_fraction": 0.03300970873786408,
+        "invalid_cells": 0,
+        "retained_point_fraction": 0.27608142493638677,
+        "global_injectivity_checked": false
+      },
+      "valid_cells": 54,
+      "identity_score": null
+    },
+    {
+      "key": "00022-1-online",
+      "source_id": "ptbxl-12031",
+      "group_id": "ptbxl-patient-504.0",
+      "backend": "online",
+      "topology": {
+        "status": "accepted",
+        "reason": null,
+        "input_points": 2060,
+        "component_points": 2057,
+        "components": 4,
+        "conflict_fraction": 0.0,
+        "invalid_cells": 0,
+        "retained_point_fraction": 0.9985436893203884,
+        "global_injectivity_checked": false
+      },
+      "valid_cells": 1760,
+      "identity_score": {
+        "matched_nodes": 1937,
+        "consistent_nodes": 1937,
+        "relative_identity_consistency": 1.0,
+        "matching_uses_truth_for_evaluation_only": true
+      }
+    },
+    {
+      "key": "00022-1-offline",
+      "source_id": "ptbxl-12031",
+      "group_id": "ptbxl-patient-504.0",
+      "backend": "offline",
+      "topology": {
+        "status": "rejected",
+        "reason": "no valid cells or excessive cycle conflicts",
+        "input_points": 1197,
+        "component_points": 303,
+        "components": 131,
+        "conflict_fraction": 0.029619181946403384,
+        "invalid_cells": 1,
+        "retained_point_fraction": 0.2531328320802005,
+        "global_injectivity_checked": false
+      },
+      "valid_cells": 87,
+      "identity_score": null
+    },
+    {
+      "key": "00023-0-online",
+      "source_id": "ptbxl-4893",
+      "group_id": "ptbxl-patient-5052.0",
+      "backend": "online",
+      "topology": {
+        "status": "accepted",
+        "reason": null,
+        "input_points": 1937,
+        "component_points": 1927,
+        "components": 11,
+        "conflict_fraction": 0.0013179089178503441,
+        "invalid_cells": 0,
+        "retained_point_fraction": 0.9948373773877129,
+        "global_injectivity_checked": false
+      },
+      "valid_cells": 1380,
+      "identity_score": {
+        "matched_nodes": 1800,
+        "consistent_nodes": 1800,
+        "relative_identity_consistency": 1.0,
+        "matching_uses_truth_for_evaluation_only": true
+      }
+    },
+    {
+      "key": "00023-0-offline",
+      "source_id": "ptbxl-4893",
+      "group_id": "ptbxl-patient-5052.0",
+      "backend": "offline",
+      "topology": {
+        "status": "accepted",
+        "reason": null,
+        "input_points": 1139,
+        "component_points": 201,
+        "components": 129,
+        "conflict_fraction": 0.006535947712418301,
+        "invalid_cells": 0,
+        "retained_point_fraction": 0.17647058823529413,
+        "global_injectivity_checked": false
+      },
+      "valid_cells": 40,
+      "identity_score": {
+        "matched_nodes": 85,
+        "consistent_nodes": 45,
+        "relative_identity_consistency": 0.5294117647058824,
+        "matching_uses_truth_for_evaluation_only": true
+      }
+    },
+    {
+      "key": "00023-1-online",
+      "source_id": "ptbxl-4893",
+      "group_id": "ptbxl-patient-5052.0",
+      "backend": "online",
+      "topology": {
+        "status": "accepted",
+        "reason": null,
+        "input_points": 2068,
+        "component_points": 2065,
+        "components": 4,
+        "conflict_fraction": 0.00012763241863433312,
+        "invalid_cells": 0,
+        "retained_point_fraction": 0.9985493230174082,
+        "global_injectivity_checked": false
+      },
+      "valid_cells": 1809,
+      "identity_score": {
+        "matched_nodes": 2020,
+        "consistent_nodes": 2020,
+        "relative_identity_consistency": 1.0,
+        "matching_uses_truth_for_evaluation_only": true
+      }
+    },
+    {
+      "key": "00023-1-offline",
+      "source_id": "ptbxl-4893",
+      "group_id": "ptbxl-patient-5052.0",
+      "backend": "offline",
+      "topology": {
+        "status": "rejected",
+        "reason": "no valid cells or excessive cycle conflicts",
+        "input_points": 1010,
+        "component_points": 291,
+        "components": 105,
+        "conflict_fraction": 0.026134800550206328,
+        "invalid_cells": 1,
+        "retained_point_fraction": 0.2881188118811881,
+        "global_injectivity_checked": false
+      },
+      "valid_cells": 85,
+      "identity_score": null
+    }
+  ],
+  "transfer": [
+    {
+      "name": "standard",
+      "image_sha256": "904cdb184a9a221516c09a83baeed41a99c11860ba7d3be08177fec39558948b",
+      "status": "rectified",
+      "supported_pixel_fraction": 0.13196770495866467,
+      "output_shape": [
+        1241,
+        2201
+      ],
+      "declared_pixels_per_mm": 8.0,
+      "topology": {
+        "status": "accepted",
+        "reason": null,
+        "input_points": 932,
+        "component_points": 640,
+        "conflict_fraction": 0.006362058993637941,
+        "retained_point_fraction": 0.6866952789699571
+      },
+      "valid_cells": 225
+    },
+    {
+      "name": "six-rows",
+      "image_sha256": "1342b85f2c09a129702459ddb915dceb5ca24549c6e0e0c70bcab68757ee6183",
+      "status": "rectified",
+      "supported_pixel_fraction": 0.13187766597687264,
+      "output_shape": [
+        1081,
+        1481
+      ],
+      "declared_pixels_per_mm": 8.0,
+      "topology": {
+        "status": "accepted",
+        "reason": null,
+        "input_points": 1016,
+        "component_points": 344,
+        "conflict_fraction": 0.0041841004184100415,
+        "retained_point_fraction": 0.33858267716535434
+      },
+      "valid_cells": 132
+    },
+    {
+      "name": "offline-flat",
+      "image_sha256": "927f21757407b5515d6481e41b9f8c705c2e1270172f0bb7ae0353e7c01184f8",
+      "status": "rejected",
+      "error": "Insufficient reliable cells for waveform extraction",
+      "topology": {
+        "status": "accepted",
+        "reason": null,
+        "input_points": 320,
+        "component_points": 27,
+        "conflict_fraction": 0.0,
+        "retained_point_fraction": 0.084375
+      },
+      "valid_cells": 2
+    },
+    {
+      "name": "offline-fold",
+      "image_sha256": "4ab08fbee05cff66bc72b2b02e36b8697447b617cd0ee39cf705aa098756f786",
+      "status": "rejected",
+      "error": "Insufficient reliable cells for waveform extraction",
+      "topology": {
+        "status": "rejected",
+        "reason": "no valid cells or excessive cycle conflicts",
+        "input_points": 342,
+        "component_points": 71,
+        "conflict_fraction": 0.03529411764705882,
+        "retained_point_fraction": 0.20760233918128654
+      },
+      "valid_cells": 17
+    }
+  ],
+  "digitization": {
+    "schema": "ecg-paper-profile-adaptation-v1",
+    "status": "completed",
+    "device": "cpu",
+    "precision": "float32",
+    "torch": "2.14.1+cpu",
+    "cuda_runtime": null,
+    "cpu_threads": 2,
+    "gpu_name": null,
+    "upstream_commit": "97a15087d4abcda843da8c58ee74b1d8f47e6f9a",
+    "input_manifest_sha256": "e698335e6844631df6e065bd960d590690cbe2a5569322a46e04a84c1359832a",
+    "apply_dewarping": false,
+    "selected_cases": [
+      "standard",
+      "six-rows"
+    ],
+    "arms": [
+      "configured"
+    ],
+    "weights_changed": false,
+    "training_performed": false,
+    "configured_gain_source": "explicit declared paper gain from generation configuration",
+    "configured_gain_is_inferred": false,
+    "configured_changes": [
+      "disable portrait-to-landscape rotation",
+      "grid search uses class default 15-120 major lines",
+      "add Cabrera 3x4 + rhythm to the common candidate catalog",
+      "pass declared gain as mV/mm",
+      "reject fallback, empty or inconsistent row/layout outputs"
+    ],
+    "limits": [
+      "One artificial signal and one capture per configuration",
+      "Configured mode supplies gain, so it is not fully automatic calibration",
+      "A correct layout and high conditional SNR do not guarantee complete waveforms"
+    ],
+    "cases": [
+      {
+        "name": "standard",
+        "arm": "configured",
+        "expected_layout": "standard_3x4_with_r1",
+        "image_sha256": "22de629dd5f05b11bd76bc9e47b02be07ce8b997b74a70a93a648aba966aaac3",
+        "provided_gain_mm_per_mv": 10.0,
+        "gain_source": "declared paper profile",
+        "predicted_layout": "Unknown layout",
+        "matching_cost": 1.0,
+        "detected_labels": 2,
+        "extracted_rows": 1,
+        "layout_matches_expected": false,
+        "evaluation": {
+          "printed_time_coverage": 0.009333333333333334,
+          "unsupported_output_fraction": 0.9382280268266855,
+          "raw_overlap_rmse_mv": 0.16393704889500343,
+          "mean_observed_lead_snr_db": 1.6419692408949247,
+          "leads_with_aligned_score": 1,
+          "per_lead": {
+            "I": {
+              "printed_samples": 1250,
+              "covered_samples": 0,
+              "coverage": 0.0,
+              "unsupported_output_samples": 0,
+              "raw_rmse_mv": null,
+              "raw_bias_mv": null,
+              "aligned": null
+            },
+            "II": {
+              "printed_samples": 5000,
+              "covered_samples": 0,
+              "coverage": 0.0,
+              "unsupported_output_samples": 0,
+              "raw_rmse_mv": null,
+              "raw_bias_mv": null,
+              "aligned": null
+            },
+            "III": {
+              "printed_samples": 1250,
+              "covered_samples": 0,
+              "coverage": 0.0,
+              "unsupported_output_samples": 0,
+              "raw_rmse_mv": null,
+              "raw_bias_mv": null,
+              "aligned": null
+            },
+            "aVR": {
+              "printed_samples": 1250,
+              "covered_samples": 0,
+              "coverage": 0.0,
+              "unsupported_output_samples": 0,
+              "raw_rmse_mv": null,
+              "raw_bias_mv": null,
+              "aligned": null
+            },
+            "aVL": {
+              "printed_samples": 1250,
+              "covered_samples": 175,
+              "coverage": 0.14,
+              "unsupported_output_samples": 2658,
+              "raw_rmse_mv": 0.16393704889500343,
+              "raw_bias_mv": -0.032511740100588736,
+              "aligned": {
+                "snr_db": 1.6419692408949247,
+                "rmse_mv": 0.059668355670123435,
+                "shift_ms": 36.0,
+                "samples": 157
+              }
+            },
+            "aVF": {
+              "printed_samples": 1250,
+              "covered_samples": 0,
+              "coverage": 0.0,
+              "unsupported_output_samples": 0,
+              "raw_rmse_mv": null,
+              "raw_bias_mv": null,
+              "aligned": null
+            },
+            "V1": {
+              "printed_samples": 1250,
+              "covered_samples": 0,
+              "coverage": 0.0,
+              "unsupported_output_samples": 0,
+              "raw_rmse_mv": null,
+              "raw_bias_mv": null,
+              "aligned": null
+            },
+            "V2": {
+              "printed_samples": 1250,
+              "covered_samples": 0,
+              "coverage": 0.0,
+              "unsupported_output_samples": 0,
+              "raw_rmse_mv": null,
+              "raw_bias_mv": null,
+              "aligned": null
+            },
+            "V3": {
+              "printed_samples": 1250,
+              "covered_samples": 0,
+              "coverage": 0.0,
+              "unsupported_output_samples": 0,
+              "raw_rmse_mv": null,
+              "raw_bias_mv": null,
+              "aligned": null
+            },
+            "V4": {
+              "printed_samples": 1250,
+              "covered_samples": 0,
+              "coverage": 0.0,
+              "unsupported_output_samples": 0,
+              "raw_rmse_mv": null,
+              "raw_bias_mv": null,
+              "aligned": null
+            },
+            "V5": {
+              "printed_samples": 1250,
+              "covered_samples": 0,
+              "coverage": 0.0,
+              "unsupported_output_samples": 0,
+              "raw_rmse_mv": null,
+              "raw_bias_mv": null,
+              "aligned": null
+            },
+            "V6": {
+              "printed_samples": 1250,
+              "covered_samples": 0,
+              "coverage": 0.0,
+              "unsupported_output_samples": 0,
+              "raw_rmse_mv": null,
+              "raw_bias_mv": null,
+              "aligned": null
+            }
+          }
+        },
+        "layout_fallback": false,
+        "pixel_spacing_mm": {
+          "x": 0.13188517093658447,
+          "y": 0.1320553719997406,
+          "average_pixel_per_mm": 7.57746696472168
+        },
+        "status": "failed",
+        "error": "KeyError: 'Unknown layout'",
+        "wall_seconds": 36.708724686002824
+      },
+      {
+        "name": "six-rows",
+        "arm": "configured",
+        "expected_layout": "standard_6x2",
+        "image_sha256": "07e276b0779a2c4f60c6b7375e803ea71caa23b210965996f51a1ccb1a1b613e",
+        "provided_gain_mm_per_mv": 10.0,
+        "gain_source": "declared paper profile",
+        "predicted_layout": "Unknown layout",
+        "matching_cost": 1.0,
+        "detected_labels": 2,
+        "extracted_rows": 0,
+        "layout_matches_expected": false,
+        "evaluation": {
+          "printed_time_coverage": 0.0,
+          "unsupported_output_fraction": null,
+          "raw_overlap_rmse_mv": null,
+          "mean_observed_lead_snr_db": null,
+          "leads_with_aligned_score": 0,
+          "per_lead": {
+            "I": {
+              "printed_samples": 2500,
+              "covered_samples": 0,
+              "coverage": 0.0,
+              "unsupported_output_samples": 0,
+              "raw_rmse_mv": null,
+              "raw_bias_mv": null,
+              "aligned": null
+            },
+            "II": {
+              "printed_samples": 2500,
+              "covered_samples": 0,
+              "coverage": 0.0,
+              "unsupported_output_samples": 0,
+              "raw_rmse_mv": null,
+              "raw_bias_mv": null,
+              "aligned": null
+            },
+            "III": {
+              "printed_samples": 2500,
+              "covered_samples": 0,
+              "coverage": 0.0,
+              "unsupported_output_samples": 0,
+              "raw_rmse_mv": null,
+              "raw_bias_mv": null,
+              "aligned": null
+            },
+            "aVR": {
+              "printed_samples": 2500,
+              "covered_samples": 0,
+              "coverage": 0.0,
+              "unsupported_output_samples": 0,
+              "raw_rmse_mv": null,
+              "raw_bias_mv": null,
+              "aligned": null
+            },
+            "aVL": {
+              "printed_samples": 2500,
+              "covered_samples": 0,
+              "coverage": 0.0,
+              "unsupported_output_samples": 0,
+              "raw_rmse_mv": null,
+              "raw_bias_mv": null,
+              "aligned": null
+            },
+            "aVF": {
+              "printed_samples": 2500,
+              "covered_samples": 0,
+              "coverage": 0.0,
+              "unsupported_output_samples": 0,
+              "raw_rmse_mv": null,
+              "raw_bias_mv": null,
+              "aligned": null
+            },
+            "V1": {
+              "printed_samples": 2500,
+              "covered_samples": 0,
+              "coverage": 0.0,
+              "unsupported_output_samples": 0,
+              "raw_rmse_mv": null,
+              "raw_bias_mv": null,
+              "aligned": null
+            },
+            "V2": {
+              "printed_samples": 2500,
+              "covered_samples": 0,
+              "coverage": 0.0,
+              "unsupported_output_samples": 0,
+              "raw_rmse_mv": null,
+              "raw_bias_mv": null,
+              "aligned": null
+            },
+            "V3": {
+              "printed_samples": 2500,
+              "covered_samples": 0,
+              "coverage": 0.0,
+              "unsupported_output_samples": 0,
+              "raw_rmse_mv": null,
+              "raw_bias_mv": null,
+              "aligned": null
+            },
+            "V4": {
+              "printed_samples": 2500,
+              "covered_samples": 0,
+              "coverage": 0.0,
+              "unsupported_output_samples": 0,
+              "raw_rmse_mv": null,
+              "raw_bias_mv": null,
+              "aligned": null
+            },
+            "V5": {
+              "printed_samples": 2500,
+              "covered_samples": 0,
+              "coverage": 0.0,
+              "unsupported_output_samples": 0,
+              "raw_rmse_mv": null,
+              "raw_bias_mv": null,
+              "aligned": null
+            },
+            "V6": {
+              "printed_samples": 2500,
+              "covered_samples": 0,
+              "coverage": 0.0,
+              "unsupported_output_samples": 0,
+              "raw_rmse_mv": null,
+              "raw_bias_mv": null,
+              "aligned": null
+            }
+          }
+        },
+        "layout_fallback": false,
+        "pixel_spacing_mm": {
+          "x": 0.12129759788513184,
+          "y": 0.12129758298397064,
+          "average_pixel_per_mm": 8.244186401367188
+        },
+        "status": "failed",
+        "error": "ValueError: Rejected fallback, empty signal or row/layout inconsistency",
+        "wall_seconds": 20.78088021100848
+      }
+    ]
+  },
+  "complete_transfer_signal_successes": 0,
+  "transfer_cases": 4,
+  "point_counts_are_not_whole_signal_success": true,
+  "full_local_report_sha256": "7eb57eab1fa29e227252a137fd912ea9bd0e306a705f6cb4b9e358b70de05053"
+}

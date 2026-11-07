@@ -1,0 +1,11 @@
+{
+  "status": "pass",
+  "tests": 5,
+  "failures": 0,
+  "errors": 0,
+  "source_file": "/workspace/scratch/a57599a3e70e/ecg-torch-renderer/examples/compare_rectification_methods.py",
+  "source_sha256": "18fedaf81856d7533a08aff112873fcc1b5c3c19b8d23fc7b62b046d8374e20e",
+  "actual_orchestrator_exercised": true,
+  "actual_neural_inference_exercised": false,
+  "scope": "Controlled injected inference timeout, model-load failure, pixel-budget failure and resume-corruption tests, two scheduled cases each. No model accuracy claim."
+}

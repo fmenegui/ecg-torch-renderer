@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-22",
+  "phase": "before assessment scoring",
+  "baseline": "PR19 at b9fd04dd6516e3469d1f36593849249c082458a8",
+  "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+  "development": {
+    "patients": 6,
+    "images": 48,
+    "previously_inspected": true
+  },
+  "assessment": {
+    "new_patient_groups": 8,
+    "images": 64,
+    "source": "PTB-XL fold10 groups absent from previous1280and exclusions",
+    "scored": false
+  },
+  "candidate_strengths": [
+    0,
+    0.05,
+    0.15,
+    0.5,
+    1.0
+  ],
+  "candidate_crease_guard": true,
+  "control_amendment": "Independent clean-crease analytic control exposed systematic smoothing bias before development selection. Add input-only crease guard and retain unguarded negative controls.",
+  "main_comparison": "same CNN, same detected points, same inferred IDs, same physical queries and B0 discrete evaluation gauge",
+  "primary_domain": "visible material inside true major-grid extent",
+  "secondary_domain": "whole visible paper material including margins, distinct from photographic background",
+  "primary_threshold_mm": 0.5,
+  "selection": {
+    "maximize": "patient/backend-balanced correct coverage G",
+    "minimum_delta_G": 0,
+    "maximum_delta_W": 0.001,
+    "maximum_delta_R": 0.001,
+    "maximum_backend_delta_W": 0.002,
+    "maximum_backend_delta_R": 0.002,
+    "minimum_backend_delta_G": -0.005,
+    "tie_break": "smaller strength",
+    "B0_always_candidate": true
+  },
+  "failure_rule": "fallback to B0 only on invalid geometry construction, no gold used for fallback. Rendering failures stop scoring for explicit denominator resolution.",
+  "native_context": "separate development diagnostic on8fixed1024patient views, not eligible for primary selection",
+  "eval_alignment": "signed axis permutations and integer grid origin only, fixed from B0 point matching. No scale/shear/affine fit.",
+  "new_training": false,
+  "external_real_image_validation": false,
+  "confidence_claim": "development gates only, no calibrated population risk guarantee"
+}

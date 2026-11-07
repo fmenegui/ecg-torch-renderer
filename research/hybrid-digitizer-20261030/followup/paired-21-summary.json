@@ -1,0 +1,872 @@
+{
+  "schema": "external-m7-patient-summary-v1",
+  "patients": 8,
+  "images": 21,
+  "warning": "Descriptive development pilot. Eight patients, unknown upstream training overlap. Alignment metrics are conditional and exclude leads below 90% support.",
+  "paired": {
+    "adaptive_then_native minus native": {
+      "coverage": {
+        "delta": -0.05183215277777778,
+        "descriptive_patient_bootstrap_95": [
+          -0.14551262499999998,
+          0.01840633854166631
+        ],
+        "per_patient_delta": {
+          "ptbxl-patient-15393.0": 0.04820833333333335,
+          "ptbxl-patient-16629.0": 0.01697777777777776,
+          "ptbxl-patient-16806.0": 0.043484444444444326,
+          "ptbxl-patient-18616.0": -0.12744444444444436,
+          "ptbxl-patient-3609.0": -0.03798333333333337,
+          "ptbxl-patient-391.0": 0.0062333333333333685,
+          "ptbxl-patient-8220.0": -0.3474666666666666,
+          "ptbxl-patient-9641.0": -0.01666666666666672
+        }
+      },
+      "raw_all_printed_nrmse": {
+        "delta": -0.08379535943756976,
+        "descriptive_patient_bootstrap_95": [
+          -0.18577660603588858,
+          -0.0009451741710598083
+        ],
+        "per_patient_delta": {
+          "ptbxl-patient-15393.0": 0.026504756190909973,
+          "ptbxl-patient-16629.0": -0.028622779589089653,
+          "ptbxl-patient-16806.0": 0.027586562101322487,
+          "ptbxl-patient-18616.0": -0.03137640791014107,
+          "ptbxl-patient-3609.0": 0.012298129774245492,
+          "ptbxl-patient-391.0": -0.23040543862772433,
+          "ptbxl-patient-8220.0": -0.37937423638728174,
+          "ptbxl-patient-9641.0": -0.06697346105279922
+        }
+      }
+    },
+    "downstream_preserve minus native": {
+      "coverage": {
+        "delta": -0.17105569444444446,
+        "descriptive_patient_bootstrap_95": [
+          -0.28822611111111107,
+          -0.05095819444444444
+        ],
+        "per_patient_delta": {
+          "ptbxl-patient-15393.0": -0.1346666666666666,
+          "ptbxl-patient-16629.0": 0.14062222222222223,
+          "ptbxl-patient-16806.0": -0.1911466666666667,
+          "ptbxl-patient-18616.0": -0.2746666666666666,
+          "ptbxl-patient-3609.0": -0.3459833333333334,
+          "ptbxl-patient-391.0": -0.049166666666666664,
+          "ptbxl-patient-8220.0": -0.4403377777777777,
+          "ptbxl-patient-9641.0": -0.07310000000000005
+        }
+      },
+      "raw_all_printed_nrmse": {
+        "delta": 0.1581138921083089,
+        "descriptive_patient_bootstrap_95": [
+          -0.12565389165953167,
+          0.6074936331329328
+        ],
+        "per_patient_delta": {
+          "ptbxl-patient-15393.0": -0.10820383405045986,
+          "ptbxl-patient-16629.0": -0.038922441522645235,
+          "ptbxl-patient-16806.0": -0.024435749711973598,
+          "ptbxl-patient-18616.0": 0.2652605601919058,
+          "ptbxl-patient-3609.0": -0.046916974663915756,
+          "ptbxl-patient-391.0": 1.6043891682735172,
+          "ptbxl-patient-8220.0": -0.32169434200265423,
+          "ptbxl-patient-9641.0": -0.06456524964730326
+        }
+      }
+    },
+    "downstream_landscape minus native": {
+      "coverage": {
+        "delta": 0.04345756944444443,
+        "descriptive_patient_bootstrap_95": [
+          -0.05480604166666668,
+          0.16254749999999998
+        ],
+        "per_patient_delta": {
+          "ptbxl-patient-15393.0": -0.08457499999999996,
+          "ptbxl-patient-16629.0": 0.23482222222222218,
+          "ptbxl-patient-16806.0": 0.036799999999999944,
+          "ptbxl-patient-18616.0": 0.027977777777777768,
+          "ptbxl-patient-3609.0": -0.05030000000000001,
+          "ptbxl-patient-391.0": 0.3627,
+          "ptbxl-patient-8220.0": -0.1071644444444444,
+          "ptbxl-patient-9641.0": -0.07260000000000011
+        }
+      },
+      "raw_all_printed_nrmse": {
+        "delta": 0.04380439901673858,
+        "descriptive_patient_bootstrap_95": [
+          -0.15797530007473226,
+          0.2561464278712882
+        ],
+        "per_patient_delta": {
+          "ptbxl-patient-15393.0": -0.024754604041502093,
+          "ptbxl-patient-16629.0": 0.04399397840053121,
+          "ptbxl-patient-16806.0": 0.1649323798050848,
+          "ptbxl-patient-18616.0": 0.04569848957929623,
+          "ptbxl-patient-3609.0": 0.014398893517644673,
+          "ptbxl-patient-391.0": 0.6413645210518579,
+          "ptbxl-patient-8220.0": -0.49881383786070543,
+          "ptbxl-patient-9641.0": -0.036384628318298695
+        }
+      }
+    },
+    "selective minus native": {
+      "coverage": {
+        "delta": 0.0,
+        "descriptive_patient_bootstrap_95": [
+          0.0,
+          0.0
+        ],
+        "per_patient_delta": {
+          "ptbxl-patient-15393.0": 0.0,
+          "ptbxl-patient-16629.0": 0.0,
+          "ptbxl-patient-16806.0": 0.0,
+          "ptbxl-patient-18616.0": 0.0,
+          "ptbxl-patient-3609.0": 0.0,
+          "ptbxl-patient-391.0": 0.0,
+          "ptbxl-patient-8220.0": 0.0,
+          "ptbxl-patient-9641.0": 0.0
+        }
+      },
+      "raw_all_printed_nrmse": {
+        "delta": 0.0,
+        "descriptive_patient_bootstrap_95": [
+          0.0,
+          0.0
+        ],
+        "per_patient_delta": {
+          "ptbxl-patient-15393.0": 0.0,
+          "ptbxl-patient-16629.0": 0.0,
+          "ptbxl-patient-16806.0": 0.0,
+          "ptbxl-patient-18616.0": 0.0,
+          "ptbxl-patient-3609.0": 0.0,
+          "ptbxl-patient-391.0": 0.0,
+          "ptbxl-patient-8220.0": 0.0,
+          "ptbxl-patient-9641.0": 0.0
+        }
+      }
+    },
+    "downstream_preserve minus adaptive_then_native": {
+      "coverage": {
+        "delta": -0.11922354166666665,
+        "descriptive_patient_bootstrap_95": [
+          -0.20195526041666662,
+          -0.03163694444444443
+        ],
+        "per_patient_delta": {
+          "ptbxl-patient-15393.0": -0.18287499999999995,
+          "ptbxl-patient-16629.0": 0.12364444444444447,
+          "ptbxl-patient-16806.0": -0.234631111111111,
+          "ptbxl-patient-18616.0": -0.14722222222222225,
+          "ptbxl-patient-3609.0": -0.30800000000000005,
+          "ptbxl-patient-391.0": -0.05540000000000003,
+          "ptbxl-patient-8220.0": -0.09287111111111113,
+          "ptbxl-patient-9641.0": -0.056433333333333335
+        }
+      },
+      "raw_all_printed_nrmse": {
+        "delta": 0.24190925154587864,
+        "descriptive_patient_bootstrap_95": [
+          -0.047966203056408085,
+          0.7232598809387489
+        ],
+        "per_patient_delta": {
+          "ptbxl-patient-15393.0": -0.13470859024136983,
+          "ptbxl-patient-16629.0": -0.010299661933555582,
+          "ptbxl-patient-16806.0": -0.052022311813296085,
+          "ptbxl-patient-18616.0": 0.29663696810204687,
+          "ptbxl-patient-3609.0": -0.05921510443816125,
+          "ptbxl-patient-391.0": 1.8347946069012415,
+          "ptbxl-patient-8220.0": 0.057679894384627506,
+          "ptbxl-patient-9641.0": 0.0024082114054959636
+        }
+      }
+    },
+    "downstream_landscape minus adaptive_then_native": {
+      "coverage": {
+        "delta": 0.0952897222222222,
+        "descriptive_patient_bootstrap_95": [
+          -0.014899999999999983,
+          0.2070209722222222
+        ],
+        "per_patient_delta": {
+          "ptbxl-patient-15393.0": -0.1327833333333333,
+          "ptbxl-patient-16629.0": 0.21784444444444442,
+          "ptbxl-patient-16806.0": -0.006684444444444382,
+          "ptbxl-patient-18616.0": 0.15542222222222213,
+          "ptbxl-patient-3609.0": -0.012316666666666642,
+          "ptbxl-patient-391.0": 0.35646666666666665,
+          "ptbxl-patient-8220.0": 0.2403022222222222,
+          "ptbxl-patient-9641.0": -0.05593333333333339
+        }
+      },
+      "raw_all_printed_nrmse": {
+        "delta": 0.12759975845430832,
+        "descriptive_patient_bootstrap_95": [
+          -0.02043435136931626,
+          0.3574978310296976
+        ],
+        "per_patient_delta": {
+          "ptbxl-patient-15393.0": -0.051259360232412066,
+          "ptbxl-patient-16629.0": 0.07261675798962086,
+          "ptbxl-patient-16806.0": 0.1373458177037623,
+          "ptbxl-patient-18616.0": 0.0770748974894373,
+          "ptbxl-patient-3609.0": 0.002100763743399181,
+          "ptbxl-patient-391.0": 0.8717699596795823,
+          "ptbxl-patient-8220.0": -0.1194396014734237,
+          "ptbxl-patient-9641.0": 0.030588832734500526
+        }
+      }
+    },
+    "selective minus adaptive_then_native": {
+      "coverage": {
+        "delta": 0.05183215277777778,
+        "descriptive_patient_bootstrap_95": [
+          -0.018406338541666612,
+          0.14551262499999923
+        ],
+        "per_patient_delta": {
+          "ptbxl-patient-15393.0": -0.04820833333333335,
+          "ptbxl-patient-16629.0": -0.01697777777777776,
+          "ptbxl-patient-16806.0": -0.043484444444444326,
+          "ptbxl-patient-18616.0": 0.12744444444444436,
+          "ptbxl-patient-3609.0": 0.03798333333333337,
+          "ptbxl-patient-391.0": -0.0062333333333333685,
+          "ptbxl-patient-8220.0": 0.3474666666666666,
+          "ptbxl-patient-9641.0": 0.01666666666666672
+        }
+      },
+      "raw_all_printed_nrmse": {
+        "delta": 0.08379535943756976,
+        "descriptive_patient_bootstrap_95": [
+          0.0009451741710596754,
+          0.18577660603588858
+        ],
+        "per_patient_delta": {
+          "ptbxl-patient-15393.0": -0.026504756190909973,
+          "ptbxl-patient-16629.0": 0.028622779589089653,
+          "ptbxl-patient-16806.0": -0.027586562101322487,
+          "ptbxl-patient-18616.0": 0.03137640791014107,
+          "ptbxl-patient-3609.0": -0.012298129774245492,
+          "ptbxl-patient-391.0": 0.23040543862772433,
+          "ptbxl-patient-8220.0": 0.37937423638728174,
+          "ptbxl-patient-9641.0": 0.06697346105279922
+        }
+      }
+    },
+    "downstream_landscape minus downstream_preserve": {
+      "coverage": {
+        "delta": 0.21451326388888886,
+        "descriptive_patient_bootstrap_95": [
+          0.11649888368055553,
+          0.30895909722222226
+        ],
+        "per_patient_delta": {
+          "ptbxl-patient-15393.0": 0.050091666666666645,
+          "ptbxl-patient-16629.0": 0.09419999999999995,
+          "ptbxl-patient-16806.0": 0.22794666666666663,
+          "ptbxl-patient-18616.0": 0.3026444444444444,
+          "ptbxl-patient-3609.0": 0.2956833333333334,
+          "ptbxl-patient-391.0": 0.4118666666666667,
+          "ptbxl-patient-8220.0": 0.3331733333333333,
+          "ptbxl-patient-9641.0": 0.0004999999999999449
+        }
+      },
+      "raw_all_printed_nrmse": {
+        "delta": -0.11430949309157032,
+        "descriptive_patient_bootstrap_95": [
+          -0.3874979693363401,
+          0.07808920878855323
+        ],
+        "per_patient_delta": {
+          "ptbxl-patient-15393.0": 0.08344923000895776,
+          "ptbxl-patient-16629.0": 0.08291641992317644,
+          "ptbxl-patient-16806.0": 0.1893681295170584,
+          "ptbxl-patient-18616.0": -0.21956207061260957,
+          "ptbxl-patient-3609.0": 0.06131586818156043,
+          "ptbxl-patient-391.0": -0.9630246472216593,
+          "ptbxl-patient-8220.0": -0.1771194958580512,
+          "ptbxl-patient-9641.0": 0.028180621329004563
+        }
+      }
+    },
+    "selective minus downstream_preserve": {
+      "coverage": {
+        "delta": 0.17105569444444446,
+        "descriptive_patient_bootstrap_95": [
+          0.05095819444444444,
+          0.28822611111111107
+        ],
+        "per_patient_delta": {
+          "ptbxl-patient-15393.0": 0.1346666666666666,
+          "ptbxl-patient-16629.0": -0.14062222222222223,
+          "ptbxl-patient-16806.0": 0.1911466666666667,
+          "ptbxl-patient-18616.0": 0.2746666666666666,
+          "ptbxl-patient-3609.0": 0.3459833333333334,
+          "ptbxl-patient-391.0": 0.049166666666666664,
+          "ptbxl-patient-8220.0": 0.4403377777777777,
+          "ptbxl-patient-9641.0": 0.07310000000000005
+        }
+      },
+      "raw_all_printed_nrmse": {
+        "delta": -0.1581138921083089,
+        "descriptive_patient_bootstrap_95": [
+          -0.6074936331329328,
+          0.12565389165953167
+        ],
+        "per_patient_delta": {
+          "ptbxl-patient-15393.0": 0.10820383405045986,
+          "ptbxl-patient-16629.0": 0.038922441522645235,
+          "ptbxl-patient-16806.0": 0.024435749711973598,
+          "ptbxl-patient-18616.0": -0.2652605601919058,
+          "ptbxl-patient-3609.0": 0.046916974663915756,
+          "ptbxl-patient-391.0": -1.6043891682735172,
+          "ptbxl-patient-8220.0": 0.32169434200265423,
+          "ptbxl-patient-9641.0": 0.06456524964730326
+        }
+      }
+    },
+    "selective minus downstream_landscape": {
+      "coverage": {
+        "delta": -0.04345756944444443,
+        "descriptive_patient_bootstrap_95": [
+          -0.16254749999999998,
+          0.05480604166666668
+        ],
+        "per_patient_delta": {
+          "ptbxl-patient-15393.0": 0.08457499999999996,
+          "ptbxl-patient-16629.0": -0.23482222222222218,
+          "ptbxl-patient-16806.0": -0.036799999999999944,
+          "ptbxl-patient-18616.0": -0.027977777777777768,
+          "ptbxl-patient-3609.0": 0.05030000000000001,
+          "ptbxl-patient-391.0": -0.3627,
+          "ptbxl-patient-8220.0": 0.1071644444444444,
+          "ptbxl-patient-9641.0": 0.07260000000000011
+        }
+      },
+      "raw_all_printed_nrmse": {
+        "delta": -0.04380439901673858,
+        "descriptive_patient_bootstrap_95": [
+          -0.25614642787128866,
+          0.15797530007473226
+        ],
+        "per_patient_delta": {
+          "ptbxl-patient-15393.0": 0.024754604041502093,
+          "ptbxl-patient-16629.0": -0.04399397840053121,
+          "ptbxl-patient-16806.0": -0.1649323798050848,
+          "ptbxl-patient-18616.0": -0.04569848957929623,
+          "ptbxl-patient-3609.0": -0.014398893517644673,
+          "ptbxl-patient-391.0": -0.6413645210518579,
+          "ptbxl-patient-8220.0": 0.49881383786070543,
+          "ptbxl-patient-9641.0": 0.036384628318298695
+        }
+      }
+    }
+  },
+  "arms": {
+    "native": {
+      "macro": {
+        "coverage": 0.5831254166666667,
+        "raw_all_printed_nrmse": 1.2230740169037153,
+        "raw_all_printed_rmse_mv": 0.38259070300702325,
+        "raw_all_printed_snr_db": -1.6611709906224044,
+        "raw_observed_rmse_mv": 0.451462727281325,
+        "raw_observed_pcc": 0.059504783826657984,
+        "mean_eligible_aligned_lead_snr_db": -2.1659173085041026,
+        "mean_eligible_aligned_lead_rmse_mv": 0.35416666352023746
+      },
+      "images": 21,
+      "patients": 8,
+      "entirely_missing_leads": 64,
+      "expected_leads": 252,
+      "compatible_layouts": 12,
+      "exceptions": 0,
+      "per_patient": {
+        "ptbxl-patient-15393.0": {
+          "coverage": 0.4347,
+          "raw_all_printed_nrmse": 1.2251264419555161,
+          "raw_all_printed_rmse_mv": 0.30159571950391884,
+          "raw_all_printed_snr_db": -1.7634826020830603,
+          "raw_observed_rmse_mv": 0.38803731410108766,
+          "raw_observed_pcc": -0.003698637991106175,
+          "mean_eligible_aligned_lead_snr_db": -0.4761280668978759,
+          "mean_eligible_aligned_lead_rmse_mv": 0.33913739832395406
+        },
+        "ptbxl-patient-16629.0": {
+          "coverage": 0.215,
+          "raw_all_printed_nrmse": 1.0985865201890672,
+          "raw_all_printed_rmse_mv": 0.676472064162609,
+          "raw_all_printed_snr_db": -0.8163865810826151,
+          "raw_observed_rmse_mv": 0.7635991731108632,
+          "raw_observed_pcc": -0.09323890074029438,
+          "mean_eligible_aligned_lead_snr_db": -3.895026529818908,
+          "mean_eligible_aligned_lead_rmse_mv": 0.5890627667920069
+        },
+        "ptbxl-patient-16806.0": {
+          "coverage": 0.8182044444444445,
+          "raw_all_printed_nrmse": 1.0818798320106635,
+          "raw_all_printed_rmse_mv": 0.28394523681764183,
+          "raw_all_printed_snr_db": -0.6809588325875096,
+          "raw_observed_rmse_mv": 0.29515292800613024,
+          "raw_observed_pcc": 0.129431669874465,
+          "mean_eligible_aligned_lead_snr_db": -0.6675842695938585,
+          "mean_eligible_aligned_lead_rmse_mv": 0.191223307947087
+        },
+        "ptbxl-patient-18616.0": {
+          "coverage": 0.7665333333333333,
+          "raw_all_printed_nrmse": 1.1425023171228743,
+          "raw_all_printed_rmse_mv": 0.16649398772669566,
+          "raw_all_printed_snr_db": -1.076880710346319,
+          "raw_observed_rmse_mv": 0.15612955737065173,
+          "raw_observed_pcc": 0.31164866946146974,
+          "mean_eligible_aligned_lead_snr_db": 1.1827114591814096,
+          "mean_eligible_aligned_lead_rmse_mv": 0.10751741220168311
+        },
+        "ptbxl-patient-3609.0": {
+          "coverage": 0.8929,
+          "raw_all_printed_nrmse": 1.1197431513499962,
+          "raw_all_printed_rmse_mv": 0.5170683430314394,
+          "raw_all_printed_snr_db": -0.9720248149100299,
+          "raw_observed_rmse_mv": 0.5253020889493291,
+          "raw_observed_pcc": 0.09036108902348469,
+          "mean_eligible_aligned_lead_snr_db": 0.035073452068477784,
+          "mean_eligible_aligned_lead_rmse_mv": 0.4111031247838639
+        },
+        "ptbxl-patient-391.0": {
+          "coverage": 0.20579999999999998,
+          "raw_all_printed_nrmse": 1.639320589854493,
+          "raw_all_printed_rmse_mv": 0.33302906744651073,
+          "raw_all_printed_snr_db": -4.283246087677509,
+          "raw_observed_rmse_mv": 0.6004468862978816,
+          "raw_observed_pcc": -0.011606857330349996,
+          "mean_eligible_aligned_lead_snr_db": -10.911935662367311,
+          "mean_eligible_aligned_lead_rmse_mv": 0.49030660640226403
+        },
+        "ptbxl-patient-8220.0": {
+          "coverage": 0.9158044444444444,
+          "raw_all_printed_nrmse": 1.2855426571029422,
+          "raw_all_printed_rmse_mv": 0.28055106600033014,
+          "raw_all_printed_snr_db": -2.1816086102274928,
+          "raw_observed_rmse_mv": 0.2861506222303873,
+          "raw_observed_pcc": 0.031259979132545544,
+          "mean_eligible_aligned_lead_snr_db": -0.25288943824817195,
+          "mean_eligible_aligned_lead_rmse_mv": 0.21753276479172334
+        },
+        "ptbxl-patient-9641.0": {
+          "coverage": 0.41606111111111116,
+          "raw_all_printed_nrmse": 1.1918906256441708,
+          "raw_all_printed_rmse_mv": 0.5015701393670403,
+          "raw_all_printed_snr_db": -1.5147796860646985,
+          "raw_observed_rmse_mv": 0.5968832481842693,
+          "raw_observed_pcc": 0.021881259183049426,
+          "mean_eligible_aligned_lead_snr_db": -2.3415594123565833,
+          "mean_eligible_aligned_lead_rmse_mv": 0.4874499269193174
+        }
+      }
+    },
+    "adaptive_then_native": {
+      "macro": {
+        "coverage": 0.5312932638888889,
+        "raw_all_printed_nrmse": 1.1392786574661455,
+        "raw_all_printed_rmse_mv": 0.36252358143198576,
+        "raw_all_printed_snr_db": -1.0153038537565928,
+        "raw_observed_rmse_mv": 0.4071076833309919,
+        "raw_observed_pcc": 0.11338845677832873,
+        "mean_eligible_aligned_lead_snr_db": -0.9486906858030861,
+        "mean_eligible_aligned_lead_rmse_mv": 0.28535783213941224
+      },
+      "images": 21,
+      "patients": 8,
+      "entirely_missing_leads": 93,
+      "expected_leads": 252,
+      "compatible_layouts": 9,
+      "exceptions": 0,
+      "per_patient": {
+        "ptbxl-patient-15393.0": {
+          "coverage": 0.48290833333333333,
+          "raw_all_printed_nrmse": 1.251631198146426,
+          "raw_all_printed_rmse_mv": 0.3081205325680414,
+          "raw_all_printed_snr_db": -1.9459325966592265,
+          "raw_observed_rmse_mv": 0.38163192249797007,
+          "raw_observed_pcc": 0.016485566216041667,
+          "mean_eligible_aligned_lead_snr_db": -1.3225172471779685,
+          "mean_eligible_aligned_lead_rmse_mv": 0.3490858003464796
+        },
+        "ptbxl-patient-16629.0": {
+          "coverage": 0.23197777777777775,
+          "raw_all_printed_nrmse": 1.0699637405999776,
+          "raw_all_printed_rmse_mv": 0.6588471339137191,
+          "raw_all_printed_snr_db": -0.5567659217322297,
+          "raw_observed_rmse_mv": 0.819861278651225,
+          "raw_observed_pcc": 0.14270414348640895,
+          "mean_eligible_aligned_lead_snr_db": -0.03180011716086195,
+          "mean_eligible_aligned_lead_rmse_mv": 0.6136215139680725
+        },
+        "ptbxl-patient-16806.0": {
+          "coverage": 0.8616888888888888,
+          "raw_all_printed_nrmse": 1.109466394111986,
+          "raw_all_printed_rmse_mv": 0.2911854798437891,
+          "raw_all_printed_snr_db": -0.8933302095778662,
+          "raw_observed_rmse_mv": 0.29070114669299923,
+          "raw_observed_pcc": 0.08415588885102014,
+          "mean_eligible_aligned_lead_snr_db": -0.7217653505215615,
+          "mean_eligible_aligned_lead_rmse_mv": 0.19349132155178742
+        },
+        "ptbxl-patient-18616.0": {
+          "coverage": 0.6390888888888889,
+          "raw_all_printed_nrmse": 1.1111259092127332,
+          "raw_all_printed_rmse_mv": 0.16192158275630208,
+          "raw_all_printed_snr_db": -0.8716261216715434,
+          "raw_observed_rmse_mv": 0.13666261874740113,
+          "raw_observed_pcc": 0.26336993207505666,
+          "mean_eligible_aligned_lead_snr_db": 1.3675743767202124,
+          "mean_eligible_aligned_lead_rmse_mv": 0.09466461245051937
+        },
+        "ptbxl-patient-3609.0": {
+          "coverage": 0.8549166666666667,
+          "raw_all_printed_nrmse": 1.1320412811242417,
+          "raw_all_printed_rmse_mv": 0.5227473003682968,
+          "raw_all_printed_snr_db": -1.0772347137046783,
+          "raw_observed_rmse_mv": 0.5260123994636408,
+          "raw_observed_pcc": 0.056124400836759646,
+          "mean_eligible_aligned_lead_snr_db": -0.6995794616750973,
+          "mean_eligible_aligned_lead_rmse_mv": 0.423038762544595
+        },
+        "ptbxl-patient-391.0": {
+          "coverage": 0.21203333333333335,
+          "raw_all_printed_nrmse": 1.4089151512267686,
+          "raw_all_printed_rmse_mv": 0.28622204944425034,
+          "raw_all_printed_snr_db": -2.924831466469592,
+          "raw_observed_rmse_mv": 0.46289713426805046,
+          "raw_observed_pcc": -0.03983099853973085,
+          "mean_eligible_aligned_lead_snr_db": -6.111466445836254,
+          "mean_eligible_aligned_lead_rmse_mv": 0.21734794396387472
+        },
+        "ptbxl-patient-8220.0": {
+          "coverage": 0.5683377777777778,
+          "raw_all_printed_nrmse": 0.9061684207156605,
+          "raw_all_printed_rmse_mv": 0.19775813350334945,
+          "raw_all_printed_snr_db": 1.1664797829876146,
+          "raw_observed_rmse_mv": 0.17831594637761772,
+          "raw_observed_pcc": 0.358274087761814,
+          "mean_eligible_aligned_lead_snr_db": 3.6072455231032077,
+          "mean_eligible_aligned_lead_rmse_mv": 0.11462293803548179
+        },
+        "ptbxl-patient-9641.0": {
+          "coverage": 0.39939444444444444,
+          "raw_all_printed_nrmse": 1.1249171645913716,
+          "raw_all_printed_rmse_mv": 0.473386439058138,
+          "raw_all_printed_snr_db": -1.0191895832252207,
+          "raw_observed_rmse_mv": 0.4607790199490311,
+          "raw_observed_pcc": 0.025824633539259647,
+          "mean_eligible_aligned_lead_snr_db": -3.677216763876366,
+          "mean_eligible_aligned_lead_rmse_mv": 0.27698976425448735
+        }
+      }
+    },
+    "downstream_preserve": {
+      "macro": {
+        "coverage": 0.41206972222222227,
+        "raw_all_printed_nrmse": 1.3811879090120245,
+        "raw_all_printed_rmse_mv": 0.4061570185069573,
+        "raw_all_printed_snr_db": -1.8467503800529532,
+        "raw_observed_rmse_mv": 0.5921454051870507,
+        "raw_observed_pcc": 0.13934339032788373,
+        "mean_eligible_aligned_lead_snr_db": -4.25877423650385,
+        "mean_eligible_aligned_lead_rmse_mv": 0.43803465330844743
+      },
+      "images": 21,
+      "patients": 8,
+      "entirely_missing_leads": 120,
+      "expected_leads": 252,
+      "compatible_layouts": 7,
+      "exceptions": 0,
+      "per_patient": {
+        "ptbxl-patient-15393.0": {
+          "coverage": 0.3000333333333334,
+          "raw_all_printed_nrmse": 1.1169226079050563,
+          "raw_all_printed_rmse_mv": 0.27495862143309285,
+          "raw_all_printed_snr_db": -0.9445316082084737,
+          "raw_observed_rmse_mv": 0.32210940601821436,
+          "raw_observed_pcc": 0.00862902054525782,
+          "mean_eligible_aligned_lead_snr_db": -16.552558451718674,
+          "mean_eligible_aligned_lead_rmse_mv": 0.3119789524855526
+        },
+        "ptbxl-patient-16629.0": {
+          "coverage": 0.35562222222222223,
+          "raw_all_printed_nrmse": 1.059664078666422,
+          "raw_all_printed_rmse_mv": 0.6525049538119915,
+          "raw_all_printed_snr_db": -0.5017076676237541,
+          "raw_observed_rmse_mv": 0.5418859373964183,
+          "raw_observed_pcc": 0.32757822072889775,
+          "mean_eligible_aligned_lead_snr_db": -3.2006868855544006,
+          "mean_eligible_aligned_lead_rmse_mv": 0.4586816375076388
+        },
+        "ptbxl-patient-16806.0": {
+          "coverage": 0.6270577777777778,
+          "raw_all_printed_nrmse": 1.05744408229869,
+          "raw_all_printed_rmse_mv": 0.27753194161286115,
+          "raw_all_printed_snr_db": -0.4776971903842921,
+          "raw_observed_rmse_mv": 0.27476408995788604,
+          "raw_observed_pcc": 0.14899067235467026,
+          "mean_eligible_aligned_lead_snr_db": 0.05698045658098272,
+          "mean_eligible_aligned_lead_rmse_mv": 0.16250873812999908
+        },
+        "ptbxl-patient-18616.0": {
+          "coverage": 0.4918666666666667,
+          "raw_all_printed_nrmse": 1.4077628773147801,
+          "raw_all_printed_rmse_mv": 0.20514974167228506,
+          "raw_all_printed_snr_db": -2.617359007802371,
+          "raw_observed_rmse_mv": 0.4773789978739367,
+          "raw_observed_pcc": 0.3001738135091912,
+          "mean_eligible_aligned_lead_snr_db": 4.11483861000954,
+          "mean_eligible_aligned_lead_rmse_mv": 0.07916024127511254
+        },
+        "ptbxl-patient-3609.0": {
+          "coverage": 0.5469166666666666,
+          "raw_all_printed_nrmse": 1.0728261766860805,
+          "raw_all_printed_rmse_mv": 0.4954033010793889,
+          "raw_all_printed_snr_db": -0.5916384904437653,
+          "raw_observed_rmse_mv": 0.5098521408341864,
+          "raw_observed_pcc": 0.02411358343514966,
+          "mean_eligible_aligned_lead_snr_db": -1.4057064010985132,
+          "mean_eligible_aligned_lead_rmse_mv": 0.42069749342065815
+        },
+        "ptbxl-patient-391.0": {
+          "coverage": 0.15663333333333332,
+          "raw_all_printed_nrmse": 3.24370975812801,
+          "raw_all_printed_rmse_mv": 0.6589617933807576,
+          "raw_all_printed_snr_db": -9.070136998737972,
+          "raw_observed_rmse_mv": 1.9478497582469383,
+          "raw_observed_pcc": -0.038538659315363856,
+          "mean_eligible_aligned_lead_snr_db": -18.290983929836973,
+          "mean_eligible_aligned_lead_rmse_mv": 1.7357623435626472
+        },
+        "ptbxl-patient-8220.0": {
+          "coverage": 0.4754666666666667,
+          "raw_all_printed_nrmse": 0.963848315100288,
+          "raw_all_printed_rmse_mv": 0.2103459350570227,
+          "raw_all_printed_snr_db": 0.44640288632917263,
+          "raw_observed_rmse_mv": 0.21148781359828595,
+          "raw_observed_pcc": 0.3304224482746547,
+          "mean_eligible_aligned_lead_snr_db": 2.7001588511540446,
+          "mean_eligible_aligned_lead_rmse_mv": 0.12276124087977687
+        },
+        "ptbxl-patient-9641.0": {
+          "coverage": 0.3429611111111111,
+          "raw_all_printed_nrmse": 1.1273253759968676,
+          "raw_all_printed_rmse_mv": 0.4743998600082584,
+          "raw_all_printed_snr_db": -1.017334963552172,
+          "raw_observed_rmse_mv": 0.45183509757053925,
+          "raw_observed_pcc": 0.013378023090612359,
+          "mean_eligible_aligned_lead_snr_db": -1.4922361415668097,
+          "mean_eligible_aligned_lead_rmse_mv": 0.21272657920619442
+        }
+      }
+    },
+    "downstream_landscape": {
+      "macro": {
+        "coverage": 0.6265829861111111,
+        "raw_all_printed_nrmse": 1.266878415920454,
+        "raw_all_printed_rmse_mv": 0.39305512467935505,
+        "raw_all_printed_snr_db": -1.5527975120227047,
+        "raw_observed_rmse_mv": 0.4112623113835523,
+        "raw_observed_pcc": 0.1555255856899112,
+        "mean_eligible_aligned_lead_snr_db": -1.945084458917983,
+        "mean_eligible_aligned_lead_rmse_mv": 0.2772389155246403
+      },
+      "images": 21,
+      "patients": 8,
+      "entirely_missing_leads": 68,
+      "expected_leads": 252,
+      "compatible_layouts": 13,
+      "exceptions": 0,
+      "per_patient": {
+        "ptbxl-patient-15393.0": {
+          "coverage": 0.350125,
+          "raw_all_printed_nrmse": 1.200371837914014,
+          "raw_all_printed_rmse_mv": 0.29550175045610805,
+          "raw_all_printed_snr_db": -1.585557190803959,
+          "raw_observed_rmse_mv": 0.3737065488674577,
+          "raw_observed_pcc": -0.004703023042796749,
+          "mean_eligible_aligned_lead_snr_db": -9.897203975920014,
+          "mean_eligible_aligned_lead_rmse_mv": 0.37020034903204324
+        },
+        "ptbxl-patient-16629.0": {
+          "coverage": 0.4498222222222222,
+          "raw_all_printed_nrmse": 1.1425804985895984,
+          "raw_all_printed_rmse_mv": 0.7035620537377684,
+          "raw_all_printed_snr_db": -1.0973320999369673,
+          "raw_observed_rmse_mv": 0.6084982237825888,
+          "raw_observed_pcc": 0.32291961358834576,
+          "mean_eligible_aligned_lead_snr_db": -3.722891151225665,
+          "mean_eligible_aligned_lead_rmse_mv": 0.5500136368300279
+        },
+        "ptbxl-patient-16806.0": {
+          "coverage": 0.8550044444444445,
+          "raw_all_printed_nrmse": 1.2468122118157483,
+          "raw_all_printed_rmse_mv": 0.32723263552588433,
+          "raw_all_printed_snr_db": -1.7801969920554315,
+          "raw_observed_rmse_mv": 0.3477060056375672,
+          "raw_observed_pcc": 0.10206741751588844,
+          "mean_eligible_aligned_lead_snr_db": -0.4055067685464912,
+          "mean_eligible_aligned_lead_rmse_mv": 0.1974106307979424
+        },
+        "ptbxl-patient-18616.0": {
+          "coverage": 0.7945111111111111,
+          "raw_all_printed_nrmse": 1.1882008067021705,
+          "raw_all_printed_rmse_mv": 0.1731535136192157,
+          "raw_all_printed_snr_db": -1.4162990912347555,
+          "raw_observed_rmse_mv": 0.1546797495891552,
+          "raw_observed_pcc": 0.29124004096616724,
+          "mean_eligible_aligned_lead_snr_db": 3.004599380853456,
+          "mean_eligible_aligned_lead_rmse_mv": 0.09444146432155688
+        },
+        "ptbxl-patient-3609.0": {
+          "coverage": 0.8426,
+          "raw_all_printed_nrmse": 1.134142044867641,
+          "raw_all_printed_rmse_mv": 0.5237173785747054,
+          "raw_all_printed_snr_db": -1.0930461356939218,
+          "raw_observed_rmse_mv": 0.5325703147755432,
+          "raw_observed_pcc": 0.05215394144500621,
+          "mean_eligible_aligned_lead_snr_db": -1.3482964280903285,
+          "mean_eligible_aligned_lead_rmse_mv": 0.4177372012448026
+        },
+        "ptbxl-patient-391.0": {
+          "coverage": 0.5685,
+          "raw_all_printed_nrmse": 2.280685110906351,
+          "raw_all_printed_rmse_mv": 0.4633226961980027,
+          "raw_all_printed_snr_db": -6.847752150207544,
+          "raw_observed_rmse_mv": 0.5977677896803439,
+          "raw_observed_pcc": -0.0711393399421544,
+          "mean_eligible_aligned_lead_snr_db": -5.3305724520399105,
+          "mean_eligible_aligned_lead_rmse_mv": 0.2273095659346463
+        },
+        "ptbxl-patient-8220.0": {
+          "coverage": 0.80864,
+          "raw_all_printed_nrmse": 0.7867288192422368,
+          "raw_all_printed_rmse_mv": 0.1716921703625088,
+          "raw_all_printed_snr_db": 2.6407978468692255,
+          "raw_observed_rmse_mv": 0.17196668275871393,
+          "raw_observed_pcc": 0.5239729952365272,
+          "mean_eligible_aligned_lead_snr_db": 5.048951436964644,
+          "mean_eligible_aligned_lead_rmse_mv": 0.10491030912518196
+        },
+        "ptbxl-patient-9641.0": {
+          "coverage": 0.34346111111111105,
+          "raw_all_printed_nrmse": 1.1555059973258721,
+          "raw_all_printed_rmse_mv": 0.48625879896064705,
+          "raw_all_printed_snr_db": -1.2429942831182832,
+          "raw_observed_rmse_mv": 0.5032031759770487,
+          "raw_observed_pcc": 0.02769303975230598,
+          "mean_eligible_aligned_lead_snr_db": -2.9097557133395546,
+          "mean_eligible_aligned_lead_rmse_mv": 0.2558881669109213
+        }
+      }
+    },
+    "selective": {
+      "macro": {
+        "coverage": 0.5831254166666667,
+        "raw_all_printed_nrmse": 1.2230740169037153,
+        "raw_all_printed_rmse_mv": 0.38259070300702325,
+        "raw_all_printed_snr_db": -1.6611709906224048,
+        "raw_observed_rmse_mv": 0.451462727281325,
+        "raw_observed_pcc": 0.05950478382665798,
+        "mean_eligible_aligned_lead_snr_db": -2.1659173085041026,
+        "mean_eligible_aligned_lead_rmse_mv": 0.35416666352023746
+      },
+      "images": 21,
+      "patients": 8,
+      "entirely_missing_leads": 64,
+      "expected_leads": 252,
+      "compatible_layouts": 12,
+      "exceptions": 0,
+      "per_patient": {
+        "ptbxl-patient-15393.0": {
+          "coverage": 0.4347,
+          "raw_all_printed_nrmse": 1.2251264419555161,
+          "raw_all_printed_rmse_mv": 0.30159571950391884,
+          "raw_all_printed_snr_db": -1.763482602083064,
+          "raw_observed_rmse_mv": 0.38803731410108766,
+          "raw_observed_pcc": -0.0036986379911061766,
+          "mean_eligible_aligned_lead_snr_db": -0.4761280668978759,
+          "mean_eligible_aligned_lead_rmse_mv": 0.33913739832395406
+        },
+        "ptbxl-patient-16629.0": {
+          "coverage": 0.215,
+          "raw_all_printed_nrmse": 1.0985865201890672,
+          "raw_all_printed_rmse_mv": 0.676472064162609,
+          "raw_all_printed_snr_db": -0.816386581082616,
+          "raw_observed_rmse_mv": 0.7635991731108632,
+          "raw_observed_pcc": -0.09323890074029438,
+          "mean_eligible_aligned_lead_snr_db": -3.895026529818908,
+          "mean_eligible_aligned_lead_rmse_mv": 0.5890627667920069
+        },
+        "ptbxl-patient-16806.0": {
+          "coverage": 0.8182044444444445,
+          "raw_all_printed_nrmse": 1.0818798320106635,
+          "raw_all_printed_rmse_mv": 0.28394523681764183,
+          "raw_all_printed_snr_db": -0.6809588325875081,
+          "raw_observed_rmse_mv": 0.29515292800613024,
+          "raw_observed_pcc": 0.12943166987446506,
+          "mean_eligible_aligned_lead_snr_db": -0.6675842695938585,
+          "mean_eligible_aligned_lead_rmse_mv": 0.191223307947087
+        },
+        "ptbxl-patient-18616.0": {
+          "coverage": 0.7665333333333333,
+          "raw_all_printed_nrmse": 1.1425023171228743,
+          "raw_all_printed_rmse_mv": 0.16649398772669566,
+          "raw_all_printed_snr_db": -1.0768807103463214,
+          "raw_observed_rmse_mv": 0.15612955737065173,
+          "raw_observed_pcc": 0.3116486694614697,
+          "mean_eligible_aligned_lead_snr_db": 1.1827114591814096,
+          "mean_eligible_aligned_lead_rmse_mv": 0.10751741220168311
+        },
+        "ptbxl-patient-3609.0": {
+          "coverage": 0.8929,
+          "raw_all_printed_nrmse": 1.1197431513499962,
+          "raw_all_printed_rmse_mv": 0.5170683430314394,
+          "raw_all_printed_snr_db": -0.9720248149100286,
+          "raw_observed_rmse_mv": 0.5253020889493291,
+          "raw_observed_pcc": 0.09036108902348465,
+          "mean_eligible_aligned_lead_snr_db": 0.035073452068477784,
+          "mean_eligible_aligned_lead_rmse_mv": 0.4111031247838639
+        },
+        "ptbxl-patient-391.0": {
+          "coverage": 0.20579999999999998,
+          "raw_all_printed_nrmse": 1.639320589854493,
+          "raw_all_printed_rmse_mv": 0.33302906744651073,
+          "raw_all_printed_snr_db": -4.28324608767751,
+          "raw_observed_rmse_mv": 0.6004468862978816,
+          "raw_observed_pcc": -0.011606857330349996,
+          "mean_eligible_aligned_lead_snr_db": -10.911935662367311,
+          "mean_eligible_aligned_lead_rmse_mv": 0.49030660640226403
+        },
+        "ptbxl-patient-8220.0": {
+          "coverage": 0.9158044444444444,
+          "raw_all_printed_nrmse": 1.2855426571029422,
+          "raw_all_printed_rmse_mv": 0.28055106600033014,
+          "raw_all_printed_snr_db": -2.1816086102274905,
+          "raw_observed_rmse_mv": 0.2861506222303873,
+          "raw_observed_pcc": 0.031259979132545544,
+          "mean_eligible_aligned_lead_snr_db": -0.25288943824817195,
+          "mean_eligible_aligned_lead_rmse_mv": 0.21753276479172334
+        },
+        "ptbxl-patient-9641.0": {
+          "coverage": 0.41606111111111116,
+          "raw_all_printed_nrmse": 1.1918906256441708,
+          "raw_all_printed_rmse_mv": 0.5015701393670403,
+          "raw_all_printed_snr_db": -1.514779686064698,
+          "raw_observed_rmse_mv": 0.5968832481842693,
+          "raw_observed_pcc": 0.02188125918304944,
+          "mean_eligible_aligned_lead_snr_db": -2.3415594123565833,
+          "mean_eligible_aligned_lead_rmse_mv": 0.4874499269193174
+        }
+      }
+    }
+  },
+  "fixed_input_subset": true,
+  "primary_all_24_retained": true
+}

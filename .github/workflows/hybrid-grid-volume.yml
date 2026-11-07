@@ -1,0 +1,27 @@
+name: Hybrid grid checkpoint discovery
+on:
+  push:
+    branches: ['research/hybrid-digitizer-*']
+    paths:
+      - '.github/workflows/hybrid-grid-volume.yml'
+      - 'reproductions/runpod/grid_volume_probe.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Read the prior checkpoint volume and co-located CPU catalog
+        env:
+          RUNPOD_API_KEY: ${{ secrets.RUNPOD_API }}
+        run: python -m reproductions.runpod.grid_volume_probe
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: grid-volume-probe
+          path: build/grid-volume-probe

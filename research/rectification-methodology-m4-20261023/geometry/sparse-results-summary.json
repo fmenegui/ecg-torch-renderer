@@ -1,0 +1,705 @@
+{
+  "protocol_sha256": "348d586f1f583f331ec7891faeb36bad08ff69f18912133c2a434f4c56b56d1b",
+  "source_sha256": {
+    "sparse_parity_cost.py": "c118e4a4d82a9ae3c71b123fe2dff353320ccc91dc79505cf3139162c8d01cfd",
+    "geometry_selector.py": "0ce6062797c5e25dd9ce3d7b26a6a9fabe7779ca72b5ea4e55fcda564bed9e87",
+    "geometry_selector_sparse.py": "426c31924fb4e910d3d2fcc2114479a47ade6cfbc4fb9bcfeb99d0f10ded2fdc",
+    "sparse-protocol.json": "348d586f1f583f331ec7891faeb36bad08ff69f18912133c2a434f4c56b56d1b"
+  },
+  "summary": {
+    "selected_same_all": true,
+    "full_fit_status_same_all": true,
+    "max_cv_loss_difference": 2.402522625288839e-13,
+    "max_field_difference_mm": 1.4995145483432313e-12,
+    "forward_finite_mask_differences": 0,
+    "inverse_finite_mask_differences": 0,
+    "max_forward_difference_mm": 1.8018940895392422e-12,
+    "max_inverse_difference_px": 8.582085647059476e-12,
+    "parity_pass": true
+  },
+  "costs": [
+    {
+      "implementation": "dense",
+      "shape": [
+        12,
+        16
+      ],
+      "nodes": 192,
+      "assembly_seconds": 0.002963165001347079,
+      "four_irls_solve_seconds": [
+        0.0024271929996757535,
+        0.0016631759990559658,
+        0.0015191030015557772
+      ],
+      "median_four_irls_solve_seconds": 0.0016631759990559658,
+      "peak_process_rss_mib": 88.41015625,
+      "penalty_stored_entries": 36864,
+      "penalty_bytes": 294912,
+      "finite_solution": true,
+      "scope": "one field fit with four IRLS updates, excludes H, CV, candidate guards and geometry queries"
+    },
+    {
+      "implementation": "sparse",
+      "shape": [
+        12,
+        16
+      ],
+      "nodes": 192,
+      "assembly_seconds": 0.002358522000577068,
+      "four_irls_solve_seconds": [
+        0.004236664999552886,
+        0.0030219909986044513,
+        0.0030844640004943358
+      ],
+      "median_four_irls_solve_seconds": 0.0030844640004943358,
+      "peak_process_rss_mib": 88.41015625,
+      "penalty_stored_entries": 2220,
+      "penalty_bytes": 27412,
+      "finite_solution": true,
+      "scope": "one field fit with four IRLS updates, excludes H, CV, candidate guards and geometry queries"
+    },
+    {
+      "implementation": "dense",
+      "shape": [
+        18,
+        28
+      ],
+      "nodes": 504,
+      "assembly_seconds": 0.018019442999502644,
+      "four_irls_solve_seconds": [
+        0.015341370000896859,
+        0.014722654999786755,
+        0.015246749999278109
+      ],
+      "median_four_irls_solve_seconds": 0.015246749999278109,
+      "peak_process_rss_mib": 88.41015625,
+      "penalty_stored_entries": 254016,
+      "penalty_bytes": 2032128,
+      "finite_solution": true,
+      "scope": "one field fit with four IRLS updates, excludes H, CV, candidate guards and geometry queries"
+    },
+    {
+      "implementation": "sparse",
+      "shape": [
+        18,
+        28
+      ],
+      "nodes": 504,
+      "assembly_seconds": 0.004263103999619489,
+      "four_irls_solve_seconds": [
+        0.008851167000102578,
+        0.007815138000296429,
+        0.007590525998239173
+      ],
+      "median_four_irls_solve_seconds": 0.007815138000296429,
+      "peak_process_rss_mib": 88.41015625,
+      "penalty_stored_entries": 6096,
+      "penalty_bytes": 75172,
+      "finite_solution": true,
+      "scope": "one field fit with four IRLS updates, excludes H, CV, candidate guards and geometry queries"
+    },
+    {
+      "implementation": "dense",
+      "shape": [
+        35,
+        53
+      ],
+      "nodes": 1855,
+      "assembly_seconds": 0.4275164009995933,
+      "four_irls_solve_seconds": [
+        0.4463662709986238,
+        0.46075125800052774,
+        0.4632446870000422
+      ],
+      "median_four_irls_solve_seconds": 0.46075125800052774,
+      "peak_process_rss_mib": 285.1953125,
+      "penalty_stored_entries": 3441025,
+      "penalty_bytes": 27528200,
+      "finite_solution": true,
+      "scope": "one field fit with four IRLS updates, excludes H, CV, candidate guards and geometry queries"
+    },
+    {
+      "implementation": "sparse",
+      "shape": [
+        35,
+        53
+      ],
+      "nodes": 1855,
+      "assembly_seconds": 0.015571629999612924,
+      "four_irls_solve_seconds": [
+        0.03810975499982305,
+        0.03279954499885207,
+        0.040774414001134573
+      ],
+      "median_four_irls_solve_seconds": 0.03810975499982305,
+      "peak_process_rss_mib": 88.41015625,
+      "penalty_stored_entries": 23239,
+      "penalty_bytes": 286292,
+      "finite_solution": true,
+      "scope": "one field fit with four IRLS updates, excludes H, CV, candidate guards and geometry queries"
+    },
+    {
+      "implementation": "dense",
+      "shape": [
+        69,
+        105
+      ],
+      "nodes": 7245,
+      "skipped": "over frozen 2000-node dense limit",
+      "dense_penalty_bytes_estimate": 419920200
+    },
+    {
+      "implementation": "sparse",
+      "shape": [
+        69,
+        105
+      ],
+      "nodes": 7245,
+      "assembly_seconds": 0.0605510969999159,
+      "four_irls_solve_seconds": [
+        0.136320199999318,
+        0.14136099799907242,
+        0.11561289900055272
+      ],
+      "median_four_irls_solve_seconds": 0.136320199999318,
+      "peak_process_rss_mib": 88.41015625,
+      "penalty_stored_entries": 92449,
+      "penalty_bytes": 1138372,
+      "finite_solution": true,
+      "scope": "one field fit with four IRLS updates, excludes H, CV, candidate guards and geometry queries"
+    }
+  ],
+  "frozen_real_input_inventory": [
+    {
+      "case": "01024-0",
+      "observations": 1890,
+      "complete_rectangular_shape": [
+        35,
+        54
+      ],
+      "complete_rectangular_nodes": 1890,
+      "allowed_cells": 1802,
+      "dense_under_hard_limit": true,
+      "sparse_under_hard_limit": true,
+      "dense_penalty_bytes_estimate": 28576800,
+      "dense_stencil_bytes_upper_estimate": 85730400,
+      "source_sha256": "33f8bf8a3d0a5bdd4ff41875383987360b3e44b083b806d9ea3c89bb43b85cb6",
+      "executed_full_selection": false
+    },
+    {
+      "case": "206056-0",
+      "observations": 507,
+      "complete_rectangular_shape": [
+        19,
+        29
+      ],
+      "complete_rectangular_nodes": 551,
+      "allowed_cells": 442,
+      "dense_under_hard_limit": true,
+      "sparse_under_hard_limit": true,
+      "dense_penalty_bytes_estimate": 2428808,
+      "dense_stencil_bytes_upper_estimate": 7286424,
+      "source_sha256": "2f8bc51ca3c29630d13da8d99bee47d8b909473d47ef5235ba2e352273509db1",
+      "executed_full_selection": false
+    },
+    {
+      "case": "206056-1",
+      "observations": 396,
+      "complete_rectangular_shape": [
+        19,
+        30
+      ],
+      "complete_rectangular_nodes": 570,
+      "allowed_cells": 172,
+      "dense_under_hard_limit": true,
+      "sparse_under_hard_limit": true,
+      "dense_penalty_bytes_estimate": 2599200,
+      "dense_stencil_bytes_upper_estimate": 7797600,
+      "source_sha256": "8ff11bc4249dfc8f518ede0d6cf1fa0d203e2da85cd2e9f9d5cb2225aa1c86d7",
+      "executed_full_selection": false
+    },
+    {
+      "case": "206056-2",
+      "observations": 1894,
+      "complete_rectangular_shape": [
+        36,
+        54
+      ],
+      "complete_rectangular_nodes": 1944,
+      "allowed_cells": 1792,
+      "dense_under_hard_limit": true,
+      "sparse_under_hard_limit": true,
+      "dense_penalty_bytes_estimate": 30233088,
+      "dense_stencil_bytes_upper_estimate": 90699264,
+      "source_sha256": "62d47352eaac900128e1fbf7b4ad245fbfd637242b1282de2a21dd7d1f3fe358",
+      "executed_full_selection": false
+    },
+    {
+      "case": "206056-6",
+      "observations": 401,
+      "complete_rectangular_shape": [
+        18,
+        29
+      ],
+      "complete_rectangular_nodes": 522,
+      "allowed_cells": 287,
+      "dense_under_hard_limit": true,
+      "sparse_under_hard_limit": true,
+      "dense_penalty_bytes_estimate": 2179872,
+      "dense_stencil_bytes_upper_estimate": 6539616,
+      "source_sha256": "ce1b61cc2f06cb3cf0af1f2c1a28555d8795072eb738b35cca1d95896f99f8a6",
+      "executed_full_selection": false
+    },
+    {
+      "case": "206852-0",
+      "observations": 496,
+      "complete_rectangular_shape": [
+        18,
+        29
+      ],
+      "complete_rectangular_nodes": 522,
+      "allowed_cells": 430,
+      "dense_under_hard_limit": true,
+      "sparse_under_hard_limit": true,
+      "dense_penalty_bytes_estimate": 2179872,
+      "dense_stencil_bytes_upper_estimate": 6539616,
+      "source_sha256": "cb2557999ecaebb0b9e5a4fe1fcf469181d3c87a050a06883ebfb7bd67ccbed2",
+      "executed_full_selection": false
+    },
+    {
+      "case": "206852-1",
+      "observations": 7166,
+      "complete_rectangular_shape": [
+        69,
+        105
+      ],
+      "complete_rectangular_nodes": 7245,
+      "allowed_cells": 6986,
+      "dense_under_hard_limit": false,
+      "sparse_under_hard_limit": true,
+      "dense_penalty_bytes_estimate": 419920200,
+      "dense_stencil_bytes_upper_estimate": 1259760600,
+      "source_sha256": "bc7d594c1ec2ae94e3ebf9a2f8a3085b8140f0ba4f2508b652ad10610cf9603f",
+      "executed_full_selection": false
+    },
+    {
+      "case": "206852-2",
+      "observations": 619,
+      "complete_rectangular_shape": [
+        38,
+        28
+      ],
+      "complete_rectangular_nodes": 1064,
+      "allowed_cells": 105,
+      "dense_under_hard_limit": true,
+      "sparse_under_hard_limit": true,
+      "dense_penalty_bytes_estimate": 9056768,
+      "dense_stencil_bytes_upper_estimate": 27170304,
+      "source_sha256": "65a7c31a9484feff064f2564b7570ed05ddd5b0b043b0a62b90bde1253b9690d",
+      "executed_full_selection": false
+    },
+    {
+      "case": "206852-6",
+      "observations": 1898,
+      "complete_rectangular_shape": [
+        36,
+        54
+      ],
+      "complete_rectangular_nodes": 1944,
+      "allowed_cells": 1802,
+      "dense_under_hard_limit": true,
+      "sparse_under_hard_limit": true,
+      "dense_penalty_bytes_estimate": 30233088,
+      "dense_stencil_bytes_upper_estimate": 90699264,
+      "source_sha256": "cce0fc79d37dbdaea1bd379d11205dca5907c2b11f5856c9a1a8512280b5debe",
+      "executed_full_selection": false
+    },
+    {
+      "case": "208114-0",
+      "observations": 472,
+      "complete_rectangular_shape": [
+        17,
+        29
+      ],
+      "complete_rectangular_nodes": 493,
+      "allowed_cells": 399,
+      "dense_under_hard_limit": true,
+      "sparse_under_hard_limit": true,
+      "dense_penalty_bytes_estimate": 1944392,
+      "dense_stencil_bytes_upper_estimate": 5833176,
+      "source_sha256": "67bedb9abe2a4a777ad7a7a5c429b776f8e3908a1783b552d320a9ccec40be42",
+      "executed_full_selection": false
+    },
+    {
+      "case": "208114-1",
+      "observations": 459,
+      "complete_rectangular_shape": [
+        18,
+        29
+      ],
+      "complete_rectangular_nodes": 522,
+      "allowed_cells": 377,
+      "dense_under_hard_limit": true,
+      "sparse_under_hard_limit": true,
+      "dense_penalty_bytes_estimate": 2179872,
+      "dense_stencil_bytes_upper_estimate": 6539616,
+      "source_sha256": "3df16533846c9a7a67b794958b95aacd87b7c99e1ea8e0489004390c4eb6d754",
+      "executed_full_selection": false
+    },
+    {
+      "case": "208114-2",
+      "observations": 396,
+      "complete_rectangular_shape": [
+        18,
+        29
+      ],
+      "complete_rectangular_nodes": 522,
+      "allowed_cells": 227,
+      "dense_under_hard_limit": true,
+      "sparse_under_hard_limit": true,
+      "dense_penalty_bytes_estimate": 2179872,
+      "dense_stencil_bytes_upper_estimate": 6539616,
+      "source_sha256": "e4850d7a1c92f58143f8db48a113134dda99e227d8fd2b6bb4e4199bd2199670",
+      "executed_full_selection": false
+    },
+    {
+      "case": "208114-6",
+      "observations": 405,
+      "complete_rectangular_shape": [
+        19,
+        30
+      ],
+      "complete_rectangular_nodes": 570,
+      "allowed_cells": 269,
+      "dense_under_hard_limit": true,
+      "sparse_under_hard_limit": true,
+      "dense_penalty_bytes_estimate": 2599200,
+      "dense_stencil_bytes_upper_estimate": 7797600,
+      "source_sha256": "a824aa07a648051afbff35ba97a9005f6e9e47e5fb6b96e3bfe7ca6f69e8e157",
+      "executed_full_selection": false
+    },
+    {
+      "case": "208777-0",
+      "observations": 1786,
+      "complete_rectangular_shape": [
+        34,
+        54
+      ],
+      "complete_rectangular_nodes": 1836,
+      "allowed_cells": 1684,
+      "dense_under_hard_limit": true,
+      "sparse_under_hard_limit": true,
+      "dense_penalty_bytes_estimate": 26967168,
+      "dense_stencil_bytes_upper_estimate": 80901504,
+      "source_sha256": "28e9eae301c4d79b264ccf8f15105ae39e2122cab775552bc4a83def0252d859",
+      "executed_full_selection": false
+    },
+    {
+      "case": "208777-1",
+      "observations": 1938,
+      "complete_rectangular_shape": [
+        36,
+        55
+      ],
+      "complete_rectangular_nodes": 1980,
+      "allowed_cells": 1843,
+      "dense_under_hard_limit": true,
+      "sparse_under_hard_limit": true,
+      "dense_penalty_bytes_estimate": 31363200,
+      "dense_stencil_bytes_upper_estimate": 94089600,
+      "source_sha256": "6d7dd600e9b879e06e248b4800ecd40aa86826ab933a9118cef5dbb6a84a7fbf",
+      "executed_full_selection": false
+    },
+    {
+      "case": "208777-2",
+      "observations": 3775,
+      "complete_rectangular_shape": [
+        55,
+        77
+      ],
+      "complete_rectangular_nodes": 4235,
+      "allowed_cells": 3510,
+      "dense_under_hard_limit": false,
+      "sparse_under_hard_limit": true,
+      "dense_penalty_bytes_estimate": 143481800,
+      "dense_stencil_bytes_upper_estimate": 430445400,
+      "source_sha256": "3b635d7218bd7c8f150352b00fe6b237d635c664976aec3a0605b87ea384490f",
+      "executed_full_selection": false
+    },
+    {
+      "case": "208777-6",
+      "observations": 3264,
+      "complete_rectangular_shape": [
+        75,
+        50
+      ],
+      "complete_rectangular_nodes": 3750,
+      "allowed_cells": 3097,
+      "dense_under_hard_limit": false,
+      "sparse_under_hard_limit": true,
+      "dense_penalty_bytes_estimate": 112500000,
+      "dense_stencil_bytes_upper_estimate": 337500000,
+      "source_sha256": "14918d38f8aebec2f0d55bdfdb311fe86bc06368bbf3d242473498e3e5fe4077",
+      "executed_full_selection": false
+    },
+    {
+      "case": "211723-0",
+      "observations": 7217,
+      "complete_rectangular_shape": [
+        70,
+        105
+      ],
+      "complete_rectangular_nodes": 7350,
+      "allowed_cells": 7031,
+      "dense_under_hard_limit": false,
+      "sparse_under_hard_limit": true,
+      "dense_penalty_bytes_estimate": 432180000,
+      "dense_stencil_bytes_upper_estimate": 1296540000,
+      "source_sha256": "1412d0915315582bf33b30d06a2f0e9d8b45ba17a555e644ab28f818f1f213bc",
+      "executed_full_selection": false
+    },
+    {
+      "case": "211723-1",
+      "observations": 1828,
+      "complete_rectangular_shape": [
+        36,
+        55
+      ],
+      "complete_rectangular_nodes": 1980,
+      "allowed_cells": 1677,
+      "dense_under_hard_limit": true,
+      "sparse_under_hard_limit": true,
+      "dense_penalty_bytes_estimate": 31363200,
+      "dense_stencil_bytes_upper_estimate": 94089600,
+      "source_sha256": "e51a7585ac67cc39516f60f3f957bd3529e212c50be0b1115c05a1b82084c48b",
+      "executed_full_selection": false
+    },
+    {
+      "case": "211723-2",
+      "observations": 7,
+      "complete_rectangular_shape": [
+        3,
+        5
+      ],
+      "complete_rectangular_nodes": 15,
+      "allowed_cells": 0,
+      "dense_under_hard_limit": true,
+      "sparse_under_hard_limit": true,
+      "dense_penalty_bytes_estimate": 1800,
+      "dense_stencil_bytes_upper_estimate": 5400,
+      "source_sha256": "cf780c1aa57fd89df3b31a41fea3b5e62ea1ab6bbaf7e6c8a4f0b86bef67c244",
+      "executed_full_selection": false
+    },
+    {
+      "case": "211723-6",
+      "observations": 894,
+      "complete_rectangular_shape": [
+        37,
+        29
+      ],
+      "complete_rectangular_nodes": 1073,
+      "allowed_cells": 526,
+      "dense_under_hard_limit": true,
+      "sparse_under_hard_limit": true,
+      "dense_penalty_bytes_estimate": 9210632,
+      "dense_stencil_bytes_upper_estimate": 27631896,
+      "source_sha256": "9106413b94c112104b9ee1c8bba8ce2c75039b29f04c16df9fc9405fcc41177f",
+      "executed_full_selection": false
+    },
+    {
+      "case": "211855-0",
+      "observations": 505,
+      "complete_rectangular_shape": [
+        18,
+        29
+      ],
+      "complete_rectangular_nodes": 522,
+      "allowed_cells": 439,
+      "dense_under_hard_limit": true,
+      "sparse_under_hard_limit": true,
+      "dense_penalty_bytes_estimate": 2179872,
+      "dense_stencil_bytes_upper_estimate": 6539616,
+      "source_sha256": "e43339a98f8517007892df9f14af5433dbb83920cf6856885f9835447a327d67",
+      "executed_full_selection": false
+    },
+    {
+      "case": "211855-1",
+      "observations": 357,
+      "complete_rectangular_shape": [
+        18,
+        28
+      ],
+      "complete_rectangular_nodes": 504,
+      "allowed_cells": 157,
+      "dense_under_hard_limit": true,
+      "sparse_under_hard_limit": true,
+      "dense_penalty_bytes_estimate": 2032128,
+      "dense_stencil_bytes_upper_estimate": 6096384,
+      "source_sha256": "4a35d8765c1583af6fac660d865df1644b21fecd399493c19e6fcac49ae3b91b",
+      "executed_full_selection": false
+    },
+    {
+      "case": "211855-2",
+      "observations": 3723,
+      "complete_rectangular_shape": [
+        55,
+        78
+      ],
+      "complete_rectangular_nodes": 4290,
+      "allowed_cells": 3088,
+      "dense_under_hard_limit": false,
+      "sparse_under_hard_limit": true,
+      "dense_penalty_bytes_estimate": 147232800,
+      "dense_stencil_bytes_upper_estimate": 441698400,
+      "source_sha256": "8a23e50540575036ad6ab65e0f9dcf416b71ebcc6c4a1c8ff2ef169b8fb75519",
+      "executed_full_selection": false
+    },
+    {
+      "case": "211855-6",
+      "observations": 466,
+      "complete_rectangular_shape": [
+        29,
+        33
+      ],
+      "complete_rectangular_nodes": 957,
+      "allowed_cells": 175,
+      "dense_under_hard_limit": true,
+      "sparse_under_hard_limit": true,
+      "dense_penalty_bytes_estimate": 7326792,
+      "dense_stencil_bytes_upper_estimate": 21980376,
+      "source_sha256": "74748da1881c8ff4e071f82132ff334a23d7d17922414a181460e666265894de",
+      "executed_full_selection": false
+    },
+    {
+      "case": "215864-0",
+      "observations": 7250,
+      "complete_rectangular_shape": [
+        70,
+        105
+      ],
+      "complete_rectangular_nodes": 7350,
+      "allowed_cells": 7060,
+      "dense_under_hard_limit": false,
+      "sparse_under_hard_limit": true,
+      "dense_penalty_bytes_estimate": 432180000,
+      "dense_stencil_bytes_upper_estimate": 1296540000,
+      "source_sha256": "51bd04f81e676a33a2c01204aec272f7d811fdede0a10e165de096265444499f",
+      "executed_full_selection": false
+    },
+    {
+      "case": "215864-1",
+      "observations": 517,
+      "complete_rectangular_shape": [
+        18,
+        30
+      ],
+      "complete_rectangular_nodes": 540,
+      "allowed_cells": 465,
+      "dense_under_hard_limit": true,
+      "sparse_under_hard_limit": true,
+      "dense_penalty_bytes_estimate": 2332800,
+      "dense_stencil_bytes_upper_estimate": 6998400,
+      "source_sha256": "1af67f860fe1b2302cd1bab2e74cd72af97baf69cdf21f8489750a661a74a13a",
+      "executed_full_selection": false
+    },
+    {
+      "case": "215864-2",
+      "observations": 1830,
+      "complete_rectangular_shape": [
+        36,
+        54
+      ],
+      "complete_rectangular_nodes": 1944,
+      "allowed_cells": 1629,
+      "dense_under_hard_limit": true,
+      "sparse_under_hard_limit": true,
+      "dense_penalty_bytes_estimate": 30233088,
+      "dense_stencil_bytes_upper_estimate": 90699264,
+      "source_sha256": "bae59544a82e9c7a8ab0f7c7f74f25332ffd628c2bb1fbe6146074446b4c71ec",
+      "executed_full_selection": false
+    },
+    {
+      "case": "215864-6",
+      "observations": 2649,
+      "complete_rectangular_shape": [
+        53,
+        70
+      ],
+      "complete_rectangular_nodes": 3710,
+      "allowed_cells": 2027,
+      "dense_under_hard_limit": false,
+      "sparse_under_hard_limit": true,
+      "dense_penalty_bytes_estimate": 110112800,
+      "dense_stencil_bytes_upper_estimate": 330338400,
+      "source_sha256": "84017750c26f0dd3700cff8fd99d8ff2ddc5209398f7158853e53aa4d3278667",
+      "executed_full_selection": false
+    },
+    {
+      "case": "220288-0",
+      "observations": 7265,
+      "complete_rectangular_shape": [
+        70,
+        104
+      ],
+      "complete_rectangular_nodes": 7280,
+      "allowed_cells": 7091,
+      "dense_under_hard_limit": false,
+      "sparse_under_hard_limit": true,
+      "dense_penalty_bytes_estimate": 423987200,
+      "dense_stencil_bytes_upper_estimate": 1271961600,
+      "source_sha256": "bc5dc9d68d940283a4f9cfd3ab7a3dc76315019095ed2df36aac07be239b9a3a",
+      "executed_full_selection": false
+    },
+    {
+      "case": "220288-1",
+      "observations": 402,
+      "complete_rectangular_shape": [
+        17,
+        28
+      ],
+      "complete_rectangular_nodes": 476,
+      "allowed_cells": 280,
+      "dense_under_hard_limit": true,
+      "sparse_under_hard_limit": true,
+      "dense_penalty_bytes_estimate": 1812608,
+      "dense_stencil_bytes_upper_estimate": 5437824,
+      "source_sha256": "f5c3bdc100b4028316dd061f7ef3d46da7a7dcd96e747b3b22b4e463c2ee0fc3",
+      "executed_full_selection": false
+    },
+    {
+      "case": "220288-2",
+      "observations": 431,
+      "complete_rectangular_shape": [
+        18,
+        29
+      ],
+      "complete_rectangular_nodes": 522,
+      "allowed_cells": 316,
+      "dense_under_hard_limit": true,
+      "sparse_under_hard_limit": true,
+      "dense_penalty_bytes_estimate": 2179872,
+      "dense_stencil_bytes_upper_estimate": 6539616,
+      "source_sha256": "26ca3390bd568f4dfe3423e05be6facbe31f759de2e059a97bd89e2b77d0407f",
+      "executed_full_selection": false
+    },
+    {
+      "case": "220288-6",
+      "observations": 3327,
+      "complete_rectangular_shape": [
+        51,
+        73
+      ],
+      "complete_rectangular_nodes": 3723,
+      "allowed_cells": 3199,
+      "dense_under_hard_limit": false,
+      "sparse_under_hard_limit": true,
+      "dense_penalty_bytes_estimate": 110885832,
+      "dense_stencil_bytes_upper_estimate": 332657496,
+      "source_sha256": "ccd567b108ebdc80e4a7314d271372b512d53c08f56746f274c8a8f55111c2f6",
+      "executed_full_selection": false
+    }
+  ],
+  "no_full_real_selection_or_physical_benchmark": true,
+  "limitation": "Sparse implementation only improves stencil storage and field solve. Full selector still refits many candidates and performs a conservative all-triangle overlap guard with quadratic worst-case cost.",
+  "complete": true
+}

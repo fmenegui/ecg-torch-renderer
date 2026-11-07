@@ -1,0 +1,29 @@
+{
+  "schema": "patient-exclusive-trace-reader-source-plan-v1",
+  "status": "source_identities_prepared_raw_signal_acquisition_pending",
+  "seed": "ecg-lead-reader-source-patients-v1/",
+  "metadata_sha256": "7600de9c1b27d181d850b3c6038a35d7c3ddb6bb33b702e3a20252a6859d216b",
+  "exclusions_sha256": "1696dc61328ffa194e84a5308e49032f686665a0c0091aa0bbb3ffac4e405ed3",
+  "excluded_benchmark_patients": 97,
+  "partition_summary": {
+    "train": {
+      "records": 17291,
+      "patients": 14986
+    },
+    "validation": {
+      "records": 2174,
+      "patients": 1890
+    },
+    "source_holdout": {
+      "records": 2182,
+      "patients": 1896
+    }
+  },
+  "new_training_executed": false,
+  "clinical_image_test_set_acquired": false,
+  "source_holdout_is_independent_clinical_validation": false,
+  "warning": "Source waveform holdout and synthetic rendering do not replace an independent paired clinical image test.",
+  "excluded_records": 152,
+  "planned_records": 21647,
+  "source_manifest_sha256": "84911bfb3fd4579852c6d6cbf8a0f8bc7f8038c0e199c86b085c2c733493a7e0"
+}

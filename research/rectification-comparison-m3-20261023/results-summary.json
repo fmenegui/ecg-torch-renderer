@@ -1,0 +1,4700 @@
+{
+  "schema": "M3-compact-results-v1",
+  "date": "2026-10-23",
+  "scope": "Retrospective synthetic diagnostic comparison, no new untouched holdout or SOTA claim",
+  "cases": 32,
+  "patients": 8,
+  "methods": [
+    "our-B0",
+    "our-M2",
+    "npj-generic",
+    "npj-george-moody-2024",
+    "kaggle-third"
+  ],
+  "execution_lock_sha256": "a667f1cbbe3dc3334df1721a821af063691240eb0b3fdd7b72af5150f1127b3c",
+  "full_summary_sha256": "f23de9fbba72d75b36a13553b9147c35dd82953f7c83ae6e88fbefdb42c240c5",
+  "case_CSV_sha256": "f20ddb2e2e02a58064abca2b2b6866670aaa308d7c15088e44cce3d572139c8b",
+  "commercial_Dotter_Gridder": "not_executed_access_unavailable",
+  "supported_Kaggle_cases": 1,
+  "supported_Kaggle_patients": 1,
+  "sampling_and_composition": "Separate analytical components, not additional native arms",
+  "tracks": {
+    "primary": {
+      "grid": {
+        "methods": {
+          "our-B0": {
+            "overall": {
+              "g": 0.6288681030273438,
+              "w": 0.16655731201171875,
+              "c": 0.7954254150390625,
+              "r": 0.20939400333787336
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.3715972900390625,
+                "w": 0.322265625,
+                "c": 0.6938629150390625,
+                "r": 0.46445143271831635
+              },
+              "torch-cached": {
+                "g": 0.886138916015625,
+                "w": 0.0108489990234375,
+                "c": 0.8969879150390625,
+                "r": 0.012094922174023985
+              }
+            },
+            "registration_unavailable_cases": 1,
+            "undefined_R_cases": 1,
+            "worst_finite_tail": [
+              {
+                "key": "220288-6",
+                "layout": "12x1+r1",
+                "backend": "offline",
+                "rmse_mm": 257.36720856436824,
+                "p95_mm": 432.3010369082414,
+                "c": 0.960693359375,
+                "status": "original_preserved_partial_coordinates"
+              },
+              {
+                "key": "215864-6",
+                "layout": "2x1-long",
+                "backend": "offline",
+                "rmse_mm": 219.51809214679912,
+                "p95_mm": 373.77359500967344,
+                "c": 0.6494140625,
+                "status": "original_preserved_partial_coordinates"
+              },
+              {
+                "key": "206852-6",
+                "layout": "2x6+r2",
+                "backend": "offline",
+                "rmse_mm": 189.33495614600062,
+                "p95_mm": 307.4275109385847,
+                "c": 0.999755859375,
+                "status": "completed"
+              }
+            ],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.98046875,
+                "w": 0.001953125,
+                "c": 0.982421875,
+                "r": 0.0019880715705765406
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          },
+          "our-M2": {
+            "overall": {
+              "g": 0.63232421875,
+              "w": 0.16283416748046875,
+              "c": 0.7951583862304688,
+              "r": 0.20478205386526965
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.3783721923828125,
+                "w": 0.3150634765625,
+                "c": 0.6934356689453125,
+                "r": 0.45435141379689736
+              },
+              "torch-cached": {
+                "g": 0.8862762451171875,
+                "w": 0.0106048583984375,
+                "c": 0.896881103515625,
+                "r": 0.01182415189356562
+              }
+            },
+            "registration_unavailable_cases": 1,
+            "undefined_R_cases": 1,
+            "worst_finite_tail": [
+              {
+                "key": "220288-6",
+                "layout": "12x1+r1",
+                "backend": "offline",
+                "rmse_mm": 257.36720856436824,
+                "p95_mm": 432.3010369082414,
+                "c": 0.960693359375,
+                "status": "original_preserved_partial_coordinates"
+              },
+              {
+                "key": "215864-6",
+                "layout": "2x1-long",
+                "backend": "offline",
+                "rmse_mm": 219.51809214679912,
+                "p95_mm": 373.77359500967344,
+                "c": 0.6494140625,
+                "status": "original_preserved_partial_coordinates"
+              },
+              {
+                "key": "206852-6",
+                "layout": "2x6+r2",
+                "backend": "offline",
+                "rmse_mm": 189.33495614600062,
+                "p95_mm": 307.4275109385847,
+                "c": 0.999755859375,
+                "status": "completed"
+              }
+            ],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.98193359375,
+                "w": 0.0,
+                "c": 0.98193359375,
+                "r": 0.0
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          },
+          "npj-generic": {
+            "overall": {
+              "g": 0.114654541015625,
+              "w": 0.8140029907226562,
+              "c": 0.9286575317382812,
+              "r": 0.8765373271662243
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.0973968505859375,
+                "w": 0.8628692626953125,
+                "c": 0.96026611328125,
+                "r": 0.8985730629886226
+              },
+              "torch-cached": {
+                "g": 0.1319122314453125,
+                "w": 0.76513671875,
+                "c": 0.8970489501953125,
+                "r": 0.852948680875674
+              }
+            },
+            "registration_unavailable_cases": 1,
+            "undefined_R_cases": 1,
+            "worst_finite_tail": [
+              {
+                "key": "215864-6",
+                "layout": "2x1-long",
+                "backend": "offline",
+                "rmse_mm": 192.45943470016394,
+                "p95_mm": 325.64323421085015,
+                "c": 0.91357421875,
+                "status": "completed"
+              },
+              {
+                "key": "220288-6",
+                "layout": "12x1+r1",
+                "backend": "offline",
+                "rmse_mm": 190.4133174179534,
+                "p95_mm": 324.4018607720277,
+                "c": 0.927490234375,
+                "status": "completed"
+              },
+              {
+                "key": "206852-6",
+                "layout": "2x6+r2",
+                "backend": "offline",
+                "rmse_mm": 189.93879263479081,
+                "p95_mm": 308.97331168049385,
+                "c": 1.0,
+                "status": "completed"
+              }
+            ],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.00048828125,
+                "w": 0.99951171875,
+                "c": 1.0,
+                "r": 0.99951171875
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          },
+          "npj-george-moody-2024": {
+            "overall": {
+              "g": 0.11428070068359375,
+              "w": 0.8143768310546875,
+              "c": 0.9286575317382812,
+              "r": 0.876939887118903
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.096649169921875,
+                "w": 0.863616943359375,
+                "c": 0.96026611328125,
+                "r": 0.899351681179686
+              },
+              "torch-cached": {
+                "g": 0.1319122314453125,
+                "w": 0.76513671875,
+                "c": 0.8970489501953125,
+                "r": 0.852948680875674
+              }
+            },
+            "registration_unavailable_cases": 1,
+            "undefined_R_cases": 1,
+            "worst_finite_tail": [
+              {
+                "key": "206852-6",
+                "layout": "2x6+r2",
+                "backend": "offline",
+                "rmse_mm": 189.93879263479081,
+                "p95_mm": 308.97331168049385,
+                "c": 1.0,
+                "status": "completed"
+              },
+              {
+                "key": "215864-6",
+                "layout": "2x1-long",
+                "backend": "offline",
+                "rmse_mm": 185.79015343947512,
+                "p95_mm": 309.6440243861896,
+                "c": 0.91357421875,
+                "status": "completed"
+              },
+              {
+                "key": "220288-6",
+                "layout": "12x1+r1",
+                "backend": "offline",
+                "rmse_mm": 177.69053165241857,
+                "p95_mm": 302.74298180488256,
+                "c": 0.927490234375,
+                "status": "completed"
+              }
+            ],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.00048828125,
+                "w": 0.99951171875,
+                "c": 1.0,
+                "r": 0.99951171875
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          },
+          "kaggle-third": {
+            "overall": {
+              "g": 0.0,
+              "w": 0.0,
+              "c": 0.0,
+              "r": null
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": null
+              },
+              "torch-cached": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": null
+              }
+            },
+            "registration_unavailable_cases": 32,
+            "undefined_R_cases": 32,
+            "worst_finite_tail": [],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": null
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          }
+        },
+        "bootstrap": {
+          "methods": {
+            "our-B0": {
+              "metrics": {
+                "g": 0.6288681030273438,
+                "w": 0.16655731201171875,
+                "c": 0.7954254150390625,
+                "r": 0.20939400333787336
+              },
+              "delta_vs_baseline": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": 0.0
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": 0.0,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": 0.0,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": 0.0,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": 0.0,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                }
+              }
+            },
+            "our-M2": {
+              "metrics": {
+                "g": 0.63232421875,
+                "w": 0.16283416748046875,
+                "c": 0.7951583862304688,
+                "r": 0.20478205386526965
+              },
+              "delta_vs_baseline": {
+                "g": 0.00345611572265625,
+                "w": -0.00372314453125,
+                "c": -0.00026702880859375,
+                "r": -0.00461194947260371
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": 0.0,
+                  "upper": 0.00913238525390625,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": -0.009552001953125,
+                  "upper": -9.918212890625e-05,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": -0.00052642822265625,
+                  "upper": -7.62939453125e-05,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": -0.011648036894058356,
+                  "upper": -8.96128795909723e-05,
+                  "defined_draws": 20000
+                }
+              }
+            },
+            "npj-generic": {
+              "metrics": {
+                "g": 0.114654541015625,
+                "w": 0.8140029907226562,
+                "c": 0.9286575317382812,
+                "r": 0.8765373271662243
+              },
+              "delta_vs_baseline": {
+                "g": -0.5142135620117188,
+                "w": 0.6474456787109375,
+                "c": 0.13323211669921875,
+                "r": 0.667143323828351
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": -0.6497201919555664,
+                  "upper": -0.38542556762695346,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": 0.4875324249267578,
+                  "upper": 0.7973709106445312,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": -0.0013971328735351554,
+                  "upper": 0.26564235687255777,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": 0.5040340481991246,
+                  "upper": 0.815840863560517,
+                  "defined_draws": 20000
+                }
+              }
+            },
+            "npj-george-moody-2024": {
+              "metrics": {
+                "g": 0.11428070068359375,
+                "w": 0.8143768310546875,
+                "c": 0.9286575317382812,
+                "r": 0.876939887118903
+              },
+              "delta_vs_baseline": {
+                "g": -0.51458740234375,
+                "w": 0.6478195190429688,
+                "c": 0.13323211669921875,
+                "r": 0.6675458837810296
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": -0.6497354507446289,
+                  "upper": -0.38601665496826176,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": 0.48778858184814455,
+                  "upper": 0.7979473114013669,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": -0.0013971328735351554,
+                  "upper": 0.26564235687255777,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": 0.504648417523697,
+                  "upper": 0.8163109393210604,
+                  "defined_draws": 20000
+                }
+              }
+            },
+            "kaggle-third": {
+              "metrics": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": null
+              },
+              "delta_vs_baseline": {
+                "g": -0.6288681030273438,
+                "w": -0.16655731201171875,
+                "c": -0.7954254150390625,
+                "r": null
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": -0.7248611450195312,
+                  "upper": -0.539825439453125,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": -0.22519683837890625,
+                  "upper": -0.10454559326171875,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": -0.8918304443359375,
+                  "upper": -0.6884765625,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": null,
+                  "upper": null,
+                  "defined_draws": 0
+                }
+              }
+            }
+          },
+          "baseline": "our-B0",
+          "repetitions": 20000,
+          "seed": 1973,
+          "independent_patients": 8,
+          "patients": [
+            "ptbxl-patient-10264.0",
+            "ptbxl-patient-1210.0",
+            "ptbxl-patient-13372.0",
+            "ptbxl-patient-19518.0",
+            "ptbxl-patient-6191.0",
+            "ptbxl-patient-8264.0",
+            "ptbxl-patient-8288.0",
+            "ptbxl-patient-935.0"
+          ],
+          "backends": [
+            "offline",
+            "torch-cached"
+          ],
+          "unit": "paired patient clusters with all backends preserved",
+          "scope": "descriptive conditional intervals, no multiplicity adjustment or external-population guarantee"
+        }
+      },
+      "paper": {
+        "methods": {
+          "our-B0": {
+            "overall": {
+              "g": 0.550201416015625,
+              "w": 0.159515380859375,
+              "c": 0.709716796875,
+              "r": 0.2247592019263846
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.331817626953125,
+                "w": 0.306182861328125,
+                "c": 0.63800048828125,
+                "r": 0.4799100736630632
+              },
+              "torch-cached": {
+                "g": 0.768585205078125,
+                "w": 0.012847900390625,
+                "c": 0.78143310546875,
+                "r": 0.016441459033039132
+              }
+            },
+            "registration_unavailable_cases": 1,
+            "undefined_R_cases": 1,
+            "worst_finite_tail": [
+              {
+                "key": "220288-6",
+                "layout": "12x1+r1",
+                "backend": "offline",
+                "rmse_mm": 255.06669651254003,
+                "p95_mm": 431.24644145967864,
+                "c": 0.95068359375,
+                "status": "original_preserved_partial_coordinates"
+              },
+              {
+                "key": "215864-6",
+                "layout": "2x1-long",
+                "backend": "offline",
+                "rmse_mm": 220.94468599116246,
+                "p95_mm": 374.0119860428749,
+                "c": 0.6591796875,
+                "status": "original_preserved_partial_coordinates"
+              },
+              {
+                "key": "206852-6",
+                "layout": "2x6+r2",
+                "backend": "offline",
+                "rmse_mm": 187.9474417836039,
+                "p95_mm": 302.9583775713839,
+                "c": 0.920166015625,
+                "status": "completed"
+              }
+            ],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.75830078125,
+                "w": 0.002197265625,
+                "c": 0.760498046875,
+                "r": 0.0028892455858747996
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          },
+          "our-M2": {
+            "overall": {
+              "g": 0.5527191162109375,
+              "w": 0.156646728515625,
+              "c": 0.7093658447265625,
+              "r": 0.2208264320591968
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.3368682861328125,
+                "w": 0.3004913330078125,
+                "c": 0.637359619140625,
+                "r": 0.4714627723246349
+              },
+              "torch-cached": {
+                "g": 0.7685699462890625,
+                "w": 0.0128021240234375,
+                "c": 0.7813720703125,
+                "r": 0.016384158725199188
+              }
+            },
+            "registration_unavailable_cases": 1,
+            "undefined_R_cases": 1,
+            "worst_finite_tail": [
+              {
+                "key": "220288-6",
+                "layout": "12x1+r1",
+                "backend": "offline",
+                "rmse_mm": 255.06669651254003,
+                "p95_mm": 431.24644145967864,
+                "c": 0.95068359375,
+                "status": "original_preserved_partial_coordinates"
+              },
+              {
+                "key": "215864-6",
+                "layout": "2x1-long",
+                "backend": "offline",
+                "rmse_mm": 220.94468599116246,
+                "p95_mm": 374.0119860428749,
+                "c": 0.6591796875,
+                "status": "original_preserved_partial_coordinates"
+              },
+              {
+                "key": "206852-6",
+                "layout": "2x6+r2",
+                "backend": "offline",
+                "rmse_mm": 187.9474417836039,
+                "p95_mm": 302.9583775713839,
+                "c": 0.920166015625,
+                "status": "completed"
+              }
+            ],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.76025390625,
+                "w": 0.0,
+                "c": 0.76025390625,
+                "r": 0.0
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          },
+          "npj-generic": {
+            "overall": {
+              "g": 0.1066741943359375,
+              "w": 0.7702484130859375,
+              "c": 0.876922607421875,
+              "r": 0.8783539237863233
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.0904388427734375,
+                "w": 0.8618011474609375,
+                "c": 0.952239990234375,
+                "r": 0.9050251578373875
+              },
+              "torch-cached": {
+                "g": 0.1229095458984375,
+                "w": 0.6786956787109375,
+                "c": 0.801605224609375,
+                "r": 0.8466707275288384
+              }
+            },
+            "registration_unavailable_cases": 1,
+            "undefined_R_cases": 1,
+            "worst_finite_tail": [
+              {
+                "key": "206852-6",
+                "layout": "2x6+r2",
+                "backend": "offline",
+                "rmse_mm": 195.63877207548975,
+                "p95_mm": 318.1466968974362,
+                "c": 0.98095703125,
+                "status": "completed"
+              },
+              {
+                "key": "215864-6",
+                "layout": "2x1-long",
+                "backend": "offline",
+                "rmse_mm": 194.69113964002634,
+                "p95_mm": 327.95154696370173,
+                "c": 0.90869140625,
+                "status": "completed"
+              },
+              {
+                "key": "220288-6",
+                "layout": "12x1+r1",
+                "backend": "offline",
+                "rmse_mm": 189.4308471512925,
+                "p95_mm": 324.7912606551015,
+                "c": 0.9267578125,
+                "status": "completed"
+              }
+            ],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.0,
+                "w": 0.92333984375,
+                "c": 0.92333984375,
+                "r": 1.0
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          },
+          "npj-george-moody-2024": {
+            "overall": {
+              "g": 0.1063079833984375,
+              "w": 0.7706146240234375,
+              "c": 0.876922607421875,
+              "r": 0.8787715329737255
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.08978271484375,
+                "w": 0.862457275390625,
+                "c": 0.952239990234375,
+                "r": 0.9057141941479986
+              },
+              "torch-cached": {
+                "g": 0.122833251953125,
+                "w": 0.67877197265625,
+                "c": 0.801605224609375,
+                "r": 0.84676590398599
+              }
+            },
+            "registration_unavailable_cases": 1,
+            "undefined_R_cases": 1,
+            "worst_finite_tail": [
+              {
+                "key": "206852-6",
+                "layout": "2x6+r2",
+                "backend": "offline",
+                "rmse_mm": 195.63877207548975,
+                "p95_mm": 318.1466968974362,
+                "c": 0.98095703125,
+                "status": "completed"
+              },
+              {
+                "key": "215864-6",
+                "layout": "2x1-long",
+                "backend": "offline",
+                "rmse_mm": 187.87369474248814,
+                "p95_mm": 312.66547115346464,
+                "c": 0.90869140625,
+                "status": "completed"
+              },
+              {
+                "key": "220288-6",
+                "layout": "12x1+r1",
+                "backend": "offline",
+                "rmse_mm": 176.77354814876972,
+                "p95_mm": 303.10218920130103,
+                "c": 0.9267578125,
+                "status": "completed"
+              }
+            ],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.0,
+                "w": 0.92333984375,
+                "c": 0.92333984375,
+                "r": 1.0
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          },
+          "kaggle-third": {
+            "overall": {
+              "g": 0.0,
+              "w": 0.0,
+              "c": 0.0,
+              "r": null
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": null
+              },
+              "torch-cached": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": null
+              }
+            },
+            "registration_unavailable_cases": 32,
+            "undefined_R_cases": 32,
+            "worst_finite_tail": [],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": null
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          }
+        },
+        "bootstrap": {
+          "methods": {
+            "our-B0": {
+              "metrics": {
+                "g": 0.550201416015625,
+                "w": 0.159515380859375,
+                "c": 0.709716796875,
+                "r": 0.2247592019263846
+              },
+              "delta_vs_baseline": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": 0.0
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": 0.0,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": 0.0,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": 0.0,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": 0.0,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                }
+              }
+            },
+            "our-M2": {
+              "metrics": {
+                "g": 0.5527191162109375,
+                "w": 0.156646728515625,
+                "c": 0.7093658447265625,
+                "r": 0.2208264320591968
+              },
+              "delta_vs_baseline": {
+                "g": 0.0025177001953125,
+                "w": -0.00286865234375,
+                "c": -0.0003509521484375,
+                "r": -0.003932769867187796
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": 0.0,
+                  "upper": 0.00689697265625,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": -0.007232666015625,
+                  "upper": -0.00011444091796875,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": -0.00084686279296875,
+                  "upper": 1.52587890625e-05,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": -0.010231803182037329,
+                  "upper": -0.00011188202514647838,
+                  "defined_draws": 20000
+                }
+              }
+            },
+            "npj-generic": {
+              "metrics": {
+                "g": 0.1066741943359375,
+                "w": 0.7702484130859375,
+                "c": 0.876922607421875,
+                "r": 0.8783539237863233
+              },
+              "delta_vs_baseline": {
+                "g": -0.4435272216796875,
+                "w": 0.6107330322265625,
+                "c": 0.167205810546875,
+                "r": 0.6535947218599387
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": -0.5520401000976562,
+                  "upper": -0.33502197265625,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": 0.46208953857421875,
+                  "upper": 0.7529067993164062,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": 0.0495208740234375,
+                  "upper": 0.28300876617431603,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": 0.4941254717400628,
+                  "upper": 0.8025742475751821,
+                  "defined_draws": 20000
+                }
+              }
+            },
+            "npj-george-moody-2024": {
+              "metrics": {
+                "g": 0.1063079833984375,
+                "w": 0.7706146240234375,
+                "c": 0.876922607421875,
+                "r": 0.8787715329737255
+              },
+              "delta_vs_baseline": {
+                "g": -0.4438934326171875,
+                "w": 0.6110992431640625,
+                "c": 0.167205810546875,
+                "r": 0.6540123310473409
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": -0.5520553588867188,
+                  "upper": -0.3354644775390625,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": 0.46247100830078125,
+                  "upper": 0.7530059814453125,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": 0.0495208740234375,
+                  "upper": 0.28300876617431603,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": 0.4942104107238411,
+                  "upper": 0.8025424994780871,
+                  "defined_draws": 20000
+                }
+              }
+            },
+            "kaggle-third": {
+              "metrics": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": null
+              },
+              "delta_vs_baseline": {
+                "g": -0.550201416015625,
+                "w": -0.159515380859375,
+                "c": -0.709716796875,
+                "r": null
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": -0.6246807098388671,
+                  "upper": -0.4784534454345704,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": -0.2134857177734375,
+                  "upper": -0.10173797607421875,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": -0.8010101318359375,
+                  "upper": -0.619537353515625,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": null,
+                  "upper": null,
+                  "defined_draws": 0
+                }
+              }
+            }
+          },
+          "baseline": "our-B0",
+          "repetitions": 20000,
+          "seed": 1973,
+          "independent_patients": 8,
+          "patients": [
+            "ptbxl-patient-10264.0",
+            "ptbxl-patient-1210.0",
+            "ptbxl-patient-13372.0",
+            "ptbxl-patient-19518.0",
+            "ptbxl-patient-6191.0",
+            "ptbxl-patient-8264.0",
+            "ptbxl-patient-8288.0",
+            "ptbxl-patient-935.0"
+          ],
+          "backends": [
+            "offline",
+            "torch-cached"
+          ],
+          "unit": "paired patient clusters with all backends preserved",
+          "scope": "descriptive conditional intervals, no multiplicity adjustment or external-population guarantee"
+        }
+      }
+    },
+    "secondary_D4": {
+      "grid": {
+        "methods": {
+          "our-B0": {
+            "overall": {
+              "g": 0.7650375366210938,
+              "w": 0.03038787841796875,
+              "c": 0.7954254150390625,
+              "r": 0.03820330334362831
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.6439361572265625,
+                "w": 0.0499267578125,
+                "c": 0.6938629150390625,
+                "r": 0.07195478635673916
+              },
+              "torch-cached": {
+                "g": 0.886138916015625,
+                "w": 0.0108489990234375,
+                "c": 0.8969879150390625,
+                "r": 0.012094922174023985
+              }
+            },
+            "registration_unavailable_cases": 1,
+            "undefined_R_cases": 1,
+            "worst_finite_tail": [
+              {
+                "key": "206852-2",
+                "layout": "4x3",
+                "backend": "offline",
+                "rmse_mm": 14.560868585292885,
+                "p95_mm": 33.875524301428506,
+                "c": 0.034912109375,
+                "status": "original_preserved_partial_coordinates"
+              },
+              {
+                "key": "215864-6",
+                "layout": "2x1-long",
+                "backend": "offline",
+                "rmse_mm": 9.781474700863084,
+                "p95_mm": 19.9986701256542,
+                "c": 0.6494140625,
+                "status": "original_preserved_partial_coordinates"
+              },
+              {
+                "key": "211723-6",
+                "layout": "12x1-cabrera",
+                "backend": "offline",
+                "rmse_mm": 4.937396406850098,
+                "p95_mm": 5.203510050397093,
+                "c": 0.254638671875,
+                "status": "original_preserved_partial_coordinates"
+              }
+            ],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.98046875,
+                "w": 0.001953125,
+                "c": 0.982421875,
+                "r": 0.0019880715705765406
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          },
+          "our-M2": {
+            "overall": {
+              "g": 0.76904296875,
+              "w": 0.02611541748046875,
+              "c": 0.7951583862304688,
+              "r": 0.032843038484787423
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.6518096923828125,
+                "w": 0.0416259765625,
+                "c": 0.6934356689453125,
+                "r": 0.06002860600726152
+              },
+              "torch-cached": {
+                "g": 0.8862762451171875,
+                "w": 0.0106048583984375,
+                "c": 0.896881103515625,
+                "r": 0.01182415189356562
+              }
+            },
+            "registration_unavailable_cases": 1,
+            "undefined_R_cases": 1,
+            "worst_finite_tail": [
+              {
+                "key": "206852-2",
+                "layout": "4x3",
+                "backend": "offline",
+                "rmse_mm": 14.560868585292885,
+                "p95_mm": 33.875524301428506,
+                "c": 0.034912109375,
+                "status": "original_preserved_partial_coordinates"
+              },
+              {
+                "key": "215864-6",
+                "layout": "2x1-long",
+                "backend": "offline",
+                "rmse_mm": 9.781474700863084,
+                "p95_mm": 19.9986701256542,
+                "c": 0.6494140625,
+                "status": "original_preserved_partial_coordinates"
+              },
+              {
+                "key": "211723-6",
+                "layout": "12x1-cabrera",
+                "backend": "offline",
+                "rmse_mm": 4.937396406850098,
+                "p95_mm": 5.203510050397093,
+                "c": 0.254638671875,
+                "status": "original_preserved_partial_coordinates"
+              }
+            ],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.98193359375,
+                "w": 0.0,
+                "c": 0.98193359375,
+                "r": 0.0
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          },
+          "npj-generic": {
+            "overall": {
+              "g": 0.13523101806640625,
+              "w": 0.793426513671875,
+              "c": 0.9286575317382812,
+              "r": 0.8543800987504211
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.1385498046875,
+                "w": 0.82171630859375,
+                "c": 0.96026611328125,
+                "r": 0.8557172821458082
+              },
+              "torch-cached": {
+                "g": 0.1319122314453125,
+                "w": 0.76513671875,
+                "c": 0.8970489501953125,
+                "r": 0.852948680875674
+              }
+            },
+            "registration_unavailable_cases": 1,
+            "undefined_R_cases": 1,
+            "worst_finite_tail": [
+              {
+                "key": "215864-0",
+                "layout": "2x6+r2",
+                "backend": "torch-cached",
+                "rmse_mm": 91.76511370607112,
+                "p95_mm": 149.15470953228387,
+                "c": 1.0,
+                "status": "completed"
+              },
+              {
+                "key": "206852-1",
+                "layout": "6x2+r3",
+                "backend": "torch-cached",
+                "rmse_mm": 90.54550588756182,
+                "p95_mm": 141.7033375677469,
+                "c": 1.0,
+                "status": "completed"
+              },
+              {
+                "key": "211723-0",
+                "layout": "2x6+r1",
+                "backend": "torch-cached",
+                "rmse_mm": 89.87557508402301,
+                "p95_mm": 133.04600795436764,
+                "c": 0.999755859375,
+                "status": "completed"
+              }
+            ],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.00048828125,
+                "w": 0.99951171875,
+                "c": 1.0,
+                "r": 0.99951171875
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          },
+          "npj-george-moody-2024": {
+            "overall": {
+              "g": 0.13486480712890625,
+              "w": 0.793792724609375,
+              "c": 0.9286575317382812,
+              "r": 0.8547744431938614
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.1378173828125,
+                "w": 0.82244873046875,
+                "c": 0.96026611328125,
+                "r": 0.856480010169707
+              },
+              "torch-cached": {
+                "g": 0.1319122314453125,
+                "w": 0.76513671875,
+                "c": 0.8970489501953125,
+                "r": 0.852948680875674
+              }
+            },
+            "registration_unavailable_cases": 1,
+            "undefined_R_cases": 1,
+            "worst_finite_tail": [
+              {
+                "key": "215864-0",
+                "layout": "2x6+r2",
+                "backend": "torch-cached",
+                "rmse_mm": 91.79140227886951,
+                "p95_mm": 149.20950385222562,
+                "c": 1.0,
+                "status": "completed"
+              },
+              {
+                "key": "206852-1",
+                "layout": "6x2+r3",
+                "backend": "torch-cached",
+                "rmse_mm": 90.54550588756182,
+                "p95_mm": 141.7033375677469,
+                "c": 1.0,
+                "status": "completed"
+              },
+              {
+                "key": "211723-0",
+                "layout": "2x6+r1",
+                "backend": "torch-cached",
+                "rmse_mm": 89.83113849728204,
+                "p95_mm": 132.97427262352085,
+                "c": 0.999755859375,
+                "status": "completed"
+              }
+            ],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.00048828125,
+                "w": 0.99951171875,
+                "c": 1.0,
+                "r": 0.99951171875
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          },
+          "kaggle-third": {
+            "overall": {
+              "g": 0.0,
+              "w": 0.0,
+              "c": 0.0,
+              "r": null
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": null
+              },
+              "torch-cached": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": null
+              }
+            },
+            "registration_unavailable_cases": 32,
+            "undefined_R_cases": 32,
+            "worst_finite_tail": [],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": null
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          }
+        },
+        "bootstrap": {
+          "methods": {
+            "our-B0": {
+              "metrics": {
+                "g": 0.7650375366210938,
+                "w": 0.03038787841796875,
+                "c": 0.7954254150390625,
+                "r": 0.03820330334362831
+              },
+              "delta_vs_baseline": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": 0.0
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": 0.0,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": 0.0,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": 0.0,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": 0.0,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                }
+              }
+            },
+            "our-M2": {
+              "metrics": {
+                "g": 0.76904296875,
+                "w": 0.02611541748046875,
+                "c": 0.7951583862304688,
+                "r": 0.032843038484787423
+              },
+              "delta_vs_baseline": {
+                "g": 0.00400543212890625,
+                "w": -0.0042724609375,
+                "c": -0.00026702880859375,
+                "r": -0.005360264858840884
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": 0.00054931640625,
+                  "upper": 0.00968170166015625,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": -0.010101318359375,
+                  "upper": -0.00064849853515625,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": -0.00052642822265625,
+                  "upper": -7.62939453125e-05,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": -0.012362356379094027,
+                  "upper": -0.0007675270199074425,
+                  "defined_draws": 20000
+                }
+              }
+            },
+            "npj-generic": {
+              "metrics": {
+                "g": 0.13523101806640625,
+                "w": 0.793426513671875,
+                "c": 0.9286575317382812,
+                "r": 0.8543800987504211
+              },
+              "delta_vs_baseline": {
+                "g": -0.6298065185546875,
+                "w": 0.7630386352539062,
+                "c": 0.13323211669921875,
+                "r": 0.8161767954067928
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": -0.7517799377441406,
+                  "upper": -0.5198200225830079,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": 0.6579132080078125,
+                  "upper": 0.8556486129760739,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": -0.0013971328735351554,
+                  "upper": 0.26564235687255777,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": 0.7002728071154526,
+                  "upper": 0.9167735512116933,
+                  "defined_draws": 20000
+                }
+              }
+            },
+            "npj-george-moody-2024": {
+              "metrics": {
+                "g": 0.13486480712890625,
+                "w": 0.793792724609375,
+                "c": 0.9286575317382812,
+                "r": 0.8547744431938614
+              },
+              "delta_vs_baseline": {
+                "g": -0.6301727294921875,
+                "w": 0.7634048461914062,
+                "c": 0.13323211669921875,
+                "r": 0.8165711398502331
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": -0.7519002914428711,
+                  "upper": -0.5203094482421875,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": 0.6583938598632812,
+                  "upper": 0.8562334060668944,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": -0.0013971328735351554,
+                  "upper": 0.26564235687255777,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": 0.7009317530607466,
+                  "upper": 0.9167581302439355,
+                  "defined_draws": 20000
+                }
+              }
+            },
+            "kaggle-third": {
+              "metrics": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": null
+              },
+              "delta_vs_baseline": {
+                "g": -0.7650375366210938,
+                "w": -0.03038787841796875,
+                "c": -0.7954254150390625,
+                "r": null
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": -0.8676986694335938,
+                  "upper": -0.6531295776367188,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": -0.04940032958984375,
+                  "upper": -0.014373779296875,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": -0.8918304443359375,
+                  "upper": -0.6884765625,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": null,
+                  "upper": null,
+                  "defined_draws": 0
+                }
+              }
+            }
+          },
+          "baseline": "our-B0",
+          "repetitions": 20000,
+          "seed": 1973,
+          "independent_patients": 8,
+          "patients": [
+            "ptbxl-patient-10264.0",
+            "ptbxl-patient-1210.0",
+            "ptbxl-patient-13372.0",
+            "ptbxl-patient-19518.0",
+            "ptbxl-patient-6191.0",
+            "ptbxl-patient-8264.0",
+            "ptbxl-patient-8288.0",
+            "ptbxl-patient-935.0"
+          ],
+          "backends": [
+            "offline",
+            "torch-cached"
+          ],
+          "unit": "paired patient clusters with all backends preserved",
+          "scope": "descriptive conditional intervals, no multiplicity adjustment or external-population guarantee"
+        }
+      },
+      "paper": {
+        "methods": {
+          "our-B0": {
+            "overall": {
+              "g": 0.6786270141601562,
+              "w": 0.03108978271484375,
+              "c": 0.709716796875,
+              "r": 0.043805899552803576
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.5886688232421875,
+                "w": 0.0493316650390625,
+                "c": 0.63800048828125,
+                "r": 0.077322299818234
+              },
+              "torch-cached": {
+                "g": 0.768585205078125,
+                "w": 0.012847900390625,
+                "c": 0.78143310546875,
+                "r": 0.016441459033039132
+              }
+            },
+            "registration_unavailable_cases": 1,
+            "undefined_R_cases": 1,
+            "worst_finite_tail": [
+              {
+                "key": "206852-2",
+                "layout": "4x3",
+                "backend": "offline",
+                "rmse_mm": 13.662217830914773,
+                "p95_mm": 31.00302607931634,
+                "c": 0.035888671875,
+                "status": "original_preserved_partial_coordinates"
+              },
+              {
+                "key": "215864-6",
+                "layout": "2x1-long",
+                "backend": "offline",
+                "rmse_mm": 9.904202535466972,
+                "p95_mm": 19.998551625582536,
+                "c": 0.6591796875,
+                "status": "original_preserved_partial_coordinates"
+              },
+              {
+                "key": "211723-6",
+                "layout": "12x1-cabrera",
+                "backend": "offline",
+                "rmse_mm": 4.6640041110456885,
+                "p95_mm": 5.160520916795801,
+                "c": 0.269287109375,
+                "status": "original_preserved_partial_coordinates"
+              }
+            ],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.75830078125,
+                "w": 0.002197265625,
+                "c": 0.760498046875,
+                "r": 0.0028892455858747996
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          },
+          "our-M2": {
+            "overall": {
+              "g": 0.6816635131835938,
+              "w": 0.02770233154296875,
+              "c": 0.7093658447265625,
+              "r": 0.03905224891909914
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.594757080078125,
+                "w": 0.0426025390625,
+                "c": 0.637359619140625,
+                "r": 0.06684223126645918
+              },
+              "torch-cached": {
+                "g": 0.7685699462890625,
+                "w": 0.0128021240234375,
+                "c": 0.7813720703125,
+                "r": 0.016384158725199188
+              }
+            },
+            "registration_unavailable_cases": 1,
+            "undefined_R_cases": 1,
+            "worst_finite_tail": [
+              {
+                "key": "206852-2",
+                "layout": "4x3",
+                "backend": "offline",
+                "rmse_mm": 13.662217830914773,
+                "p95_mm": 31.00302607931634,
+                "c": 0.035888671875,
+                "status": "original_preserved_partial_coordinates"
+              },
+              {
+                "key": "215864-6",
+                "layout": "2x1-long",
+                "backend": "offline",
+                "rmse_mm": 9.904202535466972,
+                "p95_mm": 19.998551625582536,
+                "c": 0.6591796875,
+                "status": "original_preserved_partial_coordinates"
+              },
+              {
+                "key": "211723-6",
+                "layout": "12x1-cabrera",
+                "backend": "offline",
+                "rmse_mm": 4.6640041110456885,
+                "p95_mm": 5.160520916795801,
+                "c": 0.269287109375,
+                "status": "original_preserved_partial_coordinates"
+              }
+            ],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.76025390625,
+                "w": 0.0,
+                "c": 0.76025390625,
+                "r": 0.0
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          },
+          "npj-generic": {
+            "overall": {
+              "g": 0.126312255859375,
+              "w": 0.7506103515625,
+              "c": 0.876922607421875,
+              "r": 0.8559596311118844
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.1297149658203125,
+                "w": 0.8225250244140625,
+                "c": 0.952239990234375,
+                "r": 0.8637791238021985
+              },
+              "torch-cached": {
+                "g": 0.1229095458984375,
+                "w": 0.6786956787109375,
+                "c": 0.801605224609375,
+                "r": 0.8466707275288384
+              }
+            },
+            "registration_unavailable_cases": 1,
+            "undefined_R_cases": 1,
+            "worst_finite_tail": [
+              {
+                "key": "215864-0",
+                "layout": "2x6+r2",
+                "backend": "torch-cached",
+                "rmse_mm": 92.81693405215222,
+                "p95_mm": 153.04449636151713,
+                "c": 0.9677734375,
+                "status": "completed"
+              },
+              {
+                "key": "211723-0",
+                "layout": "2x6+r1",
+                "backend": "torch-cached",
+                "rmse_mm": 91.19314558864417,
+                "p95_mm": 134.71637704792678,
+                "c": 0.953857421875,
+                "status": "completed"
+              },
+              {
+                "key": "206852-1",
+                "layout": "6x2+r3",
+                "backend": "torch-cached",
+                "rmse_mm": 90.21423507102699,
+                "p95_mm": 139.65004660527416,
+                "c": 0.9609375,
+                "status": "completed"
+              }
+            ],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.0,
+                "w": 0.92333984375,
+                "c": 0.92333984375,
+                "r": 1.0
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          },
+          "npj-george-moody-2024": {
+            "overall": {
+              "g": 0.1259613037109375,
+              "w": 0.7509613037109375,
+              "c": 0.876922607421875,
+              "r": 0.8563598399164781
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.12908935546875,
+                "w": 0.823150634765625,
+                "c": 0.952239990234375,
+                "r": 0.8644361119123162
+              },
+              "torch-cached": {
+                "g": 0.122833251953125,
+                "w": 0.67877197265625,
+                "c": 0.801605224609375,
+                "r": 0.84676590398599
+              }
+            },
+            "registration_unavailable_cases": 1,
+            "undefined_R_cases": 1,
+            "worst_finite_tail": [
+              {
+                "key": "215864-0",
+                "layout": "2x6+r2",
+                "backend": "torch-cached",
+                "rmse_mm": 92.84355108007063,
+                "p95_mm": 153.0991458483189,
+                "c": 0.9677734375,
+                "status": "completed"
+              },
+              {
+                "key": "211723-0",
+                "layout": "2x6+r1",
+                "backend": "torch-cached",
+                "rmse_mm": 91.14757593106256,
+                "p95_mm": 134.64807459901456,
+                "c": 0.953857421875,
+                "status": "completed"
+              },
+              {
+                "key": "206852-1",
+                "layout": "6x2+r3",
+                "backend": "torch-cached",
+                "rmse_mm": 90.21423507102699,
+                "p95_mm": 139.65004660527416,
+                "c": 0.9609375,
+                "status": "completed"
+              }
+            ],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.0,
+                "w": 0.92333984375,
+                "c": 0.92333984375,
+                "r": 1.0
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          },
+          "kaggle-third": {
+            "overall": {
+              "g": 0.0,
+              "w": 0.0,
+              "c": 0.0,
+              "r": null
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": null
+              },
+              "torch-cached": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": null
+              }
+            },
+            "registration_unavailable_cases": 32,
+            "undefined_R_cases": 32,
+            "worst_finite_tail": [],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": null
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          }
+        },
+        "bootstrap": {
+          "methods": {
+            "our-B0": {
+              "metrics": {
+                "g": 0.6786270141601562,
+                "w": 0.03108978271484375,
+                "c": 0.709716796875,
+                "r": 0.043805899552803576
+              },
+              "delta_vs_baseline": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": 0.0
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": 0.0,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": 0.0,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": 0.0,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": 0.0,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                }
+              }
+            },
+            "our-M2": {
+              "metrics": {
+                "g": 0.6816635131835938,
+                "w": 0.02770233154296875,
+                "c": 0.7093658447265625,
+                "r": 0.03905224891909914
+              },
+              "delta_vs_baseline": {
+                "g": 0.0030364990234375,
+                "w": -0.003387451171875,
+                "c": -0.0003509521484375,
+                "r": -0.004753650633704434
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": 0.00032806396484375,
+                  "upper": 0.007415771484375,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": -0.00775146484375,
+                  "upper": -0.00057220458984375,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": -0.00084686279296875,
+                  "upper": 1.52587890625e-05,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": -0.011021856547117178,
+                  "upper": -0.0007096692332653615,
+                  "defined_draws": 20000
+                }
+              }
+            },
+            "npj-generic": {
+              "metrics": {
+                "g": 0.126312255859375,
+                "w": 0.7506103515625,
+                "c": 0.876922607421875,
+                "r": 0.8559596311118844
+              },
+              "delta_vs_baseline": {
+                "g": -0.5523147583007812,
+                "w": 0.7195205688476562,
+                "c": 0.167205810546875,
+                "r": 0.8121537315590809
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": -0.6532159805297851,
+                  "upper": -0.46781158447265625,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": 0.6263198852539062,
+                  "upper": 0.8090591430664062,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": 0.0495208740234375,
+                  "upper": 0.28300876617431603,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": 0.6987166956362707,
+                  "upper": 0.9116650341743445,
+                  "defined_draws": 20000
+                }
+              }
+            },
+            "npj-george-moody-2024": {
+              "metrics": {
+                "g": 0.1259613037109375,
+                "w": 0.7509613037109375,
+                "c": 0.876922607421875,
+                "r": 0.8563598399164781
+              },
+              "delta_vs_baseline": {
+                "g": -0.5526657104492188,
+                "w": 0.7198715209960938,
+                "c": 0.167205810546875,
+                "r": 0.8125539403636746
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": -0.6534927368164063,
+                  "upper": -0.46856689453125,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": 0.6266937255859375,
+                  "upper": 0.8094118118286131,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": 0.0495208740234375,
+                  "upper": 0.28300876617431603,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": 0.6991746870251226,
+                  "upper": 0.911641198325716,
+                  "defined_draws": 20000
+                }
+              }
+            },
+            "kaggle-third": {
+              "metrics": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": null
+              },
+              "delta_vs_baseline": {
+                "g": -0.6786270141601562,
+                "w": -0.03108978271484375,
+                "c": -0.709716796875,
+                "r": null
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": -0.7747268676757812,
+                  "upper": -0.5826187133789062,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": -0.0504150390625,
+                  "upper": -0.01551055908203125,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": -0.8010101318359375,
+                  "upper": -0.619537353515625,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": null,
+                  "upper": null,
+                  "defined_draws": 0
+                }
+              }
+            }
+          },
+          "baseline": "our-B0",
+          "repetitions": 20000,
+          "seed": 1973,
+          "independent_patients": 8,
+          "patients": [
+            "ptbxl-patient-10264.0",
+            "ptbxl-patient-1210.0",
+            "ptbxl-patient-13372.0",
+            "ptbxl-patient-19518.0",
+            "ptbxl-patient-6191.0",
+            "ptbxl-patient-8264.0",
+            "ptbxl-patient-8288.0",
+            "ptbxl-patient-935.0"
+          ],
+          "backends": [
+            "offline",
+            "torch-cached"
+          ],
+          "unit": "paired patient clusters with all backends preserved",
+          "scope": "descriptive conditional intervals, no multiplicity adjustment or external-population guarantee"
+        }
+      }
+    },
+    "unrestricted_finite_field": {
+      "grid": {
+        "methods": {
+          "our-B0": {
+            "overall": {
+              "g": 0.4934844970703125,
+              "w": 0.0690155029296875,
+              "c": 0.5625,
+              "r": 0.12269422743055555
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.2394561767578125,
+                "w": 0.1355438232421875,
+                "c": 0.375,
+                "r": 0.3614501953125
+              },
+              "torch-cached": {
+                "g": 0.7475128173828125,
+                "w": 0.0024871826171875,
+                "c": 0.75,
+                "r": 0.0033162434895833335
+              }
+            },
+            "registration_unavailable_cases": 1,
+            "undefined_R_cases": 14,
+            "worst_finite_tail": [
+              {
+                "key": "206852-6",
+                "layout": "2x6+r2",
+                "backend": "offline",
+                "rmse_mm": 189.36597139093314,
+                "p95_mm": 307.4185347940436,
+                "c": 1.0,
+                "status": "completed"
+              },
+              {
+                "key": "206056-6",
+                "layout": "1x1-long",
+                "backend": "offline",
+                "rmse_mm": 102.1481419646847,
+                "p95_mm": 173.6889062858989,
+                "c": 1.0,
+                "status": "completed"
+              },
+              {
+                "key": "208114-6",
+                "layout": "4x3",
+                "backend": "offline",
+                "rmse_mm": 0.2914721907698857,
+                "p95_mm": 0.600473011108647,
+                "c": 1.0,
+                "status": "completed"
+              }
+            ],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.998046875,
+                "w": 0.001953125,
+                "c": 1.0,
+                "r": 0.001953125
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          },
+          "our-M2": {
+            "overall": {
+              "g": 0.4976348876953125,
+              "w": 0.0648651123046875,
+              "c": 0.5625,
+              "r": 0.11531575520833333
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.2475128173828125,
+                "w": 0.1274871826171875,
+                "c": 0.375,
+                "r": 0.3399658203125
+              },
+              "torch-cached": {
+                "g": 0.7477569580078125,
+                "w": 0.0022430419921875,
+                "c": 0.75,
+                "r": 0.00299072265625
+              }
+            },
+            "registration_unavailable_cases": 1,
+            "undefined_R_cases": 14,
+            "worst_finite_tail": [
+              {
+                "key": "206852-6",
+                "layout": "2x6+r2",
+                "backend": "offline",
+                "rmse_mm": 189.36597139093314,
+                "p95_mm": 307.4185347940436,
+                "c": 1.0,
+                "status": "completed"
+              },
+              {
+                "key": "206056-6",
+                "layout": "1x1-long",
+                "backend": "offline",
+                "rmse_mm": 103.0801842880389,
+                "p95_mm": 176.83798711673018,
+                "c": 1.0,
+                "status": "completed"
+              },
+              {
+                "key": "208114-6",
+                "layout": "4x3",
+                "backend": "offline",
+                "rmse_mm": 0.1770340889441604,
+                "p95_mm": 0.36027371791333607,
+                "c": 1.0,
+                "status": "completed"
+              }
+            ],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 1.0,
+                "w": 0.0,
+                "c": 1.0,
+                "r": 0.0
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          },
+          "npj-generic": {
+            "overall": {
+              "g": 0.114654541015625,
+              "w": 0.8140029907226562,
+              "c": 0.9286575317382812,
+              "r": 0.8765373271662243
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.0973968505859375,
+                "w": 0.8628692626953125,
+                "c": 0.96026611328125,
+                "r": 0.8985730629886226
+              },
+              "torch-cached": {
+                "g": 0.1319122314453125,
+                "w": 0.76513671875,
+                "c": 0.8970489501953125,
+                "r": 0.852948680875674
+              }
+            },
+            "registration_unavailable_cases": 1,
+            "undefined_R_cases": 1,
+            "worst_finite_tail": [
+              {
+                "key": "215864-6",
+                "layout": "2x1-long",
+                "backend": "offline",
+                "rmse_mm": 192.45943470016394,
+                "p95_mm": 325.64323421085015,
+                "c": 0.91357421875,
+                "status": "completed"
+              },
+              {
+                "key": "220288-6",
+                "layout": "12x1+r1",
+                "backend": "offline",
+                "rmse_mm": 190.4133174179534,
+                "p95_mm": 324.4018607720277,
+                "c": 0.927490234375,
+                "status": "completed"
+              },
+              {
+                "key": "206852-6",
+                "layout": "2x6+r2",
+                "backend": "offline",
+                "rmse_mm": 189.93879263479081,
+                "p95_mm": 308.97331168049385,
+                "c": 1.0,
+                "status": "completed"
+              }
+            ],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.00048828125,
+                "w": 0.99951171875,
+                "c": 1.0,
+                "r": 0.99951171875
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          },
+          "npj-george-moody-2024": {
+            "overall": {
+              "g": 0.11428070068359375,
+              "w": 0.8143768310546875,
+              "c": 0.9286575317382812,
+              "r": 0.876939887118903
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.096649169921875,
+                "w": 0.863616943359375,
+                "c": 0.96026611328125,
+                "r": 0.899351681179686
+              },
+              "torch-cached": {
+                "g": 0.1319122314453125,
+                "w": 0.76513671875,
+                "c": 0.8970489501953125,
+                "r": 0.852948680875674
+              }
+            },
+            "registration_unavailable_cases": 1,
+            "undefined_R_cases": 1,
+            "worst_finite_tail": [
+              {
+                "key": "206852-6",
+                "layout": "2x6+r2",
+                "backend": "offline",
+                "rmse_mm": 189.93879263479081,
+                "p95_mm": 308.97331168049385,
+                "c": 1.0,
+                "status": "completed"
+              },
+              {
+                "key": "215864-6",
+                "layout": "2x1-long",
+                "backend": "offline",
+                "rmse_mm": 185.79015343947512,
+                "p95_mm": 309.6440243861896,
+                "c": 0.91357421875,
+                "status": "completed"
+              },
+              {
+                "key": "220288-6",
+                "layout": "12x1+r1",
+                "backend": "offline",
+                "rmse_mm": 177.69053165241857,
+                "p95_mm": 302.74298180488256,
+                "c": 0.927490234375,
+                "status": "completed"
+              }
+            ],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.00048828125,
+                "w": 0.99951171875,
+                "c": 1.0,
+                "r": 0.99951171875
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          },
+          "kaggle-third": {
+            "overall": {
+              "g": 0.0,
+              "w": 0.0,
+              "c": 0.0,
+              "r": null
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": null
+              },
+              "torch-cached": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": null
+              }
+            },
+            "registration_unavailable_cases": 32,
+            "undefined_R_cases": 32,
+            "worst_finite_tail": [],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": null
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          }
+        },
+        "bootstrap": {
+          "methods": {
+            "our-B0": {
+              "metrics": {
+                "g": 0.4934844970703125,
+                "w": 0.0690155029296875,
+                "c": 0.5625,
+                "r": 0.12269422743055555
+              },
+              "delta_vs_baseline": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": 0.0
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": 0.0,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": 0.0,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": 0.0,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": 0.0,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                }
+              }
+            },
+            "our-M2": {
+              "metrics": {
+                "g": 0.4976348876953125,
+                "w": 0.0648651123046875,
+                "c": 0.5625,
+                "r": 0.11531575520833333
+              },
+              "delta_vs_baseline": {
+                "g": 0.004150390625,
+                "w": -0.004150390625,
+                "c": 0.0,
+                "r": -0.007378472222222224
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": 0.0,
+                  "upper": 0.0109710693359375,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": -0.0109710693359375,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": 0.0,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": -0.016717819940476185,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                }
+              }
+            },
+            "npj-generic": {
+              "metrics": {
+                "g": 0.114654541015625,
+                "w": 0.8140029907226562,
+                "c": 0.9286575317382812,
+                "r": 0.8765373271662243
+              },
+              "delta_vs_baseline": {
+                "g": -0.3788299560546875,
+                "w": 0.7449874877929688,
+                "c": 0.36615753173828125,
+                "r": 0.7538430997356688
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": -0.6154403686523438,
+                  "upper": -0.1399993896484375,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": 0.6162948608398438,
+                  "upper": 0.868988037109375,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": 0.1602325439453125,
+                  "upper": 0.5671157836914062,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": 0.5678989493361477,
+                  "upper": 0.9189109481370343,
+                  "defined_draws": 20000
+                }
+              }
+            },
+            "npj-george-moody-2024": {
+              "metrics": {
+                "g": 0.11428070068359375,
+                "w": 0.8143768310546875,
+                "c": 0.9286575317382812,
+                "r": 0.876939887118903
+              },
+              "delta_vs_baseline": {
+                "g": -0.37920379638671875,
+                "w": 0.745361328125,
+                "c": 0.36615753173828125,
+                "r": 0.7542456596883474
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": -0.6157669067382813,
+                  "upper": -0.14037322998046875,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": 0.6165924072265625,
+                  "upper": 0.8690032958984375,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": 0.1602325439453125,
+                  "upper": 0.5671157836914062,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": 0.568752371000558,
+                  "upper": 0.9191898808706623,
+                  "defined_draws": 20000
+                }
+              }
+            },
+            "kaggle-third": {
+              "metrics": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": null
+              },
+              "delta_vs_baseline": {
+                "g": -0.4934844970703125,
+                "w": -0.0690155029296875,
+                "c": -0.5625,
+                "r": null
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": -0.670928955078125,
+                  "upper": -0.3427886962890625,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": -0.156982421875,
+                  "upper": -0.0050048828125,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": -0.75,
+                  "upper": -0.375,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": null,
+                  "upper": null,
+                  "defined_draws": 0
+                }
+              }
+            }
+          },
+          "baseline": "our-B0",
+          "repetitions": 20000,
+          "seed": 1973,
+          "independent_patients": 8,
+          "patients": [
+            "ptbxl-patient-10264.0",
+            "ptbxl-patient-1210.0",
+            "ptbxl-patient-13372.0",
+            "ptbxl-patient-19518.0",
+            "ptbxl-patient-6191.0",
+            "ptbxl-patient-8264.0",
+            "ptbxl-patient-8288.0",
+            "ptbxl-patient-935.0"
+          ],
+          "backends": [
+            "offline",
+            "torch-cached"
+          ],
+          "unit": "paired patient clusters with all backends preserved",
+          "scope": "descriptive conditional intervals, no multiplicity adjustment or external-population guarantee"
+        }
+      },
+      "paper": {
+        "methods": {
+          "our-B0": {
+            "overall": {
+              "g": 0.46437835693359375,
+              "w": 0.09812164306640625,
+              "c": 0.5625,
+              "r": 0.1744384765625
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.2220611572265625,
+                "w": 0.1529388427734375,
+                "c": 0.375,
+                "r": 0.4078369140625
+              },
+              "torch-cached": {
+                "g": 0.706695556640625,
+                "w": 0.043304443359375,
+                "c": 0.75,
+                "r": 0.0577392578125
+              }
+            },
+            "registration_unavailable_cases": 1,
+            "undefined_R_cases": 14,
+            "worst_finite_tail": [
+              {
+                "key": "206852-6",
+                "layout": "2x6+r2",
+                "backend": "offline",
+                "rmse_mm": 196.25944413436054,
+                "p95_mm": 316.43172971174215,
+                "c": 1.0,
+                "status": "completed"
+              },
+              {
+                "key": "206056-6",
+                "layout": "1x1-long",
+                "backend": "offline",
+                "rmse_mm": 108.92239907632722,
+                "p95_mm": 178.87691025247128,
+                "c": 1.0,
+                "status": "completed"
+              },
+              {
+                "key": "208114-1",
+                "layout": "12x1+r2",
+                "backend": "torch-cached",
+                "rmse_mm": 1.3997495891661456,
+                "p95_mm": 3.8344944481588383,
+                "c": 1.0,
+                "status": "completed"
+              }
+            ],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.908447265625,
+                "w": 0.091552734375,
+                "c": 1.0,
+                "r": 0.091552734375
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          },
+          "our-M2": {
+            "overall": {
+              "g": 0.4693145751953125,
+              "w": 0.0931854248046875,
+              "c": 0.5625,
+              "r": 0.16566297743055555
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.23162841796875,
+                "w": 0.14337158203125,
+                "c": 0.375,
+                "r": 0.38232421875
+              },
+              "torch-cached": {
+                "g": 0.707000732421875,
+                "w": 0.042999267578125,
+                "c": 0.75,
+                "r": 0.057332356770833336
+              }
+            },
+            "registration_unavailable_cases": 1,
+            "undefined_R_cases": 14,
+            "worst_finite_tail": [
+              {
+                "key": "206852-6",
+                "layout": "2x6+r2",
+                "backend": "offline",
+                "rmse_mm": 196.25944413436054,
+                "p95_mm": 316.43172971174215,
+                "c": 1.0,
+                "status": "completed"
+              },
+              {
+                "key": "206056-6",
+                "layout": "1x1-long",
+                "backend": "offline",
+                "rmse_mm": 110.24997353680551,
+                "p95_mm": 182.00743825742674,
+                "c": 1.0,
+                "status": "completed"
+              },
+              {
+                "key": "208114-1",
+                "layout": "12x1+r2",
+                "backend": "torch-cached",
+                "rmse_mm": 1.3973877587709795,
+                "p95_mm": 3.842411525694839,
+                "c": 1.0,
+                "status": "completed"
+              }
+            ],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.91064453125,
+                "w": 0.08935546875,
+                "c": 1.0,
+                "r": 0.08935546875
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          },
+          "npj-generic": {
+            "overall": {
+              "g": 0.1066741943359375,
+              "w": 0.7702484130859375,
+              "c": 0.876922607421875,
+              "r": 0.8783539237863233
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.0904388427734375,
+                "w": 0.8618011474609375,
+                "c": 0.952239990234375,
+                "r": 0.9050251578373875
+              },
+              "torch-cached": {
+                "g": 0.1229095458984375,
+                "w": 0.6786956787109375,
+                "c": 0.801605224609375,
+                "r": 0.8466707275288384
+              }
+            },
+            "registration_unavailable_cases": 1,
+            "undefined_R_cases": 1,
+            "worst_finite_tail": [
+              {
+                "key": "206852-6",
+                "layout": "2x6+r2",
+                "backend": "offline",
+                "rmse_mm": 195.63877207548975,
+                "p95_mm": 318.1466968974362,
+                "c": 0.98095703125,
+                "status": "completed"
+              },
+              {
+                "key": "215864-6",
+                "layout": "2x1-long",
+                "backend": "offline",
+                "rmse_mm": 194.69113964002634,
+                "p95_mm": 327.95154696370173,
+                "c": 0.90869140625,
+                "status": "completed"
+              },
+              {
+                "key": "220288-6",
+                "layout": "12x1+r1",
+                "backend": "offline",
+                "rmse_mm": 189.4308471512925,
+                "p95_mm": 324.7912606551015,
+                "c": 0.9267578125,
+                "status": "completed"
+              }
+            ],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.0,
+                "w": 0.92333984375,
+                "c": 0.92333984375,
+                "r": 1.0
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          },
+          "npj-george-moody-2024": {
+            "overall": {
+              "g": 0.1063079833984375,
+              "w": 0.7706146240234375,
+              "c": 0.876922607421875,
+              "r": 0.8787715329737255
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.08978271484375,
+                "w": 0.862457275390625,
+                "c": 0.952239990234375,
+                "r": 0.9057141941479986
+              },
+              "torch-cached": {
+                "g": 0.122833251953125,
+                "w": 0.67877197265625,
+                "c": 0.801605224609375,
+                "r": 0.84676590398599
+              }
+            },
+            "registration_unavailable_cases": 1,
+            "undefined_R_cases": 1,
+            "worst_finite_tail": [
+              {
+                "key": "206852-6",
+                "layout": "2x6+r2",
+                "backend": "offline",
+                "rmse_mm": 195.63877207548975,
+                "p95_mm": 318.1466968974362,
+                "c": 0.98095703125,
+                "status": "completed"
+              },
+              {
+                "key": "215864-6",
+                "layout": "2x1-long",
+                "backend": "offline",
+                "rmse_mm": 187.87369474248814,
+                "p95_mm": 312.66547115346464,
+                "c": 0.90869140625,
+                "status": "completed"
+              },
+              {
+                "key": "220288-6",
+                "layout": "12x1+r1",
+                "backend": "offline",
+                "rmse_mm": 176.77354814876972,
+                "p95_mm": 303.10218920130103,
+                "c": 0.9267578125,
+                "status": "completed"
+              }
+            ],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.0,
+                "w": 0.92333984375,
+                "c": 0.92333984375,
+                "r": 1.0
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          },
+          "kaggle-third": {
+            "overall": {
+              "g": 0.0,
+              "w": 0.0,
+              "c": 0.0,
+              "r": null
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": null
+              },
+              "torch-cached": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": null
+              }
+            },
+            "registration_unavailable_cases": 32,
+            "undefined_R_cases": 32,
+            "worst_finite_tail": [],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": null
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          }
+        },
+        "bootstrap": {
+          "methods": {
+            "our-B0": {
+              "metrics": {
+                "g": 0.46437835693359375,
+                "w": 0.09812164306640625,
+                "c": 0.5625,
+                "r": 0.1744384765625
+              },
+              "delta_vs_baseline": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": 0.0
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": 0.0,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": 0.0,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": 0.0,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": 0.0,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                }
+              }
+            },
+            "our-M2": {
+              "metrics": {
+                "g": 0.4693145751953125,
+                "w": 0.0931854248046875,
+                "c": 0.5625,
+                "r": 0.16566297743055555
+              },
+              "delta_vs_baseline": {
+                "g": 0.00493621826171875,
+                "w": -0.00493621826171875,
+                "c": 0.0,
+                "r": -0.008775499131944448
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": 7.62939453125e-06,
+                  "upper": 0.01233673095703125,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": -0.01233673095703125,
+                  "upper": -7.62939453125e-06,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": 0.0,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": -0.018696032072368432,
+                  "upper": -1.3563368055580227e-05,
+                  "defined_draws": 20000
+                }
+              }
+            },
+            "npj-generic": {
+              "metrics": {
+                "g": 0.1066741943359375,
+                "w": 0.7702484130859375,
+                "c": 0.876922607421875,
+                "r": 0.8783539237863233
+              },
+              "delta_vs_baseline": {
+                "g": -0.35770416259765625,
+                "w": 0.6721267700195312,
+                "c": 0.314422607421875,
+                "r": 0.7039154472238233
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": -0.5685958862304688,
+                  "upper": -0.14147186279296875,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": 0.5468919754028321,
+                  "upper": 0.7919330596923826,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": 0.1063232421875,
+                  "upper": 0.5216217041015612,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": 0.5317024419142455,
+                  "upper": 0.867237113530541,
+                  "defined_draws": 20000
+                }
+              }
+            },
+            "npj-george-moody-2024": {
+              "metrics": {
+                "g": 0.1063079833984375,
+                "w": 0.7706146240234375,
+                "c": 0.876922607421875,
+                "r": 0.8787715329737255
+              },
+              "delta_vs_baseline": {
+                "g": -0.35807037353515625,
+                "w": 0.6724929809570312,
+                "c": 0.314422607421875,
+                "r": 0.7043330564112255
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": -0.5687408447265625,
+                  "upper": -0.14191436767578125,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": 0.5471035003662109,
+                  "upper": 0.7918720245361326,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": 0.1063232421875,
+                  "upper": 0.5216217041015612,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": 0.5326411907085131,
+                  "upper": 0.8675616503701086,
+                  "defined_draws": 20000
+                }
+              }
+            },
+            "kaggle-third": {
+              "metrics": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": null
+              },
+              "delta_vs_baseline": {
+                "g": -0.46437835693359375,
+                "w": -0.09812164306640625,
+                "c": -0.5625,
+                "r": null
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": -0.6177444458007812,
+                  "upper": -0.33045196533203125,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": -0.18052139282226562,
+                  "upper": -0.02512359619140625,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": -0.75,
+                  "upper": -0.375,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": null,
+                  "upper": null,
+                  "defined_draws": 0
+                }
+              }
+            }
+          },
+          "baseline": "our-B0",
+          "repetitions": 20000,
+          "seed": 1973,
+          "independent_patients": 8,
+          "patients": [
+            "ptbxl-patient-10264.0",
+            "ptbxl-patient-1210.0",
+            "ptbxl-patient-13372.0",
+            "ptbxl-patient-19518.0",
+            "ptbxl-patient-6191.0",
+            "ptbxl-patient-8264.0",
+            "ptbxl-patient-8288.0",
+            "ptbxl-patient-935.0"
+          ],
+          "backends": [
+            "offline",
+            "torch-cached"
+          ],
+          "unit": "paired patient clusters with all backends preserved",
+          "scope": "descriptive conditional intervals, no multiplicity adjustment or external-population guarantee"
+        }
+      }
+    },
+    "operational_RGB": {
+      "grid": {
+        "methods": {
+          "our-B0": {
+            "overall": {
+              "g": 0.4934844970703125,
+              "w": 0.0690155029296875,
+              "c": 0.5625,
+              "r": 0.12269422743055555
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.2394561767578125,
+                "w": 0.1355438232421875,
+                "c": 0.375,
+                "r": 0.3614501953125
+              },
+              "torch-cached": {
+                "g": 0.7475128173828125,
+                "w": 0.0024871826171875,
+                "c": 0.75,
+                "r": 0.0033162434895833335
+              }
+            },
+            "registration_unavailable_cases": 1,
+            "undefined_R_cases": 14,
+            "worst_finite_tail": [
+              {
+                "key": "206852-6",
+                "layout": "2x6+r2",
+                "backend": "offline",
+                "rmse_mm": 189.36597139093314,
+                "p95_mm": 307.4185347940436,
+                "c": 1.0,
+                "status": "completed"
+              },
+              {
+                "key": "206056-6",
+                "layout": "1x1-long",
+                "backend": "offline",
+                "rmse_mm": 102.1481419646847,
+                "p95_mm": 173.6889062858989,
+                "c": 1.0,
+                "status": "completed"
+              },
+              {
+                "key": "208114-6",
+                "layout": "4x3",
+                "backend": "offline",
+                "rmse_mm": 0.2914721907698857,
+                "p95_mm": 0.600473011108647,
+                "c": 1.0,
+                "status": "completed"
+              }
+            ],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.998046875,
+                "w": 0.001953125,
+                "c": 1.0,
+                "r": 0.001953125
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          },
+          "our-M2": {
+            "overall": {
+              "g": 0.4976348876953125,
+              "w": 0.0648651123046875,
+              "c": 0.5625,
+              "r": 0.11531575520833333
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.2475128173828125,
+                "w": 0.1274871826171875,
+                "c": 0.375,
+                "r": 0.3399658203125
+              },
+              "torch-cached": {
+                "g": 0.7477569580078125,
+                "w": 0.0022430419921875,
+                "c": 0.75,
+                "r": 0.00299072265625
+              }
+            },
+            "registration_unavailable_cases": 1,
+            "undefined_R_cases": 14,
+            "worst_finite_tail": [
+              {
+                "key": "206852-6",
+                "layout": "2x6+r2",
+                "backend": "offline",
+                "rmse_mm": 189.36597139093314,
+                "p95_mm": 307.4185347940436,
+                "c": 1.0,
+                "status": "completed"
+              },
+              {
+                "key": "206056-6",
+                "layout": "1x1-long",
+                "backend": "offline",
+                "rmse_mm": 103.0801842880389,
+                "p95_mm": 176.83798711673018,
+                "c": 1.0,
+                "status": "completed"
+              },
+              {
+                "key": "208114-6",
+                "layout": "4x3",
+                "backend": "offline",
+                "rmse_mm": 0.1770340889441604,
+                "p95_mm": 0.36027371791333607,
+                "c": 1.0,
+                "status": "completed"
+              }
+            ],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 1.0,
+                "w": 0.0,
+                "c": 1.0,
+                "r": 0.0
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          },
+          "npj-generic": {
+            "overall": {
+              "g": 0.114654541015625,
+              "w": 0.8140029907226562,
+              "c": 0.9286575317382812,
+              "r": 0.8765373271662243
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.0973968505859375,
+                "w": 0.8628692626953125,
+                "c": 0.96026611328125,
+                "r": 0.8985730629886226
+              },
+              "torch-cached": {
+                "g": 0.1319122314453125,
+                "w": 0.76513671875,
+                "c": 0.8970489501953125,
+                "r": 0.852948680875674
+              }
+            },
+            "registration_unavailable_cases": 1,
+            "undefined_R_cases": 1,
+            "worst_finite_tail": [
+              {
+                "key": "215864-6",
+                "layout": "2x1-long",
+                "backend": "offline",
+                "rmse_mm": 192.45943470016394,
+                "p95_mm": 325.64323421085015,
+                "c": 0.91357421875,
+                "status": "completed"
+              },
+              {
+                "key": "220288-6",
+                "layout": "12x1+r1",
+                "backend": "offline",
+                "rmse_mm": 190.4133174179534,
+                "p95_mm": 324.4018607720277,
+                "c": 0.927490234375,
+                "status": "completed"
+              },
+              {
+                "key": "206852-6",
+                "layout": "2x6+r2",
+                "backend": "offline",
+                "rmse_mm": 189.93879263479081,
+                "p95_mm": 308.97331168049385,
+                "c": 1.0,
+                "status": "completed"
+              }
+            ],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.00048828125,
+                "w": 0.99951171875,
+                "c": 1.0,
+                "r": 0.99951171875
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          },
+          "npj-george-moody-2024": {
+            "overall": {
+              "g": 0.11428070068359375,
+              "w": 0.8143768310546875,
+              "c": 0.9286575317382812,
+              "r": 0.876939887118903
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.096649169921875,
+                "w": 0.863616943359375,
+                "c": 0.96026611328125,
+                "r": 0.899351681179686
+              },
+              "torch-cached": {
+                "g": 0.1319122314453125,
+                "w": 0.76513671875,
+                "c": 0.8970489501953125,
+                "r": 0.852948680875674
+              }
+            },
+            "registration_unavailable_cases": 1,
+            "undefined_R_cases": 1,
+            "worst_finite_tail": [
+              {
+                "key": "206852-6",
+                "layout": "2x6+r2",
+                "backend": "offline",
+                "rmse_mm": 189.93879263479081,
+                "p95_mm": 308.97331168049385,
+                "c": 1.0,
+                "status": "completed"
+              },
+              {
+                "key": "215864-6",
+                "layout": "2x1-long",
+                "backend": "offline",
+                "rmse_mm": 185.79015343947512,
+                "p95_mm": 309.6440243861896,
+                "c": 0.91357421875,
+                "status": "completed"
+              },
+              {
+                "key": "220288-6",
+                "layout": "12x1+r1",
+                "backend": "offline",
+                "rmse_mm": 177.69053165241857,
+                "p95_mm": 302.74298180488256,
+                "c": 0.927490234375,
+                "status": "completed"
+              }
+            ],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.00048828125,
+                "w": 0.99951171875,
+                "c": 1.0,
+                "r": 0.99951171875
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          },
+          "kaggle-third": {
+            "overall": {
+              "g": 0.0,
+              "w": 0.0,
+              "c": 0.0,
+              "r": null
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": null
+              },
+              "torch-cached": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": null
+              }
+            },
+            "registration_unavailable_cases": 32,
+            "undefined_R_cases": 32,
+            "worst_finite_tail": [],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": null
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          }
+        },
+        "bootstrap": {
+          "methods": {
+            "our-B0": {
+              "metrics": {
+                "g": 0.4934844970703125,
+                "w": 0.0690155029296875,
+                "c": 0.5625,
+                "r": 0.12269422743055555
+              },
+              "delta_vs_baseline": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": 0.0
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": 0.0,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": 0.0,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": 0.0,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": 0.0,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                }
+              }
+            },
+            "our-M2": {
+              "metrics": {
+                "g": 0.4976348876953125,
+                "w": 0.0648651123046875,
+                "c": 0.5625,
+                "r": 0.11531575520833333
+              },
+              "delta_vs_baseline": {
+                "g": 0.004150390625,
+                "w": -0.004150390625,
+                "c": 0.0,
+                "r": -0.007378472222222224
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": 0.0,
+                  "upper": 0.0109710693359375,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": -0.0109710693359375,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": 0.0,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": -0.016717819940476185,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                }
+              }
+            },
+            "npj-generic": {
+              "metrics": {
+                "g": 0.114654541015625,
+                "w": 0.8140029907226562,
+                "c": 0.9286575317382812,
+                "r": 0.8765373271662243
+              },
+              "delta_vs_baseline": {
+                "g": -0.3788299560546875,
+                "w": 0.7449874877929688,
+                "c": 0.36615753173828125,
+                "r": 0.7538430997356688
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": -0.6154403686523438,
+                  "upper": -0.1399993896484375,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": 0.6162948608398438,
+                  "upper": 0.868988037109375,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": 0.1602325439453125,
+                  "upper": 0.5671157836914062,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": 0.5678989493361477,
+                  "upper": 0.9189109481370343,
+                  "defined_draws": 20000
+                }
+              }
+            },
+            "npj-george-moody-2024": {
+              "metrics": {
+                "g": 0.11428070068359375,
+                "w": 0.8143768310546875,
+                "c": 0.9286575317382812,
+                "r": 0.876939887118903
+              },
+              "delta_vs_baseline": {
+                "g": -0.37920379638671875,
+                "w": 0.745361328125,
+                "c": 0.36615753173828125,
+                "r": 0.7542456596883474
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": -0.6157669067382813,
+                  "upper": -0.14037322998046875,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": 0.6165924072265625,
+                  "upper": 0.8690032958984375,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": 0.1602325439453125,
+                  "upper": 0.5671157836914062,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": 0.568752371000558,
+                  "upper": 0.9191898808706623,
+                  "defined_draws": 20000
+                }
+              }
+            },
+            "kaggle-third": {
+              "metrics": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": null
+              },
+              "delta_vs_baseline": {
+                "g": -0.4934844970703125,
+                "w": -0.0690155029296875,
+                "c": -0.5625,
+                "r": null
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": -0.670928955078125,
+                  "upper": -0.3427886962890625,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": -0.156982421875,
+                  "upper": -0.0050048828125,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": -0.75,
+                  "upper": -0.375,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": null,
+                  "upper": null,
+                  "defined_draws": 0
+                }
+              }
+            }
+          },
+          "baseline": "our-B0",
+          "repetitions": 20000,
+          "seed": 1973,
+          "independent_patients": 8,
+          "patients": [
+            "ptbxl-patient-10264.0",
+            "ptbxl-patient-1210.0",
+            "ptbxl-patient-13372.0",
+            "ptbxl-patient-19518.0",
+            "ptbxl-patient-6191.0",
+            "ptbxl-patient-8264.0",
+            "ptbxl-patient-8288.0",
+            "ptbxl-patient-935.0"
+          ],
+          "backends": [
+            "offline",
+            "torch-cached"
+          ],
+          "unit": "paired patient clusters with all backends preserved",
+          "scope": "descriptive conditional intervals, no multiplicity adjustment or external-population guarantee"
+        }
+      },
+      "paper": {
+        "methods": {
+          "our-B0": {
+            "overall": {
+              "g": 0.46437835693359375,
+              "w": 0.09812164306640625,
+              "c": 0.5625,
+              "r": 0.1744384765625
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.2220611572265625,
+                "w": 0.1529388427734375,
+                "c": 0.375,
+                "r": 0.4078369140625
+              },
+              "torch-cached": {
+                "g": 0.706695556640625,
+                "w": 0.043304443359375,
+                "c": 0.75,
+                "r": 0.0577392578125
+              }
+            },
+            "registration_unavailable_cases": 1,
+            "undefined_R_cases": 14,
+            "worst_finite_tail": [
+              {
+                "key": "206852-6",
+                "layout": "2x6+r2",
+                "backend": "offline",
+                "rmse_mm": 196.25944413436054,
+                "p95_mm": 316.43172971174215,
+                "c": 1.0,
+                "status": "completed"
+              },
+              {
+                "key": "206056-6",
+                "layout": "1x1-long",
+                "backend": "offline",
+                "rmse_mm": 108.92239907632722,
+                "p95_mm": 178.87691025247128,
+                "c": 1.0,
+                "status": "completed"
+              },
+              {
+                "key": "208114-1",
+                "layout": "12x1+r2",
+                "backend": "torch-cached",
+                "rmse_mm": 1.3997495891661456,
+                "p95_mm": 3.8344944481588383,
+                "c": 1.0,
+                "status": "completed"
+              }
+            ],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.908447265625,
+                "w": 0.091552734375,
+                "c": 1.0,
+                "r": 0.091552734375
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          },
+          "our-M2": {
+            "overall": {
+              "g": 0.4693145751953125,
+              "w": 0.0931854248046875,
+              "c": 0.5625,
+              "r": 0.16566297743055555
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.23162841796875,
+                "w": 0.14337158203125,
+                "c": 0.375,
+                "r": 0.38232421875
+              },
+              "torch-cached": {
+                "g": 0.707000732421875,
+                "w": 0.042999267578125,
+                "c": 0.75,
+                "r": 0.057332356770833336
+              }
+            },
+            "registration_unavailable_cases": 1,
+            "undefined_R_cases": 14,
+            "worst_finite_tail": [
+              {
+                "key": "206852-6",
+                "layout": "2x6+r2",
+                "backend": "offline",
+                "rmse_mm": 196.25944413436054,
+                "p95_mm": 316.43172971174215,
+                "c": 1.0,
+                "status": "completed"
+              },
+              {
+                "key": "206056-6",
+                "layout": "1x1-long",
+                "backend": "offline",
+                "rmse_mm": 110.24997353680551,
+                "p95_mm": 182.00743825742674,
+                "c": 1.0,
+                "status": "completed"
+              },
+              {
+                "key": "208114-1",
+                "layout": "12x1+r2",
+                "backend": "torch-cached",
+                "rmse_mm": 1.3973877587709795,
+                "p95_mm": 3.842411525694839,
+                "c": 1.0,
+                "status": "completed"
+              }
+            ],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.91064453125,
+                "w": 0.08935546875,
+                "c": 1.0,
+                "r": 0.08935546875
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          },
+          "npj-generic": {
+            "overall": {
+              "g": 0.1066741943359375,
+              "w": 0.7702484130859375,
+              "c": 0.876922607421875,
+              "r": 0.8783539237863233
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.0904388427734375,
+                "w": 0.8618011474609375,
+                "c": 0.952239990234375,
+                "r": 0.9050251578373875
+              },
+              "torch-cached": {
+                "g": 0.1229095458984375,
+                "w": 0.6786956787109375,
+                "c": 0.801605224609375,
+                "r": 0.8466707275288384
+              }
+            },
+            "registration_unavailable_cases": 1,
+            "undefined_R_cases": 1,
+            "worst_finite_tail": [
+              {
+                "key": "206852-6",
+                "layout": "2x6+r2",
+                "backend": "offline",
+                "rmse_mm": 195.63877207548975,
+                "p95_mm": 318.1466968974362,
+                "c": 0.98095703125,
+                "status": "completed"
+              },
+              {
+                "key": "215864-6",
+                "layout": "2x1-long",
+                "backend": "offline",
+                "rmse_mm": 194.69113964002634,
+                "p95_mm": 327.95154696370173,
+                "c": 0.90869140625,
+                "status": "completed"
+              },
+              {
+                "key": "220288-6",
+                "layout": "12x1+r1",
+                "backend": "offline",
+                "rmse_mm": 189.4308471512925,
+                "p95_mm": 324.7912606551015,
+                "c": 0.9267578125,
+                "status": "completed"
+              }
+            ],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.0,
+                "w": 0.92333984375,
+                "c": 0.92333984375,
+                "r": 1.0
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          },
+          "npj-george-moody-2024": {
+            "overall": {
+              "g": 0.1063079833984375,
+              "w": 0.7706146240234375,
+              "c": 0.876922607421875,
+              "r": 0.8787715329737255
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.08978271484375,
+                "w": 0.862457275390625,
+                "c": 0.952239990234375,
+                "r": 0.9057141941479986
+              },
+              "torch-cached": {
+                "g": 0.122833251953125,
+                "w": 0.67877197265625,
+                "c": 0.801605224609375,
+                "r": 0.84676590398599
+              }
+            },
+            "registration_unavailable_cases": 1,
+            "undefined_R_cases": 1,
+            "worst_finite_tail": [
+              {
+                "key": "206852-6",
+                "layout": "2x6+r2",
+                "backend": "offline",
+                "rmse_mm": 195.63877207548975,
+                "p95_mm": 318.1466968974362,
+                "c": 0.98095703125,
+                "status": "completed"
+              },
+              {
+                "key": "215864-6",
+                "layout": "2x1-long",
+                "backend": "offline",
+                "rmse_mm": 187.87369474248814,
+                "p95_mm": 312.66547115346464,
+                "c": 0.90869140625,
+                "status": "completed"
+              },
+              {
+                "key": "220288-6",
+                "layout": "12x1+r1",
+                "backend": "offline",
+                "rmse_mm": 176.77354814876972,
+                "p95_mm": 303.10218920130103,
+                "c": 0.9267578125,
+                "status": "completed"
+              }
+            ],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.0,
+                "w": 0.92333984375,
+                "c": 0.92333984375,
+                "r": 1.0
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          },
+          "kaggle-third": {
+            "overall": {
+              "g": 0.0,
+              "w": 0.0,
+              "c": 0.0,
+              "r": null
+            },
+            "by_backend": {
+              "offline": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": null
+              },
+              "torch-cached": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": null
+              }
+            },
+            "registration_unavailable_cases": 32,
+            "undefined_R_cases": 32,
+            "worst_finite_tail": [],
+            "stated_support": {
+              "cases": 1,
+              "patients": 1,
+              "patient_backend_availability": {
+                "ptbxl-patient-6191.0": [
+                  "torch-cached"
+                ]
+              },
+              "metrics": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": null
+              },
+              "scope": "Patient means over available backends within predeclared supported layout, descriptive only, no bootstrap CI",
+              "support_not_selected_from_success": true
+            }
+          }
+        },
+        "bootstrap": {
+          "methods": {
+            "our-B0": {
+              "metrics": {
+                "g": 0.46437835693359375,
+                "w": 0.09812164306640625,
+                "c": 0.5625,
+                "r": 0.1744384765625
+              },
+              "delta_vs_baseline": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": 0.0
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": 0.0,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": 0.0,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": 0.0,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": 0.0,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                }
+              }
+            },
+            "our-M2": {
+              "metrics": {
+                "g": 0.4693145751953125,
+                "w": 0.0931854248046875,
+                "c": 0.5625,
+                "r": 0.16566297743055555
+              },
+              "delta_vs_baseline": {
+                "g": 0.00493621826171875,
+                "w": -0.00493621826171875,
+                "c": 0.0,
+                "r": -0.008775499131944448
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": 7.62939453125e-06,
+                  "upper": 0.01233673095703125,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": -0.01233673095703125,
+                  "upper": -7.62939453125e-06,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": 0.0,
+                  "upper": 0.0,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": -0.018696032072368432,
+                  "upper": -1.3563368055580227e-05,
+                  "defined_draws": 20000
+                }
+              }
+            },
+            "npj-generic": {
+              "metrics": {
+                "g": 0.1066741943359375,
+                "w": 0.7702484130859375,
+                "c": 0.876922607421875,
+                "r": 0.8783539237863233
+              },
+              "delta_vs_baseline": {
+                "g": -0.35770416259765625,
+                "w": 0.6721267700195312,
+                "c": 0.314422607421875,
+                "r": 0.7039154472238233
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": -0.5685958862304688,
+                  "upper": -0.14147186279296875,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": 0.5468919754028321,
+                  "upper": 0.7919330596923826,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": 0.1063232421875,
+                  "upper": 0.5216217041015612,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": 0.5317024419142455,
+                  "upper": 0.867237113530541,
+                  "defined_draws": 20000
+                }
+              }
+            },
+            "npj-george-moody-2024": {
+              "metrics": {
+                "g": 0.1063079833984375,
+                "w": 0.7706146240234375,
+                "c": 0.876922607421875,
+                "r": 0.8787715329737255
+              },
+              "delta_vs_baseline": {
+                "g": -0.35807037353515625,
+                "w": 0.6724929809570312,
+                "c": 0.314422607421875,
+                "r": 0.7043330564112255
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": -0.5687408447265625,
+                  "upper": -0.14191436767578125,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": 0.5471035003662109,
+                  "upper": 0.7918720245361326,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": 0.1063232421875,
+                  "upper": 0.5216217041015612,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": 0.5326411907085131,
+                  "upper": 0.8675616503701086,
+                  "defined_draws": 20000
+                }
+              }
+            },
+            "kaggle-third": {
+              "metrics": {
+                "g": 0.0,
+                "w": 0.0,
+                "c": 0.0,
+                "r": null
+              },
+              "delta_vs_baseline": {
+                "g": -0.46437835693359375,
+                "w": -0.09812164306640625,
+                "c": -0.5625,
+                "r": null
+              },
+              "delta_95_descriptive_interval": {
+                "g": {
+                  "lower": -0.6177444458007812,
+                  "upper": -0.33045196533203125,
+                  "defined_draws": 20000
+                },
+                "w": {
+                  "lower": -0.18052139282226562,
+                  "upper": -0.02512359619140625,
+                  "defined_draws": 20000
+                },
+                "c": {
+                  "lower": -0.75,
+                  "upper": -0.375,
+                  "defined_draws": 20000
+                },
+                "r": {
+                  "lower": null,
+                  "upper": null,
+                  "defined_draws": 0
+                }
+              }
+            }
+          },
+          "baseline": "our-B0",
+          "repetitions": 20000,
+          "seed": 1973,
+          "independent_patients": 8,
+          "patients": [
+            "ptbxl-patient-10264.0",
+            "ptbxl-patient-1210.0",
+            "ptbxl-patient-13372.0",
+            "ptbxl-patient-19518.0",
+            "ptbxl-patient-6191.0",
+            "ptbxl-patient-8264.0",
+            "ptbxl-patient-8288.0",
+            "ptbxl-patient-935.0"
+          ],
+          "backends": [
+            "offline",
+            "torch-cached"
+          ],
+          "unit": "paired patient clusters with all backends preserved",
+          "scope": "descriptive conditional intervals, no multiplicity adjustment or external-population guarantee"
+        }
+      }
+    }
+  },
+  "native_diagnostics": {
+    "our-B0": {
+      "cases": 32,
+      "status_counts": {
+        "completed": 18,
+        "original_preserved_partial_coordinates": 14
+      },
+      "RGB_actually_resampled": 18,
+      "RGB_not_resampled": 14,
+      "native_inference_and_RGB_seconds": {
+        "count": 32,
+        "median": 7.704847264000364,
+        "p95": 43.1731557144988
+      },
+      "study_wall_seconds_including_query_evaluation": {
+        "count": 32,
+        "median": 7.77393068650008,
+        "p95": 42.85020581564972
+      },
+      "timing_caution": "Our native pipeline includes the shared fresh CNN time for each arm. Study wall reflects execution sharing and must not be substituted as standalone algorithm latency. Artifact I/O differs across native implementations.",
+      "zero_grid_node_counts": [],
+      "invalid_inverse_cell_counts": [],
+      "output_shapes": [],
+      "execution_errors": []
+    },
+    "our-M2": {
+      "cases": 32,
+      "status_counts": {
+        "completed": 18,
+        "original_preserved_partial_coordinates": 14
+      },
+      "RGB_actually_resampled": 18,
+      "RGB_not_resampled": 14,
+      "native_inference_and_RGB_seconds": {
+        "count": 32,
+        "median": 7.969295950000287,
+        "p95": 44.060208790999866
+      },
+      "study_wall_seconds_including_query_evaluation": {
+        "count": 32,
+        "median": 6.659979595000095,
+        "p95": 42.27383087634974
+      },
+      "timing_caution": "Our native pipeline includes the shared fresh CNN time for each arm. Study wall reflects execution sharing and must not be substituted as standalone algorithm latency. Artifact I/O differs across native implementations.",
+      "zero_grid_node_counts": [],
+      "invalid_inverse_cell_counts": [],
+      "output_shapes": [],
+      "execution_errors": []
+    },
+    "npj-generic": {
+      "cases": 32,
+      "status_counts": {
+        "completed": 32
+      },
+      "RGB_actually_resampled": 32,
+      "RGB_not_resampled": 0,
+      "native_inference_and_RGB_seconds": {
+        "count": 32,
+        "median": 7.33319888349979,
+        "p95": 8.17432120440003
+      },
+      "study_wall_seconds_including_query_evaluation": {
+        "count": 32,
+        "median": 7.3342241170003035,
+        "p95": 8.175195757950224
+      },
+      "timing_caution": "Our native pipeline includes the shared fresh CNN time for each arm. Study wall reflects execution sharing and must not be substituted as standalone algorithm latency. Artifact I/O differs across native implementations.",
+      "zero_grid_node_counts": [],
+      "invalid_inverse_cell_counts": [],
+      "output_shapes": [
+        [
+          704,
+          1024
+        ],
+        [
+          682,
+          1024
+        ],
+        [
+          649,
+          1024
+        ],
+        [
+          590,
+          1024
+        ],
+        [
+          695,
+          1024
+        ],
+        [
+          623,
+          1024
+        ],
+        [
+          584,
+          1024
+        ],
+        [
+          631,
+          1024
+        ],
+        [
+          604,
+          1024
+        ],
+        [
+          628,
+          1024
+        ],
+        [
+          624,
+          1024
+        ],
+        [
+          648,
+          1024
+        ],
+        [
+          666,
+          1024
+        ],
+        [
+          633,
+          1024
+        ],
+        [
+          660,
+          1024
+        ],
+        [
+          704,
+          1024
+        ],
+        [
+          619,
+          1024
+        ],
+        [
+          677,
+          1024
+        ],
+        [
+          584,
+          1024
+        ],
+        [
+          606,
+          1024
+        ],
+        [
+          628,
+          1024
+        ],
+        [
+          641,
+          1024
+        ],
+        [
+          691,
+          1024
+        ],
+        [
+          649,
+          1024
+        ],
+        [
+          658,
+          1024
+        ],
+        [
+          673,
+          1024
+        ],
+        [
+          598,
+          1024
+        ],
+        [
+          704,
+          1024
+        ],
+        [
+          683,
+          1024
+        ],
+        [
+          684,
+          1024
+        ],
+        [
+          630,
+          1024
+        ],
+        [
+          621,
+          1024
+        ]
+      ],
+      "execution_errors": []
+    },
+    "npj-george-moody-2024": {
+      "cases": 32,
+      "status_counts": {
+        "completed": 32
+      },
+      "RGB_actually_resampled": 32,
+      "RGB_not_resampled": 0,
+      "native_inference_and_RGB_seconds": {
+        "count": 32,
+        "median": 7.496635954999874,
+        "p95": 8.64317438795033
+      },
+      "study_wall_seconds_including_query_evaluation": {
+        "count": 32,
+        "median": 7.497426061499937,
+        "p95": 8.643906293750069
+      },
+      "timing_caution": "Our native pipeline includes the shared fresh CNN time for each arm. Study wall reflects execution sharing and must not be substituted as standalone algorithm latency. Artifact I/O differs across native implementations.",
+      "zero_grid_node_counts": [],
+      "invalid_inverse_cell_counts": [],
+      "output_shapes": [
+        [
+          704,
+          1024
+        ],
+        [
+          682,
+          1024
+        ],
+        [
+          649,
+          1024
+        ],
+        [
+          590,
+          1024
+        ],
+        [
+          695,
+          1024
+        ],
+        [
+          623,
+          1024
+        ],
+        [
+          584,
+          1024
+        ],
+        [
+          631,
+          1024
+        ],
+        [
+          604,
+          1024
+        ],
+        [
+          628,
+          1024
+        ],
+        [
+          624,
+          1024
+        ],
+        [
+          648,
+          1024
+        ],
+        [
+          666,
+          1024
+        ],
+        [
+          633,
+          1024
+        ],
+        [
+          660,
+          1024
+        ],
+        [
+          704,
+          1024
+        ],
+        [
+          619,
+          1024
+        ],
+        [
+          677,
+          1024
+        ],
+        [
+          584,
+          1024
+        ],
+        [
+          606,
+          1024
+        ],
+        [
+          628,
+          1024
+        ],
+        [
+          641,
+          1024
+        ],
+        [
+          691,
+          1024
+        ],
+        [
+          649,
+          1024
+        ],
+        [
+          658,
+          1024
+        ],
+        [
+          673,
+          1024
+        ],
+        [
+          598,
+          1024
+        ],
+        [
+          704,
+          1024
+        ],
+        [
+          683,
+          1024
+        ],
+        [
+          684,
+          1024
+        ],
+        [
+          630,
+          1024
+        ],
+        [
+          621,
+          1024
+        ]
+      ],
+      "execution_errors": []
+    },
+    "kaggle-third": {
+      "cases": 32,
+      "status_counts": {
+        "completed": 3,
+        "failed": 29
+      },
+      "RGB_actually_resampled": 3,
+      "RGB_not_resampled": 29,
+      "native_inference_and_RGB_seconds": {
+        "count": 32,
+        "median": 28.919666916499864,
+        "p95": 39.78065803540012
+      },
+      "study_wall_seconds_including_query_evaluation": {
+        "count": 32,
+        "median": 28.919923535999715,
+        "p95": 39.780796396300005
+      },
+      "timing_caution": "Our native pipeline includes the shared fresh CNN time for each arm. Study wall reflects execution sharing and must not be substituted as standalone algorithm latency. Artifact I/O differs across native implementations.",
+      "zero_grid_node_counts": [
+        2508,
+        2508,
+        2508
+      ],
+      "invalid_inverse_cell_counts": [
+        2408,
+        2408,
+        2408
+      ],
+      "output_shapes": [
+        [
+          4400,
+          1700
+        ],
+        [
+          4400,
+          1700
+        ],
+        [
+          4400,
+          1700
+        ]
+      ],
+      "execution_errors": [
+        "error: OpenCV(4.11.0) /io/opencv/modules/imgproc/src/imgwarp.cpp:3399: error: (-215:Assertion failed) (M0.type() == CV_32F || M0.type() == CV_64F) && M0.rows == 3 && M0.cols == 3 in function 'warpPerspective'\n",
+        "error: OpenCV(4.11.0) /io/opencv/modules/imgproc/src/imgwarp.cpp:3399: error: (-215:Assertion failed) (M0.type() == CV_32F || M0.type() == CV_64F) && M0.rows == 3 && M0.cols == 3 in function 'warpPerspective'\n",
+        "error: OpenCV(4.11.0) /io/opencv/modules/imgproc/src/imgwarp.cpp:3399: error: (-215:Assertion failed) (M0.type() == CV_32F || M0.type() == CV_64F) && M0.rows == 3 && M0.cols == 3 in function 'warpPerspective'\n",
+        "error: OpenCV(4.11.0) /io/opencv/modules/imgproc/src/imgwarp.cpp:3399: error: (-215:Assertion failed) (M0.type() == CV_32F || M0.type() == CV_64F) && M0.rows == 3 && M0.cols == 3 in function 'warpPerspective'\n",
+        "error: OpenCV(4.11.0) /io/opencv/modules/imgproc/src/imgwarp.cpp:3399: error: (-215:Assertion failed) (M0.type() == CV_32F || M0.type() == CV_64F) && M0.rows == 3 && M0.cols == 3 in function 'warpPerspective'\n",
+        "error: OpenCV(4.11.0) /io/opencv/modules/imgproc/src/imgwarp.cpp:3399: error: (-215:Assertion failed) (M0.type() == CV_32F || M0.type() == CV_64F) && M0.rows == 3 && M0.cols == 3 in function 'warpPerspective'\n",
+        "error: OpenCV(4.11.0) /io/opencv/modules/imgproc/src/imgwarp.cpp:3399: error: (-215:Assertion failed) (M0.type() == CV_32F || M0.type() == CV_64F) && M0.rows == 3 && M0.cols == 3 in function 'warpPerspective'\n",
+        "error: OpenCV(4.11.0) /io/opencv/modules/imgproc/src/imgwarp.cpp:3399: error: (-215:Assertion failed) (M0.type() == CV_32F || M0.type() == CV_64F) && M0.rows == 3 && M0.cols == 3 in function 'warpPerspective'\n",
+        "error: OpenCV(4.11.0) /io/opencv/modules/imgproc/src/imgwarp.cpp:3399: error: (-215:Assertion failed) (M0.type() == CV_32F || M0.type() == CV_64F) && M0.rows == 3 && M0.cols == 3 in function 'warpPerspective'\n",
+        "error: OpenCV(4.11.0) /io/opencv/modules/imgproc/src/imgwarp.cpp:3399: error: (-215:Assertion failed) (M0.type() == CV_32F || M0.type() == CV_64F) && M0.rows == 3 && M0.cols == 3 in function 'warpPerspective'\n",
+        "error: OpenCV(4.11.0) /io/opencv/modules/imgproc/src/imgwarp.cpp:3399: error: (-215:Assertion failed) (M0.type() == CV_32F || M0.type() == CV_64F) && M0.rows == 3 && M0.cols == 3 in function 'warpPerspective'\n",
+        "error: OpenCV(4.11.0) /io/opencv/modules/imgproc/src/imgwarp.cpp:3399: error: (-215:Assertion failed) (M0.type() == CV_32F || M0.type() == CV_64F) && M0.rows == 3 && M0.cols == 3 in function 'warpPerspective'\n",
+        "error: OpenCV(4.11.0) /io/opencv/modules/imgproc/src/imgwarp.cpp:3399: error: (-215:Assertion failed) (M0.type() == CV_32F || M0.type() == CV_64F) && M0.rows == 3 && M0.cols == 3 in function 'warpPerspective'\n",
+        "error: OpenCV(4.11.0) /io/opencv/modules/imgproc/src/imgwarp.cpp:3399: error: (-215:Assertion failed) (M0.type() == CV_32F || M0.type() == CV_64F) && M0.rows == 3 && M0.cols == 3 in function 'warpPerspective'\n",
+        "error: OpenCV(4.11.0) /io/opencv/modules/imgproc/src/imgwarp.cpp:3399: error: (-215:Assertion failed) (M0.type() == CV_32F || M0.type() == CV_64F) && M0.rows == 3 && M0.cols == 3 in function 'warpPerspective'\n",
+        "error: OpenCV(4.11.0) /io/opencv/modules/imgproc/src/imgwarp.cpp:3399: error: (-215:Assertion failed) (M0.type() == CV_32F || M0.type() == CV_64F) && M0.rows == 3 && M0.cols == 3 in function 'warpPerspective'\n",
+        "error: OpenCV(4.11.0) /io/opencv/modules/imgproc/src/imgwarp.cpp:3399: error: (-215:Assertion failed) (M0.type() == CV_32F || M0.type() == CV_64F) && M0.rows == 3 && M0.cols == 3 in function 'warpPerspective'\n",
+        "error: OpenCV(4.11.0) /io/opencv/modules/imgproc/src/imgwarp.cpp:3399: error: (-215:Assertion failed) (M0.type() == CV_32F || M0.type() == CV_64F) && M0.rows == 3 && M0.cols == 3 in function 'warpPerspective'\n",
+        "error: OpenCV(4.11.0) /io/opencv/modules/imgproc/src/imgwarp.cpp:3399: error: (-215:Assertion failed) (M0.type() == CV_32F || M0.type() == CV_64F) && M0.rows == 3 && M0.cols == 3 in function 'warpPerspective'\n",
+        "error: OpenCV(4.11.0) /io/opencv/modules/imgproc/src/imgwarp.cpp:3399: error: (-215:Assertion failed) (M0.type() == CV_32F || M0.type() == CV_64F) && M0.rows == 3 && M0.cols == 3 in function 'warpPerspective'\n",
+        "error: OpenCV(4.11.0) /io/opencv/modules/imgproc/src/imgwarp.cpp:3399: error: (-215:Assertion failed) (M0.type() == CV_32F || M0.type() == CV_64F) && M0.rows == 3 && M0.cols == 3 in function 'warpPerspective'\n",
+        "error: OpenCV(4.11.0) /io/opencv/modules/imgproc/src/imgwarp.cpp:3399: error: (-215:Assertion failed) (M0.type() == CV_32F || M0.type() == CV_64F) && M0.rows == 3 && M0.cols == 3 in function 'warpPerspective'\n",
+        "error: OpenCV(4.11.0) /io/opencv/modules/imgproc/src/imgwarp.cpp:3399: error: (-215:Assertion failed) (M0.type() == CV_32F || M0.type() == CV_64F) && M0.rows == 3 && M0.cols == 3 in function 'warpPerspective'\n",
+        "error: OpenCV(4.11.0) /io/opencv/modules/imgproc/src/imgwarp.cpp:3399: error: (-215:Assertion failed) (M0.type() == CV_32F || M0.type() == CV_64F) && M0.rows == 3 && M0.cols == 3 in function 'warpPerspective'\n",
+        "error: OpenCV(4.11.0) /io/opencv/modules/imgproc/src/imgwarp.cpp:3399: error: (-215:Assertion failed) (M0.type() == CV_32F || M0.type() == CV_64F) && M0.rows == 3 && M0.cols == 3 in function 'warpPerspective'\n",
+        "error: OpenCV(4.11.0) /io/opencv/modules/imgproc/src/imgwarp.cpp:3399: error: (-215:Assertion failed) (M0.type() == CV_32F || M0.type() == CV_64F) && M0.rows == 3 && M0.cols == 3 in function 'warpPerspective'\n",
+        "error: OpenCV(4.11.0) /io/opencv/modules/imgproc/src/imgwarp.cpp:3399: error: (-215:Assertion failed) (M0.type() == CV_32F || M0.type() == CV_64F) && M0.rows == 3 && M0.cols == 3 in function 'warpPerspective'\n",
+        "error: OpenCV(4.11.0) /io/opencv/modules/imgproc/src/imgwarp.cpp:3399: error: (-215:Assertion failed) (M0.type() == CV_32F || M0.type() == CV_64F) && M0.rows == 3 && M0.cols == 3 in function 'warpPerspective'\n",
+        "error: OpenCV(4.11.0) /io/opencv/modules/imgproc/src/imgwarp.cpp:3399: error: (-215:Assertion failed) (M0.type() == CV_32F || M0.type() == CV_64F) && M0.rows == 3 && M0.cols == 3 in function 'warpPerspective'\n"
+      ]
+    }
+  }
+}

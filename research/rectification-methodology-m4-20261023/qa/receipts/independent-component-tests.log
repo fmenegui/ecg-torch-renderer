@@ -1,0 +1,27 @@
+test_11_full_decode_rgb_rgba_and_no_clobber (__main__.ExportTests.test_11_full_decode_rgb_rgba_and_no_clobber) ... ok
+test_12_corrupt_temporary_never_replaces_valid_target (__main__.ExportTests.test_12_corrupt_temporary_never_replaces_valid_target) ... ok
+test_13_encoding_and_replace_errors_preserve_existing (__main__.ExportTests.test_13_encoding_and_replace_errors_preserve_existing) ... ok
+test_14_png_terminal_crc_pixels_and_permissive_decoder (__main__.ExportTests.test_14_png_terminal_crc_pixels_and_permissive_decoder) ... ok
+test_15_clean_projective_formula_and_roundtrip (__main__.GeometryTests.test_15_clean_projective_formula_and_roundtrip) ... ok
+test_16_support_hole_and_exterior_are_not_bridged (__main__.GeometryTests.test_16_support_hole_and_exterior_are_not_bridged) ... ok
+test_17_horizon_and_malformed_ids_rejected (__main__.GeometryTests.test_17_horizon_and_malformed_ids_rejected) ... ok
+test_18_positive_area_double_wrap_rejected (__main__.GeometryTests.test_18_positive_area_double_wrap_rejected) ... ok
+test_19_non_simple_boundary_single_wrap_rejected (__main__.GeometryTests.test_19_non_simple_boundary_single_wrap_rejected) ... ok
+test_20_shared_residual_edges_and_inverse_limits (__main__.GeometryTests.test_20_shared_residual_edges_and_inverse_limits) ... ok
+test_21_no_gold_argument_and_explicit_unverified_identity (__main__.GeometryTests.test_21_no_gold_argument_and_explicit_unverified_identity) ... ok
+test_01_scalar_oracle_rgb_and_rgba (__main__.SamplingTests.test_01_scalar_oracle_rgb_and_rgba) ... ok
+test_02_trust_does_not_change_observed_rgb_or_alpha (__main__.SamplingTests.test_02_trust_does_not_change_observed_rgb_or_alpha) ... ok
+test_03_fully_supported_constant_and_box_identity (__main__.SamplingTests.test_03_fully_supported_constant_and_box_identity) ... ok
+test_04_nonfinite_and_extreme_do_not_sample_origin (__main__.SamplingTests.test_04_nonfinite_and_extreme_do_not_sample_origin) ... ok
+test_05_border_fraction_and_no_renormalization (__main__.SamplingTests.test_05_border_fraction_and_no_renormalization) ... ok
+test_06_rgba_hidden_color_and_partial_alpha (__main__.SamplingTests.test_06_rgba_hidden_color_and_partial_alpha) ... ok
+test_07_tile_size_and_fraction_parity (__main__.SamplingTests.test_07_tile_size_and_fraction_parity) ... ok
+test_08_explicit_coordinate_work_is_tile_bounded (__main__.SamplingTests.test_08_explicit_coordinate_work_is_tile_bounded) ... ok
+test_09_finite_rules_can_all_erase_observed_trace (__main__.SamplingTests.test_09_finite_rules_can_all_erase_observed_trace) ... ok
+test_10_invalid_contracts_raise (__main__.SamplingTests.test_10_invalid_contracts_raise) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 2.456s
+
+OK
+{"receipt": "/workspace/scratch/a57599a3e70e/m4/qa/receipts/independent-component-tests.json", "tests": 21, "passed": true, "sha256": "58f1e175d454d430e33b7b96577d00d7ab90bda0956cd635dfdd0b412ee8cc7e"}

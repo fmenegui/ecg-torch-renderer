@@ -1,0 +1,55 @@
+{
+  "schema": "hybrid-digitizer-cli-v1",
+  "experimental": true,
+  "clinical_validity_established": false,
+  "image_sha256": "980def1783fb599ac52f7e06c7ad22f0a5b3e4242ecf5f442222fbcdd4a4a469",
+  "signal_sha256": "aefbf7c250037de01daa5f15f1051ab884e665c0b70e90c1e300eb57af639b9c",
+  "fs": 500.0,
+  "samples": 5000,
+  "source_id": "c848b219b90ee98429c8e92824fd861fb8b44aba66badb0e43fc63a3b0128d0b",
+  "finite_output_fraction": 0.4759333333333333,
+  "finite_output_is_not_printed_support_accuracy": true,
+  "policy": {
+    "schema": "ecg-selective-policy-v2-development",
+    "minimum_new_samples": 10,
+    "minimum_common_samples_per_lead": 100,
+    "minimum_correlation": 0.97,
+    "amplitude_ratio_low": 0.85,
+    "amplitude_ratio_high": 1.18,
+    "maximum_dc_difference_mv": 0.05,
+    "maximum_timing_difference_s": 0.02,
+    "maximum_extrapolated_fraction": 0.35
+  },
+  "decision": {
+    "selected": "direct",
+    "reason": "no_rectifier",
+    "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+    "reference_used": false,
+    "source_id": "c848b219b90ee98429c8e92824fd861fb8b44aba66badb0e43fc63a3b0128d0b"
+  },
+  "selected_backend_metadata": {
+    "backend": "npj-native",
+    "source_commit": "97a15087d4abcda843da8c58ee74b1d8f47e6f9a",
+    "published_weights_sha256": {
+      "unet_weights_07072025.pt": "17fe7071ef270102631306127262fc08c250d79d4e3aeb572ab1719dd34d320b",
+      "lead_name_unet_weights_07072025.pt": "840bd6bf2433ee6c22db67f57c861d9d427f29e10a32eeb334f0bcf061b175a2"
+    },
+    "native_layout": "standard_6x2",
+    "layout_matching_cost": 0.10160510584076049,
+    "layout_fallback": false,
+    "max_side": 1500,
+    "device": "cpu",
+    "native_output_unit": "uV",
+    "public_sample_count": 5000,
+    "assumed_gain_mm_per_mv": 10.0,
+    "print_gain_inferred_from_image": false,
+    "pixel_spacing_mm": {
+      "x": 0.18694737553596497,
+      "y": 0.19078241288661957,
+      "average_pixel_per_mm": 5.29533576965332
+    }
+  },
+  "public_sampling_metadata_supplied_by_caller": true,
+  "assumed_print_gain_mm_per_mv": 10,
+  "wall_seconds_including_branches": 20.058547688000544
+}

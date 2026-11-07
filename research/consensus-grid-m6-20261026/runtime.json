@@ -1,0 +1,25 @@
+{
+  "python": "3.12.14",
+  "torch": "2.8.0+cpu",
+  "numpy": "2.3.5",
+  "scipy": "1.17.0",
+  "shapely": "2.1.2",
+  "opencv": "4.11.0",
+  "Pillow": "12.3.0",
+  "device": "cpu",
+  "cuda_checked_available": false,
+  "detector_threads": 2,
+  "OpenBLAS_threads": 1,
+  "OCR": {
+    "tesseract_version": "tesseract 5.3.4",
+    "tesseract_binary_sha256": "9f831cab7525c3dab04af41bda35182af7ea1df9dceeaaa2f3bf207ac45c06a5",
+    "english_traineddata_sha256": "7d4322bd2a7749724879683fc3912cb542f19906c83bcc1a52132556427170b2"
+  },
+  "measurement_code_commit": "ee1437893f24b9cefa6c41714287f372a8f96de7",
+  "inference_components_commit": "1ce2716c060ad11a1a462d1363b9e34c1435cbb1",
+  "PNG_integrity_commit": "b353dfd290573d153fc38fffc8391492d731a014",
+  "detector_checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+  "new_training": false,
+  "latency_ranking_claimed": false,
+  "all_complete_variant_results_preserved": true
+}

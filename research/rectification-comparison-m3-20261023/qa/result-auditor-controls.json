@@ -1,0 +1,9 @@
+{
+  "status": "pass",
+  "tests": 3,
+  "failures": 0,
+  "errors": 0,
+  "source_file": "/workspace/scratch/a57599a3e70e/m3/qa/audit_m3_results.py",
+  "source_sha256": "aefd762fcd504d796e43abf7f9fa26a9f8cec382f1115d80c787a39d146a7607",
+  "scope": "Synthetic failed panels only, no real comparison files read. Auditor detects omitted cases and fabricated summary scores."
+}

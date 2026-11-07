@@ -1,0 +1,23 @@
+{
+  "schema": "prospective-primary-identity-audit-v1",
+  "run_id": 41106791069,
+  "gpu_source_commit": "fdae9486b61a1253017902f4708abad2e7bfb864",
+  "cohort_images": 24,
+  "cohort_patients": 8,
+  "cohort_hash_verified": true,
+  "phase1_seal_verified": true,
+  "observation_npz_hashes_verified": true,
+  "wrong_image_observations": [
+    {
+      "image_id": "pm-99-photos_bents",
+      "expected_source_id": "930e52b546ed714f432d4ad77f261c3fc25f72fa613cbdbd4e941985ff2d1e01",
+      "stored_source_id": "8b2f875249ff096787aefd1e7f6c1025ed363cca97eea141519ee40d061cc4d6",
+      "use_as_current_image_geometry": false
+    }
+  ],
+  "original_files_preserved": true,
+  "primary_predictions_and_scores_changed": false,
+  "pod_absent_verified": true,
+  "external_guard_mutations": [],
+  "note": "The sole mismatched observation belongs to a deadline-skipped image. It is quarantined as geometry evidence. Its missing predictions remain in the primary denominator."
+}

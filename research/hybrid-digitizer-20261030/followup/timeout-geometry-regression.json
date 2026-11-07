@@ -1,0 +1,17 @@
+{
+  "schema": "hybrid-timeout-geometry-regression-v1",
+  "frozen_gpu_source_commit": "fdae9486b61a1253017902f4708abad2e7bfb864",
+  "failure": "A timeout before rectifier.__call__ left previous-image report and observations in the next receipt",
+  "fix": "Reset the per-image report and observations before the deadline gate",
+  "predictions_or_selection_changed": false,
+  "tests": {
+    "independent_clock_expires_after_first_image": true,
+    "baseline_failed_as_expected": true,
+    "expected_baseline_failure": "Previous geometry-observations.npz unexpectedly exists in expired-image folder",
+    "baseline_log_sha256": "a40f40d42127d93b6c4c66c981ab39fb8e770e96e68b8ddbed98424c3054adc9",
+    "after_fix_reproduction_count": 73,
+    "after_fix_reproduction_log_sha256": "8c08e4274c35ca28fe19546f24fd0cd7ed012c9cbf7992a6dc66e823ef96e9ea",
+    "native_source_enabled": true
+  },
+  "audit_requirement": "The already-running frozen GPU archive must be checked for source-ID mismatches before interpreting any retained geometric observations. Do not rewrite its original receipts or count wrong-image observations as current-image evidence."
+}

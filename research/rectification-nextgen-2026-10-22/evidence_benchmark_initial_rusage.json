@@ -1,0 +1,361 @@
+{
+  "scope": "CPU evidence plus eligibility classification microbenchmark, mapped coordinates precomputed",
+  "not_end_to_end": true,
+  "no_neural_inference_or_rgb_sampling_timed": true,
+  "hardware": {
+    "cpu_model": "INTEL(R) XEON(R) PLATINUM 8573C",
+    "visible_logical_cpus": 9,
+    "platform": "Linux-6.18.55-x86_64-with-glibc2.39"
+  },
+  "versions": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "opencv": "4.11.0"
+  },
+  "threads": "OpenCV1 and OMP/MKL/OpenBLAS1 in each fresh worker",
+  "pair_budget": 131072,
+  "process_repetitions_per_case_and_variant": 3,
+  "timed_repetitions_per_process": 3,
+  "parity": [
+    {
+      "fixture": "cells_and_hole",
+      "dtype": "<class 'numpy.float32'>",
+      "pair_budget": 17,
+      "queries_with_boundaries": 5076,
+      "hull_vertices": 4,
+      "bitwise_equal": true,
+      "maximum_pairs_used": 16
+    },
+    {
+      "fixture": "cells_and_hole",
+      "dtype": "<class 'numpy.float32'>",
+      "pair_budget": 131072,
+      "queries_with_boundaries": 5076,
+      "hull_vertices": 4,
+      "bitwise_equal": true,
+      "maximum_pairs_used": 20304
+    },
+    {
+      "fixture": "cells_and_hole",
+      "dtype": "<class 'numpy.float64'>",
+      "pair_budget": 17,
+      "queries_with_boundaries": 5076,
+      "hull_vertices": 4,
+      "bitwise_equal": true,
+      "maximum_pairs_used": 16
+    },
+    {
+      "fixture": "cells_and_hole",
+      "dtype": "<class 'numpy.float64'>",
+      "pair_budget": 131072,
+      "queries_with_boundaries": 5076,
+      "hull_vertices": 4,
+      "bitwise_equal": true,
+      "maximum_pairs_used": 20304
+    },
+    {
+      "fixture": "many_hull_vertices",
+      "dtype": "<class 'numpy.float32'>",
+      "pair_budget": 17,
+      "queries_with_boundaries": 5884,
+      "hull_vertices": 256,
+      "bitwise_equal": true,
+      "maximum_pairs_used": 17
+    },
+    {
+      "fixture": "many_hull_vertices",
+      "dtype": "<class 'numpy.float32'>",
+      "pair_budget": 131072,
+      "queries_with_boundaries": 5884,
+      "hull_vertices": 256,
+      "bitwise_equal": true,
+      "maximum_pairs_used": 131072
+    },
+    {
+      "fixture": "many_hull_vertices",
+      "dtype": "<class 'numpy.float64'>",
+      "pair_budget": 17,
+      "queries_with_boundaries": 5884,
+      "hull_vertices": 256,
+      "bitwise_equal": true,
+      "maximum_pairs_used": 17
+    },
+    {
+      "fixture": "many_hull_vertices",
+      "dtype": "<class 'numpy.float64'>",
+      "pair_budget": 131072,
+      "queries_with_boundaries": 5884,
+      "hull_vertices": 256,
+      "bitwise_equal": true,
+      "maximum_pairs_used": 131072
+    }
+  ],
+  "aggregates": {
+    "cells_and_hole": {
+      "baseline": {
+        "median_seconds": 0.24604978700517677,
+        "median_process_peak_rss_mib": 133.55078125
+      },
+      "bounded_combined": {
+        "median_seconds": 0.15911224400042556,
+        "median_process_peak_rss_mib": 133.55078125
+      },
+      "median_time_ratio_baseline_over_bounded": 1.5463912821474548,
+      "all_output_digests_equal": true
+    },
+    "many_hull_vertices": {
+      "baseline": {
+        "median_seconds": 0.3655476559943054,
+        "median_process_peak_rss_mib": 305.98828125
+      },
+      "bounded_combined": {
+        "median_seconds": 0.12408817499817815,
+        "median_process_peak_rss_mib": 133.55078125
+      },
+      "median_time_ratio_baseline_over_bounded": 2.945870192705085,
+      "all_output_digests_equal": true
+    }
+  },
+  "records": [
+    {
+      "case": "cells_and_hole",
+      "variant": "baseline",
+      "random_queries": 24576,
+      "total_queries_including_boundaries": 25556,
+      "hull_vertices": 4,
+      "seconds": [
+        0.6149328859901289,
+        1.6285446240071906,
+        0.23487428600492422
+      ],
+      "median_seconds": 0.6149328859901289,
+      "setup_seconds_excluded_from_timings": 0.00011235399870201945,
+      "process_peak_rss_mib": 133.55078125,
+      "output_sha256": "2b4a9f8c0e8ba72546138a299f07ff59ab077947089f4fc209dfa529e1302407",
+      "maximum_pairs_used": 102224,
+      "fresh_process_repetition": 0
+    },
+    {
+      "case": "cells_and_hole",
+      "variant": "bounded_combined",
+      "random_queries": 24576,
+      "total_queries_including_boundaries": 25556,
+      "hull_vertices": 4,
+      "seconds": [
+        0.1562210190022597,
+        0.1432787189987721,
+        0.15809390699723735
+      ],
+      "median_seconds": 0.1562210190022597,
+      "setup_seconds_excluded_from_timings": 0.00018371999613009393,
+      "process_peak_rss_mib": 133.55078125,
+      "output_sha256": "2b4a9f8c0e8ba72546138a299f07ff59ab077947089f4fc209dfa529e1302407",
+      "maximum_pairs_used": 102224,
+      "fresh_process_repetition": 0
+    },
+    {
+      "case": "cells_and_hole",
+      "variant": "bounded_combined",
+      "random_queries": 24576,
+      "total_queries_including_boundaries": 25556,
+      "hull_vertices": 4,
+      "seconds": [
+        0.2674367989966413,
+        0.26938151399372146,
+        0.2557230249949498
+      ],
+      "median_seconds": 0.2674367989966413,
+      "setup_seconds_excluded_from_timings": 0.0001435610029147938,
+      "process_peak_rss_mib": 133.55078125,
+      "output_sha256": "2b4a9f8c0e8ba72546138a299f07ff59ab077947089f4fc209dfa529e1302407",
+      "maximum_pairs_used": 102224,
+      "fresh_process_repetition": 1
+    },
+    {
+      "case": "cells_and_hole",
+      "variant": "baseline",
+      "random_queries": 24576,
+      "total_queries_including_boundaries": 25556,
+      "hull_vertices": 4,
+      "seconds": [
+        0.25385302100039553,
+        0.24397377599962056,
+        0.24604978700517677
+      ],
+      "median_seconds": 0.24604978700517677,
+      "setup_seconds_excluded_from_timings": 1.581996912136674e-06,
+      "process_peak_rss_mib": 133.55078125,
+      "output_sha256": "2b4a9f8c0e8ba72546138a299f07ff59ab077947089f4fc209dfa529e1302407",
+      "maximum_pairs_used": 102224,
+      "fresh_process_repetition": 1
+    },
+    {
+      "case": "cells_and_hole",
+      "variant": "baseline",
+      "random_queries": 24576,
+      "total_queries_including_boundaries": 25556,
+      "hull_vertices": 4,
+      "seconds": [
+        0.234969393000938,
+        0.23227785200288054,
+        0.23874423500092234
+      ],
+      "median_seconds": 0.234969393000938,
+      "setup_seconds_excluded_from_timings": 1.124004484154284e-06,
+      "process_peak_rss_mib": 133.55078125,
+      "output_sha256": "2b4a9f8c0e8ba72546138a299f07ff59ab077947089f4fc209dfa529e1302407",
+      "maximum_pairs_used": 102224,
+      "fresh_process_repetition": 2
+    },
+    {
+      "case": "cells_and_hole",
+      "variant": "bounded_combined",
+      "random_queries": 24576,
+      "total_queries_including_boundaries": 25556,
+      "hull_vertices": 4,
+      "seconds": [
+        0.16066773999773432,
+        0.1547849939961452,
+        0.15911224400042556
+      ],
+      "median_seconds": 0.15911224400042556,
+      "setup_seconds_excluded_from_timings": 9.52889968175441e-05,
+      "process_peak_rss_mib": 133.55078125,
+      "output_sha256": "2b4a9f8c0e8ba72546138a299f07ff59ab077947089f4fc209dfa529e1302407",
+      "maximum_pairs_used": 102224,
+      "fresh_process_repetition": 2
+    },
+    {
+      "case": "many_hull_vertices",
+      "variant": "baseline",
+      "random_queries": 24576,
+      "total_queries_including_boundaries": 26364,
+      "hull_vertices": 256,
+      "seconds": [
+        0.387346682997304,
+        0.3608156349946512,
+        0.3333937169954879
+      ],
+      "median_seconds": 0.3608156349946512,
+      "setup_seconds_excluded_from_timings": 1.748994691297412e-06,
+      "process_peak_rss_mib": 305.61328125,
+      "output_sha256": "c91c3bef288fa21e47d51b06c0da24b3c72da19bb336bc6137701686f4a1ea47",
+      "maximum_pairs_used": 6749184,
+      "fresh_process_repetition": 0
+    },
+    {
+      "case": "many_hull_vertices",
+      "variant": "bounded_combined",
+      "random_queries": 24576,
+      "total_queries_including_boundaries": 26364,
+      "hull_vertices": 256,
+      "seconds": [
+        0.14033693299279548,
+        0.12056110000412446,
+        0.13954909199674148
+      ],
+      "median_seconds": 0.13954909199674148,
+      "setup_seconds_excluded_from_timings": 0.0001370940008200705,
+      "process_peak_rss_mib": 133.55078125,
+      "output_sha256": "c91c3bef288fa21e47d51b06c0da24b3c72da19bb336bc6137701686f4a1ea47",
+      "maximum_pairs_used": 131072,
+      "fresh_process_repetition": 0
+    },
+    {
+      "case": "many_hull_vertices",
+      "variant": "bounded_combined",
+      "random_queries": 24576,
+      "total_queries_including_boundaries": 26364,
+      "hull_vertices": 256,
+      "seconds": [
+        0.12860229299985804,
+        0.11734782200073823,
+        0.12408817499817815
+      ],
+      "median_seconds": 0.12408817499817815,
+      "setup_seconds_excluded_from_timings": 0.00014071899931877851,
+      "process_peak_rss_mib": 133.55078125,
+      "output_sha256": "c91c3bef288fa21e47d51b06c0da24b3c72da19bb336bc6137701686f4a1ea47",
+      "maximum_pairs_used": 131072,
+      "fresh_process_repetition": 1
+    },
+    {
+      "case": "many_hull_vertices",
+      "variant": "baseline",
+      "random_queries": 24576,
+      "total_queries_including_boundaries": 26364,
+      "hull_vertices": 256,
+      "seconds": [
+        0.3730839900090359,
+        0.4058416309999302,
+        0.46562537700810935
+      ],
+      "median_seconds": 0.4058416309999302,
+      "setup_seconds_excluded_from_timings": 1.9560102373361588e-06,
+      "process_peak_rss_mib": 306.0078125,
+      "output_sha256": "c91c3bef288fa21e47d51b06c0da24b3c72da19bb336bc6137701686f4a1ea47",
+      "maximum_pairs_used": 6749184,
+      "fresh_process_repetition": 1
+    },
+    {
+      "case": "many_hull_vertices",
+      "variant": "baseline",
+      "random_queries": 24576,
+      "total_queries_including_boundaries": 26364,
+      "hull_vertices": 256,
+      "seconds": [
+        0.3605117769911885,
+        0.3655476559943054,
+        0.3708217309904285
+      ],
+      "median_seconds": 0.3655476559943054,
+      "setup_seconds_excluded_from_timings": 1.5279947547242045e-06,
+      "process_peak_rss_mib": 305.98828125,
+      "output_sha256": "c91c3bef288fa21e47d51b06c0da24b3c72da19bb336bc6137701686f4a1ea47",
+      "maximum_pairs_used": 6749184,
+      "fresh_process_repetition": 2
+    },
+    {
+      "case": "many_hull_vertices",
+      "variant": "bounded_combined",
+      "random_queries": 24576,
+      "total_queries_including_boundaries": 26364,
+      "hull_vertices": 256,
+      "seconds": [
+        0.12310728299780749,
+        0.1326635779987555,
+        0.11891494099108968
+      ],
+      "median_seconds": 0.12310728299780749,
+      "setup_seconds_excluded_from_timings": 0.0001434860023437068,
+      "process_peak_rss_mib": 133.55078125,
+      "output_sha256": "c91c3bef288fa21e47d51b06c0da24b3c72da19bb336bc6137701686f4a1ea47",
+      "maximum_pairs_used": 131072,
+      "fresh_process_repetition": 2
+    }
+  ],
+  "limitations": [
+    "Fixture maps are synthetic controls, not native detector outputs",
+    "Peak RSS is whole fresh worker process, including imports and fixture construction",
+    "Hull precomputation setup is reported separately and excluded from timed classification",
+    "Geometry must remain unchanged for the lifetime of the wrapper",
+    "Bounded pair arrays do not bound memory used by original CellMaps or KDTree",
+    "No inference throughput, GPU latency, or SOTA superiority is inferred",
+    "Shared virtual CPU host, no isolated CPU affinity or claim of hardware-independent speedup"
+  ],
+  "source_sha256": {
+    "swarm-notes/bounded_evidence.py": "56ddc7200606c5d8a3580254c808fd3dbe81d9f804b2b044d644b319455ed86d",
+    "swarm-notes/evidence_benchmark.py": "df9e66852975cffc3c801b019e0715a9cb4f26e54e17cd07357c661790273b96",
+    "swarm-audit/modules/complete_rectifier.py": "0c3e6025332eaf582a4f3d57218cbf7ed0bdabad1efc7e7503cce3e9646de2da",
+    "swarm-audit/modules/cell_mesh.py": "566253fba786de84475f00d593b80876b3869499d3703c18a71c9a5396cf37d6"
+  },
+  "separate_memory_sanity_check": {
+    "variant": "bounded_combined",
+    "case": "many_hull_vertices",
+    "fresh_direct_process_rusage_peak_mib": 132.4140625,
+    "proc_status_vm_hwm_kib": 135592,
+    "values_agree": true,
+    "timed_repetitions": 1,
+    "not_part_of_aggregated_trials": true
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "synthetic_only": true,
+  "real_validation_or_test_results_opened": false,
+  "patients": 6,
+  "views_each": 8,
+  "bootstrap_replicates": 20000,
+  "expected_backend_patient_balanced_B0": {
+    "g": 0.4295,
+    "w": 0.025,
+    "c": 0.4545,
+    "r": 0.05500550055005501
+  },
+  "actual_refined": {
+    "metrics": {
+      "g": 0.4495,
+      "w": 0.019999999999999993,
+      "c": 0.46950000000000003,
+      "r": 0.04259850905218316
+    },
+    "absolute_95_descriptive_interval": {
+      "g": {
+        "lower": 0.43616666666666665,
+        "upper": 0.4628333333333334,
+        "defined_bootstrap_replicates": 20000
+      },
+      "w": {
+        "lower": 0.019999999999999993,
+        "upper": 0.019999999999999993,
+        "defined_bootstrap_replicates": 20000
+      },
+      "c": {
+        "lower": 0.45616666666666666,
+        "upper": 0.4828333333333334,
+        "defined_bootstrap_replicates": 20000
+      },
+      "r": {
+        "lower": 0.041422160856057974,
+        "upper": 0.04384362440628424,
+        "defined_bootstrap_replicates": 20000
+      }
+    },
+    "delta_vs_B0": {
+      "g": 0.020000000000000018,
+      "w": -0.0050000000000000044,
+      "c": 0.014999999999999958,
+      "r": -0.012406991497871833
+    },
+    "delta_95_descriptive_interval": {
+      "g": {
+        "lower": 0.020000000000000018,
+        "upper": 0.02000000000000013,
+        "defined_bootstrap_replicates": 20000
+      },
+      "w": {
+        "lower": -0.0050000000000000044,
+        "upper": -0.0050000000000000044,
+        "defined_bootstrap_replicates": 20000
+      },
+      "c": {
+        "lower": 0.014999999999999902,
+        "upper": 0.015000000000000124,
+        "defined_bootstrap_replicates": 20000
+      },
+      "r": {
+        "lower": -0.012824301547625844,
+        "upper": -0.012015673130404435,
+        "defined_bootstrap_replicates": 20000
+      }
+    }
+  },
+  "checks": "pass, fixed paired differences produce exact degenerate intervals, risk ratio and common-support error reproduce hand calculation, missing backend rejected"
+}

@@ -1,0 +1,18 @@
+{
+  "schema": "exact-owned-training-status-v1",
+  "training_run_id": 41070920613,
+  "expected_name": "ecg-repro-41070920613-1",
+  "read_at_utc": "2026-10-30T21:51:56.544309+00:00",
+  "mutations": [],
+  "matching_pod_present": false,
+  "optimizer_progress_verified": false,
+  "limitation": "Resource status cannot establish completed optimizer epochs. Last verified checkpoint remains separate.",
+  "status_probe_run_id": 41134119169,
+  "status_probe_artifact_id": 13014956001,
+  "status_probe_artifact_sha256": "903c650f767118177ea6240ebbbe6cb7ced23037b0949babc68d36aaecb61b26",
+  "actions_training_job_status": "in_progress",
+  "actions_training_job_id": 124261775415,
+  "last_independently_verified_completed_epochs": 13,
+  "checkpoint_bundle_url": "https://chatgpt.com/library?file_id=libfile_5d6801b46d0481918fc4e5ad8f12c16a&account_id=personal",
+  "checkpoint_bundle_sha256": "0d285c51e3d7a6378d219cd6e65f953ef43d8df6e5c470f73f2112e31d2d13a7"
+}

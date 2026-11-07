@@ -1,0 +1,14 @@
+{
+  "images_checked": 131,
+  "errors": [
+    {
+      "key": "211723-2",
+      "method": "our-B0",
+      "status": "original_preserved_partial_coordinates",
+      "rgb_resampled": false,
+      "image": "/workspace/scratch/a57599a3e70e/ecg-torch-renderer/build/m3-comparison/cases/211723-2/our-B0/original-preserved.png",
+      "bytes": 589961,
+      "error": "image file is truncated"
+    }
+  ]
+}

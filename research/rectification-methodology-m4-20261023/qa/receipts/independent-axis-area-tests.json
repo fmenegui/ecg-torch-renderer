@@ -1,0 +1,41 @@
+{
+  "schema": "m4-independent-axis-area-tests-v1",
+  "tests": 5,
+  "passed": true,
+  "sources_stable_during_run": true,
+  "source_sha256": {
+    "m4/sampling/axis_aligned_area.py": "d7b347d7733d91530babf518ab2987c2558b4aebed3b4f37773f6b8fee49cc26",
+    "m4/sampling/axis_area_protocol.json": "5aa74013d005426eb1dabfd636d899ed72ec78e9bcca733b085361e1596a03e2",
+    "m4/qa/independent_axis_area_tests.py": "5a6c53fb35d778a592e53ccd4dad6d8db36fea4623e5478d3c1d230071677c12"
+  },
+  "failures": [],
+  "errors": [],
+  "notes": {
+    "scalar_rectangle_clipping": {
+      "outputs": 8,
+      "output_pixels": 160,
+      "maximum_encoded_mean_difference": 1.2960299500264227e-11,
+      "uint8_pixel_mismatches": 0,
+      "model": "Exact integral of encoded source-cell constant reconstruction, not unknown optical ink."
+    },
+    "retained_counterexample_positive_control": {
+      "encoded_mean": [
+        247.03125,
+        247.03125,
+        247.03125
+      ],
+      "uint8": [
+        247,
+        247,
+        247
+      ],
+      "scope": "Diagonal affine32:1 and source-cell model only."
+    }
+  },
+  "limits": [
+    "Failure-directed development control",
+    "Diagonal affine maps only",
+    "Different source reconstruction from bilinear candidate",
+    "No new native ECG or clinical assessment"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "independent_counter_checks": 1280,
+  "cases": 32,
+  "counterfactual_methods": 5,
+  "passed": true,
+  "method": "Direct finite masks, anchor medians and Euclidean errors. No scoring-core imports.",
+  "scope": "Saved component geometry only, not independent clinical observations."
+}

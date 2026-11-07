@@ -1,0 +1,9 @@
+{
+  "status": "pass",
+  "tests": 6,
+  "failures": 0,
+  "errors": 0,
+  "source_file": "/workspace/scratch/a57599a3e70e/m3/benchmark/summarize_m3.py",
+  "source_sha256": "ac14b020e9cd4a457d0a16cac257452bec20f3389cbfe5b8f3f68b05c90a562f",
+  "scope": "Actual postprocessing functions with controlled arrays. No real result files read and no inference."
+}

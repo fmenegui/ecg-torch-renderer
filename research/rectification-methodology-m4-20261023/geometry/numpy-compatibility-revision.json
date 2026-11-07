@@ -1,0 +1,12 @@
+{
+  "schema": "m4-numpy-cross2d-compatibility-revision-v1",
+  "date": "2026-10-23",
+  "reason": "The integrator observed a CI failure with NumPy 2.5.4 on Python 3.12 and 3.13: np.cross no longer accepts vectors whose last dimension is two. The approved guard-v2 contains one such call.",
+  "historical_source": "geometry_selector_guard_v2_historical.py",
+  "historical_source_sha256": "0ce6062797c5e25dd9ce3d7b26a6a9fabe7779ca72b5ea4e55fcda564bed9e87",
+  "sole_geometry_change": "Replace np.cross(a,b) for Nx2 edge vectors by the explicit scalar determinant a[:,0]*b[:,1]-a[:,1]*b[:,0].",
+  "unchanged": ["candidate family", "H estimators", "residual equations", "IRLS", "folds", "loss", "selection rule", "guard tolerances", "guard semantics", "scene definitions", "physical queries", "score thresholds", "frozen M2 and M3 sources"],
+  "forbidden": ["no monkeypatch", "no dependency pin or downgrade as compatibility fix", "no tuning from physical gold"],
+  "verification": ["Preserve approved guard-v2 source and result receipts", "Scan current component source and imported M2/M3 geometry path for additional np.cross use", "Run the same 19 analytical scenes into results-numpy-compatible", "Check identical selected names in 19 scenes, candidate coordinate arrays for 342 candidates, and all 76 primary score records versus results-guard-v2", "Coordinate independent QA retest"],
+  "claim_scope": "Compatibility correction only. No new accuracy, clinical, topology or performance claim. Local numerical parity and actual dependency-matrix CI are reported separately."
+}

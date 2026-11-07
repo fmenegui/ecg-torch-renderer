@@ -1,0 +1,46 @@
+{
+  "schema": "ecg-reproduction-manifest-v1",
+  "cohort_identity_verified": false,
+  "case_grouping": "source record, not asserted biological identity across records",
+  "cases": [
+    {
+      "case_id": "D2_000001_l00",
+      "patient_id": "source-record:D2_000001",
+      "split": "development",
+      "image": "raw/D2_000001_l00.jpg",
+      "image_sha256": "a03883f183493ba0a5f699dff90cc9c011761f1a60281e23971fde91c549ec14",
+      "reference": "gold/D2_000001_l00.npz",
+      "reference_sha256": "b6962d80551c79249a518aa06e68c0cdc781deae4ddb48d05b66fe0ef38d5b0a",
+      "reference_unit": "mV",
+      "fs": 1000,
+      "acquisition": "l00",
+      "page_family": "limb"
+    },
+    {
+      "case_id": "D2_000001_l01",
+      "patient_id": "source-record:D2_000001",
+      "split": "development",
+      "image": "raw/D2_000001_l01.jpg",
+      "image_sha256": "0613fc090a2a3a7f552eba2f423441269d790f5e1b229ca7de58f9b5dd3a2442",
+      "reference": "gold/D2_000001_l01.npz",
+      "reference_sha256": "b6962d80551c79249a518aa06e68c0cdc781deae4ddb48d05b66fe0ef38d5b0a",
+      "reference_unit": "mV",
+      "fs": 1000,
+      "acquisition": "l01",
+      "page_family": "limb"
+    },
+    {
+      "case_id": "D2_000001_l02",
+      "patient_id": "source-record:D2_000001",
+      "split": "development",
+      "image": "raw/D2_000001_l02.jpg",
+      "image_sha256": "2dcb37fa6a71d1df59d28199053e05fbf220afa9d4ca78a560073520f5c5a38a",
+      "reference": "gold/D2_000001_l02.npz",
+      "reference_sha256": "b6962d80551c79249a518aa06e68c0cdc781deae4ddb48d05b66fe0ef38d5b0a",
+      "reference_unit": "mV",
+      "fs": 1000,
+      "acquisition": "l02",
+      "page_family": "limb"
+    }
+  ]
+}

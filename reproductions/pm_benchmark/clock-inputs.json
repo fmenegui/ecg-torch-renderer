@@ -1,0 +1,341 @@
+{
+  "schema": "physical-clock-image-only-inputs-v1",
+  "exams": [
+    {
+      "exam_id": "pm-88-photos_scans",
+      "pages": [
+        {
+          "image_id": "pm-88-photos_scans-page-0",
+          "image": "final_data/visual_data/photos_scans/img_88_page_0.jpeg",
+          "image_sha256": null,
+          "archive_member": {
+            "name": "final_data/visual_data/photos_scans/img_88_page_0.jpeg",
+            "size": 1142870,
+            "compressed": 1050362,
+            "offset": 4650479249,
+            "crc": 2634132778
+          }
+        },
+        {
+          "image_id": "pm-88-photos_scans-page-1",
+          "image": "final_data/visual_data/photos_scans/img_88_page_1.jpeg",
+          "image_sha256": null,
+          "archive_member": {
+            "name": "final_data/visual_data/photos_scans/img_88_page_1.jpeg",
+            "size": 1130224,
+            "compressed": 1036717,
+            "offset": 4489097659,
+            "crc": 1035982532
+          }
+        },
+        {
+          "image_id": "pm-88-photos_scans-page-2",
+          "image": "final_data/visual_data/photos_scans/img_88_page_2.jpeg",
+          "image_sha256": null,
+          "archive_member": {
+            "name": "final_data/visual_data/photos_scans/img_88_page_2.jpeg",
+            "size": 1167613,
+            "compressed": 1074540,
+            "offset": 4618900678,
+            "crc": 222869880
+          }
+        },
+        {
+          "image_id": "pm-88-photos_scans-page-3",
+          "image": "final_data/visual_data/photos_scans/img_88_page_3.jpeg",
+          "image_sha256": null,
+          "archive_member": {
+            "name": "final_data/visual_data/photos_scans/img_88_page_3.jpeg",
+            "size": 1162949,
+            "compressed": 1069779,
+            "offset": 4558933995,
+            "crc": 3336233164
+          }
+        }
+      ]
+    },
+    {
+      "exam_id": "pm-88-photos_bents",
+      "pages": [
+        {
+          "image_id": "pm-88-photos_bents-page-0",
+          "image": "final_data/visual_data/photos_bents/img_88_page_0.jpeg",
+          "image_sha256": null,
+          "archive_member": {
+            "name": "final_data/visual_data/photos_bents/img_88_page_0.jpeg",
+            "size": 2924064,
+            "compressed": 2858834,
+            "offset": 2733606000,
+            "crc": 982269240
+          }
+        },
+        {
+          "image_id": "pm-88-photos_bents-page-1",
+          "image": "final_data/visual_data/photos_bents/img_88_page_1.jpeg",
+          "image_sha256": null,
+          "archive_member": {
+            "name": "final_data/visual_data/photos_bents/img_88_page_1.jpeg",
+            "size": 3649027,
+            "compressed": 3606281,
+            "offset": 2428794880,
+            "crc": 3573942345
+          }
+        },
+        {
+          "image_id": "pm-88-photos_bents-page-2",
+          "image": "final_data/visual_data/photos_bents/img_88_page_2.jpeg",
+          "image_sha256": null,
+          "archive_member": {
+            "name": "final_data/visual_data/photos_bents/img_88_page_2.jpeg",
+            "size": 3722641,
+            "compressed": 3679469,
+            "offset": 2670679298,
+            "crc": 2174350277
+          }
+        },
+        {
+          "image_id": "pm-88-photos_bents-page-3",
+          "image": "final_data/visual_data/photos_bents/img_88_page_3.jpeg",
+          "image_sha256": null,
+          "archive_member": {
+            "name": "final_data/visual_data/photos_bents/img_88_page_3.jpeg",
+            "size": 3953520,
+            "compressed": 3902540,
+            "offset": 2557315546,
+            "crc": 1184938382
+          }
+        }
+      ]
+    },
+    {
+      "exam_id": "pm-54-photos_scans",
+      "pages": [
+        {
+          "image_id": "pm-54-photos_scans-page-0",
+          "image": "final_data/visual_data/photos_scans/img_54_page_0.jpeg",
+          "image_sha256": null,
+          "archive_member": {
+            "name": "final_data/visual_data/photos_scans/img_54_page_0.jpeg",
+            "size": 2592783,
+            "compressed": 2492146,
+            "offset": 4462741737,
+            "crc": 1362590435
+          }
+        },
+        {
+          "image_id": "pm-54-photos_scans-page-1",
+          "image": "final_data/visual_data/photos_scans/img_54_page_1.jpeg",
+          "image_sha256": null,
+          "archive_member": {
+            "name": "final_data/visual_data/photos_scans/img_54_page_1.jpeg",
+            "size": 2574225,
+            "compressed": 2474307,
+            "offset": 4594909821,
+            "crc": 2838913344
+          }
+        }
+      ]
+    },
+    {
+      "exam_id": "pm-54-photos_bents",
+      "pages": [
+        {
+          "image_id": "pm-54-photos_bents-page-0",
+          "image": "final_data/visual_data/photos_bents/img_54_page_0.jpeg",
+          "image_sha256": null,
+          "archive_member": {
+            "name": "final_data/visual_data/photos_bents/img_54_page_0.jpeg",
+            "size": 4931512,
+            "compressed": 4866897,
+            "offset": 2385513571,
+            "crc": 8038871
+          }
+        },
+        {
+          "image_id": "pm-54-photos_bents-page-1",
+          "image": "final_data/visual_data/photos_bents/img_54_page_1.jpeg",
+          "image_sha256": null,
+          "archive_member": {
+            "name": "final_data/visual_data/photos_bents/img_54_page_1.jpeg",
+            "size": 5018580,
+            "compressed": 4956882,
+            "offset": 2628359564,
+            "crc": 2001253628
+          }
+        }
+      ]
+    },
+    {
+      "exam_id": "pm-75-photos_scans",
+      "pages": [
+        {
+          "image_id": "pm-75-photos_scans-page-0",
+          "image": "final_data/visual_data/photos_scans/img_75_page_0.jpeg",
+          "image_sha256": null,
+          "archive_member": {
+            "name": "final_data/visual_data/photos_scans/img_75_page_0.jpeg",
+            "size": 3677852,
+            "compressed": 3628022,
+            "offset": 4672021896,
+            "crc": 2213876146
+          }
+        },
+        {
+          "image_id": "pm-75-photos_scans-page-1",
+          "image": "final_data/visual_data/photos_scans/img_75_page_1.jpeg",
+          "image_sha256": null,
+          "archive_member": {
+            "name": "final_data/visual_data/photos_scans/img_75_page_1.jpeg",
+            "size": 3658521,
+            "compressed": 3607312,
+            "offset": 4441105046,
+            "crc": 3864244436
+          }
+        }
+      ]
+    },
+    {
+      "exam_id": "pm-75-photos_bents",
+      "pages": [
+        {
+          "image_id": "pm-75-photos_bents-page-0",
+          "image": "final_data/visual_data/photos_bents/img_75_page_0.jpeg",
+          "image_sha256": null,
+          "archive_member": {
+            "name": "final_data/visual_data/photos_bents/img_75_page_0.jpeg",
+            "size": 6601723,
+            "compressed": 6530898,
+            "offset": 2775141641,
+            "crc": 3450289773
+          }
+        },
+        {
+          "image_id": "pm-75-photos_bents-page-1",
+          "image": "final_data/visual_data/photos_bents/img_75_page_1.jpeg",
+          "image_sha256": null,
+          "archive_member": {
+            "name": "final_data/visual_data/photos_bents/img_75_page_1.jpeg",
+            "size": 4605197,
+            "compressed": 4551553,
+            "offset": 2341824146,
+            "crc": 2977937370
+          }
+        }
+      ]
+    },
+    {
+      "exam_id": "pm-25-photos_scans",
+      "pages": [
+        {
+          "image_id": "pm-25-photos_scans-page-0",
+          "image": "final_data/visual_data/photos_scans/img_25_page_0.jpeg",
+          "image_sha256": "b35eb388b4f9b14eebe2f1f2babb073e0b45497a8b05e7625d4ed60fe5a319b6",
+          "archive_member": {
+            "name": "final_data/visual_data/photos_scans/img_25_page_0.jpeg",
+            "size": 3006325,
+            "compressed": 2949327,
+            "offset": 4499974244,
+            "crc": 2558590037
+          }
+        }
+      ]
+    },
+    {
+      "exam_id": "pm-25-photos_bents",
+      "pages": [
+        {
+          "image_id": "pm-25-photos_bents-page-0",
+          "image": "final_data/visual_data/photos_bents/img_25_page_0.jpeg",
+          "image_sha256": "3d34868d501d996e9d514c2831ad3073f45831609762ceb5ce654faab325fba7",
+          "archive_member": {
+            "name": "final_data/visual_data/photos_bents/img_25_page_0.jpeg",
+            "size": 4322180,
+            "compressed": 4308263,
+            "offset": 2450233670,
+            "crc": 3677643551
+          }
+        }
+      ]
+    },
+    {
+      "exam_id": "pm-59-photos_scans",
+      "pages": [
+        {
+          "image_id": "pm-59-photos_scans-page-0",
+          "image": "final_data/visual_data/photos_scans/img_59_page_0.jpeg",
+          "image_sha256": null,
+          "archive_member": {
+            "name": "final_data/visual_data/photos_scans/img_59_page_0.jpeg",
+            "size": 1053292,
+            "compressed": 970334,
+            "offset": 4586155273,
+            "crc": 1259378401
+          }
+        }
+      ]
+    },
+    {
+      "exam_id": "pm-59-photos_bents",
+      "pages": [
+        {
+          "image_id": "pm-59-photos_bents-page-0",
+          "image": "final_data/visual_data/photos_bents/img_59_page_0.jpeg",
+          "image_sha256": null,
+          "archive_member": {
+            "name": "final_data/visual_data/photos_bents/img_59_page_0.jpeg",
+            "size": 3212830,
+            "compressed": 3161289,
+            "offset": 2607443001,
+            "crc": 1530148349
+          }
+        }
+      ]
+    },
+    {
+      "exam_id": "pm-42-photos_scans",
+      "pages": [
+        {
+          "image_id": "pm-42-photos_scans-page-0",
+          "image": "final_data/visual_data/photos_scans/img_42_page_0.jpeg",
+          "image_sha256": null,
+          "archive_member": {
+            "name": "final_data/visual_data/photos_scans/img_42_page_0.jpeg",
+            "size": 2260267,
+            "compressed": 2195917,
+            "offset": 4560003886,
+            "crc": 1636449191
+          }
+        }
+      ]
+    },
+    {
+      "exam_id": "pm-42-photos_bents",
+      "pages": [
+        {
+          "image_id": "pm-42-photos_bents-page-0",
+          "image": "final_data/visual_data/photos_bents/img_42_page_0.jpeg",
+          "image_sha256": null,
+          "archive_member": {
+            "name": "final_data/visual_data/photos_bents/img_42_page_0.jpeg",
+            "size": 4078047,
+            "compressed": 4028582,
+            "offset": 2561218198,
+            "crc": 3023282377
+          }
+        }
+      ]
+    }
+  ],
+  "metadata_sha256": "6d89d1990692767eef15560737e2c0ebce517a22b4da7068a2bcd68ae231daea",
+  "zip_index_sha256": "14d3b8648a2a01d0819b9f545e56688c65e7eae559a2cf6d6f4fb8c1644e850d",
+  "public_axes": {
+    "fs": 500,
+    "samples": 5000,
+    "paper_speed_mm_s": 25.0,
+    "gain_mm_mv": 10.0,
+    "origin_x_px": 0.0,
+    "origin_basis": "aligned image frame zero, independently unverified as print zero"
+  },
+  "independent_accuracy_validation": false,
+  "new_training": false
+}

@@ -1,0 +1,76 @@
+{
+  "date": "2026-10-22",
+  "production_baseline": "b9fd04dd6516e3469d1f36593849249c082458a8",
+  "production_files_changed": false,
+  "model_training": false,
+  "competitor_inference": false,
+  "GPU_provisioning": false,
+  "root_reproduction": [
+    {
+      "script": "adversarial_controls.py",
+      "result": "pass, scale alias and subcell controls reproduced",
+      "opencv": "4.11.0.86",
+      "source_git_blobs_verified": true
+    },
+    {
+      "script": "nms_resolution_control.py",
+      "result": "pass, detected counts [1,2,2,1], capacity truncation true",
+      "torch": "2.8.0+cpu",
+      "source_git_blob_verified": true
+    },
+    {
+      "script": "evidence_benchmark.py",
+      "result": "pass, 8 parity configurations, all large output digests equal",
+      "opencv": "4.11.0.86",
+      "processes_per_case_variant": 3,
+      "timed_calls_per_process": 3,
+      "scope": "component classification only"
+    }
+  ],
+  "static_checks": {
+    "compileall": "pass",
+    "ruff_E9_F63_F7_F82": "pass",
+    "ruff_F": "pass"
+  },
+  "independent_review": {
+    "role": "adversarial_review",
+    "scope": "README, design, protocol, performance and five research scripts",
+    "verdict": "approvable as research, no material blocker found",
+    "parity_reexecuted": "8 configurations pass",
+    "additional_review_environment": "OpenCV5, supplementary only, not substituted for root supported 4.11 runs"
+  },
+  "not_repeated": [
+    "full production integration suite",
+    "production capture gallery",
+    "neural model or competitor inference",
+    "real photograph benchmark"
+  ],
+  "artifact_QA": {
+    "embedded_PNGs_verified": 3,
+    "plots_visually_inspected": 3,
+    "internal_anchors_verified": true,
+    "HTML_browser_layout_QA": "unavailable, structural checks only"
+  },
+  "historical_diagnostics": {
+    "initial_OpenCV5": "outside project major pin, not primary evidence",
+    "intermediate_OpenCV4_14_import": "import terminated with Bus error in isolated venv, replaced with 4.11.0.86",
+    "getrusage_memory_floor": "inherited high-water detected, primary RSS replaced with /proc VmHWM and pre-timing snapshots"
+  },
+  "file_sha256": {
+    "README.md": "8b2dd1cde19945f7d6e5b5f185cd0017704b98d0e8723bab8bc146bf0ce72e1b",
+    "adversarial_controls.json": "2b066b6c09afc39223c2850fa49264fa3928baeca7bd5c1ea85536e9e1f6ee11",
+    "adversarial_controls.py": "e6a864115b067937ba1645670a6eb270e039cbf4533220298cd6f859adb6e0d8",
+    "audit_loader.py": "d1e0313c8f1067f6b352425b09cbc70b383e5fa2876f0d4a0d1e2208c76e38d7",
+    "benchmark-protocol.json": "498e5c16ba905c39cd578649aeb752d9c2fb05d8cf70a25169ebc2f3547d2b3a",
+    "bounded_evidence.py": "56ddc7200606c5d8a3580254c808fd3dbe81d9f804b2b044d644b319455ed86d",
+    "design-spec.md": "fc4f0b5bb0c184d31cd91fe2cdbf1d2ee905645785a8fddef1de755e3867e841",
+    "evidence_benchmark.json": "e50a2b35d4c2d47f8f8682496bad5e211ca0991d05bbede2fb54f269a678b5c1",
+    "evidence_benchmark.py": "afd63945874893708fb35ebd87ea0f2d592fd144d87cc4f3ea1186ff2f339174",
+    "evidence_benchmark_agent.json": "c2b3b23f5a0883879484e26a28401fc813c6fcc488806924bf57f21766966652",
+    "evidence_benchmark_initial_rusage.json": "a4d1da49982a40884a0d7c8dd9f4a7d97281033937c411963ecb9f9d12283a45",
+    "nms_resolution_control.json": "edf9b8beac2f96d3bfffe942d1eeb283b053116c38f9d11dcf84b961d5a78ad3",
+    "nms_resolution_control.py": "4bd4ac339c2513840f783d4982c02f5d679b805fb148218f1a89b031ab353cfd",
+    "performance.md": "a3606f969f7955b85404de3225f184d0d78c6b0d6f21ecf414ff82e58492f85c",
+    "sources.json": "51f5528ae617297eef7a152ccac3524eafab6cd93f6a24f31e9ddce7921ffa16"
+  }
+}

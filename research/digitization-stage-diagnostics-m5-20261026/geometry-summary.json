@@ -1,0 +1,2254 @@
+{
+  "protocol": {
+    "schema": "ECG-stage-diagnostic-v1",
+    "date": "2026-10-26",
+    "development_only": true,
+    "cases": [
+      "220288-0",
+      "220288-1",
+      "220288-2",
+      "220288-6",
+      "208777-0",
+      "208777-1",
+      "208777-2",
+      "208777-6",
+      "206852-0",
+      "206852-1",
+      "206852-2",
+      "206852-6",
+      "208114-0",
+      "208114-1",
+      "208114-2",
+      "208114-6",
+      "215864-0",
+      "215864-1",
+      "215864-2",
+      "215864-6",
+      "211723-0",
+      "211723-1",
+      "211723-2",
+      "211723-6",
+      "211855-0",
+      "211855-1",
+      "211855-2",
+      "211855-6",
+      "206056-0",
+      "206056-1",
+      "206056-2",
+      "206056-6"
+    ],
+    "methods": [
+      "E0-native-M2",
+      "E1-orientation-oracle",
+      "E0-native-cell-map",
+      "E2-matched-inferred-IDs",
+      "E2-oracle-association-IDs",
+      "E3-perfect-points-inferred-IDs",
+      "E4-perfect-points-perfect-IDs"
+    ],
+    "matching_radius_source_px": 2.0,
+    "E2_scope": "Gold nearest unique matches plus false-positive exclusion. Compare matched-inferred-IDs to isolate identity on the same retained observations.",
+    "E3_E4_scope": "Identical perfect observations, inferred versus gold IDs. No RGB success claim.",
+    "E1_scope": "Gold D4 orientation diagnostic, never automatic performance.",
+    "scoring": "Frozen M3 queries, native physical scale, anchor-only translation, 0.5 mm.",
+    "bootstrap": "20000 draws, patient/backend balanced, descriptive development intervals.",
+    "reference_M3_lock_sha256": "a667f1cbbe3dc3334df1721a821af063691240eb0b3fdd7b72af5150f1127b3c",
+    "schedule_sha256": "b7bde0fc53a2a6cfe0c63da30872c85634702517bf636efdfb52d5afaba51c73",
+    "code_sha256": "360e75953d3f9de29495ee4c58c8aeefc93c8bb2f83fe709bc06f3f99995e170",
+    "new_training": false,
+    "signal_experiments": "Separate conditional study, never inferred from geometry scores."
+  },
+  "domains": {
+    "grid": {
+      "means": {
+        "E0-native-M2": {
+          "overall": {
+            "g": 0.63232421875,
+            "w": 0.16283416748046875,
+            "c": 0.7951583862304688,
+            "r": 0.20478205386526965
+          },
+          "by_backend": {
+            "offline": {
+              "g": 0.3783721923828125,
+              "w": 0.3150634765625,
+              "c": 0.6934356689453125,
+              "r": 0.45435141379689736
+            },
+            "torch-cached": {
+              "g": 0.8862762451171875,
+              "w": 0.0106048583984375,
+              "c": 0.896881103515625,
+              "r": 0.01182415189356562
+            }
+          },
+          "by_patient": {
+            "ptbxl-patient-10264.0": {
+              "g": 0.68487548828125,
+              "w": 0.24017333984375,
+              "c": 0.925048828125,
+              "r": 0.25963314858801795
+            },
+            "ptbxl-patient-1210.0": {
+              "g": 0.7291259765625,
+              "w": 0.23681640625,
+              "c": 0.9659423828125,
+              "r": 0.2451661822317705
+            },
+            "ptbxl-patient-13372.0": {
+              "g": 0.7210693359375,
+              "w": 0.166259765625,
+              "c": 0.8873291015625,
+              "r": 0.1873710276516715
+            },
+            "ptbxl-patient-19518.0": {
+              "g": 0.493408203125,
+              "w": 0.06610107421875,
+              "c": 0.55950927734375,
+              "r": 0.11814115850332715
+            },
+            "ptbxl-patient-6191.0": {
+              "g": 0.89764404296875,
+              "w": 0.00543212890625,
+              "c": 0.903076171875,
+              "r": 0.006015139226818059
+            },
+            "ptbxl-patient-8264.0": {
+              "g": 0.49658203125,
+              "w": 0.2606201171875,
+              "c": 0.7572021484375,
+              "r": 0.3441882959858133
+            },
+            "ptbxl-patient-8288.0": {
+              "g": 0.477783203125,
+              "w": 0.08587646484375,
+              "c": 0.56365966796875,
+              "r": 0.1523551705468327
+            },
+            "ptbxl-patient-935.0": {
+              "g": 0.55810546875,
+              "w": 0.24139404296875,
+              "c": 0.79949951171875,
+              "r": 0.30193144514848463
+            }
+          },
+          "patients": [
+            "ptbxl-patient-10264.0",
+            "ptbxl-patient-1210.0",
+            "ptbxl-patient-13372.0",
+            "ptbxl-patient-19518.0",
+            "ptbxl-patient-6191.0",
+            "ptbxl-patient-8264.0",
+            "ptbxl-patient-8288.0",
+            "ptbxl-patient-935.0"
+          ],
+          "backends": [
+            "offline",
+            "torch-cached"
+          ],
+          "independent_patients": 8,
+          "cases": 32,
+          "aggregation": "equal patient/backend means, ratio of aggregate W/C"
+        },
+        "E1-orientation-oracle": {
+          "overall": {
+            "g": 0.76904296875,
+            "w": 0.02611541748046875,
+            "c": 0.7951583862304688,
+            "r": 0.032843038484787423
+          },
+          "by_backend": {
+            "offline": {
+              "g": 0.6518096923828125,
+              "w": 0.0416259765625,
+              "c": 0.6934356689453125,
+              "r": 0.06002860600726152
+            },
+            "torch-cached": {
+              "g": 0.8862762451171875,
+              "w": 0.0106048583984375,
+              "c": 0.896881103515625,
+              "r": 0.01182415189356562
+            }
+          },
+          "by_patient": {
+            "ptbxl-patient-10264.0": {
+              "g": 0.92474365234375,
+              "w": 0.00030517578125,
+              "c": 0.925048828125,
+              "r": 0.0003299023489047242
+            },
+            "ptbxl-patient-1210.0": {
+              "g": 0.963623046875,
+              "w": 0.0023193359375,
+              "c": 0.9659423828125,
+              "r": 0.0024011120940224946
+            },
+            "ptbxl-patient-13372.0": {
+              "g": 0.8046875,
+              "w": 0.0826416015625,
+              "c": 0.8873291015625,
+              "r": 0.09313523180630073
+            },
+            "ptbxl-patient-19518.0": {
+              "g": 0.531494140625,
+              "w": 0.02801513671875,
+              "c": 0.55950927734375,
+              "r": 0.05007090651249046
+            },
+            "ptbxl-patient-6191.0": {
+              "g": 0.89764404296875,
+              "w": 0.00543212890625,
+              "c": 0.903076171875,
+              "r": 0.006015139226818059
+            },
+            "ptbxl-patient-8264.0": {
+              "g": 0.74652099609375,
+              "w": 0.01068115234375,
+              "c": 0.7572021484375,
+              "r": 0.014106077704336611
+            },
+            "ptbxl-patient-8288.0": {
+              "g": 0.5069580078125,
+              "w": 0.05670166015625,
+              "c": 0.56365966796875,
+              "r": 0.1005955603681646
+            },
+            "ptbxl-patient-935.0": {
+              "g": 0.77667236328125,
+              "w": 0.0228271484375,
+              "c": 0.79949951171875,
+              "r": 0.028551797847163905
+            }
+          },
+          "patients": [
+            "ptbxl-patient-10264.0",
+            "ptbxl-patient-1210.0",
+            "ptbxl-patient-13372.0",
+            "ptbxl-patient-19518.0",
+            "ptbxl-patient-6191.0",
+            "ptbxl-patient-8264.0",
+            "ptbxl-patient-8288.0",
+            "ptbxl-patient-935.0"
+          ],
+          "backends": [
+            "offline",
+            "torch-cached"
+          ],
+          "independent_patients": 8,
+          "cases": 32,
+          "aggregation": "equal patient/backend means, ratio of aggregate W/C"
+        },
+        "E0-native-cell-map": {
+          "overall": {
+            "g": 0.5848464965820312,
+            "w": 0.1566314697265625,
+            "c": 0.7414779663085938,
+            "r": 0.21124224433308983
+          },
+          "by_backend": {
+            "offline": {
+              "g": 0.324554443359375,
+              "w": 0.3031768798828125,
+              "c": 0.6277313232421875,
+              "r": 0.4829723619922701
+            },
+            "torch-cached": {
+              "g": 0.8451385498046875,
+              "w": 0.0100860595703125,
+              "c": 0.855224609375,
+              "r": 0.011793462746217528
+            }
+          },
+          "by_patient": {
+            "ptbxl-patient-10264.0": {
+              "g": 0.574462890625,
+              "w": 0.2435302734375,
+              "c": 0.8179931640625,
+              "r": 0.29771675869273245
+            },
+            "ptbxl-patient-1210.0": {
+              "g": 0.72650146484375,
+              "w": 0.23681640625,
+              "c": 0.96331787109375,
+              "r": 0.24583412532471646
+            },
+            "ptbxl-patient-13372.0": {
+              "g": 0.71417236328125,
+              "w": 0.166259765625,
+              "c": 0.88043212890625,
+              "r": 0.18883882149046793
+            },
+            "ptbxl-patient-19518.0": {
+              "g": 0.48297119140625,
+              "w": 0.06451416015625,
+              "c": 0.5474853515625,
+              "r": 0.11783723522853957
+            },
+            "ptbxl-patient-6191.0": {
+              "g": 0.690185546875,
+              "w": 0.01580810546875,
+              "c": 0.70599365234375,
+              "r": 0.02239128555373044
+            },
+            "ptbxl-patient-8264.0": {
+              "g": 0.4869384765625,
+              "w": 0.2589111328125,
+              "c": 0.745849609375,
+              "r": 0.34713584288052374
+            },
+            "ptbxl-patient-8288.0": {
+              "g": 0.4613037109375,
+              "w": 0.08587646484375,
+              "c": 0.54718017578125,
+              "r": 0.15694366982710542
+            },
+            "ptbxl-patient-935.0": {
+              "g": 0.542236328125,
+              "w": 0.18133544921875,
+              "c": 0.72357177734375,
+              "r": 0.25061155630535636
+            }
+          },
+          "patients": [
+            "ptbxl-patient-10264.0",
+            "ptbxl-patient-1210.0",
+            "ptbxl-patient-13372.0",
+            "ptbxl-patient-19518.0",
+            "ptbxl-patient-6191.0",
+            "ptbxl-patient-8264.0",
+            "ptbxl-patient-8288.0",
+            "ptbxl-patient-935.0"
+          ],
+          "backends": [
+            "offline",
+            "torch-cached"
+          ],
+          "independent_patients": 8,
+          "cases": 32,
+          "aggregation": "equal patient/backend means, ratio of aggregate W/C"
+        },
+        "E2-matched-inferred-IDs": {
+          "overall": {
+            "g": 0.5781631469726562,
+            "w": 0.13932037353515625,
+            "c": 0.7174835205078125,
+            "r": 0.19417919652921034
+          },
+          "by_backend": {
+            "offline": {
+              "g": 0.3270416259765625,
+              "w": 0.278564453125,
+              "c": 0.6056060791015625,
+              "r": 0.4599763158557787
+            },
+            "torch-cached": {
+              "g": 0.82928466796875,
+              "w": 7.62939453125e-05,
+              "c": 0.8293609619140625,
+              "r": 9.199124243372031e-05
+            }
+          },
+          "by_patient": {
+            "ptbxl-patient-10264.0": {
+              "g": 0.569580078125,
+              "w": 0.24053955078125,
+              "c": 0.81011962890625,
+              "r": 0.2969185564680178
+            },
+            "ptbxl-patient-1210.0": {
+              "g": 0.723876953125,
+              "w": 0.233154296875,
+              "c": 0.95703125,
+              "r": 0.24362244897959184
+            },
+            "ptbxl-patient-13372.0": {
+              "g": 0.69598388671875,
+              "w": 0.144287109375,
+              "c": 0.84027099609375,
+              "r": 0.1717149705818261
+            },
+            "ptbxl-patient-19518.0": {
+              "g": 0.48138427734375,
+              "w": 0.06463623046875,
+              "c": 0.5460205078125,
+              "r": 0.11837692823608316
+            },
+            "ptbxl-patient-6191.0": {
+              "g": 0.654541015625,
+              "w": 0.0013427734375,
+              "c": 0.6558837890625,
+              "r": 0.0020472734040573237
+            },
+            "ptbxl-patient-8264.0": {
+              "g": 0.5355224609375,
+              "w": 0.2509765625,
+              "c": 0.7864990234375,
+              "r": 0.31910600651870247
+            },
+            "ptbxl-patient-8288.0": {
+              "g": 0.43975830078125,
+              "w": 0.02978515625,
+              "c": 0.46954345703125,
+              "r": 0.06343429091381776
+            },
+            "ptbxl-patient-935.0": {
+              "g": 0.524658203125,
+              "w": 0.14984130859375,
+              "c": 0.67449951171875,
+              "r": 0.2221518414623111
+            }
+          },
+          "patients": [
+            "ptbxl-patient-10264.0",
+            "ptbxl-patient-1210.0",
+            "ptbxl-patient-13372.0",
+            "ptbxl-patient-19518.0",
+            "ptbxl-patient-6191.0",
+            "ptbxl-patient-8264.0",
+            "ptbxl-patient-8288.0",
+            "ptbxl-patient-935.0"
+          ],
+          "backends": [
+            "offline",
+            "torch-cached"
+          ],
+          "independent_patients": 8,
+          "cases": 32,
+          "aggregation": "equal patient/backend means, ratio of aggregate W/C"
+        },
+        "E2-oracle-association-IDs": {
+          "overall": {
+            "g": 0.7383804321289062,
+            "w": 0.000701904296875,
+            "c": 0.7390823364257812,
+            "r": 0.0009496970260031175
+          },
+          "by_backend": {
+            "offline": {
+              "g": 0.645843505859375,
+              "w": 0.0013275146484375,
+              "c": 0.6471710205078125,
+              "r": 0.002051257869049584
+            },
+            "torch-cached": {
+              "g": 0.8309173583984375,
+              "w": 7.62939453125e-05,
+              "c": 0.83099365234375,
+              "r": 9.18105031215571e-05
+            }
+          },
+          "by_patient": {
+            "ptbxl-patient-10264.0": {
+              "g": 0.808837890625,
+              "w": 0.00128173828125,
+              "c": 0.81011962890625,
+              "r": 0.0015821592706999172
+            },
+            "ptbxl-patient-1210.0": {
+              "g": 0.95648193359375,
+              "w": 0.00054931640625,
+              "c": 0.95703125,
+              "r": 0.0005739795918367347
+            },
+            "ptbxl-patient-13372.0": {
+              "g": 0.8848876953125,
+              "w": 0.000244140625,
+              "c": 0.8851318359375,
+              "r": 0.00027582402427251415
+            },
+            "ptbxl-patient-19518.0": {
+              "g": 0.58575439453125,
+              "w": 0.00018310546875,
+              "c": 0.5859375,
+              "r": 0.0003125
+            },
+            "ptbxl-patient-6191.0": {
+              "g": 0.654541015625,
+              "w": 0.0013427734375,
+              "c": 0.6558837890625,
+              "r": 0.0020472734040573237
+            },
+            "ptbxl-patient-8264.0": {
+              "g": 0.864990234375,
+              "w": 0.000244140625,
+              "c": 0.865234375,
+              "r": 0.0002821670428893905
+            },
+            "ptbxl-patient-8288.0": {
+              "g": 0.470947265625,
+              "w": 0.0013427734375,
+              "c": 0.4722900390625,
+              "r": 0.002843111915223572
+            },
+            "ptbxl-patient-935.0": {
+              "g": 0.68060302734375,
+              "w": 0.00042724609375,
+              "c": 0.6810302734375,
+              "r": 0.0006273525721455458
+            }
+          },
+          "patients": [
+            "ptbxl-patient-10264.0",
+            "ptbxl-patient-1210.0",
+            "ptbxl-patient-13372.0",
+            "ptbxl-patient-19518.0",
+            "ptbxl-patient-6191.0",
+            "ptbxl-patient-8264.0",
+            "ptbxl-patient-8288.0",
+            "ptbxl-patient-935.0"
+          ],
+          "backends": [
+            "offline",
+            "torch-cached"
+          ],
+          "independent_patients": 8,
+          "cases": 32,
+          "aggregation": "equal patient/backend means, ratio of aggregate W/C"
+        },
+        "E3-perfect-points-inferred-IDs": {
+          "overall": {
+            "g": 0.7518844604492188,
+            "w": 0.1671905517578125,
+            "c": 0.9190750122070312,
+            "r": 0.18191175860208358
+          },
+          "by_backend": {
+            "offline": {
+              "g": 0.512542724609375,
+              "w": 0.334381103515625,
+              "c": 0.846923828125,
+              "r": 0.39481839146728165
+            },
+            "torch-cached": {
+              "g": 0.9912261962890625,
+              "w": 0.0,
+              "c": 0.9912261962890625,
+              "r": 0.0
+            }
+          },
+          "by_patient": {
+            "ptbxl-patient-10264.0": {
+              "g": 0.75,
+              "w": 0.24127197265625,
+              "c": 0.99127197265625,
+              "r": 0.24339634258974202
+            },
+            "ptbxl-patient-1210.0": {
+              "g": 0.73944091796875,
+              "w": 0.2420654296875,
+              "c": 0.98150634765625,
+              "r": 0.24662645357875754
+            },
+            "ptbxl-patient-13372.0": {
+              "g": 0.747314453125,
+              "w": 0.20361328125,
+              "c": 0.950927734375,
+              "r": 0.2141206675224647
+            },
+            "ptbxl-patient-19518.0": {
+              "g": 0.75,
+              "w": 0.0396728515625,
+              "c": 0.7896728515625,
+              "r": 0.05023960426650178
+            },
+            "ptbxl-patient-6191.0": {
+              "g": 0.976318359375,
+              "w": 0.0,
+              "c": 0.976318359375,
+              "r": 0.0
+            },
+            "ptbxl-patient-8264.0": {
+              "g": 0.5660400390625,
+              "w": 0.25189208984375,
+              "c": 0.81793212890625,
+              "r": 0.30796209238116556
+            },
+            "ptbxl-patient-8288.0": {
+              "g": 0.74151611328125,
+              "w": 0.1090087890625,
+              "c": 0.85052490234375,
+              "r": 0.1281664872622892
+            },
+            "ptbxl-patient-935.0": {
+              "g": 0.74444580078125,
+              "w": 0.25,
+              "c": 0.99444580078125,
+              "r": 0.2513963051617259
+            }
+          },
+          "patients": [
+            "ptbxl-patient-10264.0",
+            "ptbxl-patient-1210.0",
+            "ptbxl-patient-13372.0",
+            "ptbxl-patient-19518.0",
+            "ptbxl-patient-6191.0",
+            "ptbxl-patient-8264.0",
+            "ptbxl-patient-8288.0",
+            "ptbxl-patient-935.0"
+          ],
+          "backends": [
+            "offline",
+            "torch-cached"
+          ],
+          "independent_patients": 8,
+          "cases": 32,
+          "aggregation": "equal patient/backend means, ratio of aggregate W/C"
+        },
+        "E4-perfect-points-perfect-IDs": {
+          "overall": {
+            "g": 0.9860382080078125,
+            "w": 0.0,
+            "c": 0.9860382080078125,
+            "r": 0.0
+          },
+          "by_backend": {
+            "offline": {
+              "g": 0.9808502197265625,
+              "w": 0.0,
+              "c": 0.9808502197265625,
+              "r": 0.0
+            },
+            "torch-cached": {
+              "g": 0.9912261962890625,
+              "w": 0.0,
+              "c": 0.9912261962890625,
+              "r": 0.0
+            }
+          },
+          "by_patient": {
+            "ptbxl-patient-10264.0": {
+              "g": 0.99127197265625,
+              "w": 0.0,
+              "c": 0.99127197265625,
+              "r": 0.0
+            },
+            "ptbxl-patient-1210.0": {
+              "g": 0.98150634765625,
+              "w": 0.0,
+              "c": 0.98150634765625,
+              "r": 0.0
+            },
+            "ptbxl-patient-13372.0": {
+              "g": 0.9849853515625,
+              "w": 0.0,
+              "c": 0.9849853515625,
+              "r": 0.0
+            },
+            "ptbxl-patient-19518.0": {
+              "g": 0.987548828125,
+              "w": 0.0,
+              "c": 0.987548828125,
+              "r": 0.0
+            },
+            "ptbxl-patient-6191.0": {
+              "g": 0.976318359375,
+              "w": 0.0,
+              "c": 0.976318359375,
+              "r": 0.0
+            },
+            "ptbxl-patient-8264.0": {
+              "g": 0.986572265625,
+              "w": 0.0,
+              "c": 0.986572265625,
+              "r": 0.0
+            },
+            "ptbxl-patient-8288.0": {
+              "g": 0.98565673828125,
+              "w": 0.0,
+              "c": 0.98565673828125,
+              "r": 0.0
+            },
+            "ptbxl-patient-935.0": {
+              "g": 0.99444580078125,
+              "w": 0.0,
+              "c": 0.99444580078125,
+              "r": 0.0
+            }
+          },
+          "patients": [
+            "ptbxl-patient-10264.0",
+            "ptbxl-patient-1210.0",
+            "ptbxl-patient-13372.0",
+            "ptbxl-patient-19518.0",
+            "ptbxl-patient-6191.0",
+            "ptbxl-patient-8264.0",
+            "ptbxl-patient-8288.0",
+            "ptbxl-patient-935.0"
+          ],
+          "backends": [
+            "offline",
+            "torch-cached"
+          ],
+          "independent_patients": 8,
+          "cases": 32,
+          "aggregation": "equal patient/backend means, ratio of aggregate W/C"
+        }
+      },
+      "paired_vs_native": {
+        "methods": {
+          "E0-native-M2": {
+            "metrics": {
+              "g": 0.63232421875,
+              "w": 0.16283416748046875,
+              "c": 0.7951583862304688,
+              "r": 0.20478205386526965
+            },
+            "delta_vs_baseline": {
+              "g": 0.0,
+              "w": 0.0,
+              "c": 0.0,
+              "r": 0.0
+            },
+            "delta_95_descriptive_interval": {
+              "g": {
+                "lower": 0.0,
+                "upper": 0.0,
+                "defined_draws": 20000
+              },
+              "w": {
+                "lower": 0.0,
+                "upper": 0.0,
+                "defined_draws": 20000
+              },
+              "c": {
+                "lower": 0.0,
+                "upper": 0.0,
+                "defined_draws": 20000
+              },
+              "r": {
+                "lower": 0.0,
+                "upper": 0.0,
+                "defined_draws": 20000
+              }
+            }
+          },
+          "E1-orientation-oracle": {
+            "metrics": {
+              "g": 0.76904296875,
+              "w": 0.02611541748046875,
+              "c": 0.7951583862304688,
+              "r": 0.032843038484787423
+            },
+            "delta_vs_baseline": {
+              "g": 0.13671875,
+              "w": -0.13671875,
+              "c": 0.0,
+              "r": -0.17193901538048223
+            },
+            "delta_95_descriptive_interval": {
+              "g": {
+                "lower": 0.06677055358886719,
+                "upper": 0.20850372314453125,
+                "defined_draws": 20000
+              },
+              "w": {
+                "lower": -0.20850372314453125,
+                "upper": -0.06677055358886735,
+                "defined_draws": 20000
+              },
+              "c": {
+                "lower": 0.0,
+                "upper": 0.0,
+                "defined_draws": 20000
+              },
+              "r": {
+                "lower": -0.2487161960168069,
+                "upper": -0.0882246436448629,
+                "defined_draws": 20000
+              }
+            }
+          },
+          "E0-native-cell-map": {
+            "metrics": {
+              "g": 0.5848464965820312,
+              "w": 0.1566314697265625,
+              "c": 0.7414779663085938,
+              "r": 0.21124224433308983
+            },
+            "delta_vs_baseline": {
+              "g": -0.04747772216796875,
+              "w": -0.00620269775390625,
+              "c": -0.053680419921875,
+              "r": 0.006460190467820176
+            },
+            "delta_95_descriptive_interval": {
+              "g": {
+                "lower": -0.09803009033203125,
+                "upper": -0.00917816162109375,
+                "defined_draws": 20000
+              },
+              "w": {
+                "lower": -0.02251434326171875,
+                "upper": 0.0036773681640625,
+                "defined_draws": 20000
+              },
+              "c": {
+                "lower": -0.102386474609375,
+                "upper": -0.015655517578125,
+                "defined_draws": 20000
+              },
+              "r": {
+                "lower": -0.014627099424825513,
+                "upper": 0.023476110078014145,
+                "defined_draws": 20000
+              }
+            }
+          },
+          "E2-matched-inferred-IDs": {
+            "metrics": {
+              "g": 0.5781631469726562,
+              "w": 0.13932037353515625,
+              "c": 0.7174835205078125,
+              "r": 0.19417919652921034
+            },
+            "delta_vs_baseline": {
+              "g": -0.05416107177734375,
+              "w": -0.0235137939453125,
+              "c": -0.07767486572265625,
+              "r": -0.010602857336059313
+            },
+            "delta_95_descriptive_interval": {
+              "g": {
+                "lower": -0.11608123779296875,
+                "upper": -0.006011962890625,
+                "defined_draws": 20000
+              },
+              "w": {
+                "lower": -0.04651641845703125,
+                "upper": -0.00476837158203125,
+                "defined_draws": 20000
+              },
+              "c": {
+                "lower": -0.13759613037109375,
+                "upper": -0.024566459655761735,
+                "defined_draws": 20000
+              },
+              "r": {
+                "lower": -0.041233131559394565,
+                "upper": 0.013616221043964628,
+                "defined_draws": 20000
+              }
+            }
+          },
+          "E2-oracle-association-IDs": {
+            "metrics": {
+              "g": 0.7383804321289062,
+              "w": 0.000701904296875,
+              "c": 0.7390823364257812,
+              "r": 0.0009496970260031175
+            },
+            "delta_vs_baseline": {
+              "g": 0.10605621337890625,
+              "w": -0.16213226318359375,
+              "c": -0.0560760498046875,
+              "r": -0.20383235683926654
+            },
+            "delta_95_descriptive_interval": {
+              "g": {
+                "lower": -0.0158233642578125,
+                "upper": 0.21312198638915994,
+                "defined_draws": 20000
+              },
+              "w": {
+                "lower": -0.22306137084960936,
+                "upper": -0.09733333587646506,
+                "defined_draws": 20000
+              },
+              "c": {
+                "lower": -0.12934112548828125,
+                "upper": 0.012895393371581881,
+                "defined_draws": 20000
+              },
+              "r": {
+                "lower": -0.27074038933552724,
+                "upper": -0.12528188310249144,
+                "defined_draws": 20000
+              }
+            }
+          },
+          "E3-perfect-points-inferred-IDs": {
+            "metrics": {
+              "g": 0.7518844604492188,
+              "w": 0.1671905517578125,
+              "c": 0.9190750122070312,
+              "r": 0.18191175860208358
+            },
+            "delta_vs_baseline": {
+              "g": 0.11956024169921875,
+              "w": 0.00435638427734375,
+              "c": 0.1239166259765625,
+              "r": -0.02287029526318607
+            },
+            "delta_95_descriptive_interval": {
+              "g": {
+                "lower": 0.05622024536132812,
+                "upper": 0.18573780059814451,
+                "defined_draws": 20000
+              },
+              "w": {
+                "lower": -0.00806427001953125,
+                "upper": 0.01731109619140625,
+                "defined_draws": 20000
+              },
+              "c": {
+                "lower": 0.06249237060546875,
+                "upper": 0.1891326904296875,
+                "defined_draws": 20000
+              },
+              "r": {
+                "lower": -0.04589254893598213,
+                "upper": -0.0022437680086659084,
+                "defined_draws": 20000
+              }
+            }
+          },
+          "E4-perfect-points-perfect-IDs": {
+            "metrics": {
+              "g": 0.9860382080078125,
+              "w": 0.0,
+              "c": 0.9860382080078125,
+              "r": 0.0
+            },
+            "delta_vs_baseline": {
+              "g": 0.3537139892578125,
+              "w": -0.16283416748046875,
+              "c": 0.19087982177734375,
+              "r": -0.20478205386526965
+            },
+            "delta_95_descriptive_interval": {
+              "g": {
+                "lower": 0.250091552734375,
+                "upper": 0.44683856964111324,
+                "defined_draws": 20000
+              },
+              "w": {
+                "lower": -0.2236339569091797,
+                "upper": -0.0978851318359375,
+                "defined_draws": 20000
+              },
+              "c": {
+                "lower": 0.09294891357421875,
+                "upper": 0.29857635498046875,
+                "defined_draws": 20000
+              },
+              "r": {
+                "lower": -0.27151182034282506,
+                "upper": -0.12665529516813548,
+                "defined_draws": 20000
+              }
+            }
+          }
+        },
+        "baseline": "E0-native-M2",
+        "repetitions": 20000,
+        "seed": 1973,
+        "independent_patients": 8,
+        "patients": [
+          "ptbxl-patient-10264.0",
+          "ptbxl-patient-1210.0",
+          "ptbxl-patient-13372.0",
+          "ptbxl-patient-19518.0",
+          "ptbxl-patient-6191.0",
+          "ptbxl-patient-8264.0",
+          "ptbxl-patient-8288.0",
+          "ptbxl-patient-935.0"
+        ],
+        "backends": [
+          "offline",
+          "torch-cached"
+        ],
+        "unit": "paired patient clusters with all backends preserved",
+        "scope": "descriptive conditional intervals, no multiplicity adjustment or external-population guarantee"
+      },
+      "paired_matched_IDs": {
+        "methods": {
+          "E2-matched-inferred-IDs": {
+            "metrics": {
+              "g": 0.5781631469726562,
+              "w": 0.13932037353515625,
+              "c": 0.7174835205078125,
+              "r": 0.19417919652921034
+            },
+            "delta_vs_baseline": {
+              "g": 0.0,
+              "w": 0.0,
+              "c": 0.0,
+              "r": 0.0
+            },
+            "delta_95_descriptive_interval": {
+              "g": {
+                "lower": 0.0,
+                "upper": 0.0,
+                "defined_draws": 20000
+              },
+              "w": {
+                "lower": 0.0,
+                "upper": 0.0,
+                "defined_draws": 20000
+              },
+              "c": {
+                "lower": 0.0,
+                "upper": 0.0,
+                "defined_draws": 20000
+              },
+              "r": {
+                "lower": 0.0,
+                "upper": 0.0,
+                "defined_draws": 20000
+              }
+            }
+          },
+          "E2-oracle-association-IDs": {
+            "metrics": {
+              "g": 0.7383804321289062,
+              "w": 0.000701904296875,
+              "c": 0.7390823364257812,
+              "r": 0.0009496970260031175
+            },
+            "delta_vs_baseline": {
+              "g": 0.16021728515625,
+              "w": -0.13861846923828125,
+              "c": 0.02159881591796875,
+              "r": -0.19322949950320722
+            },
+            "delta_95_descriptive_interval": {
+              "g": {
+                "lower": 0.0891265869140625,
+                "upper": 0.23130035400390625,
+                "defined_draws": 20000
+              },
+              "w": {
+                "lower": -0.2014484405517578,
+                "upper": -0.0748048782348634,
+                "defined_draws": 20000
+              },
+              "c": {
+                "lower": 0.00533294677734375,
+                "upper": 0.04149627685546875,
+                "defined_draws": 20000
+              },
+              "r": {
+                "lower": -0.2550714130161078,
+                "upper": -0.11717616260250198,
+                "defined_draws": 20000
+              }
+            }
+          }
+        },
+        "baseline": "E2-matched-inferred-IDs",
+        "repetitions": 20000,
+        "seed": 1973,
+        "independent_patients": 8,
+        "patients": [
+          "ptbxl-patient-10264.0",
+          "ptbxl-patient-1210.0",
+          "ptbxl-patient-13372.0",
+          "ptbxl-patient-19518.0",
+          "ptbxl-patient-6191.0",
+          "ptbxl-patient-8264.0",
+          "ptbxl-patient-8288.0",
+          "ptbxl-patient-935.0"
+        ],
+        "backends": [
+          "offline",
+          "torch-cached"
+        ],
+        "unit": "paired patient clusters with all backends preserved",
+        "scope": "descriptive conditional intervals, no multiplicity adjustment or external-population guarantee"
+      },
+      "paired_perfect_points": {
+        "methods": {
+          "E3-perfect-points-inferred-IDs": {
+            "metrics": {
+              "g": 0.7518844604492188,
+              "w": 0.1671905517578125,
+              "c": 0.9190750122070312,
+              "r": 0.18191175860208358
+            },
+            "delta_vs_baseline": {
+              "g": 0.0,
+              "w": 0.0,
+              "c": 0.0,
+              "r": 0.0
+            },
+            "delta_95_descriptive_interval": {
+              "g": {
+                "lower": 0.0,
+                "upper": 0.0,
+                "defined_draws": 20000
+              },
+              "w": {
+                "lower": 0.0,
+                "upper": 0.0,
+                "defined_draws": 20000
+              },
+              "c": {
+                "lower": 0.0,
+                "upper": 0.0,
+                "defined_draws": 20000
+              },
+              "r": {
+                "lower": 0.0,
+                "upper": 0.0,
+                "defined_draws": 20000
+              }
+            }
+          },
+          "E4-perfect-points-perfect-IDs": {
+            "metrics": {
+              "g": 0.9860382080078125,
+              "w": 0.0,
+              "c": 0.9860382080078125,
+              "r": 0.0
+            },
+            "delta_vs_baseline": {
+              "g": 0.23415374755859375,
+              "w": -0.1671905517578125,
+              "c": 0.06696319580078125,
+              "r": -0.18191175860208358
+            },
+            "delta_95_descriptive_interval": {
+              "g": {
+                "lower": 0.15170249938964844,
+                "upper": 0.30812835693359375,
+                "defined_draws": 20000
+              },
+              "w": {
+                "lower": -0.22977447509765625,
+                "upper": -0.09795379638671875,
+                "defined_draws": 20000
+              },
+              "c": {
+                "lower": 0.0168914794921875,
+                "upper": 0.1254119873046875,
+                "defined_draws": 20000
+              },
+              "r": {
+                "lower": -0.24592592592592594,
+                "upper": -0.1083425846385157,
+                "defined_draws": 20000
+              }
+            }
+          }
+        },
+        "baseline": "E3-perfect-points-inferred-IDs",
+        "repetitions": 20000,
+        "seed": 1973,
+        "independent_patients": 8,
+        "patients": [
+          "ptbxl-patient-10264.0",
+          "ptbxl-patient-1210.0",
+          "ptbxl-patient-13372.0",
+          "ptbxl-patient-19518.0",
+          "ptbxl-patient-6191.0",
+          "ptbxl-patient-8264.0",
+          "ptbxl-patient-8288.0",
+          "ptbxl-patient-935.0"
+        ],
+        "backends": [
+          "offline",
+          "torch-cached"
+        ],
+        "unit": "paired patient clusters with all backends preserved",
+        "scope": "descriptive conditional intervals, no multiplicity adjustment or external-population guarantee"
+      }
+    },
+    "paper": {
+      "means": {
+        "E0-native-M2": {
+          "overall": {
+            "g": 0.5527191162109375,
+            "w": 0.156646728515625,
+            "c": 0.7093658447265625,
+            "r": 0.2208264320591968
+          },
+          "by_backend": {
+            "offline": {
+              "g": 0.3368682861328125,
+              "w": 0.3004913330078125,
+              "c": 0.637359619140625,
+              "r": 0.4714627723246349
+            },
+            "torch-cached": {
+              "g": 0.7685699462890625,
+              "w": 0.0128021240234375,
+              "c": 0.7813720703125,
+              "r": 0.016384158725199188
+            }
+          },
+          "by_patient": {
+            "ptbxl-patient-10264.0": {
+              "g": 0.5794677734375,
+              "w": 0.2391357421875,
+              "c": 0.818603515625,
+              "r": 0.29212645392186104
+            },
+            "ptbxl-patient-1210.0": {
+              "g": 0.6697998046875,
+              "w": 0.2423095703125,
+              "c": 0.912109375,
+              "r": 0.26565845824411133
+            },
+            "ptbxl-patient-13372.0": {
+              "g": 0.64794921875,
+              "w": 0.16998291015625,
+              "c": 0.81793212890625,
+              "r": 0.2078203119170211
+            },
+            "ptbxl-patient-19518.0": {
+              "g": 0.46209716796875,
+              "w": 0.0736083984375,
+              "c": 0.53570556640625,
+              "r": 0.13740458015267176
+            },
+            "ptbxl-patient-6191.0": {
+              "g": 0.7220458984375,
+              "w": 0.00885009765625,
+              "c": 0.73089599609375,
+              "r": 0.012108559498956159
+            },
+            "ptbxl-patient-8264.0": {
+              "g": 0.4342041015625,
+              "w": 0.241455078125,
+              "c": 0.6756591796875,
+              "r": 0.35736224028906954
+            },
+            "ptbxl-patient-8288.0": {
+              "g": 0.4256591796875,
+              "w": 0.0799560546875,
+              "c": 0.505615234375,
+              "r": 0.15813616610333173
+            },
+            "ptbxl-patient-935.0": {
+              "g": 0.48052978515625,
+              "w": 0.1978759765625,
+              "c": 0.67840576171875,
+              "r": 0.29167791273054433
+            }
+          },
+          "patients": [
+            "ptbxl-patient-10264.0",
+            "ptbxl-patient-1210.0",
+            "ptbxl-patient-13372.0",
+            "ptbxl-patient-19518.0",
+            "ptbxl-patient-6191.0",
+            "ptbxl-patient-8264.0",
+            "ptbxl-patient-8288.0",
+            "ptbxl-patient-935.0"
+          ],
+          "backends": [
+            "offline",
+            "torch-cached"
+          ],
+          "independent_patients": 8,
+          "cases": 32,
+          "aggregation": "equal patient/backend means, ratio of aggregate W/C"
+        },
+        "E1-orientation-oracle": {
+          "overall": {
+            "g": 0.6816635131835938,
+            "w": 0.02770233154296875,
+            "c": 0.7093658447265625,
+            "r": 0.03905224891909914
+          },
+          "by_backend": {
+            "offline": {
+              "g": 0.594757080078125,
+              "w": 0.0426025390625,
+              "c": 0.637359619140625,
+              "r": 0.06684223126645918
+            },
+            "torch-cached": {
+              "g": 0.7685699462890625,
+              "w": 0.0128021240234375,
+              "c": 0.7813720703125,
+              "r": 0.016384158725199188
+            }
+          },
+          "by_patient": {
+            "ptbxl-patient-10264.0": {
+              "g": 0.81707763671875,
+              "w": 0.00152587890625,
+              "c": 0.818603515625,
+              "r": 0.001864002385923054
+            },
+            "ptbxl-patient-1210.0": {
+              "g": 0.90509033203125,
+              "w": 0.00701904296875,
+              "c": 0.912109375,
+              "r": 0.007695396145610278
+            },
+            "ptbxl-patient-13372.0": {
+              "g": 0.731201171875,
+              "w": 0.08673095703125,
+              "c": 0.81793212890625,
+              "r": 0.10603686292067756
+            },
+            "ptbxl-patient-19518.0": {
+              "g": 0.50115966796875,
+              "w": 0.0345458984375,
+              "c": 0.53570556640625,
+              "r": 0.06448672667198359
+            },
+            "ptbxl-patient-6191.0": {
+              "g": 0.7220458984375,
+              "w": 0.00885009765625,
+              "c": 0.73089599609375,
+              "r": 0.012108559498956159
+            },
+            "ptbxl-patient-8264.0": {
+              "g": 0.6640625,
+              "w": 0.0115966796875,
+              "c": 0.6756591796875,
+              "r": 0.017163504968383016
+            },
+            "ptbxl-patient-8288.0": {
+              "g": 0.454345703125,
+              "w": 0.05126953125,
+              "c": 0.505615234375,
+              "r": 0.10140028971511347
+            },
+            "ptbxl-patient-935.0": {
+              "g": 0.6583251953125,
+              "w": 0.02008056640625,
+              "c": 0.67840576171875,
+              "r": 0.029599640125955916
+            }
+          },
+          "patients": [
+            "ptbxl-patient-10264.0",
+            "ptbxl-patient-1210.0",
+            "ptbxl-patient-13372.0",
+            "ptbxl-patient-19518.0",
+            "ptbxl-patient-6191.0",
+            "ptbxl-patient-8264.0",
+            "ptbxl-patient-8288.0",
+            "ptbxl-patient-935.0"
+          ],
+          "backends": [
+            "offline",
+            "torch-cached"
+          ],
+          "independent_patients": 8,
+          "cases": 32,
+          "aggregation": "equal patient/backend means, ratio of aggregate W/C"
+        },
+        "E0-native-cell-map": {
+          "overall": {
+            "g": 0.50933837890625,
+            "w": 0.149688720703125,
+            "c": 0.659027099609375,
+            "r": 0.22713591109053022
+          },
+          "by_backend": {
+            "offline": {
+              "g": 0.2892913818359375,
+              "w": 0.2884979248046875,
+              "c": 0.577789306640625,
+              "r": 0.499313368193102
+            },
+            "torch-cached": {
+              "g": 0.7293853759765625,
+              "w": 0.0108795166015625,
+              "c": 0.740264892578125,
+              "r": 0.014696788555880776
+            }
+          },
+          "by_patient": {
+            "ptbxl-patient-10264.0": {
+              "g": 0.48443603515625,
+              "w": 0.2415771484375,
+              "c": 0.72601318359375,
+              "r": 0.33274485077763766
+            },
+            "ptbxl-patient-1210.0": {
+              "g": 0.66729736328125,
+              "w": 0.2423095703125,
+              "c": 0.90960693359375,
+              "r": 0.266389317587063
+            },
+            "ptbxl-patient-13372.0": {
+              "g": 0.64227294921875,
+              "w": 0.16998291015625,
+              "c": 0.812255859375,
+              "r": 0.2092726179741509
+            },
+            "ptbxl-patient-19518.0": {
+              "g": 0.44305419921875,
+              "w": 0.0706787109375,
+              "c": 0.51373291015625,
+              "r": 0.13757870975406913
+            },
+            "ptbxl-patient-6191.0": {
+              "g": 0.546630859375,
+              "w": 0.012451171875,
+              "c": 0.55908203125,
+              "r": 0.0222707423580786
+            },
+            "ptbxl-patient-8264.0": {
+              "g": 0.41900634765625,
+              "w": 0.2354736328125,
+              "c": 0.65447998046875,
+              "r": 0.3597873729366782
+            },
+            "ptbxl-patient-8288.0": {
+              "g": 0.4122314453125,
+              "w": 0.0799560546875,
+              "c": 0.4921875,
+              "r": 0.16245039682539683
+            },
+            "ptbxl-patient-935.0": {
+              "g": 0.45977783203125,
+              "w": 0.14508056640625,
+              "c": 0.6048583984375,
+              "r": 0.23985872855701312
+            }
+          },
+          "patients": [
+            "ptbxl-patient-10264.0",
+            "ptbxl-patient-1210.0",
+            "ptbxl-patient-13372.0",
+            "ptbxl-patient-19518.0",
+            "ptbxl-patient-6191.0",
+            "ptbxl-patient-8264.0",
+            "ptbxl-patient-8288.0",
+            "ptbxl-patient-935.0"
+          ],
+          "backends": [
+            "offline",
+            "torch-cached"
+          ],
+          "independent_patients": 8,
+          "cases": 32,
+          "aggregation": "equal patient/backend means, ratio of aggregate W/C"
+        },
+        "E2-matched-inferred-IDs": {
+          "overall": {
+            "g": 0.5032958984375,
+            "w": 0.132965087890625,
+            "c": 0.636260986328125,
+            "r": 0.20897884790637442
+          },
+          "by_backend": {
+            "offline": {
+              "g": 0.2926483154296875,
+              "w": 0.26580810546875,
+              "c": 0.5584564208984375,
+              "r": 0.4759692887783819
+            },
+            "torch-cached": {
+              "g": 0.7139434814453125,
+              "w": 0.0001220703125,
+              "c": 0.7140655517578125,
+              "r": 0.00017095112934589825
+            }
+          },
+          "by_patient": {
+            "ptbxl-patient-10264.0": {
+              "g": 0.47930908203125,
+              "w": 0.2374267578125,
+              "c": 0.71673583984375,
+              "r": 0.3312611768713276
+            },
+            "ptbxl-patient-1210.0": {
+              "g": 0.66082763671875,
+              "w": 0.2344970703125,
+              "c": 0.89532470703125,
+              "r": 0.2619128774967619
+            },
+            "ptbxl-patient-13372.0": {
+              "g": 0.625732421875,
+              "w": 0.14617919921875,
+              "c": 0.77191162109375,
+              "r": 0.18937297382778526
+            },
+            "ptbxl-patient-19518.0": {
+              "g": 0.4381103515625,
+              "w": 0.06781005859375,
+              "c": 0.50592041015625,
+              "r": 0.1340330558571601
+            },
+            "ptbxl-patient-6191.0": {
+              "g": 0.51873779296875,
+              "w": 0.001220703125,
+              "c": 0.51995849609375,
+              "r": 0.0023476933912431035
+            },
+            "ptbxl-patient-8264.0": {
+              "g": 0.4698486328125,
+              "w": 0.2276611328125,
+              "c": 0.697509765625,
+              "r": 0.3263913195659783
+            },
+            "ptbxl-patient-8288.0": {
+              "g": 0.3892822265625,
+              "w": 0.02874755859375,
+              "c": 0.41802978515625,
+              "r": 0.06876916338151555
+            },
+            "ptbxl-patient-935.0": {
+              "g": 0.44451904296875,
+              "w": 0.12017822265625,
+              "c": 0.564697265625,
+              "r": 0.21281884997838305
+            }
+          },
+          "patients": [
+            "ptbxl-patient-10264.0",
+            "ptbxl-patient-1210.0",
+            "ptbxl-patient-13372.0",
+            "ptbxl-patient-19518.0",
+            "ptbxl-patient-6191.0",
+            "ptbxl-patient-8264.0",
+            "ptbxl-patient-8288.0",
+            "ptbxl-patient-935.0"
+          ],
+          "backends": [
+            "offline",
+            "torch-cached"
+          ],
+          "independent_patients": 8,
+          "cases": 32,
+          "aggregation": "equal patient/backend means, ratio of aggregate W/C"
+        },
+        "E2-oracle-association-IDs": {
+          "overall": {
+            "g": 0.6563796997070312,
+            "w": 0.00072479248046875,
+            "c": 0.6571044921875,
+            "r": 0.0011030094742708527
+          },
+          "by_backend": {
+            "offline": {
+              "g": 0.597564697265625,
+              "w": 0.0013275146484375,
+              "c": 0.5988922119140625,
+              "r": 0.0022166169838722005
+            },
+            "torch-cached": {
+              "g": 0.7151947021484375,
+              "w": 0.0001220703125,
+              "c": 0.7153167724609375,
+              "r": 0.0001706521043537618
+            }
+          },
+          "by_patient": {
+            "ptbxl-patient-10264.0": {
+              "g": 0.71630859375,
+              "w": 0.00042724609375,
+              "c": 0.71673583984375,
+              "r": 0.0005960998041386358
+            },
+            "ptbxl-patient-1210.0": {
+              "g": 0.89471435546875,
+              "w": 0.0006103515625,
+              "c": 0.89532470703125,
+              "r": 0.0006817097279978186
+            },
+            "ptbxl-patient-13372.0": {
+              "g": 0.8140869140625,
+              "w": 0.0003662109375,
+              "c": 0.814453125,
+              "r": 0.0004496402877697842
+            },
+            "ptbxl-patient-19518.0": {
+              "g": 0.54498291015625,
+              "w": 0.00067138671875,
+              "c": 0.545654296875,
+              "r": 0.0012304250559284117
+            },
+            "ptbxl-patient-6191.0": {
+              "g": 0.51873779296875,
+              "w": 0.001220703125,
+              "c": 0.51995849609375,
+              "r": 0.0023476933912431035
+            },
+            "ptbxl-patient-8264.0": {
+              "g": 0.7747802734375,
+              "w": 0.0001220703125,
+              "c": 0.77490234375,
+              "r": 0.0001575299306868305
+            },
+            "ptbxl-patient-8288.0": {
+              "g": 0.4180908203125,
+              "w": 0.00201416015625,
+              "c": 0.42010498046875,
+              "r": 0.0047944210373383695
+            },
+            "ptbxl-patient-935.0": {
+              "g": 0.5693359375,
+              "w": 0.0003662109375,
+              "c": 0.5697021484375,
+              "r": 0.0006428112277694451
+            }
+          },
+          "patients": [
+            "ptbxl-patient-10264.0",
+            "ptbxl-patient-1210.0",
+            "ptbxl-patient-13372.0",
+            "ptbxl-patient-19518.0",
+            "ptbxl-patient-6191.0",
+            "ptbxl-patient-8264.0",
+            "ptbxl-patient-8288.0",
+            "ptbxl-patient-935.0"
+          ],
+          "backends": [
+            "offline",
+            "torch-cached"
+          ],
+          "independent_patients": 8,
+          "cases": 32,
+          "aggregation": "equal patient/backend means, ratio of aggregate W/C"
+        },
+        "E3-perfect-points-inferred-IDs": {
+          "overall": {
+            "g": 0.6439285278320312,
+            "w": 0.155487060546875,
+            "c": 0.7994155883789062,
+            "r": 0.1945009114247812
+          },
+          "by_backend": {
+            "offline": {
+              "g": 0.44287109375,
+              "w": 0.31097412109375,
+              "c": 0.75384521484375,
+              "r": 0.41251720508460854
+            },
+            "torch-cached": {
+              "g": 0.8449859619140625,
+              "w": 0.0,
+              "c": 0.8449859619140625,
+              "r": 0.0
+            }
+          },
+          "by_patient": {
+            "ptbxl-patient-10264.0": {
+              "g": 0.6229248046875,
+              "w": 0.23895263671875,
+              "c": 0.86187744140625,
+              "r": 0.27724665391969405
+            },
+            "ptbxl-patient-1210.0": {
+              "g": 0.675537109375,
+              "w": 0.24127197265625,
+              "c": 0.91680908203125,
+              "r": 0.2631649024698755
+            },
+            "ptbxl-patient-13372.0": {
+              "g": 0.6715087890625,
+              "w": 0.201171875,
+              "c": 0.8726806640625,
+              "r": 0.23052175129388724
+            },
+            "ptbxl-patient-19518.0": {
+              "g": 0.6474609375,
+              "w": 0.040283203125,
+              "c": 0.687744140625,
+              "r": 0.058572949946751864
+            },
+            "ptbxl-patient-6191.0": {
+              "g": 0.76434326171875,
+              "w": 0.0,
+              "c": 0.76434326171875,
+              "r": 0.0
+            },
+            "ptbxl-patient-8264.0": {
+              "g": 0.4954833984375,
+              "w": 0.22772216796875,
+              "c": 0.72320556640625,
+              "r": 0.314878892733564
+            },
+            "ptbxl-patient-8288.0": {
+              "g": 0.6514892578125,
+              "w": 0.1014404296875,
+              "c": 0.7529296875,
+              "r": 0.13472762645914396
+            },
+            "ptbxl-patient-935.0": {
+              "g": 0.6226806640625,
+              "w": 0.19305419921875,
+              "c": 0.81573486328125,
+              "r": 0.23666292555181445
+            }
+          },
+          "patients": [
+            "ptbxl-patient-10264.0",
+            "ptbxl-patient-1210.0",
+            "ptbxl-patient-13372.0",
+            "ptbxl-patient-19518.0",
+            "ptbxl-patient-6191.0",
+            "ptbxl-patient-8264.0",
+            "ptbxl-patient-8288.0",
+            "ptbxl-patient-935.0"
+          ],
+          "backends": [
+            "offline",
+            "torch-cached"
+          ],
+          "independent_patients": 8,
+          "cases": 32,
+          "aggregation": "equal patient/backend means, ratio of aggregate W/C"
+        },
+        "E4-perfect-points-perfect-IDs": {
+          "overall": {
+            "g": 0.8657684326171875,
+            "w": 0.0,
+            "c": 0.8657684326171875,
+            "r": 0.0
+          },
+          "by_backend": {
+            "offline": {
+              "g": 0.8865509033203125,
+              "w": 0.0,
+              "c": 0.8865509033203125,
+              "r": 0.0
+            },
+            "torch-cached": {
+              "g": 0.8449859619140625,
+              "w": 0.0,
+              "c": 0.8449859619140625,
+              "r": 0.0
+            }
+          },
+          "by_patient": {
+            "ptbxl-patient-10264.0": {
+              "g": 0.86187744140625,
+              "w": 0.0,
+              "c": 0.86187744140625,
+              "r": 0.0
+            },
+            "ptbxl-patient-1210.0": {
+              "g": 0.91680908203125,
+              "w": 0.0,
+              "c": 0.91680908203125,
+              "r": 0.0
+            },
+            "ptbxl-patient-13372.0": {
+              "g": 0.9073486328125,
+              "w": 0.0,
+              "c": 0.9073486328125,
+              "r": 0.0
+            },
+            "ptbxl-patient-19518.0": {
+              "g": 0.88507080078125,
+              "w": 0.0,
+              "c": 0.88507080078125,
+              "r": 0.0
+            },
+            "ptbxl-patient-6191.0": {
+              "g": 0.76434326171875,
+              "w": 0.0,
+              "c": 0.76434326171875,
+              "r": 0.0
+            },
+            "ptbxl-patient-8264.0": {
+              "g": 0.8897705078125,
+              "w": 0.0,
+              "c": 0.8897705078125,
+              "r": 0.0
+            },
+            "ptbxl-patient-8288.0": {
+              "g": 0.88519287109375,
+              "w": 0.0,
+              "c": 0.88519287109375,
+              "r": 0.0
+            },
+            "ptbxl-patient-935.0": {
+              "g": 0.81573486328125,
+              "w": 0.0,
+              "c": 0.81573486328125,
+              "r": 0.0
+            }
+          },
+          "patients": [
+            "ptbxl-patient-10264.0",
+            "ptbxl-patient-1210.0",
+            "ptbxl-patient-13372.0",
+            "ptbxl-patient-19518.0",
+            "ptbxl-patient-6191.0",
+            "ptbxl-patient-8264.0",
+            "ptbxl-patient-8288.0",
+            "ptbxl-patient-935.0"
+          ],
+          "backends": [
+            "offline",
+            "torch-cached"
+          ],
+          "independent_patients": 8,
+          "cases": 32,
+          "aggregation": "equal patient/backend means, ratio of aggregate W/C"
+        }
+      },
+      "paired_vs_native": {
+        "methods": {
+          "E0-native-M2": {
+            "metrics": {
+              "g": 0.5527191162109375,
+              "w": 0.156646728515625,
+              "c": 0.7093658447265625,
+              "r": 0.2208264320591968
+            },
+            "delta_vs_baseline": {
+              "g": 0.0,
+              "w": 0.0,
+              "c": 0.0,
+              "r": 0.0
+            },
+            "delta_95_descriptive_interval": {
+              "g": {
+                "lower": 0.0,
+                "upper": 0.0,
+                "defined_draws": 20000
+              },
+              "w": {
+                "lower": 0.0,
+                "upper": 0.0,
+                "defined_draws": 20000
+              },
+              "c": {
+                "lower": 0.0,
+                "upper": 0.0,
+                "defined_draws": 20000
+              },
+              "r": {
+                "lower": 0.0,
+                "upper": 0.0,
+                "defined_draws": 20000
+              }
+            }
+          },
+          "E1-orientation-oracle": {
+            "metrics": {
+              "g": 0.6816635131835938,
+              "w": 0.02770233154296875,
+              "c": 0.7093658447265625,
+              "r": 0.03905224891909914
+            },
+            "delta_vs_baseline": {
+              "g": 0.12894439697265625,
+              "w": -0.12894439697265625,
+              "c": 0.0,
+              "r": -0.18177418314009766
+            },
+            "delta_95_descriptive_interval": {
+              "g": {
+                "lower": 0.063690185546875,
+                "upper": 0.194915771484375,
+                "defined_draws": 20000
+              },
+              "w": {
+                "lower": -0.194915771484375,
+                "upper": -0.063690185546875,
+                "defined_draws": 20000
+              },
+              "c": {
+                "lower": 0.0,
+                "upper": 0.0,
+                "defined_draws": 20000
+              },
+              "r": {
+                "lower": -0.2595024122599565,
+                "upper": -0.09608078283566297,
+                "defined_draws": 20000
+              }
+            }
+          },
+          "E0-native-cell-map": {
+            "metrics": {
+              "g": 0.50933837890625,
+              "w": 0.149688720703125,
+              "c": 0.659027099609375,
+              "r": 0.22713591109053022
+            },
+            "delta_vs_baseline": {
+              "g": -0.0433807373046875,
+              "w": -0.0069580078125,
+              "c": -0.0503387451171875,
+              "r": 0.006309479031333415
+            },
+            "delta_95_descriptive_interval": {
+              "g": {
+                "lower": -0.085723876953125,
+                "upper": -0.01111602783203125,
+                "defined_draws": 20000
+              },
+              "w": {
+                "lower": -0.02060699462890625,
+                "upper": 0.00106048583984375,
+                "defined_draws": 20000
+              },
+              "c": {
+                "lower": -0.09130210876464843,
+                "upper": -0.016714859008789162,
+                "defined_draws": 20000
+              },
+              "r": {
+                "lower": -0.013549402266112814,
+                "upper": 0.023001789874474737,
+                "defined_draws": 20000
+              }
+            }
+          },
+          "E2-matched-inferred-IDs": {
+            "metrics": {
+              "g": 0.5032958984375,
+              "w": 0.132965087890625,
+              "c": 0.636260986328125,
+              "r": 0.20897884790637442
+            },
+            "delta_vs_baseline": {
+              "g": -0.0494232177734375,
+              "w": -0.023681640625,
+              "c": -0.0731048583984375,
+              "r": -0.011847584152822388
+            },
+            "delta_95_descriptive_interval": {
+              "g": {
+                "lower": -0.100433349609375,
+                "upper": -0.00882720947265625,
+                "defined_draws": 20000
+              },
+              "w": {
+                "lower": -0.0421905517578125,
+                "upper": -0.00824737548828125,
+                "defined_draws": 20000
+              },
+              "c": {
+                "lower": -0.12265777587890625,
+                "upper": -0.0294952392578125,
+                "defined_draws": 20000
+              },
+              "r": {
+                "lower": -0.040941964493341754,
+                "upper": 0.01214705697554111,
+                "defined_draws": 20000
+              }
+            }
+          },
+          "E2-oracle-association-IDs": {
+            "metrics": {
+              "g": 0.6563796997070312,
+              "w": 0.00072479248046875,
+              "c": 0.6571044921875,
+              "r": 0.0011030094742708527
+            },
+            "delta_vs_baseline": {
+              "g": 0.10366058349609375,
+              "w": -0.15592193603515625,
+              "c": -0.0522613525390625,
+              "r": -0.21972342258492594
+            },
+            "delta_95_descriptive_interval": {
+              "g": {
+                "lower": -0.00408935546875,
+                "upper": 0.20311737060546875,
+                "defined_draws": 20000
+              },
+              "w": {
+                "lower": -0.21184635162353516,
+                "upper": -0.09480972290039069,
+                "defined_draws": 20000
+              },
+              "c": {
+                "lower": -0.1148223876953125,
+                "upper": 0.008817863464354952,
+                "defined_draws": 20000
+              },
+              "r": {
+                "lower": -0.28336875305628384,
+                "upper": -0.1414432584700573,
+                "defined_draws": 20000
+              }
+            }
+          },
+          "E3-perfect-points-inferred-IDs": {
+            "metrics": {
+              "g": 0.6439285278320312,
+              "w": 0.155487060546875,
+              "c": 0.7994155883789062,
+              "r": 0.1945009114247812
+            },
+            "delta_vs_baseline": {
+              "g": 0.09120941162109375,
+              "w": -0.00115966796875,
+              "c": 0.09004974365234375,
+              "r": -0.026325520634415595
+            },
+            "delta_95_descriptive_interval": {
+              "g": {
+                "lower": 0.0404510498046875,
+                "upper": 0.14503822326660126,
+                "defined_draws": 20000
+              },
+              "w": {
+                "lower": -0.013908576965332032,
+                "upper": 0.01226806640625,
+                "defined_draws": 20000
+              },
+              "c": {
+                "lower": 0.04130268096923828,
+                "upper": 0.145599365234375,
+                "defined_draws": 20000
+              },
+              "r": {
+                "lower": -0.04944628717935187,
+                "upper": -0.00504014082778359,
+                "defined_draws": 20000
+              }
+            }
+          },
+          "E4-perfect-points-perfect-IDs": {
+            "metrics": {
+              "g": 0.8657684326171875,
+              "w": 0.0,
+              "c": 0.8657684326171875,
+              "r": 0.0
+            },
+            "delta_vs_baseline": {
+              "g": 0.31304931640625,
+              "w": -0.156646728515625,
+              "c": 0.156402587890625,
+              "r": -0.2208264320591968
+            },
+            "delta_95_descriptive_interval": {
+              "g": {
+                "lower": 0.2188568115234375,
+                "upper": 0.397247314453125,
+                "defined_draws": 20000
+              },
+              "w": {
+                "lower": -0.21236419677734375,
+                "upper": -0.09598541259765625,
+                "defined_draws": 20000
+              },
+              "c": {
+                "lower": 0.0678750991821289,
+                "upper": 0.25284576416015625,
+                "defined_draws": 20000
+              },
+              "r": {
+                "lower": -0.2839568777702652,
+                "upper": -0.14364606212739253,
+                "defined_draws": 20000
+              }
+            }
+          }
+        },
+        "baseline": "E0-native-M2",
+        "repetitions": 20000,
+        "seed": 1973,
+        "independent_patients": 8,
+        "patients": [
+          "ptbxl-patient-10264.0",
+          "ptbxl-patient-1210.0",
+          "ptbxl-patient-13372.0",
+          "ptbxl-patient-19518.0",
+          "ptbxl-patient-6191.0",
+          "ptbxl-patient-8264.0",
+          "ptbxl-patient-8288.0",
+          "ptbxl-patient-935.0"
+        ],
+        "backends": [
+          "offline",
+          "torch-cached"
+        ],
+        "unit": "paired patient clusters with all backends preserved",
+        "scope": "descriptive conditional intervals, no multiplicity adjustment or external-population guarantee"
+      },
+      "paired_matched_IDs": {
+        "methods": {
+          "E2-matched-inferred-IDs": {
+            "metrics": {
+              "g": 0.5032958984375,
+              "w": 0.132965087890625,
+              "c": 0.636260986328125,
+              "r": 0.20897884790637442
+            },
+            "delta_vs_baseline": {
+              "g": 0.0,
+              "w": 0.0,
+              "c": 0.0,
+              "r": 0.0
+            },
+            "delta_95_descriptive_interval": {
+              "g": {
+                "lower": 0.0,
+                "upper": 0.0,
+                "defined_draws": 20000
+              },
+              "w": {
+                "lower": 0.0,
+                "upper": 0.0,
+                "defined_draws": 20000
+              },
+              "c": {
+                "lower": 0.0,
+                "upper": 0.0,
+                "defined_draws": 20000
+              },
+              "r": {
+                "lower": 0.0,
+                "upper": 0.0,
+                "defined_draws": 20000
+              }
+            }
+          },
+          "E2-oracle-association-IDs": {
+            "metrics": {
+              "g": 0.6563796997070312,
+              "w": 0.00072479248046875,
+              "c": 0.6571044921875,
+              "r": 0.0011030094742708527
+            },
+            "delta_vs_baseline": {
+              "g": 0.15308380126953125,
+              "w": -0.13224029541015625,
+              "c": 0.020843505859375,
+              "r": -0.20787583843210355
+            },
+            "delta_95_descriptive_interval": {
+              "g": {
+                "lower": 0.0850677490234375,
+                "upper": 0.220672607421875,
+                "defined_draws": 20000
+              },
+              "w": {
+                "lower": -0.19316253662109376,
+                "upper": -0.07155609130859375,
+                "defined_draws": 20000
+              },
+              "c": {
+                "lower": 0.00522613525390625,
+                "upper": 0.040283203125,
+                "defined_draws": 20000
+              },
+              "r": {
+                "lower": -0.2709122470463805,
+                "upper": -0.12885836478370208,
+                "defined_draws": 20000
+              }
+            }
+          }
+        },
+        "baseline": "E2-matched-inferred-IDs",
+        "repetitions": 20000,
+        "seed": 1973,
+        "independent_patients": 8,
+        "patients": [
+          "ptbxl-patient-10264.0",
+          "ptbxl-patient-1210.0",
+          "ptbxl-patient-13372.0",
+          "ptbxl-patient-19518.0",
+          "ptbxl-patient-6191.0",
+          "ptbxl-patient-8264.0",
+          "ptbxl-patient-8288.0",
+          "ptbxl-patient-935.0"
+        ],
+        "backends": [
+          "offline",
+          "torch-cached"
+        ],
+        "unit": "paired patient clusters with all backends preserved",
+        "scope": "descriptive conditional intervals, no multiplicity adjustment or external-population guarantee"
+      },
+      "paired_perfect_points": {
+        "methods": {
+          "E3-perfect-points-inferred-IDs": {
+            "metrics": {
+              "g": 0.6439285278320312,
+              "w": 0.155487060546875,
+              "c": 0.7994155883789062,
+              "r": 0.1945009114247812
+            },
+            "delta_vs_baseline": {
+              "g": 0.0,
+              "w": 0.0,
+              "c": 0.0,
+              "r": 0.0
+            },
+            "delta_95_descriptive_interval": {
+              "g": {
+                "lower": 0.0,
+                "upper": 0.0,
+                "defined_draws": 20000
+              },
+              "w": {
+                "lower": 0.0,
+                "upper": 0.0,
+                "defined_draws": 20000
+              },
+              "c": {
+                "lower": 0.0,
+                "upper": 0.0,
+                "defined_draws": 20000
+              },
+              "r": {
+                "lower": 0.0,
+                "upper": 0.0,
+                "defined_draws": 20000
+              }
+            }
+          },
+          "E4-perfect-points-perfect-IDs": {
+            "metrics": {
+              "g": 0.8657684326171875,
+              "w": 0.0,
+              "c": 0.8657684326171875,
+              "r": 0.0
+            },
+            "delta_vs_baseline": {
+              "g": 0.22183990478515625,
+              "w": -0.155487060546875,
+              "c": 0.06635284423828125,
+              "r": -0.1945009114247812
+            },
+            "delta_95_descriptive_interval": {
+              "g": {
+                "lower": 0.14764404296875,
+                "upper": 0.289764404296875,
+                "defined_draws": 20000
+              },
+              "w": {
+                "lower": -0.21290321350097655,
+                "upper": -0.091827392578125,
+                "defined_draws": 20000
+              },
+              "c": {
+                "lower": 0.01653289794921875,
+                "upper": 0.1240386962890625,
+                "defined_draws": 20000
+              },
+              "r": {
+                "lower": -0.2573220516206568,
+                "upper": -0.11926547854328089,
+                "defined_draws": 20000
+              }
+            }
+          }
+        },
+        "baseline": "E3-perfect-points-inferred-IDs",
+        "repetitions": 20000,
+        "seed": 1973,
+        "independent_patients": 8,
+        "patients": [
+          "ptbxl-patient-10264.0",
+          "ptbxl-patient-1210.0",
+          "ptbxl-patient-13372.0",
+          "ptbxl-patient-19518.0",
+          "ptbxl-patient-6191.0",
+          "ptbxl-patient-8264.0",
+          "ptbxl-patient-8288.0",
+          "ptbxl-patient-935.0"
+        ],
+        "backends": [
+          "offline",
+          "torch-cached"
+        ],
+        "unit": "paired patient clusters with all backends preserved",
+        "scope": "descriptive conditional intervals, no multiplicity adjustment or external-population guarantee"
+      }
+    }
+  },
+  "fresh_inference_requested": false
+}

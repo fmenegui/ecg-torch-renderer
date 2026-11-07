@@ -1,0 +1,47 @@
+{
+  "schema": "sealed-deadline-completion-inputs-v1",
+  "source_workflow_run": 41106791069,
+  "source_commit": "fdae9486b61a1253017902f4708abad2e7bfb864",
+  "source_phase1_sha256": "44662fce73eff571506de1c6debcd787ae55f02c35905be8d9119db7f08e76a8",
+  "frozen_cohort_sha256": "d4af2217478fb7ea2cdf03c4474b988e9102607edeb98fafd34f9d5dee44b7ba",
+  "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+  "specialist_images": [
+    {
+      "image_id": "pm-46-photos_scans",
+      "image": "final_data/visual_data/photos_scans/img_46_page_0.jpeg",
+      "image_sha256": "39fe680249c0702f0f610840fe04d4d7b44501c114cb8c677da5a5068bc3d8ae"
+    },
+    {
+      "image_id": "pm-46-photos_samsung",
+      "image": "final_data/visual_data/photos_samsung/img_46_page_0.jpeg",
+      "image_sha256": "28d7b4dda7e6f52b6864789deb5795421ab0937797c32e388a9507978da079fa"
+    },
+    {
+      "image_id": "pm-46-photos_bents",
+      "image": "final_data/visual_data/photos_bents/img_46_page_0.jpeg",
+      "image_sha256": "ea7aaab33e8120074729219c0864fb616b3e6c6236165d367ef6c3a33fe199cf"
+    },
+    {
+      "image_id": "pm-80-photos_scans",
+      "image": "final_data/visual_data/photos_scans/img_80_page_0.jpeg",
+      "image_sha256": "e0c5d7ea4b508d30219ae60cd58ebdd826b5c3dc4989ecdbae3bbd41d6183f4d"
+    },
+    {
+      "image_id": "pm-80-photos_samsung",
+      "image": "final_data/visual_data/photos_samsung/img_80_page_0.jpeg",
+      "image_sha256": "a8eadfec520746e3e7d5b1d28e3080ca2d3792e49ea5a284182adb111e2c803d"
+    },
+    {
+      "image_id": "pm-80-photos_bents",
+      "image": "final_data/visual_data/photos_bents/img_80_page_0.jpeg",
+      "image_sha256": "c1d9da5e768188d21172bc4a8ed458caa772c39791ecd5ad77cd217aad5bb949"
+    }
+  ],
+  "repair_images": [
+    {
+      "image_id": "pm-99-photos_bents",
+      "image": "final_data/visual_data/photos_bents/img_99_page_0.jpeg",
+      "image_sha256": "930e52b546ed714f432d4ad77f261c3fc25f72fa613cbdbd4e941985ff2d1e01"
+    }
+  ]
+}

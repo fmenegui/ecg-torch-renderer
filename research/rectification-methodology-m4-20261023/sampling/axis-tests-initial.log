@@ -1,0 +1,83 @@
+test_identity_rgb_exact_all_borders (test_axis_area.AxisAreaTests.test_identity_rgb_exact_all_borders) ... ok
+test_main_32_to_1_attack_positive_control (test_axis_area.AxisAreaTests.test_main_32_to_1_attack_positive_control) ... ok
+test_partial_source_area_does_not_renormalise_or_erase (test_axis_area.AxisAreaTests.test_partial_source_area_does_not_renormalise_or_erase) ... ok
+test_random_rgb_rgba_against_independent_scalar_overlap (test_axis_area.AxisAreaTests.test_random_rgb_rgba_against_independent_scalar_overlap) ... 
+  test_random_rgb_rgba_against_independent_scalar_overlap (test_axis_area.AxisAreaTests.test_random_rgb_rgba_against_independent_scalar_overlap) (channels=4, scale=[0.25, -0.5], tile=1) ... FAIL
+  test_random_rgb_rgba_against_independent_scalar_overlap (test_axis_area.AxisAreaTests.test_random_rgb_rgba_against_independent_scalar_overlap) (channels=4, scale=[0.25, -0.5], tile=7) ... FAIL
+  test_random_rgb_rgba_against_independent_scalar_overlap (test_axis_area.AxisAreaTests.test_random_rgb_rgba_against_independent_scalar_overlap) (channels=4, scale=[0.25, -0.5], tile=1000) ... FAIL
+test_rejects_unsupported_geometry_and_unresolved_area (test_axis_area.AxisAreaTests.test_rejects_unsupported_geometry_and_unresolved_area) ... ok
+test_rgba_hidden_rgb_has_zero_weight (test_axis_area.AxisAreaTests.test_rgba_hidden_rgb_has_zero_weight) ... ok
+
+======================================================================
+FAIL: test_random_rgb_rgba_against_independent_scalar_overlap (test_axis_area.AxisAreaTests.test_random_rgb_rgba_against_independent_scalar_overlap) (channels=4, scale=[0.25, -0.5], tile=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/a57599a3e70e/m4/sampling/test_axis_area.py", line 67, in test_random_rgb_rgba_against_independent_scalar_overlap
+    np.testing.assert_allclose(mean, expected, rtol=0, atol=2e-10)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/numpy/testing/_private/utils.py", line 1711, in assert_allclose
+    assert_array_compare(compare, actual, desired, err_msg=str(err_msg),
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/numpy/testing/_private/utils.py", line 919, in assert_array_compare
+    raise AssertionError(msg)
+AssertionError: 
+Not equal to tolerance rtol=0, atol=2e-10
+
+Mismatched elements: 3 / 140 (2.14%)
+Max absolute difference among violations: 382.5
+Max relative difference among violations: inf
+ ACTUAL: array([[[1.053636e+02, 1.635818e+02, 1.836727e+02, 8.555556e+01],
+        [1.053636e+02, 1.635818e+02, 1.836727e+02, 8.555556e+01],
+        [1.053636e+02, 1.635818e+02, 1.836727e+02, 8.555556e+01],...
+ DESIRED: array([[[105.363636, 163.581818, 183.672727,  85.555556],
+        [105.363636, 163.581818, 183.672727,  85.555556],
+        [105.363636, 163.581818, 183.672727,  85.555556],...
+
+======================================================================
+FAIL: test_random_rgb_rgba_against_independent_scalar_overlap (test_axis_area.AxisAreaTests.test_random_rgb_rgba_against_independent_scalar_overlap) (channels=4, scale=[0.25, -0.5], tile=7)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/a57599a3e70e/m4/sampling/test_axis_area.py", line 67, in test_random_rgb_rgba_against_independent_scalar_overlap
+    np.testing.assert_allclose(mean, expected, rtol=0, atol=2e-10)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/numpy/testing/_private/utils.py", line 1711, in assert_allclose
+    assert_array_compare(compare, actual, desired, err_msg=str(err_msg),
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/numpy/testing/_private/utils.py", line 919, in assert_array_compare
+    raise AssertionError(msg)
+AssertionError: 
+Not equal to tolerance rtol=0, atol=2e-10
+
+Mismatched elements: 3 / 140 (2.14%)
+Max absolute difference among violations: 382.5
+Max relative difference among violations: inf
+ ACTUAL: array([[[1.053636e+02, 1.635818e+02, 1.836727e+02, 8.555556e+01],
+        [1.053636e+02, 1.635818e+02, 1.836727e+02, 8.555556e+01],
+        [1.053636e+02, 1.635818e+02, 1.836727e+02, 8.555556e+01],...
+ DESIRED: array([[[105.363636, 163.581818, 183.672727,  85.555556],
+        [105.363636, 163.581818, 183.672727,  85.555556],
+        [105.363636, 163.581818, 183.672727,  85.555556],...
+
+======================================================================
+FAIL: test_random_rgb_rgba_against_independent_scalar_overlap (test_axis_area.AxisAreaTests.test_random_rgb_rgba_against_independent_scalar_overlap) (channels=4, scale=[0.25, -0.5], tile=1000)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/a57599a3e70e/m4/sampling/test_axis_area.py", line 67, in test_random_rgb_rgba_against_independent_scalar_overlap
+    np.testing.assert_allclose(mean, expected, rtol=0, atol=2e-10)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/numpy/testing/_private/utils.py", line 1711, in assert_allclose
+    assert_array_compare(compare, actual, desired, err_msg=str(err_msg),
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/numpy/testing/_private/utils.py", line 919, in assert_array_compare
+    raise AssertionError(msg)
+AssertionError: 
+Not equal to tolerance rtol=0, atol=2e-10
+
+Mismatched elements: 3 / 140 (2.14%)
+Max absolute difference among violations: 382.5
+Max relative difference among violations: inf
+ ACTUAL: array([[[1.053636e+02, 1.635818e+02, 1.836727e+02, 8.555556e+01],
+        [1.053636e+02, 1.635818e+02, 1.836727e+02, 8.555556e+01],
+        [1.053636e+02, 1.635818e+02, 1.836727e+02, 8.555556e+01],...
+ DESIRED: array([[[105.363636, 163.581818, 183.672727,  85.555556],
+        [105.363636, 163.581818, 183.672727,  85.555556],
+        [105.363636, 163.581818, 183.672727,  85.555556],...
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.160s
+
+FAILED (failures=3)

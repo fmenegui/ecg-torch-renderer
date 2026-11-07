@@ -1,0 +1,131 @@
+{
+  "purpose": "ECG generated-paper model experiment",
+  "requested_gpu": "NVIDIA A40",
+  "catalog_hourly_gpu_usd": 0.59,
+  "temporary_disk_gb": 50,
+  "bundle_sha256": "0dd034c8c04a7ca4331dc7dddf6ea2080cf368f1fcee7f25f5dd6a47fd05a6c2",
+  "events": [
+    {
+      "event": "capacity",
+      "time": 1792587476.6992126,
+      "availability": "MEDIUM",
+      "price": {
+        "community": 0.35,
+        "secure": 0.59,
+        "serverless": 1.22
+      },
+      "data_centers": [
+        {
+          "availability": "LOW",
+          "id": "CA-MTL-1",
+          "name": "CA-MTL-1"
+        },
+        {
+          "availability": "LOW",
+          "id": "EU-SE-1",
+          "name": "EU-SE-1"
+        }
+      ]
+    },
+    {
+      "event": "created",
+      "time": 1792587477.9079578,
+      "pod_id": "94kyfc91w9w828"
+    },
+    {
+      "event": "read_back",
+      "time": 1792587478.3582385,
+      "id": "94kyfc91w9w828",
+      "status": "RUNNING",
+      "image": "runpod/pytorch:1.0.2-cu1281-torch280-ubuntu2404",
+      "disk": 50,
+      "cloud": "SECURE",
+      "dataCenterId": "CA-MTL-1",
+      "cost": 0.59,
+      "ports": [
+        "8000/http"
+      ]
+    },
+    {
+      "event": "boot_status",
+      "time": 1792587483.2521234,
+      "status": "RUNNING"
+    },
+    {
+      "event": "external_health_verified",
+      "time": 1792587503.9205089,
+      "gpu": "NVIDIA A40, 46068 MiB, 595.91.07",
+      "state": "ready"
+    },
+    {
+      "event": "bundle_uploaded",
+      "time": 1792587504.7060354,
+      "bytes": 14060258
+    },
+    {
+      "event": "progress",
+      "time": 1792587504.7794845,
+      "state": "running",
+      "phase": "verify-gpu"
+    },
+    {
+      "event": "progress",
+      "time": 1792587514.8863091,
+      "state": "running",
+      "phase": "install-dependencies"
+    },
+    {
+      "event": "progress",
+      "time": 1792587555.3019445,
+      "state": "running",
+      "phase": "prepare-public-npj-source"
+    },
+    {
+      "event": "progress",
+      "time": 1792587565.4070826,
+      "state": "running",
+      "phase": "fetch-locked-kaggle-artifacts"
+    },
+    {
+      "event": "progress",
+      "time": 1792587575.5661707,
+      "state": "running",
+      "phase": "unit-tests"
+    },
+    {
+      "event": "progress",
+      "time": 1792587585.6741657,
+      "state": "running",
+      "phase": "compare-models-and-paper-profiles"
+    },
+    {
+      "event": "progress",
+      "time": 1792587757.6487358,
+      "state": "completed",
+      "phase": "completed"
+    },
+    {
+      "event": "results_recovered",
+      "time": 1792587758.81247,
+      "archive_bytes": 32068309,
+      "sha256": "f4b6e515e1c0b847616e9f992f80768a8b432898fa54cc0bc142d431ebcc1330",
+      "job_returncode": 0
+    },
+    {
+      "event": "deletion_read_back",
+      "time": 1792587760.5086808,
+      "pod_id": "94kyfc91w9w828",
+      "absent": true,
+      "other_pods_unchanged": [
+        {
+          "id": "66b03wurfx1l3t",
+          "status": "EXITED"
+        }
+      ]
+    }
+  ],
+  "pod_id": "94kyfc91w9w828",
+  "proxy_url": "https://94kyfc91w9w828-8000.proxy.runpod.net",
+  "experiment_status": "completed",
+  "deleted_confirmed": true
+}

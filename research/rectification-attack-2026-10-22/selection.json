@@ -1,0 +1,109 @@
+{
+  "candidate": "clean85",
+  "cli_profile": "banding",
+  "validation": {
+    "cells": {
+      "patients": 6,
+      "images": 48,
+      "by_backend": {
+        "torch-cached": {
+          "good_coverage": 0.8628811306423612,
+          "wrong_covered_fraction": 0.030999077690972224
+        },
+        "offline": {
+          "good_coverage": 0.4870402018229167,
+          "wrong_covered_fraction": 0.031636555989583336
+        }
+      },
+      "backend_macro_good_coverage": 0.674960666232639,
+      "backend_macro_wrong_coverage": 0.031317816840277776,
+      "eligible": true
+    },
+    "t70": {
+      "patients": 6,
+      "images": 48,
+      "by_backend": {
+        "torch-cached": {
+          "good_coverage": 0.847412109375,
+          "wrong_covered_fraction": 0.04774305555555555
+        },
+        "offline": {
+          "good_coverage": 0.5644938151041666,
+          "wrong_covered_fraction": 0.13016764322916666
+        }
+      },
+      "backend_macro_good_coverage": 0.7059529622395833,
+      "backend_macro_wrong_coverage": 0.0889553493923611,
+      "eligible": false
+    },
+    "clean85": {
+      "patients": 6,
+      "images": 48,
+      "by_backend": {
+        "torch-cached": {
+          "good_coverage": 0.8882853190104166,
+          "wrong_covered_fraction": 0.00783962673611111
+        },
+        "offline": {
+          "good_coverage": 0.49481201171875,
+          "wrong_covered_fraction": 0.014994303385416666
+        }
+      },
+      "backend_macro_good_coverage": 0.6915486653645833,
+      "backend_macro_wrong_coverage": 0.011416965060763888,
+      "eligible": true
+    },
+    "clean70": {
+      "patients": 6,
+      "images": 48,
+      "by_backend": {
+        "torch-cached": {
+          "good_coverage": 0.8730875651041666,
+          "wrong_covered_fraction": 0.022657606336805556
+        },
+        "offline": {
+          "good_coverage": 0.6001790364583334,
+          "wrong_covered_fraction": 0.09079996744791667
+        }
+      },
+      "backend_macro_good_coverage": 0.73663330078125,
+      "backend_macro_wrong_coverage": 0.05672878689236111,
+      "eligible": false
+    },
+    "anchor50": {
+      "patients": 6,
+      "images": 48,
+      "by_backend": {
+        "torch-cached": {
+          "good_coverage": 0.9273139105902778,
+          "wrong_covered_fraction": 0.012925889756944446
+        },
+        "offline": {
+          "good_coverage": 0.6094156901041666,
+          "wrong_covered_fraction": 0.06298828125
+        }
+      },
+      "backend_macro_good_coverage": 0.7683648003472222,
+      "backend_macro_wrong_coverage": 0.037957085503472224,
+      "eligible": false
+    }
+  },
+  "selection_rule": "maximize backend-balanced patient-mean coverage within 0.5 mm, subject to wrong covered fraction <= baseline +0.005 overall and +0.01 per backend",
+  "clinical_acceptance_rule": false,
+  "test_outcomes_used": false,
+  "frozen_at_utc": "2026-10-22T12:45:59.275324+00:00",
+  "validation_sha256": "6ccbb2242096f626ea5a2f4ddc5f23837054142b675797010c2f2caae0400af5",
+  "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+  "source_code_sha256": {
+    "ecg_gpu/digitization/cell_mesh.py": "566253fba786de84475f00d593b80876b3869499d3703c18a71c9a5396cf37d6",
+    "ecg_gpu/digitization/cycle_lattice.py": "0629e8e33c05d1485a77d17339f4c0041474af6edea0c6d089ce352c7ced10a6",
+    "ecg_gpu/digitization/observation.py": "a841e312e2b2cb60aa818870d84989b1e0c052ed5c55f863b0de7d921af02607",
+    "ecg_gpu/digitization/lattice.py": "48a3e69fe00c5cfd5319c326ee83a97cf368fe4f879c82f62f7f7450e5a689b6",
+    "ecg_gpu/digitization/local_cells.py": "18ca49ff9c5c37ee2a67037fcc0e0fecbfa98939854e6fd1d97a5b164777109c",
+    "ecg_gpu/digitization/denoising_grid.py": "e79e6cc0c09c84319b2a6639a8c8e900f03ef0ddce118672ca7376ff77b0e153",
+    "ecg_gpu/grid_point_learning.py": "4810c026aacebd640976490d73ce0f7f2a40dd7483f2dca1d969d3180b54ad84",
+    "examples/diverse_grid_study.py": "d708ab2a5b4a86e49786b1f5a9c8ef32738ae090c4fe70047c47f985dd3e9e8c",
+    "examples/evaluate_rectification_diagnostic.py": "43b8356348e433fee3f3452b04275c8e6c424e136ec6d33b9dd0c90501b28537",
+    "examples/rectify_denoising_grid.py": "cbdfe589843815c32258abe1d4554ab4b75f33ed4cd67bcbe2355f5edda87925"
+  }
+}

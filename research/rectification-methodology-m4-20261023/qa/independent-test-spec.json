@@ -1,0 +1,33 @@
+{
+  "schema": "m4-independent-qa-test-spec-v1",
+  "frozen_before_m4_component_results": true,
+  "date": "2026-10-23",
+  "scope": "Independent component attacks only, no NN rerun and no M3/frozen edits",
+  "geometry": [
+    "clean affine and strong homography exactness with independent direct formulas",
+    "gold-independent public interface and source truth-flow inspection",
+    "input permutations and coordinate offset metamorphism",
+    "ID-pitch coherent alias not declared verified",
+    "malformed duplicate, collinear and nonfinite inputs",
+    "holes and exterior unsupported",
+    "positive local orientation but global double-wrap rejection",
+    "folded/overlapping source or target complex rejection",
+    "independently recomputed C0 edge limits and inverse roundtrip",
+    "read all negative scene results and compare selector versus fixed H"
+  ],
+  "sampling": [
+    "direct affine coordinates versus streaming tile results and independent scalar quadrature",
+    "RGB exactly invariant to true/false/mixed trust",
+    "constant preservation and boundedness",
+    "half-open boundary and partial footprint fractions",
+    "invalid coordinates and invalid flags contribute background, never origin pixel",
+    "RGBA premultiplied behavior and alpha independent of trust",
+    "nonlinear inverse with independent finer integral, retain unresolved differences",
+    "tile partition bit parity across small, prime and full tiles",
+    "bounded inverse batch size versus declared max tile/order",
+    "atomic writer precommit failure retains target and cleans temporary file",
+    "full pixel decode of written artifact",
+    "corrupt encoding rejected before replacing existing target"
+  ],
+  "policy": "Tests may discover failures. Fixes require versioned receipts and rerun only affected checks. No new candidate family selected by scored physical gold."
+}

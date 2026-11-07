@@ -1,0 +1,126 @@
+{
+  "schema": "npj-source-audit-v1",
+  "source": {
+    "commit": "97a15087d4abcda843da8c58ee74b1d8f47e6f9a",
+    "tracked_files_clean": true
+  },
+  "environment": {
+    "python": "3.12.14",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+    "packages": {
+      "numpy": "2.5.4",
+      "scipy": "1.18.1",
+      "torch": "2.7.0+cpu",
+      "torchvision": "0.22.0+cpu",
+      "pillow": "13.0.0",
+      "opencv-python-headless": "4.11.0.86",
+      "timm": "1.0.30",
+      "albumentations": "1.4.24"
+    },
+    "cuda_available": false,
+    "cuda_build": null
+  },
+  "weight_sha256": {
+    "unet_weights_07072025.pt": "17fe7071ef270102631306127262fc08c250d79d4e3aeb572ab1719dd34d320b",
+    "lead_name_unet_weights_07072025.pt": "840bd6bf2433ee6c22db67f57c861d9d427f29e10a32eeb334f0bcf061b175a2"
+  },
+  "training_discrepancies": [
+    {
+      "parameter": "epochs",
+      "public_yaml": 100,
+      "article_table4": 45,
+      "different": true
+    },
+    {
+      "parameter": "weight_decay",
+      "public_yaml": 0.01,
+      "article_table4": 0.001,
+      "different": true
+    },
+    {
+      "parameter": "cosine_batches",
+      "public_yaml": 10000,
+      "article_table4": 20000,
+      "different": true
+    }
+  ],
+  "paper_profile_epochs": 45,
+  "native_evaluator_controls": {
+    "perfect": {
+      "pearson": [
+        null
+      ],
+      "rms": [
+        null
+      ],
+      "snr_db": [
+        null
+      ],
+      "shift": [
+        0.0
+      ],
+      "nans_fraction": [
+        0.0
+      ]
+    },
+    "all_missing": {
+      "pearson": [
+        null
+      ],
+      "rms": [
+        null
+      ],
+      "snr_db": [
+        null
+      ],
+      "shift": [
+        0.0
+      ],
+      "nans_fraction": [
+        0.0
+      ]
+    },
+    "zero": {
+      "pearson": [
+        null
+      ],
+      "rms": [
+        0.7163480651039326
+      ],
+      "snr_db": [
+        0.0
+      ],
+      "shift": [
+        0.0
+      ],
+      "nans_fraction": [
+        0.0
+      ]
+    },
+    "small_noise": {
+      "pearson": [
+        0.9999995128518921
+      ],
+      "rms": [
+        0.0007071067811865482
+      ],
+      "snr_db": [
+        60.112781800113375
+      ],
+      "shift": [
+        0.0
+      ],
+      "nans_fraction": [
+        0.0
+      ]
+    }
+  },
+  "interpretation": [
+    "Exact perfect reconstruction has zero noise and receives NaN SNR in this pinned native scorer.",
+    "All-missing reconstruction retains the initial nans_fraction=0.0 and undefined errors.",
+    "Native main iterates discovered prediction CSVs, so a missing output file has no scheduled row.",
+    "These finite controls establish implementation behavior, not an explanation of the published cohort scores."
+  ],
+  "training_completed": false,
+  "paper_cohort_reproduction_completed": false
+}

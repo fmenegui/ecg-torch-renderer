@@ -1,0 +1,167 @@
+{
+  "schema": "hybrid-sampling-audit-v1",
+  "images": 24,
+  "arms": {
+    "npj_native": {
+      "coverage": 0.5656677777777779,
+      "nrmse": 1.2153060162527984,
+      "missing_leads": 81,
+      "compatible_layouts": 13,
+      "exceptions": 0
+    },
+    "adaptive_sampling": {
+      "coverage": 0.5131498611111112,
+      "nrmse": 1.1394940965095022,
+      "missing_leads": 110,
+      "compatible_layouts": 10,
+      "exceptions": 0
+    },
+    "selective": {
+      "coverage": 0.5656677777777779,
+      "nrmse": 1.2153060162527984,
+      "missing_leads": 81,
+      "compatible_layouts": 13,
+      "exceptions": 0
+    }
+  },
+  "decisions": {
+    "direct_samples_would_be_lost": 2,
+    "excessive_geometric_extrapolation": 10,
+    "layout_identity_not_preserved": 9,
+    "adaptive_branch_rejected": 3
+  },
+  "geometry_accepted": 0,
+  "missing_original_meshes": 3,
+  "missing_mesh_behavior": "Whole direct result reused, explicitly marked direct_alias in raw report. This arm includes deterministic original-image fallback.",
+  "max_side": 1500,
+  "device": "cpu",
+  "development_only": true,
+  "native_replay_parity": [
+    {
+      "image_id": "pm-9-photos_scans",
+      "same_finite_mask": true,
+      "maximum_absolute_difference_mv": 4.579544067382507e-06
+    },
+    {
+      "image_id": "pm-9-photos_samsung",
+      "same_finite_mask": true,
+      "maximum_absolute_difference_mv": 3.5095214843683387e-06
+    },
+    {
+      "image_id": "pm-9-photos_bents",
+      "same_finite_mask": true,
+      "maximum_absolute_difference_mv": 3.6315917968932077e-06
+    },
+    {
+      "image_id": "pm-29-photos_scans",
+      "same_finite_mask": true,
+      "maximum_absolute_difference_mv": 3.051757812500694e-06
+    },
+    {
+      "image_id": "pm-29-photos_samsung",
+      "same_finite_mask": true,
+      "maximum_absolute_difference_mv": 2.258300781265987e-06
+    },
+    {
+      "image_id": "pm-29-photos_bents",
+      "same_finite_mask": true,
+      "maximum_absolute_difference_mv": 6.317138671871336e-06
+    },
+    {
+      "image_id": "pm-37-photos_scans",
+      "same_finite_mask": true,
+      "maximum_absolute_difference_mv": 4.087448120117243e-06
+    },
+    {
+      "image_id": "pm-37-photos_samsung",
+      "same_finite_mask": true,
+      "maximum_absolute_difference_mv": 3.1738281250359712e-06
+    },
+    {
+      "image_id": "pm-37-photos_bents",
+      "same_finite_mask": true,
+      "maximum_absolute_difference_mv": 4.112243652348857e-06
+    },
+    {
+      "image_id": "pm-53-photos_scans",
+      "same_finite_mask": true,
+      "maximum_absolute_difference_mv": 4.486083984373002e-06
+    },
+    {
+      "image_id": "pm-53-photos_samsung",
+      "same_finite_mask": true,
+      "maximum_absolute_difference_mv": 6.210327148453709e-06
+    },
+    {
+      "image_id": "pm-53-photos_bents",
+      "same_finite_mask": true,
+      "maximum_absolute_difference_mv": 5.3405761718527955e-06
+    },
+    {
+      "image_id": "pm-69-photos_scans",
+      "same_finite_mask": true,
+      "maximum_absolute_difference_mv": 3.051757812455591e-06
+    },
+    {
+      "image_id": "pm-69-photos_samsung",
+      "same_finite_mask": true,
+      "maximum_absolute_difference_mv": 5.535125732418489e-06
+    },
+    {
+      "image_id": "pm-69-photos_bents",
+      "same_finite_mask": true,
+      "maximum_absolute_difference_mv": 4.2724609374822364e-06
+    },
+    {
+      "image_id": "pm-77-photos_scans",
+      "same_finite_mask": true,
+      "maximum_absolute_difference_mv": 2.380371093735345e-06
+    },
+    {
+      "image_id": "pm-77-photos_samsung",
+      "same_finite_mask": true,
+      "maximum_absolute_difference_mv": 4.669189453077038e-06
+    },
+    {
+      "image_id": "pm-77-photos_bents",
+      "same_finite_mask": true,
+      "maximum_absolute_difference_mv": 2.807617187405853e-06
+    },
+    {
+      "image_id": "pm-94-photos_scans",
+      "same_finite_mask": true,
+      "maximum_absolute_difference_mv": 5.203247070303951e-06
+    },
+    {
+      "image_id": "pm-94-photos_samsung",
+      "same_finite_mask": true,
+      "maximum_absolute_difference_mv": 4.28199768066212e-06
+    },
+    {
+      "image_id": "pm-94-photos_bents",
+      "same_finite_mask": true,
+      "maximum_absolute_difference_mv": 5.950927734366118e-06
+    },
+    {
+      "image_id": "pm-97-photos_scans",
+      "same_finite_mask": true,
+      "maximum_absolute_difference_mv": 4.089355468750444e-06
+    },
+    {
+      "image_id": "pm-97-photos_samsung",
+      "same_finite_mask": true,
+      "maximum_absolute_difference_mv": 3.158569335942607e-06
+    },
+    {
+      "image_id": "pm-97-photos_bents",
+      "same_finite_mask": true,
+      "maximum_absolute_difference_mv": 3.108978271486318e-06
+    }
+  ],
+  "old_original_torch": "2.8.0+cpu",
+  "current_torch": "2.7.0+cpu",
+  "bit_exact_parity_claimed": false,
+  "new_image_inference": true,
+  "new_geometry_detection_or_correspondence": false,
+  "new_external_cohort": false
+}

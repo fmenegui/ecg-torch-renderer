@@ -1,0 +1,35 @@
+{
+  "selection_scope": "validation partial-cell coordinates only, before retrospective test coordinate evaluation",
+  "criterion": "maximize paper G among arms with W no larger than baseline, then report complete outputs separately",
+  "validation_summary_sha256": "9328b023e9dbd6a8c6f6f9afbf7c2bd7c7f00a33fdb46a9de5b452cc4191d501",
+  "validation_protocol_sha256": "020821eca496aa2b9e3eb35348898a7c5539065a7ae54541193be439bad8ddec",
+  "selected": "consensus-text-cells",
+  "means": {
+    "baseline-cells": {
+      "g": 0.5810546875,
+      "w": 0.060862223307291664,
+      "c": 0.6419169108072916,
+      "r": 0.09481324184270162
+    },
+    "baseline-text-cells": {
+      "g": 0.62994384765625,
+      "w": 0.011973063151041666,
+      "c": 0.6419169108072916,
+      "r": 0.01865204506917262
+    },
+    "consensus-cells": {
+      "g": 0.587890625,
+      "w": 0.07869466145833333,
+      "c": 0.6665852864583334,
+      "r": 0.11805640336955193
+    },
+    "consensus-text-cells": {
+      "g": 0.65216064453125,
+      "w": 0.014424641927083334,
+      "c": 0.6665852864583334,
+      "r": 0.021639604443901842
+    }
+  },
+  "source_commit": "1ce2716c060ad11a1a462d1363b9e34c1435cbb1",
+  "future_promotion_gate": "Do not change defaults from this retrospective development study"
+}

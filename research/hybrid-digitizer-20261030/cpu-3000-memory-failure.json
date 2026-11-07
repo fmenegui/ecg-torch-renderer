@@ -1,0 +1,10 @@
+{
+  "schema": "native-cpu-memory-control-v1",
+  "requested_max_side": 3000,
+  "container_memory_limit_bytes": 8589934592,
+  "exit_code": 137,
+  "oom_kill_observed": true,
+  "completed_predictions": 0,
+  "result": "First direct native inference was killed by the memory controller. No 3000-pixel waveform accuracy result exists from this attempt.",
+  "followup": "Separate explicitly labeled 1500-pixel CPU ablation. Full 3000-pixel inference remains a Runpod GPU task."
+}

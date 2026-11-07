@@ -1,0 +1,76 @@
+{
+  "schema": "kaggle-native-replay-v1",
+  "method": "second-place-final-six",
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-6.8.0-147-generic-x86_64-with-glibc2.39",
+    "packages": {
+      "numpy": "2.5.4",
+      "scipy": "1.18.1",
+      "torch": "2.7.0+cu128",
+      "torchvision": "0.22.0+cu128",
+      "pillow": "13.0.0",
+      "opencv-python-headless": "4.11.0.86",
+      "timm": "1.0.22",
+      "albumentations": "1.4.24"
+    },
+    "cuda_available": true,
+    "cuda_build": "12.8",
+    "gpu": "NVIDIA A40"
+  },
+  "assets_lock_sha256": "0dfbfeb64ecb5cced0680d5854eeffe3120d491ef7bf3755bba421a2d62c3905",
+  "images_sha256": {
+    "pm-46-photos_scans": "07714cf67427d6d66aa0708311237689bb43b97549d82926ed602cfef9e8bef2",
+    "pm-46-photos_samsung": "a5b180faa2a37a165b8bd6295232016b8a22374137f5d0c9557452436953945e",
+    "pm-46-photos_bents": "6b27b0baae12dd9e08923fc09d3d7d9ee9bf51d49ea71a5a02c77dbe9242333f",
+    "pm-80-photos_scans": "22819821a2c6eb88057cb5b21c1b3935de27dea06b155cb9b7b89a320b89bcce",
+    "pm-80-photos_samsung": "ebb9d7801dd5781f9d62c5b3cc2c570fc9e4e9b430ba9e4bc30dc14506dec25c",
+    "pm-80-photos_bents": "2246b41c47001a361c6e28f43703604ec5a0e9cfe1dcba99e18c07626efdc56a"
+  },
+  "scheduled_images": 6,
+  "native_submission_zeros_are_not_observed_samples": true,
+  "notebook_source_sha256": "f77d7d7b3a7afea6acc3973993568cd1efdcaafe94ee0377c4afcaac7ff68ccb",
+  "removed_demo_block_sha256": [
+    "5f6572dedb8451c8913622fe9a806a53136214d01326fc06204f0d260b7122b3",
+    "6e50734c640eae8fbe7a4208a09ff51626d1669bcbb9f1113031c659ed0362a3",
+    "52616c345ce7ce2aad647579a080314076d8aec865f28455d663f08e88fc435f"
+  ],
+  "adaptations": [
+    "mount path substitution",
+    "serial GPU-0 execution of native stages preserving accumulated failure IDs",
+    "retain native intermediate outputs",
+    "headless diagnostic plotting",
+    "omit only three hash-reviewed demonstration blocks, preserving native numerical code and failure handling",
+    "refuse missing or unexpected native checkpoint keys"
+  ],
+  "adapted_script_sha256": "1dffccd15feb68814f6b97e4f44f291a7b2c92b87c3e2b1e74a14e814c1cacfe",
+  "status": "completed",
+  "returncode": 0,
+  "cases": [
+    {
+      "case_id": "pm-46-photos_scans",
+      "native_signal_file_present": false
+    },
+    {
+      "case_id": "pm-46-photos_samsung",
+      "native_signal_file_present": false
+    },
+    {
+      "case_id": "pm-46-photos_bents",
+      "native_signal_file_present": false
+    },
+    {
+      "case_id": "pm-80-photos_scans",
+      "native_signal_file_present": false
+    },
+    {
+      "case_id": "pm-80-photos_samsung",
+      "native_signal_file_present": false
+    },
+    {
+      "case_id": "pm-80-photos_bents",
+      "native_signal_file_present": false
+    }
+  ],
+  "submission_sha256": "a1d06386c9c38a4aa72bb8605cb319694e34b1448e8828e3b6801abd1cf27408"
+}

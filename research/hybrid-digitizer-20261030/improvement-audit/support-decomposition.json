@@ -1,0 +1,2552 @@
+{
+  "schema": "patient-macro-support-audit-v1",
+  "manifest_sha256": "d4af2217478fb7ea2cdf03c4474b988e9102607edeb98fafd34f9d5dee44b7ba",
+  "saved_report_sha256": "bca21be978e88cc1de202f687df63659d91824f8155a44e506a43ad186153c68",
+  "direct_arm": "npj_native",
+  "candidate_arm": "grid_adaptive",
+  "evaluation_only": true,
+  "original_predictions_modified": false,
+  "new_independent_validation": false,
+  "patient_macro": {
+    "direct_coverage": {
+      "value": 0.8528768055555556,
+      "images_with_defined_value": 24,
+      "scheduled_images": 24,
+      "patients_with_defined_value": 8,
+      "scheduled_patients": 8
+    },
+    "candidate_coverage": {
+      "value": 0.6865206944444444,
+      "images_with_defined_value": 24,
+      "scheduled_images": 24,
+      "patients_with_defined_value": 8,
+      "scheduled_patients": 8
+    },
+    "delta_nrmse": {
+      "value": -0.2365160696133023,
+      "images_with_defined_value": 24,
+      "scheduled_images": 24,
+      "patients_with_defined_value": 8,
+      "scheduled_patients": 8
+    },
+    "partitions": {
+      "common": {
+        "fraction_of_printed": {
+          "value": 0.65909,
+          "images_with_defined_value": 24,
+          "scheduled_images": 24,
+          "patients_with_defined_value": 8,
+          "scheduled_patients": 8
+        },
+        "delta_nrmse_contribution": {
+          "value": -0.10995408999188863,
+          "images_with_defined_value": 24,
+          "scheduled_images": 24,
+          "patients_with_defined_value": 8,
+          "scheduled_patients": 8
+        }
+      },
+      "dropped": {
+        "fraction_of_printed": {
+          "value": 0.19378680555555555,
+          "images_with_defined_value": 24,
+          "scheduled_images": 24,
+          "patients_with_defined_value": 8,
+          "scheduled_patients": 8
+        },
+        "delta_nrmse_contribution": {
+          "value": -0.1275460532799046,
+          "images_with_defined_value": 24,
+          "scheduled_images": 24,
+          "patients_with_defined_value": 8,
+          "scheduled_patients": 8
+        }
+      },
+      "gained": {
+        "fraction_of_printed": {
+          "value": 0.027430694444444445,
+          "images_with_defined_value": 24,
+          "scheduled_images": 24,
+          "patients_with_defined_value": 8,
+          "scheduled_patients": 8
+        },
+        "delta_nrmse_contribution": {
+          "value": 0.00098407365849092,
+          "images_with_defined_value": 24,
+          "scheduled_images": 24,
+          "patients_with_defined_value": 8,
+          "scheduled_patients": 8
+        }
+      },
+      "both_missing": {
+        "fraction_of_printed": {
+          "value": 0.11969250000000001,
+          "images_with_defined_value": 24,
+          "scheduled_images": 24,
+          "patients_with_defined_value": 8,
+          "scheduled_patients": 8
+        },
+        "delta_nrmse_contribution": {
+          "value": 0.0,
+          "images_with_defined_value": 24,
+          "scheduled_images": 24,
+          "patients_with_defined_value": 8,
+          "scheduled_patients": 8
+        }
+      }
+    },
+    "common_support": {
+      "direct_rmse_mv": {
+        "value": 0.21049039277458736,
+        "images_with_defined_value": 19,
+        "scheduled_images": 24,
+        "patients_with_defined_value": 8,
+        "scheduled_patients": 8
+      },
+      "candidate_rmse_mv": {
+        "value": 0.17451866657281073,
+        "images_with_defined_value": 19,
+        "scheduled_images": 24,
+        "patients_with_defined_value": 8,
+        "scheduled_patients": 8
+      }
+    },
+    "candidate_lost_direct_samples_in_images": 24,
+    "dropped_partition_fraction_of_total_nrmse_reduction": 0.5392701370711898
+  },
+  "per_patient": {
+    "ptbxl-patient-10345.0": {
+      "direct_coverage": {
+        "value": 0.8149166666666666,
+        "images_with_defined_value": 3,
+        "scheduled_images": 3,
+        "patients_with_defined_value": 1,
+        "scheduled_patients": 1
+      },
+      "candidate_coverage": {
+        "value": 0.4952111111111111,
+        "images_with_defined_value": 3,
+        "scheduled_images": 3,
+        "patients_with_defined_value": 1,
+        "scheduled_patients": 1
+      },
+      "delta_nrmse": {
+        "value": -0.0445875857798003,
+        "images_with_defined_value": 3,
+        "scheduled_images": 3,
+        "patients_with_defined_value": 1,
+        "scheduled_patients": 1
+      },
+      "partitions": {
+        "common": {
+          "fraction_of_printed": {
+            "value": 0.45465,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          },
+          "delta_nrmse_contribution": {
+            "value": 0.05584501288221467,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          }
+        },
+        "dropped": {
+          "fraction_of_printed": {
+            "value": 0.3602666666666667,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          },
+          "delta_nrmse_contribution": {
+            "value": -0.1549480651225038,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          }
+        },
+        "gained": {
+          "fraction_of_printed": {
+            "value": 0.04056111111111111,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          },
+          "delta_nrmse_contribution": {
+            "value": 0.05451546646048875,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          }
+        },
+        "both_missing": {
+          "fraction_of_printed": {
+            "value": 0.14452222222222222,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          },
+          "delta_nrmse_contribution": {
+            "value": 0.0,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          }
+        }
+      },
+      "common_support": {
+        "direct_rmse_mv": {
+          "value": 0.19817338838639864,
+          "images_with_defined_value": 2,
+          "scheduled_images": 3,
+          "patients_with_defined_value": 1,
+          "scheduled_patients": 1
+        },
+        "candidate_rmse_mv": {
+          "value": 0.22437630261369546,
+          "images_with_defined_value": 2,
+          "scheduled_images": 3,
+          "patients_with_defined_value": 1,
+          "scheduled_patients": 1
+        }
+      },
+      "candidate_lost_direct_samples_in_images": 3,
+      "dropped_partition_fraction_of_total_nrmse_reduction": 3.475139153927921
+    },
+    "ptbxl-patient-15654.0": {
+      "direct_coverage": {
+        "value": 0.9716444444444444,
+        "images_with_defined_value": 3,
+        "scheduled_images": 3,
+        "patients_with_defined_value": 1,
+        "scheduled_patients": 1
+      },
+      "candidate_coverage": {
+        "value": 0.6615333333333333,
+        "images_with_defined_value": 3,
+        "scheduled_images": 3,
+        "patients_with_defined_value": 1,
+        "scheduled_patients": 1
+      },
+      "delta_nrmse": {
+        "value": -0.17140178711292334,
+        "images_with_defined_value": 3,
+        "scheduled_images": 3,
+        "patients_with_defined_value": 1,
+        "scheduled_patients": 1
+      },
+      "partitions": {
+        "common": {
+          "fraction_of_printed": {
+            "value": 0.6352666666666668,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          },
+          "delta_nrmse_contribution": {
+            "value": -0.07922817540652222,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          }
+        },
+        "dropped": {
+          "fraction_of_printed": {
+            "value": 0.3363777777777777,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          },
+          "delta_nrmse_contribution": {
+            "value": -0.10180583738949062,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          }
+        },
+        "gained": {
+          "fraction_of_printed": {
+            "value": 0.02626666666666667,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          },
+          "delta_nrmse_contribution": {
+            "value": 0.009632225683089557,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          }
+        },
+        "both_missing": {
+          "fraction_of_printed": {
+            "value": 0.002088888888888889,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          },
+          "delta_nrmse_contribution": {
+            "value": 0.0,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          }
+        }
+      },
+      "common_support": {
+        "direct_rmse_mv": {
+          "value": 0.25198575939598816,
+          "images_with_defined_value": 2,
+          "scheduled_images": 3,
+          "patients_with_defined_value": 1,
+          "scheduled_patients": 1
+        },
+        "candidate_rmse_mv": {
+          "value": 0.2165014682029332,
+          "images_with_defined_value": 2,
+          "scheduled_images": 3,
+          "patients_with_defined_value": 1,
+          "scheduled_patients": 1
+        }
+      },
+      "candidate_lost_direct_samples_in_images": 3,
+      "dropped_partition_fraction_of_total_nrmse_reduction": 0.5939601862051687
+    },
+    "ptbxl-patient-17505.0": {
+      "direct_coverage": {
+        "value": 0.9894888888888889,
+        "images_with_defined_value": 3,
+        "scheduled_images": 3,
+        "patients_with_defined_value": 1,
+        "scheduled_patients": 1
+      },
+      "candidate_coverage": {
+        "value": 0.6655777777777777,
+        "images_with_defined_value": 3,
+        "scheduled_images": 3,
+        "patients_with_defined_value": 1,
+        "scheduled_patients": 1
+      },
+      "delta_nrmse": {
+        "value": -0.2555534941754918,
+        "images_with_defined_value": 3,
+        "scheduled_images": 3,
+        "patients_with_defined_value": 1,
+        "scheduled_patients": 1
+      },
+      "partitions": {
+        "common": {
+          "fraction_of_printed": {
+            "value": 0.6562666666666667,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          },
+          "delta_nrmse_contribution": {
+            "value": -0.10495888831870194,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          }
+        },
+        "dropped": {
+          "fraction_of_printed": {
+            "value": 0.33322222222222225,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          },
+          "delta_nrmse_contribution": {
+            "value": -0.13925990085733297,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          }
+        },
+        "gained": {
+          "fraction_of_printed": {
+            "value": 0.009311111111111112,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          },
+          "delta_nrmse_contribution": {
+            "value": -0.011334704999456926,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          }
+        },
+        "both_missing": {
+          "fraction_of_printed": {
+            "value": 0.0012,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          },
+          "delta_nrmse_contribution": {
+            "value": 0.0,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          }
+        }
+      },
+      "common_support": {
+        "direct_rmse_mv": {
+          "value": 0.14736807128175206,
+          "images_with_defined_value": 2,
+          "scheduled_images": 3,
+          "patients_with_defined_value": 1,
+          "scheduled_patients": 1
+        },
+        "candidate_rmse_mv": {
+          "value": 0.11530013191268235,
+          "images_with_defined_value": 2,
+          "scheduled_images": 3,
+          "patients_with_defined_value": 1,
+          "scheduled_patients": 1
+        }
+      },
+      "candidate_lost_direct_samples_in_images": 3,
+      "dropped_partition_fraction_of_total_nrmse_reduction": 0.544934442421286
+    },
+    "ptbxl-patient-19108.0": {
+      "direct_coverage": {
+        "value": 0.7907733333333334,
+        "images_with_defined_value": 3,
+        "scheduled_images": 3,
+        "patients_with_defined_value": 1,
+        "scheduled_patients": 1
+      },
+      "candidate_coverage": {
+        "value": 0.5996266666666666,
+        "images_with_defined_value": 3,
+        "scheduled_images": 3,
+        "patients_with_defined_value": 1,
+        "scheduled_patients": 1
+      },
+      "delta_nrmse": {
+        "value": -0.3322753063198501,
+        "images_with_defined_value": 3,
+        "scheduled_images": 3,
+        "patients_with_defined_value": 1,
+        "scheduled_patients": 1
+      },
+      "partitions": {
+        "common": {
+          "fraction_of_printed": {
+            "value": 0.5306133333333333,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          },
+          "delta_nrmse_contribution": {
+            "value": -0.027462911080537538,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          }
+        },
+        "dropped": {
+          "fraction_of_printed": {
+            "value": 0.26016,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          },
+          "delta_nrmse_contribution": {
+            "value": -0.29399676506749983,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          }
+        },
+        "gained": {
+          "fraction_of_printed": {
+            "value": 0.06901333333333333,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          },
+          "delta_nrmse_contribution": {
+            "value": -0.010815630171812677,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          }
+        },
+        "both_missing": {
+          "fraction_of_printed": {
+            "value": 0.14021333333333333,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          },
+          "delta_nrmse_contribution": {
+            "value": 0.0,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          }
+        }
+      },
+      "common_support": {
+        "direct_rmse_mv": {
+          "value": 0.1475845918830606,
+          "images_with_defined_value": 2,
+          "scheduled_images": 3,
+          "patients_with_defined_value": 1,
+          "scheduled_patients": 1
+        },
+        "candidate_rmse_mv": {
+          "value": 0.14117683097896314,
+          "images_with_defined_value": 2,
+          "scheduled_images": 3,
+          "patients_with_defined_value": 1,
+          "scheduled_patients": 1
+        }
+      },
+      "candidate_lost_direct_samples_in_images": 3,
+      "dropped_partition_fraction_of_total_nrmse_reduction": 0.8847987180380382
+    },
+    "ptbxl-patient-19125.0": {
+      "direct_coverage": {
+        "value": 0.8460666666666666,
+        "images_with_defined_value": 3,
+        "scheduled_images": 3,
+        "patients_with_defined_value": 1,
+        "scheduled_patients": 1
+      },
+      "candidate_coverage": {
+        "value": 0.7926166666666665,
+        "images_with_defined_value": 3,
+        "scheduled_images": 3,
+        "patients_with_defined_value": 1,
+        "scheduled_patients": 1
+      },
+      "delta_nrmse": {
+        "value": -0.2464504455263975,
+        "images_with_defined_value": 3,
+        "scheduled_images": 3,
+        "patients_with_defined_value": 1,
+        "scheduled_patients": 1
+      },
+      "partitions": {
+        "common": {
+          "fraction_of_printed": {
+            "value": 0.7670277777777779,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          },
+          "delta_nrmse_contribution": {
+            "value": -0.14480405439849522,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          }
+        },
+        "dropped": {
+          "fraction_of_printed": {
+            "value": 0.0790388888888889,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          },
+          "delta_nrmse_contribution": {
+            "value": -0.09772344008095808,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          }
+        },
+        "gained": {
+          "fraction_of_printed": {
+            "value": 0.025588888888888894,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          },
+          "delta_nrmse_contribution": {
+            "value": -0.003922951046944195,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          }
+        },
+        "both_missing": {
+          "fraction_of_printed": {
+            "value": 0.12834444444444446,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          },
+          "delta_nrmse_contribution": {
+            "value": 0.0,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          }
+        }
+      },
+      "common_support": {
+        "direct_rmse_mv": {
+          "value": 0.15100185459988769,
+          "images_with_defined_value": 3,
+          "scheduled_images": 3,
+          "patients_with_defined_value": 1,
+          "scheduled_patients": 1
+        },
+        "candidate_rmse_mv": {
+          "value": 0.12101134603019258,
+          "images_with_defined_value": 3,
+          "scheduled_images": 3,
+          "patients_with_defined_value": 1,
+          "scheduled_patients": 1
+        }
+      },
+      "candidate_lost_direct_samples_in_images": 3,
+      "dropped_partition_fraction_of_total_nrmse_reduction": 0.3965236900758244
+    },
+    "ptbxl-patient-19155.0": {
+      "direct_coverage": {
+        "value": 0.7231333333333333,
+        "images_with_defined_value": 3,
+        "scheduled_images": 3,
+        "patients_with_defined_value": 1,
+        "scheduled_patients": 1
+      },
+      "candidate_coverage": {
+        "value": 0.6492666666666667,
+        "images_with_defined_value": 3,
+        "scheduled_images": 3,
+        "patients_with_defined_value": 1,
+        "scheduled_patients": 1
+      },
+      "delta_nrmse": {
+        "value": -0.32932203604746935,
+        "images_with_defined_value": 3,
+        "scheduled_images": 3,
+        "patients_with_defined_value": 1,
+        "scheduled_patients": 1
+      },
+      "partitions": {
+        "common": {
+          "fraction_of_printed": {
+            "value": 0.6404,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          },
+          "delta_nrmse_contribution": {
+            "value": -0.09498811865189433,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          }
+        },
+        "dropped": {
+          "fraction_of_printed": {
+            "value": 0.08273333333333334,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          },
+          "delta_nrmse_contribution": {
+            "value": -0.22195418970893507,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          }
+        },
+        "gained": {
+          "fraction_of_printed": {
+            "value": 0.008866666666666667,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          },
+          "delta_nrmse_contribution": {
+            "value": -0.012379727686639993,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          }
+        },
+        "both_missing": {
+          "fraction_of_printed": {
+            "value": 0.268,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          },
+          "delta_nrmse_contribution": {
+            "value": 0.0,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          }
+        }
+      },
+      "common_support": {
+        "direct_rmse_mv": {
+          "value": 0.2681391479175237,
+          "images_with_defined_value": 2,
+          "scheduled_images": 3,
+          "patients_with_defined_value": 1,
+          "scheduled_patients": 1
+        },
+        "candidate_rmse_mv": {
+          "value": 0.2045245444452311,
+          "images_with_defined_value": 2,
+          "scheduled_images": 3,
+          "patients_with_defined_value": 1,
+          "scheduled_patients": 1
+        }
+      },
+      "candidate_lost_direct_samples_in_images": 3,
+      "dropped_partition_fraction_of_total_nrmse_reduction": 0.6739730883873863
+    },
+    "ptbxl-patient-19264.0": {
+      "direct_coverage": {
+        "value": 0.9074133333333334,
+        "images_with_defined_value": 3,
+        "scheduled_images": 3,
+        "patients_with_defined_value": 1,
+        "scheduled_patients": 1
+      },
+      "candidate_coverage": {
+        "value": 0.8417777777777777,
+        "images_with_defined_value": 3,
+        "scheduled_images": 3,
+        "patients_with_defined_value": 1,
+        "scheduled_patients": 1
+      },
+      "delta_nrmse": {
+        "value": -0.30293236745251567,
+        "images_with_defined_value": 3,
+        "scheduled_images": 3,
+        "patients_with_defined_value": 1,
+        "scheduled_patients": 1
+      },
+      "partitions": {
+        "common": {
+          "fraction_of_printed": {
+            "value": 0.8183288888888889,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          },
+          "delta_nrmse_contribution": {
+            "value": -0.2795341755230181,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          }
+        },
+        "dropped": {
+          "fraction_of_printed": {
+            "value": 0.08908444444444445,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          },
+          "delta_nrmse_contribution": {
+            "value": -0.011315194183406636,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          }
+        },
+        "gained": {
+          "fraction_of_printed": {
+            "value": 0.02344888888888889,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          },
+          "delta_nrmse_contribution": {
+            "value": -0.012082997746091012,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          }
+        },
+        "both_missing": {
+          "fraction_of_printed": {
+            "value": 0.06913777777777778,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          },
+          "delta_nrmse_contribution": {
+            "value": 0.0,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          }
+        }
+      },
+      "common_support": {
+        "direct_rmse_mv": {
+          "value": 0.2735921532407625,
+          "images_with_defined_value": 3,
+          "scheduled_images": 3,
+          "patients_with_defined_value": 1,
+          "scheduled_patients": 1
+        },
+        "candidate_rmse_mv": {
+          "value": 0.1689832043607319,
+          "images_with_defined_value": 3,
+          "scheduled_images": 3,
+          "patients_with_defined_value": 1,
+          "scheduled_patients": 1
+        }
+      },
+      "candidate_lost_direct_samples_in_images": 3,
+      "dropped_partition_fraction_of_total_nrmse_reduction": 0.03735221256995683
+    },
+    "ptbxl-patient-9810.0": {
+      "direct_coverage": {
+        "value": 0.7795777777777778,
+        "images_with_defined_value": 3,
+        "scheduled_images": 3,
+        "patients_with_defined_value": 1,
+        "scheduled_patients": 1
+      },
+      "candidate_coverage": {
+        "value": 0.7865555555555556,
+        "images_with_defined_value": 3,
+        "scheduled_images": 3,
+        "patients_with_defined_value": 1,
+        "scheduled_patients": 1
+      },
+      "delta_nrmse": {
+        "value": -0.2096055344919703,
+        "images_with_defined_value": 3,
+        "scheduled_images": 3,
+        "patients_with_defined_value": 1,
+        "scheduled_patients": 1
+      },
+      "partitions": {
+        "common": {
+          "fraction_of_printed": {
+            "value": 0.7701666666666666,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          },
+          "delta_nrmse_contribution": {
+            "value": -0.2045014094381543,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          }
+        },
+        "dropped": {
+          "fraction_of_printed": {
+            "value": 0.009411111111111111,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          },
+          "delta_nrmse_contribution": {
+            "value": 0.0006349661708901417,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          }
+        },
+        "gained": {
+          "fraction_of_printed": {
+            "value": 0.016388888888888887,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          },
+          "delta_nrmse_contribution": {
+            "value": -0.005739091224706148,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          }
+        },
+        "both_missing": {
+          "fraction_of_printed": {
+            "value": 0.20403333333333332,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          },
+          "delta_nrmse_contribution": {
+            "value": 0.0,
+            "images_with_defined_value": 3,
+            "scheduled_images": 3,
+            "patients_with_defined_value": 1,
+            "scheduled_patients": 1
+          }
+        }
+      },
+      "common_support": {
+        "direct_rmse_mv": {
+          "value": 0.2460781754913256,
+          "images_with_defined_value": 3,
+          "scheduled_images": 3,
+          "patients_with_defined_value": 1,
+          "scheduled_patients": 1
+        },
+        "candidate_rmse_mv": {
+          "value": 0.20427550403805603,
+          "images_with_defined_value": 3,
+          "scheduled_images": 3,
+          "patients_with_defined_value": 1,
+          "scheduled_patients": 1
+        }
+      },
+      "candidate_lost_direct_samples_in_images": 3,
+      "dropped_partition_fraction_of_total_nrmse_reduction": -0.0030293387644994
+    }
+  },
+  "by_condition": {
+    "photos_bents": {
+      "direct_coverage": {
+        "value": 0.7825979166666667,
+        "images_with_defined_value": 8,
+        "scheduled_images": 8,
+        "patients_with_defined_value": 8,
+        "scheduled_patients": 8
+      },
+      "candidate_coverage": {
+        "value": 0.30765166666666666,
+        "images_with_defined_value": 8,
+        "scheduled_images": 8,
+        "patients_with_defined_value": 8,
+        "scheduled_patients": 8
+      },
+      "delta_nrmse": {
+        "value": -0.5474637114015706,
+        "images_with_defined_value": 8,
+        "scheduled_images": 8,
+        "patients_with_defined_value": 8,
+        "scheduled_patients": 8
+      },
+      "partitions": {
+        "common": {
+          "fraction_of_printed": {
+            "value": 0.28536208333333335,
+            "images_with_defined_value": 8,
+            "scheduled_images": 8,
+            "patients_with_defined_value": 8,
+            "scheduled_patients": 8
+          },
+          "delta_nrmse_contribution": {
+            "value": -0.17033806165335966,
+            "images_with_defined_value": 8,
+            "scheduled_images": 8,
+            "patients_with_defined_value": 8,
+            "scheduled_patients": 8
+          }
+        },
+        "dropped": {
+          "fraction_of_printed": {
+            "value": 0.4972358333333333,
+            "images_with_defined_value": 8,
+            "scheduled_images": 8,
+            "patients_with_defined_value": 8,
+            "scheduled_patients": 8
+          },
+          "delta_nrmse_contribution": {
+            "value": -0.3744270270532014,
+            "images_with_defined_value": 8,
+            "scheduled_images": 8,
+            "patients_with_defined_value": 8,
+            "scheduled_patients": 8
+          }
+        },
+        "gained": {
+          "fraction_of_printed": {
+            "value": 0.022289583333333335,
+            "images_with_defined_value": 8,
+            "scheduled_images": 8,
+            "patients_with_defined_value": 8,
+            "scheduled_patients": 8
+          },
+          "delta_nrmse_contribution": {
+            "value": -0.0026986226950094427,
+            "images_with_defined_value": 8,
+            "scheduled_images": 8,
+            "patients_with_defined_value": 8,
+            "scheduled_patients": 8
+          }
+        },
+        "both_missing": {
+          "fraction_of_printed": {
+            "value": 0.1951125,
+            "images_with_defined_value": 8,
+            "scheduled_images": 8,
+            "patients_with_defined_value": 8,
+            "scheduled_patients": 8
+          },
+          "delta_nrmse_contribution": {
+            "value": 0.0,
+            "images_with_defined_value": 8,
+            "scheduled_images": 8,
+            "patients_with_defined_value": 8,
+            "scheduled_patients": 8
+          }
+        }
+      },
+      "common_support": {
+        "direct_rmse_mv": {
+          "value": 0.2870849338279666,
+          "images_with_defined_value": 3,
+          "scheduled_images": 8,
+          "patients_with_defined_value": 3,
+          "scheduled_patients": 8
+        },
+        "candidate_rmse_mv": {
+          "value": 0.16952745681873807,
+          "images_with_defined_value": 3,
+          "scheduled_images": 8,
+          "patients_with_defined_value": 3,
+          "scheduled_patients": 8
+        }
+      },
+      "candidate_lost_direct_samples_in_images": 8,
+      "dropped_partition_fraction_of_total_nrmse_reduction": 0.6839303121929758
+    },
+    "photos_samsung": {
+      "direct_coverage": {
+        "value": 0.9070058333333333,
+        "images_with_defined_value": 8,
+        "scheduled_images": 8,
+        "patients_with_defined_value": 8,
+        "scheduled_patients": 8
+      },
+      "candidate_coverage": {
+        "value": 0.9280525,
+        "images_with_defined_value": 8,
+        "scheduled_images": 8,
+        "patients_with_defined_value": 8,
+        "scheduled_patients": 8
+      },
+      "delta_nrmse": {
+        "value": -0.055992443730734066,
+        "images_with_defined_value": 8,
+        "scheduled_images": 8,
+        "patients_with_defined_value": 8,
+        "scheduled_patients": 8
+      },
+      "partitions": {
+        "common": {
+          "fraction_of_printed": {
+            "value": 0.8772829166666667,
+            "images_with_defined_value": 8,
+            "scheduled_images": 8,
+            "patients_with_defined_value": 8,
+            "scheduled_patients": 8
+          },
+          "delta_nrmse_contribution": {
+            "value": -0.05875664304661726,
+            "images_with_defined_value": 8,
+            "scheduled_images": 8,
+            "patients_with_defined_value": 8,
+            "scheduled_patients": 8
+          }
+        },
+        "dropped": {
+          "fraction_of_printed": {
+            "value": 0.029722916666666665,
+            "images_with_defined_value": 8,
+            "scheduled_images": 8,
+            "patients_with_defined_value": 8,
+            "scheduled_patients": 8
+          },
+          "delta_nrmse_contribution": {
+            "value": -0.002505014856258668,
+            "images_with_defined_value": 8,
+            "scheduled_images": 8,
+            "patients_with_defined_value": 8,
+            "scheduled_patients": 8
+          }
+        },
+        "gained": {
+          "fraction_of_printed": {
+            "value": 0.05076958333333333,
+            "images_with_defined_value": 8,
+            "scheduled_images": 8,
+            "patients_with_defined_value": 8,
+            "scheduled_patients": 8
+          },
+          "delta_nrmse_contribution": {
+            "value": 0.005269214172141826,
+            "images_with_defined_value": 8,
+            "scheduled_images": 8,
+            "patients_with_defined_value": 8,
+            "scheduled_patients": 8
+          }
+        },
+        "both_missing": {
+          "fraction_of_printed": {
+            "value": 0.042224583333333336,
+            "images_with_defined_value": 8,
+            "scheduled_images": 8,
+            "patients_with_defined_value": 8,
+            "scheduled_patients": 8
+          },
+          "delta_nrmse_contribution": {
+            "value": 0.0,
+            "images_with_defined_value": 8,
+            "scheduled_images": 8,
+            "patients_with_defined_value": 8,
+            "scheduled_patients": 8
+          }
+        }
+      },
+      "common_support": {
+        "direct_rmse_mv": {
+          "value": 0.1865718186611405,
+          "images_with_defined_value": 8,
+          "scheduled_images": 8,
+          "patients_with_defined_value": 8,
+          "scheduled_patients": 8
+        },
+        "candidate_rmse_mv": {
+          "value": 0.16578169950242833,
+          "images_with_defined_value": 8,
+          "scheduled_images": 8,
+          "patients_with_defined_value": 8,
+          "scheduled_patients": 8
+        }
+      },
+      "candidate_lost_direct_samples_in_images": 8,
+      "dropped_partition_fraction_of_total_nrmse_reduction": 0.04473844485704548
+    },
+    "photos_scans": {
+      "direct_coverage": {
+        "value": 0.8690266666666666,
+        "images_with_defined_value": 8,
+        "scheduled_images": 8,
+        "patients_with_defined_value": 8,
+        "scheduled_patients": 8
+      },
+      "candidate_coverage": {
+        "value": 0.8238579166666666,
+        "images_with_defined_value": 8,
+        "scheduled_images": 8,
+        "patients_with_defined_value": 8,
+        "scheduled_patients": 8
+      },
+      "delta_nrmse": {
+        "value": -0.10609205370760222,
+        "images_with_defined_value": 8,
+        "scheduled_images": 8,
+        "patients_with_defined_value": 8,
+        "scheduled_patients": 8
+      },
+      "partitions": {
+        "common": {
+          "fraction_of_printed": {
+            "value": 0.8146249999999999,
+            "images_with_defined_value": 8,
+            "scheduled_images": 8,
+            "patients_with_defined_value": 8,
+            "scheduled_patients": 8
+          },
+          "delta_nrmse_contribution": {
+            "value": -0.10076756527568896,
+            "images_with_defined_value": 8,
+            "scheduled_images": 8,
+            "patients_with_defined_value": 8,
+            "scheduled_patients": 8
+          }
+        },
+        "dropped": {
+          "fraction_of_printed": {
+            "value": 0.05440166666666667,
+            "images_with_defined_value": 8,
+            "scheduled_images": 8,
+            "patients_with_defined_value": 8,
+            "scheduled_patients": 8
+          },
+          "delta_nrmse_contribution": {
+            "value": -0.0057061179302536885,
+            "images_with_defined_value": 8,
+            "scheduled_images": 8,
+            "patients_with_defined_value": 8,
+            "scheduled_patients": 8
+          }
+        },
+        "gained": {
+          "fraction_of_printed": {
+            "value": 0.009232916666666667,
+            "images_with_defined_value": 8,
+            "scheduled_images": 8,
+            "patients_with_defined_value": 8,
+            "scheduled_patients": 8
+          },
+          "delta_nrmse_contribution": {
+            "value": 0.0003816294983403747,
+            "images_with_defined_value": 8,
+            "scheduled_images": 8,
+            "patients_with_defined_value": 8,
+            "scheduled_patients": 8
+          }
+        },
+        "both_missing": {
+          "fraction_of_printed": {
+            "value": 0.12174041666666667,
+            "images_with_defined_value": 8,
+            "scheduled_images": 8,
+            "patients_with_defined_value": 8,
+            "scheduled_patients": 8
+          },
+          "delta_nrmse_contribution": {
+            "value": 0.0,
+            "images_with_defined_value": 8,
+            "scheduled_images": 8,
+            "patients_with_defined_value": 8,
+            "scheduled_patients": 8
+          }
+        }
+      },
+      "common_support": {
+        "direct_rmse_mv": {
+          "value": 0.2105861396190437,
+          "images_with_defined_value": 8,
+          "scheduled_images": 8,
+          "patients_with_defined_value": 8,
+          "scheduled_patients": 8
+        },
+        "candidate_rmse_mv": {
+          "value": 0.18146659413978894,
+          "images_with_defined_value": 8,
+          "scheduled_images": 8,
+          "patients_with_defined_value": 8,
+          "scheduled_patients": 8
+        }
+      },
+      "candidate_lost_direct_samples_in_images": 8,
+      "dropped_partition_fraction_of_total_nrmse_reduction": 0.053784593009955146
+    }
+  },
+  "per_image": [
+    {
+      "schema": "paired-support-error-audit-v1",
+      "printed_samples": 60000,
+      "direct_coverage": 0.9012333333333333,
+      "candidate_coverage": 0.7922333333333333,
+      "direct_nrmse_zero_missing": 1.2077298551231037,
+      "candidate_nrmse_zero_missing": 1.2415978669029675,
+      "delta_nrmse": 0.03386801177986376,
+      "direct_all_printed_rmse_mv": 0.2269662833082881,
+      "candidate_all_printed_rmse_mv": 0.2333310317858634,
+      "partitions": {
+        "common": {
+          "samples": 45113,
+          "fraction_of_printed": 0.7518833333333333,
+          "delta_squared_error_mv2": 289.01514883085923,
+          "delta_mse_mv2": 0.004816919147180987,
+          "delta_nrmse_contribution": 0.05568514710593229
+        },
+        "dropped": {
+          "samples": 8961,
+          "fraction_of_printed": 0.14935,
+          "delta_squared_error_mv2": -285.7706120197141,
+          "delta_mse_mv2": -0.004762843533661902,
+          "delta_nrmse_contribution": -0.05506001548099811
+        },
+        "gained": {
+          "samples": 2421,
+          "fraction_of_printed": 0.04035,
+          "delta_squared_error_mv2": 172.53606131750382,
+          "delta_mse_mv2": 0.002875601021958397,
+          "delta_nrmse_contribution": 0.033242880154929454
+        },
+        "both_missing": {
+          "samples": 3505,
+          "fraction_of_printed": 0.058416666666666665,
+          "delta_squared_error_mv2": 0.0,
+          "delta_mse_mv2": 0.0,
+          "delta_nrmse_contribution": 0.0
+        }
+      },
+      "common_support": {
+        "samples": 45113,
+        "direct_rmse_mv": 0.20911984284947396,
+        "candidate_rmse_mv": 0.2239142250383551
+      },
+      "candidate_preserves_all_direct_samples": false,
+      "single_scalar_superiority_claim_supported": false,
+      "reference_used_for_evaluation_only": true,
+      "warning": "Zero-missing error can improve by dropping erroneous predictions. Common-support error is conditional on retained samples, not full-image success.",
+      "image_id": "pm-6-photos_scans",
+      "patient_id": "ptbxl-patient-10345.0",
+      "condition": "photos_scans"
+    },
+    {
+      "schema": "paired-support-error-audit-v1",
+      "printed_samples": 60000,
+      "direct_coverage": 0.8167833333333333,
+      "candidate_coverage": 0.6934,
+      "direct_nrmse_zero_missing": 1.0796271607597774,
+      "candidate_nrmse_zero_missing": 1.3217820177243547,
+      "delta_nrmse": 0.24215485696457728,
+      "direct_all_printed_rmse_mv": 0.20289219728806782,
+      "candidate_all_printed_rmse_mv": 0.2483998806803096,
+      "partitions": {
+        "common": {
+          "samples": 36724,
+          "fraction_of_printed": 0.6120666666666666,
+          "delta_squared_error_mv2": 569.1622287410963,
+          "delta_mse_mv2": 0.009486037145684939,
+          "delta_nrmse_contribution": 0.11184989154071172
+        },
+        "dropped": {
+          "samples": 12283,
+          "fraction_of_printed": 0.20471666666666666,
+          "delta_squared_error_mv2": 0.007359156843193659,
+          "delta_mse_mv2": 1.2265261405322767e-07,
+          "delta_nrmse_contribution": 1.4461973285945562e-06
+        },
+        "gained": {
+          "samples": 4880,
+          "fraction_of_printed": 0.08133333333333333,
+          "delta_squared_error_mv2": 663.0658321987681,
+          "delta_mse_mv2": 0.011051097203312802,
+          "delta_nrmse_contribution": 0.1303035192265368
+        },
+        "both_missing": {
+          "samples": 6113,
+          "fraction_of_printed": 0.10188333333333334,
+          "delta_squared_error_mv2": 0.0,
+          "delta_mse_mv2": 0.0,
+          "delta_nrmse_contribution": 0.0
+        }
+      },
+      "common_support": {
+        "samples": 36724,
+        "direct_rmse_mv": 0.18722693392332335,
+        "candidate_rmse_mv": 0.2248383801890358
+      },
+      "candidate_preserves_all_direct_samples": false,
+      "single_scalar_superiority_claim_supported": false,
+      "reference_used_for_evaluation_only": true,
+      "warning": "Zero-missing error can improve by dropping erroneous predictions. Common-support error is conditional on retained samples, not full-image success.",
+      "image_id": "pm-6-photos_samsung",
+      "patient_id": "ptbxl-patient-10345.0",
+      "condition": "photos_samsung"
+    },
+    {
+      "schema": "paired-support-error-audit-v1",
+      "printed_samples": 60000,
+      "direct_coverage": 0.7267333333333333,
+      "candidate_coverage": 0.0,
+      "direct_nrmse_zero_missing": 1.409785626083842,
+      "candidate_nrmse_zero_missing": 1.0,
+      "delta_nrmse": -0.40978562608384195,
+      "direct_all_printed_rmse_mv": 0.2649382247664009,
+      "candidate_all_printed_rmse_mv": 0.18792802243441556,
+      "partitions": {
+        "common": {
+          "samples": 0,
+          "fraction_of_printed": 0.0,
+          "delta_squared_error_mv2": 0.0,
+          "delta_mse_mv2": 0.0,
+          "delta_nrmse_contribution": 0.0
+        },
+        "dropped": {
+          "samples": 43604,
+          "fraction_of_printed": 0.7267333333333333,
+          "delta_squared_error_mv2": -2092.519279575704,
+          "delta_mse_mv2": -0.034875321326261734,
+          "delta_nrmse_contribution": -0.4097856260838419
+        },
+        "gained": {
+          "samples": 0,
+          "fraction_of_printed": 0.0,
+          "delta_squared_error_mv2": 0.0,
+          "delta_mse_mv2": 0.0,
+          "delta_nrmse_contribution": 0.0
+        },
+        "both_missing": {
+          "samples": 16396,
+          "fraction_of_printed": 0.27326666666666666,
+          "delta_squared_error_mv2": 0.0,
+          "delta_mse_mv2": 0.0,
+          "delta_nrmse_contribution": 0.0
+        }
+      },
+      "common_support": null,
+      "candidate_preserves_all_direct_samples": false,
+      "single_scalar_superiority_claim_supported": false,
+      "reference_used_for_evaluation_only": true,
+      "warning": "Zero-missing error can improve by dropping erroneous predictions. Common-support error is conditional on retained samples, not full-image success.",
+      "image_id": "pm-6-photos_bents",
+      "patient_id": "ptbxl-patient-10345.0",
+      "condition": "photos_bents"
+    },
+    {
+      "schema": "paired-support-error-audit-v1",
+      "printed_samples": 60000,
+      "direct_coverage": 0.8269666666666666,
+      "candidate_coverage": 0.8300166666666666,
+      "direct_nrmse_zero_missing": 0.9336979369847772,
+      "candidate_nrmse_zero_missing": 0.8136390114656004,
+      "delta_nrmse": -0.12005892551917685,
+      "direct_all_printed_rmse_mv": 0.1286321086701355,
+      "candidate_all_printed_rmse_mv": 0.1120920349027301,
+      "partitions": {
+        "common": {
+          "samples": 49583,
+          "fraction_of_printed": 0.8263833333333334,
+          "delta_squared_error_mv2": -229.08955726437475,
+          "delta_mse_mv2": -0.003818159287739579,
+          "delta_nrmse_contribution": -0.11513076817747202
+        },
+        "dropped": {
+          "samples": 35,
+          "fraction_of_printed": 0.0005833333333333334,
+          "delta_squared_error_mv2": 1.078338023742495,
+          "delta_mse_mv2": 1.797230039570825e-05,
+          "delta_nrmse_contribution": 0.0005419272991355892
+        },
+        "gained": {
+          "samples": 218,
+          "fraction_of_printed": 0.0036333333333333335,
+          "delta_squared_error_mv2": -10.884486296808916,
+          "delta_mse_mv2": -0.00018140810494681527,
+          "delta_nrmse_contribution": -0.0054700846408403765
+        },
+        "both_missing": {
+          "samples": 10164,
+          "fraction_of_printed": 0.1694,
+          "delta_squared_error_mv2": 0.0,
+          "delta_mse_mv2": 0.0,
+          "delta_nrmse_contribution": 0.0
+        }
+      },
+      "common_support": {
+        "samples": 49583,
+        "direct_rmse_mv": 0.12222038261575942,
+        "candidate_rmse_mv": 0.10157508195344962
+      },
+      "candidate_preserves_all_direct_samples": false,
+      "single_scalar_superiority_claim_supported": false,
+      "reference_used_for_evaluation_only": true,
+      "warning": "Zero-missing error can improve by dropping erroneous predictions. Common-support error is conditional on retained samples, not full-image success.",
+      "image_id": "pm-25-photos_scans",
+      "patient_id": "ptbxl-patient-19125.0",
+      "condition": "photos_scans"
+    },
+    {
+      "schema": "paired-support-error-audit-v1",
+      "printed_samples": 60000,
+      "direct_coverage": 0.82235,
+      "candidate_coverage": 0.8217333333333333,
+      "direct_nrmse_zero_missing": 0.8214429072798005,
+      "candidate_nrmse_zero_missing": 0.8483697014036002,
+      "delta_nrmse": 0.026926794123799724,
+      "direct_all_printed_rmse_mv": 0.11316714874272028,
+      "candidate_all_printed_rmse_mv": 0.11687675349889684,
+      "partitions": {
+        "common": {
+          "samples": 49117,
+          "fraction_of_printed": 0.8186166666666667,
+          "delta_squared_error_mv2": 79.66232666996838,
+          "delta_mse_mv2": 0.001327705444499473,
+          "delta_nrmse_contribution": 0.04189363266314525
+        },
+        "dropped": {
+          "samples": 224,
+          "fraction_of_printed": 0.0037333333333333333,
+          "delta_squared_error_mv2": -10.165206321246309,
+          "delta_mse_mv2": -0.00016942010535410515,
+          "delta_nrmse_contribution": -0.005345781844053488
+        },
+        "gained": {
+          "samples": 187,
+          "fraction_of_printed": 0.0031166666666666665,
+          "delta_squared_error_mv2": -18.294803115627065,
+          "delta_mse_mv2": -0.00030491338526045106,
+          "delta_nrmse_contribution": -0.009621056695292098
+        },
+        "both_missing": {
+          "samples": 10472,
+          "fraction_of_printed": 0.17453333333333335,
+          "delta_squared_error_mv2": 0.0,
+          "delta_mse_mv2": 0.0,
+          "delta_nrmse_contribution": 0.0
+        }
+      },
+      "common_support": {
+        "samples": 49117,
+        "direct_rmse_mv": 0.09868129305244297,
+        "candidate_rmse_mv": 0.10658276921395834
+      },
+      "candidate_preserves_all_direct_samples": false,
+      "single_scalar_superiority_claim_supported": false,
+      "reference_used_for_evaluation_only": true,
+      "warning": "Zero-missing error can improve by dropping erroneous predictions. Common-support error is conditional on retained samples, not full-image success.",
+      "image_id": "pm-25-photos_samsung",
+      "patient_id": "ptbxl-patient-19125.0",
+      "condition": "photos_samsung"
+    },
+    {
+      "schema": "paired-support-error-audit-v1",
+      "printed_samples": 60000,
+      "direct_coverage": 0.8888833333333334,
+      "candidate_coverage": 0.7261,
+      "direct_nrmse_zero_missing": 1.7532775068365376,
+      "candidate_nrmse_zero_missing": 1.1070583016527222,
+      "delta_nrmse": -0.6462192051838154,
+      "direct_all_printed_rmse_mv": 0.24154255231258875,
+      "candidate_all_printed_rmse_mv": 0.15251532441234295,
+      "partitions": {
+        "common": {
+          "samples": 39365,
+          "fraction_of_printed": 0.6560833333333334,
+          "delta_squared_error_mv2": -1176.4459200729648,
+          "delta_mse_mv2": -0.01960743200121608,
+          "delta_nrmse_contribution": -0.36117502768115894
+        },
+        "dropped": {
+          "samples": 13968,
+          "fraction_of_printed": 0.2328,
+          "delta_squared_error_mv2": -939.2885057261076,
+          "delta_mse_mv2": -0.01565480842876846,
+          "delta_nrmse_contribution": -0.2883664656979564
+        },
+        "gained": {
+          "samples": 4201,
+          "fraction_of_printed": 0.07001666666666667,
+          "delta_squared_error_mv2": 10.821601974424155,
+          "delta_mse_mv2": 0.00018036003290706926,
+          "delta_nrmse_contribution": 0.0033222881952998896
+        },
+        "both_missing": {
+          "samples": 2466,
+          "fraction_of_printed": 0.0411,
+          "delta_squared_error_mv2": 0.0,
+          "delta_mse_mv2": 0.0,
+          "delta_nrmse_contribution": 0.0
+        }
+      },
+      "common_support": {
+        "samples": 39365,
+        "direct_rmse_mv": 0.23210388813146063,
+        "candidate_rmse_mv": 0.15487618692316973
+      },
+      "candidate_preserves_all_direct_samples": false,
+      "single_scalar_superiority_claim_supported": false,
+      "reference_used_for_evaluation_only": true,
+      "warning": "Zero-missing error can improve by dropping erroneous predictions. Common-support error is conditional on retained samples, not full-image success.",
+      "image_id": "pm-25-photos_bents",
+      "patient_id": "ptbxl-patient-19125.0",
+      "condition": "photos_bents"
+    },
+    {
+      "schema": "paired-support-error-audit-v1",
+      "printed_samples": 15000,
+      "direct_coverage": 0.9692666666666667,
+      "candidate_coverage": 0.9645333333333334,
+      "direct_nrmse_zero_missing": 0.7268198027842946,
+      "candidate_nrmse_zero_missing": 0.7321882335414621,
+      "delta_nrmse": 0.0053684307571675305,
+      "direct_all_printed_rmse_mv": 0.28862369628692436,
+      "candidate_all_printed_rmse_mv": 0.29075552638079144,
+      "partitions": {
+        "common": {
+          "samples": 14230,
+          "fraction_of_printed": 0.9486666666666667,
+          "delta_squared_error_mv2": -116.51886895607939,
+          "delta_mse_mv2": -0.007767924597071959,
+          "delta_nrmse_contribution": -0.033762675272915356
+        },
+        "dropped": {
+          "samples": 309,
+          "fraction_of_printed": 0.0206,
+          "delta_squared_error_mv2": 87.43268210956879,
+          "delta_mse_mv2": 0.005828845473971253,
+          "delta_nrmse_contribution": 0.02533461988391012
+        },
+        "gained": {
+          "samples": 238,
+          "fraction_of_printed": 0.015866666666666668,
+          "delta_squared_error_mv2": 47.61325778617595,
+          "delta_mse_mv2": 0.0031742171857450634,
+          "delta_nrmse_contribution": 0.013796486146172748
+        },
+        "both_missing": {
+          "samples": 223,
+          "fraction_of_printed": 0.014866666666666667,
+          "delta_squared_error_mv2": 0.0,
+          "delta_mse_mv2": 0.0,
+          "delta_nrmse_contribution": 0.0
+        }
+      },
+      "common_support": {
+        "samples": 14230,
+        "direct_rmse_mv": 0.26037717097956004,
+        "candidate_rmse_mv": 0.24414752946898644
+      },
+      "candidate_preserves_all_direct_samples": false,
+      "single_scalar_superiority_claim_supported": false,
+      "reference_used_for_evaluation_only": true,
+      "warning": "Zero-missing error can improve by dropping erroneous predictions. Common-support error is conditional on retained samples, not full-image success.",
+      "image_id": "pm-27-photos_scans",
+      "patient_id": "ptbxl-patient-19155.0",
+      "condition": "photos_scans"
+    },
+    {
+      "schema": "paired-support-error-audit-v1",
+      "printed_samples": 15000,
+      "direct_coverage": 0.9892666666666666,
+      "candidate_coverage": 0.9832666666666666,
+      "direct_nrmse_zero_missing": 0.7488358007946353,
+      "candidate_nrmse_zero_missing": 0.4524241504659264,
+      "delta_nrmse": -0.2964116503287089,
+      "direct_all_printed_rmse_mv": 0.2973663567081841,
+      "candidate_all_printed_rmse_mv": 0.17965984154080747,
+      "partitions": {
+        "common": {
+          "samples": 14588,
+          "fraction_of_printed": 0.9725333333333334,
+          "delta_squared_error_mv2": -713.774886517813,
+          "delta_mse_mv2": -0.04758499243452087,
+          "delta_nrmse_contribution": -0.2512016806827676
+        },
+        "dropped": {
+          "samples": 251,
+          "fraction_of_printed": 0.016733333333333333,
+          "delta_squared_error_mv2": 16.269240487062167,
+          "delta_mse_mv2": 0.001084616032470811,
+          "delta_nrmse_contribution": 0.005725699560151383
+        },
+        "gained": {
+          "samples": 161,
+          "fraction_of_printed": 0.010733333333333333,
+          "delta_squared_error_mv2": -144.7307255607138,
+          "delta_mse_mv2": -0.00964871503738092,
+          "delta_nrmse_contribution": -0.05093566920609273
+        },
+        "both_missing": {
+          "samples": 0,
+          "fraction_of_printed": 0.0,
+          "delta_squared_error_mv2": 0.0,
+          "delta_mse_mv2": 0.0,
+          "delta_nrmse_contribution": 0.0
+        }
+      },
+      "common_support": {
+        "samples": 14588,
+        "direct_rmse_mv": 0.2759011248554874,
+        "candidate_rmse_mv": 0.16490155942147577
+      },
+      "candidate_preserves_all_direct_samples": false,
+      "single_scalar_superiority_claim_supported": false,
+      "reference_used_for_evaluation_only": true,
+      "warning": "Zero-missing error can improve by dropping erroneous predictions. Common-support error is conditional on retained samples, not full-image success.",
+      "image_id": "pm-27-photos_samsung",
+      "patient_id": "ptbxl-patient-19155.0",
+      "condition": "photos_samsung"
+    },
+    {
+      "schema": "paired-support-error-audit-v1",
+      "printed_samples": 15000,
+      "direct_coverage": 0.21086666666666667,
+      "candidate_coverage": 0.0,
+      "direct_nrmse_zero_missing": 1.6969228885708667,
+      "candidate_nrmse_zero_missing": 1.0,
+      "delta_nrmse": -0.6969228885708667,
+      "direct_all_printed_rmse_mv": 0.6738563733913049,
+      "candidate_all_printed_rmse_mv": 0.39710488787078635,
+      "partitions": {
+        "common": {
+          "samples": 0,
+          "fraction_of_printed": 0.0,
+          "delta_squared_error_mv2": 0.0,
+          "delta_mse_mv2": 0.0,
+          "delta_nrmse_contribution": 0.0
+        },
+        "dropped": {
+          "samples": 3163,
+          "fraction_of_printed": 0.21086666666666667,
+          "delta_squared_error_mv2": -4445.8517998381785,
+          "delta_mse_mv2": -0.2963901199892119,
+          "delta_nrmse_contribution": -0.6969228885708667
+        },
+        "gained": {
+          "samples": 0,
+          "fraction_of_printed": 0.0,
+          "delta_squared_error_mv2": 0.0,
+          "delta_mse_mv2": 0.0,
+          "delta_nrmse_contribution": 0.0
+        },
+        "both_missing": {
+          "samples": 11837,
+          "fraction_of_printed": 0.7891333333333334,
+          "delta_squared_error_mv2": 0.0,
+          "delta_mse_mv2": 0.0,
+          "delta_nrmse_contribution": 0.0
+        }
+      },
+      "common_support": null,
+      "candidate_preserves_all_direct_samples": false,
+      "single_scalar_superiority_claim_supported": false,
+      "reference_used_for_evaluation_only": true,
+      "warning": "Zero-missing error can improve by dropping erroneous predictions. Common-support error is conditional on retained samples, not full-image success.",
+      "image_id": "pm-27-photos_bents",
+      "patient_id": "ptbxl-patient-19155.0",
+      "condition": "photos_bents"
+    },
+    {
+      "schema": "paired-support-error-audit-v1",
+      "printed_samples": 18750,
+      "direct_coverage": 0.9965333333333334,
+      "candidate_coverage": 0.7452266666666667,
+      "direct_nrmse_zero_missing": 1.062421766141033,
+      "candidate_nrmse_zero_missing": 0.7610738907344522,
+      "delta_nrmse": -0.3013478754065807,
+      "direct_all_printed_rmse_mv": 0.2862578025566369,
+      "candidate_all_printed_rmse_mv": 0.20506294815118992,
+      "partitions": {
+        "common": {
+          "samples": 13928,
+          "fraction_of_printed": 0.7428266666666666,
+          "delta_squared_error_mv2": -610.3404856212471,
+          "delta_mse_mv2": -0.032551492566466514,
+          "delta_nrmse_contribution": -0.24589258160717972
+        },
+        "dropped": {
+          "samples": 4757,
+          "fraction_of_printed": 0.2537066666666667,
+          "delta_squared_error_mv2": -115.60112008595658,
+          "delta_mse_mv2": -0.006165393071251018,
+          "delta_nrmse_contribution": -0.04657311537458317
+        },
+        "gained": {
+          "samples": 45,
+          "fraction_of_printed": 0.0024,
+          "delta_squared_error_mv2": -22.046834669613705,
+          "delta_mse_mv2": -0.0011758311823793976,
+          "delta_nrmse_contribution": -0.008882178424818008
+        },
+        "both_missing": {
+          "samples": 20,
+          "fraction_of_printed": 0.0010666666666666667,
+          "delta_squared_error_mv2": 0.0,
+          "delta_mse_mv2": 0.0,
+          "delta_nrmse_contribution": 0.0
+        }
+      },
+      "common_support": {
+        "samples": 13928,
+        "direct_rmse_mv": 0.27526621408457075,
+        "candidate_rmse_mv": 0.17874667524386081
+      },
+      "candidate_preserves_all_direct_samples": false,
+      "single_scalar_superiority_claim_supported": false,
+      "reference_used_for_evaluation_only": true,
+      "warning": "Zero-missing error can improve by dropping erroneous predictions. Common-support error is conditional on retained samples, not full-image success.",
+      "image_id": "pm-46-photos_scans",
+      "patient_id": "ptbxl-patient-19264.0",
+      "condition": "photos_scans"
+    },
+    {
+      "schema": "paired-support-error-audit-v1",
+      "printed_samples": 18750,
+      "direct_coverage": 0.9893333333333333,
+      "candidate_coverage": 0.98976,
+      "direct_nrmse_zero_missing": 0.9025004871522035,
+      "candidate_nrmse_zero_missing": 0.6751194440719313,
+      "delta_nrmse": -0.2273810430802723,
+      "direct_all_printed_rmse_mv": 0.24316878145001153,
+      "candidate_all_printed_rmse_mv": 0.1819034725024967,
+      "partitions": {
+        "common": {
+          "samples": 18444,
+          "fraction_of_printed": 0.98368,
+          "delta_squared_error_mv2": -469.0894749203253,
+          "delta_mse_mv2": -0.025018105329084016,
+          "delta_nrmse_contribution": -0.21843955606987475
+        },
+        "dropped": {
+          "samples": 106,
+          "fraction_of_printed": 0.005653333333333333,
+          "delta_squared_error_mv2": 21.004636070355954,
+          "delta_mse_mv2": 0.001120247257085651,
+          "delta_nrmse_contribution": 0.009781168889788338
+        },
+        "gained": {
+          "samples": 114,
+          "fraction_of_printed": 0.00608,
+          "delta_squared_error_mv2": -40.20609171409778,
+          "delta_mse_mv2": -0.0021443248914185483,
+          "delta_nrmse_contribution": -0.018722655900186017
+        },
+        "both_missing": {
+          "samples": 86,
+          "fraction_of_printed": 0.004586666666666667,
+          "delta_squared_error_mv2": 0.0,
+          "delta_mse_mv2": 0.0,
+          "delta_nrmse_contribution": 0.0
+        }
+      },
+      "common_support": {
+        "samples": 18444,
+        "direct_rmse_mv": 0.217224906670245,
+        "candidate_rmse_mv": 0.14749062796341292
+      },
+      "candidate_preserves_all_direct_samples": false,
+      "single_scalar_superiority_claim_supported": false,
+      "reference_used_for_evaluation_only": true,
+      "warning": "Zero-missing error can improve by dropping erroneous predictions. Common-support error is conditional on retained samples, not full-image success.",
+      "image_id": "pm-46-photos_samsung",
+      "patient_id": "ptbxl-patient-19264.0",
+      "condition": "photos_samsung"
+    },
+    {
+      "schema": "paired-support-error-audit-v1",
+      "printed_samples": 18750,
+      "direct_coverage": 0.7363733333333333,
+      "candidate_coverage": 0.7903466666666666,
+      "direct_nrmse_zero_missing": 1.1969754752184112,
+      "candidate_nrmse_zero_missing": 0.8169072913477171,
+      "delta_nrmse": -0.3800681838706941,
+      "direct_all_printed_rmse_mv": 0.3225118123236227,
+      "candidate_all_printed_rmse_mv": 0.22010664085232004,
+      "partitions": {
+        "common": {
+          "samples": 13659,
+          "fraction_of_printed": 0.72848,
+          "delta_squared_error_mv2": -1025.9865629985475,
+          "delta_mse_mv2": -0.05471928335992253,
+          "delta_nrmse_contribution": -0.3742703888919999
+        },
+        "dropped": {
+          "samples": 148,
+          "fraction_of_printed": 0.007893333333333334,
+          "delta_squared_error_mv2": 7.802730958553712,
+          "delta_mse_mv2": 0.00041614565112286464,
+          "delta_nrmse_contribution": 0.0028463639345749202
+        },
+        "gained": {
+          "samples": 1160,
+          "fraction_of_printed": 0.06186666666666667,
+          "delta_squared_error_mv2": -23.69621310329554,
+          "delta_mse_mv2": -0.0012637980321757623,
+          "delta_nrmse_contribution": -0.008644158913269005
+        },
+        "both_missing": {
+          "samples": 3783,
+          "fraction_of_printed": 0.20176,
+          "delta_squared_error_mv2": 0.0,
+          "delta_mse_mv2": 0.0,
+          "delta_nrmse_contribution": 0.0
+        }
+      },
+      "common_support": {
+        "samples": 13659,
+        "direct_rmse_mv": 0.32828533896747175,
+        "candidate_rmse_mv": 0.18071230987492196
+      },
+      "candidate_preserves_all_direct_samples": false,
+      "single_scalar_superiority_claim_supported": false,
+      "reference_used_for_evaluation_only": true,
+      "warning": "Zero-missing error can improve by dropping erroneous predictions. Common-support error is conditional on retained samples, not full-image success.",
+      "image_id": "pm-46-photos_bents",
+      "patient_id": "ptbxl-patient-19264.0",
+      "condition": "photos_bents"
+    },
+    {
+      "schema": "paired-support-error-audit-v1",
+      "printed_samples": 30000,
+      "direct_coverage": 0.9988,
+      "candidate_coverage": 0.9986,
+      "direct_nrmse_zero_missing": 0.9185759024435814,
+      "candidate_nrmse_zero_missing": 0.6914183438595027,
+      "delta_nrmse": -0.2271575585840787,
+      "direct_all_printed_rmse_mv": 0.17248558512331455,
+      "candidate_all_printed_rmse_mv": 0.12983107578627595,
+      "partitions": {
+        "common": {
+          "samples": 29922,
+          "fraction_of_printed": 0.9974,
+          "delta_squared_error_mv2": -367.2434308694484,
+          "delta_mse_mv2": -0.01224144769564828,
+          "delta_nrmse_contribution": -0.21564179636179862
+        },
+        "dropped": {
+          "samples": 42,
+          "fraction_of_printed": 0.0014,
+          "delta_squared_error_mv2": -3.483157762619887,
+          "delta_mse_mv2": -0.00011610525875399623,
+          "delta_nrmse_contribution": -0.0020452766034905873
+        },
+        "gained": {
+          "samples": 36,
+          "fraction_of_printed": 0.0012,
+          "delta_squared_error_mv2": -16.1284764332457,
+          "delta_mse_mv2": -0.0005376158811081901,
+          "delta_nrmse_contribution": -0.009470485618789529
+        },
+        "both_missing": {
+          "samples": 0,
+          "fraction_of_printed": 0.0,
+          "delta_squared_error_mv2": 0.0,
+          "delta_mse_mv2": 0.0,
+          "delta_nrmse_contribution": 0.0
+        }
+      },
+      "common_support": {
+        "samples": 29922,
+        "direct_rmse_mv": 0.16566648780911902,
+        "candidate_rmse_mv": 0.12317478132900843
+      },
+      "candidate_preserves_all_direct_samples": false,
+      "single_scalar_superiority_claim_supported": false,
+      "reference_used_for_evaluation_only": true,
+      "warning": "Zero-missing error can improve by dropping erroneous predictions. Common-support error is conditional on retained samples, not full-image success.",
+      "image_id": "pm-56-photos_scans",
+      "patient_id": "ptbxl-patient-17505.0",
+      "condition": "photos_scans"
+    },
+    {
+      "schema": "paired-support-error-audit-v1",
+      "printed_samples": 30000,
+      "direct_coverage": 0.9731,
+      "candidate_coverage": 0.9981333333333333,
+      "direct_nrmse_zero_missing": 0.7873978310698387,
+      "candidate_nrmse_zero_missing": 0.6336918333685255,
+      "delta_nrmse": -0.1537059977013132,
+      "direct_all_printed_rmse_mv": 0.14785362347914588,
+      "candidate_all_printed_rmse_mv": 0.1189914805904125,
+      "partitions": {
+        "common": {
+          "samples": 29142,
+          "fraction_of_printed": 0.9714,
+          "delta_squared_error_mv2": -149.17036446781088,
+          "delta_mse_mv2": -0.004972345482260363,
+          "delta_nrmse_contribution": -0.0992348685943072
+        },
+        "dropped": {
+          "samples": 51,
+          "fraction_of_printed": 0.0017,
+          "delta_squared_error_mv2": -45.00220344778206,
+          "delta_mse_mv2": -0.001500073448259402,
+          "delta_nrmse_contribution": -0.029937499727424696
+        },
+        "gained": {
+          "samples": 802,
+          "fraction_of_printed": 0.026733333333333335,
+          "delta_squared_error_mv2": -36.87907776884256,
+          "delta_mse_mv2": -0.0012293025922947521,
+          "delta_nrmse_contribution": -0.024533629379581246
+        },
+        "both_missing": {
+          "samples": 5,
+          "fraction_of_printed": 0.00016666666666666666,
+          "delta_squared_error_mv2": 0.0,
+          "delta_mse_mv2": 0.0,
+          "delta_nrmse_contribution": 0.0
+        }
+      },
+      "common_support": {
+        "samples": 29142,
+        "direct_rmse_mv": 0.1290696547543851,
+        "candidate_rmse_mv": 0.10742548249635626
+      },
+      "candidate_preserves_all_direct_samples": false,
+      "single_scalar_superiority_claim_supported": false,
+      "reference_used_for_evaluation_only": true,
+      "warning": "Zero-missing error can improve by dropping erroneous predictions. Common-support error is conditional on retained samples, not full-image success.",
+      "image_id": "pm-56-photos_samsung",
+      "patient_id": "ptbxl-patient-17505.0",
+      "condition": "photos_samsung"
+    },
+    {
+      "schema": "paired-support-error-audit-v1",
+      "printed_samples": 30000,
+      "direct_coverage": 0.9965666666666667,
+      "candidate_coverage": 0.0,
+      "direct_nrmse_zero_missing": 1.3857969262410834,
+      "candidate_nrmse_zero_missing": 1.0,
+      "delta_nrmse": -0.3857969262410834,
+      "direct_all_printed_rmse_mv": 0.26021801034505715,
+      "candidate_all_printed_rmse_mv": 0.18777499460248312,
+      "partitions": {
+        "common": {
+          "samples": 0,
+          "fraction_of_printed": 0.0,
+          "delta_squared_error_mv2": 0.0,
+          "delta_mse_mv2": 0.0,
+          "delta_nrmse_contribution": 0.0
+        },
+        "dropped": {
+          "samples": 29897,
+          "fraction_of_printed": 0.9965666666666667,
+          "delta_squared_error_mv2": -973.6189292993313,
+          "delta_mse_mv2": -0.03245396430997771,
+          "delta_nrmse_contribution": -0.38579692624108364
+        },
+        "gained": {
+          "samples": 0,
+          "fraction_of_printed": 0.0,
+          "delta_squared_error_mv2": 0.0,
+          "delta_mse_mv2": 0.0,
+          "delta_nrmse_contribution": 0.0
+        },
+        "both_missing": {
+          "samples": 103,
+          "fraction_of_printed": 0.0034333333333333334,
+          "delta_squared_error_mv2": 0.0,
+          "delta_mse_mv2": 0.0,
+          "delta_nrmse_contribution": 0.0
+        }
+      },
+      "common_support": null,
+      "candidate_preserves_all_direct_samples": false,
+      "single_scalar_superiority_claim_supported": false,
+      "reference_used_for_evaluation_only": true,
+      "warning": "Zero-missing error can improve by dropping erroneous predictions. Common-support error is conditional on retained samples, not full-image success.",
+      "image_id": "pm-56-photos_bents",
+      "patient_id": "ptbxl-patient-17505.0",
+      "condition": "photos_bents"
+    },
+    {
+      "schema": "paired-support-error-audit-v1",
+      "printed_samples": 15000,
+      "direct_coverage": 0.9918666666666667,
+      "candidate_coverage": 0.9888666666666667,
+      "direct_nrmse_zero_missing": 0.9040657150474682,
+      "candidate_nrmse_zero_missing": 0.6901451150010647,
+      "delta_nrmse": -0.21392060004640356,
+      "direct_all_printed_rmse_mv": 0.22571447622261853,
+      "candidate_all_printed_rmse_mv": 0.17230577441141554,
+      "partitions": {
+        "common": {
+          "samples": 14741,
+          "fraction_of_printed": 0.9827333333333333,
+          "delta_squared_error_mv2": -337.1065474043435,
+          "delta_mse_mv2": -0.02247376982695623,
+          "delta_nrmse_contribution": -0.22615768293462274
+        },
+        "dropped": {
+          "samples": 137,
+          "fraction_of_printed": 0.009133333333333334,
+          "delta_squared_error_mv2": 47.745508434624476,
+          "delta_mse_mv2": 0.0031830338956416316,
+          "delta_nrmse_contribution": 0.03203145605225652
+        },
+        "gained": {
+          "samples": 92,
+          "fraction_of_printed": 0.0061333333333333335,
+          "delta_squared_error_mv2": -29.505134244282026,
+          "delta_mse_mv2": -0.0019670089496188017,
+          "delta_nrmse_contribution": -0.01979437316403733
+        },
+        "both_missing": {
+          "samples": 30,
+          "fraction_of_printed": 0.002,
+          "delta_squared_error_mv2": 0.0,
+          "delta_mse_mv2": 0.0,
+          "delta_nrmse_contribution": 0.0
+        }
+      },
+      "common_support": {
+        "samples": 14741,
+        "direct_rmse_mv": 0.20272919504413398,
+        "candidate_rmse_mv": 0.13502033772711428
+      },
+      "candidate_preserves_all_direct_samples": false,
+      "single_scalar_superiority_claim_supported": false,
+      "reference_used_for_evaluation_only": true,
+      "warning": "Zero-missing error can improve by dropping erroneous predictions. Common-support error is conditional on retained samples, not full-image success.",
+      "image_id": "pm-58-photos_scans",
+      "patient_id": "ptbxl-patient-15654.0",
+      "condition": "photos_scans"
+    },
+    {
+      "schema": "paired-support-error-audit-v1",
+      "printed_samples": 15000,
+      "direct_coverage": 0.9268666666666666,
+      "candidate_coverage": 0.9957333333333334,
+      "direct_nrmse_zero_missing": 1.2361667311035083,
+      "candidate_nrmse_zero_missing": 1.2732609967460033,
+      "delta_nrmse": 0.03709426564249507,
+      "direct_all_printed_rmse_mv": 0.30862881048442903,
+      "candidate_all_printed_rmse_mv": 0.3178899876322859,
+      "partitions": {
+        "common": {
+          "samples": 13846,
+          "fraction_of_printed": 0.9230666666666667,
+          "delta_squared_error_mv2": -27.045509513950762,
+          "delta_mse_mv2": -0.0018030339675967175,
+          "delta_nrmse_contribution": -0.0115268432849439
+        },
+        "dropped": {
+          "samples": 57,
+          "fraction_of_printed": 0.0038,
+          "delta_squared_error_mv2": -0.16410370693611895,
+          "delta_mse_mv2": -1.0940247129074597e-05,
+          "delta_nrmse_contribution": -6.9941285866893e-05
+        },
+        "gained": {
+          "samples": 1090,
+          "fraction_of_printed": 0.07266666666666667,
+          "delta_squared_error_mv2": 114.2441368582058,
+          "delta_mse_mv2": 0.007616275790547054,
+          "delta_nrmse_contribution": 0.048691050213306
+        },
+        "both_missing": {
+          "samples": 7,
+          "fraction_of_printed": 0.00046666666666666666,
+          "delta_squared_error_mv2": 0.0,
+          "delta_mse_mv2": 0.0,
+          "delta_nrmse_contribution": 0.0
+        }
+      },
+      "common_support": {
+        "samples": 13846,
+        "direct_rmse_mv": 0.3012423237478423,
+        "candidate_rmse_mv": 0.29798259867875215
+      },
+      "candidate_preserves_all_direct_samples": false,
+      "single_scalar_superiority_claim_supported": false,
+      "reference_used_for_evaluation_only": true,
+      "warning": "Zero-missing error can improve by dropping erroneous predictions. Common-support error is conditional on retained samples, not full-image success.",
+      "image_id": "pm-58-photos_samsung",
+      "patient_id": "ptbxl-patient-15654.0",
+      "condition": "photos_samsung"
+    },
+    {
+      "schema": "paired-support-error-audit-v1",
+      "printed_samples": 15000,
+      "direct_coverage": 0.9962,
+      "candidate_coverage": 0.0,
+      "direct_nrmse_zero_missing": 1.3373790269348615,
+      "candidate_nrmse_zero_missing": 1.0,
+      "delta_nrmse": -0.33737902693486155,
+      "direct_all_printed_rmse_mv": 0.33389808014107464,
+      "candidate_all_printed_rmse_mv": 0.24966600598361074,
+      "partitions": {
+        "common": {
+          "samples": 0,
+          "fraction_of_printed": 0.0,
+          "delta_squared_error_mv2": 0.0,
+          "delta_mse_mv2": 0.0,
+          "delta_nrmse_contribution": 0.0
+        },
+        "dropped": {
+          "samples": 14943,
+          "fraction_of_printed": 0.9962,
+          "delta_squared_error_mv2": -737.3222006713073,
+          "delta_mse_mv2": -0.04915481337808716,
+          "delta_nrmse_contribution": -0.3373790269348615
+        },
+        "gained": {
+          "samples": 0,
+          "fraction_of_printed": 0.0,
+          "delta_squared_error_mv2": 0.0,
+          "delta_mse_mv2": 0.0,
+          "delta_nrmse_contribution": 0.0
+        },
+        "both_missing": {
+          "samples": 57,
+          "fraction_of_printed": 0.0038,
+          "delta_squared_error_mv2": 0.0,
+          "delta_mse_mv2": 0.0,
+          "delta_nrmse_contribution": 0.0
+        }
+      },
+      "common_support": null,
+      "candidate_preserves_all_direct_samples": false,
+      "single_scalar_superiority_claim_supported": false,
+      "reference_used_for_evaluation_only": true,
+      "warning": "Zero-missing error can improve by dropping erroneous predictions. Common-support error is conditional on retained samples, not full-image success.",
+      "image_id": "pm-58-photos_bents",
+      "patient_id": "ptbxl-patient-15654.0",
+      "condition": "photos_bents"
+    },
+    {
+      "schema": "paired-support-error-audit-v1",
+      "printed_samples": 18750,
+      "direct_coverage": 0.79728,
+      "candidate_coverage": 0.79952,
+      "direct_nrmse_zero_missing": 1.2486901008589442,
+      "candidate_nrmse_zero_missing": 1.2250336931982313,
+      "delta_nrmse": -0.023656407660712864,
+      "direct_all_printed_rmse_mv": 0.16531787925737945,
+      "candidate_all_printed_rmse_mv": 0.16218593551679328,
+      "partitions": {
+        "common": {
+          "samples": 14942,
+          "fraction_of_printed": 0.7969066666666667,
+          "delta_squared_error_mv2": -18.95205781011421,
+          "delta_mse_mv2": -0.0010107764165394244,
+          "delta_nrmse_contribution": -0.023311680422954704
+        },
+        "dropped": {
+          "samples": 7,
+          "fraction_of_printed": 0.0003733333333333333,
+          "delta_squared_error_mv2": -0.004662824678799134,
+          "delta_mse_mv2": -2.4868398286928717e-07,
+          "delta_nrmse_contribution": -5.73543410797441e-06
+        },
+        "gained": {
+          "samples": 49,
+          "fraction_of_printed": 0.0026133333333333334,
+          "delta_squared_error_mv2": -0.2755954158331905,
+          "delta_mse_mv2": -1.4698422177770162e-05,
+          "delta_nrmse_contribution": -0.0003389918036502619
+        },
+        "both_missing": {
+          "samples": 3752,
+          "fraction_of_printed": 0.20010666666666665,
+          "delta_squared_error_mv2": 0.0,
+          "delta_mse_mv2": 0.0,
+          "delta_nrmse_contribution": 0.0
+        }
+      },
+      "common_support": {
+        "samples": 14942,
+        "direct_rmse_mv": 0.18087132822550825,
+        "candidate_rmse_mv": 0.17733037661501916
+      },
+      "candidate_preserves_all_direct_samples": false,
+      "single_scalar_superiority_claim_supported": false,
+      "reference_used_for_evaluation_only": true,
+      "warning": "Zero-missing error can improve by dropping erroneous predictions. Common-support error is conditional on retained samples, not full-image success.",
+      "image_id": "pm-80-photos_scans",
+      "patient_id": "ptbxl-patient-19108.0",
+      "condition": "photos_scans"
+    },
+    {
+      "schema": "paired-support-error-audit-v1",
+      "printed_samples": 18750,
+      "direct_coverage": 0.7951466666666667,
+      "candidate_coverage": 0.99936,
+      "direct_nrmse_zero_missing": 0.8263493625275169,
+      "candidate_nrmse_zero_missing": 0.7352005224136542,
+      "delta_nrmse": -0.0911488401138627,
+      "direct_all_printed_rmse_mv": 0.10940290472773471,
+      "candidate_all_printed_rmse_mv": 0.09733543263515669,
+      "partitions": {
+        "common": {
+          "samples": 14905,
+          "fraction_of_printed": 0.7949333333333334,
+          "delta_squared_error_mv2": -30.318399369365395,
+          "delta_mse_mv2": -0.0016169812996994876,
+          "delta_nrmse_contribution": -0.0590770528186579
+        },
+        "dropped": {
+          "samples": 4,
+          "fraction_of_printed": 0.00021333333333333333,
+          "delta_squared_error_mv2": 0.018532413137052207,
+          "delta_mse_mv2": 9.883953673094512e-07,
+          "delta_nrmse_contribution": 3.6111416582930885e-05
+        },
+        "gained": {
+          "samples": 3833,
+          "fraction_of_printed": 0.20442666666666667,
+          "delta_squared_error_mv2": -16.477803979884268,
+          "delta_mse_mv2": -0.0008788162122604943,
+          "delta_nrmse_contribution": -0.03210789871178777
+        },
+        "both_missing": {
+          "samples": 8,
+          "fraction_of_printed": 0.00042666666666666667,
+          "delta_squared_error_mv2": 0.0,
+          "delta_mse_mv2": 0.0,
+          "delta_nrmse_contribution": 0.0
+        }
+      },
+      "common_support": {
+        "samples": 14905,
+        "direct_rmse_mv": 0.11429785554061296,
+        "candidate_rmse_mv": 0.10502328534290711
+      },
+      "candidate_preserves_all_direct_samples": false,
+      "single_scalar_superiority_claim_supported": false,
+      "reference_used_for_evaluation_only": true,
+      "warning": "Zero-missing error can improve by dropping erroneous predictions. Common-support error is conditional on retained samples, not full-image success.",
+      "image_id": "pm-80-photos_samsung",
+      "patient_id": "ptbxl-patient-19108.0",
+      "condition": "photos_samsung"
+    },
+    {
+      "schema": "paired-support-error-audit-v1",
+      "printed_samples": 18750,
+      "direct_coverage": 0.7798933333333333,
+      "candidate_coverage": 0.0,
+      "direct_nrmse_zero_missing": 1.8820206711849747,
+      "candidate_nrmse_zero_missing": 1.0,
+      "delta_nrmse": -0.8820206711849747,
+      "direct_all_printed_rmse_mv": 0.2491664391868165,
+      "candidate_all_printed_rmse_mv": 0.13239304063006604,
+      "partitions": {
+        "common": {
+          "samples": 0,
+          "fraction_of_printed": 0.0,
+          "delta_squared_error_mv2": 0.0,
+          "delta_mse_mv2": 0.0,
+          "delta_nrmse_contribution": 0.0
+        },
+        "dropped": {
+          "samples": 14623,
+          "fraction_of_printed": 0.7798933333333333,
+          "delta_squared_error_mv2": -835.42494768306,
+          "delta_mse_mv2": -0.0445559972097632,
+          "delta_nrmse_contribution": -0.8820206711849744
+        },
+        "gained": {
+          "samples": 0,
+          "fraction_of_printed": 0.0,
+          "delta_squared_error_mv2": 0.0,
+          "delta_mse_mv2": 0.0,
+          "delta_nrmse_contribution": 0.0
+        },
+        "both_missing": {
+          "samples": 4127,
+          "fraction_of_printed": 0.22010666666666667,
+          "delta_squared_error_mv2": 0.0,
+          "delta_mse_mv2": 0.0,
+          "delta_nrmse_contribution": 0.0
+        }
+      },
+      "common_support": null,
+      "candidate_preserves_all_direct_samples": false,
+      "single_scalar_superiority_claim_supported": false,
+      "reference_used_for_evaluation_only": true,
+      "warning": "Zero-missing error can improve by dropping erroneous predictions. Common-support error is conditional on retained samples, not full-image success.",
+      "image_id": "pm-80-photos_bents",
+      "patient_id": "ptbxl-patient-19108.0",
+      "condition": "photos_bents"
+    },
+    {
+      "schema": "paired-support-error-audit-v1",
+      "printed_samples": 30000,
+      "direct_coverage": 0.47026666666666667,
+      "candidate_coverage": 0.47186666666666666,
+      "direct_nrmse_zero_missing": 1.1235730344054946,
+      "candidate_nrmse_zero_missing": 1.1217415294245983,
+      "delta_nrmse": -0.001831504980896348,
+      "direct_all_printed_rmse_mv": 0.21258552040910003,
+      "candidate_all_printed_rmse_mv": 0.21223899069756977,
+      "partitions": {
+        "common": {
+          "samples": 14106,
+          "fraction_of_printed": 0.4702,
+          "delta_squared_error_mv2": -4.650282689565031,
+          "delta_mse_mv2": -0.00015500942298550102,
+          "delta_nrmse_contribution": -0.0019284845345007948
+        },
+        "dropped": {
+          "samples": 2,
+          "fraction_of_printed": 6.666666666666667e-05,
+          "delta_squared_error_mv2": 0.30671667319839024,
+          "delta_mse_mv2": 1.0223889106613008e-05,
+          "delta_nrmse_contribution": 0.00012719621584810718
+        },
+        "gained": {
+          "samples": 50,
+          "fraction_of_printed": 0.0016666666666666668,
+          "delta_squared_error_mv2": -0.07286344217672355,
+          "delta_mse_mv2": -2.4287814058907853e-06,
+          "delta_nrmse_contribution": -3.021666224369848e-05
+        },
+        "both_missing": {
+          "samples": 15842,
+          "fraction_of_printed": 0.5280666666666667,
+          "delta_squared_error_mv2": 0.0,
+          "delta_mse_mv2": 0.0,
+          "delta_nrmse_contribution": 0.0
+        }
+      },
+      "common_support": {
+        "samples": 14106,
+        "direct_rmse_mv": 0.2684384953442243,
+        "candidate_rmse_mv": 0.2678237457425175
+      },
+      "candidate_preserves_all_direct_samples": false,
+      "single_scalar_superiority_claim_supported": false,
+      "reference_used_for_evaluation_only": true,
+      "warning": "Zero-missing error can improve by dropping erroneous predictions. Common-support error is conditional on retained samples, not full-image success.",
+      "image_id": "pm-99-photos_scans",
+      "patient_id": "ptbxl-patient-9810.0",
+      "condition": "photos_scans"
+    },
+    {
+      "schema": "paired-support-error-audit-v1",
+      "printed_samples": 30000,
+      "direct_coverage": 0.9432,
+      "candidate_coverage": 0.9430333333333333,
+      "direct_nrmse_zero_missing": 0.8731940797665934,
+      "candidate_nrmse_zero_missing": 0.8877261444140059,
+      "delta_nrmse": 0.014532064647412524,
+      "direct_all_printed_rmse_mv": 0.16521259604948266,
+      "candidate_all_printed_rmse_mv": 0.16796213384639452,
+      "partitions": {
+        "common": {
+          "samples": 28259,
+          "fraction_of_printed": 0.9419666666666666,
+          "delta_squared_error_mv2": 29.659514811647547,
+          "delta_mse_mv2": 0.0009886504937215849,
+          "delta_nrmse_contribution": 0.015683332873756287
+        },
+        "dropped": {
+          "samples": 37,
+          "fraction_of_printed": 0.0012333333333333332,
+          "delta_squared_error_mv2": -0.4374644100516913,
+          "delta_mse_mv2": -1.4582147001723044e-05,
+          "delta_nrmse_contribution": -0.0002313220565755093
+        },
+        "gained": {
+          "samples": 32,
+          "fraction_of_printed": 0.0010666666666666667,
+          "delta_squared_error_mv2": -1.7397550168573848,
+          "delta_mse_mv2": -5.799183389524616e-05,
+          "delta_nrmse_contribution": -0.0009199461697683176
+        },
+        "both_missing": {
+          "samples": 1672,
+          "fraction_of_printed": 0.055733333333333336,
+          "delta_squared_error_mv2": 0.0,
+          "delta_mse_mv2": 0.0,
+          "delta_nrmse_contribution": 0.0
+        }
+      },
+      "common_support": {
+        "samples": 28259,
+        "direct_rmse_mv": 0.16893045674478493,
+        "candidate_rmse_mv": 0.17200889271352804
+      },
+      "candidate_preserves_all_direct_samples": false,
+      "single_scalar_superiority_claim_supported": false,
+      "reference_used_for_evaluation_only": true,
+      "warning": "Zero-missing error can improve by dropping erroneous predictions. Common-support error is conditional on retained samples, not full-image success.",
+      "image_id": "pm-99-photos_samsung",
+      "patient_id": "ptbxl-patient-9810.0",
+      "condition": "photos_samsung"
+    },
+    {
+      "schema": "paired-support-error-audit-v1",
+      "printed_samples": 30000,
+      "direct_coverage": 0.9252666666666667,
+      "candidate_coverage": 0.9447666666666666,
+      "direct_nrmse_zero_missing": 1.5328065403074838,
+      "candidate_nrmse_zero_missing": 0.8912893771650566,
+      "delta_nrmse": -0.6415171631424271,
+      "direct_all_printed_rmse_mv": 0.2900145038013962,
+      "candidate_all_printed_rmse_mv": 0.16863631493255923,
+      "partitions": {
+        "common": {
+          "samples": 26950,
+          "fraction_of_printed": 0.8983333333333333,
+          "delta_squared_error_mv2": -1632.9871045460193,
+          "delta_mse_mv2": -0.05443290348486731,
+          "delta_nrmse_contribution": -0.6272590766537184
+        },
+        "dropped": {
+          "samples": 808,
+          "fraction_of_printed": 0.026933333333333333,
+          "delta_squared_error_mv2": 5.230232584786797,
+          "delta_mse_mv2": 0.0001743410861595599,
+          "delta_nrmse_contribution": 0.0020090243533978274
+        },
+        "gained": {
+          "samples": 1393,
+          "fraction_of_printed": 0.04643333333333333,
+          "delta_squared_error_mv2": -42.34929907286988,
+          "delta_mse_mv2": -0.001411643302428996,
+          "delta_nrmse_contribution": -0.016267110842106428
+        },
+        "both_missing": {
+          "samples": 849,
+          "fraction_of_printed": 0.0283,
+          "delta_squared_error_mv2": 0.0,
+          "delta_mse_mv2": 0.0,
+          "delta_nrmse_contribution": 0.0
+        }
+      },
+      "common_support": {
+        "samples": 26950,
+        "direct_rmse_mv": 0.3008655743849675,
+        "candidate_rmse_mv": 0.17299387365812252
+      },
+      "candidate_preserves_all_direct_samples": false,
+      "single_scalar_superiority_claim_supported": false,
+      "reference_used_for_evaluation_only": true,
+      "warning": "Zero-missing error can improve by dropping erroneous predictions. Common-support error is conditional on retained samples, not full-image success.",
+      "image_id": "pm-99-photos_bents",
+      "patient_id": "ptbxl-patient-9810.0",
+      "condition": "photos_bents"
+    }
+  ]
+}

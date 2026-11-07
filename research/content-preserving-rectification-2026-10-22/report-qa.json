@@ -1,0 +1,8 @@
+{
+  "record_count": 56,
+  "decoded_embedded_images": 243,
+  "unique_html_ids": 18,
+  "bytes": 13527153,
+  "browser_layout_review": false,
+  "direct_image_visual_review": "48 native comparisons, 8 old JPEGs, affine missing-grid control, 16 capture scenarios"
+}

@@ -1,0 +1,449 @@
+{
+  "schema": "m3-independent-structural-controls-v1",
+  "audited_commit": "f4f6caef3b59b5830e93284cccadbc6855fc701e",
+  "runtime": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "opencv": "4.11.0"
+  },
+  "scope": "Input-only topology/refinement controls, no image detector, no full-frame RGB sampler, no competitor execution",
+  "source_sha256": {
+    "lattice.py": "48a3e69fe00c5cfd5319c326ee83a97cf368fe4f879c82f62f7f7450e5a689b6",
+    "robust_refinement.py": "0b2d2f15ba3f86e63d7532a47d6f87bccded1b5f65ac56499f2d6ed765241ced",
+    "cell_mesh.py": "566253fba786de84475f00d593b80876b3869499d3703c18a71c9a5396cf37d6"
+  },
+  "missing_every_second_grid_row_column": {
+    "interpretation": "Deliberate coherent detection omission and pitch ambiguity",
+    "true_major_grid_pitch_mm": 5.0,
+    "retained_observation_pitch_mm": 10.0,
+    "assumed_inferred_step_mm": 5.0,
+    "topology": {
+      "status": "accepted",
+      "input_points": 36,
+      "reason": null,
+      "oracle_correspondence": false,
+      "global_injectivity_checked": false,
+      "component_points": 36,
+      "components": 1,
+      "cycle_conflicts": 0,
+      "directed_edges": 120,
+      "conflict_fraction": 0.0,
+      "invalid_cells": 0,
+      "spacing_px": [
+        100.0,
+        100.0
+      ],
+      "orientation_radians": -3.0616169978683824e-17,
+      "retained_point_fraction": 1.0
+    },
+    "query_px": [
+      [
+        260.0,
+        260.0
+      ]
+    ],
+    "truth_mm": [
+      [
+        25.0,
+        25.0
+      ]
+    ],
+    "arms": {
+      "0.0": {
+        "prediction_mm": [
+          [
+            12.5,
+            12.5
+          ]
+        ],
+        "error_mm": 17.67766952966369,
+        "refinement": {
+          "status": "unchanged",
+          "reason": "refinement disabled",
+          "input_points": 36,
+          "method": "sparse robust projective-residual curvature refinement",
+          "fixed_lattice_ids": true,
+          "gold_used": false,
+          "score_weights": "bounded rank, not calibrated probability or covariance",
+          "physical_accuracy_certified": false,
+          "global_injectivity_checked": false,
+          "strength": 0.0,
+          "iteration_limit": 5,
+          "max_shift_fraction": 0.2,
+          "max_points": 8192,
+          "iterations": 0,
+          "constraints": 0,
+          "cells_guarded": 0,
+          "maximum_shift_px": 0.0,
+          "maximum_shift_fraction": 0.0,
+          "converged": null,
+          "iteration_limit_reached": false,
+          "convergence_scope": "IRLS residual iterates before shift cap and cell guard",
+          "crease_guard_enabled": true,
+          "crease_guard_triggered": false,
+          "budget_exhausted": false
+        }
+      },
+      "0.15": {
+        "prediction_mm": [
+          [
+            12.5,
+            12.5
+          ]
+        ],
+        "error_mm": 17.67766952966369,
+        "refinement": {
+          "status": "unchanged",
+          "reason": "projective observations already consistent",
+          "input_points": 36,
+          "method": "sparse robust projective-residual curvature refinement",
+          "fixed_lattice_ids": true,
+          "gold_used": false,
+          "score_weights": "bounded rank, not calibrated probability or covariance",
+          "physical_accuracy_certified": false,
+          "global_injectivity_checked": false,
+          "strength": 0.15,
+          "iteration_limit": 5,
+          "max_shift_fraction": 0.2,
+          "max_points": 8192,
+          "iterations": 0,
+          "constraints": 73,
+          "cells_guarded": 0,
+          "maximum_shift_px": 0.0,
+          "maximum_shift_fraction": 0.0,
+          "converged": null,
+          "iteration_limit_reached": false,
+          "convergence_scope": "IRLS residual iterates before shift cap and cell guard",
+          "crease_guard_enabled": true,
+          "crease_guard_triggered": false,
+          "budget_exhausted": false
+        }
+      },
+      "1.0": {
+        "prediction_mm": [
+          [
+            12.5,
+            12.5
+          ]
+        ],
+        "error_mm": 17.67766952966369,
+        "refinement": {
+          "status": "unchanged",
+          "reason": "projective observations already consistent",
+          "input_points": 36,
+          "method": "sparse robust projective-residual curvature refinement",
+          "fixed_lattice_ids": true,
+          "gold_used": false,
+          "score_weights": "bounded rank, not calibrated probability or covariance",
+          "physical_accuracy_certified": false,
+          "global_injectivity_checked": false,
+          "strength": 1.0,
+          "iteration_limit": 5,
+          "max_shift_fraction": 0.2,
+          "max_points": 8192,
+          "iterations": 0,
+          "constraints": 73,
+          "cells_guarded": 0,
+          "maximum_shift_px": 0.0,
+          "maximum_shift_fraction": 0.0,
+          "converged": null,
+          "iteration_limit_reached": false,
+          "convergence_scope": "IRLS residual iterates before shift cap and cell guard",
+          "crease_guard_enabled": true,
+          "crease_guard_triggered": false,
+          "budget_exhausted": false
+        }
+      }
+    },
+    "inference": "Low localization noise and exact projective residual do not identify the missing integer lattice steps"
+  },
+  "two_visible_regions_same_sheet": {
+    "observed_points": 98,
+    "topology": {
+      "status": "accepted",
+      "input_points": 98,
+      "reason": null,
+      "oracle_correspondence": false,
+      "global_injectivity_checked": false,
+      "component_points": 49,
+      "components": 2,
+      "cycle_conflicts": 0,
+      "directed_edges": 168,
+      "conflict_fraction": 0.0,
+      "invalid_cells": 0,
+      "spacing_px": [
+        40.0,
+        40.0
+      ],
+      "orientation_radians": -3.0616169978683824e-17,
+      "retained_point_fraction": 0.5
+    },
+    "retained_cells": 36,
+    "inference": "A full visible region is discarded from coordinate inference because only the largest connected component is retained. This does not mean original RGB is erased."
+  },
+  "perfect_projective_points": [
+    {
+      "projective_coefficient_per_px": 0.0,
+      "denominator_min": 1.0,
+      "denominator_max": 1.0,
+      "topology": {
+        "status": "accepted",
+        "input_points": 192,
+        "reason": null,
+        "oracle_correspondence": false,
+        "global_injectivity_checked": false,
+        "component_points": 192,
+        "components": 1,
+        "cycle_conflicts": 0,
+        "directed_edges": 712,
+        "conflict_fraction": 0.0,
+        "invalid_cells": 0,
+        "spacing_px": [
+          30.0,
+          30.0
+        ],
+        "orientation_radians": -3.096017188855668e-17,
+        "retained_point_fraction": 1.0
+      },
+      "supported_cells": 165
+    },
+    {
+      "projective_coefficient_per_px": 0.001,
+      "denominator_min": 1.0,
+      "denominator_max": 1.45,
+      "topology": {
+        "status": "accepted",
+        "input_points": 192,
+        "reason": null,
+        "oracle_correspondence": false,
+        "global_injectivity_checked": false,
+        "component_points": 192,
+        "components": 1,
+        "cycle_conflicts": 0,
+        "directed_edges": 702,
+        "conflict_fraction": 0.0,
+        "invalid_cells": 0,
+        "spacing_px": [
+          19.757379010003497,
+          24.320515914772976
+        ],
+        "orientation_radians": -0.11890747352365125,
+        "retained_point_fraction": 1.0
+      },
+      "supported_cells": 165
+    },
+    {
+      "projective_coefficient_per_px": 0.002,
+      "denominator_min": 1.0,
+      "denominator_max": 1.9,
+      "topology": {
+        "status": "rejected",
+        "input_points": 192,
+        "reason": "no valid cells or excessive cycle conflicts",
+        "oracle_correspondence": false,
+        "global_injectivity_checked": false,
+        "component_points": 138,
+        "components": 47,
+        "cycle_conflicts": 17,
+        "directed_edges": 483,
+        "conflict_fraction": 0.035196687370600416,
+        "invalid_cells": 4,
+        "spacing_px": [
+          14.00580377710557,
+          19.985190224465022
+        ],
+        "orientation_radians": -0.2632960721372607,
+        "retained_point_fraction": 0.71875
+      },
+      "supported_cells": 110
+    },
+    {
+      "projective_coefficient_per_px": 0.004,
+      "denominator_min": 1.0,
+      "denominator_max": 2.8,
+      "topology": {
+        "status": "rejected",
+        "input_points": 192,
+        "reason": "no valid cells or excessive cycle conflicts",
+        "oracle_correspondence": false,
+        "global_injectivity_checked": false,
+        "component_points": 116,
+        "components": 72,
+        "cycle_conflicts": 27,
+        "directed_edges": 357,
+        "conflict_fraction": 0.07563025210084033,
+        "invalid_cells": 0,
+        "spacing_px": [
+          8.820003244632247,
+          10.927924875665617
+        ],
+        "orientation_radians": -0.4767246331338547,
+        "retained_point_fraction": 0.6041666666666666
+      },
+      "supported_cells": 88
+    },
+    {
+      "projective_coefficient_per_px": 0.008,
+      "denominator_min": 1.0,
+      "denominator_max": 4.6,
+      "topology": {
+        "status": "rejected",
+        "input_points": 192,
+        "reason": "no valid cells or excessive cycle conflicts",
+        "oracle_correspondence": false,
+        "global_injectivity_checked": false,
+        "component_points": 78,
+        "components": 87,
+        "cycle_conflicts": 24,
+        "directed_edges": 212,
+        "conflict_fraction": 0.11320754716981132,
+        "invalid_cells": 0,
+        "spacing_px": [
+          5.003368843561784,
+          5.278619140024353
+        ],
+        "orientation_radians": -0.6310700051238964,
+        "retained_point_fraction": 0.40625
+      },
+      "supported_cells": 54
+    }
+  ],
+  "flat_projective_geometry_oracle_ids": {
+    "scope": "Geometry-only interpolation with exact known IDs and correspondences, not native end-to-end performance",
+    "inference": "Exact anchors do not imply exact projective interior under piecewise affine interpolation. Shared edges provide C0 continuity, not C1 continuity.",
+    "arms": [
+      {
+        "projective_coefficient_per_mm": 0.0,
+        "canonical_grid_step_mm": 5.0,
+        "queries": 4096,
+        "piecewise_affine_rmse_mm": 4.6940338910050754e-15,
+        "piecewise_affine_p95_mm": 7.944109290391274e-15,
+        "piecewise_affine_max_mm": 2.0097183471152322e-14,
+        "exact_inverse_homography_max_mm": 1.0048591735576161e-14,
+        "homography_fitted_same_anchors_rmse_mm": 1.3453393456869653e-14,
+        "homography_fitted_same_anchors_max_mm": 2.0097183471152322e-14,
+        "probe_physical_mm": [
+          [
+            2.5,
+            2.5
+          ]
+        ],
+        "probe_piecewise_affine_mm": [
+          [
+            2.5,
+            2.5
+          ]
+        ],
+        "probe_error_mm": 0.0,
+        "straight_segment_diagonal_kink_degrees": 0.0
+      },
+      {
+        "projective_coefficient_per_mm": 0.01,
+        "canonical_grid_step_mm": 5.0,
+        "queries": 4096,
+        "piecewise_affine_rmse_mm": 0.03974189095552249,
+        "piecewise_affine_p95_mm": 0.06300591148741158,
+        "piecewise_affine_max_mm": 0.08445701396416139,
+        "exact_inverse_homography_max_mm": 3.552713678800501e-14,
+        "homography_fitted_same_anchors_rmse_mm": 6.269241972114952e-07,
+        "homography_fitted_same_anchors_max_mm": 1.735044741974261e-06,
+        "probe_physical_mm": [
+          [
+            2.5,
+            2.5
+          ]
+        ],
+        "probe_piecewise_affine_mm": [
+          [
+            2.5609756097560976,
+            2.560975609756097
+          ]
+        ],
+        "probe_error_mm": 0.08623253429104215,
+        "straight_segment_diagonal_kink_degrees": 1.1188892870658895
+      },
+      {
+        "projective_coefficient_per_mm": 0.02,
+        "canonical_grid_step_mm": 5.0,
+        "queries": 4096,
+        "piecewise_affine_rmse_mm": 0.06661956090973133,
+        "piecewise_affine_p95_mm": 0.11503310931512443,
+        "piecewise_affine_max_mm": 0.16524896432790487,
+        "exact_inverse_homography_max_mm": 5.123796534383003e-14,
+        "homography_fitted_same_anchors_rmse_mm": 7.207803602416171e-07,
+        "homography_fitted_same_anchors_max_mm": 1.9712825203757826e-06,
+        "probe_physical_mm": [
+          [
+            2.5,
+            2.5
+          ]
+        ],
+        "probe_piecewise_affine_mm": [
+          [
+            2.6190476190476186,
+            2.6190476190476186
+          ]
+        ],
+        "probe_error_mm": 0.16835875742536788,
+        "straight_segment_diagonal_kink_degrees": 2.189577756977
+      },
+      {
+        "projective_coefficient_per_mm": 0.04,
+        "canonical_grid_step_mm": 5.0,
+        "queries": 4096,
+        "piecewise_affine_rmse_mm": 0.10543521020596452,
+        "piecewise_affine_p95_mm": 0.2022890138988228,
+        "piecewise_affine_max_mm": 0.316804418245822,
+        "exact_inverse_homography_max_mm": 6.703246762680666e-14,
+        "homography_fitted_same_anchors_rmse_mm": 5.902724250037025e-07,
+        "homography_fitted_same_anchors_max_mm": 1.5293722609561487e-06,
+        "probe_physical_mm": [
+          [
+            2.5,
+            2.5
+          ]
+        ],
+        "probe_piecewise_affine_mm": [
+          [
+            2.727272727272727,
+            2.727272727272727
+          ]
+        ],
+        "probe_error_mm": 0.32141217326661226,
+        "straight_segment_diagonal_kink_degrees": 4.215183309449353
+      },
+      {
+        "projective_coefficient_per_mm": 0.08,
+        "canonical_grid_step_mm": 5.0,
+        "queries": 4096,
+        "piecewise_affine_rmse_mm": 0.1590337855745048,
+        "piecewise_affine_p95_mm": 0.33221658846868257,
+        "piecewise_affine_max_mm": 0.5851221414737636,
+        "exact_inverse_homography_max_mm": 1.399606873320082e-13,
+        "homography_fitted_same_anchors_rmse_mm": 1.2055433505749912e-06,
+        "homography_fitted_same_anchors_max_mm": 2.9469227521213252e-06,
+        "probe_physical_mm": [
+          [
+            2.5,
+            2.5
+          ]
+        ],
+        "probe_piecewise_affine_mm": [
+          [
+            2.916666666666667,
+            2.916666666666667
+          ]
+        ],
+        "probe_error_mm": 0.5892556509887901,
+        "straight_segment_diagonal_kink_degrees": 7.943471810140657
+      }
+    ]
+  },
+  "claim_limits": [
+    "Not an estimate of how often a trained detector makes these omissions",
+    "The scale control violates the adjacent-major-grid assumption and tests whether the pipeline detects that violation",
+    "Perspective controls probe the documented moderate-perspective assumption, not a failure of projective geometry itself",
+    "No clinical or SOTA claim"
+  ]
+}

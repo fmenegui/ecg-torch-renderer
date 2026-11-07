@@ -1,0 +1,165 @@
+{
+  "selected_radius": 0.75,
+  "candidates": [
+    {
+      "radius": 0.25,
+      "metrics": {
+        "offline": {
+          "good_coverage": 0.5025227864583334,
+          "wrong_covered_fraction": 0.015950520833333332,
+          "covered_fraction": 0.5184733072916667
+        },
+        "torch-cached": {
+          "good_coverage": 0.8907809787326388,
+          "wrong_covered_fraction": 0.00790744357638889,
+          "covered_fraction": 0.8986884223090277
+        },
+        "backend_balanced": {
+          "good_coverage": 0.6966518825954862,
+          "wrong_covered_fraction": 0.011928982204861112,
+          "covered_fraction": 0.7085808648003472
+        }
+      },
+      "eligible": true
+    },
+    {
+      "radius": 0.5,
+      "metrics": {
+        "offline": {
+          "good_coverage": 0.52532958984375,
+          "wrong_covered_fraction": 0.01971435546875,
+          "covered_fraction": 0.5450439453125
+        },
+        "torch-cached": {
+          "good_coverage": 0.897365993923611,
+          "wrong_covered_fraction": 0.008131239149305556,
+          "covered_fraction": 0.9054972330729166
+        },
+        "backend_balanced": {
+          "good_coverage": 0.7113477918836806,
+          "wrong_covered_fraction": 0.013922797309027778,
+          "covered_fraction": 0.7252705891927083
+        }
+      },
+      "eligible": true
+    },
+    {
+      "radius": 0.75,
+      "metrics": {
+        "offline": {
+          "good_coverage": 0.5421142578125,
+          "wrong_covered_fraction": 0.02288818359375,
+          "covered_fraction": 0.56500244140625
+        },
+        "torch-cached": {
+          "good_coverage": 0.902004665798611,
+          "wrong_covered_fraction": 0.008416069878472222,
+          "covered_fraction": 0.9104207356770833
+        },
+        "backend_balanced": {
+          "good_coverage": 0.7220594618055556,
+          "wrong_covered_fraction": 0.015652126736111112,
+          "covered_fraction": 0.7377115885416666
+        }
+      },
+      "eligible": true
+    },
+    {
+      "radius": 1.0,
+      "metrics": {
+        "offline": {
+          "good_coverage": 0.5518798828125,
+          "wrong_covered_fraction": 0.025349934895833332,
+          "covered_fraction": 0.5772298177083334
+        },
+        "torch-cached": {
+          "good_coverage": 0.904079861111111,
+          "wrong_covered_fraction": 0.008619520399305556,
+          "covered_fraction": 0.9126993815104166
+        },
+        "backend_balanced": {
+          "good_coverage": 0.7279798719618056,
+          "wrong_covered_fraction": 0.016984727647569444,
+          "covered_fraction": 0.744964599609375
+        }
+      },
+      "eligible": false
+    },
+    {
+      "radius": 1.25,
+      "metrics": {
+        "offline": {
+          "good_coverage": 0.5568440755208334,
+          "wrong_covered_fraction": 0.02679443359375,
+          "covered_fraction": 0.5836385091145834
+        },
+        "torch-cached": {
+          "good_coverage": 0.904635959201389,
+          "wrong_covered_fraction": 0.008687337239583332,
+          "covered_fraction": 0.9133232964409723
+        },
+        "backend_balanced": {
+          "good_coverage": 0.7307400173611112,
+          "wrong_covered_fraction": 0.017740885416666664,
+          "covered_fraction": 0.7484809027777779
+        }
+      },
+      "eligible": false
+    }
+  ],
+  "baseline": {
+    "offline": {
+      "good_coverage": 0.49481201171875,
+      "wrong_covered_fraction": 0.014994303385416666,
+      "covered_fraction": 0.5098063151041666
+    },
+    "torch-cached": {
+      "good_coverage": 0.8882853190104166,
+      "wrong_covered_fraction": 0.00783962673611111,
+      "covered_fraction": 0.8961249457465278
+    },
+    "backend_balanced": {
+      "good_coverage": 0.6915486653645833,
+      "wrong_covered_fraction": 0.011416965060763888,
+      "covered_fraction": 0.7029656304253472
+    }
+  },
+  "selection_rule": "Maximize correct coverage, wrong coverage <= baseline +0.005 overall and +0.01 per backend",
+  "engineering_error_threshold_mm": 0.5,
+  "clinical_acceptance_claim": false,
+  "source_hashes": {
+    "ecg_gpu/digitization/complete_rectifier.py": "0c3e6025332eaf582a4f3d57218cbf7ed0bdabad1efc7e7503cce3e9646de2da",
+    "ecg_gpu/digitization/frame_mesh.py": "89dc2e121bbdfca6c5b8eaa48a0f021375a2bd5c1e802c8c697f929ade733205",
+    "ecg_gpu/digitization/cell_mesh.py": "566253fba786de84475f00d593b80876b3869499d3703c18a71c9a5396cf37d6",
+    "examples/rectify_denoising_grid.py": "5d181ddd0f2815d9b2be13a5b48abc54b9cf82ea1e75779429480b285f40964f",
+    "examples/rectify_field_image.py": "c11641b35ed91dd7b6eace0cde9f8ec8ae50e41c2649732ae9d2f82d70219133",
+    "examples/evaluate_complete_rectification.py": "7cd50df945715138b24204b107b089aac46f148e5e4669999dc02a6c92d3f761",
+    "pyproject.toml": "926f67e9f2e24db160c6ce5ece652541cdf56003294403298e9d6bb2e83fe04d"
+  },
+  "validation_sha256": "f3ad26d9126f2e1bde2080650cc5a0f689cde6cf9a3925d1b79f44849bab542b",
+  "input_manifest_sha256": "f722450f3f8d50cdba1d8dda53f1b7443324aaeb7b82b86dedeef6814bbe2aa1",
+  "cached_topologies_aggregate_sha256": "dce9a5865216a2431ffabd2b4cb92e7cc116dd557f10b9e7631cf0d61db7691c",
+  "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+  "detector_inference": "Reused frozen cached detections, no network re-execution or training",
+  "test_previously_inspected": true,
+  "new_independent_test": false,
+  "fallback": "Original RGB retained, existing observed-cell coordinate field measured separately",
+  "metadata_amendment": {
+    "path": "examples/rectify_denoising_grid.py",
+    "previous_sha256": "6df6b6b5a8029282be4d910de7e5de32591a99f920d990ff7cc4f47d46557def",
+    "current_sha256": "1db8d6fd1a0343a87c44991513751af9ca84828ac6dd95353454ce6235cf9ca1",
+    "reason": "Correct legacy sampled-map-roundtrip metadata to false for the new full-image CLI. No geometry, sampling, eligibility or selection change.",
+    "geometry_sources_changed": false,
+    "selection_recomputed": false,
+    "test_already_retrospective": true
+  },
+  "coordinate_archive_amendment": {
+    "path": "examples/rectify_denoising_grid.py",
+    "previous_sha256": "1db8d6fd1a0343a87c44991513751af9ca84828ac6dd95353454ce6235cf9ca1",
+    "current_sha256": "5d181ddd0f2815d9b2be13a5b48abc54b9cf82ea1e75779429480b285f40964f",
+    "reason": "The output helper now saves its own complete partial-coordinate archive, independently of model-specific points.npz formats. Sampling, fitting, eligibility and chosen radius unchanged.",
+    "geometry_sources_changed": false,
+    "selection_recomputed": false,
+    "test_already_retrospective": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "initial_deviation": "OpenCV was1thread but OpenBLAS default permitted9; initial timing nonconforming; files preserved",
+  "correction": "Exact same source and protocol rerun with OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1; OpenCV1; shared host with root model inference",
+  "all_1960_quality_records_exactly_equal": true,
+  "all_npz_file_hashes_equal": {
+    "affine-isotropic.npz": true,
+    "affine-anisotropic-shear.npz": true
+  },
+  "initial_results_sha256": "2cd2dd172a482863dca1ae756e72e1df720265746a315408d4725dac2131291e",
+  "final_results_sha256": "92084bca13acc26cd20eaff29d25cf347a642ad48d96ccadeabb0bbe05bfaee2",
+  "final_wall_seconds": 8.750402343999667
+}

@@ -1,0 +1,19 @@
+{
+  "schema": "original-gpu-envelope-continuation-v1",
+  "budget_usd": 0.45,
+  "prior_gpu_time_cost_upper_bound_usd": 0.2782,
+  "continuation_maximum_pod_seconds": 1020,
+  "continuation_maximum_gpu_price_per_hour": 0.6,
+  "continuation_gpu_time_cost_bound_usd": 0.17,
+  "combined_gpu_time_cost_bound_usd": 0.4482,
+  "not_an_account_billing_audit": true,
+  "prior_bounds": {
+    "recovery_start_utc": "2026-10-30T18:20:58.240825+00:00",
+    "recovery_absence_confirmed_before_utc": "2026-10-30T18:21:35+00:00",
+    "primary_start_utc": "2026-10-30T18:29:27.140077+00:00",
+    "primary_absence_confirmed_before_utc": "2026-10-30T18:56:39+00:00",
+    "hourly_rate_upper_bound": 0.6
+  },
+  "temporary_storage_separate": true,
+  "original_training_separate": true
+}

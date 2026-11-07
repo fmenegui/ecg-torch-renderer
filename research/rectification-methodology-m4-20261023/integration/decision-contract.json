@@ -1,0 +1,70 @@
+{
+  "schema": "m4-rectification-decision-contract-v1",
+  "date": "2026-10-23",
+  "status": "proposed_contract_not_production_integration",
+  "target": {
+    "coordinates": "Explicit chart coordinates, with units and separate x/y scale. Nominal printed ECG units and current physical dimensions of a stretched photocopy are different targets.",
+    "image": "Transport observed colour from the original capture with one composed inverse map. Geometry confidence is metadata, never an opacity or erasure mask.",
+    "non_goals": ["invent unseen waveform", "infer missing diagnoses", "make a dense metric claim from a visually straight grid"]
+  },
+  "mandatory_outputs": [
+    "original capture and digest",
+    "transformation convention, chart domains and model assumptions",
+    "explicit surviving scale, axis, reflection and lattice-phase hypotheses",
+    "provenance of observed points, lines, labels and physical calibrators",
+    "per-location chart ID, visibility and geometry support kind",
+    "coordinate validity separately from RGB footprint and image alpha",
+    "numerical guard results separately from calibrated physical error evidence",
+    "explicit full, partial, ambiguous or rejected decision with reasons"
+  ],
+  "evidence_dimensions": {
+    "scale_x": {"states": ["resolved_under_assumptions", "ambiguous", "unsupported"], "retain_candidates": true},
+    "scale_y": {"states": ["resolved_under_assumptions", "ambiguous", "unsupported"], "retain_candidates": true},
+    "orientation_and_reflection": {"states": ["resolved_under_assumptions", "ambiguous", "unsupported"], "square_grid_alone": "retain the D4 equivalence class"},
+    "integer_identity": {"states": ["resolved_under_assumptions", "ambiguous", "unsupported"], "disconnected_components": "keep independent lattice phase and origin until supported by observed bridges or explicit additional evidence"},
+    "chart_attachment": {"states": ["supported", "ambiguous", "unsupported"], "overlap": "a single global inverse is not assumed when multiple material points share a source pixel"},
+    "physical_error": {"states": ["calibrated_in_declared_domain", "uncalibrated", "unavailable"], "warning": "Cross-validation, candidate agreement, cycle consistency and positive Jacobians do not certify physical truth."}
+  },
+  "location_metadata": {
+    "support_kind": ["observed_anchor", "observed_line", "interpolated", "extrapolated", "unknown"],
+    "visibility": ["observed", "occluded", "outside_capture", "unknown"],
+    "separate_fields": ["chart_id", "finite_coordinates", "inverse_unique_under_model", "source_pixel_footprint", "rgb_alpha", "geometry_evidence"]
+  },
+  "metric_evidence": {
+    "resolution_record": "Every resolved_under_assumptions field must cite observed evidence/provenance, its applicability to the chart and the rival hypotheses excluded. A method-supplied Boolean is not a resolution certificate.",
+    "examples": [
+      "a physical calibrator with known dimensions visible in the capture",
+      "reliably classified major/minor grid with a supported manufacturer/print specification and skipped-line hypotheses tested",
+      "trusted printed nominal calibration metadata plus verified chart marks, with its assumptions recorded"
+    ],
+    "cannot_resolve_scale_alone": ["low reprojection residual", "closed grid cycles", "roundtrip", "high detector score", "smooth warp", "the nearest detected neighbour"],
+    "calibration_transfer": "A visible physical ruler measures current dimensions only under its declared geometric attachment to the chart. An external ruler or isolated pulse does not automatically recover nominal units on curved or stretched paper.",
+    "calibration_pulse": "Resolve each axis separately: y requires supported amplitude, gain and print rescaling; x requires supported duration, paper speed and print rescaling. One axis can remain ambiguous while the other is resolved. A pulse shape by itself is not a millimetre ruler."
+  },
+  "mode_precedence": "If physically distinct hypotheses survive, use original_with_ambiguous_coordinates. A relative view may show a named hypothesis, but must not silently select among rivals.",
+  "output_modes": [
+    {"name": "original_with_ambiguous_coordinates", "when": "More than one physically different hypothesis survives.", "metric_claim": false, "image_policy": "Keep original. Optional hypothesis previews are labelled and do not silently select a physical answer."},
+    {"name": "original_with_partial_coordinates", "when": "Only a bounded supported chart is admissible, or the full-frame map fails guards.", "metric_claim": "Only on individually qualified locations and evidence dimensions.", "image_policy": "Keep original. A support mask never whites out original pixels."},
+    {"name": "relative_rectification", "when": "A numerically admissible full-frame map exists but metric scale or semantic orientation remains unresolved.", "metric_claim": false, "image_policy": "Keep original and label view units and hypotheses. Report extrapolation separately."},
+    {"name": "metric_rectification_under_declared_evidence", "when": "Full-frame map is admissible, all required physical hypotheses are supported, contradictions are absent and validation scope is declared.", "metric_claim": "Conditional on declared evidence and validation domain, never a universal certificate.", "image_policy": "Keep original and verified rectified image. Map original RGB once. Preserve all finite footprint pixels regardless of grid confidence."},
+    {"name": "original_only", "when": "No admissible map or coordinate domain survives.", "metric_claim": false, "image_policy": "Keep original with explicit reason. No invented coordinates or signal fill."}
+  ],
+  "adoption_gates": [
+    "no silent pitch=5 mm assignment to arbitrary adjacent observations",
+    "no silent removal of disconnected visible evidence",
+    "no fold, horizon, ambiguous inverse, overlapping triangle interiors or nonincident boundary/vertex contacts inside a claimed chart",
+    "shared boundaries must be continuous, with crease models allowed to change derivatives",
+    "model selection uses observations only, with predeclared blocked validation and robust candidate family",
+    "no confidence-to-RGB-alpha coupling",
+    "single-pass original RGB sampling with explicit pixel centres, units, borders and footprint. Fixed subgrid agreement is not an antialiasing certificate under minification",
+    "resource limits yield explicit partial/rejected status rather than zero-filled success",
+    "fully decoded and verified atomic image publication",
+    "physical risk and coverage validated independently of detector training source"
+  ],
+  "limits": [
+    "This is a reviewed proposed interface, not evidence that the existing detector estimates these fields.",
+    "A falsely trusted calibrator or wrong semantic evidence can still produce wrong coordinates.",
+    "A single image cannot recover hidden texture or distinguish every geometry compatible with its observation.",
+    "Calibrated uncertainty and crease-aware chart splitting remain future implementation and validation tasks."
+  ]
+}

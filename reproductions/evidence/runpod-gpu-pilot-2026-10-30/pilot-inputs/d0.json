@@ -1,0 +1,20 @@
+{
+  "schema": "ecg-reproduction-manifest-v1",
+  "cohort_identity_verified": false,
+  "case_grouping": "source record, not asserted biological identity across records",
+  "cases": [
+    {
+      "case_id": "D0_000022_02",
+      "patient_id": "source-record:D0_000022",
+      "split": "development",
+      "image": "raw/D0_000022_02.png",
+      "image_sha256": "d6937484744c62aab24d627707aa7a056216671909e4c57d0bc9c5df3761625d",
+      "reference": "gold/D0_000022_02.npz",
+      "reference_sha256": "02c873f25e8f0d767e00e99fb7b2ce12f4be7cc976b0adcc7d03cd3308a65def",
+      "reference_unit": "mV",
+      "fs": 500,
+      "acquisition": "02",
+      "page_family": "d0"
+    }
+  ]
+}

@@ -1,0 +1,171 @@
+{
+  "date": "2026-10-23",
+  "reviewer": "m3_independent_qa",
+  "baseline_commit": "f4f6caef3b59b5830e93284cccadbc6855fc701e",
+  "protocol_approved": true,
+  "review_scope": "Independent QA of methodology and scoring, not a claim of any superiority",
+  "gates": [
+    {
+      "id": "original_fidelity",
+      "severity": "block",
+      "criterion": "Author source, pinned code and checkpoint, documented preprocessing and output, modifications named separately",
+      "status": "passed_for_scoped_retrospective_diagnostic_comparison"
+    },
+    {
+      "id": "task_separation",
+      "severity": "block",
+      "criterion": "Image-only, shared-observation and oracle tracks separated",
+      "status": "passed_for_scoped_retrospective_diagnostic_comparison"
+    },
+    {
+      "id": "fixed_domain",
+      "severity": "block",
+      "criterion": "Gold visible domain fixed before predictions and all scheduled cases retained",
+      "status": "passed_for_scoped_retrospective_diagnostic_comparison"
+    },
+    {
+      "id": "no_gold_rescue",
+      "severity": "block",
+      "criterion": "No scale/shear/affine or dense gold registration. Any discrete gauge labelled and equally applied",
+      "status": "passed_for_scoped_retrospective_diagnostic_comparison"
+    },
+    {
+      "id": "output_semantics",
+      "severity": "block",
+      "criterion": "Original fallback, partial coordinates, actual dewarp, failed and unsupported distinguished",
+      "status": "passed_for_scoped_retrospective_diagnostic_comparison"
+    },
+    {
+      "id": "authentic_dense_map",
+      "severity": "block",
+      "criterion": "Image-only output not assigned an invented dense physical map",
+      "status": "passed_for_scoped_retrospective_diagnostic_comparison"
+    },
+    {
+      "id": "sampling_information",
+      "severity": "block",
+      "criterion": "Same original observations, native and matched-budget tracks, density and interpolation documented",
+      "status": "same_input_native_outputs_passed_resampled_stroke_fidelity_counterexample_found"
+    },
+    {
+      "id": "metric_denominators",
+      "severity": "block",
+      "criterion": "G/W/C/R including undefined R, invalid outputs and patient grouping retained",
+      "status": "passed_for_scoped_retrospective_diagnostic_comparison"
+    },
+    {
+      "id": "geometry_tail",
+      "severity": "block",
+      "criterion": "Pitch, orientation, ID, overlap and severe-error tails explicitly evaluated",
+      "status": "passed_for_scoped_retrospective_diagnostic_comparison"
+    },
+    {
+      "id": "waveform_attribution",
+      "severity": "block",
+      "criterion": "Common extractor versus native pipelines separate, printed windows and shifts specified",
+      "status": "not_executed_no_waveform_superiority_claim"
+    },
+    {
+      "id": "independent_truth",
+      "severity": "block",
+      "criterion": "Analytic controls independently generated, real dense truth not assumed",
+      "status": "analytic_and_renderer_checks_passed_external_physical_truth_not_available"
+    },
+    {
+      "id": "budget_provenance",
+      "severity": "block",
+      "criterion": "Timeout, memory, retries and full pipeline timing scope frozen",
+      "status": "loaded_model_shared_host_budget_passed_no_coldstart_or_peak_RAM_assessment"
+    }
+  ],
+  "metric_oracle": {
+    "file": "metric_oracle.py",
+    "source_sha256": "9a882b87c9bf8839b06639b471fdd16a2e8a0d9a098259d2fe6bf9e36df8ac7b",
+    "result_file": "metric-oracle-results.json",
+    "checks": 50,
+    "status": "pass",
+    "production_scorer_exercised": false,
+    "metric_version": "M3 counts accepted nonfinite coordinates as wrong, unlike M2"
+  },
+  "strict_promotion_gate": {
+    "required": "Paired evidence over each executable named comparator on appropriate shared tasks, preserved content and stated failure budget. Small diagnostic results are descriptive, not final superiority.",
+    "unavailable_products": "never converted to a failed run or reconstructed commercial score"
+  },
+  "protocol_scoring_cleared": true,
+  "user_authorization": "The user already authorized comparative experiments. These are internal evidence-quality gates, not an additional permission request.",
+  "protocol_candidate_sha256": "83debefdb2b1bd33735c8883c0f0d3d17acc590a309ba82e79ac55a785013be0",
+  "protocol_design_review": "Cleared for the already-inspected diagnostic panel. Primary translation only, secondary D4, explicit operational RGB gate and16M common output budget. Final receipt binds frozen copy.",
+  "production_metric_core_review": {
+    "status": "pass",
+    "tests": 20,
+    "failures": 0,
+    "errors": 0,
+    "production_scorer_exercised": true,
+    "source_file": "/workspace/scratch/a57599a3e70e/m3/benchmark/metric_core.py",
+    "source_sha256": "8ed4cf91bc5b52c1c4bb1d0803d0f2644dbdc06573f799df8a73712b6f883e51",
+    "scope": "Analytic scoring, origin/D4 separation, footprint, patient pairing and query-contract checks only"
+  },
+  "restoration_and_visibility_review": {
+    "status": "pass",
+    "checks": 1939,
+    "captures": 112,
+    "query_domains": 224,
+    "manifest_sha256": "94085d4c2feb528d9508f143d36664fd03811830ab5ec06733a474d4fd4904fe",
+    "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+    "opaque_noise_cases": 11,
+    "opaque_query_hits": 0,
+    "post_noise_opaque_support_is_reflected_in_valid": true,
+    "scope": "Exported renderer material support with recorded post-noise hard occlusion removed. Not independent real-camera visibility truth, not verification of every renderer occluder or optical effect.",
+    "new_comparator_scored": false
+  },
+  "orchestrator_review": {
+    "geometry_receipt": "orchestrator-geometry-review.json",
+    "failure_receipt": "orchestrator-failure-review.json",
+    "geometry_tests": 5,
+    "failure_tests": 5,
+    "status": "pass_before_freeze",
+    "actual_neural_inference_exercised": false,
+    "deadline_limit": "Cooperative SIGALRM is not proof of hard preemption inside a native C/C++ operation."
+  },
+  "composition_development_review": {
+    "receipt": "composition-results-review.json",
+    "checks": 831,
+    "scenes": 12,
+    "arms_per_scene": 5,
+    "status": "pass_saved_array_recomputation",
+    "no_native_bank_or_RGB_claim": true
+  },
+  "execution_lock_review": {
+    "status": "pass",
+    "checks": 194,
+    "lock_sha256": "a667f1cbbe3dc3334df1721a821af063691240eb0b3fdd7b72af5150f1127b3c",
+    "protocol_sha256": "83debefdb2b1bd33735c8883c0f0d3d17acc590a309ba82e79ac55a785013be0",
+    "source_files": 89,
+    "weight_assets": 5,
+    "query_archives": 56
+  },
+  "postprocessing_review": {
+    "receipt": "postprocessing-review.json",
+    "tests": 6,
+    "status": "pass",
+    "source_sha256": "ac14b020e9cd4a457d0a16cac257452bec20f3389cbfe5b8f3f68b05c90a562f"
+  },
+  "result_auditor_review": {
+    "receipt": "result-auditor-controls.json",
+    "tests": 3,
+    "status": "pass",
+    "real_results_read": false
+  },
+  "diagnostic_results_audit": {
+    "status": "pass_after_disclosed_single_export_recovery",
+    "checks": 50223,
+    "case_method_results": 160,
+    "missing": 0
+  },
+  "summary_results_audit": {
+    "status": "pass",
+    "checks": 821,
+    "bootstrap_repetitions": 20000
+  },
+  "new_universal_or_commercial_superiority_claim_approved": false
+}

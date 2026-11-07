@@ -1,0 +1,313 @@
+{
+  "schema": "pm-mechanism-controls-v1",
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.39",
+    "packages": {
+      "numpy": "2.5.4",
+      "scipy": "1.18.1",
+      "torch": "2.7.0+cu128",
+      "torchvision": "0.22.0+cu128",
+      "pillow": "13.0.0",
+      "opencv-python-headless": "4.11.0.86",
+      "timm": "1.0.30",
+      "albumentations": "1.4.24"
+    },
+    "cuda_available": true,
+    "cuda_build": "12.8",
+    "gpu": "NVIDIA L4"
+  },
+  "trained_detector_executed": false,
+  "commercial_implementation_executed": false,
+  "full_paper_scores_reproduced": false,
+  "cases": [
+    {
+      "case": "flat",
+      "organizer_with_perfect_points": {
+        "status": "returned",
+        "retained_fraction": 1.0,
+        "relative_id_agreement_after_anchor_translation": 1.0,
+        "diagnostics": {
+          "input_points": 88,
+          "retained_points": 88,
+          "consistent_components": 1,
+          "unit_cycle_traversals": 280,
+          "identity_conflicts": 0,
+          "direction_means_xy": [
+            [
+              20.0,
+              -6.240238466992883e-16
+            ],
+            [
+              6.240238466992883e-16,
+              20.0
+            ],
+            [
+              -20.0,
+              6.240238466992883e-16
+            ],
+            [
+              -6.240238466992883e-16,
+              -20.0
+            ]
+          ],
+          "orientation": "D4_unresolved",
+          "origin": "relative",
+          "physical_pitch": "not_inferred",
+          "numerical_choices": {
+            "neighbours": 4,
+            "relative_tolerance": 0.65,
+            "direction_model": "global_four_cluster_gaussian_hypothesis"
+          }
+        }
+      },
+      "sampler_with_known_ids": {
+        "query_count": 28000,
+        "p95_source_error_px": 0.0,
+        "max_source_error_px": 0.0,
+        "source_support_fraction": 1.0
+      }
+    },
+    {
+      "case": "projective",
+      "organizer_with_perfect_points": {
+        "status": "returned",
+        "retained_fraction": 1.0,
+        "relative_id_agreement_after_anchor_translation": 1.0,
+        "diagnostics": {
+          "input_points": 88,
+          "retained_points": 88,
+          "consistent_components": 1,
+          "unit_cycle_traversals": 280,
+          "identity_conflicts": 0,
+          "direction_means_xy": [
+            [
+              16.435773980983697,
+              -0.38287843259785603
+            ],
+            [
+              0.8908045977011483,
+              18.91409136755492
+            ],
+            [
+              -16.435773980983697,
+              0.38287843259785603
+            ],
+            [
+              -1.013309134906244,
+              -18.918455187869498
+            ]
+          ],
+          "orientation": "D4_unresolved",
+          "origin": "relative",
+          "physical_pitch": "not_inferred",
+          "numerical_choices": {
+            "neighbours": 4,
+            "relative_tolerance": 0.65,
+            "direction_model": "global_four_cluster_gaussian_hypothesis"
+          }
+        }
+      },
+      "sampler_with_known_ids": {
+        "query_count": 28000,
+        "p95_source_error_px": 9.863782612607263e-06,
+        "max_source_error_px": 1.7103246710771348e-05,
+        "source_support_fraction": 1.0
+      }
+    },
+    {
+      "case": "smooth_bend",
+      "organizer_with_perfect_points": {
+        "status": "returned",
+        "retained_fraction": 1.0,
+        "relative_id_agreement_after_anchor_translation": 1.0,
+        "diagnostics": {
+          "input_points": 88,
+          "retained_points": 88,
+          "consistent_components": 1,
+          "unit_cycle_traversals": 280,
+          "identity_conflicts": 0,
+          "direction_means_xy": [
+            [
+              20.0,
+              -0.7749947783347437
+            ],
+            [
+              0.0,
+              20.0
+            ],
+            [
+              -20.0,
+              -0.21123050749606875
+            ],
+            [
+              0.0,
+              -20.0
+            ]
+          ],
+          "orientation": "D4_unresolved",
+          "origin": "relative",
+          "physical_pitch": "not_inferred",
+          "numerical_choices": {
+            "neighbours": 4,
+            "relative_tolerance": 0.65,
+            "direction_model": "global_four_cluster_gaussian_hypothesis"
+          }
+        }
+      },
+      "sampler_with_known_ids": {
+        "query_count": 28000,
+        "p95_source_error_px": 0.11469535519558277,
+        "max_source_error_px": 0.12439892545699749,
+        "source_support_fraction": 1.0
+      }
+    },
+    {
+      "case": "strong_projective",
+      "organizer_with_perfect_points": {
+        "status": "returned",
+        "retained_fraction": 0.07954545454545454,
+        "relative_id_agreement_after_anchor_translation": 0.14285714285714285,
+        "diagnostics": {
+          "input_points": 88,
+          "retained_points": 7,
+          "consistent_components": 2,
+          "unit_cycle_traversals": 16,
+          "identity_conflicts": 0,
+          "direction_means_xy": [
+            [
+              2.397342014187121,
+              -1.5499536224712767
+            ],
+            [
+              1.8366665909967956,
+              2.143791681109004
+            ],
+            [
+              -1.7591237314597876,
+              1.396370023419209
+            ],
+            [
+              -1.269739650021343,
+              -2.03973185088293
+            ]
+          ],
+          "orientation": "D4_unresolved",
+          "origin": "relative",
+          "physical_pitch": "not_inferred",
+          "numerical_choices": {
+            "neighbours": 4,
+            "relative_tolerance": 0.65,
+            "direction_model": "global_four_cluster_gaussian_hypothesis"
+          }
+        }
+      },
+      "sampler_with_known_ids": {
+        "query_count": 28000,
+        "p95_source_error_px": 4.038687375426718e-06,
+        "max_source_error_px": 9.152959688202243e-06,
+        "source_support_fraction": 1.0
+      }
+    },
+    {
+      "case": "rotated_semantically_unresolved",
+      "organizer_with_perfect_points": {
+        "status": "returned",
+        "retained_fraction": 1.0,
+        "relative_id_agreement_after_anchor_translation": 0.011363636363636364,
+        "diagnostics": {
+          "input_points": 88,
+          "retained_points": 88,
+          "consistent_components": 1,
+          "unit_cycle_traversals": 280,
+          "identity_conflicts": 0,
+          "direction_means_xy": [
+            [
+              15.320888862379558,
+              -12.855752193730783
+            ],
+            [
+              12.855752193730783,
+              15.320888862379558
+            ],
+            [
+              -15.320888862379558,
+              12.855752193730783
+            ],
+            [
+              -12.855752193730783,
+              -15.320888862379558
+            ]
+          ],
+          "orientation": "D4_unresolved",
+          "origin": "relative",
+          "physical_pitch": "not_inferred",
+          "numerical_choices": {
+            "neighbours": 4,
+            "relative_tolerance": 0.65,
+            "direction_model": "global_four_cluster_gaussian_hypothesis"
+          }
+        }
+      },
+      "sampler_with_known_ids": {
+        "query_count": 28000,
+        "p95_source_error_px": 1.2041996967126557e-05,
+        "max_source_error_px": 2.6433214893854324e-05,
+        "source_support_fraction": 1.0
+      }
+    },
+    {
+      "case": "missing_entire_row",
+      "organizer_with_perfect_points": {
+        "status": "returned",
+        "retained_fraction": 0.5,
+        "relative_id_agreement_after_anchor_translation": 1.0,
+        "diagnostics": {
+          "input_points": 77,
+          "retained_points": 44,
+          "consistent_components": 2,
+          "unit_cycle_traversals": 200,
+          "identity_conflicts": 0,
+          "direction_means_xy": [
+            [
+              20.0,
+              -6.858022075225179e-16
+            ],
+            [
+              6.858022075225179e-16,
+              20.0
+            ],
+            [
+              -20.0,
+              6.858022075225179e-16
+            ],
+            [
+              -6.858022075225179e-16,
+              -20.0
+            ]
+          ],
+          "orientation": "D4_unresolved",
+          "origin": "relative",
+          "physical_pitch": "not_inferred",
+          "numerical_choices": {
+            "neighbours": 4,
+            "relative_tolerance": 0.65,
+            "direction_model": "global_four_cluster_gaussian_hypothesis"
+          }
+        }
+      },
+      "sampler_with_known_ids": {
+        "query_count": 28000,
+        "p95_source_error_px": 0.0,
+        "max_source_error_px": 0.0,
+        "source_support_fraction": 1.0
+      }
+    }
+  ],
+  "limitations": [
+    "global directional clusters are one numerical interpretation",
+    "grid orientation and units remain unresolved",
+    "curvature inside cells is approximated",
+    "partial raster is not full-frame content preservation"
+  ]
+}

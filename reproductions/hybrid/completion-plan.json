@@ -1,0 +1,28 @@
+{
+  "schema": "ecg-runpod-pilot-plan-v1",
+  "generation": 2,
+  "worker_module": "reproductions.hybrid.worker_completion",
+  "source_paths": [
+    "reproductions",
+    "ecg_gpu",
+    "examples"
+  ],
+  "gpu_candidates": [
+    "NVIDIA A40",
+    "NVIDIA L4"
+  ],
+  "gpu_id": "NVIDIA A40",
+  "minimum_gpu_memory_gb": 24,
+  "maximum_gpu_price_per_hour": 0.6,
+  "template_id": "runpod-torch-v280",
+  "storage_mode": "container_disk",
+  "volume_gb": 0,
+  "checkpoint_artifact_run_id": 41105577589,
+  "container_disk_gb": 40,
+  "maximum_pod_seconds": 660,
+  "checkpoint_recovery_maximum_seconds": 900,
+  "combined_gpu_cost_cap_usd": 0.45,
+  "purpose": "Replay only the six previously sealed eligible images after removing hash-reviewed demo-only plotting blocks. Native numerical code and native failure IDs are retained. Reuse the already completed last-image repair. Cumulative planned GPU time cost remains below USD 0.45.",
+  "prior_gpu_time_cost_upper_bound_usd": 0.3337,
+  "reuse_repair_from_run": 41113820943
+}

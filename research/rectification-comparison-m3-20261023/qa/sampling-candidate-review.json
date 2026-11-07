@@ -1,0 +1,967 @@
+{
+  "status": "pass",
+  "checks": 32558,
+  "failures": [],
+  "protocol_sha256": "85adf1e4fe3f37b14fff7d6f32aea98e1db2828917e732bd7e3404653e5cd58a",
+  "results_sha256": "92084bca13acc26cd20eaff29d25cf347a642ad48d96ccadeabb0bbe05bfaee2",
+  "source_sha256": "8b9c3438e8c92630b9597f2ecd4435fa79d98a846e14f6ec5d1887061e59fc92",
+  "scenes": 280,
+  "case_arm_rows": 1960,
+  "independent_polygon_area_reference_checks": 4276,
+  "independent_source_pixel_area_checks": 4200,
+  "source_quantization_1LSB_disagreements": [
+    {
+      "map": "affine-isotropic",
+      "scene": 3,
+      "source": [
+        72,
+        30
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 3,
+      "source": [
+        72,
+        30
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 3,
+      "source": [
+        72,
+        50
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 3,
+      "source": [
+        72,
+        50
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 3,
+      "source": [
+        72,
+        70
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 3,
+      "source": [
+        72,
+        70
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 3,
+      "source": [
+        72,
+        90
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 3,
+      "source": [
+        72,
+        90
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 3,
+      "source": [
+        72,
+        110
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 3,
+      "source": [
+        72,
+        110
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 9,
+      "source": [
+        75,
+        30
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 9,
+      "source": [
+        75,
+        50
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 9,
+      "source": [
+        75,
+        70
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 9,
+      "source": [
+        75,
+        90
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 9,
+      "source": [
+        75,
+        110
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 31,
+      "source": [
+        98,
+        42
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 31,
+      "source": [
+        84,
+        56
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 31,
+      "source": [
+        84,
+        56
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 31,
+      "source": [
+        70,
+        70
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 31,
+      "source": [
+        70,
+        70
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 31,
+      "source": [
+        56,
+        84
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 31,
+      "source": [
+        56,
+        84
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 31,
+      "source": [
+        42,
+        98
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 63,
+      "source": [
+        110,
+        71
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 63,
+      "source": [
+        90,
+        71
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 63,
+      "source": [
+        70,
+        72
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 63,
+      "source": [
+        70,
+        72
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 63,
+      "source": [
+        50,
+        72
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 63,
+      "source": [
+        50,
+        72
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 63,
+      "source": [
+        30,
+        72
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 63,
+      "source": [
+        30,
+        72
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 65,
+      "source": [
+        110,
+        72
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 65,
+      "source": [
+        110,
+        72
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 65,
+      "source": [
+        90,
+        72
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 65,
+      "source": [
+        90,
+        72
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 69,
+      "source": [
+        110,
+        74
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 69,
+      "source": [
+        110,
+        74
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 69,
+      "source": [
+        90,
+        74
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 69,
+      "source": [
+        90,
+        74
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 69,
+      "source": [
+        70,
+        75
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 69,
+      "source": [
+        50,
+        75
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 69,
+      "source": [
+        30,
+        75
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 70,
+      "source": [
+        75,
+        30
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 70,
+      "source": [
+        75,
+        50
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 70,
+      "source": [
+        75,
+        70
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 70,
+      "source": [
+        75,
+        90
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 70,
+      "source": [
+        75,
+        110
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 72,
+      "source": [
+        66,
+        30
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 72,
+      "source": [
+        66,
+        50
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 72,
+      "source": [
+        66,
+        70
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 72,
+      "source": [
+        66,
+        90
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 72,
+      "source": [
+        66,
+        110
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 74,
+      "source": [
+        77,
+        30
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 74,
+      "source": [
+        77,
+        50
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 74,
+      "source": [
+        77,
+        70
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 74,
+      "source": [
+        77,
+        90
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 74,
+      "source": [
+        77,
+        110
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 78,
+      "source": [
+        79,
+        30
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 78,
+      "source": [
+        79,
+        50
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 78,
+      "source": [
+        79,
+        70
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 78,
+      "source": [
+        79,
+        90
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 78,
+      "source": [
+        79,
+        110
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 130,
+      "source": [
+        70,
+        75
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 130,
+      "source": [
+        50,
+        75
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 130,
+      "source": [
+        30,
+        75
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 132,
+      "source": [
+        70,
+        66
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 132,
+      "source": [
+        50,
+        66
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 132,
+      "source": [
+        30,
+        66
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 134,
+      "source": [
+        110,
+        67
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 134,
+      "source": [
+        90,
+        67
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 134,
+      "source": [
+        70,
+        77
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 134,
+      "source": [
+        50,
+        77
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 134,
+      "source": [
+        30,
+        77
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 138,
+      "source": [
+        110,
+        69
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 138,
+      "source": [
+        90,
+        69
+      ],
+      "expected_from_polygon": 128,
+      "actual_from_CDF": 127
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 138,
+      "source": [
+        70,
+        79
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 138,
+      "source": [
+        50,
+        79
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    },
+    {
+      "map": "affine-isotropic",
+      "scene": 138,
+      "source": [
+        30,
+        79
+      ],
+      "expected_from_polygon": 127,
+      "actual_from_CDF": 128
+    }
+  ],
+  "independent_affine_quadrature_case_arm_checks": 120,
+  "summaries": [
+    {
+      "arm": "native-bilinear-point",
+      "width_mm": 0.1,
+      "cases": 140,
+      "disappearances": 4,
+      "mean_pixel_MAE": 0.004628700029348184,
+      "worst_pixel_MAE": 0.014634146341463448,
+      "mean_abs_relative_energy_error": 0.1693287014294607,
+      "worst_abs_relative_energy_error": 1.5000000000000089,
+      "mean_peak_abs_error": 0.33468587937743083,
+      "minimum_peak_darkness": 0.0
+    },
+    {
+      "arm": "area-bilinear-2",
+      "width_mm": 0.1,
+      "cases": 140,
+      "disappearances": 0,
+      "mean_pixel_MAE": 0.0013250777933905297,
+      "worst_pixel_MAE": 0.0026781444285031773,
+      "mean_abs_relative_energy_error": 0.011839238920079913,
+      "worst_abs_relative_energy_error": 0.09803921568627841,
+      "mean_peak_abs_error": 0.03168812221522155,
+      "minimum_peak_darkness": 0.24705882352941178
+    },
+    {
+      "arm": "area-bilinear-4",
+      "width_mm": 0.1,
+      "cases": 140,
+      "disappearances": 0,
+      "mean_pixel_MAE": 0.0015284395711164464,
+      "worst_pixel_MAE": 0.0030183740253707857,
+      "mean_abs_relative_energy_error": 0.00513888948203023,
+      "worst_abs_relative_energy_error": 0.058823529411768605,
+      "mean_peak_abs_error": 0.02263208221217046,
+      "minimum_peak_darkness": 0.24705882352941178
+    },
+    {
+      "arm": "area-bilinear-8",
+      "width_mm": 0.1,
+      "cases": 140,
+      "disappearances": 0,
+      "mean_pixel_MAE": 0.0016035420051420497,
+      "worst_pixel_MAE": 0.003302985192859791,
+      "mean_abs_relative_energy_error": 0.0015935814477695375,
+      "worst_abs_relative_energy_error": 0.009803921568631134,
+      "mean_peak_abs_error": 0.02499481716463639,
+      "minimum_peak_darkness": 0.24705882352941178
+    },
+    {
+      "arm": "area-boxhold-2",
+      "width_mm": 0.1,
+      "cases": 140,
+      "disappearances": 2,
+      "mean_pixel_MAE": 0.0036421971657769844,
+      "worst_pixel_MAE": 0.009756097560975575,
+      "mean_abs_relative_energy_error": 0.06885957284672828,
+      "worst_abs_relative_energy_error": 1.0,
+      "mean_peak_abs_error": 0.11875577388626028,
+      "minimum_peak_darkness": 0.0
+    },
+    {
+      "arm": "area-boxhold-4",
+      "width_mm": 0.1,
+      "cases": 140,
+      "disappearances": 0,
+      "mean_pixel_MAE": 0.0017579361017482126,
+      "worst_pixel_MAE": 0.0036346245815398986,
+      "mean_abs_relative_energy_error": 0.03362892632244345,
+      "worst_abs_relative_energy_error": 0.372549019607841,
+      "mean_peak_abs_error": 0.07436092513228255,
+      "minimum_peak_darkness": 0.24705882352941178
+    },
+    {
+      "arm": "area-boxhold-8",
+      "width_mm": 0.1,
+      "cases": 140,
+      "disappearances": 0,
+      "mean_pixel_MAE": 0.0014213940353863788,
+      "worst_pixel_MAE": 0.0024794791098793063,
+      "mean_abs_relative_energy_error": 0.014289060401065104,
+      "worst_abs_relative_energy_error": 0.24509803921569082,
+      "mean_peak_abs_error": 0.025420960231329986,
+      "minimum_peak_darkness": 0.24705882352941178
+    },
+    {
+      "arm": "native-bilinear-point",
+      "width_mm": 1.0,
+      "cases": 140,
+      "disappearances": 0,
+      "mean_pixel_MAE": 0.005065000690032277,
+      "worst_pixel_MAE": 0.01463414634146353,
+      "mean_abs_relative_energy_error": 0.0025775383483376915,
+      "worst_abs_relative_energy_error": 0.027231533221826677,
+      "mean_peak_abs_error": 0.0,
+      "minimum_peak_darkness": 1.0
+    },
+    {
+      "arm": "area-bilinear-2",
+      "width_mm": 1.0,
+      "cases": 140,
+      "disappearances": 0,
+      "mean_pixel_MAE": 0.0015678990550202301,
+      "worst_pixel_MAE": 0.004304160688665681,
+      "mean_abs_relative_energy_error": 0.00019767254138409367,
+      "worst_abs_relative_energy_error": 0.0009803921568628932,
+      "mean_peak_abs_error": 0.0,
+      "minimum_peak_darkness": 1.0
+    },
+    {
+      "arm": "area-bilinear-4",
+      "width_mm": 1.0,
+      "cases": 140,
+      "disappearances": 0,
+      "mean_pixel_MAE": 0.0019751421231632275,
+      "worst_pixel_MAE": 0.005451936872309872,
+      "mean_abs_relative_energy_error": 0.00013520594824582686,
+      "worst_abs_relative_energy_error": 0.0009803921568628932,
+      "mean_peak_abs_error": 0.0,
+      "minimum_peak_darkness": 1.0
+    },
+    {
+      "arm": "area-bilinear-8",
+      "width_mm": 1.0,
+      "cases": 140,
+      "disappearances": 0,
+      "mean_pixel_MAE": 0.002116091311975397,
+      "worst_pixel_MAE": 0.005451936872309872,
+      "mean_abs_relative_energy_error": 0.00014770065067593025,
+      "worst_abs_relative_energy_error": 0.00196078431372544,
+      "mean_peak_abs_error": 0.0,
+      "minimum_peak_darkness": 1.0
+    },
+    {
+      "arm": "area-boxhold-2",
+      "width_mm": 1.0,
+      "cases": 140,
+      "disappearances": 0,
+      "mean_pixel_MAE": 0.004671998530081143,
+      "worst_pixel_MAE": 0.009756097560975615,
+      "mean_abs_relative_energy_error": 0.0011009251812014852,
+      "worst_abs_relative_energy_error": 0.00810221022744967,
+      "mean_peak_abs_error": 0.0,
+      "minimum_peak_darkness": 1.0
+    },
+    {
+      "arm": "area-boxhold-4",
+      "width_mm": 1.0,
+      "cases": 140,
+      "disappearances": 0,
+      "mean_pixel_MAE": 0.002132063866097931,
+      "worst_pixel_MAE": 0.004878048780487955,
+      "mean_abs_relative_energy_error": 0.00041447200550122457,
+      "worst_abs_relative_energy_error": 0.0026508348408337537,
+      "mean_peak_abs_error": 0.0,
+      "minimum_peak_darkness": 1.0
+    },
+    {
+      "arm": "area-boxhold-8",
+      "width_mm": 1.0,
+      "cases": 140,
+      "disappearances": 0,
+      "mean_pixel_MAE": 0.0018091706951528222,
+      "worst_pixel_MAE": 0.0043041606886656805,
+      "mean_abs_relative_energy_error": 0.00017929710969379447,
+      "worst_abs_relative_energy_error": 0.001039368163048962,
+      "mean_peak_abs_error": 0.0,
+      "minimum_peak_darkness": 1.0
+    }
+  ],
+  "scope": "Exact polygon-clipped physical pixel areas independently check the CDF truth and source observation. All saved scores/summaries recomputed, native sampling and selected candidate quadratures reproduced from direct affine coordinates. No M3 or production-source changes.",
+  "limits": "Source CDF versus independent polygon arithmetic can choose opposite sides of a half-LSB quantization tie. No difference greater than1LSB accepted. Constant control metadata checked, not independent saved constant images. Component timing includes cached map application on a shared host, not end-to-end latency or a speedup claim."
+}

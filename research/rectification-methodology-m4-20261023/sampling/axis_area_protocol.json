@@ -1,0 +1,26 @@
+{
+  "schema": "m4-exact-axis-area-control-v1",
+  "date": "2026-10-23",
+  "status": "frozen_before_implementation_and_control_scores",
+  "trigger": "Independent QA predeclared a 32:1 minification case where fixed 2x2, 4x4 and 8x8 midpoint quadrature all miss an observed one-source-pixel trace. Agreement among those grids cannot certify content preservation.",
+  "purpose": "Positive control for exact source-cell area integration under an axis-aligned affine inverse, as a separate reconstruction model and method. Do not alter M3-parity candidate, its protocol or archived results.",
+  "model": "Each uint8 encoded RGB source pixel is constant on its unit square centred at its integer source coordinate. Original observations are never inferred beyond that model. A diagonal nonsingular affine inverse maps an output pixel rectangle to a source rectangle. Continuous summed-area evaluation with fractional last rows/columns integrates that rectangle exactly up to float64 arithmetic, then one uint8 rounding. Not cv2.remap INTER_AREA and not a radiometric or optical truth claim.",
+  "accepted_geometry": "Only a finite diagonal nonsingular 2x2 affine inverse with explicit (x,y) offset. Reject every nonzero off-diagonal entry, including small shear, rather than silently approximate. Negative diagonal terms allowed. Output physical pixel-centre convention is unchanged.",
+  "boundary_and_alpha": "Explicit constant RGB fill outside the source pixel-cell extent [-0.5,W-0.5]x[-0.5,H-0.5]. RGBA uses premultiplied encoded RGB and transparent fill. Source-cell area fraction is exact for the mapped rectangle. No geometry confidence gates RGB. This diagonal affine control has known finite invertible geometry, not a detector trust claim.",
+  "controls": {
+    "main_attack": "White uint8 RGB image65x65 with black column32. Output1x1, physical centre(0,0), spacing(1,1), inverse diag(32,32) with offset(32,32). Source footprint[16,48] in each axis. Exact mean255*31/32=247.03125, rounded247. Fixed midpoint n2,n4,n8 all return255. Preserve all results.",
+    "line_family": "Widths1,2,5 source pixels beginning at column32 in a65x65 white image, inverse diagonal scale2,4,8,16,32 in each axis, centre offset(32+phase,32), phase0,0.25,0.5,0.75. All60 cases scored against independently computed interval overlap of the source pixel-cell union, no winner selection.",
+    "independent_reference": "Nested scalar overlap of every source pixel square with each mapped output box for random RGB and RGBA, including clipped borders, anisotropic scale, negative axes, subpixel translations and partial tiles. No integral-image reuse in this reference.",
+    "exactness_tests": "Identity RGB equality, constant colour interior, expected outside fill and source area, tile budget invariance1,7,full, RGB/RGBA alpha and hidden-colour handling, reject shear and singular/non-finite maps. Finite integration errors must be reported rather than called mathematical bitwise exactness.",
+    "cost": "Separately report float64 integral-image bytes, build and render wall time for source1100x1400, output768x1024, three repeats, diagonal inverse(1.1,1.15) offset(40,50), tile16384. Fresh CPU process, explicit one-thread environment. Not a quality-equivalent speed contest with bilinear quadrature."
+  },
+  "method_decision": "For accepted diagonal affine maps, exact rectangular source-cell integration removes this finite-grid alias without choosing a larger n. For general affine/nonlinear maps, compute local source footprint and Jacobian and use a validated anisotropic area filter, exact polygon/source-cell overlap when feasible or a footprint-adaptive approximation with an explicit accuracy/cost gate. Boundaries, folds and uncertain geometry require separate decisions. Agreement of finite subgrids is diagnostic only and cannot certify adequacy.",
+  "limits": [
+    "The positive control covers diagonal affine maps only, not general rectification",
+    "Boxhold source-cell reconstruction differs from bilinear reconstruction and from unknown continuous ECG ink",
+    "Summed-area storage grows with source area and can be expensive, though coordinate tiles remain bounded",
+    "Floating-point prefix subtraction can lose accuracy for extreme image sizes or tiny footprint area; reject unstable nonpositive areas and report numerical tolerances",
+    "No production default, detector, CNN, waveform or clinical validation changes",
+    "No sufficiency certificate based on fixed n or n-agreement"
+  ]
+}

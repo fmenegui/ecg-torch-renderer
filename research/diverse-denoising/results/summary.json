@@ -1,0 +1,139 @@
+{
+  "means": {
+    "point": {
+      "torch-cached": 0.9542808921723043,
+      "offline": 0.8431425495663618
+    },
+    "joint": {
+      "torch-cached": 0.9590793475804692,
+      "offline": 0.86954306396879
+    }
+  },
+  "selected_by_validation": "joint-1973",
+  "test_images": 1024,
+  "test_patients": 128,
+  "trials": {
+    "point-1973": {
+      "steps": 10000,
+      "test_by_backend": {
+        "torch-cached": {
+          "images": 768,
+          "tp": 2402764,
+          "fp": 63246,
+          "fn": 174077,
+          "precision": 0.9743529020563583,
+          "recall": 0.9324455796845827,
+          "f1": 0.9529387245429223,
+          "median_error_px": 0.1864909454575771,
+          "p95_error_px": 0.6272139370243935,
+          "localization_population": "matched points only"
+        },
+        "offline": {
+          "images": 256,
+          "tp": 350472,
+          "fp": 28844,
+          "fn": 121494,
+          "precision": 0.9239578609918907,
+          "recall": 0.7425789145828301,
+          "f1": 0.8233981218914531,
+          "median_error_px": 0.3028076152485811,
+          "p95_error_px": 0.9705812239169134,
+          "localization_population": "matched points only"
+        }
+      }
+    },
+    "joint-1973": {
+      "steps": 10000,
+      "test_by_backend": {
+        "torch-cached": {
+          "images": 768,
+          "tp": 2447989,
+          "fp": 60066,
+          "fn": 128852,
+          "precision": 0.976050764436984,
+          "recall": 0.9499961386829843,
+          "f1": 0.9628472244073428,
+          "median_error_px": 0.1699576093654273,
+          "p95_error_px": 0.5881834509155718,
+          "localization_population": "matched points only"
+        },
+        "offline": {
+          "images": 256,
+          "tp": 384483,
+          "fp": 30016,
+          "fn": 87483,
+          "precision": 0.9275848675147588,
+          "recall": 0.814641308907845,
+          "f1": 0.8674521836733543,
+          "median_error_px": 0.29731231334481373,
+          "p95_error_px": 0.9542476677864155,
+          "localization_population": "matched points only"
+        }
+      }
+    },
+    "point-20261021": {
+      "steps": 10000,
+      "test_by_backend": {
+        "torch-cached": {
+          "images": 768,
+          "tp": 2467004,
+          "fp": 119287,
+          "fn": 109837,
+          "precision": 0.9538771932470089,
+          "recall": 0.9573753289395814,
+          "f1": 0.9556230598016863,
+          "median_error_px": 0.18728500642003604,
+          "p95_error_px": 0.6699308146378656,
+          "localization_population": "matched points only"
+        },
+        "offline": {
+          "images": 256,
+          "tp": 394008,
+          "fp": 47258,
+          "fn": 77958,
+          "precision": 0.8929036000960872,
+          "recall": 0.8348228474084998,
+          "f1": 0.8628869772412706,
+          "median_error_px": 0.2937836947290404,
+          "p95_error_px": 1.0673770068358128,
+          "localization_population": "matched points only"
+        }
+      }
+    },
+    "joint-20261021": {
+      "steps": 10000,
+      "test_by_backend": {
+        "torch-cached": {
+          "images": 768,
+          "tp": 2455289,
+          "fp": 108160,
+          "fn": 121552,
+          "precision": 0.9578068453868206,
+          "recall": 0.9528290647346888,
+          "f1": 0.9553114707535956,
+          "median_error_px": 0.16426367077376658,
+          "p95_error_px": 0.6069728237125818,
+          "localization_population": "matched points only"
+        },
+        "offline": {
+          "images": 256,
+          "tp": 395252,
+          "fp": 39704,
+          "fn": 76714,
+          "precision": 0.9087172035792126,
+          "recall": 0.8374586304945695,
+          "f1": 0.8716339442642256,
+          "median_error_px": 0.2845475161048011,
+          "p95_error_px": 1.0127271104402193,
+          "localization_population": "matched points only"
+        }
+      }
+    }
+  },
+  "limits": [
+    "synthetic only",
+    "two seeds",
+    "point detection is not full rectification",
+    "no superiority claim over references"
+  ]
+}

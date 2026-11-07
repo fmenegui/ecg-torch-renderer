@@ -1,0 +1,48 @@
+{
+  "schema": "npj-native-inference-v1",
+  "source": {
+    "commit": "97a15087d4abcda843da8c58ee74b1d8f47e6f9a",
+    "tracked_files_clean": true
+  },
+  "environment": {
+    "python": "3.12.14",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+    "packages": {
+      "numpy": "2.5.4",
+      "scipy": "1.18.1",
+      "torch": "2.7.0+cpu",
+      "torchvision": "0.22.0+cpu",
+      "pillow": "13.0.0",
+      "opencv-python-headless": "4.11.0.86",
+      "timm": "1.0.30",
+      "albumentations": "1.4.24"
+    },
+    "cuda_available": false,
+    "cuda_build": null
+  },
+  "preset": "generic",
+  "layout_hint": null,
+  "active_weight_sha256": {
+    "segmentation": "17fe7071ef270102631306127262fc08c250d79d4e3aeb572ab1719dd34d320b",
+    "lead_names": "840bd6bf2433ee6c22db67f57c861d9d427f29e10a32eeb334f0bcf061b175a2"
+  },
+  "retrained_weight_ablation": false,
+  "output_unit": "uV",
+  "results": [
+    {
+      "case_id": "10_1",
+      "image_sha256": "8184bd7d636098e7f5d18bba47de5ef83dbc5b099b29e9fda41f3e18ab346088",
+      "status": "returned",
+      "shape": [
+        12,
+        5000
+      ],
+      "finite_fraction": 0.4998,
+      "output_sha256": "eb74e43c2c730bdff528a39300f4be162e185920d5ef7323268249b74592f4ad",
+      "predicted_layout": "precordial_6x1",
+      "seconds_including_native_forward": 46.45340994899925
+    }
+  ],
+  "scheduled_images": 1,
+  "paper_cohort_reproduction_completed": false
+}

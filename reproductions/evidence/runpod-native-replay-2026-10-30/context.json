@@ -1,0 +1,22 @@
+{
+  "schema": "runpod-native-gpu-followup-context-v1",
+  "source_commit": "91bdb19b1edc0565510af83cc5425b5a5f81dcc7",
+  "workflow_url": "https://github.com/fmenegui/ecg-torch-renderer/actions/runs/41068471976",
+  "artifact_id": 12984906508,
+  "artifact_sha256": "0c8862cff98a39b8f4ab340956e67742ab850917dde6fdad882ae5e563563829",
+  "gpu": "NVIDIA L4",
+  "gpu_hourly_usd": 0.59,
+  "native_six_waveform_models_gpu_replay_completed": true,
+  "public_d0_sample_axis_explicitly_adapted_to_500_hz": true,
+  "original_full_training_batch_on_l4_feasible": false,
+  "full_training_started_in_this_pilot": false,
+  "paper_or_leaderboard_reproduction_completed": false,
+  "cohort": "One PTB-XL development record. Potential overlap with original Kaggle training data. Not a robustness test.",
+  "cleanup_verified": {
+    "pod_id": "ueml6f6gv7bb30",
+    "pod_absent": true,
+    "volume_id": "b2t0j4c03a",
+    "volume_absent": true,
+    "source": "completed Actions job 124106142908 logs"
+  }
+}

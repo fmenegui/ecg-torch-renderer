@@ -1,0 +1,116 @@
+{
+  "schema": "m4-numpy2d-cross-compatibility-regression-v1",
+  "compatibility_revision_sha256": "0eee6ca9b6b91303e54911491957391e1b48b167c604bcf76d6817a852013fc4",
+  "historical_geometry_source_sha256": "0ce6062797c5e25dd9ce3d7b26a6a9fabe7779ca72b5ea4e55fcda564bed9e87",
+  "new_geometry_source_sha256": "421ebe98bdd9b5c18daf039837297d8592e9fdb4f937b466311033a9f6be7fe0",
+  "source_change_exactly_requested_scalar_determinant": true,
+  "source_diff": "--- geometry_selector_guard_v2_historical.py\n+++ geometry_selector.py\n@@ -124,7 +124,9 @@\n     while its distinct boundary points coincide. The boundary checks reject it.\n     \"\"\"\n     vertices = source[triangles]\n-    cross = np.cross(vertices[:, 1]-vertices[:, 0], vertices[:, 2]-vertices[:, 0])\n+    edge_a = vertices[:, 1]-vertices[:, 0]\n+    edge_b = vertices[:, 2]-vertices[:, 0]\n+    cross = edge_a[:, 0]*edge_b[:, 1]-edge_a[:, 1]*edge_b[:, 0]\n     scale = np.max(np.sum((vertices[:, 1]-vertices[:, 0])**2, axis=1))\n     tolerance = max(scale*1e-10, 1e-12)\n     if np.any(np.abs(cross) <= tolerance):\n",
+  "audited_current_path_sha256": {
+    "m4/geometry/geometry_selector.py": "421ebe98bdd9b5c18daf039837297d8592e9fdb4f937b466311033a9f6be7fe0",
+    "m4/geometry/geometry_selector_sparse.py": "426c31924fb4e910d3d2fcc2114479a47ade6cfbc4fb9bcfeb99d0f10ded2fdc",
+    "m4/geometry/run_experiment.py": "a020f56ee1dc499c75c19030484021e33e02b28bf9259738badaf401a80cb3b7",
+    "m4/geometry/check_results.py": "520ac95ee55bbc1fb8d62aef4f26408babf646385929391e1e20d78e5c55e7f6",
+    "m4/geometry/sparse_parity_cost.py": "c118e4a4d82a9ae3c71b123fe2dff353320ccc91dc79505cf3139162c8d01cfd",
+    "m3/our-critique/composition_probe.py": "415bae62b868b7cd7d883cb19287d7fe248b07cee7180e6fc36835a326ceb7e4",
+    "ecg-torch-renderer/ecg_gpu/digitization/cell_mesh.py": "566253fba786de84475f00d593b80876b3869499d3703c18a71c9a5396cf37d6"
+  },
+  "np_cross_calls_in_current_component_path": [],
+  "historical_snapshots_intentionally_excluded_from_current_path": [
+    "geometry_selector_v1.py",
+    "geometry_selector_guard_v2_historical.py"
+  ],
+  "same_selected_names_19": true,
+  "candidate_arrays_compared": 342,
+  "all_saved_arrays_compared": 722,
+  "primary_score_records_compared": 76,
+  "check_count": 3230,
+  "differences": [],
+  "scenes": [
+    {
+      "scene": "planar-affine",
+      "same_selected_candidate": true
+    },
+    {
+      "scene": "planar-projective",
+      "same_selected_candidate": true
+    },
+    {
+      "scene": "planar-projective-strong",
+      "same_selected_candidate": true
+    },
+    {
+      "scene": "planar-noise-low",
+      "same_selected_candidate": true
+    },
+    {
+      "scene": "planar-noise-high",
+      "same_selected_candidate": true
+    },
+    {
+      "scene": "smooth-clean",
+      "same_selected_candidate": true
+    },
+    {
+      "scene": "smooth-noise",
+      "same_selected_candidate": true
+    },
+    {
+      "scene": "crease-aligned",
+      "same_selected_candidate": true
+    },
+    {
+      "scene": "crease-oblique",
+      "same_selected_candidate": true
+    },
+    {
+      "scene": "crease-oblique-noise",
+      "same_selected_candidate": true
+    },
+    {
+      "scene": "planar-outliers",
+      "same_selected_candidate": true
+    },
+    {
+      "scene": "smooth-outliers",
+      "same_selected_candidate": true
+    },
+    {
+      "scene": "planar-center-gap",
+      "same_selected_candidate": true
+    },
+    {
+      "scene": "smooth-center-gap",
+      "same_selected_candidate": true
+    },
+    {
+      "scene": "planar-border-gap",
+      "same_selected_candidate": true
+    },
+    {
+      "scene": "coherent-row-fault",
+      "same_selected_candidate": true
+    },
+    {
+      "scene": "coherent-half-fault",
+      "same_selected_candidate": true
+    },
+    {
+      "scene": "coherent-pitch-alias",
+      "same_selected_candidate": true
+    },
+    {
+      "scene": "coherent-origin-shift",
+      "same_selected_candidate": true
+    }
+  ],
+  "decision_seal_unchanged_after_compatible_run": true,
+  "physical_gold_used_in_selection": false,
+  "local_environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5"
+  },
+  "actual_external_ci_not_executed_by_this_local_receipt": true,
+  "after_results_directory": "/workspace/scratch/a57599a3e70e/m4/geometry/results-numpy-compatible",
+  "source_sha256": "33f6f14a7dd3104872c2142cc96e7db17cee9b931648cab3372cd5360839849b",
+  "pass": true
+}

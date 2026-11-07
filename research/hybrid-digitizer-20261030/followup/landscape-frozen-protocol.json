@@ -1,0 +1,179 @@
+{
+  "schema": "external-downstream-development-v1",
+  "development_only": true,
+  "new_external_cohort": false,
+  "native_max_side": 1500,
+  "device": "cpu",
+  "policy": {
+    "schema": "ecg-selective-policy-v2-development",
+    "minimum_new_samples": 10,
+    "minimum_common_samples_per_lead": 100,
+    "minimum_correlation": 0.97,
+    "amplitude_ratio_low": 0.85,
+    "amplitude_ratio_high": 1.18,
+    "maximum_dc_difference_mv": 0.05,
+    "maximum_timing_difference_s": 0.02,
+    "maximum_extrapolated_fraction": 0.35
+  },
+  "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+  "manifest_sha256": "f556d6477ecc42e1bc2bdf455fcdf97501faa877861103cf455007a681ff8a34",
+  "paired_report_sha256": "5d26e17a7e428e7985e29bc7d69c10a27b1c9707fd1cd22fc6d5ca4fd0364219",
+  "downstream_source_sha256": "5398ed836f51719c2c66972b88a77a0cb3d494c9d3d07ef55e713c4e6abc27eb",
+  "orientation_control": "landscape",
+  "landscape_control_source_sha256": "d67ee9af54090053cf101825c7b9f82f4c1387a591d5472887b5f67cd32065f0",
+  "baseline_arms_reused_without_modification": true,
+  "new_geometry_or_grid_training": false,
+  "npz_container_byte_identity_claimed": false,
+  "changes": [
+    "omit second perspective/crop/TPS",
+    "native aspect heuristic as an exact feature-map quarter turn",
+    "use inferred sampler density instead of native grid-pitch search"
+  ],
+  "separate_causes_not_fully_isolated": "The downstream composition changes geometry and density together. No claim that perspective alone caused a difference.",
+  "inputs": [
+    {
+      "image_id": "pm-9-photos_scans",
+      "original_image_sha256": "980def1783fb599ac52f7e06c7ad22f0a5b3e4242ecf5f442222fbcdd4a4a469",
+      "rectified_rgb_sha256": "fdf0be2155e922a7a0728f785bc516ea1b4621eb4a3f7715149cbcb53e55a1cd",
+      "sampling_receipt_sha256": "d16dbb91d819ae457af10abda2bfcdea734da2ecd4e0147ccc286567dfeb2a2a"
+    },
+    {
+      "image_id": "pm-9-photos_samsung",
+      "original_image_sha256": "ccc8185027583aedce3019ae38b37561e68a34ee02266d9b9e9061769d036ac7",
+      "rectified_rgb_sha256": "b010b4da124eaa4e60c01c98bf5abbbb61d4cad4003f6b63c522aac1942f3009",
+      "sampling_receipt_sha256": "c8216755982190627be6122c9c7a1a7d6cf4b65f186da53ad2720a45ac732718"
+    },
+    {
+      "image_id": "pm-9-photos_bents",
+      "original_image_sha256": "a01bc76430677a0047cbb81b44d361b37e3e0ae4cabe11b96eb919be218b5c59",
+      "rectified_rgb_sha256": "9d60a142dbaaafd81bf902443e925be50d4a74e9c3a91b5c9d60051f0feb84b1",
+      "sampling_receipt_sha256": "3ec73ec6e7a9b73fa71cec571542e822e78747a95e907af373ff6e30ab6da3fb"
+    },
+    {
+      "image_id": "pm-29-photos_scans",
+      "original_image_sha256": "2862aa38133859d5f978ce22eaa1739186561a2a6b8377a972e455407247e568",
+      "rectified_rgb_sha256": "7433d0a87b195492c9403030e6f43ed541ddcfbfd65afa597a983e65fb18dae6",
+      "sampling_receipt_sha256": "577ea47bb5c7b5a45c8e4321be425fbfe54cd076c89031d2508ff1326eee7961"
+    },
+    {
+      "image_id": "pm-29-photos_samsung",
+      "original_image_sha256": "bd3c0309d9bd574c654f2bae67ec702735d832e0baf999cf540a810a0978ba1e",
+      "rectified_rgb_sha256": "f0db65a7d404fa58007bfda9108b933ede1310f6805772dc5fc6e757e856c572",
+      "sampling_receipt_sha256": "0d563f66f1562f172bcafdcb40ad42645e89f7111b862eed267a0cea071296d8"
+    },
+    {
+      "image_id": "pm-29-photos_bents",
+      "original_image_sha256": "d5a3af04b12c58afbd734a8d833906466561c635d899314effed9d3ef5478bd9",
+      "rectified_rgb_sha256": "740c681b3e121cc2d0197eb728a3ae492fc434c7bcd79a747cb52ea65be08e07",
+      "sampling_receipt_sha256": "78dee2cd814a0e7ae28d599d9d5c2d4493fa03ea31fcdf54abcbf25701c13f32"
+    },
+    {
+      "image_id": "pm-37-photos_scans",
+      "original_image_sha256": "f29e88a7278b9ae8872c83559785d0c58bdec41327a7751cf2fa1f9b7b8d7f7d",
+      "rectified_rgb_sha256": "36679135714c3c4a9911746e111f7d7bdd716ac09a638ecf426969ad0184b459",
+      "sampling_receipt_sha256": "fea61091d04c8bb15fb70a630b3043cfea3109e6f7a0f7b271dd6c38546260b4"
+    },
+    {
+      "image_id": "pm-37-photos_samsung",
+      "original_image_sha256": "e96ce8a7f01b32f4e45f12036059d58212c838f9306f440d2fadf49ddc6beff8",
+      "rectified_rgb_sha256": "53cdf4894970dd6220b52ab114458b806a50b58083bb80653e0c6645324321f9",
+      "sampling_receipt_sha256": "274c58cd9a7f467575db8877a11b43fcaa02ba5564df71691642c792e7ddeeb8"
+    },
+    {
+      "image_id": "pm-37-photos_bents",
+      "original_image_sha256": "8e1543bd08f326805a54a76b5a89460e21478209cb753375a449e4ed0bef721f",
+      "rectified_rgb_sha256": "e12ed830562ed67fc0f0a9f24b2c7d6738661e715c354f77a6e95a10c405ad9c",
+      "sampling_receipt_sha256": "c24d6e627777172f7af80501e53b446ff91fdf74ae2207a87a416b722c8c3743"
+    },
+    {
+      "image_id": "pm-53-photos_scans",
+      "original_image_sha256": "3a0308798822f2f5e0cbc1eb4719a9842cd769e2e64a754466c0573eb9a3da73",
+      "rectified_rgb_sha256": "7849f011cb6a4000fa732062e4b19ee63aa68ad5d6b020609cf9e3ab167c88b1",
+      "sampling_receipt_sha256": "2dbdcbd321b93cb586924e733073654489bde83695e397f7887a01dad19a9722"
+    },
+    {
+      "image_id": "pm-53-photos_samsung",
+      "original_image_sha256": "c4ff7f0de5863151f2bf432f65e6d6cf153b5d3f2067e4889a8932b60beb6af1",
+      "rectified_rgb_sha256": "bbcf3d8b20bb1f3f7567f5bd2aa31a12b3624b9bebfaff6fd9677ee95275c94c",
+      "sampling_receipt_sha256": "640bb354bec030461905268c818dba96aa0f303c295e37bef795b50cb6299622"
+    },
+    {
+      "image_id": "pm-53-photos_bents",
+      "original_image_sha256": "eb70d0dea9c60b7f24393b44679f8dad3a5edc9e3703c5c897a9445346d3f430",
+      "rectified_rgb_sha256": null,
+      "sampling_receipt_sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+    },
+    {
+      "image_id": "pm-69-photos_scans",
+      "original_image_sha256": "4b83c09ef55776ac572c87a0b82efdff54341391a73319335a91309b0d9291d7",
+      "rectified_rgb_sha256": "2504bc15d3b68a6c0365ed9871b36b400bfe0962dc2ec8bdd0b5befe04173033",
+      "sampling_receipt_sha256": "8a5499fc598576eeb25c258e1c5467ab270f40d6b9c9f2712168070f47202e00"
+    },
+    {
+      "image_id": "pm-69-photos_samsung",
+      "original_image_sha256": "ec2fac766c3afff08df269bfa58a478c6cf4450cd0798751e94bb774bd2511b3",
+      "rectified_rgb_sha256": "15c91d3098bbf0c866368fb0722e4e7b37fd11809a6b217a8c5d33f8c81180ce",
+      "sampling_receipt_sha256": "8fdc50d833374158a7703b3ac54cf53b7590be9f2a82e1d7e1b3708349fbce85"
+    },
+    {
+      "image_id": "pm-69-photos_bents",
+      "original_image_sha256": "acd1d58e3aa61aa30224bfddad14c0607b6f1fa36edf238030e183e04ac1f71e",
+      "rectified_rgb_sha256": "c6d7f5a5b980c7457afd0f414f4604f8b91a86d8de6adbc1f8ff02b343b15152",
+      "sampling_receipt_sha256": "df4737c0db78fac1d633c21952ac839b77393b075dba4f4a1f62c702bfa4e8ae"
+    },
+    {
+      "image_id": "pm-77-photos_scans",
+      "original_image_sha256": "009f12a5e542adfa3810b06378c77cc62f313af5a86f0e6a7fa95288693186ba",
+      "rectified_rgb_sha256": "8ebc02cfbb9fdce8aaca1ff35d671fa8dbc1aaa0a4a18cdde4e257865b7ffb5e",
+      "sampling_receipt_sha256": "66053fbecd649f64047047adebf39e20b1c3689dc36b8dd57f62ea2ae4f2117f"
+    },
+    {
+      "image_id": "pm-77-photos_samsung",
+      "original_image_sha256": "73132e1f28c4601011a78268509f274ed56b24018c4936e854cde02ed2eaba09",
+      "rectified_rgb_sha256": "17e11fe3028e7748cac87dc905582bbdd7f0eb56468aea6e7996c931a654ca05",
+      "sampling_receipt_sha256": "6335a3b96d65a0c64694f1a74a502b7abfdcd74e14a5c7e61dce2d76f7613efa"
+    },
+    {
+      "image_id": "pm-77-photos_bents",
+      "original_image_sha256": "176797589aea4b2ff49b456153c73a56c2953a03dfed0a816b045915af5b4a60",
+      "rectified_rgb_sha256": null,
+      "sampling_receipt_sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+    },
+    {
+      "image_id": "pm-94-photos_scans",
+      "original_image_sha256": "73251b69f98ad12a1e1ec7d6e6c3839bb3ae2bf87dd52fe5c8c5e9a7b9fda93c",
+      "rectified_rgb_sha256": "1f8c4219d70006137c84b90ba5b27b0b431d1d63113a5c900127d38a3b22721e",
+      "sampling_receipt_sha256": "3b95eb1ce3c7d38e4af6ad5544db4064a150a0c649c26140a1a30073a9b3f3e7"
+    },
+    {
+      "image_id": "pm-94-photos_samsung",
+      "original_image_sha256": "981da3acf74f6522ac27dc58a6463ac09bc6b8545918687501db77b2170a33a9",
+      "rectified_rgb_sha256": "8d4555085267f7001beb47b154d61cc063ef0bb4638e512a834a619586b7ca7c",
+      "sampling_receipt_sha256": "67a3bc8ae97b248cbd2a5a8d1f8d0835d7c5c8523738fb617271c0ea7a5b7be3"
+    },
+    {
+      "image_id": "pm-94-photos_bents",
+      "original_image_sha256": "b40233d3076b6b6daa0b2b9cfaf7d684eab67ef1fbe21616a6a46f1df308909b",
+      "rectified_rgb_sha256": "02ef0abea935aaae07ebdb14185547547896c42aaf9cc1e4d03affc380eaf27b",
+      "sampling_receipt_sha256": "c92e7cd22676ba611c60bb36386685966b10f1f47b57fd775e0464683cb5a21e"
+    },
+    {
+      "image_id": "pm-97-photos_scans",
+      "original_image_sha256": "6d4a6726107c424ca6829c4b13ea9de8e5306365ff1dde06c39740e21d02d7e6",
+      "rectified_rgb_sha256": "974d826bbf85c9cd56f39a34119cefe1040a7240c4360fbb1d846ced2a559765",
+      "sampling_receipt_sha256": "2794fc738e5823503ce73cc8297c8718f213a75b41df658628942f51a9b86ea8"
+    },
+    {
+      "image_id": "pm-97-photos_samsung",
+      "original_image_sha256": "d1212ad9998cdbb72e9ee3670f5189a689357548d7f2d6ec5c0d587b62da244b",
+      "rectified_rgb_sha256": "5c70aba457140181af3b987514e4295a885784829fcb0c9e73f541867c7cd0ce",
+      "sampling_receipt_sha256": "3c129963cd959512fd09f5fefc4b5a8c933b484fa7d6fd0eefa11c75b52714f9"
+    },
+    {
+      "image_id": "pm-97-photos_bents",
+      "original_image_sha256": "b43242ae3fa83ea96652ebba8714d1bf8df5a79b87089f8518713a0f8f022037",
+      "rectified_rgb_sha256": null,
+      "sampling_receipt_sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+    }
+  ]
+}

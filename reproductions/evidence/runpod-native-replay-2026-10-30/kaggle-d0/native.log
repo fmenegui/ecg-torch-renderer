@@ -1,0 +1,76 @@
+import ok!!!
+valid_id: 1
+	 ['D0_000022_02'] ...
+setting ok!!!
+
+*** STARTING STAGE0 ***
+THIS_DIR: /workspace/kaggle-assets/heng
+REF_PT: (9, 2)
+<All keys matched successfully>
+
+	 [GPU0]    0/1 D0_000022_02  0 min 00 sec
+demo results for stage0--------------
+D0_000022_02
+
+[GPU0] Stage0 completed. Failed: 0
+*** STARTING STAGE1 ***
+/workspace/kaggle-assets/heng
+<All keys matched successfully>
+
+	 [GPU0]    0/1 D0_000022_02  0 min 00 sec
+demo results for stage1--------------
+D0_000022_02
+
+[GPU0] Stage1 completed. Failed: 0
+0 5600
+0 1696
+height_after_trimed : 1280
+1355
+*** STARTING STAGE2 ***
+/workspace/kaggle-assets/heng
+<All keys matched successfully>
+<All keys matched successfully>
+<All keys matched successfully>
+<All keys matched successfully>
+<All keys matched successfully>
+<All keys matched successfully>
+
+	    0 D0_000022_02  0 min 00 sec
+check max intensity :  0.9977044959863027
+
+
+
+[GPU0] Stage2 completed. Failed: 0
+===========================================
+making submission csv ...
+
+	 0 D0_000022_02 : I
+	 0 D0_000022_02 : II
+	 0 D0_000022_02 : III
+	 0 D0_000022_02 : aVR
+	 0 D0_000022_02 : aVL
+	 0 D0_000022_02 : aVF
+	 0 D0_000022_02 : V1
+	 0 D0_000022_02 : V2
+	 0 D0_000022_02 : V3
+	 0 D0_000022_02 : V4
+	 0 D0_000022_02 : V5
+	 0 D0_000022_02 : V6/workspace/outputs/kaggle-d0/adapted-native-submission.py:475: Pandas4Warning: The copy keyword is deprecated and will be removed in a future version. Copy-on-Write is active in pandas since 3.0 which utilizes a lazy copy mechanism that defers copies until necessary. Use .copy() to make an eager copy if necessary.
+  submit_df = pd.concat(submit_df, axis=0, ignore_index=True, sort=False, copy=False)
+
+                         id     value
+0          D0_000022_02_0_I  0.073607
+1          D0_000022_02_1_I  0.073521
+2          D0_000022_02_2_I  0.073368
+3          D0_000022_02_3_I  0.073185
+4          D0_000022_02_4_I  0.073154
+...                     ...       ...
+18745  D0_000022_02_1245_V6 -0.026087
+18746  D0_000022_02_1246_V6 -0.026110
+18747  D0_000022_02_1247_V6 -0.026053
+18748  D0_000022_02_1248_V6 -0.026038
+18749  D0_000022_02_1249_V6 -0.026024
+
+[18750 rows x 2 columns]
+make_submission() ok!!!
+

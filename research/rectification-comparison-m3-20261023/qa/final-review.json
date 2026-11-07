@@ -1,0 +1,462 @@
+{
+  "schema": "M3-independent-final-review-v1",
+  "date": "2026-10-23",
+  "reviewer": "m3_independent_qa",
+  "status": "pass_scoped_diagnostic_audit_after_disclosed_single_PNG_recovery",
+  "protocol_cleared_for_diagnostic_execution": true,
+  "experimental_outputs_audited": true,
+  "superiority_claim_approved": false,
+  "commercial_Dotter_Gridder_executed": false,
+  "native_waveform_preservation_certified": false,
+  "lock_sha256": "a667f1cbbe3dc3334df1721a821af063691240eb0b3fdd7b72af5150f1127b3c",
+  "protocol_sha256": "83debefdb2b1bd33735c8883c0f0d3d17acc590a309ba82e79ac55a785013be0",
+  "expected_primary_diagnostic_case_method_results": 160,
+  "receipts": {
+    "metric-oracle-results.json": {
+      "status": "pass",
+      "checks": 50
+    },
+    "metric-core-review.json": {
+      "status": "pass",
+      "tests": 20,
+      "source_sha256": "8ed4cf91bc5b52c1c4bb1d0803d0f2644dbdc06573f799df8a73712b6f883e51"
+    },
+    "restoration-visibility-results.json": {
+      "status": "pass",
+      "checks": 1939
+    },
+    "kaggle-field-review.json": {
+      "status": "pass",
+      "checks": 10,
+      "source_sha256": "79ab6da6f1b1932f7935317a4c32bbeb449a9fa1066791f3e15e906bddaf1c88"
+    },
+    "orchestrator-geometry-review.json": {
+      "status": "pass",
+      "tests": 5,
+      "source_sha256": "18fedaf81856d7533a08aff112873fcc1b5c3c19b8d23fc7b62b046d8374e20e"
+    },
+    "orchestrator-failure-review.json": {
+      "status": "pass",
+      "tests": 5,
+      "source_sha256": "18fedaf81856d7533a08aff112873fcc1b5c3c19b8d23fc7b62b046d8374e20e"
+    },
+    "postprocessing-review.json": {
+      "status": "pass",
+      "tests": 6,
+      "source_sha256": "ac14b020e9cd4a457d0a16cac257452bec20f3389cbfe5b8f3f68b05c90a562f"
+    },
+    "result-auditor-controls.json": {
+      "status": "pass",
+      "tests": 3,
+      "source_sha256": "842f404c26d711b16ffbc5820e6f40765a0e271d012651872598f93c1e5f690b"
+    },
+    "execution-lock-review.json": {
+      "status": "pass",
+      "checks": 194,
+      "lock_sha256": "a667f1cbbe3dc3334df1721a821af063691240eb0b3fdd7b72af5150f1127b3c"
+    },
+    "component-results-review.json": {
+      "status": "pass",
+      "checks": 763,
+      "results_sha256": "7c7c414f324125af9bc8096138ff0b8754c8553ce79940dd013895b750f1f40c"
+    },
+    "composition-results-review.json": {
+      "status": "pass",
+      "checks": 831,
+      "results_sha256": "f97d5f3d2560c92a74a698d9492c57740e4626b7268e120c050f6eaf400f95b0"
+    },
+    "sampling-stroke-review.json": {
+      "status": "pass_control_reproduced_sampling_failure",
+      "checks": 44
+    },
+    "sampling-candidate-review.json": {
+      "status": "pass",
+      "checks": 32558
+    },
+    "diagnostic-results-review.json": {
+      "status": "pass",
+      "checks": 50223
+    },
+    "postprocessing-results-review.json": {
+      "status": "pass",
+      "checks": 821
+    },
+    "PNG-decode-post-recovery-review.json": {
+      "status": "pass",
+      "images_checked": 131
+    }
+  },
+  "pending": null,
+  "sampling_preservation_counterexample": {
+    "receipt": "sampling-stroke-review.json",
+    "status": "reproduced",
+    "checks": 44,
+    "thin_width_mm": 0.1,
+    "source_density_px_per_mm": 10,
+    "output_density_px_per_mm": 4,
+    "lost_source_column_phases": [
+      11,
+      14
+    ],
+    "tested_phases": [
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "thick_width_mm": 1,
+    "thick_full_contrast_all_phases": true,
+    "same_physical_view_contact_sheet": "sampling-stroke-contact-sheet.png",
+    "frozen_M3_changed": false,
+    "8px_per_mm_universal_sufficiency_claim": false
+  },
+  "sampling_candidate_review": {
+    "status": "pass",
+    "checks": 32558,
+    "protocol_sha256": "85adf1e4fe3f37b14fff7d6f32aea98e1db2828917e732bd7e3404653e5cd58a",
+    "results_sha256": "92084bca13acc26cd20eaff29d25cf347a642ad48d96ccadeabb0bbe05bfaee2",
+    "source_sha256": "8b9c3438e8c92630b9597f2ecd4435fa79d98a846e14f6ec5d1887061e59fc92",
+    "scenes": 280,
+    "case_arm_rows": 1960,
+    "independent_polygon_area_reference_checks": 4276,
+    "independent_source_pixel_area_checks": 4200,
+    "independent_affine_quadrature_case_arm_checks": 120,
+    "half_LSB_source_ties": 78,
+    "full_M3_or_production_source_changed": false
+  },
+  "diagnostic_review": {
+    "status": "pass",
+    "checks": 50223,
+    "lock_sha256": "a667f1cbbe3dc3334df1721a821af063691240eb0b3fdd7b72af5150f1127b3c",
+    "protocol_sha256": "83debefdb2b1bd33735c8883c0f0d3d17acc590a309ba82e79ac55a785013be0",
+    "expected_case_method_results": 160,
+    "actual_case_method_results": 160,
+    "missing": [],
+    "wall_overruns_cooperative_deadline": [],
+    "native_pipeline_overruns_including_shared_CNN_cost": [],
+    "actual_resampled_image_count": 103,
+    "aggregates_primary_paper": {
+      "our-B0": {
+        "status_counts": {
+          "completed": 18,
+          "original_preserved_partial_coordinates": 14
+        },
+        "RGB_actually_resampled": 18,
+        "primary": {
+          "g": 0.550201416015625,
+          "w": 0.159515380859375,
+          "c": 0.709716796875,
+          "r": 0.2247592019263846,
+          "cases": 32,
+          "patients": 8,
+          "backends": [
+            "offline",
+            "torch-cached"
+          ]
+        },
+        "secondary_D4": {
+          "g": 0.6786270141601562,
+          "w": 0.03108978271484375,
+          "c": 0.709716796875,
+          "r": 0.043805899552803576,
+          "cases": 32,
+          "patients": 8,
+          "backends": [
+            "offline",
+            "torch-cached"
+          ]
+        },
+        "unrestricted_finite_field": {
+          "g": 0.46437835693359375,
+          "w": 0.09812164306640625,
+          "c": 0.5625,
+          "r": 0.1744384765625,
+          "cases": 32,
+          "patients": 8,
+          "backends": [
+            "offline",
+            "torch-cached"
+          ]
+        },
+        "operational_RGB": {
+          "g": 0.46437835693359375,
+          "w": 0.09812164306640625,
+          "c": 0.5625,
+          "r": 0.1744384765625,
+          "cases": 32,
+          "patients": 8,
+          "backends": [
+            "offline",
+            "torch-cached"
+          ]
+        }
+      },
+      "our-M2": {
+        "status_counts": {
+          "completed": 18,
+          "original_preserved_partial_coordinates": 14
+        },
+        "RGB_actually_resampled": 18,
+        "primary": {
+          "g": 0.5527191162109375,
+          "w": 0.156646728515625,
+          "c": 0.7093658447265625,
+          "r": 0.2208264320591968,
+          "cases": 32,
+          "patients": 8,
+          "backends": [
+            "offline",
+            "torch-cached"
+          ]
+        },
+        "secondary_D4": {
+          "g": 0.6816635131835938,
+          "w": 0.02770233154296875,
+          "c": 0.7093658447265625,
+          "r": 0.03905224891909914,
+          "cases": 32,
+          "patients": 8,
+          "backends": [
+            "offline",
+            "torch-cached"
+          ]
+        },
+        "unrestricted_finite_field": {
+          "g": 0.4693145751953125,
+          "w": 0.0931854248046875,
+          "c": 0.5625,
+          "r": 0.16566297743055555,
+          "cases": 32,
+          "patients": 8,
+          "backends": [
+            "offline",
+            "torch-cached"
+          ]
+        },
+        "operational_RGB": {
+          "g": 0.4693145751953125,
+          "w": 0.0931854248046875,
+          "c": 0.5625,
+          "r": 0.16566297743055555,
+          "cases": 32,
+          "patients": 8,
+          "backends": [
+            "offline",
+            "torch-cached"
+          ]
+        }
+      },
+      "npj-generic": {
+        "status_counts": {
+          "completed": 32
+        },
+        "RGB_actually_resampled": 32,
+        "primary": {
+          "g": 0.1066741943359375,
+          "w": 0.7702484130859375,
+          "c": 0.876922607421875,
+          "r": 0.8783539237863233,
+          "cases": 32,
+          "patients": 8,
+          "backends": [
+            "offline",
+            "torch-cached"
+          ]
+        },
+        "secondary_D4": {
+          "g": 0.126312255859375,
+          "w": 0.7506103515625,
+          "c": 0.876922607421875,
+          "r": 0.8559596311118844,
+          "cases": 32,
+          "patients": 8,
+          "backends": [
+            "offline",
+            "torch-cached"
+          ]
+        },
+        "unrestricted_finite_field": {
+          "g": 0.1066741943359375,
+          "w": 0.7702484130859375,
+          "c": 0.876922607421875,
+          "r": 0.8783539237863233,
+          "cases": 32,
+          "patients": 8,
+          "backends": [
+            "offline",
+            "torch-cached"
+          ]
+        },
+        "operational_RGB": {
+          "g": 0.1066741943359375,
+          "w": 0.7702484130859375,
+          "c": 0.876922607421875,
+          "r": 0.8783539237863233,
+          "cases": 32,
+          "patients": 8,
+          "backends": [
+            "offline",
+            "torch-cached"
+          ]
+        }
+      },
+      "npj-george-moody-2024": {
+        "status_counts": {
+          "completed": 32
+        },
+        "RGB_actually_resampled": 32,
+        "primary": {
+          "g": 0.1063079833984375,
+          "w": 0.7706146240234375,
+          "c": 0.876922607421875,
+          "r": 0.8787715329737255,
+          "cases": 32,
+          "patients": 8,
+          "backends": [
+            "offline",
+            "torch-cached"
+          ]
+        },
+        "secondary_D4": {
+          "g": 0.1259613037109375,
+          "w": 0.7509613037109375,
+          "c": 0.876922607421875,
+          "r": 0.8563598399164781,
+          "cases": 32,
+          "patients": 8,
+          "backends": [
+            "offline",
+            "torch-cached"
+          ]
+        },
+        "unrestricted_finite_field": {
+          "g": 0.1063079833984375,
+          "w": 0.7706146240234375,
+          "c": 0.876922607421875,
+          "r": 0.8787715329737255,
+          "cases": 32,
+          "patients": 8,
+          "backends": [
+            "offline",
+            "torch-cached"
+          ]
+        },
+        "operational_RGB": {
+          "g": 0.1063079833984375,
+          "w": 0.7706146240234375,
+          "c": 0.876922607421875,
+          "r": 0.8787715329737255,
+          "cases": 32,
+          "patients": 8,
+          "backends": [
+            "offline",
+            "torch-cached"
+          ]
+        }
+      },
+      "kaggle-third": {
+        "status_counts": {
+          "failed": 29,
+          "completed": 3
+        },
+        "RGB_actually_resampled": 3,
+        "primary": {
+          "g": 0.0,
+          "w": 0.0,
+          "c": 0.0,
+          "r": null,
+          "cases": 32,
+          "patients": 8,
+          "backends": [
+            "offline",
+            "torch-cached"
+          ]
+        },
+        "secondary_D4": {
+          "g": 0.0,
+          "w": 0.0,
+          "c": 0.0,
+          "r": null,
+          "cases": 32,
+          "patients": 8,
+          "backends": [
+            "offline",
+            "torch-cached"
+          ]
+        },
+        "unrestricted_finite_field": {
+          "g": 0.0,
+          "w": 0.0,
+          "c": 0.0,
+          "r": null,
+          "cases": 32,
+          "patients": 8,
+          "backends": [
+            "offline",
+            "torch-cached"
+          ]
+        },
+        "operational_RGB": {
+          "g": 0.0,
+          "w": 0.0,
+          "c": 0.0,
+          "r": null,
+          "cases": 32,
+          "patients": 8,
+          "backends": [
+            "offline",
+            "torch-cached"
+          ]
+        }
+      }
+    }
+  },
+  "summary_review": {
+    "status": "pass",
+    "checks": 821,
+    "summary_sha256": "f23de9fbba72d75b36a13553b9147c35dd82953f7c83ae6e88fbefdb42c240c5",
+    "postprocessing_receipt_sha256": "d8f9679eced034f0ff7f7ae0519eb5d97f328a756b9b6756d39b519f61a2a55c",
+    "repetitions": 20000,
+    "undefined_Kaggle_R_draws": 20000
+  },
+  "PNG_decode_post_recovery": {
+    "status": "pass",
+    "images_checked": 131,
+    "failures": [],
+    "scope": "Full PNG pixel decode after one disclosed atomic duplicate recovery. Pre-repair failure and bad bytes remain preserved. Does not prove resampled waveform fidelity."
+  },
+  "artifact_recovery": {
+    "receipt": "artifact-incidents/211723-2-our-B0-recovery.json",
+    "pre_repair_failure_preserved": true,
+    "pre_sha256": "da634ca2aebd211cdd6738a1a74228900eac1f93e26bdd4f8439050a01292b01",
+    "post_sha256": "a5d0b664bd7ee75d244d0da8f21ad84c2e65948254d0c7a45220d42f3ca6f9d6",
+    "backup_sha256": "da634ca2aebd211cdd6738a1a74228900eac1f93e26bdd4f8439050a01292b01",
+    "inference_or_geometry_reexecuted": false,
+    "result_status_timing_predictions_scores_source_and_weights_changed": false,
+    "cause": "unknown"
+  },
+  "hardware": {
+    "cpu_model": "AMD EPYC 9V74 80-Core Processor",
+    "logical_cpus_visible": 9,
+    "affinity_cpus": 9,
+    "cgroup_cpu_max": "800000 100000",
+    "cgroup_memory_max": "8589934592",
+    "environment": {
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "1"
+    },
+    "torch_intraop": 2,
+    "opencv_threads": 1,
+    "timing_scope": "loaded models, shared host, no coldstart or per-method peak-memory measurement"
+  },
+  "development_feasibility_captures": 1,
+  "complete_development_pool_scored": false,
+  "Kaggle_stated_support_stratum": {
+    "cases": 1,
+    "patients": 1,
+    "backends": 1,
+    "adequate_supported_task_assessment": false
+  }
+}

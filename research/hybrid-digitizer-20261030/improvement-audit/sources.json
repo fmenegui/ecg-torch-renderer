@@ -1,0 +1,120 @@
+{
+  "schema": "ecg-improvement-primary-source-review-v1",
+  "reviewed_on": "2026-10-30",
+  "search_scope": [
+    "npj and other published digitizers",
+    "all five Kaggle top-five writeups and available code",
+    "public Dotter/Gridder article and patent",
+    "2026 QA and digitization preprints",
+    "synthetic resources and clinical paired datasets"
+  ],
+  "exhaustiveness_claim": false,
+  "sources": [
+    {
+      "id": "S1",
+      "title": "npj Open-ECG-Digitizer",
+      "url": "https://doi.org/10.1038/s41746-025-02327-1",
+      "access_and_limit": "Published paper indexed full text and pinned original source 97a15087d4abcda843da8c58ee74b1d8f47e6f9a. Direct Nature/PMC page fetch blocked this review."
+    },
+    {
+      "id": "S2",
+      "title": "Powerful Medical published paper",
+      "url": "https://doi.org/10.1016/j.jelectrocard.2025.153900",
+      "access_and_limit": "Published abstract verified through PubMed 40010101. Mechanism details from primary preprint 10.1101/2024.08.31.24312876. Commercial source and weights unavailable."
+    },
+    {
+      "id": "S3",
+      "title": "Public technical patent disclosure",
+      "url": "https://patents.google.com/patent/US12614244B2/en",
+      "access_and_limit": "Technical text retrieved. This review makes no freedom-to-operate or legal-status conclusion."
+    },
+    {
+      "id": "S4",
+      "title": "Kaggle first place official writeup",
+      "url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/writeups/1st-place-solution",
+      "access_and_limit": "Official API text retrieved earlier on the same date, reread from local source-cache and verified against its recorded SHA256. Current HTML page has no readable text.",
+      "official_writeup_markdown_sha256": "0c1d714d8f61d0b814e1351b17f21a3c8eb51a5504bc7cf37472dc27a2c4553c",
+      "official_writeup_last_update": "2026-01-23T08:57:37.396270300Z"
+    },
+    {
+      "id": "S5",
+      "title": "Kaggle second place official writeup",
+      "url": "https://www.kaggle.com/c/physionet-ecg-image-digitization/writeups/2nd-place-solution",
+      "access_and_limit": "Primary writeup retrieved through current web search. Original notebook v6 and eight model assets are pinned separately in reproductions/kaggle."
+    },
+    {
+      "id": "S6",
+      "title": "Kaggle third place official writeup and code",
+      "url": "https://github.com/tanghaozhe/physionet-ecg-image-digitization-3rd-place",
+      "access_and_limit": "Primary code README and official writeup freshly retrieved. Source pinned in reproductions/sources.lock.json."
+    },
+    {
+      "id": "S7",
+      "title": "Kaggle fourth place official writeup and code",
+      "url": "https://github.com/uchiyama33/physionet_4th_place",
+      "access_and_limit": "Current primary README retrieved through GitHub connector. Official API writeup cache reread and SHA256 verified. Current Kaggle HTML page has no readable text.",
+      "official_writeup_markdown_sha256": "af387f6bcfe7f7756c041e4a668ddf3dd76a6b019919401018cd7966a6e43ca9",
+      "official_writeup_last_update": "2026-01-25T00:39:45.024377500Z"
+    },
+    {
+      "id": "S8",
+      "title": "Kaggle fifth place and ablation study",
+      "url": "https://github.com/dangnh0611/kaggle_ecg_digitization/blob/main/docs/ABLATION_STUDY.md",
+      "access_and_limit": "Primary README and ablation table retrieved. Evaluation notes add the short II segment and differ from the leaderboard. No training or inference reproduced in this review."
+    },
+    {
+      "id": "S9",
+      "title": "PhysioNet 2024 winning ECG-Digitiser",
+      "url": "https://github.com/felixkrones/ECG-Digitiser",
+      "access_and_limit": "Current primary README retrieved. Does not establish a result on our cohort."
+    },
+    {
+      "id": "S10",
+      "title": "ECGMiner",
+      "url": "https://doi.org/10.1016/j.cmpb.2024.108053",
+      "access_and_limit": "Primary published article indexed content consulted. No common-cohort result executed."
+    },
+    {
+      "id": "S11",
+      "title": "ECGtizer",
+      "url": "https://github.com/UMMISCO/ecgtizer",
+      "access_and_limit": "Current primary README consulted, including the separate deep-learning lead-completion module."
+    },
+    {
+      "id": "S12",
+      "title": "VLM-in-the-Loop",
+      "url": "https://arxiv.org/html/2604.00396v1",
+      "access_and_limit": "Primary preprint, April 2026, full text including limitations and paired-ground-truth evaluation consulted."
+    },
+    {
+      "id": "S13",
+      "title": "PTB-XL-Image-17K",
+      "url": "https://arxiv.org/abs/2602.07446",
+      "access_and_limit": "Primary dataset preprint, v2 March 2026, abstract and linked metadata consulted. Synthetic resource, not external clinical validation."
+    },
+    {
+      "id": "S14",
+      "title": "ECG-Image-Kit",
+      "url": "https://doi.org/10.1088/1361-6579/ad4954",
+      "access_and_limit": "Primary published article and author repository https://github.com/alphanumericslab/ecg-image-kit consulted."
+    },
+    {
+      "id": "S15",
+      "title": "ECGLight",
+      "url": "https://arxiv.org/abs/2607.07683",
+      "access_and_limit": "Primary preprint abstract obtained through indexed search and current author README at https://github.com/SCAI-Lab/ECGLight. Direct arXiv page fetch blocked."
+    },
+    {
+      "id": "S16",
+      "title": "Clinical electrocardiogram digitization based on U2Net",
+      "url": "https://www.oaepress.com/articles/jca.2026.45",
+      "access_and_limit": "Primary publisher abstract retrieved, published September 2026. Full protocol/code not independently reproduced."
+    },
+    {
+      "id": "S17",
+      "title": "ECG-Image-Database",
+      "url": "https://doi.org/10.1088/1361-6579/ae85b2",
+      "access_and_limit": "Current dataset v2 and 22,806-file inventory were acquired in the prior reproduction. Source record in reproductions/sources.lock.json. Current PMC HTML fetch blocked."
+    }
+  ]
+}

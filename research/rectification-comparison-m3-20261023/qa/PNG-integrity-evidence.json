@@ -1,0 +1,334 @@
+{
+  "scope": "Read-only evidence captured before any artifact repair",
+  "records": [
+    {
+      "file": "/workspace/scratch/a57599a3e70e/ecg-torch-renderer/build/m3-comparison/cases/211723-2/our-B0/original-preserved.png",
+      "bytes": 589961,
+      "sha256": "da634ca2aebd211cdd6738a1a74228900eac1f93e26bdd4f8439050a01292b01",
+      "first32_hex": "89504e470d0a1a0a0000000d4948445200000400000002c00802000000824797",
+      "last32_hex": "807735282bc42afc2ad15594a5b67a906cbf1551ccaaa066ffcbadbf7570c4e6",
+      "chunks": [
+        {
+          "type": "IHDR",
+          "offset": 8,
+          "length": 13,
+          "expected_end": 33,
+          "complete": true
+        },
+        {
+          "type": "IDAT",
+          "offset": 33,
+          "length": 65536,
+          "expected_end": 65581,
+          "complete": true
+        },
+        {
+          "type": "IDAT",
+          "offset": 65581,
+          "length": 65536,
+          "expected_end": 131129,
+          "complete": true
+        },
+        {
+          "type": "IDAT",
+          "offset": 131129,
+          "length": 65536,
+          "expected_end": 196677,
+          "complete": true
+        },
+        {
+          "type": "IDAT",
+          "offset": 196677,
+          "length": 65536,
+          "expected_end": 262225,
+          "complete": true
+        },
+        {
+          "type": "IDAT",
+          "offset": 262225,
+          "length": 65536,
+          "expected_end": 327773,
+          "complete": true
+        },
+        {
+          "type": "IDAT",
+          "offset": 327773,
+          "length": 65536,
+          "expected_end": 393321,
+          "complete": true
+        },
+        {
+          "type": "IDAT",
+          "offset": 393321,
+          "length": 65536,
+          "expected_end": 458869,
+          "complete": true
+        },
+        {
+          "type": "IDAT",
+          "offset": 458869,
+          "length": 65536,
+          "expected_end": 524417,
+          "complete": true
+        },
+        {
+          "type": "IDAT",
+          "offset": 524417,
+          "length": 65536,
+          "expected_end": 589965,
+          "complete": false
+        }
+      ],
+      "decode": {
+        "status": "fail",
+        "error": "image file is truncated"
+      }
+    },
+    {
+      "file": "/workspace/scratch/a57599a3e70e/ecg-torch-renderer/build/m3-comparison/cases/211723-2/our-B0/original-rgb.png",
+      "bytes": 820726,
+      "sha256": "a5d0b664bd7ee75d244d0da8f21ad84c2e65948254d0c7a45220d42f3ca6f9d6",
+      "first32_hex": "89504e470d0a1a0a0000000d4948445200000400000002c00802000000824797",
+      "last32_hex": "4b4f05bd98d2271e0d42ffff1168cfeac6f0bee40000000049454e44ae426082",
+      "chunks": [
+        {
+          "type": "IHDR",
+          "offset": 8,
+          "length": 13,
+          "expected_end": 33,
+          "complete": true
+        },
+        {
+          "type": "IDAT",
+          "offset": 33,
+          "length": 65536,
+          "expected_end": 65581,
+          "complete": true
+        },
+        {
+          "type": "IDAT",
+          "offset": 65581,
+          "length": 65536,
+          "expected_end": 131129,
+          "complete": true
+        },
+        {
+          "type": "IDAT",
+          "offset": 131129,
+          "length": 65536,
+          "expected_end": 196677,
+          "complete": true
+        },
+        {
+          "type": "IDAT",
+          "offset": 196677,
+          "length": 65536,
+          "expected_end": 262225,
+          "complete": true
+        },
+        {
+          "type": "IDAT",
+          "offset": 262225,
+          "length": 65536,
+          "expected_end": 327773,
+          "complete": true
+        },
+        {
+          "type": "IDAT",
+          "offset": 327773,
+          "length": 65536,
+          "expected_end": 393321,
+          "complete": true
+        },
+        {
+          "type": "IDAT",
+          "offset": 393321,
+          "length": 65536,
+          "expected_end": 458869,
+          "complete": true
+        },
+        {
+          "type": "IDAT",
+          "offset": 458869,
+          "length": 65536,
+          "expected_end": 524417,
+          "complete": true
+        },
+        {
+          "type": "IDAT",
+          "offset": 524417,
+          "length": 65536,
+          "expected_end": 589965,
+          "complete": true
+        },
+        {
+          "type": "IDAT",
+          "offset": 589965,
+          "length": 65536,
+          "expected_end": 655513,
+          "complete": true
+        },
+        {
+          "type": "IDAT",
+          "offset": 655513,
+          "length": 65536,
+          "expected_end": 721061,
+          "complete": true
+        },
+        {
+          "type": "IDAT",
+          "offset": 721061,
+          "length": 65536,
+          "expected_end": 786609,
+          "complete": true
+        },
+        {
+          "type": "IDAT",
+          "offset": 786609,
+          "length": 34093,
+          "expected_end": 820714,
+          "complete": true
+        },
+        {
+          "type": "IEND",
+          "offset": 820714,
+          "length": 0,
+          "expected_end": 820726,
+          "complete": true
+        }
+      ],
+      "decode": {
+        "status": "pass",
+        "shape": [
+          704,
+          1024,
+          3
+        ],
+        "RGB_sha256": "a9e806b68befb9f8357a3f5bc5364401a5bac102115ea232d632bab0b229ad12"
+      }
+    },
+    {
+      "file": "/workspace/scratch/a57599a3e70e/ecg-torch-renderer/build/m3-comparison/cases/211723-2/our-B0/output-original-rgb.png",
+      "bytes": 820726,
+      "sha256": "a5d0b664bd7ee75d244d0da8f21ad84c2e65948254d0c7a45220d42f3ca6f9d6",
+      "first32_hex": "89504e470d0a1a0a0000000d4948445200000400000002c00802000000824797",
+      "last32_hex": "4b4f05bd98d2271e0d42ffff1168cfeac6f0bee40000000049454e44ae426082",
+      "chunks": [
+        {
+          "type": "IHDR",
+          "offset": 8,
+          "length": 13,
+          "expected_end": 33,
+          "complete": true
+        },
+        {
+          "type": "IDAT",
+          "offset": 33,
+          "length": 65536,
+          "expected_end": 65581,
+          "complete": true
+        },
+        {
+          "type": "IDAT",
+          "offset": 65581,
+          "length": 65536,
+          "expected_end": 131129,
+          "complete": true
+        },
+        {
+          "type": "IDAT",
+          "offset": 131129,
+          "length": 65536,
+          "expected_end": 196677,
+          "complete": true
+        },
+        {
+          "type": "IDAT",
+          "offset": 196677,
+          "length": 65536,
+          "expected_end": 262225,
+          "complete": true
+        },
+        {
+          "type": "IDAT",
+          "offset": 262225,
+          "length": 65536,
+          "expected_end": 327773,
+          "complete": true
+        },
+        {
+          "type": "IDAT",
+          "offset": 327773,
+          "length": 65536,
+          "expected_end": 393321,
+          "complete": true
+        },
+        {
+          "type": "IDAT",
+          "offset": 393321,
+          "length": 65536,
+          "expected_end": 458869,
+          "complete": true
+        },
+        {
+          "type": "IDAT",
+          "offset": 458869,
+          "length": 65536,
+          "expected_end": 524417,
+          "complete": true
+        },
+        {
+          "type": "IDAT",
+          "offset": 524417,
+          "length": 65536,
+          "expected_end": 589965,
+          "complete": true
+        },
+        {
+          "type": "IDAT",
+          "offset": 589965,
+          "length": 65536,
+          "expected_end": 655513,
+          "complete": true
+        },
+        {
+          "type": "IDAT",
+          "offset": 655513,
+          "length": 65536,
+          "expected_end": 721061,
+          "complete": true
+        },
+        {
+          "type": "IDAT",
+          "offset": 721061,
+          "length": 65536,
+          "expected_end": 786609,
+          "complete": true
+        },
+        {
+          "type": "IDAT",
+          "offset": 786609,
+          "length": 34093,
+          "expected_end": 820714,
+          "complete": true
+        },
+        {
+          "type": "IEND",
+          "offset": 820714,
+          "length": 0,
+          "expected_end": 820726,
+          "complete": true
+        }
+      ],
+      "decode": {
+        "status": "pass",
+        "shape": [
+          704,
+          1024,
+          3
+        ],
+        "RGB_sha256": "a9e806b68befb9f8357a3f5bc5364401a5bac102115ea232d632bab0b229ad12"
+      }
+    }
+  ]
+}

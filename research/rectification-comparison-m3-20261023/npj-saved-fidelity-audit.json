@@ -1,0 +1,787 @@
+{
+  "status": "pass",
+  "neural_inference_performed": false,
+  "frozen_code_or_results_changed": false,
+  "selected_case_scope": "six fixed diagnostic cases, not comparator selection",
+  "adapter_sha256": "fd4a022d273c7682d14f99c3ff4910dbb8c7417d2f50e61b8fe2f13ac59d4aa9",
+  "lock_sha256": "a667f1cbbe3dc3334df1721a821af063691240eb0b3fdd7b72af5150f1127b3c",
+  "cases": [
+    {
+      "key": "220288-0",
+      "method": "npj-generic",
+      "layout": "1x1-long",
+      "backend": "torch-cached",
+      "official_preset": "generic",
+      "official_config_sha256": "870e8b27f86687e6f4dd5295b8984793bc2d84a26410bb37ff6f7112e64df40a",
+      "source_archive_hash_matches": true,
+      "result_sha256": "4e4cb6b2b48b549deda011e56c4e6b4e2727fd6714a29d7518cea070fbaca632",
+      "recomputed_destination_exact": true,
+      "maximum_source_to_pixels_difference": 0.0,
+      "maximum_source_to_mm_difference": 0.0,
+      "native_RGB_replay_exact": true,
+      "native_RGB_maximum_difference_8bit": 0,
+      "predictions": {
+        "anchors": {
+          "maximum_coordinate_difference_mm": 0.0,
+          "eligibility_exact": true,
+          "native_eligible_queries": 0
+        },
+        "grid": {
+          "maximum_coordinate_difference_mm": 0.0,
+          "eligibility_exact": true,
+          "native_eligible_queries": 1
+        },
+        "paper": {
+          "maximum_coordinate_difference_mm": 0.0,
+          "eligibility_exact": true,
+          "native_eligible_queries": 6
+        }
+      },
+      "source_quad_approximate_aspect": -53.97843038475381,
+      "source_quad_vertical_extent_from_average_edges_px": -17.9764404296875,
+      "destination_x_range": [
+        -15638.345703125,
+        16662.345703125
+      ],
+      "mm_per_output_pixel_xy": [
+        0.3312990367412567,
+        0.34150195121765137
+      ],
+      "visible_major_grid_ID_min": [
+        3,
+        0
+      ],
+      "visible_major_grid_ID_max": [
+        71,
+        103
+      ],
+      "primary_registration": "registration_unavailable",
+      "reference_anchor_span_mm": [
+        0.0,
+        0.0
+      ],
+      "predicted_anchor_span_mm": [
+        0.0,
+        0.0
+      ],
+      "primary_grid_G": 0.0,
+      "primary_grid_C": 0.0,
+      "native_grid_C": 0.000244140625,
+      "primary_grid_RMSE_mm": null,
+      "D4_grid_RMSE_mm": null
+    },
+    {
+      "key": "220288-0",
+      "method": "npj-george-moody-2024",
+      "layout": "1x1-long",
+      "backend": "torch-cached",
+      "official_preset": "george-moody-2024",
+      "official_config_sha256": "2ea9416ae5e2751fc2084523fdb95253072157acda9fde8ddd44429b6650b181",
+      "source_archive_hash_matches": true,
+      "result_sha256": "1e3ada6f1ad7594dc2e871479f95c3e1f182d0526473b95c227a39706c6c02c7",
+      "recomputed_destination_exact": true,
+      "maximum_source_to_pixels_difference": 0.0,
+      "maximum_source_to_mm_difference": 0.0,
+      "native_RGB_replay_exact": true,
+      "native_RGB_maximum_difference_8bit": 0,
+      "predictions": {
+        "anchors": {
+          "maximum_coordinate_difference_mm": 0.0,
+          "eligibility_exact": true,
+          "native_eligible_queries": 0
+        },
+        "grid": {
+          "maximum_coordinate_difference_mm": 0.0,
+          "eligibility_exact": true,
+          "native_eligible_queries": 1
+        },
+        "paper": {
+          "maximum_coordinate_difference_mm": 0.0,
+          "eligibility_exact": true,
+          "native_eligible_queries": 6
+        }
+      },
+      "source_quad_approximate_aspect": -53.97843038475381,
+      "source_quad_vertical_extent_from_average_edges_px": -17.9764404296875,
+      "destination_x_range": [
+        -15638.345703125,
+        16662.345703125
+      ],
+      "mm_per_output_pixel_xy": [
+        0.3312990367412567,
+        0.34150195121765137
+      ],
+      "visible_major_grid_ID_min": [
+        3,
+        0
+      ],
+      "visible_major_grid_ID_max": [
+        71,
+        103
+      ],
+      "primary_registration": "registration_unavailable",
+      "reference_anchor_span_mm": [
+        0.0,
+        0.0
+      ],
+      "predicted_anchor_span_mm": [
+        0.0,
+        0.0
+      ],
+      "primary_grid_G": 0.0,
+      "primary_grid_C": 0.0,
+      "native_grid_C": 0.000244140625,
+      "primary_grid_RMSE_mm": null,
+      "D4_grid_RMSE_mm": null
+    },
+    {
+      "key": "208777-0",
+      "method": "npj-generic",
+      "layout": "6x2+r1",
+      "backend": "torch-cached",
+      "official_preset": "generic",
+      "official_config_sha256": "870e8b27f86687e6f4dd5295b8984793bc2d84a26410bb37ff6f7112e64df40a",
+      "source_archive_hash_matches": true,
+      "result_sha256": "2d1e392be199b331f730f3dc498cf21bfe251642d2d8cd9705ea319e923da77a",
+      "recomputed_destination_exact": true,
+      "maximum_source_to_pixels_difference": 0.0,
+      "maximum_source_to_mm_difference": 0.0,
+      "native_RGB_replay_exact": true,
+      "native_RGB_maximum_difference_8bit": 0,
+      "predictions": {
+        "anchors": {
+          "maximum_coordinate_difference_mm": 0.0,
+          "eligibility_exact": true,
+          "native_eligible_queries": 55
+        },
+        "grid": {
+          "maximum_coordinate_difference_mm": 0.0,
+          "eligibility_exact": true,
+          "native_eligible_queries": 4000
+        },
+        "paper": {
+          "maximum_coordinate_difference_mm": 0.0,
+          "eligibility_exact": true,
+          "native_eligible_queries": 3762
+        }
+      },
+      "source_quad_approximate_aspect": 1.6713764199855012,
+      "source_quad_vertical_extent_from_average_edges_px": 393.0602111816406,
+      "destination_x_range": [
+        76.80000305175781,
+        947.2000122070312
+      ],
+      "mm_per_output_pixel_xy": [
+        0.25534510612487793,
+        0.25567007064819336
+      ],
+      "visible_major_grid_ID_min": [
+        3,
+        0
+      ],
+      "visible_major_grid_ID_max": [
+        36,
+        53
+      ],
+      "primary_registration": "registered_translation_only",
+      "reference_anchor_span_mm": [
+        258.4721050262451,
+        160.73875045776367
+      ],
+      "predicted_anchor_span_mm": [
+        258.6630042006432,
+        161.3153564236706
+      ],
+      "primary_grid_G": 0.9765625,
+      "primary_grid_C": 0.9765625,
+      "native_grid_C": 0.9765625,
+      "primary_grid_RMSE_mm": 0.24948432785825572,
+      "D4_grid_RMSE_mm": 0.24948432785825572
+    },
+    {
+      "key": "208777-0",
+      "method": "npj-george-moody-2024",
+      "layout": "6x2+r1",
+      "backend": "torch-cached",
+      "official_preset": "george-moody-2024",
+      "official_config_sha256": "2ea9416ae5e2751fc2084523fdb95253072157acda9fde8ddd44429b6650b181",
+      "source_archive_hash_matches": true,
+      "result_sha256": "2cf79cac6866cb9def03667b914648c8bd2d28a1956d8fcd4de7e3bd67e00c09",
+      "recomputed_destination_exact": true,
+      "maximum_source_to_pixels_difference": 0.0,
+      "maximum_source_to_mm_difference": 0.0,
+      "native_RGB_replay_exact": true,
+      "native_RGB_maximum_difference_8bit": 0,
+      "predictions": {
+        "anchors": {
+          "maximum_coordinate_difference_mm": 0.0,
+          "eligibility_exact": true,
+          "native_eligible_queries": 55
+        },
+        "grid": {
+          "maximum_coordinate_difference_mm": 0.0,
+          "eligibility_exact": true,
+          "native_eligible_queries": 4000
+        },
+        "paper": {
+          "maximum_coordinate_difference_mm": 0.0,
+          "eligibility_exact": true,
+          "native_eligible_queries": 3762
+        }
+      },
+      "source_quad_approximate_aspect": 1.6713764199855012,
+      "source_quad_vertical_extent_from_average_edges_px": 393.0602111816406,
+      "destination_x_range": [
+        76.80000305175781,
+        947.2000122070312
+      ],
+      "mm_per_output_pixel_xy": [
+        0.25534510612487793,
+        0.25567007064819336
+      ],
+      "visible_major_grid_ID_min": [
+        3,
+        0
+      ],
+      "visible_major_grid_ID_max": [
+        36,
+        53
+      ],
+      "primary_registration": "registered_translation_only",
+      "reference_anchor_span_mm": [
+        258.4721050262451,
+        160.73875045776367
+      ],
+      "predicted_anchor_span_mm": [
+        258.6630042006432,
+        161.3153564236706
+      ],
+      "primary_grid_G": 0.9765625,
+      "primary_grid_C": 0.9765625,
+      "native_grid_C": 0.9765625,
+      "primary_grid_RMSE_mm": 0.24948432785825572,
+      "D4_grid_RMSE_mm": 0.24948432785825572
+    },
+    {
+      "key": "220288-2",
+      "method": "npj-generic",
+      "layout": "12x1+r3",
+      "backend": "offline",
+      "official_preset": "generic",
+      "official_config_sha256": "870e8b27f86687e6f4dd5295b8984793bc2d84a26410bb37ff6f7112e64df40a",
+      "source_archive_hash_matches": true,
+      "result_sha256": "7b655081ca34ae04b414351d4c10372bdb81eb8c56a9c3d9cf25fe63e12b8c62",
+      "recomputed_destination_exact": true,
+      "maximum_source_to_pixels_difference": 0.0,
+      "maximum_source_to_mm_difference": 0.0,
+      "native_RGB_replay_exact": true,
+      "native_RGB_maximum_difference_8bit": 0,
+      "predictions": {
+        "anchors": {
+          "maximum_coordinate_difference_mm": 0.0,
+          "eligibility_exact": true,
+          "native_eligible_queries": 64
+        },
+        "grid": {
+          "maximum_coordinate_difference_mm": 0.0,
+          "eligibility_exact": true,
+          "native_eligible_queries": 4096
+        },
+        "paper": {
+          "maximum_coordinate_difference_mm": 0.0,
+          "eligibility_exact": true,
+          "native_eligible_queries": 4096
+        }
+      },
+      "source_quad_approximate_aspect": 1.710210126236975,
+      "source_quad_vertical_extent_from_average_edges_px": 516.3460311889648,
+      "destination_x_range": [
+        76.80000305175781,
+        947.2000122070312
+      ],
+      "mm_per_output_pixel_xy": [
+        0.18426361680030823,
+        0.25632375478744507
+      ],
+      "visible_major_grid_ID_min": [
+        3,
+        0
+      ],
+      "visible_major_grid_ID_max": [
+        19,
+        28
+      ],
+      "primary_registration": "registered_translation_only",
+      "reference_anchor_span_mm": [
+        142.32716834545135,
+        96.43026685714722
+      ],
+      "predicted_anchor_span_mm": [
+        71.80559683938108,
+        66.48449827406807
+      ],
+      "primary_grid_G": 0.00048828125,
+      "primary_grid_C": 1.0,
+      "native_grid_C": 1.0,
+      "primary_grid_RMSE_mm": 20.978571636106956,
+      "D4_grid_RMSE_mm": 20.978571636106956
+    },
+    {
+      "key": "220288-2",
+      "method": "npj-george-moody-2024",
+      "layout": "12x1+r3",
+      "backend": "offline",
+      "official_preset": "george-moody-2024",
+      "official_config_sha256": "2ea9416ae5e2751fc2084523fdb95253072157acda9fde8ddd44429b6650b181",
+      "source_archive_hash_matches": true,
+      "result_sha256": "9d61f193b91a0fbb2838e350ab124c7b08527666bea9f3372c8ebf8f5300c166",
+      "recomputed_destination_exact": true,
+      "maximum_source_to_pixels_difference": 0.0,
+      "maximum_source_to_mm_difference": 0.0,
+      "native_RGB_replay_exact": true,
+      "native_RGB_maximum_difference_8bit": 0,
+      "predictions": {
+        "anchors": {
+          "maximum_coordinate_difference_mm": 0.0,
+          "eligibility_exact": true,
+          "native_eligible_queries": 64
+        },
+        "grid": {
+          "maximum_coordinate_difference_mm": 0.0,
+          "eligibility_exact": true,
+          "native_eligible_queries": 4096
+        },
+        "paper": {
+          "maximum_coordinate_difference_mm": 0.0,
+          "eligibility_exact": true,
+          "native_eligible_queries": 4096
+        }
+      },
+      "source_quad_approximate_aspect": 1.710210126236975,
+      "source_quad_vertical_extent_from_average_edges_px": 516.3460311889648,
+      "destination_x_range": [
+        76.80000305175781,
+        947.2000122070312
+      ],
+      "mm_per_output_pixel_xy": [
+        0.32447707653045654,
+        0.25329816341400146
+      ],
+      "visible_major_grid_ID_min": [
+        3,
+        0
+      ],
+      "visible_major_grid_ID_max": [
+        19,
+        28
+      ],
+      "primary_registration": "registered_translation_only",
+      "reference_anchor_span_mm": [
+        142.32716834545135,
+        96.43026685714722
+      ],
+      "predicted_anchor_span_mm": [
+        126.4453099616353,
+        65.69972932195688
+      ],
+      "primary_grid_G": 0.00244140625,
+      "primary_grid_C": 1.0,
+      "native_grid_C": 1.0,
+      "primary_grid_RMSE_mm": 8.22459056517121,
+      "D4_grid_RMSE_mm": 8.22459056517121
+    },
+    {
+      "key": "208777-2",
+      "method": "npj-generic",
+      "layout": "3x4-cabrera+r1",
+      "backend": "offline",
+      "official_preset": "generic",
+      "official_config_sha256": "870e8b27f86687e6f4dd5295b8984793bc2d84a26410bb37ff6f7112e64df40a",
+      "source_archive_hash_matches": true,
+      "result_sha256": "579bc8872d1b81cc0836c330527355268b4c5791718b0d5f4d7fd4bb48f9609a",
+      "recomputed_destination_exact": true,
+      "maximum_source_to_pixels_difference": 0.0,
+      "maximum_source_to_mm_difference": 0.0,
+      "native_RGB_replay_exact": true,
+      "native_RGB_maximum_difference_8bit": 0,
+      "predictions": {
+        "anchors": {
+          "maximum_coordinate_difference_mm": 0.0,
+          "eligibility_exact": true,
+          "native_eligible_queries": 63
+        },
+        "grid": {
+          "maximum_coordinate_difference_mm": 0.0,
+          "eligibility_exact": true,
+          "native_eligible_queries": 4025
+        },
+        "paper": {
+          "maximum_coordinate_difference_mm": 0.0,
+          "eligibility_exact": true,
+          "native_eligible_queries": 4018
+        }
+      },
+      "source_quad_approximate_aspect": 2.1495142920438175,
+      "source_quad_vertical_extent_from_average_edges_px": 461.3791732788086,
+      "destination_x_range": [
+        76.80000305175781,
+        947.2000122070312
+      ],
+      "mm_per_output_pixel_xy": [
+        0.21370670199394226,
+        0.22814816236495972
+      ],
+      "visible_major_grid_ID_min": [
+        6,
+        13
+      ],
+      "visible_major_grid_ID_max": [
+        60,
+        91
+      ],
+      "primary_registration": "registered_translation_only",
+      "reference_anchor_span_mm": [
+        356.9384460449219,
+        259.29943466186523
+      ],
+      "predicted_anchor_span_mm": [
+        185.32864070186088,
+        131.63110405441086
+      ],
+      "primary_grid_G": 0.000244140625,
+      "primary_grid_C": 0.982666015625,
+      "native_grid_C": 0.982666015625,
+      "primary_grid_RMSE_mm": 63.94555960197906,
+      "D4_grid_RMSE_mm": 63.94555960197906
+    },
+    {
+      "key": "208777-2",
+      "method": "npj-george-moody-2024",
+      "layout": "3x4-cabrera+r1",
+      "backend": "offline",
+      "official_preset": "george-moody-2024",
+      "official_config_sha256": "2ea9416ae5e2751fc2084523fdb95253072157acda9fde8ddd44429b6650b181",
+      "source_archive_hash_matches": true,
+      "result_sha256": "aa5180ef731a2ccb1a74cf844a560a2e74b7b7196b577f93de553c92718a8fb3",
+      "recomputed_destination_exact": true,
+      "maximum_source_to_pixels_difference": 0.0,
+      "maximum_source_to_mm_difference": 0.0,
+      "native_RGB_replay_exact": true,
+      "native_RGB_maximum_difference_8bit": 0,
+      "predictions": {
+        "anchors": {
+          "maximum_coordinate_difference_mm": 0.0,
+          "eligibility_exact": true,
+          "native_eligible_queries": 63
+        },
+        "grid": {
+          "maximum_coordinate_difference_mm": 0.0,
+          "eligibility_exact": true,
+          "native_eligible_queries": 4025
+        },
+        "paper": {
+          "maximum_coordinate_difference_mm": 0.0,
+          "eligibility_exact": true,
+          "native_eligible_queries": 4018
+        }
+      },
+      "source_quad_approximate_aspect": 2.1495142920438175,
+      "source_quad_vertical_extent_from_average_edges_px": 461.3791732788086,
+      "destination_x_range": [
+        76.80000305175781,
+        947.2000122070312
+      ],
+      "mm_per_output_pixel_xy": [
+        0.17098942399024963,
+        0.22718049585819244
+      ],
+      "visible_major_grid_ID_min": [
+        6,
+        13
+      ],
+      "visible_major_grid_ID_max": [
+        60,
+        91
+      ],
+      "primary_registration": "registered_translation_only",
+      "reference_anchor_span_mm": [
+        356.9384460449219,
+        259.29943466186523
+      ],
+      "predicted_anchor_span_mm": [
+        148.2837797169571,
+        131.07280452956746
+      ],
+      "primary_grid_G": 0.0,
+      "primary_grid_C": 0.982666015625,
+      "native_grid_C": 0.982666015625,
+      "primary_grid_RMSE_mm": 73.23139711298896,
+      "D4_grid_RMSE_mm": 73.23139711298896
+    },
+    {
+      "key": "220288-6",
+      "method": "npj-generic",
+      "layout": "12x1+r1",
+      "backend": "offline",
+      "official_preset": "generic",
+      "official_config_sha256": "870e8b27f86687e6f4dd5295b8984793bc2d84a26410bb37ff6f7112e64df40a",
+      "source_archive_hash_matches": true,
+      "result_sha256": "ca6284de6757518d13327f99f80a03c1c118cbae657ba71f9c1d6aa67b9761e2",
+      "recomputed_destination_exact": true,
+      "maximum_source_to_pixels_difference": 0.0,
+      "maximum_source_to_mm_difference": 0.0,
+      "native_RGB_replay_exact": true,
+      "native_RGB_maximum_difference_8bit": 0,
+      "predictions": {
+        "anchors": {
+          "maximum_coordinate_difference_mm": 0.0,
+          "eligibility_exact": true,
+          "native_eligible_queries": 62
+        },
+        "grid": {
+          "maximum_coordinate_difference_mm": 0.0,
+          "eligibility_exact": true,
+          "native_eligible_queries": 3799
+        },
+        "paper": {
+          "maximum_coordinate_difference_mm": 0.0,
+          "eligibility_exact": true,
+          "native_eligible_queries": 3796
+        }
+      },
+      "source_quad_approximate_aspect": 1.849137352564614,
+      "source_quad_vertical_extent_from_average_edges_px": 532.8616223335266,
+      "destination_x_range": [
+        76.80000305175781,
+        947.2000122070312
+      ],
+      "mm_per_output_pixel_xy": [
+        0.18959535658359528,
+        0.18960802257061005
+      ],
+      "visible_major_grid_ID_min": [
+        8,
+        13
+      ],
+      "visible_major_grid_ID_max": [
+        58,
+        85
+      ],
+      "primary_registration": "registered_translation_only",
+      "reference_anchor_span_mm": [
+        348.88587188720703,
+        213.2520294189453
+      ],
+      "predicted_anchor_span_mm": [
+        174.7396438397317,
+        107.23751872828466
+      ],
+      "primary_grid_G": 0.0,
+      "primary_grid_C": 0.927490234375,
+      "native_grid_C": 0.927490234375,
+      "primary_grid_RMSE_mm": 190.4133174179534,
+      "D4_grid_RMSE_mm": 63.21204927598591
+    },
+    {
+      "key": "220288-6",
+      "method": "npj-george-moody-2024",
+      "layout": "12x1+r1",
+      "backend": "offline",
+      "official_preset": "george-moody-2024",
+      "official_config_sha256": "2ea9416ae5e2751fc2084523fdb95253072157acda9fde8ddd44429b6650b181",
+      "source_archive_hash_matches": true,
+      "result_sha256": "ba756b8fdcd2f52165420367df64969baca4e86a419740754abd59bb8305bbaa",
+      "recomputed_destination_exact": true,
+      "maximum_source_to_pixels_difference": 0.0,
+      "maximum_source_to_mm_difference": 0.0,
+      "native_RGB_replay_exact": true,
+      "native_RGB_maximum_difference_8bit": 0,
+      "predictions": {
+        "anchors": {
+          "maximum_coordinate_difference_mm": 0.0,
+          "eligibility_exact": true,
+          "native_eligible_queries": 62
+        },
+        "grid": {
+          "maximum_coordinate_difference_mm": 0.0,
+          "eligibility_exact": true,
+          "native_eligible_queries": 3799
+        },
+        "paper": {
+          "maximum_coordinate_difference_mm": 0.0,
+          "eligibility_exact": true,
+          "native_eligible_queries": 3796
+        }
+      },
+      "source_quad_approximate_aspect": 1.849137352564614,
+      "source_quad_vertical_extent_from_average_edges_px": 532.8616223335266,
+      "destination_x_range": [
+        76.80000305175781,
+        947.2000122070312
+      ],
+      "mm_per_output_pixel_xy": [
+        0.15166950225830078,
+        0.1516754925251007
+      ],
+      "visible_major_grid_ID_min": [
+        8,
+        13
+      ],
+      "visible_major_grid_ID_max": [
+        58,
+        85
+      ],
+      "primary_registration": "registered_translation_only",
+      "reference_anchor_span_mm": [
+        348.88587188720703,
+        213.2520294189453
+      ],
+      "predicted_anchor_span_mm": [
+        139.78546354472275,
+        85.78383577743968
+      ],
+      "primary_grid_G": 0.0,
+      "primary_grid_C": 0.927490234375,
+      "native_grid_C": 0.927490234375,
+      "primary_grid_RMSE_mm": 177.69053165241857,
+      "D4_grid_RMSE_mm": 75.93474640694913
+    },
+    {
+      "key": "208777-6",
+      "method": "npj-generic",
+      "layout": "4x3+r3",
+      "backend": "offline",
+      "official_preset": "generic",
+      "official_config_sha256": "870e8b27f86687e6f4dd5295b8984793bc2d84a26410bb37ff6f7112e64df40a",
+      "source_archive_hash_matches": true,
+      "result_sha256": "47a07aa161821ae3733d815a2b9e7b7af7d93fe6b9dd029044ae3fbb210b4bff",
+      "recomputed_destination_exact": true,
+      "maximum_source_to_pixels_difference": 0.0,
+      "maximum_source_to_mm_difference": 0.0,
+      "native_RGB_replay_exact": true,
+      "native_RGB_maximum_difference_8bit": 0,
+      "predictions": {
+        "anchors": {
+          "maximum_coordinate_difference_mm": 0.0,
+          "eligibility_exact": true,
+          "native_eligible_queries": 63
+        },
+        "grid": {
+          "maximum_coordinate_difference_mm": 0.0,
+          "eligibility_exact": true,
+          "native_eligible_queries": 4041
+        },
+        "paper": {
+          "maximum_coordinate_difference_mm": 0.0,
+          "eligibility_exact": true,
+          "native_eligible_queries": 4042
+        }
+      },
+      "source_quad_approximate_aspect": 0.6605301832760732,
+      "source_quad_vertical_extent_from_average_edges_px": 667.4205417633057,
+      "destination_x_range": [
+        314.369384765625,
+        709.6306762695312
+      ],
+      "mm_per_output_pixel_xy": [
+        0.2533022463321686,
+        0.25341129302978516
+      ],
+      "visible_major_grid_ID_min": [
+        9,
+        15
+      ],
+      "visible_major_grid_ID_max": [
+        59,
+        90
+      ],
+      "primary_registration": "registered_translation_only",
+      "reference_anchor_span_mm": [
+        350.5364303588867,
+        243.77446746826172
+      ],
+      "predicted_anchor_span_mm": [
+        108.32985736055585,
+        157.73513270324392
+      ],
+      "primary_grid_G": 0.0,
+      "primary_grid_C": 0.986572265625,
+      "native_grid_C": 0.986572265625,
+      "primary_grid_RMSE_mm": 132.62641405649273,
+      "D4_grid_RMSE_mm": 63.72733221498867
+    },
+    {
+      "key": "208777-6",
+      "method": "npj-george-moody-2024",
+      "layout": "4x3+r3",
+      "backend": "offline",
+      "official_preset": "george-moody-2024",
+      "official_config_sha256": "2ea9416ae5e2751fc2084523fdb95253072157acda9fde8ddd44429b6650b181",
+      "source_archive_hash_matches": true,
+      "result_sha256": "ab8ab93c84eeb7a6ec6f73e002e90aade3cc4c5738aa0ce1bcf21c280f832b64",
+      "recomputed_destination_exact": true,
+      "maximum_source_to_pixels_difference": 0.0,
+      "maximum_source_to_mm_difference": 0.0,
+      "native_RGB_replay_exact": true,
+      "native_RGB_maximum_difference_8bit": 0,
+      "predictions": {
+        "anchors": {
+          "maximum_coordinate_difference_mm": 0.0,
+          "eligibility_exact": true,
+          "native_eligible_queries": 63
+        },
+        "grid": {
+          "maximum_coordinate_difference_mm": 0.0,
+          "eligibility_exact": true,
+          "native_eligible_queries": 4041
+        },
+        "paper": {
+          "maximum_coordinate_difference_mm": 0.0,
+          "eligibility_exact": true,
+          "native_eligible_queries": 4042
+        }
+      },
+      "source_quad_approximate_aspect": 0.6605301832760732,
+      "source_quad_vertical_extent_from_average_edges_px": 667.4205417633057,
+      "destination_x_range": [
+        314.369384765625,
+        709.6306762695312
+      ],
+      "mm_per_output_pixel_xy": [
+        0.3375527262687683,
+        0.20219780504703522
+      ],
+      "visible_major_grid_ID_min": [
+        9,
+        15
+      ],
+      "visible_major_grid_ID_max": [
+        59,
+        90
+      ],
+      "primary_registration": "registered_translation_only",
+      "reference_anchor_span_mm": [
+        350.5364303588867,
+        243.77446746826172
+      ],
+      "predicted_anchor_span_mm": [
+        144.36128861016948,
+        125.85744396028184
+      ],
+      "primary_grid_G": 0.0,
+      "primary_grid_C": 0.986572265625,
+      "native_grid_C": 0.986572265625,
+      "primary_grid_RMSE_mm": 132.73004959817249,
+      "D4_grid_RMSE_mm": 67.14040734051656
+    }
+  ],
+  "original_cropper_single_probability_bin_control": {
+    "nonzero_bin": 20,
+    "returned_bounds": [
+      20,
+      19
+    ],
+    "bounds_inverted": true,
+    "scope": "demonstrates original bound degeneracy, does not prove exact cached feature-map distribution"
+  }
+}

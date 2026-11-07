@@ -1,0 +1,8 @@
+{
+  "control": "independent analytic affine shear, exact observed nodes and IDs",
+  "queries": 5000,
+  "legacy_support": 0.0818,
+  "shared_mesh_support": 1.0,
+  "maximum_coordinate_error_px": 1.1368683772161603e-13,
+  "scale_fitted": false
+}

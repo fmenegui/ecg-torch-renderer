@@ -1,0 +1,9 @@
+{
+  "schema": "m4-geometry-guard-correction-v2",
+  "date": "2026-10-23",
+  "reason": "Independent QA found a closed annular strip whose two nonincident boundary endpoints coincide. Local orientation and absence of positive-area triangle overlap did not exclude two lattice locations mapping to the same source boundary point. Original source and results remain preserved.",
+  "changes": ["Reject coincident coordinates at distinct referenced vertex IDs", "Reject touching or crossing nonincident edges of the boundary of the triangle complex"],
+  "unchanged": ["candidate family", "H estimation", "residual equations", "fold assignment", "CV loss", "selection rule", "scene definitions", "physical queries", "score thresholds"],
+  "retest": "Run the same 19 scenes and 4 comparators. Report selected-name, query-coordinate, finite-mask and metric changes against v1. Rerun sparse parity with corrected guards. Retain v1 results and independent failure receipt.",
+  "scope": "Conservative computational exclusion checks in a bounded piecewise affine domain. Not a physical certificate and not a proof for arbitrary smooth photographed surfaces or hidden folds. Tolerances and input identity remain limitations."
+}

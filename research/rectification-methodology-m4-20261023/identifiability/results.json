@@ -1,0 +1,717 @@
+{
+  "schema": "m4-identifiability-controls-v1",
+  "status": "PASS",
+  "created_utc": "2026-10-23T11:09:07.125646+00:00",
+  "protocol_sha256": "9fd242446e55a0b29071ed78f799967a28f0583954fe4a51b1a44875886d2ac9",
+  "controls_py_sha256": "3a245c823e98c2b918656736c7cff27ea337453b6afd4bb5bcd239f76739fcca",
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "numpy": "2.3.5",
+    "platform": "Linux-6.18.55-x86_64-with-glibc2.39"
+  },
+  "scope": "Constructive observations and model-limit controls only. No rectifier inference, CNN, real capture benchmark, timing claim or superiority claim.",
+  "failure_policy": "Every registered control retained, including FAIL/ERROR. No run is silently repaired or overwritten by a changed source.",
+  "controls_registered": 16,
+  "controls_passed": 16,
+  "assertions_total": 39,
+  "assertions_passed": 39,
+  "results": [
+    {
+      "id": "ID01",
+      "name": "unit_pitch_alias_1_5_10",
+      "expected": "Three exact identicalRGB worlds with three different physical query targets under absent unit evidence.",
+      "metrics": {
+        "observation_level": "exact_RGB",
+        "surviving_pitch_hypotheses_mm": [
+          1.0,
+          5.0,
+          10.0
+        ],
+        "camera_pixels_per_mm": [
+          20.0,
+          4.0,
+          2.0
+        ],
+        "query_source_xy": [
+          100.0,
+          80.0
+        ],
+        "query_material_mm": [
+          [
+            5.0,
+            4.0
+          ],
+          [
+            25.0,
+            20.0
+          ],
+          [
+            50.0,
+            40.0
+          ]
+        ],
+        "world_condition": "uniform-looking lines, absent unit legend and absent reliable major/minor evidence"
+      },
+      "checks": [
+        {
+          "name": "all_RGB_identical",
+          "passed": true
+        },
+        {
+          "name": "physical_targets_differ",
+          "passed": true
+        }
+      ],
+      "witness_file": "/workspace/scratch/a57599a3e70e/m4/identifiability/witnesses/ID01.npz",
+      "witness_sha256": "aa251623c906756fbe13b9130dd75edb5340cae27377887558f0c9717adaa5e3",
+      "array_sha256": {
+        "RGB_worlds": "42684bdd7f0c7e8111924592c156db1b24460c3591727bc5cd37eaf316742311",
+        "pitch_mm": "80f1239a7ad4aab1f2d82b36543628707fe20a5424d4216388418ef378e7a241",
+        "query": "2d93099dfc3bdce33ac13039734c65cf29e99dad6a5efdf5af23c6b6d292a3ce",
+        "target_mm": "423208003b9d6732fff91044e0f6af423cc6baa14f14b5e0b492b12ae0188332"
+      },
+      "status": "PASS"
+    },
+    {
+      "id": "ID02",
+      "name": "square_grid_D4",
+      "expected": "Eight D4 orientations have identical pure square-gridRGB and eight different semantic query targets.",
+      "metrics": {
+        "observation_level": "exact_RGB",
+        "RGB_equivalent_D4_hypotheses": 8,
+        "unique_observation_hashes": 1,
+        "distinct_query_targets": 8,
+        "query_source_xy": [
+          40.0,
+          100.0
+        ],
+        "query_material_mm": [
+          [
+            10.0,
+            25.0
+          ],
+          [
+            15.0,
+            10.0
+          ],
+          [
+            30.0,
+            15.0
+          ],
+          [
+            25.0,
+            30.0
+          ],
+          [
+            30.0,
+            25.0
+          ],
+          [
+            15.0,
+            30.0
+          ],
+          [
+            10.0,
+            15.0
+          ],
+          [
+            25.0,
+            10.0
+          ]
+        ],
+        "world_condition": "square grid, square crop, no semantic direction or chirality cue"
+      },
+      "checks": [
+        {
+          "name": "eight_D4_images_identical",
+          "passed": true
+        },
+        {
+          "name": "eight_distinct_semantic_targets",
+          "passed": true
+        }
+      ],
+      "witness_file": "/workspace/scratch/a57599a3e70e/m4/identifiability/witnesses/ID02.npz",
+      "witness_sha256": "dba7cbfe7e2e28fb32ce8f6294852b257d5dc450a2f2680014c733bf91efded1",
+      "array_sha256": {
+        "RGB": "665312b82668437dfd5dc9dff96f4b93735b5854550b88db0501b74c7e12b50e",
+        "query": "757ae099debfeee1c944de8501057fdd7328e6d47cf0bbf2e5d5fa1afd1afb46",
+        "target_mm": "996b7505d2d90506dddb68dabe00027979a50c30e01f32beef2456f27b80f6c1",
+        "D4": "2b7b4ac0fa9fca51998d5450f3e6916240eee99f2a1e2ba232a84226f3162400"
+      },
+      "status": "PASS"
+    },
+    {
+      "id": "ID03",
+      "name": "integer_skipped_rows",
+      "expected": "Two point-only fits have zero residual and roundtrip but different units. OriginalRGB contains omitted intermediate lines.",
+      "metrics": {
+        "observation_level": "extracted_points_only",
+        "RGB_can_disambiguate": true,
+        "actual_observed_pitch_mm": 10.0,
+        "wrong_consecutive_ID_pitch_mm": 5.0,
+        "true_fit_residual_px": 0.0,
+        "wrong_fit_residual_px": 0.0,
+        "wrong_map_roundtrip_error_px": 0.0,
+        "wrong_query_error_mm": 17.67766952966369,
+        "world_condition": "every second major row/column lost by frontend, but intermediate lines remain visible in RGB"
+      },
+      "checks": [
+        {
+          "name": "two_zero_residual_maps",
+          "passed": true
+        },
+        {
+          "name": "RGB_contains_omitted_line",
+          "passed": true
+        },
+        {
+          "name": "wrong_mm_not_repaired_by_roundtrip",
+          "passed": true
+        }
+      ],
+      "witness_file": "/workspace/scratch/a57599a3e70e/m4/identifiability/witnesses/ID03.npz",
+      "witness_sha256": "5059af54ffbdbae8d19f05fb6d1303d4bfbfc7763526b713a3f868969d81d4ca",
+      "array_sha256": {
+        "RGB": "2a2d2d2d92c5b273046839dc5ed5ac2bfcec5f6ec1f4020dff2ebf6817e8f516",
+        "observations_px": "f762f62dbc70337e98f082c1ad21b1be2a89f850d83b4b9646b63479b05d0dec",
+        "true_mm": "f6dffb41e264927a0a5ddd05667777e8c665c31d680642de0cb6ae8f6c64a9ef",
+        "wrong_mm": "79e9fb6eec5c9bc6fd791982ae77efc00f6ce54a31f3ab3555ddf7ad71e00ee4",
+        "query": "687bef54a560425bc22a62d9fd817c7bcccd1f136e877ddebb545e0f885b7a3c"
+      },
+      "status": "PASS"
+    },
+    {
+      "id": "ID04",
+      "name": "disconnected_component_phase",
+      "expected": "A hidden developable V bridge has5mm extra arc length with identical visibleRGB, shifting one component by one integer5mm step.",
+      "metrics": {
+        "observation_level": "exact_RGB",
+        "hidden_bridge_lengths_mm": [
+          20.0,
+          25.0
+        ],
+        "component_phase_difference_major_steps": 1.0,
+        "query_material_mm": [
+          [
+            50.0,
+            10.0
+          ],
+          [
+            55.0,
+            10.0
+          ]
+        ],
+        "world_condition": "orthographic camera, hidden bridge, integer5mm extra arc length, no trusted whole-plane constraint"
+      },
+      "checks": [
+        {
+          "name": "same_visible_RGB",
+          "passed": true
+        },
+        {
+          "name": "one_integer_phase_step",
+          "passed": true
+        },
+        {
+          "name": "different_component_origin",
+          "passed": true
+        }
+      ],
+      "witness_file": "/workspace/scratch/a57599a3e70e/m4/identifiability/witnesses/ID04.npz",
+      "witness_sha256": "a79dded2e1cfbae68d92bda3444c78e613adab809bbc576d707754fc43171388",
+      "array_sha256": {
+        "RGB_worlds": "29f4457ed8a3957cd86353d4d6588c850b52c890578070a1159fc549d4d6405e",
+        "query": "4139cb152bd5a74c67ba59a305d0de4734fe583dbf190c93c60fe42e3ac02cb5",
+        "target_mm": "1504928a244ac6f2147c463da511e1ca4f5a185fd8c26c7b75553edecd3e0376",
+        "bridge_xyz_flat": "ccdeb8057f51b7b4a53da0d2a2d725291c36f467b30bf8c7fce9300bb1bdd031",
+        "bridge_xyz_fold": "ebff3d8b9363bdb4e166ef08f5f39778495aa3b923deee42787d564cae30acdb"
+      },
+      "status": "PASS"
+    },
+    {
+      "id": "ID05",
+      "name": "visible_blank_fold",
+      "expected": "Under orthographic constant-radiance assumptions, flat and developable V blank strips have identicalRGB and different material coordinates.",
+      "metrics": {
+        "observation_level": "exact_RGB_in_declared_photometric_model",
+        "all_material_visible": true,
+        "query_material_mm": [
+          [
+            30.0,
+            10.0
+          ],
+          [
+            32.5,
+            10.0
+          ]
+        ],
+        "query_disagreement_mm": 2.5,
+        "world_condition": "blank strip, orthographic camera, constant radiance, no known edge-to-edge material distance; real shading may add evidence"
+      },
+      "checks": [
+        {
+          "name": "same_RGB",
+          "passed": true
+        },
+        {
+          "name": "different_visible_material_coordinate",
+          "passed": true
+        },
+        {
+          "name": "developable_V_arc_length",
+          "passed": true
+        }
+      ],
+      "witness_file": "/workspace/scratch/a57599a3e70e/m4/identifiability/witnesses/ID05.npz",
+      "witness_sha256": "c5249bba89bcd10b457623801e4ef55ead33bf295093e821d5f1f188bf238dfd",
+      "array_sha256": {
+        "RGB_worlds": "518763fc66eb2eef6bb3073dbbef72b8c36c6bf1a1821795d697691f65428d88",
+        "query": "7f79b00ff0b4e5f6666962afd495aca2cade9492fc1341b6dba262fe76e137e8",
+        "target_mm": "7e3948aa78466f8acfa1a1dd9df8331c19cc23686f71be264b5f3ce2a270587e"
+      },
+      "status": "PASS"
+    },
+    {
+      "id": "ID06",
+      "name": "fixed_boundary_interior_bump",
+      "expected": "An orientation-preserving generalC1 map changes blank cell center by1mm while preserving all cell boundaries. No universal nonstretchable-paper claim.",
+      "metrics": {
+        "observation_level": "exact_RGB_for_general_2D_warp_class",
+        "amplitude_mm": 1.0,
+        "analytic_Jacobian_lower_bound": 0.3716814692820414,
+        "sampled_Jacobian_min": 0.3716814692820414,
+        "max_boundary_displacement_mm": 1.4997597826618576e-32,
+        "center_disagreement_mm": 1.0,
+        "world_condition": "general orientation-preserving C1 material maps, blank interior; NOT a theorem for nonstretchable paper under a fixed camera model"
+      },
+      "checks": [
+        {
+          "name": "same_boundary_to_roundoff",
+          "passed": true
+        },
+        {
+          "name": "orientation_preserving_analytic_bound",
+          "passed": true
+        },
+        {
+          "name": "interior_difference_above_half_mm",
+          "passed": true
+        }
+      ],
+      "witness_file": "/workspace/scratch/a57599a3e70e/m4/identifiability/witnesses/ID06.npz",
+      "witness_sha256": "0330f180c9522d94e4b2978e9733f94303a3612783c3bbbd49fd2572e45c5daa",
+      "array_sha256": {
+        "RGB_worlds": "985a5773f2656a5dbad2cfb10fc10ff7db1ec784aff1d3fd8ea39f664b1255be",
+        "delta_u_mm": "d53f238696e828f6f8466a8cdc9813ba516253fc4f228d675e0a3c6cf2794c6b",
+        "sampled_Jacobian": "7fd1dbe1085aa0494c06290f8aa3b52a8c963bd339a11f4d5d8f124150424a9a",
+        "target_mm": "e704ac43aed6f6c5e1b8a4cf72781bd9bb3d0ca9bf25e3009b36e04c8a201621"
+      },
+      "status": "PASS"
+    },
+    {
+      "id": "ID07",
+      "name": "partial_crop_absolute_origin",
+      "expected": "Relative shape is identical while absolute origins differ without crop/timing/baseline evidence.",
+      "metrics": {
+        "observation_level": "exact_RGB",
+        "origin_hypotheses_mm": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            15.0,
+            25.0
+          ]
+        ],
+        "relative_shape_identical": true,
+        "y25mm_baseline_shift_mV_at_10mm_per_mV": 2.5,
+        "x15mm_time_shift_seconds_at_25mm_per_s": 0.6,
+        "world_condition": "partial crop, grid unit known, no paper origin, lead baseline, timing marker or crop provenance"
+      },
+      "checks": [
+        {
+          "name": "identical_relative_geometry",
+          "passed": true
+        },
+        {
+          "name": "absolute_coordinates_differ",
+          "passed": true
+        }
+      ],
+      "witness_file": "/workspace/scratch/a57599a3e70e/m4/identifiability/witnesses/ID07.npz",
+      "witness_sha256": "214314d7ad064ebb2b6549ffdaf4ea2f6e9ec876f9bd47eff9c40916e59ff8a9",
+      "array_sha256": {
+        "RGB_worlds": "b235175ba0d029bf7d8db28f8569744651ff04c24461a0e7f95f3c87b3dab223",
+        "query": "d7048c42cfb3ae7e988ac02411c8139eb2e9ec9d2007e352b05d5f73e7b324da",
+        "target_mm": "8519b8ddc24575e379d9eb064383503e8c12f53a4e84e95f47a7450c79087467"
+      },
+      "status": "PASS"
+    },
+    {
+      "id": "ID08",
+      "name": "mirrored_and_upside_down_text",
+      "expected": "SymmetricII token does not break mirror or180degree ambiguity. Known-upright asymmetricF has eight distinct D4 views.",
+      "metrics": {
+        "observation_level": "exact_RGB",
+        "token": "II in symmetric bar font",
+        "identical_identity_horizontal_mirror_and_180": true,
+        "asymmetric_F_positive_unique_D4_views": 8,
+        "world_condition": "II is insufficient for reading direction/chirality; an asymmetric known-upright glyph can resolve symmetry if reliably interpreted"
+      },
+      "checks": [
+        {
+          "name": "II_does_not_resolve_mirror_or_upside_down",
+          "passed": true
+        },
+        {
+          "name": "asymmetric_glyph_has_distinct_views",
+          "passed": true
+        }
+      ],
+      "witness_file": "/workspace/scratch/a57599a3e70e/m4/identifiability/witnesses/ID08.npz",
+      "witness_sha256": "53651e0e9a1e48a602d027fd2432ab063ea3e517e97900c9bf596b0eecd7e3fd",
+      "array_sha256": {
+        "RGB_symmetric_II": "04d5001ee1684dd329b311dd8e68081e99f5f486d5107f71bf640d1ae829ca6d",
+        "RGB_asymmetric_F": "941aaff71ff083697ed16512a54a6a2b007544f81e06eeccb40a510a8397fd5e",
+        "F_D4": "f307df911fac53b1f06e8076cbbdda09b56c274881812280ff4622a0ac79aab3"
+      },
+      "status": "PASS"
+    },
+    {
+      "id": "ID09",
+      "name": "fold_overlap_visibility",
+      "expected": "Two material points project to one source location. A physically hidden ink change does not alterRGB.",
+      "metrics": {
+        "observation_level": "exact_RGB",
+        "surface": "two parallel strips connected by semicylinder radius0.2mm",
+        "source_projection_xy": [
+          [
+            5.0,
+            0.0
+          ],
+          [
+            5.0,
+            0.0
+          ]
+        ],
+        "material_u_mm": [
+          5.0,
+          15.628318530717959
+        ],
+        "depth_mm": [
+          0.0,
+          0.4
+        ],
+        "inverse_branches_before_visibility": 2,
+        "world_condition": "orthographic fold with overlap; only front sheet is visible; hidden back has distinct possible ink"
+      },
+      "checks": [
+        {
+          "name": "two_material_points_one_source_pixel",
+          "passed": true
+        },
+        {
+          "name": "different_material_points",
+          "passed": true
+        },
+        {
+          "name": "hidden_ink_unobservable",
+          "passed": true
+        }
+      ],
+      "witness_file": "/workspace/scratch/a57599a3e70e/m4/identifiability/witnesses/ID09.npz",
+      "witness_sha256": "dbc3c55cee9741042dd6767225995dcaa2ccc5738493e0b9421436abbc7f5579",
+      "array_sha256": {
+        "RGB_worlds": "72ffc4250f09e68d8a10bd28a1c276002e8e67e71d096e9fe1e07aac6bb1734d",
+        "hidden_RGB_worlds": "e50dd6e7a40b52b9d9fd1a1d605ca303356b071587ff303fec9480acf4e5dcb3",
+        "projection": "1dff01ed04464b92b708c08a7bce774dead874ff55537d2247c8f7b1c3c56911",
+        "material_u": "913e553c99513916ec5dde2042f82c27561292fcdbba1343a307fe284e021279",
+        "depth": "9e5d7353dc16601d071fa82960972d9be5a1d569936ac9d6fa3839766e7b1f54"
+      },
+      "status": "PASS"
+    },
+    {
+      "id": "ID10",
+      "name": "opaque_patch_hidden_content",
+      "expected": "Distinct hidden flat-document ink produces identical capturedRGB under an opaque patch.",
+      "metrics": {
+        "observation_level": "exact_RGB",
+        "different_hidden_channel_values": 900,
+        "world_condition": "fully opaque foreground patch; no previous frame or external record"
+      },
+      "checks": [
+        {
+          "name": "different_hidden_content",
+          "passed": true
+        },
+        {
+          "name": "identical_captured_RGB",
+          "passed": true
+        }
+      ],
+      "witness_file": "/workspace/scratch/a57599a3e70e/m4/identifiability/witnesses/ID10.npz",
+      "witness_sha256": "3bcf72d435b12f7f494abea0bc18547c1cce5930947c4dbb4085c764a1d3893c",
+      "array_sha256": {
+        "RGB_worlds": "ca18ccbff036a7dce9beb10678cea03bd8d9286d5d0dc9c3640f827a5737127f",
+        "hidden_document_worlds": "997d60e483320620e81d5862f40ae24ff2b1d5e94a57e4a4095ba3ab2c1b8474",
+        "occluder_mask": "caa0634a72ef7b575bd44b241ff01789d3857ea5320064fe451d29c9a118392c"
+      },
+      "status": "PASS"
+    },
+    {
+      "id": "ID11",
+      "name": "inconsistent_lead_labels",
+      "expected": "Declared uniqueI/II layout with reliableII/II observations has zero hard-consistent and two tied minimum-disagreement assignments.",
+      "metrics": {
+        "observation_level": "RGB_OCR_metadata_constraint",
+        "expected_unique_leads": [
+          "I",
+          "II"
+        ],
+        "perfect_OCR_labels": [
+          "II",
+          "II"
+        ],
+        "hard_consistent_assignments": 0,
+        "minimum_disagreements": 1,
+        "equal_cost_best_assignments": 2,
+        "legitimate_repeated_II_requires_distinct_time_windows": true,
+        "world_condition": "declared uniqueI/II layout contradicts observedII/II; do not silently choose a permutation or assume repeated rhythm labels invalid"
+      },
+      "checks": [
+        {
+          "name": "hard_evidence_contradictory",
+          "passed": true
+        },
+        {
+          "name": "forced_soft_assignment_tied",
+          "passed": true
+        }
+      ],
+      "witness_file": "/workspace/scratch/a57599a3e70e/m4/identifiability/witnesses/ID11.npz",
+      "witness_sha256": "dbcd34ca5894de7eb8eb963b17b8f1a64514f1651ab253fe795f41049a7d3662",
+      "array_sha256": {
+        "mismatch_costs": "b2a41aa99586e3215d52048dd66d0e9e608a27acaf4a254ce53aa8ef2a0257e4"
+      },
+      "status": "PASS"
+    },
+    {
+      "id": "ID12",
+      "name": "photocopy_stretch",
+      "expected": "Square5mm grid stretched1.1x0.9 and unknown rectangular grid can have identical observations. Trusted square5mm prior resolves original-grid distortion.",
+      "metrics": {
+        "observation_level": "exact_lattice_RGB_possible",
+        "observed_pitch_xy_px": [
+          22.0,
+          18.0
+        ],
+        "square5mm_original_then_copy_stretch": [
+          1.1,
+          0.9
+        ],
+        "alternative_original_rectangular_pitch_mm": [
+          5.5,
+          4.5
+        ],
+        "query_original_mm_square_prior": [
+          24.999999999999996,
+          25.0
+        ],
+        "query_original_mm_unknown_grid_family": [
+          27.5,
+          22.5
+        ],
+        "known_original_square5mm_prior_resolves_copy_stretch": true,
+        "world_condition": "ambiguity only when original grid family unknown; do not call anisotropic photocopy stretch uncorrectable if square5mm prior is trustworthy"
+      },
+      "checks": [
+        {
+          "name": "same_observed_lattice",
+          "passed": true
+        },
+        {
+          "name": "different_original_physical_targets",
+          "passed": true
+        },
+        {
+          "name": "known_square_corrects_both_axes",
+          "passed": true
+        }
+      ],
+      "witness_file": "/workspace/scratch/a57599a3e70e/m4/identifiability/witnesses/ID12.npz",
+      "witness_sha256": "7ca9163fc0a2b2ac6685d1ac4907899448ded7c120754b3896b1a4ec92667570",
+      "array_sha256": {
+        "observed_pitch_px": "fd5466f95d450ff608cfc88dd70b856246bb808109d328a9cf120df828d33a84",
+        "original_targets_mm": "093a00971f3469139ea52c7c817f8d0dc8da08fb2e829e29f3d55d4cd9f75a69"
+      },
+      "status": "PASS"
+    },
+    {
+      "id": "ID13",
+      "name": "mixed_panel_units_layout",
+      "expected": "One shared mm/px cannot satisfy known5mm and10mm panel intervals with equal20px spacing. Per-panel charts can.",
+      "metrics": {
+        "observation_level": "input_RGB_plus_panel_specific_units",
+        "panel_pitch_mm": [
+          5.0,
+          10.0
+        ],
+        "panel_pitch_px": [
+          20.0,
+          20.0
+        ],
+        "best_shared_linear_mm_per_px": 0.375,
+        "shared_model_pitch_errors_mm": [
+          2.5,
+          -2.5
+        ],
+        "per_panel_mm_per_px": [
+          0.25,
+          0.5
+        ],
+        "world_condition": "composite page with separately calibrated panels and lead/time namespaces; one shared scale is outside its declared model"
+      },
+      "checks": [
+        {
+          "name": "shared_scale_cannot_satisfy_both",
+          "passed": true
+        },
+        {
+          "name": "separate_charts_satisfy_input_units",
+          "passed": true
+        }
+      ],
+      "witness_file": "/workspace/scratch/a57599a3e70e/m4/identifiability/witnesses/ID13.npz",
+      "witness_sha256": "a679cf5976fac887937d4fc7938870cb3031318ebd983779c71f230ce5029616",
+      "array_sha256": {
+        "pixel_steps": "8ccf50d87a0886d5c6e95d83a096d797356b4b955ae093fe90697bceb17f4984",
+        "input_units_mm": "c435bab9eadb0c7976a5312811cdb5e54b62846bb4bd1c678b7d2ec7fe67cfec",
+        "global_pitch_errors_mm": "f5fb7c53a8ad44fed8eb9079d6cc6f9778f6d5f1e2eb7c4c2336c9e0a6476891"
+      },
+      "status": "PASS"
+    },
+    {
+      "id": "ID14",
+      "name": "missing_speed_gain",
+      "expected": "Identical drawnRGB can represent different time/mV calibration absent speed/gain/pulse evidence.",
+      "metrics": {
+        "observation_level": "exact_RGB",
+        "paper_geometry_units_known": true,
+        "speed_mm_per_s_hypotheses": [
+          25.0,
+          50.0
+        ],
+        "gain_mm_per_mV_hypotheses": [
+          10.0,
+          20.0
+        ],
+        "query_time_s_amplitude_mV": [
+          [
+            1.0,
+            1.0
+          ],
+          [
+            0.5,
+            0.5
+          ]
+        ],
+        "world_condition": "same drawn trace, absent speed/gain label and calibration pulse; physiological plausibility is not independent calibration evidence"
+      },
+      "checks": [
+        {
+          "name": "same_drawn_RGB",
+          "passed": true
+        },
+        {
+          "name": "different_signal_calibration",
+          "passed": true
+        }
+      ],
+      "witness_file": "/workspace/scratch/a57599a3e70e/m4/identifiability/witnesses/ID14.npz",
+      "witness_sha256": "4263a92dfd4ac5490ffa3cca8bb0ac195955adeae229e63625e36dc44f940104",
+      "array_sha256": {
+        "RGB_worlds": "585c3c2a719cb5c95fb49a69de697a08149c75c5da7640f401258d24c6723e5f",
+        "signal_targets": "867cd802fe637145888e8db2fa1185e6ef080957e696d86a3502ea0bbc1dbede"
+      },
+      "status": "PASS"
+    },
+    {
+      "id": "ID15",
+      "name": "no_grid_does_not_mean_no_content",
+      "expected": "MaskingRGB with grid-support erases visible waveform/text. Identity fallback preserves all RGB exactly. No assertion about currentM3 behavior.",
+      "metrics": {
+        "observation_level": "content_policy_counterexample",
+        "no_grid_ink_pixels": 137,
+        "ink_pixels_erased_by_grid_support_RGB_mask": 137,
+        "identity_fallback_max_channel_difference": 0,
+        "world_condition": "visible waveform/text in grid-free box; this is a policy witness, not a claim that the currentM3 implementation applies that bad mask"
+      },
+      "checks": [
+        {
+          "name": "no_grid_region_can_contain_ink",
+          "passed": true
+        },
+        {
+          "name": "grid_mask_deletes_visible_content",
+          "passed": true
+        },
+        {
+          "name": "fallback_preserves_exact_RGB",
+          "passed": true
+        }
+      ],
+      "witness_file": "/workspace/scratch/a57599a3e70e/m4/identifiability/witnesses/ID15.npz",
+      "witness_sha256": "8fb95c4e7acbd2b623b85c15dc1ce51b63a7404bf45dbd7c83ff239db322b976",
+      "array_sha256": {
+        "RGB": "52d429c5f5ea03be90cb379765f076c49c72ce84569e3fc6cfd5b8d9a2eff6fe",
+        "grid_support_mask": "904d4d4102c40109b608fbeff8808088c898457a40d7cff9d23430db6347f108",
+        "deliberately_bad_RGB": "ed46709040bded419473a6222e8e03bc9850bfa5cace4b957bd255df8b5d715c",
+        "fallback_RGB": "52d429c5f5ea03be90cb379765f076c49c72ce84569e3fc6cfd5b8d9a2eff6fe"
+      },
+      "status": "PASS"
+    },
+    {
+      "id": "ID16",
+      "name": "ordered_independent_calibration_positive",
+      "expected": "Observed ordered physical fiducials reduce24 pitch-pose candidates to exactly one and recover an independent query numerically.",
+      "metrics": {
+        "observation_level": "ordered_input_physical_fiducials",
+        "joint_pitch_pose_candidates": 24,
+        "candidates_consistent_with_input_evidence": 1,
+        "surviving_pitch_pose": [
+          [
+            5.0,
+            0
+          ]
+        ],
+        "fitted_query_mm": [
+          9.999999999999988,
+          24.99999999999999
+        ],
+        "world_condition": "ordered asymmetric fiducial identities and calibratedmm are observed input metadata, not gold used to choose anECG result"
+      },
+      "checks": [
+        {
+          "name": "independent_evidence_breaks_all_aliases",
+          "passed": true
+        },
+        {
+          "name": "positive_calibrated_map",
+          "passed": true
+        }
+      ],
+      "witness_file": "/workspace/scratch/a57599a3e70e/m4/identifiability/witnesses/ID16.npz",
+      "witness_sha256": "a336ac18857ae0b9ce4ca0453836e1c47c14d88a1b34272d8b574b78785779cb",
+      "array_sha256": {
+        "source_fiducials": "bce6adcf4868fa3e5c22c46b4417ed92d799c245828417411311e7956fc6628d",
+        "input_fiducial_mm": "c14057f1982a0a908a5ec8e655959dad14edffbd07f631656101bb9b88ed01a0",
+        "candidate_pitch_pose": "e6847a064fe457fc22f7c651c6d8ab75bce405fb1842b9df5d318d3c6c4c41c2",
+        "input_evidence_residual_mm": "0c320b25db89222cd4dbfcdba8138d5613aa30d9465b84d0cbc4150f6da857c5",
+        "fitted_affine": "2c392aaa0b369340f7982777aa26e97dcf1deb972cb9c0f618d1ec94ebec9504"
+      },
+      "status": "PASS"
+    }
+  ]
+}

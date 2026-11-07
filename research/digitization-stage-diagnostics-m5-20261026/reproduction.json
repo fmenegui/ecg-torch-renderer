@@ -1,0 +1,1233 @@
+{
+  "base_commit": "06ffb7c751deabc093bf9b4f2970a40222d4a926",
+  "base_source_blobs_verified": 237,
+  "capture_hashes_verified": 112,
+  "M3_scheduled_results": 160,
+  "M3_summary_reproduced_exact_bytes": true,
+  "M3_summary_sha256": "f23de9fbba72d75b36a13553b9147c35dd82953f7c83ae6e88fbefdb42c240c5",
+  "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+  "fresh_detector_cases": 32,
+  "all_coordinates_exact": true,
+  "all_scores_exact": true,
+  "publisher_records_verified": 14,
+  "fresh_detector_receipts": {
+    "206056-0": {
+      "fresh_detector_seconds": 4.337523387999681,
+      "threshold": 0.85,
+      "topology_seconds": 0.026598575001116842,
+      "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+      "banding": {
+        "protocol": "background-periodic-banding-v1",
+        "applied": false,
+        "roi_xyxy": [
+          51,
+          57,
+          1024,
+          684
+        ],
+        "ground_truth_used": false,
+        "use": "point inference only, original RGB is the sampling source",
+        "axes": [
+          {
+            "applied": false,
+            "axis": 0,
+            "background_samples_per_line": 51
+          },
+          {
+            "applied": false,
+            "axis": 1,
+            "background_samples_per_line": 77
+          }
+        ]
+      },
+      "gold_used_for_inference": false,
+      "M2_replay_comparison": {
+        "old_points": 508,
+        "fresh_points": 508,
+        "coordinates_exact": true,
+        "scores_exact": true,
+        "maximum_coordinate_difference_px": 0.0
+      }
+    },
+    "206056-1": {
+      "fresh_detector_seconds": 4.156241189000866,
+      "threshold": 0.85,
+      "topology_seconds": 0.013097049999487353,
+      "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+      "banding": {
+        "protocol": "background-periodic-banding-v1",
+        "applied": false,
+        "roi_xyxy": [
+          0,
+          40,
+          989,
+          704
+        ],
+        "ground_truth_used": false,
+        "use": "point inference only, original RGB is the sampling source",
+        "axes": [
+          {
+            "applied": false,
+            "axis": 0,
+            "background_samples_per_line": 35
+          },
+          {
+            "applied": false,
+            "axis": 1,
+            "background_samples_per_line": 40
+          }
+        ]
+      },
+      "gold_used_for_inference": false,
+      "M2_replay_comparison": {
+        "old_points": 541,
+        "fresh_points": 541,
+        "coordinates_exact": true,
+        "scores_exact": true,
+        "maximum_coordinate_difference_px": 0.0
+      }
+    },
+    "206056-2": {
+      "fresh_detector_seconds": 3.9528376090020174,
+      "threshold": 0.85,
+      "topology_seconds": 0.07837399799973355,
+      "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+      "banding": {
+        "protocol": "background-periodic-banding-v1",
+        "applied": false,
+        "roi_xyxy": [
+          23,
+          84,
+          1014,
+          700
+        ],
+        "ground_truth_used": false,
+        "use": "point inference only, original RGB is the sampling source",
+        "axes": [
+          {
+            "applied": false,
+            "axis": 0,
+            "background_samples_per_line": 33
+          },
+          {
+            "applied": false,
+            "axis": 1,
+            "background_samples_per_line": 88
+          }
+        ]
+      },
+      "gold_used_for_inference": false,
+      "M2_replay_comparison": {
+        "old_points": 1894,
+        "fresh_points": 1894,
+        "coordinates_exact": true,
+        "scores_exact": true,
+        "maximum_coordinate_difference_px": 0.0
+      }
+    },
+    "206056-6": {
+      "fresh_detector_seconds": 4.401638068000466,
+      "threshold": 0.85,
+      "topology_seconds": 0.014777592998143518,
+      "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+      "banding": {
+        "protocol": "background-periodic-banding-v1",
+        "applied": false,
+        "roi_xyxy": [
+          287,
+          204,
+          747,
+          488
+        ],
+        "ground_truth_used": false,
+        "use": "point inference only, original RGB is the sampling source",
+        "axes": [
+          {
+            "applied": false,
+            "axis": 0,
+            "background_samples_per_line": 564
+          },
+          {
+            "applied": false,
+            "axis": 1,
+            "background_samples_per_line": 420
+          }
+        ]
+      },
+      "gold_used_for_inference": false,
+      "M2_replay_comparison": {
+        "old_points": 403,
+        "fresh_points": 403,
+        "coordinates_exact": true,
+        "scores_exact": true,
+        "maximum_coordinate_difference_px": 0.0
+      }
+    },
+    "206852-0": {
+      "fresh_detector_seconds": 3.793434465998871,
+      "threshold": 0.85,
+      "topology_seconds": 0.019662440001411596,
+      "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+      "banding": {
+        "protocol": "background-periodic-banding-v1",
+        "applied": false,
+        "roi_xyxy": [
+          0,
+          64,
+          1012,
+          703
+        ],
+        "ground_truth_used": false,
+        "use": "point inference only, original RGB is the sampling source",
+        "axes": [
+          {
+            "axis": 0,
+            "applied": false,
+            "reason": "insufficient observed background"
+          },
+          {
+            "applied": false,
+            "axis": 1,
+            "background_samples_per_line": 65
+          }
+        ]
+      },
+      "gold_used_for_inference": false,
+      "M2_replay_comparison": {
+        "old_points": 505,
+        "fresh_points": 505,
+        "coordinates_exact": true,
+        "scores_exact": true,
+        "maximum_coordinate_difference_px": 0.0
+      }
+    },
+    "206852-1": {
+      "fresh_detector_seconds": 4.145260957000573,
+      "threshold": 0.85,
+      "topology_seconds": 0.39347540800008574,
+      "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+      "banding": {
+        "protocol": "background-periodic-banding-v1",
+        "applied": false,
+        "roi_xyxy": [
+          28,
+          38,
+          1007,
+          686
+        ],
+        "ground_truth_used": false,
+        "use": "point inference only, original RGB is the sampling source",
+        "axes": [
+          {
+            "applied": false,
+            "axis": 0,
+            "background_samples_per_line": 45
+          },
+          {
+            "applied": false,
+            "axis": 1,
+            "background_samples_per_line": 56
+          }
+        ]
+      },
+      "gold_used_for_inference": false,
+      "M2_replay_comparison": {
+        "old_points": 7166,
+        "fresh_points": 7166,
+        "coordinates_exact": true,
+        "scores_exact": true,
+        "maximum_coordinate_difference_px": 0.0
+      }
+    },
+    "206852-2": {
+      "fresh_detector_seconds": 3.948200877999625,
+      "threshold": 0.85,
+      "topology_seconds": 0.028066828999726567,
+      "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+      "banding": {
+        "protocol": "background-periodic-banding-v1",
+        "applied": false,
+        "roi_xyxy": [
+          0,
+          0,
+          1024,
+          704
+        ],
+        "ground_truth_used": false,
+        "use": "point inference only, original RGB is the sampling source",
+        "axes": [
+          {
+            "axis": 0,
+            "applied": false,
+            "reason": "insufficient observed background"
+          },
+          {
+            "axis": 1,
+            "applied": false,
+            "reason": "insufficient observed background"
+          }
+        ]
+      },
+      "gold_used_for_inference": false,
+      "M2_replay_comparison": {
+        "old_points": 1688,
+        "fresh_points": 1688,
+        "coordinates_exact": true,
+        "scores_exact": true,
+        "maximum_coordinate_difference_px": 0.0
+      }
+    },
+    "206852-6": {
+      "fresh_detector_seconds": 4.040136703999451,
+      "threshold": 0.85,
+      "topology_seconds": 0.0826423030011938,
+      "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+      "banding": {
+        "protocol": "background-periodic-banding-v1",
+        "applied": false,
+        "roi_xyxy": [
+          0,
+          0,
+          1024,
+          649
+        ],
+        "ground_truth_used": false,
+        "use": "point inference only, original RGB is the sampling source",
+        "axes": [
+          {
+            "axis": 0,
+            "applied": false,
+            "reason": "insufficient observed background"
+          },
+          {
+            "applied": false,
+            "axis": 1,
+            "background_samples_per_line": 55
+          }
+        ]
+      },
+      "gold_used_for_inference": false,
+      "M2_replay_comparison": {
+        "old_points": 1899,
+        "fresh_points": 1899,
+        "coordinates_exact": true,
+        "scores_exact": true,
+        "maximum_coordinate_difference_px": 0.0
+      }
+    },
+    "208114-0": {
+      "fresh_detector_seconds": 4.0978008120000595,
+      "threshold": 0.85,
+      "topology_seconds": 0.018408585001452593,
+      "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+      "banding": {
+        "protocol": "background-periodic-banding-v1",
+        "applied": false,
+        "roi_xyxy": [
+          30,
+          87,
+          1022,
+          684
+        ],
+        "ground_truth_used": false,
+        "use": "point inference only, original RGB is the sampling source",
+        "axes": [
+          {
+            "applied": false,
+            "frequency_cycles_per_pixel": 0.015678192113907325,
+            "background_variance_explained": 0.08450102631433509,
+            "peak_concentration": 0.41004532234722735,
+            "amplitude_rgb_levels": 0.3202172695728778,
+            "axis": 0,
+            "background_samples_per_line": 32
+          },
+          {
+            "applied": false,
+            "axis": 1,
+            "background_samples_per_line": 107
+          }
+        ]
+      },
+      "gold_used_for_inference": false,
+      "M2_replay_comparison": {
+        "old_points": 476,
+        "fresh_points": 476,
+        "coordinates_exact": true,
+        "scores_exact": true,
+        "maximum_coordinate_difference_px": 0.0
+      }
+    },
+    "208114-1": {
+      "fresh_detector_seconds": 4.3203004480019445,
+      "threshold": 0.85,
+      "topology_seconds": 0.0288358200014045,
+      "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+      "banding": {
+        "protocol": "background-periodic-banding-v1",
+        "applied": false,
+        "roi_xyxy": [
+          7,
+          57,
+          1024,
+          704
+        ],
+        "ground_truth_used": false,
+        "use": "point inference only, original RGB is the sampling source",
+        "axes": [
+          {
+            "axis": 0,
+            "applied": false,
+            "reason": "insufficient observed background"
+          },
+          {
+            "applied": false,
+            "axis": 1,
+            "background_samples_per_line": 57
+          }
+        ]
+      },
+      "gold_used_for_inference": false,
+      "M2_replay_comparison": {
+        "old_points": 460,
+        "fresh_points": 460,
+        "coordinates_exact": true,
+        "scores_exact": true,
+        "maximum_coordinate_difference_px": 0.0
+      }
+    },
+    "208114-2": {
+      "fresh_detector_seconds": 3.81614054199963,
+      "threshold": 0.85,
+      "topology_seconds": 0.012282137999136467,
+      "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+      "banding": {
+        "protocol": "background-periodic-banding-v1",
+        "applied": false,
+        "roi_xyxy": [
+          229,
+          193,
+          787,
+          538
+        ],
+        "ground_truth_used": false,
+        "use": "point inference only, original RGB is the sampling source",
+        "axes": [
+          {
+            "applied": false,
+            "axis": 0,
+            "background_samples_per_line": 466
+          },
+          {
+            "applied": false,
+            "axis": 1,
+            "background_samples_per_line": 359
+          }
+        ]
+      },
+      "gold_used_for_inference": false,
+      "M2_replay_comparison": {
+        "old_points": 408,
+        "fresh_points": 408,
+        "coordinates_exact": true,
+        "scores_exact": true,
+        "maximum_coordinate_difference_px": 0.0
+      }
+    },
+    "208114-6": {
+      "fresh_detector_seconds": 4.1535475960008625,
+      "threshold": 0.85,
+      "topology_seconds": 0.015750792998005636,
+      "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+      "banding": {
+        "protocol": "background-periodic-banding-v1",
+        "applied": false,
+        "roi_xyxy": [
+          267,
+          198,
+          768,
+          527
+        ],
+        "ground_truth_used": false,
+        "use": "point inference only, original RGB is the sampling source",
+        "axes": [
+          {
+            "applied": false,
+            "axis": 0,
+            "background_samples_per_line": 523
+          },
+          {
+            "applied": false,
+            "axis": 1,
+            "background_samples_per_line": 375
+          }
+        ]
+      },
+      "gold_used_for_inference": false,
+      "M2_replay_comparison": {
+        "old_points": 460,
+        "fresh_points": 460,
+        "coordinates_exact": true,
+        "scores_exact": true,
+        "maximum_coordinate_difference_px": 0.0
+      }
+    },
+    "208777-0": {
+      "fresh_detector_seconds": 3.987483984001301,
+      "threshold": 0.85,
+      "topology_seconds": 0.07037167100133956,
+      "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+      "banding": {
+        "protocol": "background-periodic-banding-v1",
+        "applied": false,
+        "roi_xyxy": [
+          35,
+          67,
+          984,
+          672
+        ],
+        "ground_truth_used": false,
+        "use": "point inference only, original RGB is the sampling source",
+        "axes": [
+          {
+            "applied": false,
+            "frequency_cycles_per_pixel": 0.016051137432509518,
+            "background_variance_explained": 0.011590380602496841,
+            "peak_concentration": 0.42544711893901566,
+            "amplitude_rgb_levels": 0.4696578877198443,
+            "axis": 0,
+            "background_samples_per_line": 75
+          },
+          {
+            "applied": false,
+            "axis": 1,
+            "background_samples_per_line": 99
+          }
+        ]
+      },
+      "gold_used_for_inference": false,
+      "M2_replay_comparison": {
+        "old_points": 1786,
+        "fresh_points": 1786,
+        "coordinates_exact": true,
+        "scores_exact": true,
+        "maximum_coordinate_difference_px": 0.0
+      }
+    },
+    "208777-1": {
+      "fresh_detector_seconds": 3.9656148299982306,
+      "threshold": 0.85,
+      "topology_seconds": 0.07960759900015546,
+      "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+      "banding": {
+        "protocol": "background-periodic-banding-v1",
+        "applied": false,
+        "roi_xyxy": [
+          0,
+          0,
+          1024,
+          704
+        ],
+        "ground_truth_used": false,
+        "use": "point inference only, original RGB is the sampling source",
+        "axes": [
+          {
+            "axis": 0,
+            "applied": false,
+            "reason": "insufficient observed background"
+          },
+          {
+            "axis": 1,
+            "applied": false,
+            "reason": "insufficient observed background"
+          }
+        ]
+      },
+      "gold_used_for_inference": false,
+      "M2_replay_comparison": {
+        "old_points": 1938,
+        "fresh_points": 1938,
+        "coordinates_exact": true,
+        "scores_exact": true,
+        "maximum_coordinate_difference_px": 0.0
+      }
+    },
+    "208777-2": {
+      "fresh_detector_seconds": 4.053371435998997,
+      "threshold": 0.85,
+      "topology_seconds": 0.15401120699971216,
+      "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+      "banding": {
+        "protocol": "background-periodic-banding-v1",
+        "applied": false,
+        "roi_xyxy": [
+          0,
+          0,
+          1024,
+          704
+        ],
+        "ground_truth_used": false,
+        "use": "point inference only, original RGB is the sampling source",
+        "axes": [
+          {
+            "axis": 0,
+            "applied": false,
+            "reason": "insufficient observed background"
+          },
+          {
+            "axis": 1,
+            "applied": false,
+            "reason": "insufficient observed background"
+          }
+        ]
+      },
+      "gold_used_for_inference": false,
+      "M2_replay_comparison": {
+        "old_points": 3775,
+        "fresh_points": 3775,
+        "coordinates_exact": true,
+        "scores_exact": true,
+        "maximum_coordinate_difference_px": 0.0
+      }
+    },
+    "208777-6": {
+      "fresh_detector_seconds": 4.377172167001845,
+      "threshold": 0.85,
+      "topology_seconds": 0.12599073100136593,
+      "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+      "banding": {
+        "protocol": "background-periodic-banding-v1",
+        "applied": false,
+        "roi_xyxy": [
+          0,
+          0,
+          526,
+          704
+        ],
+        "ground_truth_used": false,
+        "use": "point inference only, original RGB is the sampling source",
+        "axes": [
+          {
+            "axis": 0,
+            "applied": false,
+            "reason": "insufficient observed background"
+          },
+          {
+            "axis": 1,
+            "applied": false,
+            "reason": "insufficient observed background"
+          }
+        ]
+      },
+      "gold_used_for_inference": false,
+      "M2_replay_comparison": {
+        "old_points": 3270,
+        "fresh_points": 3270,
+        "coordinates_exact": true,
+        "scores_exact": true,
+        "maximum_coordinate_difference_px": 0.0
+      }
+    },
+    "211723-0": {
+      "fresh_detector_seconds": 4.167368040001747,
+      "threshold": 0.85,
+      "topology_seconds": 0.4093925279994437,
+      "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+      "banding": {
+        "protocol": "background-periodic-banding-v1",
+        "applied": false,
+        "roi_xyxy": [
+          0,
+          6,
+          982,
+          694
+        ],
+        "ground_truth_used": false,
+        "use": "point inference only, original RGB is the sampling source",
+        "axes": [
+          {
+            "applied": false,
+            "axis": 0,
+            "background_samples_per_line": 42
+          },
+          {
+            "applied": false,
+            "axis": 1,
+            "background_samples_per_line": 16
+          }
+        ]
+      },
+      "gold_used_for_inference": false,
+      "M2_replay_comparison": {
+        "old_points": 7217,
+        "fresh_points": 7217,
+        "coordinates_exact": true,
+        "scores_exact": true,
+        "maximum_coordinate_difference_px": 0.0
+      }
+    },
+    "211723-1": {
+      "fresh_detector_seconds": 4.947535212999355,
+      "threshold": 0.85,
+      "topology_seconds": 0.08375728700048057,
+      "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+      "banding": {
+        "protocol": "background-periodic-banding-v1",
+        "applied": false,
+        "roi_xyxy": [
+          61,
+          61,
+          1010,
+          696
+        ],
+        "ground_truth_used": false,
+        "use": "point inference only, original RGB is the sampling source",
+        "axes": [
+          {
+            "applied": false,
+            "axis": 0,
+            "background_samples_per_line": 75
+          },
+          {
+            "applied": false,
+            "frequency_cycles_per_pixel": 0.01844552216507389,
+            "background_variance_explained": 0.022433490734995898,
+            "peak_concentration": 0.43888854735523347,
+            "amplitude_rgb_levels": 0.6116437459567236,
+            "axis": 1,
+            "background_samples_per_line": 69
+          }
+        ]
+      },
+      "gold_used_for_inference": false,
+      "M2_replay_comparison": {
+        "old_points": 1831,
+        "fresh_points": 1831,
+        "coordinates_exact": true,
+        "scores_exact": true,
+        "maximum_coordinate_difference_px": 0.0
+      }
+    },
+    "211723-2": {
+      "fresh_detector_seconds": 4.276527926002018,
+      "threshold": 0.85,
+      "topology_seconds": 0.0008586330004618503,
+      "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+      "banding": {
+        "protocol": "background-periodic-banding-v1",
+        "applied": false,
+        "roi_xyxy": null,
+        "ground_truth_used": false,
+        "use": "point inference only, original RGB is the sampling source"
+      },
+      "gold_used_for_inference": false,
+      "M2_replay_comparison": {
+        "old_points": 50,
+        "fresh_points": 50,
+        "coordinates_exact": true,
+        "scores_exact": true,
+        "maximum_coordinate_difference_px": 0.0
+      }
+    },
+    "211723-6": {
+      "fresh_detector_seconds": 8.474705313001323,
+      "threshold": 0.85,
+      "topology_seconds": 0.043848764998983825,
+      "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+      "banding": {
+        "protocol": "background-periodic-banding-v1",
+        "applied": true,
+        "roi_xyxy": [
+          21,
+          262,
+          526,
+          704
+        ],
+        "ground_truth_used": false,
+        "use": "point inference only, original RGB is the sampling source",
+        "axes": [
+          {
+            "applied": false,
+            "axis": 0,
+            "background_samples_per_line": 21
+          },
+          {
+            "applied": true,
+            "frequency_cycles_per_pixel": 0.14777622267178858,
+            "background_variance_explained": 0.9899349922634648,
+            "peak_concentration": 0.9795598318376764,
+            "amplitude_rgb_levels": 16.996373052492523,
+            "axis": 1,
+            "background_samples_per_line": 262
+          }
+        ]
+      },
+      "gold_used_for_inference": false,
+      "M2_replay_comparison": {
+        "old_points": 1496,
+        "fresh_points": 1496,
+        "coordinates_exact": true,
+        "scores_exact": true,
+        "maximum_coordinate_difference_px": 0.0
+      }
+    },
+    "211855-0": {
+      "fresh_detector_seconds": 4.6705234670007485,
+      "threshold": 0.85,
+      "topology_seconds": 0.02578738200099906,
+      "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+      "banding": {
+        "protocol": "background-periodic-banding-v1",
+        "applied": false,
+        "roi_xyxy": [
+          27,
+          80,
+          987,
+          704
+        ],
+        "ground_truth_used": false,
+        "use": "point inference only, original RGB is the sampling source",
+        "axes": [
+          {
+            "applied": false,
+            "axis": 0,
+            "background_samples_per_line": 64
+          },
+          {
+            "applied": false,
+            "axis": 1,
+            "background_samples_per_line": 80
+          }
+        ]
+      },
+      "gold_used_for_inference": false,
+      "M2_replay_comparison": {
+        "old_points": 513,
+        "fresh_points": 513,
+        "coordinates_exact": true,
+        "scores_exact": true,
+        "maximum_coordinate_difference_px": 0.0
+      }
+    },
+    "211855-1": {
+      "fresh_detector_seconds": 4.956929555999523,
+      "threshold": 0.85,
+      "topology_seconds": 0.010747178999736207,
+      "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+      "banding": {
+        "protocol": "background-periodic-banding-v1",
+        "applied": false,
+        "roi_xyxy": [
+          86,
+          102,
+          916,
+          639
+        ],
+        "ground_truth_used": false,
+        "use": "point inference only, original RGB is the sampling source",
+        "axes": [
+          {
+            "applied": false,
+            "axis": 0,
+            "background_samples_per_line": 194
+          },
+          {
+            "applied": false,
+            "axis": 1,
+            "background_samples_per_line": 167
+          }
+        ]
+      },
+      "gold_used_for_inference": false,
+      "M2_replay_comparison": {
+        "old_points": 411,
+        "fresh_points": 411,
+        "coordinates_exact": true,
+        "scores_exact": true,
+        "maximum_coordinate_difference_px": 0.0
+      }
+    },
+    "211855-2": {
+      "fresh_detector_seconds": 4.7354872169999,
+      "threshold": 0.85,
+      "topology_seconds": 0.1608698630006984,
+      "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+      "banding": {
+        "protocol": "background-periodic-banding-v1",
+        "applied": false,
+        "roi_xyxy": [
+          0,
+          0,
+          1024,
+          704
+        ],
+        "ground_truth_used": false,
+        "use": "point inference only, original RGB is the sampling source",
+        "axes": [
+          {
+            "axis": 0,
+            "applied": false,
+            "reason": "insufficient observed background"
+          },
+          {
+            "axis": 1,
+            "applied": false,
+            "reason": "insufficient observed background"
+          }
+        ]
+      },
+      "gold_used_for_inference": false,
+      "M2_replay_comparison": {
+        "old_points": 3769,
+        "fresh_points": 3769,
+        "coordinates_exact": true,
+        "scores_exact": true,
+        "maximum_coordinate_difference_px": 0.0
+      }
+    },
+    "211855-6": {
+      "fresh_detector_seconds": 4.032324329000403,
+      "threshold": 0.85,
+      "topology_seconds": 0.01426664099926711,
+      "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+      "banding": {
+        "protocol": "background-periodic-banding-v1",
+        "applied": false,
+        "roi_xyxy": [
+          0,
+          168,
+          516,
+          613
+        ],
+        "ground_truth_used": false,
+        "use": "point inference only, original RGB is the sampling source",
+        "axes": [
+          {
+            "axis": 0,
+            "applied": false,
+            "reason": "insufficient observed background"
+          },
+          {
+            "applied": false,
+            "axis": 1,
+            "background_samples_per_line": 259
+          }
+        ]
+      },
+      "gold_used_for_inference": false,
+      "M2_replay_comparison": {
+        "old_points": 670,
+        "fresh_points": 670,
+        "coordinates_exact": true,
+        "scores_exact": true,
+        "maximum_coordinate_difference_px": 0.0
+      }
+    },
+    "215864-0": {
+      "fresh_detector_seconds": 4.251821319001465,
+      "threshold": 0.85,
+      "topology_seconds": 0.3481416699978581,
+      "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+      "banding": {
+        "protocol": "background-periodic-banding-v1",
+        "applied": false,
+        "roi_xyxy": [
+          0,
+          0,
+          1008,
+          704
+        ],
+        "ground_truth_used": false,
+        "use": "point inference only, original RGB is the sampling source",
+        "axes": [
+          {
+            "applied": false,
+            "axis": 0,
+            "background_samples_per_line": 16
+          },
+          {
+            "axis": 1,
+            "applied": false,
+            "reason": "insufficient observed background"
+          }
+        ]
+      },
+      "gold_used_for_inference": false,
+      "M2_replay_comparison": {
+        "old_points": 7250,
+        "fresh_points": 7250,
+        "coordinates_exact": true,
+        "scores_exact": true,
+        "maximum_coordinate_difference_px": 0.0
+      }
+    },
+    "215864-1": {
+      "fresh_detector_seconds": 4.095717758998944,
+      "threshold": 0.85,
+      "topology_seconds": 0.02052781100064749,
+      "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+      "banding": {
+        "protocol": "background-periodic-banding-v1",
+        "applied": false,
+        "roi_xyxy": [
+          0,
+          41,
+          1024,
+          704
+        ],
+        "ground_truth_used": false,
+        "use": "point inference only, original RGB is the sampling source",
+        "axes": [
+          {
+            "axis": 0,
+            "applied": false,
+            "reason": "insufficient observed background"
+          },
+          {
+            "applied": false,
+            "axis": 1,
+            "background_samples_per_line": 41
+          }
+        ]
+      },
+      "gold_used_for_inference": false,
+      "M2_replay_comparison": {
+        "old_points": 517,
+        "fresh_points": 517,
+        "coordinates_exact": true,
+        "scores_exact": true,
+        "maximum_coordinate_difference_px": 0.0
+      }
+    },
+    "215864-2": {
+      "fresh_detector_seconds": 3.948643750998599,
+      "threshold": 0.85,
+      "topology_seconds": 0.07803249100106768,
+      "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+      "banding": {
+        "protocol": "background-periodic-banding-v1",
+        "applied": false,
+        "roi_xyxy": [
+          86,
+          0,
+          946,
+          704
+        ],
+        "ground_truth_used": false,
+        "use": "point inference only, original RGB is the sampling source",
+        "axes": [
+          {
+            "applied": false,
+            "axis": 0,
+            "background_samples_per_line": 164
+          },
+          {
+            "axis": 1,
+            "applied": false,
+            "reason": "insufficient observed background"
+          }
+        ]
+      },
+      "gold_used_for_inference": false,
+      "M2_replay_comparison": {
+        "old_points": 1852,
+        "fresh_points": 1852,
+        "coordinates_exact": true,
+        "scores_exact": true,
+        "maximum_coordinate_difference_px": 0.0
+      }
+    },
+    "215864-6": {
+      "fresh_detector_seconds": 4.898037547998683,
+      "threshold": 0.85,
+      "topology_seconds": 0.12159756400069455,
+      "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+      "banding": {
+        "protocol": "background-periodic-banding-v1",
+        "applied": false,
+        "roi_xyxy": [
+          0,
+          0,
+          1024,
+          704
+        ],
+        "ground_truth_used": false,
+        "use": "point inference only, original RGB is the sampling source",
+        "axes": [
+          {
+            "axis": 0,
+            "applied": false,
+            "reason": "insufficient observed background"
+          },
+          {
+            "axis": 1,
+            "applied": false,
+            "reason": "insufficient observed background"
+          }
+        ]
+      },
+      "gold_used_for_inference": false,
+      "M2_replay_comparison": {
+        "old_points": 2856,
+        "fresh_points": 2856,
+        "coordinates_exact": true,
+        "scores_exact": true,
+        "maximum_coordinate_difference_px": 0.0
+      }
+    },
+    "220288-0": {
+      "fresh_detector_seconds": 4.263835351001035,
+      "threshold": 0.85,
+      "topology_seconds": 0.38786396399882506,
+      "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+      "banding": {
+        "protocol": "background-periodic-banding-v1",
+        "applied": false,
+        "roi_xyxy": [
+          0,
+          0,
+          1024,
+          704
+        ],
+        "ground_truth_used": false,
+        "use": "point inference only, original RGB is the sampling source",
+        "axes": [
+          {
+            "axis": 0,
+            "applied": false,
+            "reason": "insufficient observed background"
+          },
+          {
+            "axis": 1,
+            "applied": false,
+            "reason": "insufficient observed background"
+          }
+        ]
+      },
+      "gold_used_for_inference": false,
+      "M2_replay_comparison": {
+        "old_points": 7265,
+        "fresh_points": 7265,
+        "coordinates_exact": true,
+        "scores_exact": true,
+        "maximum_coordinate_difference_px": 0.0
+      }
+    },
+    "220288-1": {
+      "fresh_detector_seconds": 4.054977452000458,
+      "threshold": 0.85,
+      "topology_seconds": 0.017901434999657795,
+      "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+      "banding": {
+        "protocol": "background-periodic-banding-v1",
+        "applied": false,
+        "roi_xyxy": [
+          0,
+          65,
+          1024,
+          704
+        ],
+        "ground_truth_used": false,
+        "use": "point inference only, original RGB is the sampling source",
+        "axes": [
+          {
+            "axis": 0,
+            "applied": false,
+            "reason": "insufficient observed background"
+          },
+          {
+            "applied": false,
+            "axis": 1,
+            "background_samples_per_line": 65
+          }
+        ]
+      },
+      "gold_used_for_inference": false,
+      "M2_replay_comparison": {
+        "old_points": 410,
+        "fresh_points": 410,
+        "coordinates_exact": true,
+        "scores_exact": true,
+        "maximum_coordinate_difference_px": 0.0
+      }
+    },
+    "220288-2": {
+      "fresh_detector_seconds": 4.150504633998935,
+      "threshold": 0.85,
+      "topology_seconds": 0.01691201400171849,
+      "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+      "banding": {
+        "protocol": "background-periodic-banding-v1",
+        "applied": false,
+        "roi_xyxy": [
+          261,
+          233,
+          745,
+          514
+        ],
+        "ground_truth_used": false,
+        "use": "point inference only, original RGB is the sampling source",
+        "axes": [
+          {
+            "applied": false,
+            "axis": 0,
+            "background_samples_per_line": 540
+          },
+          {
+            "applied": false,
+            "axis": 1,
+            "background_samples_per_line": 423
+          }
+        ]
+      },
+      "gold_used_for_inference": false,
+      "M2_replay_comparison": {
+        "old_points": 432,
+        "fresh_points": 432,
+        "coordinates_exact": true,
+        "scores_exact": true,
+        "maximum_coordinate_difference_px": 0.0
+      }
+    },
+    "220288-6": {
+      "fresh_detector_seconds": 4.030333720998897,
+      "threshold": 0.85,
+      "topology_seconds": 0.15004477599723032,
+      "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+      "banding": {
+        "protocol": "background-periodic-banding-v1",
+        "applied": false,
+        "roi_xyxy": [
+          0,
+          0,
+          1024,
+          704
+        ],
+        "ground_truth_used": false,
+        "use": "point inference only, original RGB is the sampling source",
+        "axes": [
+          {
+            "axis": 0,
+            "applied": false,
+            "reason": "insufficient observed background"
+          },
+          {
+            "axis": 1,
+            "applied": false,
+            "reason": "insufficient observed background"
+          }
+        ]
+      },
+      "gold_used_for_inference": false,
+      "M2_replay_comparison": {
+        "old_points": 3327,
+        "fresh_points": 3327,
+        "coordinates_exact": true,
+        "scores_exact": true,
+        "maximum_coordinate_difference_px": 0.0
+      }
+    }
+  },
+  "new_training": false,
+  "device": "cpu",
+  "geometry_final_source_replay_case_bytes_equal": true
+}

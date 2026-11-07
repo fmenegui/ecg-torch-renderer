@@ -1,0 +1,147 @@
+{
+  "status": "old-checkpoint-exploratory",
+  "annotation": "none",
+  "accuracy": null,
+  "checkpoint_sha256": "e09218759a52bdf7324f88d7ef7615820f7d06908e9c4000ab93c1e50e57a54d",
+  "limits": [
+    "Physical photographs/scans of prints from real ECG signals, not a clinical capture cohort",
+    "Four ECG records, twelve physical captures, no manually annotated grid gold standard",
+    "Unknown training overlap of public reference models",
+    "Source record 22 and all previously evaluated patients excluded",
+    "No adapted source images redistributed"
+  ],
+  "cases": [
+    {
+      "id": "D0_000066_04",
+      "patient_id": "11352.0",
+      "image_type": "color-scan",
+      "image_sha256": "6c4ffcde916b7247502927272ab20797cb5b9994908fbb1e49580dcbbb3582f5",
+      "point_count": 2365,
+      "accuracy": null,
+      "topology_status": "accepted",
+      "supported_cells": 2237,
+      "retained_point_fraction": 0.9978858350951374
+    },
+    {
+      "id": "D0_000066_05",
+      "patient_id": "11352.0",
+      "image_type": "gray-scan",
+      "image_sha256": "c4ca33a881cda91e0e522eb2157e46f1a821e8da03595c9cec190d7a2c34803d",
+      "point_count": 2351,
+      "accuracy": null,
+      "topology_status": "accepted",
+      "supported_cells": 2208,
+      "retained_point_fraction": 0.9974478945129732
+    },
+    {
+      "id": "D0_000066_06",
+      "patient_id": "11352.0",
+      "image_type": "phone-photo",
+      "image_sha256": "1b9e2d058bceb3e7f96464be48085aaa62c80d98b522cdcdccc1292ba2dfdf6b",
+      "point_count": 1879,
+      "accuracy": null,
+      "topology_status": "accepted",
+      "supported_cells": 1760,
+      "retained_point_fraction": 0.9936136242682277
+    },
+    {
+      "id": "D0_000077_04",
+      "patient_id": "8555.0",
+      "image_type": "color-scan",
+      "image_sha256": "047c8e338832302fcbf2c496f5cf1b0b3dacaea32c5d06c74ecb6d194a478ec7",
+      "point_count": 2391,
+      "accuracy": null,
+      "topology_status": "accepted",
+      "supported_cells": 2258,
+      "retained_point_fraction": 0.999163529903806
+    },
+    {
+      "id": "D0_000077_05",
+      "patient_id": "8555.0",
+      "image_type": "gray-scan",
+      "image_sha256": "3d0a5b126b879d954d92b3ea8beb2d9e1820b8b080eae8acfb445fd119940de8",
+      "point_count": 2330,
+      "accuracy": null,
+      "topology_status": "accepted",
+      "supported_cells": 2164,
+      "retained_point_fraction": 0.9978540772532188
+    },
+    {
+      "id": "D0_000077_06",
+      "patient_id": "8555.0",
+      "image_type": "phone-photo",
+      "image_sha256": "764608fdbce4fcbbd4d4c783f084320e0e91023ee9191d3b8b13764e1fa07746",
+      "point_count": 2444,
+      "accuracy": null,
+      "topology_status": "rejected",
+      "supported_cells": 2136,
+      "retained_point_fraction": 0.9684942716857611
+    },
+    {
+      "id": "D0_000085_04",
+      "patient_id": "15904.0",
+      "image_type": "color-scan",
+      "image_sha256": "97db1c078384d7e450d803626fc454ec0bd25b4e4a6df2b0cfb4f651352505c6",
+      "point_count": 2397,
+      "accuracy": null,
+      "topology_status": "accepted",
+      "supported_cells": 2267,
+      "retained_point_fraction": 0.999165623696287
+    },
+    {
+      "id": "D0_000085_05",
+      "patient_id": "15904.0",
+      "image_type": "gray-scan",
+      "image_sha256": "18c31ba7fb9206ee4facd07906c15c451c87987fc0fb6d6d47c46401a65fcbe9",
+      "point_count": 2361,
+      "accuracy": null,
+      "topology_status": "accepted",
+      "supported_cells": 2208,
+      "retained_point_fraction": 0.9987293519695044
+    },
+    {
+      "id": "D0_000085_06",
+      "patient_id": "15904.0",
+      "image_type": "phone-photo",
+      "image_sha256": "925a66f3744cddb2d1131f0dae7376a501dfef5da332c962c653f8008948da3f",
+      "point_count": 782,
+      "accuracy": null,
+      "topology_status": "rejected",
+      "supported_cells": 120,
+      "retained_point_fraction": 0.7084398976982097
+    },
+    {
+      "id": "D0_000107_04",
+      "patient_id": "13453.0",
+      "image_type": "color-scan",
+      "image_sha256": "b6b2ba241f5415a75683d664161e33e90dab3ce662de2ea15195a5f5e51a32fd",
+      "point_count": 2394,
+      "accuracy": null,
+      "topology_status": "accepted",
+      "supported_cells": 2264,
+      "retained_point_fraction": 0.9974937343358395
+    },
+    {
+      "id": "D0_000107_05",
+      "patient_id": "13453.0",
+      "image_type": "gray-scan",
+      "image_sha256": "062844dbcdd46f195ec32c332ab220cbd9189fb17b47299edb23c28037325941",
+      "point_count": 2335,
+      "accuracy": null,
+      "topology_status": "accepted",
+      "supported_cells": 2181,
+      "retained_point_fraction": 0.9982869379014989
+    },
+    {
+      "id": "D0_000107_06",
+      "patient_id": "13453.0",
+      "image_type": "phone-photo",
+      "image_sha256": "cc96b7a0bffa9484e09d091fa3c62244f5843131fa85a38cd7917a71c05f009b",
+      "point_count": 2012,
+      "accuracy": null,
+      "topology_status": "accepted",
+      "supported_cells": 1897,
+      "retained_point_fraction": 0.9990059642147118
+    }
+  ]
+}

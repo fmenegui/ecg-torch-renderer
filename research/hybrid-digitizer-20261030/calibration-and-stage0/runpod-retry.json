@@ -1,0 +1,16 @@
+{
+  "schema": "physical-clock-retry-blocker-v1",
+  "run_id": 41133083365,
+  "attempt": 2,
+  "job_id": 124349189235,
+  "source_commit": "6b2a319ee2b0ec7ff19a53fae46cb25428748411",
+  "http_status": 402,
+  "status": "blocked_before_pod_creation",
+  "provider_message": "Your account balance is too low to rent a pod. Please add funds to your account.",
+  "pod_id_received": false,
+  "gpu_inference_started": false,
+  "temporary_ssh_key_remaining": false,
+  "gpu_time_cap_usd": 0.3,
+  "artifact_id": 13017622034,
+  "artifact_sha256": "c9a42a0e7476cf0ad19e8b2f958fa26349f7f9e009bcfe05d2638c3ce954c816"
+}

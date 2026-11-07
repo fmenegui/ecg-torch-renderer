@@ -1,0 +1,1625 @@
+{
+  "protocol": {
+    "scope": "Validation diagnostic only, no new-patient test",
+    "source_patient_groups": [
+      "ptbxl-patient-7809.0"
+    ],
+    "independent_source_patients": 1,
+    "inputs": [
+      {
+        "key": "01024-0",
+        "file": "bank/01024-0.npz",
+        "sha256": "6a947a655dbe96f6700b8bc88c6b81243cc81dc7f09c9b5a4c9478569b7d0ec5",
+        "backend": "torch-cached",
+        "split": "validation"
+      },
+      {
+        "key": "01024-1",
+        "file": "bank/01024-1.npz",
+        "sha256": "4fea6c3616377220fb7fa344528f2f8b9078b46611dbc9c9357826da35ae9f58",
+        "backend": "torch-cached",
+        "split": "validation"
+      },
+      {
+        "key": "01024-2",
+        "file": "bank/01024-2.npz",
+        "sha256": "0ab43b2e8c25bc88bcb626557ee2a70d51ea11272a53477f073073771bd0b2e4",
+        "backend": "offline",
+        "split": "validation"
+      },
+      {
+        "key": "01024-3",
+        "file": "bank/01024-3.npz",
+        "sha256": "989ad63dc56bf8c4ff11590a7f1d914102d833a80eabe18338d739d933a4a51e",
+        "backend": "torch-cached",
+        "split": "validation"
+      },
+      {
+        "key": "01024-4",
+        "file": "bank/01024-4.npz",
+        "sha256": "bf1f3d80af04401dc49c9b67bf259c363fb76772517e3df784e02ac4fce1266d",
+        "backend": "torch-cached",
+        "split": "validation"
+      },
+      {
+        "key": "01024-5",
+        "file": "bank/01024-5.npz",
+        "sha256": "6538c074aa9d936e3f07650fbc79954d06da7e662a9a5280cec5e241c87b685e",
+        "backend": "torch-cached",
+        "split": "validation"
+      },
+      {
+        "key": "01024-6",
+        "file": "bank/01024-6.npz",
+        "sha256": "5646ff3340654716bc176246910a252a9aa2eb4c71eb92978e9312a3e14e6382",
+        "backend": "offline",
+        "split": "validation"
+      },
+      {
+        "key": "01024-7",
+        "file": "bank/01024-7.npz",
+        "sha256": "37356e61a339785fec2f50c0c57a0874bdd1fd383a240aa4dd84a0e4288e5613",
+        "backend": "torch-cached",
+        "split": "validation"
+      }
+    ],
+    "configurations": {
+      "global": {
+        "max_tiles": 0
+      },
+      "roi384": {
+        "tile_size": 384,
+        "overlap": 96,
+        "max_tiles": 8
+      }
+    },
+    "matching_radius_original_px": 2.0,
+    "threshold": 0.85,
+    "max_points": 16384,
+    "nms_radius": 2,
+    "dedup_radius_source_px": 1.5,
+    "roi_margin": 64,
+    "min_roi_points": 4,
+    "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+    "module_sha256": "1da500a4445407338145c919710a16902cac7d3081ae08491076b742f684ee62",
+    "decoder_sha256": "4810c026aacebd640976490d73ce0f7f2a40dd7483f2dca1d969d3180b54ad84",
+    "runner_sha256": "35f124e7bf7311f0fa489328f17d3eb43235503ff92074a240e446792d56583e",
+    "no_configuration_selection_from_this_result": true,
+    "gold_not_passed_to_inference": true,
+    "variant_order": "alternating per image",
+    "hardware": {
+      "cpu_threads": 2,
+      "opencv_threads": 1,
+      "platform": "Linux-6.18.55-x86_64-with-glibc2.39"
+    },
+    "versions": {
+      "python": "3.12.14",
+      "torch": "2.8.0+cpu",
+      "opencv": "4.11.0",
+      "numpy": "2.3.5"
+    },
+    "timing_scope": "Observation inference including global/ROI/tile decoding, excluding data/model load and gold matching",
+    "timing_limit": "Shared virtual host with renderer running concurrently. One timed call per input/variant, no deployment confidence interval."
+  },
+  "summary": {
+    "global": {
+      "by_backend": {
+        "torch-cached": {
+          "images": 6,
+          "tp": 19037,
+          "fp": 199,
+          "fn": 95,
+          "precision": 0.9896548138906217,
+          "recall": 0.9950344971775037,
+          "f1": 0.992337364470392,
+          "median_error_px": 0.17289592152173566,
+          "p95_error_px": 0.45166813677198897,
+          "localization_population": "matched points only"
+        },
+        "offline": {
+          "images": 2,
+          "tp": 2930,
+          "fp": 16,
+          "fn": 449,
+          "precision": 0.9945689069925322,
+          "recall": 0.8671204498372299,
+          "f1": 0.9264822134387352,
+          "median_error_px": 0.2763413493026288,
+          "p95_error_px": 0.5701529212050277,
+          "localization_population": "matched points only"
+        }
+      },
+      "micro": {
+        "images": 8,
+        "tp": 21967,
+        "fp": 215,
+        "fn": 544,
+        "precision": 0.9903074564962582,
+        "recall": 0.9758340366931723,
+        "f1": 0.9830174747723357,
+        "median_error_px": 0.183214567107747,
+        "p95_error_px": 0.47708940549230344,
+        "localization_population": "matched points only"
+      },
+      "latency_seconds": {
+        "median": 7.795892909503891,
+        "p95": 10.396522388848824
+      },
+      "backend_mean_f1": 0.9594097889545636,
+      "native_activated_images": 0,
+      "budget_exhausted_images": 0
+    },
+    "roi384": {
+      "by_backend": {
+        "torch-cached": {
+          "images": 6,
+          "tp": 19053,
+          "fp": 223,
+          "fn": 79,
+          "precision": 0.9884312097945632,
+          "recall": 0.9958707923897135,
+          "f1": 0.9921370547802542,
+          "median_error_px": 0.1728262743056827,
+          "p95_error_px": 0.4504550411474006,
+          "localization_population": "matched points only"
+        },
+        "offline": {
+          "images": 2,
+          "tp": 2942,
+          "fp": 18,
+          "fn": 437,
+          "precision": 0.9939189189189189,
+          "recall": 0.8706717963894643,
+          "f1": 0.9282221170531629,
+          "median_error_px": 0.26909333074829156,
+          "p95_error_px": 0.5432239633310988,
+          "localization_population": "matched points only"
+        }
+      },
+      "micro": {
+        "images": 8,
+        "tp": 21995,
+        "fp": 241,
+        "fn": 516,
+        "precision": 0.9891617197337651,
+        "recall": 0.9770778730398472,
+        "f1": 0.9830826647596487,
+        "median_error_px": 0.18262991886332647,
+        "p95_error_px": 0.4749230255436588,
+        "localization_population": "matched points only"
+      },
+      "latency_seconds": {
+        "median": 10.099876042004325,
+        "p95": 17.563880394594886
+      },
+      "backend_mean_f1": 0.9601795859167086,
+      "native_activated_images": 4,
+      "budget_exhausted_images": 4
+    }
+  },
+  "paired_cases": [
+    {
+      "key": "01024-0",
+      "backend": "torch-cached",
+      "f1_difference": 0.0,
+      "tp_difference": 0,
+      "fp_difference": 0,
+      "seconds_difference": 0.6848700260015903
+    },
+    {
+      "key": "01024-1",
+      "backend": "torch-cached",
+      "f1_difference": 0.0,
+      "tp_difference": 0,
+      "fp_difference": 0,
+      "seconds_difference": -1.6750961200159509
+    },
+    {
+      "key": "01024-2",
+      "backend": "offline",
+      "f1_difference": 0.009787510371947028,
+      "tp_difference": 12,
+      "fp_difference": 2,
+      "seconds_difference": 3.1167040440050187
+    },
+    {
+      "key": "01024-3",
+      "backend": "torch-cached",
+      "f1_difference": 0.0,
+      "tp_difference": 0,
+      "fp_difference": 0,
+      "seconds_difference": 0.7558996479929192
+    },
+    {
+      "key": "01024-4",
+      "backend": "torch-cached",
+      "f1_difference": -0.007270123755809821,
+      "tp_difference": 2,
+      "fp_difference": 10,
+      "seconds_difference": 5.999841179989744
+    },
+    {
+      "key": "01024-5",
+      "backend": "torch-cached",
+      "f1_difference": 0.0032309604118587743,
+      "tp_difference": 14,
+      "fp_difference": 13,
+      "seconds_difference": 3.757950526982313
+    },
+    {
+      "key": "01024-6",
+      "backend": "offline",
+      "f1_difference": 0.0,
+      "tp_difference": 0,
+      "fp_difference": 0,
+      "seconds_difference": 3.336069515993586
+    },
+    {
+      "key": "01024-7",
+      "backend": "torch-cached",
+      "f1_difference": -0.00026448029621795044,
+      "tp_difference": 0,
+      "fp_difference": 1,
+      "seconds_difference": 9.003192802003468
+    }
+  ],
+  "cases": [
+    {
+      "key": "01024-0",
+      "group_id": "ptbxl-patient-7809.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "variant": "global",
+      "metrics": {
+        "images": 1,
+        "tp": 1890,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "median_error_px": 0.146905084354115,
+        "p95_error_px": 0.3538482044738531,
+        "localization_population": "matched points only"
+      },
+      "seconds": 8.450887678001891,
+      "metadata": {
+        "method": "opt-in global plus native ROI tile inference",
+        "input_shape": [
+          704,
+          1024
+        ],
+        "global_canvas_shape": [
+          704,
+          1024
+        ],
+        "global_resized_shape": [
+          704,
+          1024
+        ],
+        "global_scale_xy": [
+          1.0,
+          1.0
+        ],
+        "pixel_convention": "source=(resized+0.5)/scale-0.5, tiles use integer translation",
+        "global_points": 1890,
+        "native_points": 0,
+        "global_decoder_truncated": false,
+        "native_decoder_truncated": false,
+        "dedup_capacity_truncated": false,
+        "roi_xyxy_exclusive": null,
+        "roi_source": "global model points only",
+        "native_tiles": [],
+        "required_native_tiles": 0,
+        "native_input_pixels": 0,
+        "max_tiles": 0,
+        "max_roi_pixels": 4194304,
+        "tile_size": 512,
+        "overlap": 128,
+        "dedup_radius_source_px": 1.5,
+        "native_resized": false,
+        "budget_exhausted": false,
+        "fallback_reason": "native refinement disabled",
+        "full_tile_equivalence_claimed": false,
+        "confidence_calibrated": false,
+        "gold_used_for_inference": false,
+        "original_rgb_modified": false,
+        "global_seconds": 8.449829300996498,
+        "unique_candidates_before_capacity": 1890,
+        "returned_points": 1890,
+        "returned_native_points": 0,
+        "truncated": false,
+        "model_passes": 1,
+        "seconds": 8.45034261699766
+      },
+      "coordinates_file": "01024-0-global.npz",
+      "coordinates_sha256": "d5501ade62a4c8980c39293263d165e4142c224608425a6758eb4091e8363187",
+      "input_rgb_sha256": "711c8c96323adbe0deb619558dbf235af43cd8a77d1bcfa7d48cf8129c88de79",
+      "error": null
+    },
+    {
+      "key": "01024-0",
+      "group_id": "ptbxl-patient-7809.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "variant": "roi384",
+      "metrics": {
+        "images": 1,
+        "tp": 1890,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "median_error_px": 0.146905084354115,
+        "p95_error_px": 0.3538482044738531,
+        "localization_population": "matched points only"
+      },
+      "seconds": 9.135757704003481,
+      "metadata": {
+        "method": "opt-in global plus native ROI tile inference",
+        "input_shape": [
+          704,
+          1024
+        ],
+        "global_canvas_shape": [
+          704,
+          1024
+        ],
+        "global_resized_shape": [
+          704,
+          1024
+        ],
+        "global_scale_xy": [
+          1.0,
+          1.0
+        ],
+        "pixel_convention": "source=(resized+0.5)/scale-0.5, tiles use integer translation",
+        "global_points": 1890,
+        "native_points": 0,
+        "global_decoder_truncated": false,
+        "native_decoder_truncated": false,
+        "dedup_capacity_truncated": false,
+        "roi_xyxy_exclusive": [
+          0,
+          0,
+          1024,
+          704
+        ],
+        "roi_source": "global model points only",
+        "native_tiles": [],
+        "required_native_tiles": 12,
+        "native_input_pixels": 0,
+        "max_tiles": 8,
+        "max_roi_pixels": 4194304,
+        "tile_size": 384,
+        "overlap": 96,
+        "dedup_radius_source_px": 1.5,
+        "native_resized": false,
+        "budget_exhausted": true,
+        "fallback_reason": "complete native ROI exceeds budget",
+        "full_tile_equivalence_claimed": false,
+        "confidence_calibrated": false,
+        "gold_used_for_inference": false,
+        "original_rgb_modified": false,
+        "global_seconds": 9.132559543999378,
+        "unique_candidates_before_capacity": 1890,
+        "returned_points": 1890,
+        "returned_native_points": 0,
+        "truncated": false,
+        "model_passes": 1,
+        "seconds": 9.13352261899854
+      },
+      "coordinates_file": "01024-0-roi384.npz",
+      "coordinates_sha256": "d5501ade62a4c8980c39293263d165e4142c224608425a6758eb4091e8363187",
+      "input_rgb_sha256": "711c8c96323adbe0deb619558dbf235af43cd8a77d1bcfa7d48cf8129c88de79",
+      "error": null
+    },
+    {
+      "key": "01024-1",
+      "group_id": "ptbxl-patient-7809.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "variant": "roi384",
+      "metrics": {
+        "images": 1,
+        "tp": 7152,
+        "fp": 72,
+        "fn": 0,
+        "precision": 0.9900332225913622,
+        "recall": 1.0,
+        "f1": 0.994991652754591,
+        "median_error_px": 0.13732893357539672,
+        "p95_error_px": 0.3080796537515508,
+        "localization_population": "matched points only"
+      },
+      "seconds": 6.318234045989811,
+      "metadata": {
+        "method": "opt-in global plus native ROI tile inference",
+        "input_shape": [
+          704,
+          1024
+        ],
+        "global_canvas_shape": [
+          704,
+          1024
+        ],
+        "global_resized_shape": [
+          704,
+          1024
+        ],
+        "global_scale_xy": [
+          1.0,
+          1.0
+        ],
+        "pixel_convention": "source=(resized+0.5)/scale-0.5, tiles use integer translation",
+        "global_points": 7224,
+        "native_points": 0,
+        "global_decoder_truncated": false,
+        "native_decoder_truncated": false,
+        "dedup_capacity_truncated": false,
+        "roi_xyxy_exclusive": [
+          3,
+          0,
+          1024,
+          704
+        ],
+        "roi_source": "global model points only",
+        "native_tiles": [],
+        "required_native_tiles": 12,
+        "native_input_pixels": 0,
+        "max_tiles": 8,
+        "max_roi_pixels": 4194304,
+        "tile_size": 384,
+        "overlap": 96,
+        "dedup_radius_source_px": 1.5,
+        "native_resized": false,
+        "budget_exhausted": true,
+        "fallback_reason": "complete native ROI exceeds budget",
+        "full_tile_equivalence_claimed": false,
+        "confidence_calibrated": false,
+        "gold_used_for_inference": false,
+        "original_rgb_modified": false,
+        "global_seconds": 6.316667023987975,
+        "unique_candidates_before_capacity": 7224,
+        "returned_points": 7224,
+        "returned_native_points": 0,
+        "truncated": false,
+        "model_passes": 1,
+        "seconds": 6.3176699339965126
+      },
+      "coordinates_file": "01024-1-roi384.npz",
+      "coordinates_sha256": "cba951df52d778578331fd5612bcb2d10209f59d99600628bf07769fbce9dea8",
+      "input_rgb_sha256": "5aa0a0953e06da5a2c8b7d578824cd9036ce00dfab13f9e8005ecb24b7594572",
+      "error": null
+    },
+    {
+      "key": "01024-1",
+      "group_id": "ptbxl-patient-7809.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "variant": "global",
+      "metrics": {
+        "images": 1,
+        "tp": 7152,
+        "fp": 72,
+        "fn": 0,
+        "precision": 0.9900332225913622,
+        "recall": 1.0,
+        "f1": 0.994991652754591,
+        "median_error_px": 0.13732893357539672,
+        "p95_error_px": 0.3080796537515508,
+        "localization_population": "matched points only"
+      },
+      "seconds": 7.993330166005762,
+      "metadata": {
+        "method": "opt-in global plus native ROI tile inference",
+        "input_shape": [
+          704,
+          1024
+        ],
+        "global_canvas_shape": [
+          704,
+          1024
+        ],
+        "global_resized_shape": [
+          704,
+          1024
+        ],
+        "global_scale_xy": [
+          1.0,
+          1.0
+        ],
+        "pixel_convention": "source=(resized+0.5)/scale-0.5, tiles use integer translation",
+        "global_points": 7224,
+        "native_points": 0,
+        "global_decoder_truncated": false,
+        "native_decoder_truncated": false,
+        "dedup_capacity_truncated": false,
+        "roi_xyxy_exclusive": null,
+        "roi_source": "global model points only",
+        "native_tiles": [],
+        "required_native_tiles": 0,
+        "native_input_pixels": 0,
+        "max_tiles": 0,
+        "max_roi_pixels": 4194304,
+        "tile_size": 512,
+        "overlap": 128,
+        "dedup_radius_source_px": 1.5,
+        "native_resized": false,
+        "budget_exhausted": false,
+        "fallback_reason": "native refinement disabled",
+        "full_tile_equivalence_claimed": false,
+        "confidence_calibrated": false,
+        "gold_used_for_inference": false,
+        "original_rgb_modified": false,
+        "global_seconds": 7.992476774001261,
+        "unique_candidates_before_capacity": 7224,
+        "returned_points": 7224,
+        "returned_native_points": 0,
+        "truncated": false,
+        "model_passes": 1,
+        "seconds": 7.992770810000366
+      },
+      "coordinates_file": "01024-1-global.npz",
+      "coordinates_sha256": "cba951df52d778578331fd5612bcb2d10209f59d99600628bf07769fbce9dea8",
+      "input_rgb_sha256": "5aa0a0953e06da5a2c8b7d578824cd9036ce00dfab13f9e8005ecb24b7594572",
+      "error": null
+    },
+    {
+      "key": "01024-2",
+      "group_id": "ptbxl-patient-7809.0",
+      "backend": "offline",
+      "split": "validation",
+      "variant": "global",
+      "metrics": {
+        "images": 1,
+        "tp": 509,
+        "fp": 15,
+        "fn": 13,
+        "precision": 0.9713740458015268,
+        "recall": 0.975095785440613,
+        "f1": 0.9732313575525813,
+        "median_error_px": 0.3398245060613266,
+        "p95_error_px": 0.8060071902357635,
+        "localization_population": "matched points only"
+      },
+      "seconds": 7.59845565300202,
+      "metadata": {
+        "method": "opt-in global plus native ROI tile inference",
+        "input_shape": [
+          704,
+          1024
+        ],
+        "global_canvas_shape": [
+          704,
+          1024
+        ],
+        "global_resized_shape": [
+          704,
+          1024
+        ],
+        "global_scale_xy": [
+          1.0,
+          1.0
+        ],
+        "pixel_convention": "source=(resized+0.5)/scale-0.5, tiles use integer translation",
+        "global_points": 524,
+        "native_points": 0,
+        "global_decoder_truncated": false,
+        "native_decoder_truncated": false,
+        "dedup_capacity_truncated": false,
+        "roi_xyxy_exclusive": null,
+        "roi_source": "global model points only",
+        "native_tiles": [],
+        "required_native_tiles": 0,
+        "native_input_pixels": 0,
+        "max_tiles": 0,
+        "max_roi_pixels": 4194304,
+        "tile_size": 512,
+        "overlap": 128,
+        "dedup_radius_source_px": 1.5,
+        "native_resized": false,
+        "budget_exhausted": false,
+        "fallback_reason": "native refinement disabled",
+        "full_tile_equivalence_claimed": false,
+        "confidence_calibrated": false,
+        "gold_used_for_inference": false,
+        "original_rgb_modified": false,
+        "global_seconds": 7.5976181180012645,
+        "unique_candidates_before_capacity": 524,
+        "returned_points": 524,
+        "returned_native_points": 0,
+        "truncated": false,
+        "model_passes": 1,
+        "seconds": 7.597939664003206
+      },
+      "coordinates_file": "01024-2-global.npz",
+      "coordinates_sha256": "74b0bd4edfb7167746fac56bbf94ac5c31715c37eba48318abcb4e7c39f81621",
+      "input_rgb_sha256": "c68e7e70526d56e31f58d0e8f353e729db298ec66004080721c62aeb8d1c8f73",
+      "error": null
+    },
+    {
+      "key": "01024-2",
+      "group_id": "ptbxl-patient-7809.0",
+      "backend": "offline",
+      "split": "validation",
+      "variant": "roi384",
+      "metrics": {
+        "images": 1,
+        "tp": 521,
+        "fp": 17,
+        "fn": 1,
+        "precision": 0.9684014869888475,
+        "recall": 0.9980842911877394,
+        "f1": 0.9830188679245283,
+        "median_error_px": 0.29738115153618616,
+        "p95_error_px": 0.6250275039581574,
+        "localization_population": "matched points only"
+      },
+      "seconds": 10.715159697007039,
+      "metadata": {
+        "method": "opt-in global plus native ROI tile inference",
+        "input_shape": [
+          704,
+          1024
+        ],
+        "global_canvas_shape": [
+          704,
+          1024
+        ],
+        "global_resized_shape": [
+          704,
+          1024
+        ],
+        "global_scale_xy": [
+          1.0,
+          1.0
+        ],
+        "pixel_convention": "source=(resized+0.5)/scale-0.5, tiles use integer translation",
+        "global_points": 524,
+        "native_points": 523,
+        "global_decoder_truncated": false,
+        "native_decoder_truncated": false,
+        "dedup_capacity_truncated": false,
+        "roi_xyxy_exclusive": [
+          202,
+          170,
+          808,
+          586
+        ],
+        "roi_source": "global model points only",
+        "native_tiles": [
+          [
+            202,
+            170,
+            586,
+            554
+          ],
+          [
+            424,
+            170,
+            808,
+            554
+          ],
+          [
+            202,
+            202,
+            586,
+            586
+          ],
+          [
+            424,
+            202,
+            808,
+            586
+          ]
+        ],
+        "required_native_tiles": 4,
+        "native_input_pixels": 589824,
+        "max_tiles": 8,
+        "max_roi_pixels": 4194304,
+        "tile_size": 384,
+        "overlap": 96,
+        "dedup_radius_source_px": 1.5,
+        "native_resized": false,
+        "budget_exhausted": false,
+        "fallback_reason": null,
+        "full_tile_equivalence_claimed": false,
+        "confidence_calibrated": false,
+        "gold_used_for_inference": false,
+        "original_rgb_modified": false,
+        "global_seconds": 6.680195323002408,
+        "unique_candidates_before_capacity": 538,
+        "returned_points": 538,
+        "returned_native_points": 516,
+        "truncated": false,
+        "model_passes": 5,
+        "seconds": 10.700456462000147
+      },
+      "coordinates_file": "01024-2-roi384.npz",
+      "coordinates_sha256": "dbb64a6027043392f6a45a287630d880634c46988596a4084d19e0bda5c0a03b",
+      "input_rgb_sha256": "c68e7e70526d56e31f58d0e8f353e729db298ec66004080721c62aeb8d1c8f73",
+      "error": null
+    },
+    {
+      "key": "01024-3",
+      "group_id": "ptbxl-patient-7809.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "variant": "roi384",
+      "metrics": {
+        "images": 1,
+        "tp": 7155,
+        "fp": 52,
+        "fn": 21,
+        "precision": 0.9927847925627862,
+        "recall": 0.9970735785953178,
+        "f1": 0.9949245637210595,
+        "median_error_px": 0.2311989885849469,
+        "p95_error_px": 0.5364514192591826,
+        "localization_population": "matched points only"
+      },
+      "seconds": 5.5941128119884524,
+      "metadata": {
+        "method": "opt-in global plus native ROI tile inference",
+        "input_shape": [
+          704,
+          1024
+        ],
+        "global_canvas_shape": [
+          704,
+          1024
+        ],
+        "global_resized_shape": [
+          704,
+          1024
+        ],
+        "global_scale_xy": [
+          1.0,
+          1.0
+        ],
+        "pixel_convention": "source=(resized+0.5)/scale-0.5, tiles use integer translation",
+        "global_points": 7207,
+        "native_points": 0,
+        "global_decoder_truncated": false,
+        "native_decoder_truncated": false,
+        "dedup_capacity_truncated": false,
+        "roi_xyxy_exclusive": [
+          0,
+          0,
+          1024,
+          704
+        ],
+        "roi_source": "global model points only",
+        "native_tiles": [],
+        "required_native_tiles": 12,
+        "native_input_pixels": 0,
+        "max_tiles": 8,
+        "max_roi_pixels": 4194304,
+        "tile_size": 384,
+        "overlap": 96,
+        "dedup_radius_source_px": 1.5,
+        "native_resized": false,
+        "budget_exhausted": true,
+        "fallback_reason": "complete native ROI exceeds budget",
+        "full_tile_equivalence_claimed": false,
+        "confidence_calibrated": false,
+        "gold_used_for_inference": false,
+        "original_rgb_modified": false,
+        "global_seconds": 5.584211999012041,
+        "unique_candidates_before_capacity": 7207,
+        "returned_points": 7207,
+        "returned_native_points": 0,
+        "truncated": false,
+        "model_passes": 1,
+        "seconds": 5.585005048007588
+      },
+      "coordinates_file": "01024-3-roi384.npz",
+      "coordinates_sha256": "0e82ccee918616a8b91d817e421810cb236fbabf49c336e8f6e0f9e8dceb9b22",
+      "input_rgb_sha256": "f54d130ba7a7136d71f6e64d556920f2384fdbef0cee6ee41cfb0dd5e941ca62",
+      "error": null
+    },
+    {
+      "key": "01024-3",
+      "group_id": "ptbxl-patient-7809.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "variant": "global",
+      "metrics": {
+        "images": 1,
+        "tp": 7155,
+        "fp": 52,
+        "fn": 21,
+        "precision": 0.9927847925627862,
+        "recall": 0.9970735785953178,
+        "f1": 0.9949245637210595,
+        "median_error_px": 0.2311989885849469,
+        "p95_error_px": 0.5364514192591826,
+        "localization_population": "matched points only"
+      },
+      "seconds": 4.838213163995533,
+      "metadata": {
+        "method": "opt-in global plus native ROI tile inference",
+        "input_shape": [
+          704,
+          1024
+        ],
+        "global_canvas_shape": [
+          704,
+          1024
+        ],
+        "global_resized_shape": [
+          704,
+          1024
+        ],
+        "global_scale_xy": [
+          1.0,
+          1.0
+        ],
+        "pixel_convention": "source=(resized+0.5)/scale-0.5, tiles use integer translation",
+        "global_points": 7207,
+        "native_points": 0,
+        "global_decoder_truncated": false,
+        "native_decoder_truncated": false,
+        "dedup_capacity_truncated": false,
+        "roi_xyxy_exclusive": null,
+        "roi_source": "global model points only",
+        "native_tiles": [],
+        "required_native_tiles": 0,
+        "native_input_pixels": 0,
+        "max_tiles": 0,
+        "max_roi_pixels": 4194304,
+        "tile_size": 512,
+        "overlap": 128,
+        "dedup_radius_source_px": 1.5,
+        "native_resized": false,
+        "budget_exhausted": false,
+        "fallback_reason": "native refinement disabled",
+        "full_tile_equivalence_claimed": false,
+        "confidence_calibrated": false,
+        "gold_used_for_inference": false,
+        "original_rgb_modified": false,
+        "global_seconds": 4.832300772992312,
+        "unique_candidates_before_capacity": 7207,
+        "returned_points": 7207,
+        "returned_native_points": 0,
+        "truncated": false,
+        "model_passes": 1,
+        "seconds": 4.832448941990151
+      },
+      "coordinates_file": "01024-3-global.npz",
+      "coordinates_sha256": "0e82ccee918616a8b91d817e421810cb236fbabf49c336e8f6e0f9e8dceb9b22",
+      "input_rgb_sha256": "f54d130ba7a7136d71f6e64d556920f2384fdbef0cee6ee41cfb0dd5e941ca62",
+      "error": null
+    },
+    {
+      "key": "01024-4",
+      "group_id": "ptbxl-patient-7809.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "variant": "global",
+      "metrics": {
+        "images": 1,
+        "tp": 474,
+        "fp": 25,
+        "fn": 28,
+        "precision": 0.9498997995991983,
+        "recall": 0.9442231075697212,
+        "f1": 0.9470529470529471,
+        "median_error_px": 0.29477859834848874,
+        "p95_error_px": 0.8512936986717845,
+        "localization_population": "matched points only"
+      },
+      "seconds": 4.930418755000574,
+      "metadata": {
+        "method": "opt-in global plus native ROI tile inference",
+        "input_shape": [
+          704,
+          1024
+        ],
+        "global_canvas_shape": [
+          704,
+          1024
+        ],
+        "global_resized_shape": [
+          704,
+          1024
+        ],
+        "global_scale_xy": [
+          1.0,
+          1.0
+        ],
+        "pixel_convention": "source=(resized+0.5)/scale-0.5, tiles use integer translation",
+        "global_points": 499,
+        "native_points": 0,
+        "global_decoder_truncated": false,
+        "native_decoder_truncated": false,
+        "dedup_capacity_truncated": false,
+        "roi_xyxy_exclusive": null,
+        "roi_source": "global model points only",
+        "native_tiles": [],
+        "required_native_tiles": 0,
+        "native_input_pixels": 0,
+        "max_tiles": 0,
+        "max_roi_pixels": 4194304,
+        "tile_size": 512,
+        "overlap": 128,
+        "dedup_radius_source_px": 1.5,
+        "native_resized": false,
+        "budget_exhausted": false,
+        "fallback_reason": "native refinement disabled",
+        "full_tile_equivalence_claimed": false,
+        "confidence_calibrated": false,
+        "gold_used_for_inference": false,
+        "original_rgb_modified": false,
+        "global_seconds": 4.929636186992866,
+        "unique_candidates_before_capacity": 499,
+        "returned_points": 499,
+        "returned_native_points": 0,
+        "truncated": false,
+        "model_passes": 1,
+        "seconds": 4.929929177000304
+      },
+      "coordinates_file": "01024-4-global.npz",
+      "coordinates_sha256": "bd130d97b540611bc06cdffdf766055b9fecddd37bfc37ecb661a6fbb4e71c63",
+      "input_rgb_sha256": "a41c49c4a3db9f2a794c2f8674e8af1e3167dbd45acb049ff34f690abf68c08d",
+      "error": null
+    },
+    {
+      "key": "01024-4",
+      "group_id": "ptbxl-patient-7809.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "variant": "roi384",
+      "metrics": {
+        "images": 1,
+        "tp": 476,
+        "fp": 35,
+        "fn": 26,
+        "precision": 0.9315068493150684,
+        "recall": 0.9482071713147411,
+        "f1": 0.9397828232971372,
+        "median_error_px": 0.2917506538901786,
+        "p95_error_px": 0.7766944991291256,
+        "localization_population": "matched points only"
+      },
+      "seconds": 10.930259934990318,
+      "metadata": {
+        "method": "opt-in global plus native ROI tile inference",
+        "input_shape": [
+          704,
+          1024
+        ],
+        "global_canvas_shape": [
+          704,
+          1024
+        ],
+        "global_resized_shape": [
+          704,
+          1024
+        ],
+        "global_scale_xy": [
+          1.0,
+          1.0
+        ],
+        "pixel_convention": "source=(resized+0.5)/scale-0.5, tiles use integer translation",
+        "global_points": 499,
+        "native_points": 501,
+        "global_decoder_truncated": false,
+        "native_decoder_truncated": false,
+        "dedup_capacity_truncated": false,
+        "roi_xyxy_exclusive": [
+          1,
+          70,
+          987,
+          697
+        ],
+        "roi_source": "global model points only",
+        "native_tiles": [
+          [
+            1,
+            70,
+            385,
+            454
+          ],
+          [
+            289,
+            70,
+            673,
+            454
+          ],
+          [
+            577,
+            70,
+            961,
+            454
+          ],
+          [
+            603,
+            70,
+            987,
+            454
+          ],
+          [
+            1,
+            313,
+            385,
+            697
+          ],
+          [
+            289,
+            313,
+            673,
+            697
+          ],
+          [
+            577,
+            313,
+            961,
+            697
+          ],
+          [
+            603,
+            313,
+            987,
+            697
+          ]
+        ],
+        "required_native_tiles": 8,
+        "native_input_pixels": 1179648,
+        "max_tiles": 8,
+        "max_roi_pixels": 4194304,
+        "tile_size": 384,
+        "overlap": 96,
+        "dedup_radius_source_px": 1.5,
+        "native_resized": false,
+        "budget_exhausted": false,
+        "fallback_reason": null,
+        "full_tile_equivalence_claimed": false,
+        "confidence_calibrated": false,
+        "gold_used_for_inference": false,
+        "original_rgb_modified": false,
+        "global_seconds": 4.171458766999422,
+        "unique_candidates_before_capacity": 511,
+        "returned_points": 511,
+        "returned_native_points": 283,
+        "truncated": false,
+        "model_passes": 9,
+        "seconds": 10.929546101993765
+      },
+      "coordinates_file": "01024-4-roi384.npz",
+      "coordinates_sha256": "8391c2a1e416a484f21be08f76391aa5549a8ea3e33cee03e2453c3a5b1318cf",
+      "input_rgb_sha256": "a41c49c4a3db9f2a794c2f8674e8af1e3167dbd45acb049ff34f690abf68c08d",
+      "error": null
+    },
+    {
+      "key": "01024-5",
+      "group_id": "ptbxl-patient-7809.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "variant": "roi384",
+      "metrics": {
+        "images": 1,
+        "tp": 490,
+        "fp": 63,
+        "fn": 32,
+        "precision": 0.8860759493670886,
+        "recall": 0.9386973180076629,
+        "f1": 0.9116279069767442,
+        "median_error_px": 0.2079721906969288,
+        "p95_error_px": 0.6716549305360235,
+        "localization_population": "matched points only"
+      },
+      "seconds": 12.476071054989006,
+      "metadata": {
+        "method": "opt-in global plus native ROI tile inference",
+        "input_shape": [
+          704,
+          1024
+        ],
+        "global_canvas_shape": [
+          704,
+          1024
+        ],
+        "global_resized_shape": [
+          704,
+          1024
+        ],
+        "global_scale_xy": [
+          1.0,
+          1.0
+        ],
+        "pixel_convention": "source=(resized+0.5)/scale-0.5, tiles use integer translation",
+        "global_points": 526,
+        "native_points": 510,
+        "global_decoder_truncated": false,
+        "native_decoder_truncated": false,
+        "dedup_capacity_truncated": false,
+        "roi_xyxy_exclusive": [
+          9,
+          0,
+          511,
+          704
+        ],
+        "roi_source": "global model points only",
+        "native_tiles": [
+          [
+            9,
+            0,
+            393,
+            384
+          ],
+          [
+            127,
+            0,
+            511,
+            384
+          ],
+          [
+            9,
+            288,
+            393,
+            672
+          ],
+          [
+            127,
+            288,
+            511,
+            672
+          ],
+          [
+            9,
+            320,
+            393,
+            704
+          ],
+          [
+            127,
+            320,
+            511,
+            704
+          ]
+        ],
+        "required_native_tiles": 6,
+        "native_input_pixels": 884736,
+        "max_tiles": 8,
+        "max_roi_pixels": 4194304,
+        "tile_size": 384,
+        "overlap": 96,
+        "dedup_radius_source_px": 1.5,
+        "native_resized": false,
+        "budget_exhausted": false,
+        "fallback_reason": null,
+        "full_tile_equivalence_claimed": false,
+        "confidence_calibrated": false,
+        "gold_used_for_inference": false,
+        "original_rgb_modified": false,
+        "global_seconds": 4.7860265060007805,
+        "unique_candidates_before_capacity": 553,
+        "returned_points": 553,
+        "returned_native_points": 288,
+        "truncated": false,
+        "model_passes": 7,
+        "seconds": 12.475559475002228
+      },
+      "coordinates_file": "01024-5-roi384.npz",
+      "coordinates_sha256": "dcf5393cf9812b7a2996eb36118798ae01f46b673a3688b2ef5bf18b9faa6247",
+      "input_rgb_sha256": "1a6a1319f71213933aa862e6892f569e63a093486aa8d04a213b4f9c18dbc827",
+      "error": null
+    },
+    {
+      "key": "01024-5",
+      "group_id": "ptbxl-patient-7809.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "variant": "global",
+      "metrics": {
+        "images": 1,
+        "tp": 476,
+        "fp": 50,
+        "fn": 46,
+        "precision": 0.9049429657794676,
+        "recall": 0.9118773946360154,
+        "f1": 0.9083969465648855,
+        "median_error_px": 0.20556219601040873,
+        "p95_error_px": 0.615624933929953,
+        "localization_population": "matched points only"
+      },
+      "seconds": 8.718120528006693,
+      "metadata": {
+        "method": "opt-in global plus native ROI tile inference",
+        "input_shape": [
+          704,
+          1024
+        ],
+        "global_canvas_shape": [
+          704,
+          1024
+        ],
+        "global_resized_shape": [
+          704,
+          1024
+        ],
+        "global_scale_xy": [
+          1.0,
+          1.0
+        ],
+        "pixel_convention": "source=(resized+0.5)/scale-0.5, tiles use integer translation",
+        "global_points": 526,
+        "native_points": 0,
+        "global_decoder_truncated": false,
+        "native_decoder_truncated": false,
+        "dedup_capacity_truncated": false,
+        "roi_xyxy_exclusive": null,
+        "roi_source": "global model points only",
+        "native_tiles": [],
+        "required_native_tiles": 0,
+        "native_input_pixels": 0,
+        "max_tiles": 0,
+        "max_roi_pixels": 4194304,
+        "tile_size": 512,
+        "overlap": 128,
+        "dedup_radius_source_px": 1.5,
+        "native_resized": false,
+        "budget_exhausted": false,
+        "fallback_reason": "native refinement disabled",
+        "full_tile_equivalence_claimed": false,
+        "confidence_calibrated": false,
+        "gold_used_for_inference": false,
+        "original_rgb_modified": false,
+        "global_seconds": 8.71758682699874,
+        "unique_candidates_before_capacity": 526,
+        "returned_points": 526,
+        "returned_native_points": 0,
+        "truncated": false,
+        "model_passes": 1,
+        "seconds": 8.717689417986549
+      },
+      "coordinates_file": "01024-5-global.npz",
+      "coordinates_sha256": "48b84cc11fcfc56f6daead4d7fede26b78f3c6d188f996be0f4a328d27398f90",
+      "input_rgb_sha256": "1a6a1319f71213933aa862e6892f569e63a093486aa8d04a213b4f9c18dbc827",
+      "error": null
+    },
+    {
+      "key": "01024-6",
+      "group_id": "ptbxl-patient-7809.0",
+      "backend": "offline",
+      "split": "validation",
+      "variant": "global",
+      "metrics": {
+        "images": 1,
+        "tp": 2421,
+        "fp": 1,
+        "fn": 436,
+        "precision": 0.999587118084228,
+        "recall": 0.847392369618481,
+        "f1": 0.9172191702974049,
+        "median_error_px": 0.26196729944292935,
+        "p95_error_px": 0.5285798808394593,
+        "localization_population": "matched points only"
+      },
+      "seconds": 6.148522871008026,
+      "metadata": {
+        "method": "opt-in global plus native ROI tile inference",
+        "input_shape": [
+          704,
+          1024
+        ],
+        "global_canvas_shape": [
+          704,
+          1024
+        ],
+        "global_resized_shape": [
+          704,
+          1024
+        ],
+        "global_scale_xy": [
+          1.0,
+          1.0
+        ],
+        "pixel_convention": "source=(resized+0.5)/scale-0.5, tiles use integer translation",
+        "global_points": 2422,
+        "native_points": 0,
+        "global_decoder_truncated": false,
+        "native_decoder_truncated": false,
+        "dedup_capacity_truncated": false,
+        "roi_xyxy_exclusive": null,
+        "roi_source": "global model points only",
+        "native_tiles": [],
+        "required_native_tiles": 0,
+        "native_input_pixels": 0,
+        "max_tiles": 0,
+        "max_roi_pixels": 4194304,
+        "tile_size": 512,
+        "overlap": 128,
+        "dedup_radius_source_px": 1.5,
+        "native_resized": false,
+        "budget_exhausted": false,
+        "fallback_reason": "native refinement disabled",
+        "full_tile_equivalence_claimed": false,
+        "confidence_calibrated": false,
+        "gold_used_for_inference": false,
+        "original_rgb_modified": false,
+        "global_seconds": 6.148054270001012,
+        "unique_candidates_before_capacity": 2422,
+        "returned_points": 2422,
+        "returned_native_points": 0,
+        "truncated": false,
+        "model_passes": 1,
+        "seconds": 6.148144699007389
+      },
+      "coordinates_file": "01024-6-global.npz",
+      "coordinates_sha256": "2d440d9d795e1e899e572a8759b6287085650243582ac0675570f3503858a34b",
+      "input_rgb_sha256": "3dc709934376ece56be2996e61a2fd6336de1cc560e2fb34d2c3c63f89c26995",
+      "error": null
+    },
+    {
+      "key": "01024-6",
+      "group_id": "ptbxl-patient-7809.0",
+      "backend": "offline",
+      "split": "validation",
+      "variant": "roi384",
+      "metrics": {
+        "images": 1,
+        "tp": 2421,
+        "fp": 1,
+        "fn": 436,
+        "precision": 0.999587118084228,
+        "recall": 0.847392369618481,
+        "f1": 0.9172191702974049,
+        "median_error_px": 0.26196729944292935,
+        "p95_error_px": 0.5285798808394593,
+        "localization_population": "matched points only"
+      },
+      "seconds": 9.484592387001612,
+      "metadata": {
+        "method": "opt-in global plus native ROI tile inference",
+        "input_shape": [
+          704,
+          1024
+        ],
+        "global_canvas_shape": [
+          704,
+          1024
+        ],
+        "global_resized_shape": [
+          704,
+          1024
+        ],
+        "global_scale_xy": [
+          1.0,
+          1.0
+        ],
+        "pixel_convention": "source=(resized+0.5)/scale-0.5, tiles use integer translation",
+        "global_points": 2422,
+        "native_points": 0,
+        "global_decoder_truncated": false,
+        "native_decoder_truncated": false,
+        "dedup_capacity_truncated": false,
+        "roi_xyxy_exclusive": [
+          0,
+          0,
+          1024,
+          704
+        ],
+        "roi_source": "global model points only",
+        "native_tiles": [],
+        "required_native_tiles": 12,
+        "native_input_pixels": 0,
+        "max_tiles": 8,
+        "max_roi_pixels": 4194304,
+        "tile_size": 384,
+        "overlap": 96,
+        "dedup_radius_source_px": 1.5,
+        "native_resized": false,
+        "budget_exhausted": true,
+        "fallback_reason": "complete native ROI exceeds budget",
+        "full_tile_equivalence_claimed": false,
+        "confidence_calibrated": false,
+        "gold_used_for_inference": false,
+        "original_rgb_modified": false,
+        "global_seconds": 9.482960442997864,
+        "unique_candidates_before_capacity": 2422,
+        "returned_points": 2422,
+        "returned_native_points": 0,
+        "truncated": false,
+        "model_passes": 1,
+        "seconds": 9.483609695002087
+      },
+      "coordinates_file": "01024-6-roi384.npz",
+      "coordinates_sha256": "2d440d9d795e1e899e572a8759b6287085650243582ac0675570f3503858a34b",
+      "input_rgb_sha256": "3dc709934376ece56be2996e61a2fd6336de1cc560e2fb34d2c3c63f89c26995",
+      "error": null
+    },
+    {
+      "key": "01024-7",
+      "group_id": "ptbxl-patient-7809.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "variant": "roi384",
+      "metrics": {
+        "images": 1,
+        "tp": 1890,
+        "fp": 1,
+        "fn": 0,
+        "precision": 0.9994711792702274,
+        "recall": 1.0,
+        "f1": 0.999735519703782,
+        "median_error_px": 0.1597584809234076,
+        "p95_error_px": 0.38884955404265475,
+        "localization_population": "matched points only"
+      },
+      "seconds": 20.303470038998057,
+      "metadata": {
+        "method": "opt-in global plus native ROI tile inference",
+        "input_shape": [
+          704,
+          1024
+        ],
+        "global_canvas_shape": [
+          704,
+          1024
+        ],
+        "global_resized_shape": [
+          704,
+          1024
+        ],
+        "global_scale_xy": [
+          1.0,
+          1.0
+        ],
+        "pixel_convention": "source=(resized+0.5)/scale-0.5, tiles use integer translation",
+        "global_points": 1890,
+        "native_points": 1890,
+        "global_decoder_truncated": false,
+        "native_decoder_truncated": false,
+        "dedup_capacity_truncated": false,
+        "roi_xyxy_exclusive": [
+          0,
+          0,
+          486,
+          704
+        ],
+        "roi_source": "global model points only",
+        "native_tiles": [
+          [
+            0,
+            0,
+            384,
+            384
+          ],
+          [
+            102,
+            0,
+            486,
+            384
+          ],
+          [
+            0,
+            288,
+            384,
+            672
+          ],
+          [
+            102,
+            288,
+            486,
+            672
+          ],
+          [
+            0,
+            320,
+            384,
+            704
+          ],
+          [
+            102,
+            320,
+            486,
+            704
+          ]
+        ],
+        "required_native_tiles": 6,
+        "native_input_pixels": 884736,
+        "max_tiles": 8,
+        "max_roi_pixels": 4194304,
+        "tile_size": 384,
+        "overlap": 96,
+        "dedup_radius_source_px": 1.5,
+        "native_resized": false,
+        "budget_exhausted": false,
+        "fallback_reason": null,
+        "full_tile_equivalence_claimed": false,
+        "confidence_calibrated": false,
+        "gold_used_for_inference": false,
+        "original_rgb_modified": false,
+        "global_seconds": 9.497311170998728,
+        "unique_candidates_before_capacity": 1891,
+        "returned_points": 1891,
+        "returned_native_points": 385,
+        "truncated": false,
+        "model_passes": 7,
+        "seconds": 20.302998965998995
+      },
+      "coordinates_file": "01024-7-roi384.npz",
+      "coordinates_sha256": "9f9bc1002210bee4996c25e69fb4dd20eed6a50cf55b6aadc421976aa1a6349a",
+      "input_rgb_sha256": "ced653bebf5b76efec5fcfe7f940cfcf513843c3064f230facf9e03acf968a96",
+      "error": null
+    },
+    {
+      "key": "01024-7",
+      "group_id": "ptbxl-patient-7809.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "variant": "global",
+      "metrics": {
+        "images": 1,
+        "tp": 1890,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "median_error_px": 0.16155077099152643,
+        "p95_error_px": 0.3895448104244859,
+        "localization_population": "matched points only"
+      },
+      "seconds": 11.300277236994589,
+      "metadata": {
+        "method": "opt-in global plus native ROI tile inference",
+        "input_shape": [
+          704,
+          1024
+        ],
+        "global_canvas_shape": [
+          704,
+          1024
+        ],
+        "global_resized_shape": [
+          704,
+          1024
+        ],
+        "global_scale_xy": [
+          1.0,
+          1.0
+        ],
+        "pixel_convention": "source=(resized+0.5)/scale-0.5, tiles use integer translation",
+        "global_points": 1890,
+        "native_points": 0,
+        "global_decoder_truncated": false,
+        "native_decoder_truncated": false,
+        "dedup_capacity_truncated": false,
+        "roi_xyxy_exclusive": null,
+        "roi_source": "global model points only",
+        "native_tiles": [],
+        "required_native_tiles": 0,
+        "native_input_pixels": 0,
+        "max_tiles": 0,
+        "max_roi_pixels": 4194304,
+        "tile_size": 512,
+        "overlap": 128,
+        "dedup_radius_source_px": 1.5,
+        "native_resized": false,
+        "budget_exhausted": false,
+        "fallback_reason": "native refinement disabled",
+        "full_tile_equivalence_claimed": false,
+        "confidence_calibrated": false,
+        "gold_used_for_inference": false,
+        "original_rgb_modified": false,
+        "global_seconds": 11.298829398001544,
+        "unique_candidates_before_capacity": 1890,
+        "returned_points": 1890,
+        "returned_native_points": 0,
+        "truncated": false,
+        "model_passes": 1,
+        "seconds": 11.298943001995212
+      },
+      "coordinates_file": "01024-7-global.npz",
+      "coordinates_sha256": "bf0a41a856a59363040ad5258f2709aba6b958e18632cff38d6dd3b3dc17d5e0",
+      "input_rgb_sha256": "ced653bebf5b76efec5fcfe7f940cfcf513843c3064f230facf9e03acf968a96",
+      "error": null
+    }
+  ],
+  "claim": "Only an 8-view single-validation-patient observation diagnostic. No quality/generalization or SOTA claim."
+}

@@ -1,0 +1,32 @@
+{
+  "variants": [
+    "raw-point",
+    "contrast-point",
+    "contrast-global"
+  ],
+  "seeds": [
+    1973,
+    20261021
+  ],
+  "steps": 1800,
+  "batch_size": 2,
+  "image_size": [
+    512,
+    768
+  ],
+  "physical_spp": 128,
+  "thresholds": [
+    0.3,
+    0.5,
+    0.7,
+    0.85,
+    0.93
+  ],
+  "selection": "validation macro F1 across rendering backends, test read after all models freeze",
+  "data_sha256": "5fc497e026a48a7992549e9a83cd718b72b593a3cd05f2c8d76fc02731656a68",
+  "gpu": "NVIDIA A40",
+  "torch": "2.8.0+cu128",
+  "precision": "bfloat16 forward, float32 losses",
+  "render_variant": "cuda_ad_rgb",
+  "real_image_validation": false
+}

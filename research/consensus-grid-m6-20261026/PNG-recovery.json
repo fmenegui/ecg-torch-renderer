@@ -1,0 +1,19 @@
+{
+  "case": "211723-0",
+  "corrupt_sha256": "9341856fefc781bad8d9207e2973e011d5442c629942f5862d966873bc31882a",
+  "corrupt_bytes": 2949689,
+  "recovery_source": "already-computed output-original-rgb.png, produced from the same warped array",
+  "recovered_sha256": "e4a721a4019805ea1fb47bbea8b70bf146f7e98cd1328bd7ad6f2083fc4a32eb",
+  "recovered_bytes": 3008420,
+  "coordinate_predictions_changed": false,
+  "expected_regression_fixtures_changed": false,
+  "four_active_output_aliases_recovered": true,
+  "full_frame_recomputed_pixels_equal": true,
+  "recomputed_shape": [
+    1922,
+    2663,
+    3
+  ],
+  "recomputed_RGB_channel_values": 15354858,
+  "atomic_verified_writes": 4
+}

@@ -1,0 +1,1414 @@
+{
+  "schema": "hybrid-digitizer-cli-v1",
+  "experimental": true,
+  "clinical_validity_established": false,
+  "image_sha256": "980def1783fb599ac52f7e06c7ad22f0a5b3e4242ecf5f442222fbcdd4a4a469",
+  "signal_sha256": "aefbf7c250037de01daa5f15f1051ab884e665c0b70e90c1e300eb57af639b9c",
+  "fs": 500.0,
+  "samples": 5000,
+  "source_id": "c848b219b90ee98429c8e92824fd861fb8b44aba66badb0e43fc63a3b0128d0b",
+  "finite_output_fraction": 0.4759333333333333,
+  "finite_output_is_not_printed_support_accuracy": true,
+  "policy": {
+    "schema": "ecg-selective-policy-v2-development",
+    "minimum_new_samples": 10,
+    "minimum_common_samples_per_lead": 100,
+    "minimum_correlation": 0.97,
+    "amplitude_ratio_low": 0.85,
+    "amplitude_ratio_high": 1.18,
+    "maximum_dc_difference_mv": 0.05,
+    "maximum_timing_difference_s": 0.02,
+    "maximum_extrapolated_fraction": 0.35
+  },
+  "decision": {
+    "schema": "ecg-selective-decision-v1",
+    "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+    "selected": "direct",
+    "reason": "direct_samples_would_be_lost",
+    "reference_used": false,
+    "numeric_support_is_not_accuracy": true,
+    "lead_checks": {},
+    "route": "external_rectification",
+    "direct_finite_samples": 28556,
+    "candidate_finite_samples": 28637,
+    "lost_finite_samples": 375,
+    "new_finite_samples": 456,
+    "source_id": "c848b219b90ee98429c8e92824fd861fb8b44aba66badb0e43fc63a3b0128d0b"
+  },
+  "selected_backend_metadata": {
+    "backend": "npj-native",
+    "source_commit": "97a15087d4abcda843da8c58ee74b1d8f47e6f9a",
+    "published_weights_sha256": {
+      "unet_weights_07072025.pt": "17fe7071ef270102631306127262fc08c250d79d4e3aeb572ab1719dd34d320b",
+      "lead_name_unet_weights_07072025.pt": "840bd6bf2433ee6c22db67f57c861d9d427f29e10a32eeb334f0bcf061b175a2"
+    },
+    "native_layout": "standard_6x2",
+    "layout_matching_cost": 0.10160510584076049,
+    "layout_fallback": false,
+    "max_side": 1500,
+    "device": "cpu",
+    "native_output_unit": "uV",
+    "public_sample_count": 5000,
+    "assumed_gain_mm_per_mv": 10.0,
+    "print_gain_inferred_from_image": false,
+    "pixel_spacing_mm": {
+      "x": 0.18694737553596497,
+      "y": 0.19078241288661957,
+      "average_pixel_per_mm": 5.29533576965332
+    }
+  },
+  "public_sampling_metadata_supplied_by_caller": true,
+  "assumed_print_gain_mm_per_mv": 10,
+  "wall_seconds_including_branches": 65.15263135999703,
+  "geometry": {
+    "schema": "adaptive-grid-candidate-v2",
+    "original_source_id": "c848b219b90ee98429c8e92824fd861fb8b44aba66badb0e43fc63a3b0128d0b",
+    "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+    "status": "rectified",
+    "stage": "complete",
+    "assumed_major_grid_mm": 5.0,
+    "reference_used": false,
+    "learned_rgb_restoration_used": false,
+    "geometry_accuracy_verified": false,
+    "initial_detector": {
+      "method": "opt-in global plus native ROI tile inference",
+      "input_shape": [
+        3507,
+        2480
+      ],
+      "global_canvas_shape": [
+        704,
+        1024
+      ],
+      "global_resized_shape": [
+        704,
+        498
+      ],
+      "global_scale_xy": [
+        0.20080645161290323,
+        0.200741374394069
+      ],
+      "pixel_convention": "source=(resized+0.5)/scale-0.5, tiles use integer translation",
+      "global_points": 2148,
+      "native_points": 0,
+      "global_decoder_truncated": false,
+      "native_decoder_truncated": false,
+      "dedup_capacity_truncated": false,
+      "roi_xyxy_exclusive": null,
+      "roi_source": "global model points only",
+      "native_tiles": [],
+      "required_native_tiles": 0,
+      "native_input_pixels": 0,
+      "max_tiles": 0,
+      "max_roi_pixels": 4194304,
+      "tile_size": 512,
+      "overlap": 128,
+      "dedup_radius_source_px": 1.5,
+      "native_resized": false,
+      "budget_exhausted": false,
+      "fallback_reason": "native refinement disabled",
+      "full_tile_equivalence_claimed": false,
+      "confidence_calibrated": false,
+      "gold_used_for_inference": false,
+      "original_rgb_modified": false,
+      "global_seconds": 5.259165964998829,
+      "unique_candidates_before_capacity": 2148,
+      "returned_points": 2148,
+      "returned_native_points": 0,
+      "truncated": false,
+      "model_passes": 1,
+      "seconds": 5.259300678000727
+    },
+    "detector": {
+      "method": "opt-in global plus native ROI tile inference",
+      "input_shape": [
+        3507,
+        2480
+      ],
+      "global_canvas_shape": [
+        704,
+        1024
+      ],
+      "global_resized_shape": [
+        704,
+        498
+      ],
+      "global_scale_xy": [
+        0.20080645161290323,
+        0.200741374394069
+      ],
+      "pixel_convention": "source=(resized+0.5)/scale-0.5, tiles use integer translation",
+      "global_points": 2148,
+      "native_points": 0,
+      "global_decoder_truncated": false,
+      "native_decoder_truncated": false,
+      "dedup_capacity_truncated": false,
+      "roi_xyxy_exclusive": null,
+      "roi_source": "global model points only",
+      "native_tiles": [],
+      "required_native_tiles": 0,
+      "native_input_pixels": 0,
+      "max_tiles": 0,
+      "max_roi_pixels": 4194304,
+      "tile_size": 512,
+      "overlap": 128,
+      "dedup_radius_source_px": 1.5,
+      "native_resized": false,
+      "budget_exhausted": false,
+      "fallback_reason": "native refinement disabled",
+      "full_tile_equivalence_claimed": false,
+      "confidence_calibrated": false,
+      "gold_used_for_inference": false,
+      "original_rgb_modified": false,
+      "global_seconds": 5.259165964998829,
+      "unique_candidates_before_capacity": 2148,
+      "returned_points": 2148,
+      "returned_native_points": 0,
+      "truncated": false,
+      "model_passes": 1,
+      "seconds": 5.259300678000727
+    },
+    "banding": {
+      "protocol": "background-periodic-banding-v1",
+      "applied": false,
+      "roi_xyxy": [
+        0,
+        0,
+        2230,
+        3507
+      ],
+      "ground_truth_used": false,
+      "use": "point inference only, original RGB is the sampling source",
+      "axes": [
+        {
+          "applied": false,
+          "axis": 0,
+          "background_samples_per_line": 141
+        },
+        {
+          "axis": 1,
+          "applied": false,
+          "reason": "insufficient observed background"
+        }
+      ]
+    },
+    "organization": {
+      "status": "accepted",
+      "reason": null,
+      "input_points": 2148,
+      "spacing_px": [
+        51.77979647658156,
+        52.81549891375103
+      ],
+      "orientation_radians": 0.00797500573497825
+    },
+    "orientation": {
+      "status": "unresolved",
+      "quarter_turns_ccw": 0,
+      "best_proposal_ccw": 0,
+      "score_margin": 0.0,
+      "reason": "insufficient or ambiguous readable ECG text",
+      "semantic_orientation_inferred": false,
+      "reference_used": false,
+      "rule": "at least two distinct strong lead labels or two header words, score>=3, margin>=1.5",
+      "candidates": [
+        {
+          "score": 0.0,
+          "strong_labels": {},
+          "weak_labels": {},
+          "header_words": {},
+          "recognized_words": [
+            {
+              "text": "1",
+              "confidence": 0.42422752
+            },
+            {
+              "text": "Rees",
+              "confidence": 0.39272948999999996
+            },
+            {
+              "text": "\u2014",
+              "confidence": 0.45025523999999995
+            },
+            {
+              "text": "aid",
+              "confidence": 0.36022499
+            },
+            {
+              "text": "a",
+              "confidence": 0.37948612
+            },
+            {
+              "text": "ry",
+              "confidence": 0.6520753499999999
+            },
+            {
+              "text": "op",
+              "confidence": 0.48636784
+            },
+            {
+              "text": "CO",
+              "confidence": 0.39004257000000003
+            },
+            {
+              "text": "ae",
+              "confidence": 0.51986565
+            },
+            {
+              "text": "|",
+              "confidence": 0.75254204
+            },
+            {
+              "text": "att",
+              "confidence": 0.5733791699999999
+            },
+            {
+              "text": "1",
+              "confidence": 0.6747784400000001
+            },
+            {
+              "text": "Ka",
+              "confidence": 0.41714935
+            },
+            {
+              "text": "ime",
+              "confidence": 0.58348003
+            },
+            {
+              "text": "4",
+              "confidence": 0.72195465
+            },
+            {
+              "text": "pt",
+              "confidence": 0.40712234
+            },
+            {
+              "text": "a",
+              "confidence": 0.37404823
+            },
+            {
+              "text": "in.",
+              "confidence": 0.42366211
+            },
+            {
+              "text": "Pee",
+              "confidence": 0.35087311
+            },
+            {
+              "text": "ee",
+              "confidence": 0.41768669
+            },
+            {
+              "text": "ea",
+              "confidence": 0.46987777999999997
+            },
+            {
+              "text": "ie",
+              "confidence": 0.41615059000000004
+            },
+            {
+              "text": "re",
+              "confidence": 0.52126823
+            },
+            {
+              "text": "ee!",
+              "confidence": 0.36131138
+            },
+            {
+              "text": "ca",
+              "confidence": 0.45784279
+            },
+            {
+              "text": "erat",
+              "confidence": 0.39075096000000004
+            },
+            {
+              "text": "paves",
+              "confidence": 0.35914703000000003
+            },
+            {
+              "text": "TE",
+              "confidence": 0.70032562
+            },
+            {
+              "text": "ce",
+              "confidence": 0.41634956
+            },
+            {
+              "text": "a",
+              "confidence": 0.36391379999999995
+            },
+            {
+              "text": "=",
+              "confidence": 0.5505941
+            },
+            {
+              "text": "4",
+              "confidence": 0.40411320000000006
+            },
+            {
+              "text": "Ne",
+              "confidence": 0.52095356
+            },
+            {
+              "text": "s+",
+              "confidence": 0.45025024
+            },
+            {
+              "text": "ai",
+              "confidence": 0.48089085
+            },
+            {
+              "text": "4",
+              "confidence": 0.45932739
+            },
+            {
+              "text": "a",
+              "confidence": 0.49768623
+            },
+            {
+              "text": "i",
+              "confidence": 0.41829853
+            },
+            {
+              "text": "+f",
+              "confidence": 0.39814182000000004
+            },
+            {
+              "text": "4.",
+              "confidence": 0.43899551000000003
+            },
+            {
+              "text": "fod",
+              "confidence": 0.43718792
+            },
+            {
+              "text": "coon",
+              "confidence": 0.36987717000000003
+            },
+            {
+              "text": "4d",
+              "confidence": 0.37323395
+            },
+            {
+              "text": "Be",
+              "confidence": 0.46603676
+            },
+            {
+              "text": "=",
+              "confidence": 0.49402465999999995
+            },
+            {
+              "text": "|",
+              "confidence": 0.8688921399999999
+            },
+            {
+              "text": "ec",
+              "confidence": 0.46914185
+            },
+            {
+              "text": "ose",
+              "confidence": 0.35193443
+            },
+            {
+              "text": "aaa",
+              "confidence": 0.38412491000000004
+            },
+            {
+              "text": "ae",
+              "confidence": 0.42895080999999996
+            },
+            {
+              "text": "ee",
+              "confidence": 0.40634265999999997
+            },
+            {
+              "text": "a",
+              "confidence": 0.39508369000000004
+            },
+            {
+              "text": "ae",
+              "confidence": 0.5137717399999999
+            },
+            {
+              "text": "ea",
+              "confidence": 0.47784531
+            },
+            {
+              "text": "Hf",
+              "confidence": 0.65881897
+            },
+            {
+              "text": "poi",
+              "confidence": 0.53917484
+            },
+            {
+              "text": "|",
+              "confidence": 0.35564407000000003
+            },
+            {
+              "text": "a",
+              "confidence": 0.40553341000000004
+            },
+            {
+              "text": "LET",
+              "confidence": 0.43953674
+            },
+            {
+              "text": "oe",
+              "confidence": 0.41106583
+            },
+            {
+              "text": "\u201c1",
+              "confidence": 0.71099106
+            },
+            {
+              "text": "ert",
+              "confidence": 0.44282604
+            },
+            {
+              "text": "ren",
+              "confidence": 0.39045975
+            },
+            {
+              "text": "ae",
+              "confidence": 0.40439754
+            },
+            {
+              "text": "fo",
+              "confidence": 0.39023232
+            },
+            {
+              "text": "ss",
+              "confidence": 0.37274418
+            },
+            {
+              "text": "ee",
+              "confidence": 0.41372559000000003
+            },
+            {
+              "text": "ae",
+              "confidence": 0.35217163
+            },
+            {
+              "text": "|:",
+              "confidence": 0.43231743
+            },
+            {
+              "text": "it",
+              "confidence": 0.43231743
+            },
+            {
+              "text": "best",
+              "confidence": 0.45262547
+            },
+            {
+              "text": "ees",
+              "confidence": 0.382911
+            },
+            {
+              "text": "vo",
+              "confidence": 0.35784866
+            },
+            {
+              "text": "PEED",
+              "confidence": 0.39660194
+            },
+            {
+              "text": "Doves",
+              "confidence": 0.36814152
+            },
+            {
+              "text": "ba",
+              "confidence": 0.36633018
+            },
+            {
+              "text": "7",
+              "confidence": 0.61507008
+            }
+          ]
+        },
+        {
+          "score": 0.0,
+          "strong_labels": {},
+          "weak_labels": {},
+          "header_words": {},
+          "recognized_words": [
+            {
+              "text": "0",
+              "confidence": 0.56118423
+            },
+            {
+              "text": "6:",
+              "confidence": 0.81713081
+            },
+            {
+              "text": "pl",
+              "confidence": 0.9636788199999999
+            },
+            {
+              "text": "ia",
+              "confidence": 0.42865561999999996
+            },
+            {
+              "text": "I",
+              "confidence": 0.45874146000000005
+            },
+            {
+              "text": "aa",
+              "confidence": 0.37059662000000004
+            },
+            {
+              "text": "EE",
+              "confidence": 0.53978035
+            },
+            {
+              "text": "Le",
+              "confidence": 0.38459724
+            },
+            {
+              "text": "ae",
+              "confidence": 0.38105446
+            },
+            {
+              "text": "+",
+              "confidence": 0.78860168
+            },
+            {
+              "text": "i",
+              "confidence": 0.44134045
+            },
+            {
+              "text": "EE",
+              "confidence": 0.55139164
+            },
+            {
+              "text": "AAG.",
+              "confidence": 0.52860153
+            },
+            {
+              "text": "ews",
+              "confidence": 0.40442299
+            },
+            {
+              "text": "4.",
+              "confidence": 0.43067608
+            },
+            {
+              "text": "oe",
+              "confidence": 0.6541031599999999
+            },
+            {
+              "text": "jet",
+              "confidence": 0.38826225000000003
+            },
+            {
+              "text": "Pi",
+              "confidence": 0.39395821
+            },
+            {
+              "text": "|",
+              "confidence": 0.53817806
+            },
+            {
+              "text": "co",
+              "confidence": 0.46413544
+            },
+            {
+              "text": "peck",
+              "confidence": 0.48613487
+            },
+            {
+              "text": "ne",
+              "confidence": 0.38170699999999996
+            },
+            {
+              "text": "al",
+              "confidence": 0.4414082
+            },
+            {
+              "text": "PA",
+              "confidence": 0.5471503400000001
+            },
+            {
+              "text": "a",
+              "confidence": 0.69812035
+            },
+            {
+              "text": "=",
+              "confidence": 0.70902176
+            },
+            {
+              "text": "bet]",
+              "confidence": 0.35549866
+            },
+            {
+              "text": "\u2018ae",
+              "confidence": 0.48397633
+            },
+            {
+              "text": "woke,",
+              "confidence": 0.47063847000000003
+            },
+            {
+              "text": "iz",
+              "confidence": 0.7367654400000001
+            },
+            {
+              "text": "oo",
+              "confidence": 0.4234272
+            },
+            {
+              "text": "Fm",
+              "confidence": 0.36088367
+            },
+            {
+              "text": "UE",
+              "confidence": 0.66672928
+            },
+            {
+              "text": "7",
+              "confidence": 0.51755253
+            },
+            {
+              "text": "t",
+              "confidence": 0.43179279000000004
+            },
+            {
+              "text": "eae",
+              "confidence": 0.38122498
+            },
+            {
+              "text": "i",
+              "confidence": 0.54188503
+            },
+            {
+              "text": "a",
+              "confidence": 0.39626141
+            },
+            {
+              "text": "|",
+              "confidence": 0.95773979
+            },
+            {
+              "text": "f",
+              "confidence": 0.62460213
+            },
+            {
+              "text": "fis",
+              "confidence": 0.35766609000000005
+            },
+            {
+              "text": "+",
+              "confidence": 0.4391634
+            },
+            {
+              "text": "th",
+              "confidence": 0.37515694000000005
+            },
+            {
+              "text": "ia",
+              "confidence": 0.36048969
+            },
+            {
+              "text": "ine",
+              "confidence": 0.43169804
+            },
+            {
+              "text": "wi",
+              "confidence": 0.52388077
+            },
+            {
+              "text": "iz",
+              "confidence": 0.35188254999999996
+            },
+            {
+              "text": "an",
+              "confidence": 0.3653149
+            },
+            {
+              "text": "Lt",
+              "confidence": 0.54393768
+            },
+            {
+              "text": "i=",
+              "confidence": 0.54802628
+            },
+            {
+              "text": "oe",
+              "confidence": 0.35512177
+            },
+            {
+              "text": "1",
+              "confidence": 0.63356956
+            },
+            {
+              "text": "t",
+              "confidence": 0.54056534
+            },
+            {
+              "text": "mae",
+              "confidence": 0.49583263
+            },
+            {
+              "text": "co",
+              "confidence": 0.37828575000000003
+            },
+            {
+              "text": "4.",
+              "confidence": 0.51118797
+            },
+            {
+              "text": "il",
+              "confidence": 0.41714977
+            }
+          ]
+        },
+        {
+          "score": 0.0,
+          "strong_labels": {},
+          "weak_labels": {},
+          "header_words": {},
+          "recognized_words": [
+            {
+              "text": "EE",
+              "confidence": 0.42037373
+            },
+            {
+              "text": "ate",
+              "confidence": 0.38061329
+            },
+            {
+              "text": "ee:",
+              "confidence": 0.36433037
+            },
+            {
+              "text": "eee",
+              "confidence": 0.38731972
+            },
+            {
+              "text": "ae",
+              "confidence": 0.39346767
+            },
+            {
+              "text": "re",
+              "confidence": 0.38563805
+            },
+            {
+              "text": "ba",
+              "confidence": 0.45304703
+            },
+            {
+              "text": "me",
+              "confidence": 0.36080025
+            },
+            {
+              "text": "fet",
+              "confidence": 0.50319843
+            },
+            {
+              "text": "aad",
+              "confidence": 0.41151291
+            },
+            {
+              "text": "be",
+              "confidence": 0.4270993
+            },
+            {
+              "text": "asm",
+              "confidence": 0.36309303
+            },
+            {
+              "text": "FEE",
+              "confidence": 0.46886870999999997
+            },
+            {
+              "text": "fae",
+              "confidence": 0.37445293
+            },
+            {
+              "text": "mie",
+              "confidence": 0.36717361
+            },
+            {
+              "text": "pl",
+              "confidence": 0.51323895
+            },
+            {
+              "text": "hed",
+              "confidence": 0.35513312999999996
+            },
+            {
+              "text": "ob",
+              "confidence": 0.37102436
+            },
+            {
+              "text": "i",
+              "confidence": 0.44803291
+            },
+            {
+              "text": "an",
+              "confidence": 0.46413696000000004
+            },
+            {
+              "text": "ime",
+              "confidence": 0.35686195
+            },
+            {
+              "text": "=",
+              "confidence": 0.5578112000000001
+            },
+            {
+              "text": "od",
+              "confidence": 0.5122063099999999
+            },
+            {
+              "text": "ees",
+              "confidence": 0.45164710999999996
+            },
+            {
+              "text": "=",
+              "confidence": 0.422472
+            },
+            {
+              "text": "a",
+              "confidence": 0.41288193
+            },
+            {
+              "text": "whe",
+              "confidence": 0.45105956999999997
+            },
+            {
+              "text": "ee",
+              "confidence": 0.41050232000000003
+            },
+            {
+              "text": "Fos",
+              "confidence": 0.35912407
+            },
+            {
+              "text": "poo",
+              "confidence": 0.48529282
+            },
+            {
+              "text": "pa",
+              "confidence": 0.37286064
+            },
+            {
+              "text": "=",
+              "confidence": 0.37045067000000004
+            },
+            {
+              "text": "ent",
+              "confidence": 0.35316284000000003
+            },
+            {
+              "text": "_",
+              "confidence": 0.49281959999999997
+            },
+            {
+              "text": "i",
+              "confidence": 0.38851990000000003
+            },
+            {
+              "text": "{aE",
+              "confidence": 0.37179558
+            },
+            {
+              "text": "a",
+              "confidence": 0.44286484000000004
+            },
+            {
+              "text": "on",
+              "confidence": 0.39867817
+            },
+            {
+              "text": "en",
+              "confidence": 0.36813919
+            },
+            {
+              "text": "PS",
+              "confidence": 0.41214096
+            },
+            {
+              "text": "Tet",
+              "confidence": 0.52130604
+            },
+            {
+              "text": "Son",
+              "confidence": 0.37101188999999996
+            },
+            {
+              "text": "he",
+              "confidence": 0.49102776
+            },
+            {
+              "text": "oes",
+              "confidence": 0.40543839
+            },
+            {
+              "text": "tt",
+              "confidence": 0.38269569
+            },
+            {
+              "text": "|",
+              "confidence": 0.62380405
+            },
+            {
+              "text": "ep",
+              "confidence": 0.37725906000000003
+            },
+            {
+              "text": "a",
+              "confidence": 0.39301563
+            },
+            {
+              "text": "fs",
+              "confidence": 0.38407368
+            },
+            {
+              "text": "ape",
+              "confidence": 0.51784088
+            },
+            {
+              "text": "a",
+              "confidence": 0.37119301
+            },
+            {
+              "text": "4",
+              "confidence": 0.5545108400000001
+            },
+            {
+              "text": "|",
+              "confidence": 0.48401733
+            },
+            {
+              "text": "Ea",
+              "confidence": 0.40993645
+            },
+            {
+              "text": "Ee",
+              "confidence": 0.44013336000000003
+            },
+            {
+              "text": "oe",
+              "confidence": 0.38212074
+            },
+            {
+              "text": "ee",
+              "confidence": 0.39425415
+            },
+            {
+              "text": "|",
+              "confidence": 0.67604996
+            },
+            {
+              "text": "ime",
+              "confidence": 0.64447807
+            },
+            {
+              "text": "roa",
+              "confidence": 0.3906794
+            },
+            {
+              "text": "poe",
+              "confidence": 0.45422668
+            },
+            {
+              "text": "if.",
+              "confidence": 0.50329517
+            },
+            {
+              "text": "tae",
+              "confidence": 0.38615868
+            },
+            {
+              "text": "Toa",
+              "confidence": 0.36795593
+            },
+            {
+              "text": "ae",
+              "confidence": 0.45695835
+            },
+            {
+              "text": "|",
+              "confidence": 0.50134338
+            },
+            {
+              "text": "cca",
+              "confidence": 0.35139542
+            },
+            {
+              "text": "|",
+              "confidence": 0.60419651
+            },
+            {
+              "text": "|",
+              "confidence": 0.37678074
+            }
+          ]
+        },
+        {
+          "score": 0.0,
+          "strong_labels": {},
+          "weak_labels": {},
+          "header_words": {},
+          "recognized_words": [
+            {
+              "text": "|",
+              "confidence": 0.7252977
+            },
+            {
+              "text": "\u2014",
+              "confidence": 0.57451077
+            },
+            {
+              "text": "a",
+              "confidence": 0.37301059999999997
+            },
+            {
+              "text": "ia",
+              "confidence": 0.47299999
+            },
+            {
+              "text": "cr",
+              "confidence": 0.6690540300000001
+            },
+            {
+              "text": "wat",
+              "confidence": 0.3881221
+            },
+            {
+              "text": "{oes",
+              "confidence": 0.39031998
+            },
+            {
+              "text": "ea",
+              "confidence": 0.51716507
+            },
+            {
+              "text": "a",
+              "confidence": 0.56025269
+            },
+            {
+              "text": "ia",
+              "confidence": 0.48556442
+            },
+            {
+              "text": "as",
+              "confidence": 0.36260886999999997
+            },
+            {
+              "text": "ima",
+              "confidence": 0.37026027999999994
+            },
+            {
+              "text": "ia",
+              "confidence": 0.40416561
+            },
+            {
+              "text": "|",
+              "confidence": 0.5378519399999999
+            },
+            {
+              "text": "oa",
+              "confidence": 0.61096348
+            },
+            {
+              "text": "=",
+              "confidence": 0.47953545
+            },
+            {
+              "text": "ie",
+              "confidence": 0.57587212
+            },
+            {
+              "text": "ia",
+              "confidence": 0.53414803
+            },
+            {
+              "text": "hn",
+              "confidence": 0.37096870000000004
+            },
+            {
+              "text": "HH",
+              "confidence": 0.45499477
+            },
+            {
+              "text": "Tend",
+              "confidence": 0.40722832
+            },
+            {
+              "text": "+",
+              "confidence": 0.61068359
+            },
+            {
+              "text": "en",
+              "confidence": 0.39808650999999995
+            },
+            {
+              "text": "ia",
+              "confidence": 0.41004471000000003
+            },
+            {
+              "text": "oe",
+              "confidence": 0.41714855
+            },
+            {
+              "text": "al",
+              "confidence": 0.45679176
+            },
+            {
+              "text": "a",
+              "confidence": 0.48896057
+            },
+            {
+              "text": "\u2018fale",
+              "confidence": 0.44986542
+            },
+            {
+              "text": "7",
+              "confidence": 0.55248623
+            },
+            {
+              "text": "Oo",
+              "confidence": 0.37388653
+            },
+            {
+              "text": "|",
+              "confidence": 0.45989937
+            },
+            {
+              "text": "bit",
+              "confidence": 0.40761009000000004
+            },
+            {
+              "text": "am",
+              "confidence": 0.40168377
+            },
+            {
+              "text": "ae",
+              "confidence": 0.37784466
+            },
+            {
+              "text": "a",
+              "confidence": 0.69570084
+            },
+            {
+              "text": "|_",
+              "confidence": 0.7390014600000001
+            },
+            {
+              "text": "nr",
+              "confidence": 0.36787509999999995
+            },
+            {
+              "text": "it",
+              "confidence": 0.508339
+            },
+            {
+              "text": "i",
+              "confidence": 0.44602818
+            },
+            {
+              "text": "pod",
+              "confidence": 0.44467360999999994
+            },
+            {
+              "text": "im",
+              "confidence": 0.37599602
+            },
+            {
+              "text": "ane",
+              "confidence": 0.40263348
+            },
+            {
+              "text": "oo",
+              "confidence": 0.37870407
+            },
+            {
+              "text": "=e",
+              "confidence": 0.49483353
+            },
+            {
+              "text": "|",
+              "confidence": 0.91721832
+            },
+            {
+              "text": "f",
+              "confidence": 0.41280022000000005
+            },
+            {
+              "text": "A",
+              "confidence": 0.46594383
+            },
+            {
+              "text": "bec!",
+              "confidence": 0.39600861000000004
+            },
+            {
+              "text": "ave",
+              "confidence": 0.37791119
+            },
+            {
+              "text": "ie",
+              "confidence": 0.47345444000000003
+            },
+            {
+              "text": "2",
+              "confidence": 0.54803993
+            },
+            {
+              "text": "4",
+              "confidence": 0.70190849
+            },
+            {
+              "text": "im",
+              "confidence": 0.43942191999999997
+            },
+            {
+              "text": "nen",
+              "confidence": 0.36123348
+            },
+            {
+              "text": "a",
+              "confidence": 0.50649319
+            },
+            {
+              "text": "=",
+              "confidence": 0.36394531
+            },
+            {
+              "text": "en",
+              "confidence": 0.43050728
+            },
+            {
+              "text": "Lent",
+              "confidence": 0.40084503
+            },
+            {
+              "text": "a",
+              "confidence": 0.37171692
+            },
+            {
+              "text": "avE",
+              "confidence": 0.55027584
+            },
+            {
+              "text": "ea",
+              "confidence": 0.39344193
+            },
+            {
+              "text": "been",
+              "confidence": 0.50001049
+            },
+            {
+              "text": "[",
+              "confidence": 0.57632149
+            },
+            {
+              "text": "H",
+              "confidence": 0.6671095300000001
+            },
+            {
+              "text": "bo",
+              "confidence": 0.67319221
+            },
+            {
+              "text": "ale",
+              "confidence": 0.66284363
+            },
+            {
+              "text": "oF",
+              "confidence": 0.55959709
+            },
+            {
+              "text": "ala",
+              "confidence": 0.74310303
+            },
+            {
+              "text": "id:",
+              "confidence": 0.96571106
+            },
+            {
+              "text": "9",
+              "confidence": 0.96184669
+            },
+            {
+              "text": "page:",
+              "confidence": 0.96753922
+            },
+            {
+              "text": "0",
+              "confidence": 0.91945244
+            }
+          ]
+        }
+      ],
+      "tesseract_version": "tesseract 5.3.4",
+      "tesseract_binary_sha256": "9f831cab7525c3dab04af41bda35182af7ea1df9dceeaaa2f3bf207ac45c06a5",
+      "english_traineddata_sha256": "7d4322bd2a7749724879683fc3912cb542f19906c83bcc1a52132556427170b2",
+      "rgb_sha256": "bded6ef365b078a4d21b159bbdf92e9f61228849da36cf4d6882e10ba52172a9",
+      "preprocessing": "maximum RGB channel, <=2048px enlargement, adaptive threshold",
+      "text_rule_is_calibrated_probability": false
+    },
+    "fit": {
+      "status": "full-frame-rectification",
+      "reason": null,
+      "physical_coordinates_available": true,
+      "rgb_source": "original input",
+      "grid_mask_erases_rgb": false,
+      "geometry_is_inferred": true,
+      "global_inlier_fraction": 0.9222532588454376,
+      "method": "constrained completion preserving original observed-cell triangles",
+      "global_prior": "projective",
+      "mesh_triangles": 4294,
+      "minimum_triangle_area_ratio": 0.7537098780988971,
+      "boundary": "full source image boundary, with finite projective target",
+      "boundary_self_intersections_checked": true,
+      "all_mesh_triangles_orientation_checked": true,
+      "mesh_node_layout": "observed vertices and full-frame boundary",
+      "observed_cell_map_changed": false,
+      "output_boundary_crops_to_detected_grid": false,
+      "evidence_is_accuracy_certificate": false
+    },
+    "sampling": {
+      "schema": "adaptive-original-rgb-density-v1",
+      "requested_pixels_per_mm": 14.59903417909408,
+      "effective_pixels_per_mm": 4.550640493258684,
+      "max_side": 1500,
+      "estimated_source_density_quantiles": [
+        10.741063283769243,
+        11.03181995912894,
+        14.59903417909408
+      ],
+      "budget_requires_downsampling": true,
+      "original_rgb_sampled": true,
+      "reference_used": false,
+      "antialias_or_optical_recovery_claimed": false,
+      "source_frame_covered": true,
+      "target_boundary_simple": true,
+      "triangle_orientation_consistent": true,
+      "global_triangle_overlap_checked": true,
+      "lattice_identity_accuracy_verified": false,
+      "output_shape": [
+        1500,
+        1098,
+        3
+      ],
+      "output_origin_mm": [
+        -21.315680758279132,
+        -16.041697890251307
+      ],
+      "sampled_output_fraction": 0.9730734669095324,
+      "sampler": "fixed-triangle affine map and OpenCV bilinear RGB sampling"
+    },
+    "outside_observed_hull_fraction": 0.3339196827741947,
+    "outside_hull_denominator": "continuous target mesh area"
+  },
+  "geometry_observations": {
+    "file": "geometry-observations.npz",
+    "sha256": "4aded50538d8fb882e4d12fa56f3ac469783253b5815b065fb2c4cb093a941b8",
+    "reference_used": false
+  }
+}

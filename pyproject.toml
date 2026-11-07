@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ecg-torch-renderer"
-version = "0.23.0"
+version = "0.24.0"
 description = "Batched on-device ECG rendering with paired physical supervision"
 requires-python = ">=3.10"
 dependencies = ["torch>=2.6", "numpy>=1.24", "Pillow>=10.1"]
@@ -14,7 +14,8 @@ dev = ["coverage>=7.6,<8", "ruff>=0.11,<1"]
 wfdb = ["wfdb>=4.1"]
 pathtrace = ["mitsuba>=3.9,<4"]
 yolo = ["ultralytics>=8.3,<9"]
-benchmark = ["scipy>=1.10,<2"]
+benchmark = ["scipy>=1.10,<2", "shapely>=2.1,<2.2", "matplotlib>=3.9,<4"]
+digitization = ["scipy>=1.10,<2", "shapely>=2.1,<2.2", "matplotlib>=3.9,<4", "pandas>=2.2,<4", "timm==1.0.22", "opencv-python-headless>=4.11,<5", "connected-components-3d>=3.26,<4"]
 
 [project.scripts]
 ecg-render = "ecg_gpu.gpu_cli:main"
@@ -25,17 +26,29 @@ ecg-renderer-compare = "ecg_gpu.compare:main"
 ecg-renderer-profile = "ecg_gpu.profile:main"
 ecg-grid-benchmark = "ecg_gpu.grid_benchmark:main"
 ecg-waveform-benchmark = "ecg_gpu.waveform_evaluation:main"
+ecg-digitize = "ecg_gpu.digitization.cli:main"
+ecg-hybrid-digitize = "ecg_gpu.digitization.hybrid_cli:main"
 
 [tool.setuptools.packages.find]
 include = ["ecg_gpu*"]
 
+[tool.setuptools.package-data]
+"ecg_gpu.digitization" = ["reference-lock.json"]
+
 
 
 [tool.ruff]
-extend-exclude = ["notebooks", "references"]
+# research/ holds archived, hash-referenced experiment scripts kept as records.
+extend-exclude = ["notebooks", "references", "research"]
 
 [tool.ruff.lint]
 # Pyflakes plus the pycodestyle errors that ruff enables by default. Long
 # lines, lambda assignments and one-line guard clauses are accepted style here.
 select = ["E", "F"]
 ignore = ["E501", "E701", "E731"]
+
+[tool.ruff.lint.per-file-ignores]
+# Scripts and tests that put the repository on sys.path before importing it.
+"examples/*" = ["E402"]
+"tests/*" = ["E402"]
+"reproductions/*" = ["E402"]

@@ -1,0 +1,64 @@
+{
+  "schema": "public-pilot-acquisition-v1",
+  "dataset": "physionet/ecg-image-database",
+  "version": 2,
+  "files": [
+    {
+      "source": "D0/D0_000022/D0_000022.dat",
+      "bytes": 120000,
+      "sha256": "844b98566196a53b2fc004a885bb43967afb60026c6e3d6d8a0f9c4728c00ac0"
+    },
+    {
+      "source": "D0/D0_000022/D0_000022.hea",
+      "bytes": 631,
+      "sha256": "eb708ee0d53321cfd1cea94eb0829b4fc272202d4739c367911aa0c55d269a51"
+    },
+    {
+      "source": "D0/D0_000022/D0_000022_02.png",
+      "bytes": 372153,
+      "sha256": "d6937484744c62aab24d627707aa7a056216671909e4c57d0bc9c5df3761625d"
+    },
+    {
+      "source": "D2/D2_000001/D2_000001.dat",
+      "bytes": 120000,
+      "sha256": "270eefd503b87d89d1a7302894e8f304b833674ffdafc2e9e3d6bf744a68c7bd"
+    },
+    {
+      "source": "D2/D2_000001/D2_000001.hea",
+      "bytes": 601,
+      "sha256": "76180e26d7924bf8206242efdab61e70126dd4b8b0971e742ab163a2c4763f2b"
+    },
+    {
+      "source": "D2/D2_000001/D2_000001_l00.jpg",
+      "bytes": 4218120,
+      "sha256": "a03883f183493ba0a5f699dff90cc9c011761f1a60281e23971fde91c549ec14"
+    },
+    {
+      "source": "D2/D2_000001/D2_000001_l01.jpg",
+      "bytes": 2647518,
+      "sha256": "0613fc090a2a3a7f552eba2f423441269d790f5e1b229ca7de58f9b5dd3a2442"
+    },
+    {
+      "source": "D2/D2_000001/D2_000001_l02.jpg",
+      "bytes": 2213644,
+      "sha256": "2dcb37fa6a71d1df59d28199053e05fbf220afa9d4ca78a560073520f5c5a38a"
+    },
+    {
+      "source": "D2/D2_000001/D2_000001_p00.jpg",
+      "bytes": 4457577,
+      "sha256": "de33cda98547b81e287a771d8569462420b5e45d0803de0964d13ad0fab76073"
+    },
+    {
+      "source": "D2/D2_000001/D2_000001_p01.jpg",
+      "bytes": 2893980,
+      "sha256": "5d1d329242f46c6999dfb4afd3196df3c360c6354e9720e5bfde8eb05f209ceb"
+    },
+    {
+      "source": "D2/D2_000001/D2_000001_p02.jpg",
+      "bytes": 2352044,
+      "sha256": "515ac5cb4bc50d74df27d006c1db8e3fc5d14353301f1564f956ff66c60b4a23"
+    }
+  ],
+  "digests": "first-observed and retained, original publisher SHA256 not supplied",
+  "cohort": "two source records, development pilot, not an exact article cohort"
+}

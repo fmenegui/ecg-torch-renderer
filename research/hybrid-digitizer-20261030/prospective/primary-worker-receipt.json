@@ -1,0 +1,103 @@
+{
+  "schema": "hybrid-frozen-cohort-gpu-v1",
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.39",
+    "packages": {
+      "numpy": "2.5.4",
+      "scipy": "1.18.1",
+      "torch": "2.7.0+cu128",
+      "torchvision": "0.22.0+cu128",
+      "pillow": "13.0.0",
+      "opencv-python-headless": "4.11.0.86",
+      "timm": "1.0.30",
+      "albumentations": "1.4.24"
+    },
+    "cuda_available": true,
+    "cuda_build": "12.8",
+    "gpu": "NVIDIA A40"
+  },
+  "stages": [
+    {
+      "name": "geometry-dependency",
+      "returncode": 0,
+      "seconds": 1.2672017759177834
+    },
+    {
+      "name": "ocr-catalog",
+      "returncode": 0,
+      "seconds": 1.6683943190146238
+    },
+    {
+      "name": "ocr-install",
+      "returncode": 0,
+      "seconds": 2.1689957849448547
+    },
+    {
+      "name": "source-bootstrap",
+      "returncode": 0,
+      "seconds": 8.783443814958446
+    },
+    {
+      "name": "kaggle-pinned-assets",
+      "returncode": 0,
+      "seconds": 31.772282612975687
+    },
+    {
+      "name": "kaggle-compatible-timm",
+      "returncode": 0,
+      "seconds": 1.6173163150670007
+    }
+  ],
+  "protocol_sha256": "27b79ee7978c7d7b035978038e5bb0e5b28d8989741a45117060e28cd1bc437f",
+  "frozen_cohort_sha256": "d4af2217478fb7ea2cdf03c4474b988e9102607edeb98fafd34f9d5dee44b7ba",
+  "status": "completed_frozen_pilot",
+  "clinical_validity_established": false,
+  "world_best_established": false,
+  "phase1_decisions_sha256": "44662fce73eff571506de1c6debcd787ae55f02c35905be8d9119db7f08e76a8",
+  "scheduled_images": 24,
+  "scheduled_patient_count": 8,
+  "patient_macro": {
+    "npj_native": {
+      "coverage": 0.8143240277777778,
+      "raw_all_printed_nrmse": 1.1276352748047147,
+      "raw_all_printed_rmse_mv": 0.24290050668231689,
+      "raw_all_printed_snr_db": -0.7281929181908183,
+      "raw_observed_rmse_mv": 0.27121226273111115,
+      "raw_observed_pcc": 0.3275094508683576,
+      "mean_eligible_aligned_lead_snr_db": 2.8728062502788214,
+      "mean_eligible_aligned_lead_rmse_mv": 0.19427156625990433
+    },
+    "grid_adaptive": {
+      "coverage": 0.6471554166666666,
+      "raw_all_printed_nrmse": 0.9178490869890134,
+      "raw_all_printed_rmse_mv": 0.19431317143708252,
+      "raw_all_printed_snr_db": 1.0169337901572866,
+      "raw_observed_rmse_mv": 0.18255091676328492,
+      "raw_observed_pcc": 0.5038168210236895,
+      "mean_eligible_aligned_lead_snr_db": 5.542185206513097,
+      "mean_eligible_aligned_lead_rmse_mv": 0.12921773331093284
+    },
+    "kaggle_native_eligible": {
+      "coverage": 0.0,
+      "raw_all_printed_nrmse": 1.0,
+      "raw_all_printed_rmse_mv": 0.21890963684002607,
+      "raw_all_printed_snr_db": 0.0,
+      "raw_observed_rmse_mv": null,
+      "raw_observed_pcc": null,
+      "mean_eligible_aligned_lead_snr_db": null,
+      "mean_eligible_aligned_lead_rmse_mv": null
+    },
+    "selective": {
+      "coverage": 0.8143240277777778,
+      "raw_all_printed_nrmse": 1.1276352748047147,
+      "raw_all_printed_rmse_mv": 0.24290050668231689,
+      "raw_all_printed_snr_db": -0.7281929181908183,
+      "raw_observed_rmse_mv": 0.27121226273111115,
+      "raw_observed_pcc": 0.3275094508683576,
+      "mean_eligible_aligned_lead_snr_db": 2.8728062502788214,
+      "mean_eligible_aligned_lead_rmse_mv": 0.19427156625990433
+    }
+  },
+  "note": "Kaggle eligible arm retains unsupported images as NaN, never drops them from the denominator"
+}

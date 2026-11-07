@@ -1,0 +1,9 @@
+{
+  "torch": "2.8.0+cu128",
+  "cuda_available": true,
+  "cuda_runtime": "12.8",
+  "device": "cuda",
+  "gpu_name": "NVIDIA A40",
+  "tf32_matmul": false,
+  "tf32_cudnn": false
+}

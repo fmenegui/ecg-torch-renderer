@@ -1,5 +1,31 @@
 # Changelog
 
+## 0.24.0
+
+Integrates the digitization research line developed in parallel with
+0.13.0-0.23.0 (pull requests #11-#29): the `ecg_gpu.digitization` package,
+the `ecg-digitize` and `ecg-hybrid-digitize` commands, the `digitization`
+extra, reproductions under `reproductions/` and the research records
+M2-M7. Entries below were written for that line, which was labelled
+0.13.0.dev0 before integration.
+
+- Add optional, hash-pinned Heng/Tang image-to-signal reference integration,
+  with a single waveform checkpoint and the published 15-checkpoint ensemble.
+- Preserve physical mV units, named leads and sequential printed time windows.
+  Keep interpolation masks and fail explicitly on an absent waveform row.
+- Load the official Kaggle metric v7 and retain failed images in evaluation.
+  Report raw errors alongside the metric's time/DC-aligned SNR.
+- Expose explicit artifact setup, a batch CLI, grouped source manifests,
+  WFDB16 checksum validation and an experimental single-sampling geometry mode.
+- Add independent numerical tests, a notebook-function parity audit and an
+  actual public-checkpoint CI integration. External artifacts are not bundled.
+- Add reproducible synthetic multi-layout transfer probes for the frozen Kaggle
+  reference and the external npj Open-ECG-Digitizer, with missing-aware coverage,
+  explicit layout fallback, physical unit conversion and embedded visual reports.
+- Add calibrated arbitrary lead-region decoding with subpixel peaks, explicit
+  polarity/time ownership and gap-preserving partial observations. Add matched
+  device paper-profile controls and paired online/offline experiment inputs.
+
 ## 0.23.0
 
 - Add `RenderConfig(print_technology=True)`, opt-in document reproduction:

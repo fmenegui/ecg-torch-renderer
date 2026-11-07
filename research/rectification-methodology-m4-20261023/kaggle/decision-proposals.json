@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-23",
+  "status": "Research proposals, not validated superiority",
+  "source_census": "24 official public writeups read in full, plus selected author code",
+  "proposals": [
+    {
+      "id": "K-D01",
+      "priority": "P0",
+      "decision": "Keep RGB content separate from grid evidence and geometric validity",
+      "motivation": "No grid evidence is not evidence that the underlying RGB or trace does not exist",
+      "implementation_candidate": "Return RGB, source sampling map, evidence support, geometric validity and uncertainty as separate fields. Keep original RGB for sampling, even if an enhanced observation branch estimates geometry",
+      "prior_art_sources": ["K007", "K027", "K097a", "K097b"],
+      "novelty_note": "Original-path and crop-based alternatives already exist. The proposed contribution is a rigorously measured preservation contract",
+      "falsification": "Erase grid only inside a patch while retaining text, calibration pulse and trace. The corresponding visible RGB must not be blanked solely because grid confidence drops",
+      "do_not_claim": "Recovery of occluded content or known mm calibration in a genuinely unobservable region"
+    },
+    {
+      "id": "K-D02",
+      "priority": "P0",
+      "decision": "Compose global projective geometry with a coupled continuous local field",
+      "implementation_candidate": "Preserve global H analytically and fit local residual in the rectified plane. Use one shared map across cells and sample the original RGB once",
+      "prior_art_sources": ["K001", "K003", "K008", "S5_CROP"],
+      "novelty_note": "High-resolution parameter transfer and one-pass RGB resampling are established prior art",
+      "candidate_arms": ["Authentic third-place cascade", "One-shot version with identical map", "Global H plus shared bilinear residual", "Global H plus shared triangular residual", "Independent local H4", "Independent local H16", "Spline"],
+      "falsification": "Identity, exact projective input, coordinate ramps, two-cell seam witness, high-curvature sheet and missing boundary support. A seam or fold is a failure even if downstream SNR improves",
+      "do_not_claim": "A positive local Jacobian alone establishes global injectivity"
+    },
+    {
+      "id": "K-D03",
+      "priority": "P0",
+      "decision": "Treat every pixel-origin and corner-alignment convention as part of the method",
+      "prior_art_sources": ["K015", "S15_REPO", "S5_INTERPOLATE"],
+      "novelty_note": "The 15th-place publication already describes the endpoint and align_corners repair. M3 independently measured the native half-pixel defect",
+      "implementation_candidate": "One explicit continuous coordinate definition, checked conversions for OpenCV and torch, inclusive source pixel-center bounds",
+      "falsification": "Identity ramps, all four quarter rotations, odd/even sizes, singleton dimensions where supported, first and last source columns, border support and chained-versus-composed sampling",
+      "do_not_claim": "Our sampling repair is new or its downstream clinical benefit has been measured"
+    },
+    {
+      "id": "K-D04",
+      "priority": "P1",
+      "decision": "Use local K16 homography as a candidate and local geometry prior, not an unconditional default",
+      "prior_art_sources": ["K005", "S5_CROP", "S5_ABLATION"],
+      "implementation_candidate": "Evaluate faithful hard-cell K16 against a coupled map that projects local H proposals into shared node or spline parameters. Preserve a separately named native arm",
+      "falsification": "Measure one-sided source-coordinate limits at every shared edge, maximum jump, trace discontinuity and fold rate under exact nodes, noisy nodes and sharp creases",
+      "known_counterexample": {
+        "type": "Analytic counterexample for independent per-cell H, not checkpoint benchmark",
+        "target_left_cell": [[0,0],[1,0],[1,1],[0,1]],
+        "source_left_cell": [[0,0],[1,0],[1,1],[0,1]],
+        "target_right_cell": [[1,0],[2,0],[2,1],[1,1]],
+        "source_right_cell": [[1,0],[2,0],[2.2,1],[1,1]],
+        "shared_edge_query": [1,0.5],
+        "left_source_query": [1,0.5],
+        "right_source_query_exact": [1,"5/11"],
+        "jump_exact_cell_units": "1/22",
+        "cv2_float32_observed_jump": 0.045454561710357666,
+        "executed": "CPU OpenCV getPerspectiveTransform and perspectiveTransform in existing swarm-venv",
+        "conclusion": "Matching the two common endpoint nodes does not guarantee continuous parameterization along a shared projective edge"
+      },
+      "limits": "K16 may reduce noise and improve average SNR. This witness does not estimate its empirical error on the competition distribution"
+    },
+    {
+      "id": "K-D05",
+      "priority": "P1",
+      "decision": "Combine point, curve and relative lattice evidence with explicit correspondence hypotheses",
+      "prior_art_sources": ["HENG_REPO", "K004", "K005", "K009", "K010", "K026"],
+      "implementation_candidate": "Relative row/column offsets, local directions and grid-phase hypotheses, then optional template-specific semantic anchor evidence. Keep disconnected components uncertain until anchored",
+      "falsification": "Drop an entire row, shift a disconnected component by one major cell, remove alternate lines, vary minor/major contrast, introduce thick trace crossings and unexpected layouts",
+      "metrics": ["Integer line identity error", "Pitch hypothesis accuracy", "Orientation accuracy", "Physical map error", "Failure and abstention coverage"],
+      "do_not_claim": "Fixed absolute row labels are layout-independent observations"
+    },
+    {
+      "id": "K-D06",
+      "priority": "P1",
+      "decision": "Refine measured locations at high resolution with independent subpixel supervision",
+      "prior_art_sources": ["K001", "K004", "K005", "K012", "K017", "K021"],
+      "implementation_candidate": "Probability-weighted centroids followed by a small patch refiner, with quality and uncertainty estimates. Compare against integer components using the same detector heatmaps",
+      "falsification": "Known continuous crossings under blur, asymmetric ink, moire, compression and trace intersections. Check calibration of uncertainty and bias of human labels",
+      "do_not_claim": "Waveform parabolic refinement in Tang refines grid point coordinates",
+      "limits": "Reported point errors from the 21st-place author are not independent measurements, and manually viewing baseline predictions may anchor labels"
+    },
+    {
+      "id": "K-D07",
+      "priority": "P0",
+      "decision": "Represent interpolation and extrapolation provenance explicitly",
+      "prior_art_sources": ["K001", "K003", "K005", "K012", "K026"],
+      "implementation_candidate": "Tag observed, interpolated, extrapolated and unavailable geometry. Never use source[0,0] as a missing sentinel. Track fallback transform and support distance separately",
+      "falsification": "Interior holes, outer annuli, asymmetric missing edges and disconnected islands. Report both risk on retained support and error in added support",
+      "metrics": ["Coverage", "Map error in mm", "Extrapolation distance", "Fold rate", "Trace preservation", "Error-versus-coverage curve"],
+      "do_not_claim": "A filled rectangular image proves full metric observability"
+    },
+    {
+      "id": "K-D08",
+      "priority": "P1",
+      "decision": "Separate clinical orientation, layout and physical scale from lattice shape",
+      "prior_art_sources": ["K004", "K005", "K007", "K008", "K009", "K010", "K012", "K017"],
+      "implementation_candidate": "Fuse OCR, lead labels, calibration pulses, boundary and acquisition metadata. Preserve multiple D4 or scale hypotheses where cues conflict",
+      "falsification": "All eight D4 transforms, blank text, mirrored labels, arbitrary crops, 6x2,12x1,Cabrera and nonstandard paper speed/gain",
+      "do_not_claim": "A square grid determines reading direction, reflection or ECG paper speed/gain"
+    },
+    {
+      "id": "K-D09",
+      "priority": "P1",
+      "decision": "Keep a no-grid direct-crop arm and explicit identity/global fallback",
+      "prior_art_sources": ["K007", "K008", "K027"],
+      "implementation_candidate": "When geometry is underconstrained, preserve original content and pass crop/lead evidence with uncertainty to a common signal extractor. Use a learned expert gate only after held-out calibration",
+      "falsification": "Gridless scans, black-white photocopies, saturated glare, camera screenshots, unseen templates and overlapping leads",
+      "do_not_claim": "A signal regressor reconstructs a physically correct rectified RGB image or valid calibration when scale is absent"
+    },
+    {
+      "id": "K-D10",
+      "priority": "P1",
+      "decision": "Train extractors against realistic rectifier errors without using downstream tolerance to excuse wrong geometry",
+      "prior_art_sources": ["K005", "K008", "K012", "K021"],
+      "implementation_candidate": "Use predicted OOF geometry and controlled node jitter. Evaluate with both a common frozen extractor and each native extractor. Keep image-warp metrics independent",
+      "falsification": "Train/evaluate mismatch in node noise, small systematic phase errors, jitter at corners, high-amplitude signals and fine creases",
+      "do_not_claim": "Better SNR automatically means more accurate geometry"
+    },
+    {
+      "id": "K-D11",
+      "priority": "P1",
+      "decision": "Choose sampling kernel and antialiasing from trace fidelity and local scale",
+      "prior_art_sources": ["S5_ABLATION", "S5_INTERPOLATE", "K001", "K003"],
+      "implementation_candidate": "Compare linear, cubic, Lanczos and scale-aware prefiltering with identical maps and original RGB. Respect anisotropic footprint under perspective",
+      "falsification": "One-pixel traces, steep QRS slopes, minification, checkerboard/moire, faint lines, sharp step edges and visible crop boundaries",
+      "metrics": ["Trace location error", "Amplitude retention", "Thin-line continuity", "Ringing", "Aliasing", "Runtime", "Peak memory"],
+      "do_not_claim": "Lanczos wins universally because it won one author fold"
+    },
+    {
+      "id": "K-D12",
+      "priority": "P0",
+      "decision": "Separate authentic teams, matched-observation decoders and derived engineering ablations",
+      "prior_art_sources": ["K001", "K002", "K003", "K005", "K008", "K012", "S2_REPO"],
+      "implementation_candidate": "Pin source/config/weights. Run authentic compatible-layout pipelines unchanged. Separately compare map decoders on identical detected points. Separately measure image sampling. Keep all failures in denominators",
+      "falsification": "A result named as winner reproduction must have winner code/config/weights and faithful positive controls. Native and expanded-format stress lanes must not be merged",
+      "minimum_coverage": ["Independent geometry ground truth", "Patient-separated records", "Unseen templates and cameras", "Native-compatible and format-stress lanes", "Common extractor", "Native full pipelines where assets exist", "CPU and GPU timings only when executed on that hardware", "Bootstrap confidence intervals by record or independent capture group"],
+      "do_not_claim": "Global superiority over Kaggle, npj or commercial systems from our renderer-family synthetic bank"
+    }
+  ],
+  "author_ablation_receipt": {
+    "source_id": "S5_ABLATION",
+    "kind": "Author-reported downstream fold0 SNR",
+    "not_our_execution": true,
+    "metric_note": "Includes shortII,12.5seconds totalII, and keeps amplitude-out-of-range GT unmodified",
+    "rows": [
+      {"warp":"global_H_nearby_anchors","kernel":"Lanczos","SNR":21.545642},
+      {"warp":"local_H_K4","kernel":"Lanczos","SNR":22.929716},
+      {"warp":"local_H_K4","kernel":"linear","SNR":22.828297},
+      {"warp":"RectBivariateSpline","kernel":"Lanczos","SNR":22.846357},
+      {"warp":"local_H_K16","kernel":"Lanczos","SNR":23.086725}
+    ],
+    "additional_joint_variant": {"warp":"local_H_K16","node_jitter_probability":0.5,"node_jitter_sigma_px":0.4,"SNR":23.195719},
+    "caveat":"The additional joint variant is not an isolated geometry-only effect and does not establish clinical-photo superiority"
+  }
+}

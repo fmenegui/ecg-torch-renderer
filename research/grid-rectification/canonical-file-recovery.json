@@ -1,0 +1,14 @@
+[
+  {
+    "name": "offline-flat",
+    "decoded_rgb_matches_independent_regeneration": true,
+    "old_manifest_hash": "904cdb184a9a221516c09a83baeed41a99c11860ba7d3be08177fec39558948b",
+    "verified_file_sha256": "904cdb184a9a221516c09a83baeed41a99c11860ba7d3be08177fec39558948b"
+  },
+  {
+    "name": "offline-fold",
+    "decoded_rgb_matches_independent_regeneration": true,
+    "old_manifest_hash": "1342b85f2c09a129702459ddb915dceb5ca24549c6e0e0c70bcab68757ee6183",
+    "verified_file_sha256": "1342b85f2c09a129702459ddb915dceb5ca24549c6e0e0c70bcab68757ee6183"
+  }
+]
