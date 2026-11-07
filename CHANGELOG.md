@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.17.0
+
+- Add `RenderConfig(scan_modes=True)`, opt-in flatbed scanner observation:
+  color, grayscale or bilevel (`scan_mode` 0/1/2; 50/30/20 % for records
+  without photographic capture) at a scanner resolution `scan_dpi`
+  (log-uniform 72-600 dpi) with bilevel cut `scan_threshold`. Low dpi
+  integrates and holds each scanner pixel. Targets are unchanged.
+- New module `ecg_gpu.scan_modes` with `scan_observation` and
+  `scan_resolution`.
+
 ## 0.16.0
 
 - Add `RenderConfig(lead_marks=True)`, opt-in: short vertical marks on the
