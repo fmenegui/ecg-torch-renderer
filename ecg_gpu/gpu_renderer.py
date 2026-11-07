@@ -32,6 +32,7 @@ from .device_filters import HIGHPASS_HZ, LOWPASS_HZ, NOTCH_HZ, printed_signal
 from .report_text import ReportText, ventricular_rate
 from .phone_isp import phone_observation
 from .print_reproduction import LASER, halftone, reproduce
+from .archive_damage import mold, scorch
 
 
 def _conditional_visibility(valid, frame_coverage=None):
@@ -102,6 +103,8 @@ class RenderConfig:
     coordinate_targets: bool = False
     # Laser reprints with halftoned grids, photocopies and fax printouts.
     print_technology: bool = False
+    # Mold colonies and ironing scorch documented in real ECG archives.
+    archive_damage: bool = False
 
     def __post_init__(self):
         for name in ('height', 'width', 'antialias_samples', 'lead_chunk_size',
@@ -110,7 +113,8 @@ class RenderConfig:
                 raise ValueError(f'{name} must be an integer')
         for name in ('preserve_extrema', 'validate_inputs', 'jpeg_enabled', 'lead_marks', 'scan_modes',
                      'device_filters', 'report_text', 'phone_isp',
-                     'coordinate_targets', 'print_technology'):
+                     'coordinate_targets', 'print_technology',
+                     'archive_damage'):
             if type(getattr(self, name)) is not bool:
                 raise ValueError(f'{name} must be bool')
         if self.camera_mode not in {'full', 'direct', 'sensor'}:
@@ -362,6 +366,8 @@ class ECGRenderer(nn.Module):
             config.pop('coordinate_targets')
         if not self.config.print_technology:
             config.pop('print_technology')
+        if not self.config.archive_damage:
+            config.pop('archive_damage')
         return {'schema': 'ecg-replot-torch-renderer-v3', 'config': config, 'fonts': self.fonts,
                 'signal_units': 'mV', 'signal_order': LEADS, 'font_initialization': 'CPU once',
                 'hot_path': 'torch on input device', 'jpeg': 'DCT simulation, not a JPEG bitstream',
@@ -541,6 +547,13 @@ class ECGRenderer(nn.Module):
             choice = rand()
             p.update(print_tech=(choice > .55).long() + (choice > .75).long() + (choice > .90).long(),
                      copy_generations=1 + integer(3), halftone_cell_px=1 + rand() * 1.5)
+        if self.config.archive_damage:
+            adverse = (intensity > 0).float()
+            p.update(mold_active=(rand() < .15).float() * adverse, mold_x=.1 + rand() * .8, mold_y=.1 + rand() * .8,
+                     mold_radius=.05 + rand() * .15, mold_density=.15 + rand() * .25,
+                     scorch_active=(rand() < .08).float() * adverse, scorch_x=.15 + rand() * .7,
+                     scorch_y=.15 + rand() * .7, scorch_width=.08 + rand() * .12, scorch_height=.05 + rand() * .08,
+                     scorch_angle=rand() * (2 * math.pi), scorch_strength=.3 + rand() * .5)
         if self.config.phone_isp:
             phone = (p['photo'] > 0).float()
             p.update(ca_px=rand() * 1.5 * phone, sharpen_amount=rand() * .8 * phone,
@@ -1023,6 +1036,13 @@ class ECGRenderer(nn.Module):
                                     'grid_line_mm must be in (0,1]')
                 torch._assert_async((p['feed_error'].abs()<=.1).all(), 'feed_error must be in [-0.1,0.1]')
                 torch._assert_async((p['trace_skew'].abs()<=.05).all(), 'trace_skew must be in [-0.05,0.05]')
+            if self.config.archive_damage:
+                for key in ('mold_active', 'scorch_active'):
+                    torch._assert_async(((p[key]==0)|(p[key]==1)).all(), f'{key} must be binary')
+                for key in ('mold_density', 'scorch_strength'):
+                    torch._assert_async(((p[key]>=0)&(p[key]<=1)).all(), f'{key} must be in [0,1]')
+                for key in ('mold_radius', 'scorch_width', 'scorch_height'):
+                    torch._assert_async((p[key]>0).all(), f'{key} must be positive')
             if self.config.print_technology:
                 torch._assert_async(((p['print_tech']>=0)&(p['print_tech']<=3)).all(), 'print_tech must be 0..3')
                 torch._assert_async(((p['copy_generations']>=1)&(p['copy_generations']<=3)).all(),
@@ -1213,6 +1233,11 @@ class ECGRenderer(nn.Module):
         artifacts = self._stamp(tokens,p['artifact_x']*self.config.width,p['artifact_y']*self.config.height,
                                 p['artifact_size'],p['artifact_present'],patch=self.artifact_patch,rotation=p['artifact_angle'])
         canonical = torch.lerp(canonical,p['artifact_color'][:,:,None,None].expand_as(canonical),artifacts)
+        if self.config.archive_damage:
+            canonical, _ = mold(canonical, p['mold_active'], p['mold_x'], p['mold_y'], p['mold_radius'],
+                                p['mold_density'], generator)
+            canonical, _ = scorch(canonical, p['scorch_active'], p['scorch_x'], p['scorch_y'], p['scorch_width'],
+                                  p['scorch_height'], p['scorch_angle'], p['scorch_strength'])
         if self.config.print_technology:
             canonical = reproduce(canonical, p['print_tech'], instances['ppm'], p['copy_generations'], generator)
         # This chronology models liquid deposited after ECG printing and marks.

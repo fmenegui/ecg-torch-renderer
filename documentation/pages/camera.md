@@ -162,3 +162,7 @@ layer = ECGImageLayer(fs=500, config=RenderConfig(profile="scan", scan_modes=Tru
 ## Reprints, photocopies and faxes
 
 `RenderConfig(print_technology=True)` reproduces the page before it is photographed or scanned. `print_tech` selects an original print (0), a laser reprint whose colored grid is halftoned with an ordered-dither screen (1, `halftone_cell_px`), a grayscale photocopy with `copy_generations` passes of blur, contrast, toner speckle and background lift (2), or a fax printout, bilevel at 204 x 98 dpi (3). Targets are unchanged.
+
+## Archive damage
+
+`RenderConfig(archive_damage=True)` adds two kinds of damage seen in real ECG archives: mold colonies that grow in humid storage (`mold_active`, `mold_x`, `mold_y`, `mold_radius`, `mold_density`) and brown scorch from ironing wet printouts (`scorch_active`, `scorch_x`, `scorch_y`, `scorch_width`, `scorch_height`, `scorch_angle`, `scorch_strength`). Both are painted on the page in material coordinates, so they follow folds and perspective. Targets are unchanged.

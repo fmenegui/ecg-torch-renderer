@@ -131,7 +131,9 @@ def export(
                     native_height=768,
                     footprint_samples=4,
                     duty_cycle=0.55,
-                    exposure_s=0.0012,
+                    # A typical indoor phone exposure gives partial banding. Very
+                    # short exposures (about 1 ms) give fully dark bands.
+                    exposure_s=0.004,
                 ),
             },
         ),

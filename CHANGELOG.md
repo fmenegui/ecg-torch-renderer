@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.26.0
+
+- Add `RenderConfig(archive_damage=True)`, opt-in damage documented in real
+  ECG archives: mold colonies (`mold_active` 15 % of adverse records,
+  `mold_x/y`, `mold_radius`, `mold_density`) and brown scorch from ironing wet
+  printouts (`scorch_active` 8 %, position, size, angle, strength). Painted in
+  material coordinates before reproduction and capture; targets unchanged.
+- The `display_pwm` example now uses a 4 ms exposure, which gives partial
+  banding like typical indoor phone photos; the earlier 1.2 ms setting gave
+  fully dark bands.
+
 ## 0.25.0
 
 - In the physical page model, add `trace_skew` (±0.004 rad, about ±0.23°):
