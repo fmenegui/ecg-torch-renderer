@@ -35,7 +35,7 @@ criterion; "done" means the criterion was measured, not that code exists.
 | 8 | Isotropic strokes | Perpendicular width within 5 % for slopes 0-10 | implemented, 0.15.0 `stroke="isotropic"` |
 | 9 | Trace-to-grid registration error | Feed-speed error | implemented, 0.14.0 (feed error); skew planned |
 | 10 | Lead-switch marks and segment breaks | Marks in masks' complement, separate target | implemented, 0.16.0 `lead_marks=True` (marks); breaks come from sequential windows |
-| 11 | Generated text: header, measurements consistent with signal, statements, footers, languages | OCR boxes and transcripts as targets | planned |
+| 11 | Generated text: header, measurements consistent with signal, statements, footers, languages | OCR boxes and transcripts as targets | implemented, 0.19.0 `report_text=True` (rate from signal; other intervals fictional; no statements by policy) |
 | 12 | Vendor-style layouts, calibration pulse variants | At least 8 generic styles | planned |
 | 13 | Multi-page prints | Page index and cross-page time mapping | planned |
 | 14 | Print technologies: laser halftone, inkjet, dot matrix, fax, photocopy generations | Visual references per technology | planned |

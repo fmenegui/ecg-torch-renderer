@@ -120,3 +120,17 @@ Inside training, use tensors directly. File export, NumPy conversion and JSON se
 ## Printed versus source signal
 
 With `RenderConfig(device_filters=True)` the page shows the recorder-filtered signal: a high-pass (`filter_highpass_hz`, 0.05/0.15/0.5 Hz), a low-pass (`filter_lowpass_hz`, 40/100/150 Hz) and an optional mains notch (`filter_notch_hz`, 0/50/60 Hz). Waveform masks follow the printed trace. `batch.reference` remains the untouched source signal and `batch.metadata["printed_signals"]` holds the printed one, so a digitizer can be trained against either.
+
+## Generated report text
+
+`RenderConfig(report_text=True)` prints generated lines in the header band and a footer in the bottom margin: fictional names, identifiers, dates and device fields, a measurement block and speed, gain and filter settings, in English, Portuguese and Spanish. The printed ventricular rate is estimated from the printed lead II, and the footer agrees with the record's speed, gain and (with `device_filters=True`) filters. No interpretation statements are printed.
+
+```python
+from ecg_gpu import ECGRenderer, RenderConfig, decode_report_text
+
+renderer = ECGRenderer(RenderConfig(report_text=True, device_filters=True))
+batch = renderer(signals, 500)
+mask = batch.targets["report_text"]                       # [B,1,H,W] text ink
+lines = decode_report_text(batch.metadata["report_text"])  # transcripts, host side
+boxes = batch.metadata["report_text"]["boxes"]            # [B,7,4] xyxy per line
+```

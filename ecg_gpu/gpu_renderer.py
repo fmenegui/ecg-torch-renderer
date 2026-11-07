@@ -29,6 +29,7 @@ from .grid_points import GridPointConfig, grid_point_targets, identity_field
 from .convenience import did_you_mean, lead_index
 from .scan_modes import scan_observation
 from .device_filters import HIGHPASS_HZ, LOWPASS_HZ, NOTCH_HZ, printed_signal
+from .report_text import ReportText, ventricular_rate
 
 
 def _conditional_visibility(valid, frame_coverage=None):
@@ -89,6 +90,9 @@ class RenderConfig:
     scan_modes: bool = False
     # Print the recorder-filtered signal (high-pass, low-pass, mains notch).
     device_filters: bool = False
+    # Generated header, measurement and footer lines (fictional fields; the
+    # rate is estimated from the printed lead II). No interpretation text.
+    report_text: bool = False
 
     def __post_init__(self):
         for name in ('height', 'width', 'antialias_samples', 'lead_chunk_size',
@@ -96,7 +100,7 @@ class RenderConfig:
             if type(getattr(self, name)) is not int:
                 raise ValueError(f'{name} must be an integer')
         for name in ('preserve_extrema', 'validate_inputs', 'jpeg_enabled', 'lead_marks', 'scan_modes',
-                     'device_filters'):
+                     'device_filters', 'report_text'):
             if type(getattr(self, name)) is not bool:
                 raise ValueError(f'{name} must be bool')
         if self.camera_mode not in {'full', 'direct', 'sensor'}:
@@ -260,6 +264,11 @@ class ECGRenderer(nn.Module):
         self.register_buffer('speed_values', torch.tensor(SPEEDS[1:]))
         self.register_buffer('gain_values', torch.tensor(GAINS[1:]))
         self.register_buffer('palette', torch.tensor([[.84,.38,.40],[.35,.60,.76],[.51,.65,.45],[.59,.59,.59],[.87,.54,.29]]))
+        self.report_text = None
+        if self.config.report_text:
+            if document_template is not None:
+                raise ValueError('report_text uses the legacy header band. Do not combine it with a document_template')
+            self.report_text = ReportText(self.fonts, h, w, self.font_limit)
         self.register_buffer('age_color', torch.tensor([.02, .07, .20])[None, :, None, None])
         self.register_buffer('pen_color', torch.tensor([.06, .12, .35])[None, :, None, None])
         defaults = standard_layouts()
@@ -335,6 +344,8 @@ class ECGRenderer(nn.Module):
             config.pop('scan_modes')
         if not self.config.device_filters:
             config.pop('device_filters')
+        if not self.config.report_text:
+            config.pop('report_text')
         return {'schema': 'ecg-replot-torch-renderer-v3', 'config': config, 'fonts': self.fonts,
                 'signal_units': 'mV', 'signal_order': LEADS, 'font_initialization': 'CPU once',
                 'hot_path': 'torch on input device', 'jpeg': 'DCT simulation, not a JPEG bitstream',
@@ -362,6 +373,7 @@ class ECGRenderer(nn.Module):
                 'document_template':asdict(self.document_template) if self.document_template else None,
                 'thermal_print':self.thermal_print.specification() if self.thermal_print else None,
                 'measured_paper':self.measured_paper.specification() if self.measured_paper else None,
+                **({'report_text': self.report_text.specification()} if self.report_text is not None else {}),
                 'camera_extension':self.camera.specification() if hasattr(self.camera, 'specification') else None,
                 'display':self.display.specification() if self.display else None}
 
@@ -504,6 +516,8 @@ class ECGRenderer(nn.Module):
             pick = lambda values: torch.tensor(values, device=d)[integer(len(values))]
             p.update(filter_highpass_hz=pick(HIGHPASS_HZ), filter_lowpass_hz=pick(LOWPASS_HZ),
                      filter_notch_hz=pick(NOTCH_HZ))
+        if self.report_text is not None:
+            p.update(self.report_text.sample(b, rand))
         return self.material_history.parameters(p) if self.material_history else p
 
     def _instances(self, p, duration):
@@ -930,6 +944,12 @@ class ECGRenderer(nn.Module):
                 torch._assert_async(((p['grid_line_mm']>0)&(p['grid_line_mm']<=1)).all(),
                                     'grid_line_mm must be in (0,1]')
                 torch._assert_async((p['feed_error'].abs()<=.1).all(), 'feed_error must be in [-0.1,0.1]')
+            if self.report_text is not None:
+                bank = self.report_text.header_count + self.report_text.measure_count
+                torch._assert_async(((p['report_lines']>=0)&(p['report_lines']<bank)).all(), 'Invalid report_lines')
+                torch._assert_async(((p['report_digits']>=0)&(p['report_digits']<=9)).all(), 'report_digits must be 0..9')
+                torch._assert_async(((p['report_text_mm']>.5)&(p['report_text_mm']<=6)).all(),
+                                    'report_text_mm must be in (0.5,6]')
             if self.config.device_filters:
                 torch._assert_async(((p['filter_highpass_hz']>=0)&(p['filter_highpass_hz']<=5)).all(),
                                     'filter_highpass_hz must be in [0,5]')
@@ -1041,6 +1061,14 @@ class ECGRenderer(nn.Module):
         source_instance_area = targets['instances'].sum((-1, -2)) if return_visibility_fraction else None
         grid, grid_alpha, vertices = self._grid(instances, p, stage in {'geometry', 'all'})
         text, labels, unit_mask = self._text(instances, p, stage in {'metadata', 'all'},stage!='image')
+        report_meta = None
+        if self.report_text is not None:
+            rate = ventricular_rate(working_signals, rates, lengths)
+            header_bottom = torch.full((b,), self.config.height * .022, device=self.device) + p['font_size'] * 1.15 * 1.3
+            report_ink, report_meta = self.report_text(p, instances, rate, header_bottom, self.config.device_filters)
+            text = torch.maximum(text, report_ink)
+            if 'traces' in targets:
+                targets['report_text'] = report_ink
         paper, paper_id = self._texture(self.paper_textures, b, generator, True)
         paper *= self.document.paper_colors[p['paper_palette'].long()][:,:,None,None]*p['paper_color'][:,:,None,None]
         paper = paper - p['paper_tint'][:, :, None, None]
@@ -1203,6 +1231,8 @@ class ECGRenderer(nn.Module):
                     'parameters': p}
         if printed is not None:
             metadata['printed_signals'] = printed
+        if report_meta is not None:
+            metadata['report_text'] = report_meta
         if return_grid_points:
             point_field = field if photo else identity_field(b, self.config.height, self.config.width, device=self.device)
             targets.update(grid_point_targets(point_field, valid,

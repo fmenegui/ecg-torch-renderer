@@ -22,8 +22,9 @@ from .grid_points import GridPointConfig, grid_point_targets, rasterize_grid_poi
 from .grid_point_learning import grid_point_loss, decode_grid_points
 from .convenience import prepare_signals, render_ecg, to_pil, describe_parameters
 from .schema_v05 import LEADS
+from .report_text import decode_report_text
 
-__version__ = "0.18.0"
+__version__ = "0.19.0"
 
 __all__ = [
     'ECGRenderer',
@@ -73,5 +74,6 @@ __all__ = [
     'to_pil',
     'describe_parameters',
     'LEADS',
+    'decode_report_text',
     '__version__',
 ]
