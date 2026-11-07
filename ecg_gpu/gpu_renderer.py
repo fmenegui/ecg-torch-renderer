@@ -97,6 +97,8 @@ class RenderConfig:
     # Phone processing on photographed records: chromatic aberration,
     # sharpening halos and specular glare.
     phone_isp: bool = False
+    # Dense per-pixel source time (s) and voltage (mV) within each layout cell.
+    coordinate_targets: bool = False
 
     def __post_init__(self):
         for name in ('height', 'width', 'antialias_samples', 'lead_chunk_size',
@@ -104,7 +106,8 @@ class RenderConfig:
             if type(getattr(self, name)) is not int:
                 raise ValueError(f'{name} must be an integer')
         for name in ('preserve_extrema', 'validate_inputs', 'jpeg_enabled', 'lead_marks', 'scan_modes',
-                     'device_filters', 'report_text', 'phone_isp'):
+                     'device_filters', 'report_text', 'phone_isp',
+                     'coordinate_targets'):
             if type(getattr(self, name)) is not bool:
                 raise ValueError(f'{name} must be bool')
         if self.camera_mode not in {'full', 'direct', 'sensor'}:
@@ -352,6 +355,8 @@ class ECGRenderer(nn.Module):
             config.pop('report_text')
         if not self.config.phone_isp:
             config.pop('phone_isp')
+        if not self.config.coordinate_targets:
+            config.pop('coordinate_targets')
         return {'schema': 'ecg-replot-torch-renderer-v3', 'config': config, 'fonts': self.fonts,
                 'signal_units': 'mV', 'signal_order': LEADS, 'font_initialization': 'CPU once',
                 'hot_path': 'torch on input device', 'jpeg': 'DCT simulation, not a JPEG bitstream',
@@ -655,12 +660,35 @@ class ECGRenderer(nn.Module):
             targets['baselines']=baseline_target
         if instance_target is not None:
             targets['instances']=instance_target
+        if self.config.coordinate_targets and trace_target is not None:
+            targets.update(self._coordinate_maps(instances, slope_time, scale))
         if self.config.lead_marks:
             marks=self._lead_marks(instances,p,thickness)
             calibration=torch.maximum(calibration,marks)
             if trace_target is not None:
                 targets['lead_marks']=marks
         return ink,calibration,targets
+
+    def _coordinate_maps(self, instances, slope_time, scale):
+        """Per-pixel source time and voltage inside each layout cell.
+
+        A cell spans its column and the row band around its baseline. Inside
+        it, time is the cell start plus horizontal distance times seconds per
+        pixel, and voltage is height above the baseline divided by pixels per
+        mV. Cells are disjoint, so a sum assigns each pixel to one cell.
+        Supervise only where a waveform mask is present.
+        """
+        x0, x1 = instances['x0'][:, :, None, None], instances['x1'][:, :, None, None]
+        base = instances['baseline'][:, :, None, None]
+        ch = instances['cell_height'][:, None, None, None]
+        inside = ((self.xx >= x0) & (self.xx < x1) & (self.yy >= base - .57 * ch) & (self.yy < base + .43 * ch)
+                  & instances['active'][:, :, None, None])
+        time = instances['start_s'][:, :, None, None] + (self.xx - x0) * slope_time[:, :, None, None]
+        voltage = (base - self.yy) / scale[:, :, None, None]
+        weight = inside.float()
+        return {'time_s': (weight * time).sum(1, keepdim=True),
+                'voltage_mv': (weight * voltage).sum(1, keepdim=True),
+                'coordinate_valid': weight.amax(1, keepdim=True)}
 
     def _lead_marks(self, instances, p, thickness):
         """Short vertical ticks on the baseline where the printed lead changes.

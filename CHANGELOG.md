@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.21.0
+
+- Add `RenderConfig(coordinate_targets=True)`, opt-in dense targets for
+  regression-style digitizers: `time_s` (source time of each pixel within its
+  layout cell), `voltage_mv` (height above the cell baseline in mV) and
+  `coordinate_valid`. They follow the same geometry as the other targets,
+  including photographic warps. Supervise them where a waveform mask is set.
+
 ## 0.20.0
 
 - Add `RenderConfig(phone_isp=True)`, opt-in phone processing on

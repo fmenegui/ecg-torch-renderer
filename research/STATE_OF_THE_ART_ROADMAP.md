@@ -77,7 +77,7 @@ criterion; "done" means the criterion was measured, not that code exists.
 
 | # | Item | Acceptance | Status |
 | --- | --- | --- | --- |
-| 28 | Pixel→(lead, time, mV) map, text targets, page corners, depth, pulse and label masks | Contracts and tests | planned |
+| 28 | Pixel→(lead, time, mV) map, text targets, page corners, depth, pulse and label masks | Contracts and tests | in progress: time/voltage maps 0.21.0, text targets 0.19.0, lead marks 0.16.0; corners, depth, pulse masks planned |
 | 29 | GPU profiling, sparse raster, stage compilation, compact targets | See `OPTIMIZATION_PLAN.md` | planned |
 | 30 | PyPI release, versioned docs on Pages, calibrated presets | Published | planned |
 | 31 | Released datasets and a paper with the benchmark | Public | planned |

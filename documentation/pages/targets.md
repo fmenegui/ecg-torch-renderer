@@ -134,3 +134,7 @@ mask = batch.targets["report_text"]                       # [B,1,H,W] text ink
 lines = decode_report_text(batch.metadata["report_text"])  # transcripts, host side
 boxes = batch.metadata["report_text"]["boxes"]            # [B,7,4] xyxy per line
 ```
+
+## Time and voltage maps
+
+`RenderConfig(coordinate_targets=True)` returns `time_s` and `voltage_mv`, `[B,1,H,W]` maps that give, for every pixel inside a layout cell, the source time and the voltage relative to that cell's baseline, plus `coordinate_valid`. Combined with a waveform mask, they turn digitization into dense regression: on trace pixels, `voltage_mv` matches the source signal at `time_s` within about half a stroke width divided by pixels per mV.
