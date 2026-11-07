@@ -60,7 +60,7 @@ criterion; "done" means the criterion was measured, not that code exists.
 
 | # | Item | Acceptance | Status |
 | --- | --- | --- | --- |
-| 21 | Phone ISP: demosaic, denoise, sharpening, tone mapping, real codecs, lens profiles, glare, shake | Each stage toggleable and tested | planned |
+| 21 | Phone ISP: demosaic, denoise, sharpening, tone mapping, real codecs, lens profiles, glare, shake | Each stage toggleable and tested | in progress: aberration, sharpening and glare in 0.20.0 `phone_isp=True`; demosaic, tone mapping, codecs planned |
 | 22 | Scanner modes: grayscale, bilevel, 72-600 dpi, skew, lid shadow; fax | Recipes | in progress: modes and dpi in 0.17.0 `scan_modes=True`; lid shadow, fax planned |
 | 23 | Screenshots and EHR viewers; realistic display banding and moiré | Recipes | planned |
 | 24 | Licensed real background bank | Attribution file | planned |
