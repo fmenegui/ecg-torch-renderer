@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.22.0
+
+- Add the sim-to-real waveform benchmark scorer `ecg_gpu.waveform_evaluation`
+  and the `ecg-waveform-benchmark` command: per-lead SNR (dB) of digitized
+  signals against references, as in the PhysioNet Challenge 2024, with
+  optional offset removal and bounded time shift, linear resampling, missing
+  predictions scored as zeros, per-capture summaries and patient-level
+  bootstrap intervals. NumPy only, outside training.
+- Add `research/WAVEFORM_BENCHMARK.md` with the protocol and the data layout
+  needed to run it on real images.
+
 ## 0.21.0
 
 - Add `RenderConfig(coordinate_targets=True)`, opt-in dense targets for
