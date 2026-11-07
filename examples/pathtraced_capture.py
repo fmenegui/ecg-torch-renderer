@@ -19,7 +19,7 @@ import torch
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from ecg_gpu import ECGImageLayer, capture_scenario
 from ecg_gpu.demo import demo_signals
-from ecg_gpu.gpu_cli import load_signals, plain
+from ecg_gpu.gpu_cli import load_signals
 from ecg_gpu.pathtrace import pathtrace_capture, PathTraceConfig
 from ecg_gpu.dataset_export import samples_from_batch, export_yolo_dataset
 

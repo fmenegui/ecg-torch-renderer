@@ -25,8 +25,11 @@ Rectified final documents apply physical paper removal. For offline 3D albedo,
 use `photo=False, as_texture=True` so clipping happens in shared mesh topology.
 The path tracer rejects a damaged final document passed as an intact texture.
 
-There is no dedicated monitor/display capture backend yet. A photographed
-emissive panel needs its own pixel, reflection and temporal models. See the
+Photographed monitors use the optional `EmissiveDisplay` model: a rigid panel
+with analytic RGB/BGR apertures, a full-panel PWM backlight and Schlick glass
+reflection. It does not model frame scanout, LCD response, OLED geometry or
+rolling-shutter distortion of moving content. See
+[emissive monitor captures](realism.html#emissive-monitor-captures) and the
 [photorealism proposal](https://github.com/fmenegui/ecg-torch-renderer/blob/main/research/REALISM_ROADMAP.md).
 
 ## Signal information

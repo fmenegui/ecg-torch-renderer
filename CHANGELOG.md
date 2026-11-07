@@ -1,5 +1,58 @@
 # Changelog
 
+## 0.12.0
+
+- Add a reproducible grid-detector benchmark (`ecg-grid-benchmark`): patient-
+  disjoint PTB-XL sources, equal-budget online/offline/mixed training, target
+  ablations, all-peak decoding, sparse exact matching, validated external
+  manifests, deterministic cache replay and checkpoint rescoring.
+- Record a measured exploratory pilot in `research/grid-benchmark-v0120`:
+  24 patients, 96 captures, seven models, one training seed and four test
+  patients. It does not establish renderer realism, clinical generalization or
+  a CUDA result.
+
+## 0.11.1
+
+- Fix float16 zero-loss and support-reduction overflow in grid-point losses.
+- Mask inactive nonfinite offsets before regression and enforce grid target
+  provenance.
+- Inherit configured defaults, preserve compatible lead-only replay and bound
+  temporary splat patches across batch and points.
+
+## 0.11.0
+
+- Separate grid-point mask width from fractional center coordinates, with
+  Gaussian and disk controls.
+- Add collision-aware offset targets, `grid_point_loss`, a local subpixel
+  decoder (`decode_grid_points`) and a full-resolution U-Net example.
+- Project offline points directly from mesh to sensor. Refine online
+  coordinates with bilinear Newton steps and image-space residual checks.
+
+## 0.10.0
+
+- Export identified 5 mm grid intersections from both the torch and offline
+  backends: padded row/column identities, canonical and millimeter positions,
+  observed subpixel coordinates and a point-only mask.
+- Reject points through explicit inverse-map residual and visibility checks.
+  Add analytical identity, affine and pinhole tests and occlusion checks.
+
+## 0.9.1
+
+- Place template unit text and title clearance in physical millimeters,
+  fixing overlapping headers. A 72-case typography regression reproduced 54
+  failures before the correction.
+
+## 0.9.0
+
+- Add physical document templates, thermal printing, scaled paper-scan
+  imports, thin-lens optics, an emissive RGB display model and coupled
+  liquid/storage material history.
+- Offline sheets gain compliant relaxation, finite thickness, cut lips, fibers
+  and reusable primary-ray geometry banks.
+- Keep the signal reference immutable and target visibility shared across the
+  new models. Measured presets and external photographic equivalence remain
+  unverified.
+
 ## 0.8.1
 
 - Recompose quarter-turn overrides and derive orientation from absolute angles.

@@ -514,7 +514,7 @@ def pathtrace_capture(canonical, *, config=None, background_texture=None, seed=1
         raise ValueError('Seed must be an integer in [0,2**32)')
     try:
         import mitsuba as mi
-        import drjit as dr
+        import drjit as dr  # noqa: F401 (availability check for the Mitsuba JIT backend)
     except ImportError as error:
         raise ImportError('Offline path tracing needs the optional mitsuba dependency') from error
     if config.variant not in mi.variants():

@@ -29,3 +29,12 @@ ecg-grid-benchmark = "ecg_gpu.grid_benchmark:main"
 include = ["ecg_gpu*"]
 
 
+
+[tool.ruff]
+extend-exclude = ["notebooks", "references"]
+
+[tool.ruff.lint]
+# Pyflakes plus the pycodestyle errors that ruff enables by default. Long
+# lines, lambda assignments and one-line guard clauses are accepted style here.
+select = ["E", "F"]
+ignore = ["E501", "E701", "E731"]
