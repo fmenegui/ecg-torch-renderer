@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.16.0
+
+- Add `RenderConfig(lead_marks=True)`, opt-in: short vertical marks on the
+  baseline at every column boundary where the printed lead changes, as most
+  recorders print. Controls `mark_present` (85 % by default) and
+  `mark_height_mm` (1.5-5 mm). Marks use the trace stroke, appear in the
+  image and in a separate `lead_marks` target, and never enter waveform masks.
+- Legacy random stream and specification are unchanged when disabled.
+
 ## 0.15.0
 
 - Add `RenderConfig(stroke="isotropic")`, opt-in. Each pixel measures its

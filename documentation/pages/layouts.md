@@ -77,3 +77,7 @@ from ecg_gpu import RenderConfig
 
 config = RenderConfig(page_model="physical", stroke="isotropic")
 ```
+
+## Lead-switch marks
+
+`RenderConfig(lead_marks=True)` prints a short vertical mark on the baseline at each column boundary where the lead changes. `mark_present` (sampled at 85 %) and `mark_height_mm` (1.5–5 mm) control it. Marks appear in the image and in `batch.targets["lead_marks"]`, never in a lead's waveform mask.

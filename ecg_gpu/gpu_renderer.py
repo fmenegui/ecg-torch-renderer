@@ -81,13 +81,15 @@ class RenderConfig:
     # neighbouring columns so width is close to line_width at any slope.
     stroke: str = 'legacy'
     stroke_radius: int = 3
+    # Draw short vertical marks where the printed lead changes between columns.
+    lead_marks: bool = False
 
     def __post_init__(self):
         for name in ('height', 'width', 'antialias_samples', 'lead_chunk_size',
                      'surface_resolution', 'inverse_iterations', 'shadow_samples'):
             if type(getattr(self, name)) is not int:
                 raise ValueError(f'{name} must be an integer')
-        for name in ('preserve_extrema', 'validate_inputs', 'jpeg_enabled'):
+        for name in ('preserve_extrema', 'validate_inputs', 'jpeg_enabled', 'lead_marks'):
             if type(getattr(self, name)) is not bool:
                 raise ValueError(f'{name} must be bool')
         if self.camera_mode not in {'full', 'direct', 'sensor'}:
@@ -320,6 +322,8 @@ class ECGRenderer(nn.Module):
         if self.config.stroke == 'legacy':
             config.pop('stroke')
             config.pop('stroke_radius')
+        if not self.config.lead_marks:
+            config.pop('lead_marks')
         return {'schema': 'ecg-replot-torch-renderer-v3', 'config': config, 'fonts': self.fonts,
                 'signal_units': 'mV', 'signal_order': LEADS, 'font_initialization': 'CPU once',
                 'hot_path': 'torch on input device', 'jpeg': 'DCT simulation, not a JPEG bitstream',
@@ -474,6 +478,9 @@ class ECGRenderer(nn.Module):
             p.update(trace_width_mm=.18 + rand() * .17,
                      grid_line_mm=.05 + rand() * .07,
                      feed_error=(rand() * 2 - 1) * .015)
+        if self.config.lead_marks:
+            # Drawn after legacy and physical controls; most recorders mark lead changes.
+            p.update(mark_present=(rand() < .85).float(), mark_height_mm=1.5 + rand() * 3.5)
         return self.material_history.parameters(p) if self.material_history else p
 
     def _instances(self, p, duration):
@@ -600,7 +607,28 @@ class ECGRenderer(nn.Module):
             targets['baselines']=baseline_target
         if instance_target is not None:
             targets['instances']=instance_target
+        if self.config.lead_marks:
+            marks=self._lead_marks(instances,p,thickness)
+            calibration=torch.maximum(calibration,marks)
+            if trace_target is not None:
+                targets['lead_marks']=marks
         return ink,calibration,targets
+
+    def _lead_marks(self, instances, p, thickness):
+        """Short vertical ticks on the baseline where the printed lead changes.
+
+        Recorders mark each column boundary of a multi-column layout. Marks are
+        drawn with the trace stroke and returned as a separate target; they are
+        not part of any lead's waveform mask.
+        """
+        boundary = instances['active'] & (instances['column'] > 0)
+        x = instances['x0'][:, :, None, None]
+        half = (p['mark_height_mm'] * instances['ppm'] / 2)[:, None, None, None]
+        base = instances['baseline'][:, :, None, None]
+        horizontal = (thickness - (self.xx - x).abs()).clamp(0, 1)
+        vertical = ((self.yy >= base - half) & (self.yy <= base + half)).float()
+        marks = horizontal * vertical * boundary[:, :, None, None]
+        return marks.amax(1, keepdim=True) * p['mark_present'][:, None, None, None]
 
     def _grid(self, instances, p, need_vertices):
         ppm = instances['ppm'][:, None, None, None]
@@ -879,6 +907,10 @@ class ECGRenderer(nn.Module):
                 torch._assert_async(((p['grid_line_mm']>0)&(p['grid_line_mm']<=1)).all(),
                                     'grid_line_mm must be in (0,1]')
                 torch._assert_async((p['feed_error'].abs()<=.1).all(), 'feed_error must be in [-0.1,0.1]')
+            if self.config.lead_marks:
+                torch._assert_async(((p['mark_present']==0)|(p['mark_present']==1)).all(), 'mark_present must be binary')
+                torch._assert_async(((p['mark_height_mm']>0)&(p['mark_height_mm']<=20)).all(),
+                                    'mark_height_mm must be in (0,20]')
             for key, maximum in [('tear_count',4), ('missing_corner_index',3)]:
                 torch._assert_async(((p[key]>=0)&(p[key]<=maximum)).all(),f'{key} outside supported range')
             for key in ['hole_center','cut_center']:
