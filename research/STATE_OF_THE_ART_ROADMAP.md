@@ -46,7 +46,7 @@ criterion; "done" means the criterion was measured, not that code exists.
 | # | Item | Acceptance | Status |
 | --- | --- | --- | --- |
 | 16 | Diverse real sources (PTB-XL, CODE-15 %, MIMIC-IV-ECG, Chapman) | Loader and provenance | planned |
-| 17 | Printed reference: device filters, clipping, alongside the untouched source | Both references returned | planned |
+| 17 | Printed reference: device filters, clipping, alongside the untouched source | Both references returned | implemented (filters), 0.18.0 `device_filters=True`; clipping planned |
 
 ## 4. Paper and geometry
 

@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.18.0
+
+- Add `RenderConfig(device_filters=True)`, opt-in: the image prints the
+  recorder-filtered signal, as electrocardiographs do. Per-record
+  `filter_highpass_hz` (0.05/0.15/0.5), `filter_lowpass_hz` (40/100/150) and
+  `filter_notch_hz` (none/50/60) are zero-phase magnitude responses applied
+  after even-symmetric extension. Waveform targets follow the printed trace;
+  `RenderBatch.reference` stays the untouched source and
+  `metadata["printed_signals"]` holds the printed version.
+- New module `ecg_gpu.device_filters`.
+
 ## 0.17.0
 
 - Add `RenderConfig(scan_modes=True)`, opt-in flatbed scanner observation:
