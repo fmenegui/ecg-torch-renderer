@@ -127,7 +127,7 @@ python examples/segmentation.py --device cuda --compile-raster
 | Area | Built-in controls |
 | --- | --- |
 | Layouts | 30 layouts, 0–3 rhythm strips, long rows, Cabrera and custom uneven rows |
-| Calibration | 12.5/25/50 mm/s, 5/10/20 mm/mV, shared scale and pulses |
+| Calibration | 12.5/25/50 mm/s, 5/10/20 mm/mV, shared scale and pulses; optional physical page with fixed paper width, mm stroke widths and paper-feed error (`page_model="physical"`) |
 | Paper | 8 palettes, grid styles/colors, print fading, stains, bleed and texture banks |
 | Geometry | Perspective, rotation, crop, radial distortion and 8 surface families |
 | Scenes | 8 table-material families, colored lighting and procedural shadows |

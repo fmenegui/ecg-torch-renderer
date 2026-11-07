@@ -82,11 +82,13 @@ def describe_parameters(renderer=None):
 
 
 def render_ecg(signals, fs=500., *, scenario=None, severity=.6, height=768, width=1024,
-               seed=0, device=None, lead_names=None, units='mV', parameters=None):
+               seed=0, device=None, lead_names=None, units='mV', parameters=None,
+               page_model='legacy'):
     """Render images in one call for exploration, returning ``[B,3,H,W]`` in [0,1].
 
     ``scenario`` is one of ``CAPTURE_SCENARIOS`` or None for the default
-    mixed distribution. ``parameters`` overrides or adds rendering parameters
+    mixed distribution. ``page_model='physical'`` fixes the paper width so
+    paper speed sets the shown time window. ``parameters`` overrides or adds rendering parameters
     (see ``describe_parameters``). The same seed reproduces the same capture.
     Build an ``ECGImageLayer`` once for training instead of calling this per batch.
     """
@@ -98,9 +100,10 @@ def render_ecg(signals, fs=500., *, scenario=None, severity=.6, height=768, widt
     device = torch.device(device)
     batch = prepare_signals(signals, lead_names=lead_names, units=units, device=device)
     if scenario is None:
-        config, options = RenderConfig(height=height, width=width), {}
+        config, options = RenderConfig(height=height, width=width, page_model=page_model), {}
     else:
-        config, options = capture_scenario(scenario, height=height, width=width, severity=severity)
+        config, options = capture_scenario(scenario, height=height, width=width, severity=severity,
+                                           page_model=page_model)
     options.update(parameters or {})
     layer = ECGImageLayer(fs, config=config, parameters=options, seed=seed, randomize=False).to(device)
     layer.eval()
