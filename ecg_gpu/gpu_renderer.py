@@ -686,6 +686,9 @@ class ECGRenderer(nn.Module):
                 return_scene=False, return_instances=False, return_baselines=True,
                 return_instance_boxes=True, as_texture=False, return_visibility_fraction=None,
                 return_grid_points=False, grid_point_config=None):
+        if not isinstance(signals, torch.Tensor):
+            raise TypeError(f'Signals must be a torch tensor, got {type(signals).__name__}. '
+                            'Convert arrays with ecg_gpu.prepare_signals(values, lead_names=..., units=...)')
         # Keep geometric inversion, glyphs and radiometry in float32 even when
         # the caller trains its image network inside an AMP context.
         if self.atlas.dtype!=torch.float32:
@@ -717,9 +720,6 @@ class ECGRenderer(nn.Module):
             raise ValueError('Visibility fractions require return_instances=True')
         if stage not in {'image','geometry', 'trace', 'metadata', 'all'}:
             raise ValueError('stage must be image, geometry, trace, metadata or all')
-        if not isinstance(signals, torch.Tensor):
-            raise TypeError(f'Signals must be a torch tensor, got {type(signals).__name__}. '
-                            'Convert arrays with ecg_gpu.prepare_signals(values, lead_names=..., units=...)')
         if signals.ndim != 3 or signals.shape[0] < 1 or signals.shape[1] != 12 or signals.shape[2] < 2:
             hint = ' Add a batch axis with signals[None].' if signals.ndim == 2 and signals.shape[0] == 12 else ''
             if signals.ndim == 3 and signals.shape[-1] == 12 and signals.shape[1] != 12:
