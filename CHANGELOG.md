@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.19.0
+
+- Add `RenderConfig(report_text=True)`, opt-in generated report text in the
+  header band and bottom margin: up to six header and measurement lines in
+  English, Portuguese and Spanish (fictional names and identifiers, dates,
+  rooms, devices, intervals) plus a footer with speed, gain and filter
+  settings. Text is composed per character from a glyph atlas, with digit
+  slots filled on device.
+- The ventricular rate printed in measurement lines is estimated from the
+  printed lead II by autocorrelation (`ventricular_rate`). Footers agree with
+  the record's speed and gain and, with `device_filters=True`, its filters.
+  No interpretation statements are printed.
+- Targets: `report_text` ink mask. Metadata: per-line glyph ids, presence,
+  boxes and rate; `decode_report_text(meta)` returns transcripts for OCR.
+- Not combinable with a `document_template` (both use the header band).
+
 ## 0.18.0
 
 - Add `RenderConfig(device_filters=True)`, opt-in: the image prints the
