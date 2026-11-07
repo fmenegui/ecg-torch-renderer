@@ -7,6 +7,7 @@ import math
 
 from .gpu_parameters import Choice, Uniform
 from .gpu_renderer import RenderConfig
+from .convenience import did_you_mean
 
 
 CAPTURE_SCENARIOS = (
@@ -28,7 +29,8 @@ def capture_scenario(name, *, height=768, width=1024, severity=.6):
     shadows can still hide printed content, tracked by the usual valid mask.
     """
     if name not in CAPTURE_SCENARIOS:
-        raise ValueError(f'Unknown capture scenario {name!r}. Choose from {CAPTURE_SCENARIOS}')
+        raise ValueError(f'Unknown capture scenario {name!r}. Choose from {CAPTURE_SCENARIOS}.'
+                         + did_you_mean(name, CAPTURE_SCENARIOS))
     if isinstance(severity, bool) or not isinstance(severity, (int, float)) or not math.isfinite(severity) or not 0 <= severity <= 1:
         raise ValueError('Scenario severity must be finite and in [0,1]')
     s = float(severity)

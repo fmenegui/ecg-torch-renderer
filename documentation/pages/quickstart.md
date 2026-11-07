@@ -2,6 +2,24 @@
 
 Start with a complete, artificial signal so you can focus on the interface. For your own data, pass voltages in mV and the real sample rate.
 
+## Look at a few images first
+
+`render_ecg` renders in one call for exploration. It accepts arrays shaped `[12,T]` or `[B,12,T]`, any lead order and mV, uV or V.
+
+```python
+from ecg_gpu import render_ecg, to_pil, describe_parameters
+from ecg_gpu.demo import demo_signals
+
+values, fs, _ = demo_signals(fs=500, duration=10, heart_rate=72, hrv=.04,
+                             baseline_wander_mv=.05, noise_mv=.01, seed=0)
+image = render_ecg(values, fs, scenario="phone_photo", seed=0,
+                   parameters={"layout": "3x4+r1"})
+to_pil(image)[0].save("ecg.png")
+print(sorted(describe_parameters()))   # every name accepted in parameters=...
+```
+
+For WFDB or other sources, `prepare_signals(values, lead_names=record.sig_name, units="uV")` returns the `[B,12,T]` mV tensor the layers expect. Build an `ECGImageLayer` once for training instead of calling `render_ecg` per batch.
+
 ## Render RGB
 
 ```python
