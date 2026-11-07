@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.23.0
+
+- Add `RenderConfig(print_technology=True)`, opt-in document reproduction:
+  `print_tech` 0 original (55 %), 1 laser reprint with an ordered-dither
+  halftoned grid (20 %), 2 photocopy with 1-3 generations of blur, contrast
+  curve, toner speckle and background lift (15 %), 3 fax printout, bilevel at
+  204 x 98 dpi (10 %). Applied to the canonical page before photographic or
+  scanner capture. Targets are unchanged.
+- New module `ecg_gpu.print_reproduction`. Grayscale conversions in scanner
+  and reproduction stages no longer copy constants from the host per call.
+
 ## 0.22.0
 
 - Add the sim-to-real waveform benchmark scorer `ecg_gpu.waveform_evaluation`

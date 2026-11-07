@@ -31,6 +31,7 @@ from .scan_modes import scan_observation
 from .device_filters import HIGHPASS_HZ, LOWPASS_HZ, NOTCH_HZ, printed_signal
 from .report_text import ReportText, ventricular_rate
 from .phone_isp import phone_observation
+from .print_reproduction import LASER, halftone, reproduce
 
 
 def _conditional_visibility(valid, frame_coverage=None):
@@ -99,6 +100,8 @@ class RenderConfig:
     phone_isp: bool = False
     # Dense per-pixel source time (s) and voltage (mV) within each layout cell.
     coordinate_targets: bool = False
+    # Laser reprints with halftoned grids, photocopies and fax printouts.
+    print_technology: bool = False
 
     def __post_init__(self):
         for name in ('height', 'width', 'antialias_samples', 'lead_chunk_size',
@@ -107,7 +110,7 @@ class RenderConfig:
                 raise ValueError(f'{name} must be an integer')
         for name in ('preserve_extrema', 'validate_inputs', 'jpeg_enabled', 'lead_marks', 'scan_modes',
                      'device_filters', 'report_text', 'phone_isp',
-                     'coordinate_targets'):
+                     'coordinate_targets', 'print_technology'):
             if type(getattr(self, name)) is not bool:
                 raise ValueError(f'{name} must be bool')
         if self.camera_mode not in {'full', 'direct', 'sensor'}:
@@ -357,6 +360,8 @@ class ECGRenderer(nn.Module):
             config.pop('phone_isp')
         if not self.config.coordinate_targets:
             config.pop('coordinate_targets')
+        if not self.config.print_technology:
+            config.pop('print_technology')
         return {'schema': 'ecg-replot-torch-renderer-v3', 'config': config, 'fonts': self.fonts,
                 'signal_units': 'mV', 'signal_order': LEADS, 'font_initialization': 'CPU once',
                 'hot_path': 'torch on input device', 'jpeg': 'DCT simulation, not a JPEG bitstream',
@@ -529,6 +534,11 @@ class ECGRenderer(nn.Module):
                      filter_notch_hz=pick(NOTCH_HZ))
         if self.report_text is not None:
             p.update(self.report_text.sample(b, rand))
+        if self.config.print_technology:
+            # 55 % original print, 20 % laser reprint, 15 % photocopy, 10 % fax.
+            choice = rand()
+            p.update(print_tech=(choice > .55).long() + (choice > .75).long() + (choice > .90).long(),
+                     copy_generations=1 + integer(3), halftone_cell_px=1 + rand() * 1.5)
         if self.config.phone_isp:
             phone = (p['photo'] > 0).float()
             p.update(ca_px=rand() * 1.5 * phone, sharpen_amount=rand() * .8 * phone,
@@ -983,6 +993,12 @@ class ECGRenderer(nn.Module):
                 torch._assert_async(((p['grid_line_mm']>0)&(p['grid_line_mm']<=1)).all(),
                                     'grid_line_mm must be in (0,1]')
                 torch._assert_async((p['feed_error'].abs()<=.1).all(), 'feed_error must be in [-0.1,0.1]')
+            if self.config.print_technology:
+                torch._assert_async(((p['print_tech']>=0)&(p['print_tech']<=3)).all(), 'print_tech must be 0..3')
+                torch._assert_async(((p['copy_generations']>=1)&(p['copy_generations']<=3)).all(),
+                                    'copy_generations must be 1..3')
+                torch._assert_async(((p['halftone_cell_px']>=1)&(p['halftone_cell_px']<=8)).all(),
+                                    'halftone_cell_px must be in [1,8]')
             if self.config.phone_isp:
                 torch._assert_async(((p['ca_px']>=0)&(p['ca_px']<=8)).all(), 'ca_px must be in [0,8]')
                 torch._assert_async(((p['sharpen_amount']>=0)&(p['sharpen_amount']<=3)).all(),
@@ -1139,6 +1155,9 @@ class ECGRenderer(nn.Module):
         if self.display is None:
             paper -= reverse_ink*p['bleed_strength'][:,None,None,None]
         color = self.template_grid_rgb if self.document_template else self.palette[p['palette'].long()][:, :, None, None]
+        if self.config.print_technology:
+            grid_alpha = torch.where((p['print_tech'] == LASER)[:, None, None, None],
+                                     halftone(grid_alpha, p['halftone_cell_px']), grid_alpha)
         canonical = torch.lerp(paper.clamp(0, 1), color, grid_alpha)
         fade = material['print_retention']
         print_alpha = torch.maximum(torch.maximum(ink, pulse), text) * fade * p['ink_density'][:, None, None, None]
@@ -1162,6 +1181,8 @@ class ECGRenderer(nn.Module):
         artifacts = self._stamp(tokens,p['artifact_x']*self.config.width,p['artifact_y']*self.config.height,
                                 p['artifact_size'],p['artifact_present'],patch=self.artifact_patch,rotation=p['artifact_angle'])
         canonical = torch.lerp(canonical,p['artifact_color'][:,:,None,None].expand_as(canonical),artifacts)
+        if self.config.print_technology:
+            canonical = reproduce(canonical, p['print_tech'], instances['ppm'], p['copy_generations'], generator)
         # This chronology models liquid deposited after ECG printing and marks.
         # Transmission changes observation contrast, never geometric ownership.
         transmission = material['deposit_transmission']
