@@ -67,3 +67,13 @@ layer = ECGImageLayer(fs=500, config=RenderConfig(page_model="physical", plot_wi
 | `feed_error` | Relative paper-feed speed error of the trace against the pre-printed grid, sampled in ±1.5 % |
 
 Records shorter than the window end early and later columns stay empty. Pixel `line_width` and `grid_width` overrides are rejected in this mode. `capture_scenario(name, page_model="physical")` and `render_ecg(..., page_model="physical")` select it too.
+
+## Stroke geometry
+
+The default raster measures each pixel's distance only to the curve inside its own pixel column, so steep QRS strokes print thinner than flat segments. `RenderConfig(stroke="isotropic")` also checks `stroke_radius` neighbouring columns (default 3) and keeps the perpendicular width close to `line_width` (or `trace_width_mm` in the physical page model) at every slope. It costs roughly `2 * stroke_radius + 1` times the legacy raster work.
+
+```python
+from ecg_gpu import RenderConfig
+
+config = RenderConfig(page_model="physical", stroke="isotropic")
+```

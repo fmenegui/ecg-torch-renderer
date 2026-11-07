@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.15.0
+
+- Add `RenderConfig(stroke="isotropic")`, opt-in. Each pixel measures its
+  distance to the curve segments of `stroke_radius` (default 3) neighbouring
+  columns on each side, so steep QRS strokes keep the requested width. With a
+  3 px line, perpendicular width at slope 10 is 3.00 px instead of 1.27 px in
+  the legacy kernel. The extremum envelope is drawn isotropically too.
+- The legacy kernel, its specification and the frozen v0.2.1 fixture are
+  unchanged. `research/stroke-width/probe.py` documents the legacy behaviour.
+
 ## 0.14.0
 
 - Add `RenderConfig(page_model="physical")`, opt-in. The plotted paper width
