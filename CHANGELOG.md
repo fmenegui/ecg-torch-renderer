@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.25.0
+
+- In the physical page model, add `trace_skew` (±0.004 rad, about ±0.23°):
+  the paper is fed at a slight angle, so the printed trace drifts against the
+  pre-printed grid. Trace, extremum envelope, baseline targets and the
+  `voltage_mv` map follow the skew; metadata reports it. Calibration pulses,
+  lead marks and labels are not skewed yet.
+
 ## 0.24.0
 
 Integrates the digitization research line developed in parallel with

@@ -517,6 +517,8 @@ class ECGRenderer(nn.Module):
             p.update(trace_width_mm=.18 + rand() * .17,
                      grid_line_mm=.05 + rand() * .07,
                      feed_error=(rand() * 2 - 1) * .015)
+            # Drawn last among physical controls: paper fed up to about 0.23 degrees off axis.
+            p['trace_skew'] = (rand() * 2 - 1) * .004
         if self.config.lead_marks:
             # Drawn after legacy and physical controls; most recorders mark lead changes.
             p.update(mark_present=(rand() < .85).float(), mark_height_mm=1.5 + rand() * 3.5)
@@ -587,6 +589,7 @@ class ECGRenderer(nn.Module):
             active = active & (shown > 0)
             ends = starts + shown
             extra['trace_speed'] = trace_speed
+            extra['trace_skew'] = p['trace_skew']
         else:
             spans = duration[:,None] / cols
             starts = torch.where(p['sequential'][:, None],ci*spans,0.)
@@ -624,6 +627,9 @@ class ECGRenderer(nn.Module):
         axes = torch.stack([self.xx[0,0,0]-.5+sample/samples for sample in range(samples)])
         next_axes = axes+1/samples
         px = (self.xx-axes[:,None,None,:])[:,0]
+        left = instances['left']
+        skew = instances.get('trace_skew')
+        tilt = 0. if skew is None else (self.xx-left[:,None,None,None])*skew[:,None,None,None]
         source_index = torch.arange(n,device=self.device)[None,None]
         source_times = source_index/rates[:,None,None]
         source_valid = source_index<lengths[:,None,None]
@@ -641,10 +647,16 @@ class ECGRenderer(nn.Module):
             tb=start[:,:,None,None]+(next_axes[None,None]-x0[:,:,None,None])*slope_time[:,:,None,None]
             ya=base[:,:,None,None]-self._sample_signal(src,ta.flatten(2),rates,lengths).reshape(b,last-first,samples,w)*scale[:,:,None,None]
             yb=base[:,:,None,None]-self._sample_signal(src,tb.flatten(2),rates,lengths).reshape(b,last-first,samples,w)*scale[:,:,None,None]
+            if skew is not None:
+                # Paper fed at a slight angle: the trace drifts against the grid.
+                ya=ya+(axes[None,None]-left[:,None,None,None])*skew[:,None,None,None]
+                yb=yb+(next_axes[None,None]-left[:,None,None,None])*skew[:,None,None,None]
             low=high=None
             if self.config.preserve_extrema:
                 source_x=x0[:,:,None]+(source_times-start[:,:,None])/slope_time[:,:,None]
                 source_y=base[:,:,None]-src*scale[:,:,None]
+                if skew is not None:
+                    source_y=source_y+(source_x-left[:,None,None])*skew[:,None,None]
                 included=(source_x>=x0[:,:,None])&(source_x<x1[:,:,None])&source_valid&active[:,:,None]
                 column=(source_x+.5).floor().long().clamp(0,w-1)
                 low=torch.full((b,last-first,w),float('inf'),device=self.device)
@@ -660,7 +672,7 @@ class ECGRenderer(nn.Module):
                 index=ids[:,:,None,None].expand_as(mask)
                 trace_target.scatter_reduce_(1,index,mask,reduce='amax',include_self=True)
                 if baseline_target is not None:
-                    baselines=(1-(self.yy-base[:,:,None,None]).abs()).clamp(0,1)*within
+                    baselines=(1-(self.yy-base[:,:,None,None]-tilt).abs()).clamp(0,1)*within
                     baseline_target.scatter_reduce_(1,index,baselines,reduce='amax',include_self=True)
             pulse=self._calibration_kernel(base,scale,instances['left'],instances['ppm'],trace_speed,
                     thickness,p['pulse_present'][:,first:last],active&(instances['column'][:,first:last]==0),self.xx,self.yy)
@@ -671,7 +683,7 @@ class ECGRenderer(nn.Module):
         if instance_target is not None:
             targets['instances']=instance_target
         if self.config.coordinate_targets and trace_target is not None:
-            targets.update(self._coordinate_maps(instances, slope_time, scale))
+            targets.update(self._coordinate_maps(instances, slope_time, scale, tilt))
         if self.config.lead_marks:
             marks=self._lead_marks(instances,p,thickness)
             calibration=torch.maximum(calibration,marks)
@@ -679,7 +691,7 @@ class ECGRenderer(nn.Module):
                 targets['lead_marks']=marks
         return ink,calibration,targets
 
-    def _coordinate_maps(self, instances, slope_time, scale):
+    def _coordinate_maps(self, instances, slope_time, scale, tilt=0.):
         """Per-pixel source time and voltage inside each layout cell.
 
         A cell spans its column and the row band around its baseline. Inside
@@ -694,7 +706,7 @@ class ECGRenderer(nn.Module):
         inside = ((self.xx >= x0) & (self.xx < x1) & (self.yy >= base - .57 * ch) & (self.yy < base + .43 * ch)
                   & instances['active'][:, :, None, None])
         time = instances['start_s'][:, :, None, None] + (self.xx - x0) * slope_time[:, :, None, None]
-        voltage = (base - self.yy) / scale[:, :, None, None]
+        voltage = (base + tilt - self.yy) / scale[:, :, None, None]
         weight = inside.float()
         return {'time_s': (weight * time).sum(1, keepdim=True),
                 'voltage_mv': (weight * voltage).sum(1, keepdim=True),
@@ -1010,6 +1022,7 @@ class ECGRenderer(nn.Module):
                 torch._assert_async(((p['grid_line_mm']>0)&(p['grid_line_mm']<=1)).all(),
                                     'grid_line_mm must be in (0,1]')
                 torch._assert_async((p['feed_error'].abs()<=.1).all(), 'feed_error must be in [-0.1,0.1]')
+                torch._assert_async((p['trace_skew'].abs()<=.05).all(), 'trace_skew must be in [-0.05,0.05]')
             if self.config.print_technology:
                 torch._assert_async(((p['print_tech']>=0)&(p['print_tech']<=3)).all(), 'print_tech must be 0..3')
                 torch._assert_async(((p['copy_generations']>=1)&(p['copy_generations']<=3)).all(),

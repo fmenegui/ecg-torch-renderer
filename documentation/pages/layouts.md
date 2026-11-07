@@ -65,6 +65,7 @@ layer = ECGImageLayer(fs=500, config=RenderConfig(page_model="physical", plot_wi
 | `trace_width_mm` | Trace and pulse stroke width, sampled in 0.18–0.35 mm |
 | `grid_line_mm` | Minor grid line width, sampled in 0.05–0.12 mm; major lines are twice as wide |
 | `feed_error` | Relative paper-feed speed error of the trace against the pre-printed grid, sampled in ±1.5 % |
+| `trace_skew` | Angle of the trace against the pre-printed grid in radians, sampled in ±0.004 |
 
 Records shorter than the window end early and later columns stay empty. Pixel `line_width` and `grid_width` overrides are rejected in this mode. `capture_scenario(name, page_model="physical")` and `render_ecg(..., page_model="physical")` select it too.
 
