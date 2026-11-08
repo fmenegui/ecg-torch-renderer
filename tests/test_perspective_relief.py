@@ -58,8 +58,8 @@ class ParallaxGeometryTests(unittest.TestCase):
             batch = self.renderer(signals, 100, photo=True, return_field=True,
                                   parameters={'camera_parallax': parallax, 'surface_strength': 1.},
                                   generator=torch.Generator().manual_seed(4))
-            fields[parallax] = batch.field
-            self.assertTrue(bool(torch.isfinite(batch.field).all()))
+            fields[parallax] = batch.inverse_field
+            self.assertTrue(bool(torch.isfinite(batch.inverse_field).all()))
         self.assertGreater(float((fields[.6] - fields[0.]).abs().max()), 1e-3)
         scans = ECGRenderer(RenderConfig(height=64, width=96, profile='scan', perspective_relief=True))
         q = scans.sample_parameters(8, generator=torch.Generator().manual_seed(1))
