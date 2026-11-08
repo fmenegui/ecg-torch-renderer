@@ -57,16 +57,13 @@ class ScanRendererTests(unittest.TestCase):
         self.assertTrue(bool((photographed['scan_mode'][photographed['photo'] > 0] == 0).all()))
 
 
-if __name__ == '__main__':
-    unittest.main()
-
 
 @unittest.skipUnless(TORCH, 'Torch required')
 class LidShadowTests(unittest.TestCase):
     def test_shadow_darkens_the_chosen_edge_only(self):
         from ecg_gpu.scan_modes import lid_shadow
         image = torch.ones(4, 3, 40, 60)
-        out = lid_shadow(image, torch.tensor([.4, .4, .4, 0.]), torch.tensor([0, 1, 2, 0]), torch.full((4,), .05))
+        out = lid_shadow(image, torch.tensor([.4, .4, .4, 0.]), torch.tensor([0, 1, 2, 0]), torch.full((4,), .1))
         self.assertLess(float(out[0, 0, 20, 0]), .65)
         self.assertGreater(float(out[0, 0, 20, -1]), .99)
         self.assertLess(float(out[1, 0, 0, 30]), .65)
@@ -81,3 +78,7 @@ class LidShadowTests(unittest.TestCase):
         self.assertTrue(bool((p['scan_lid_strength'][p['photo'] > 0] == 0).all()))
         flatbed = p['scan_lid_strength'][p['photo'] == 0]
         self.assertGreater(int((flatbed > 0).sum()), 0)
+
+
+if __name__ == '__main__':
+    unittest.main()
