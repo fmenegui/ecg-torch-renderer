@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.28.0
+
+- With `device_filters=True`, add printed amplitude clipping
+  (`filter_clip_mv`, 25 % of records at 1.5-3.5 mV; 0 disables), as some
+  recorders keep each lead inside its row. `RenderBatch.reference` stays the
+  unclipped source; `metadata["printed_signals"]` is clipped.
+- Add `RenderConfig(calibration_target=True)`: the calibration pulses as a
+  separate `calibration_pulses` target.
+
 ## 0.27.0
 
 - Add `RenderConfig(page_corners=True)`: metadata `page_corners` `[B,4,2]`

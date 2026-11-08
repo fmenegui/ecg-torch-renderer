@@ -46,7 +46,7 @@ criterion; "done" means the criterion was measured, not that code exists.
 | # | Item | Acceptance | Status |
 | --- | --- | --- | --- |
 | 16 | Diverse real sources (PTB-XL, CODE-15 %, MIMIC-IV-ECG, Chapman) | Loader and provenance | planned |
-| 17 | Printed reference: device filters, clipping, alongside the untouched source | Both references returned | implemented (filters), 0.18.0 `device_filters=True`; clipping planned |
+| 17 | Printed reference: device filters, clipping, alongside the untouched source | Both references returned | implemented: filters 0.18.0, clipping 0.28.0 (`device_filters=True`) |
 
 ## 4. Paper and geometry
 
@@ -77,7 +77,7 @@ criterion; "done" means the criterion was measured, not that code exists.
 
 | # | Item | Acceptance | Status |
 | --- | --- | --- | --- |
-| 28 | Pixel→(lead, time, mV) map, text targets, page corners, depth, pulse and label masks | Contracts and tests | in progress: time/voltage maps 0.21.0, text targets 0.19.0, lead marks 0.16.0, page corners 0.27.0; depth, pulse masks planned |
+| 28 | Pixel→(lead, time, mV) map, text targets, page corners, depth, pulse and label masks | Contracts and tests | in progress: time/voltage maps 0.21.0, text targets 0.19.0, lead marks 0.16.0, page corners 0.27.0, pulse masks 0.28.0; depth planned |
 | 29 | GPU profiling, sparse raster, stage compilation, compact targets | See `OPTIMIZATION_PLAN.md` | planned |
 | 30 | PyPI release, versioned docs on Pages, calibrated presets | Published | planned |
 | 31 | Released datasets and a paper with the benchmark | Public | planned |

@@ -171,3 +171,7 @@ Existing RGB and targets are unchanged when enabling these additional targets.
 ## Page corners
 
 `RenderConfig(page_corners=True)` adds `batch.metadata["page_corners"]`, the observed xy positions of the four sheet corners `[B,4,2]` (top-left, top-right, bottom-right, bottom-left, pixel-center coordinates), with `page_corners_in_frame` and `page_corner_residual`. Corners outside the photograph are reported but marked out of frame. They are the geometric corners of the sheet, so missing-corner damage and occluding objects do not move them.
+
+## Clipping and calibration pulses
+
+With `device_filters=True`, `filter_clip_mv` (sampled for a quarter of records, 1.5–3.5 mV; 0 disables) clips the printed amplitude, as recorders that keep each lead inside its row do. The reference signal is never clipped. `RenderConfig(calibration_target=True)` returns the calibration pulses as `batch.targets["calibration_pulses"]`.
