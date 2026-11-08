@@ -175,3 +175,7 @@ Existing RGB and targets are unchanged when enabling these additional targets.
 ## Clipping and calibration pulses
 
 With `device_filters=True`, `filter_clip_mv` (sampled for a quarter of records, 1.5–3.5 mV; 0 disables) clips the printed amplitude, as recorders that keep each lead inside its row do. The reference signal is never clipped. `RenderConfig(calibration_target=True)` returns the calibration pulses as `batch.targets["calibration_pulses"]`.
+
+## Barcodes, labels and stamps
+
+`RenderConfig(office_marks=True)` adds patient barcodes, QR-style labels and translucent ink stamps, sized in millimeters. Stamps multiply the page, so traces under them stay visible, as with real ink. `batch.targets["office_marks"]` holds the union of marks. Codes encode random bits and are not decodable.
