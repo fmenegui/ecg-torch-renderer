@@ -167,3 +167,7 @@ For an existing RenderBatch, request `return_name_instances=True` before calling
 `supervise`. Names use the same inverse geometry and visibility as the ECG.
 Existing RGB and targets are unchanged when enabling these additional targets.
 
+
+## Page corners
+
+`RenderConfig(page_corners=True)` adds `batch.metadata["page_corners"]`, the observed xy positions of the four sheet corners `[B,4,2]` (top-left, top-right, bottom-right, bottom-left, pixel-center coordinates), with `page_corners_in_frame` and `page_corner_residual`. Corners outside the photograph are reported but marked out of frame. They are the geometric corners of the sheet, so missing-corner damage and occluding objects do not move them.

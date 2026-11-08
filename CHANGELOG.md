@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.27.0
+
+- Add `RenderConfig(page_corners=True)`: metadata `page_corners` `[B,4,2]`
+  (observed xy of the sheet corners in pixel-center coordinates, clockwise
+  from top-left), `page_corners_in_frame` and `page_corner_residual`, for
+  page detection and rectification models. Photographed records solve the
+  capture field by nearest-pixel search and Newton steps on device; flat
+  records report the frame corners. New module `ecg_gpu.page_geometry`.
+
 ## 0.26.0
 
 - Add `RenderConfig(archive_damage=True)`, opt-in damage documented in real

@@ -33,6 +33,7 @@ from .report_text import ReportText, ventricular_rate
 from .phone_isp import phone_observation
 from .print_reproduction import LASER, halftone, reproduce
 from .archive_damage import mold, scorch
+from .page_geometry import page_corners
 
 
 def _conditional_visibility(valid, frame_coverage=None):
@@ -105,6 +106,8 @@ class RenderConfig:
     print_technology: bool = False
     # Mold colonies and ironing scorch documented in real ECG archives.
     archive_damage: bool = False
+    # Report observed page-corner positions for rectification models.
+    page_corners: bool = False
 
     def __post_init__(self):
         for name in ('height', 'width', 'antialias_samples', 'lead_chunk_size',
@@ -114,7 +117,7 @@ class RenderConfig:
         for name in ('preserve_extrema', 'validate_inputs', 'jpeg_enabled', 'lead_marks', 'scan_modes',
                      'device_filters', 'report_text', 'phone_isp',
                      'coordinate_targets', 'print_technology',
-                     'archive_damage'):
+                     'archive_damage', 'page_corners'):
             if type(getattr(self, name)) is not bool:
                 raise ValueError(f'{name} must be bool')
         if self.camera_mode not in {'full', 'direct', 'sensor'}:
@@ -368,6 +371,8 @@ class ECGRenderer(nn.Module):
             config.pop('print_technology')
         if not self.config.archive_damage:
             config.pop('archive_damage')
+        if not self.config.page_corners:
+            config.pop('page_corners')
         return {'schema': 'ecg-replot-torch-renderer-v3', 'config': config, 'fonts': self.fonts,
                 'signal_units': 'mV', 'signal_order': LEADS, 'font_initialization': 'CPU once',
                 'hot_path': 'torch on input device', 'jpeg': 'DCT simulation, not a JPEG bitstream',
@@ -1260,6 +1265,14 @@ class ECGRenderer(nn.Module):
             targets['paper_support'] = torch.ones_like(ink) if self.display is not None else self.document.paper_mask(self._field(p), p)
         field = self._field(p) if photo or return_field else None
         scene = None
+        corners = None
+        if self.config.page_corners and not photo:
+            # Without capture geometry the page fills the frame.
+            frame = torch.full((b, 4, 2), -.5, device=self.device)
+            frame[:, 1:3, 0] = self.config.width - .5
+            frame[:, 2:, 1] = self.config.height - .5
+            corners = (frame, torch.ones(b, 4, dtype=torch.bool, device=self.device),
+                       torch.zeros(b, 4, device=self.device))
         if photo:
             if self.config.surface_mode != 'off' or len(self.document.asset_mask):
                 scene = self.document.deform(field,p,generator,diagnostics=return_scene)
@@ -1298,6 +1311,8 @@ class ECGRenderer(nn.Module):
                 image = torch.lerp(background,image,valid.clamp(0,1))
                 image = linear_to_srgb(image*(1-scene['object_shadow']))
             scene['paper_mask'] = valid.clone()
+            if self.config.page_corners:
+                corners = page_corners(field)
             targets = {name: F.grid_sample(value, field, align_corners=False) for name, value in targets.items()}
             if frame_coverage is not None:
                 targets['frame_coverage'] = frame_coverage
@@ -1363,6 +1378,8 @@ class ECGRenderer(nn.Module):
             metadata['printed_signals'] = printed
         if report_meta is not None:
             metadata['report_text'] = report_meta
+        if corners is not None:
+            metadata['page_corners'], metadata['page_corners_in_frame'], metadata['page_corner_residual'] = corners
         if return_grid_points:
             point_field = field if photo else identity_field(b, self.config.height, self.config.width, device=self.device)
             targets.update(grid_point_targets(point_field, valid,
