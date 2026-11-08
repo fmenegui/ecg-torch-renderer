@@ -52,7 +52,7 @@ criterion; "done" means the criterion was measured, not that code exists.
 
 | # | Item | Acceptance | Status |
 | --- | --- | --- | --- |
-| 18 | Content-displacing deformation in the training path from simulated sheet banks | Grid lines measurably bend; target alignment tests | planned |
+| 18 | Content-displacing deformation in the training path from simulated sheet banks | Grid lines measurably bend; target alignment tests | in progress: pinhole parallax 0.31.0 `perspective_relief=True`; bank mixing by default needs Mitsuba banks and a GPU transfer measurement |
 | 19 | Held pages, stacks, overlaps, curved supports | Recipes with aligned targets | planned |
 | 20 | Mold, scorch, scanner-jam damage, tape, staples | Recipes referenced to ECG-Image-Database | in progress: mold and scorch in 0.26.0 `archive_damage=True`; scanner jam, tape, staples planned |
 

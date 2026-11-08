@@ -236,3 +236,7 @@ These demonstrate algorithm behavior and visual plausibility. A held-out,
 authorized real-print, camera and display collection is still needed to measure
 photographic similarity and downstream digitization accuracy. See the research
 roadmap for the acquisition protocol.
+
+## Pinhole parallax for lifted paper
+
+By default a lifted sheet is displaced along one constant oblique direction (`relief_view`). With `RenderConfig(perspective_relief=True)`, photographed records also shift lifted points radially away from the camera axis in proportion to their height, as a pinhole camera does: a fold near the edge of a phone photo moves outward more than one near the center. `camera_parallax` is tan(horizontal FOV / 2) (0.46–0.65 for photographs, 0 for scans). The camera foot point and distance are read from the flat capture field, so zoom, framing and plane perspective are included, and all targets use the same field.

@@ -82,6 +82,23 @@ class DocumentAssets:
                 os.unlink(temporary)
 
 
+def relief_projection(xy, height, relief_view, parallax_scale=None, parallax_center=None):
+    """Page-plane position where the camera sees a material point lifted by ``height``.
+
+    ``relief_view`` is a constant oblique view direction (orthographic relief).
+    With ``parallax_scale`` = 1/D (camera height over the page, in page
+    units) and ``parallax_center`` the camera foot point, a pinhole camera
+    also shifts lifted points radially away from its axis. To first order in
+    height/D, a point at ``xy`` and height ``z`` meets the page plane along
+    its viewing ray at ``xy + z * (xy - center) / D``.
+    """
+    projection = xy + height * relief_view[:, :, None, None]
+    if parallax_scale is not None:
+        offset = xy - parallax_center[:, :, None, None]
+        projection = projection + height * parallax_scale[:, None, None, None] * offset
+    return projection
+
+
 class DocumentScene(nn.Module):
     def __init__(self, height, width, resolution=96, inverse_iterations=5,
                  shadow_samples=8, assets=None, geometry_solver='coarse_to_fine', compile_scene=False,
@@ -323,7 +340,8 @@ class DocumentScene(nn.Module):
         """
         mesh, normals, metric = self.surface(p, generator)
         height = mesh[:, 2:]
-        projection = mesh[:, :2] + height * p['relief_view'][:, :, None, None]
+        projection = relief_projection(mesh[:, :2], height, p['relief_view'],
+                                       p.get('parallax_scale'), p.get('parallax_center'))
         du, dv = derivatives(projection, self.aspect)
         displacement = projection - self.surface_model.material
         jacobian = torch.cat((du[:, :1], dv[:, :1], du[:, 1:], dv[:, 1:]), 1)

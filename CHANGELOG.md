@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.31.0
+
+- Add `RenderConfig(perspective_relief=True)`: lifted paper in photographed
+  records is projected with pinhole parallax, so content shifts radially from
+  the camera axis in proportion to its height (stronger toward the edges),
+  in addition to the existing constant oblique relief. The camera foot point
+  and height come from the flat capture field at the image center;
+  `camera_parallax` is tan(horizontal FOV / 2), sampled 0.46-0.65 for
+  photographs and 0 otherwise. Targets follow the same field. The projection
+  is `ecg_gpu.gpu_document.relief_projection`, tested against the exact
+  viewing-ray intersection.
+
 ## 0.30.0
 
 - With `scan_modes=True`, add a scanner lid shadow on 30 % of flatbed scans:
