@@ -1,0 +1,7 @@
+{
+  "schema": "m4-identifiability-independent-audit-protocol-v1",
+  "frozen_utc": "2026-10-23T11:17:28.895171+00:00",
+  "audit_source_sha256": "9382a3fa7a7ff45c4b8480e4e2c0b480da3f89ed5f1698ce931dafdbc6cd5b55",
+  "design": "Integrity of all16 saved witnesses and registered cases. Independently render ID01 from material unit scales. Independently derive ID04/05 projected grid from3D segment arclength and compare bothRGB and material targets. Check savedID06 monotonicity and analytical bound. Check physicalID09 same projection and differentdepth.",
+  "failure_policy": "Keep all checks and failures. No changes to primary frozen controls/protocol/results."
+}

@@ -1,0 +1,8 @@
+{
+  "torch": "2.8.0+cu128",
+  "cuda_runtime": "12.8",
+  "cuda_available": true,
+  "name": "NVIDIA A40",
+  "memory_bytes": 47699722240,
+  "matmul_finite": true
+}

@@ -1,0 +1,13 @@
+numpy==2.3.5
+scipy==1.17.0
+scikit-image==0.26.0
+scikit-learn==1.8.0
+yacs==0.1.8
+torch-tps==1.2.1
+ray[tune]==2.59.0
+matplotlib==3.10.8
+pandas==2.2.3
+timm==1.0.22
+opencv-python-headless==4.11.0.86
+connected-components-3d==3.26.1
+mitsuba==3.9.1

@@ -1,0 +1,4318 @@
+{
+  "schema": "grid-sampling-study-1",
+  "status": "completed",
+  "study": "paired evaluation sampling sensitivity, frozen weights and validation thresholds",
+  "signals_sha256": "b550f383b220488ac94ca477739a9ed308319ae720da7c0f44359b8b29c79e37",
+  "parent_report_sha256": "9cba961f2ba1fb4f021948fa8b6e37a0f47fbd00f6d48268f882dad1e240a78f",
+  "checkpoint_sha256": {
+    "baseline-online": "8b493aa19d701d80189e179f6b8083b35ee418edb60bb4894e02fd1100c80c07",
+    "baseline-offline": "6576d7d88fd44523a53651a49e3fcdd36f70b935f69f88d75d4b94849a7cd700",
+    "baseline-mixed": "264565bdb487fe0a56be3d1344b7b8296b416fe4a8af024932ea1400380f5c88",
+    "sigma06-mixed": "f5ea456d8601670785e0919ef802cd2235e9535e049a6a9ce5d6c414467e16cb",
+    "sigma20-mixed": "86f6dd41c4250173b618338f5ce1d7d1f5acdb0e8583979e56f1a028210a2913",
+    "nooffset-mixed": "b82abcbfc44a6785fe8d8ea299819bc9f594a90483e780e6cbf3a62df1cbff01",
+    "disk-mixed": "9ef48c670ffad56cfecb62726c42a9409f2857486b84ee92542ae1f1b00527bf"
+  },
+  "code_sha256": {
+    "examples/grid_sampling_study.py": "6a1f62c58a633d3446c925235120ddfbd2f65da962388ea8e905fc17f4a284c6",
+    "ecg_gpu/grid_benchmark.py": "5b9063dc03f12fd367667c8c52acef872f1390ca80276430d6680daa12872900",
+    "ecg_gpu/grid_evaluation.py": "d3f2c2b9ee6122e0cec127fbb2348ee34a2ef0573e9c2ce8d5c4e30ef2160417"
+  },
+  "levels": [
+    16,
+    32,
+    64,
+    128
+  ],
+  "radii_px": [
+    0.25,
+    0.5,
+    1.0,
+    1.5
+  ],
+  "configuration": {
+    "height": 384,
+    "width": 512,
+    "views": 2,
+    "steps": 300,
+    "batch_size": 4,
+    "crop_size": 192,
+    "spp": 16,
+    "seed": 1973,
+    "sigma": 1.2,
+    "mask_shape": "gaussian",
+    "radius": null,
+    "offsets": true,
+    "match_radius": 1.5,
+    "device": "cpu"
+  },
+  "thresholds": {
+    "baseline-online": 0.85,
+    "baseline-offline": 0.5,
+    "baseline-mixed": 0.7,
+    "sigma06-mixed": 0.3,
+    "sigma20-mixed": 0.7,
+    "nooffset-mixed": 0.7,
+    "disk-mixed": 0.7
+  },
+  "runtime": {
+    "python": "3.12.14",
+    "torch": "2.14.1+cpu",
+    "mitsuba": "3.9.1",
+    "drjit": "1.5.0",
+    "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+    "processor": "x86_64",
+    "device": "cpu",
+    "threads": 2,
+    "cuda_available": false
+  },
+  "protocol": {
+    "training_or_tuning": false,
+    "spp_schedule": "ascending per source/view",
+    "timing": "wall seconds for _capture, warm process, 1 discarded warmup, excludes serialization and inference. One timing per setting, not a throughput benchmark",
+    "reference": "geometric output-pixel centers, same signal, camera, mesh, seed, validity and lattice IDs",
+    "matching": "independent maximum-cardinality minimum-distance assignment at each tolerance"
+  },
+  "limitations": [
+    "Four test patients, two views each, one training seed, one renderer seed per geometry",
+    "All models were trained at 16 SPP. This studies evaluation sampling, not retraining",
+    "Subpixel synthetic geometric error does not establish physical annotation accuracy",
+    "No waveform reconstruction or clinical generalization measured",
+    "No GPU timings"
+  ],
+  "discarded_warmup_seconds": 2.162814747003722,
+  "by_model_spp_tolerance": [
+    {
+      "model": "baseline-mixed",
+      "spp": 16,
+      "radius_px": 0.25,
+      "images": 8,
+      "tp": 154,
+      "fp": 15566,
+      "fn": 16532,
+      "precision": 0.00979643765903308,
+      "recall": 0.009229294018938032,
+      "f1": 0.009504412763068567,
+      "median_error_px": 0.18413318802303455,
+      "p95_error_px": 0.2441021228017142,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.0020679126027971506,
+      "mean_dy_px": -0.015516306273639202,
+      "f1_patient_bootstrap_95": [
+        0.00784987121305041,
+        0.011180124223602485
+      ]
+    },
+    {
+      "model": "baseline-mixed",
+      "spp": 16,
+      "radius_px": 0.5,
+      "images": 8,
+      "tp": 690,
+      "fp": 15030,
+      "fn": 15996,
+      "precision": 0.04389312977099236,
+      "recall": 0.04135203164329378,
+      "f1": 0.042584706535826695,
+      "median_error_px": 0.362805721789821,
+      "p95_error_px": 0.48957070645422224,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.006832609418779612,
+      "mean_dy_px": 0.0022364354226738214,
+      "f1_patient_bootstrap_95": [
+        0.037286888261989455,
+        0.049768663248718266
+      ]
+    },
+    {
+      "model": "baseline-mixed",
+      "spp": 16,
+      "radius_px": 1.0,
+      "images": 8,
+      "tp": 2171,
+      "fp": 13549,
+      "fn": 14515,
+      "precision": 0.13810432569974554,
+      "recall": 0.13010907347476927,
+      "f1": 0.1339875331728692,
+      "median_error_px": 0.6538931398091552,
+      "p95_error_px": 0.9671333982193362,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.00706515135243535,
+      "mean_dy_px": -0.0034664177801460028,
+      "f1_patient_bootstrap_95": [
+        0.11722707023860376,
+        0.15605852194572964
+      ]
+    },
+    {
+      "model": "baseline-mixed",
+      "spp": 16,
+      "radius_px": 1.5,
+      "images": 8,
+      "tp": 4159,
+      "fp": 11561,
+      "fn": 12527,
+      "precision": 0.2645674300254453,
+      "recall": 0.24925086899196933,
+      "f1": 0.2566808615688453,
+      "median_error_px": 0.9722052363263057,
+      "p95_error_px": 1.4511014352722116,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.008202560245990753,
+      "mean_dy_px": 0.008160172030329704,
+      "f1_patient_bootstrap_95": [
+        0.22821703531712087,
+        0.293100218545114
+      ]
+    },
+    {
+      "model": "baseline-mixed",
+      "spp": 32,
+      "radius_px": 0.25,
+      "images": 8,
+      "tp": 263,
+      "fp": 14953,
+      "fn": 16423,
+      "precision": 0.017284437434279706,
+      "recall": 0.0157617164089656,
+      "f1": 0.016487994483104507,
+      "median_error_px": 0.18012503181259065,
+      "p95_error_px": 0.24368379785633087,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.003999441862106323,
+      "mean_dy_px": 0.0009250278235413134,
+      "f1_patient_bootstrap_95": [
+        0.015052559557131306,
+        0.018464067785892692
+      ]
+    },
+    {
+      "model": "baseline-mixed",
+      "spp": 32,
+      "radius_px": 0.5,
+      "images": 8,
+      "tp": 978,
+      "fp": 14238,
+      "fn": 15708,
+      "precision": 0.06427444794952682,
+      "recall": 0.05861201006832075,
+      "f1": 0.061312770359225124,
+      "median_error_px": 0.343112397748782,
+      "p95_error_px": 0.48319624831338676,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.012171185575425625,
+      "mean_dy_px": 0.00890728272497654,
+      "f1_patient_bootstrap_95": [
+        0.05486098152640418,
+        0.07107401435391571
+      ]
+    },
+    {
+      "model": "baseline-mixed",
+      "spp": 32,
+      "radius_px": 1.0,
+      "images": 8,
+      "tp": 2935,
+      "fp": 12281,
+      "fn": 13751,
+      "precision": 0.19288906414300735,
+      "recall": 0.1758959606856047,
+      "f1": 0.18400100307190773,
+      "median_error_px": 0.6302764026975789,
+      "p95_error_px": 0.9647199050501211,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.0050771660171449184,
+      "mean_dy_px": 0.017642628401517868,
+      "f1_patient_bootstrap_95": [
+        0.1673051169454047,
+        0.2098487490883724
+      ]
+    },
+    {
+      "model": "baseline-mixed",
+      "spp": 32,
+      "radius_px": 1.5,
+      "images": 8,
+      "tp": 5298,
+      "fp": 9918,
+      "fn": 11388,
+      "precision": 0.34818611987381703,
+      "recall": 0.3175116864437253,
+      "f1": 0.33214218544291896,
+      "median_error_px": 0.9328533106484609,
+      "p95_error_px": 1.4413043472540856,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.014434422366321087,
+      "mean_dy_px": 0.015275850892066956,
+      "f1_patient_bootstrap_95": [
+        0.3117505995203837,
+        0.3634461109173352
+      ]
+    },
+    {
+      "model": "baseline-mixed",
+      "spp": 64,
+      "radius_px": 0.25,
+      "images": 8,
+      "tp": 444,
+      "fp": 14218,
+      "fn": 16242,
+      "precision": 0.030282362569908607,
+      "recall": 0.02660913340524991,
+      "f1": 0.028327166007400793,
+      "median_error_px": 0.17033348125712738,
+      "p95_error_px": 0.2443082844293832,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.001797057455405593,
+      "mean_dy_px": -0.007895263843238354,
+      "f1_patient_bootstrap_95": [
+        0.0239785152503357,
+        0.032665560801327036
+      ]
+    },
+    {
+      "model": "baseline-mixed",
+      "spp": 64,
+      "radius_px": 0.5,
+      "images": 8,
+      "tp": 1580,
+      "fp": 13082,
+      "fn": 15106,
+      "precision": 0.10776156049652162,
+      "recall": 0.09469015941507851,
+      "f1": 0.10080387903534516,
+      "median_error_px": 0.3348954177211023,
+      "p95_error_px": 0.4840573212798004,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.010209359228610992,
+      "mean_dy_px": -0.0027128509245812893,
+      "f1_patient_bootstrap_95": [
+        0.08293990047211944,
+        0.11866785759857088
+      ]
+    },
+    {
+      "model": "baseline-mixed",
+      "spp": 64,
+      "radius_px": 1.0,
+      "images": 8,
+      "tp": 4121,
+      "fp": 10541,
+      "fn": 12565,
+      "precision": 0.281066703041877,
+      "recall": 0.24697351072755602,
+      "f1": 0.2629194844966186,
+      "median_error_px": 0.5999914857963742,
+      "p95_error_px": 0.9566259850769676,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.019779205322265625,
+      "mean_dy_px": 0.0001588935701875016,
+      "f1_patient_bootstrap_95": [
+        0.2307005231593722,
+        0.29661071451540294
+      ]
+    },
+    {
+      "model": "baseline-mixed",
+      "spp": 64,
+      "radius_px": 1.5,
+      "images": 8,
+      "tp": 6617,
+      "fp": 8045,
+      "fn": 10069,
+      "precision": 0.45130268721866046,
+      "recall": 0.3965599904111231,
+      "f1": 0.4221640934030879,
+      "median_error_px": 0.8381268056152047,
+      "p95_error_px": 1.4320976022737695,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.013952704146504402,
+      "mean_dy_px": 0.003810398979112506,
+      "f1_patient_bootstrap_95": [
+        0.3856067372719153,
+        0.46472441957682165
+      ]
+    },
+    {
+      "model": "baseline-mixed",
+      "spp": 128,
+      "radius_px": 0.25,
+      "images": 8,
+      "tp": 742,
+      "fp": 13448,
+      "fn": 15944,
+      "precision": 0.052290345313601126,
+      "recall": 0.044468416636701424,
+      "f1": 0.04806322062443322,
+      "median_error_px": 0.17985266521901147,
+      "p95_error_px": 0.2419268488311084,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.0003388037148397416,
+      "mean_dy_px": 0.00047466246178373694,
+      "f1_patient_bootstrap_95": [
+        0.03969028563992452,
+        0.05702660811159907
+      ]
+    },
+    {
+      "model": "baseline-mixed",
+      "spp": 128,
+      "radius_px": 0.5,
+      "images": 8,
+      "tp": 2537,
+      "fp": 11653,
+      "fn": 14149,
+      "precision": 0.1787878787878788,
+      "recall": 0.1520436293899077,
+      "f1": 0.1643347583883923,
+      "median_error_px": 0.3357764151736778,
+      "p95_error_px": 0.4823923930330982,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.002294989302754402,
+      "mean_dy_px": 0.0012304811971262097,
+      "f1_patient_bootstrap_95": [
+        0.13754961285704992,
+        0.1908815373702199
+      ]
+    },
+    {
+      "model": "baseline-mixed",
+      "spp": 128,
+      "radius_px": 1.0,
+      "images": 8,
+      "tp": 5614,
+      "fp": 8576,
+      "fn": 11072,
+      "precision": 0.395630725863284,
+      "recall": 0.336449718326741,
+      "f1": 0.36364814095090037,
+      "median_error_px": 0.5353547770027571,
+      "p95_error_px": 0.9444488726433431,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.001232146518304944,
+      "mean_dy_px": -0.0021882576402276754,
+      "f1_patient_bootstrap_95": [
+        0.31439911510182833,
+        0.4124588895337589
+      ]
+    },
+    {
+      "model": "baseline-mixed",
+      "spp": 128,
+      "radius_px": 1.5,
+      "images": 8,
+      "tp": 8115,
+      "fp": 6075,
+      "fn": 8571,
+      "precision": 0.5718816067653277,
+      "recall": 0.48633585041352034,
+      "f1": 0.5256509910610183,
+      "median_error_px": 0.7182796049451878,
+      "p95_error_px": 1.4082489329336663,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.008466804400086403,
+      "mean_dy_px": 0.0037113563157618046,
+      "f1_patient_bootstrap_95": [
+        0.475372503090637,
+        0.5754820403688656
+      ]
+    },
+    {
+      "model": "baseline-offline",
+      "spp": 16,
+      "radius_px": 0.25,
+      "images": 8,
+      "tp": 123,
+      "fp": 17714,
+      "fn": 16563,
+      "precision": 0.006895778438078152,
+      "recall": 0.007371449119021934,
+      "f1": 0.007125684326391102,
+      "median_error_px": 0.1751677011071799,
+      "p95_error_px": 0.24306513104734254,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.0068410239182412624,
+      "mean_dy_px": 0.0060399374924600124,
+      "f1_patient_bootstrap_95": [
+        0.006005147269087789,
+        0.007943746506222602
+      ]
+    },
+    {
+      "model": "baseline-offline",
+      "spp": 16,
+      "radius_px": 0.5,
+      "images": 8,
+      "tp": 453,
+      "fp": 17384,
+      "fn": 16233,
+      "precision": 0.02539664741828783,
+      "recall": 0.027148507731032005,
+      "f1": 0.02624337398256235,
+      "median_error_px": 0.3484192686405779,
+      "p95_error_px": 0.4900987248371135,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.02896563708782196,
+      "mean_dy_px": 0.008448679000139236,
+      "f1_patient_bootstrap_95": [
+        0.0227842333105491,
+        0.02982259680556374
+      ]
+    },
+    {
+      "model": "baseline-offline",
+      "spp": 16,
+      "radius_px": 1.0,
+      "images": 8,
+      "tp": 1685,
+      "fp": 16152,
+      "fn": 15001,
+      "precision": 0.09446655827773728,
+      "recall": 0.10098285988253626,
+      "f1": 0.09761608203226835,
+      "median_error_px": 0.7047806486493967,
+      "p95_error_px": 0.9750441629025507,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.027566714212298393,
+      "mean_dy_px": 0.03186574578285217,
+      "f1_patient_bootstrap_95": [
+        0.08948945488071915,
+        0.1057989349495425
+      ]
+    },
+    {
+      "model": "baseline-offline",
+      "spp": 16,
+      "radius_px": 1.5,
+      "images": 8,
+      "tp": 3590,
+      "fp": 14247,
+      "fn": 13096,
+      "precision": 0.2012670292089477,
+      "recall": 0.21515042550641256,
+      "f1": 0.20797729050198419,
+      "median_error_px": 1.0357311196625414,
+      "p95_error_px": 1.454001569716752,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.037351343780756,
+      "mean_dy_px": 0.08593358844518661,
+      "f1_patient_bootstrap_95": [
+        0.19439519588218473,
+        0.22009402751175344
+      ]
+    },
+    {
+      "model": "baseline-offline",
+      "spp": 32,
+      "radius_px": 0.25,
+      "images": 8,
+      "tp": 159,
+      "fp": 17118,
+      "fn": 16527,
+      "precision": 0.009202986629623199,
+      "recall": 0.009528946422150306,
+      "f1": 0.00936313046550658,
+      "median_error_px": 0.18380835347782604,
+      "p95_error_px": 0.24391901148360318,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.01299398671835661,
+      "mean_dy_px": 0.009775006212294102,
+      "f1_patient_bootstrap_95": [
+        0.007783457249070632,
+        0.011563843312950293
+      ]
+    },
+    {
+      "model": "baseline-offline",
+      "spp": 32,
+      "radius_px": 0.5,
+      "images": 8,
+      "tp": 591,
+      "fp": 16686,
+      "fn": 16095,
+      "precision": 0.034207327661052264,
+      "recall": 0.03541891405969076,
+      "f1": 0.03480257927744899,
+      "median_error_px": 0.35062706536405186,
+      "p95_error_px": 0.487002176236743,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.0058341436088085175,
+      "mean_dy_px": 0.01970009133219719,
+      "f1_patient_bootstrap_95": [
+        0.029923170238576626,
+        0.03987509007926976
+      ]
+    },
+    {
+      "model": "baseline-offline",
+      "spp": 32,
+      "radius_px": 1.0,
+      "images": 8,
+      "tp": 1983,
+      "fp": 15294,
+      "fn": 14703,
+      "precision": 0.11477687098454593,
+      "recall": 0.11884214311398777,
+      "f1": 0.11677413656037453,
+      "median_error_px": 0.6746164872789806,
+      "p95_error_px": 0.9708997624994709,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.008285504765808582,
+      "mean_dy_px": 0.09488413482904434,
+      "f1_patient_bootstrap_95": [
+        0.10626615925398716,
+        0.1253254222921838
+      ]
+    },
+    {
+      "model": "baseline-offline",
+      "spp": 32,
+      "radius_px": 1.5,
+      "images": 8,
+      "tp": 4066,
+      "fp": 13211,
+      "fn": 12620,
+      "precision": 0.23534178387451526,
+      "recall": 0.24367733429222102,
+      "f1": 0.2394370344198098,
+      "median_error_px": 1.0113523354627496,
+      "p95_error_px": 1.4566606402017248,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.019884344190359116,
+      "mean_dy_px": 0.13423198461532593,
+      "f1_patient_bootstrap_95": [
+        0.22049211283153705,
+        0.25716983358904755
+      ]
+    },
+    {
+      "model": "baseline-offline",
+      "spp": 64,
+      "radius_px": 0.25,
+      "images": 8,
+      "tp": 206,
+      "fp": 16408,
+      "fn": 16480,
+      "precision": 0.01239918141326592,
+      "recall": 0.012345679012345678,
+      "f1": 0.012372372372372372,
+      "median_error_px": 0.17813139922518764,
+      "p95_error_px": 0.24106738730382157,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.0021910250652581453,
+      "mean_dy_px": 0.007141187321394682,
+      "f1_patient_bootstrap_95": [
+        0.010436123217409351,
+        0.014659234393766745
+      ]
+    },
+    {
+      "model": "baseline-offline",
+      "spp": 64,
+      "radius_px": 0.5,
+      "images": 8,
+      "tp": 769,
+      "fp": 15845,
+      "fn": 15917,
+      "precision": 0.04628626459612375,
+      "recall": 0.046086539614047704,
+      "f1": 0.04618618618618619,
+      "median_error_px": 0.33993770442011156,
+      "p95_error_px": 0.4840758905126391,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.009330402128398418,
+      "mean_dy_px": 0.032807521522045135,
+      "f1_patient_bootstrap_95": [
+        0.03883898129206321,
+        0.05457177173477873
+      ]
+    },
+    {
+      "model": "baseline-offline",
+      "spp": 64,
+      "radius_px": 1.0,
+      "images": 8,
+      "tp": 2379,
+      "fp": 14235,
+      "fn": 14307,
+      "precision": 0.1431924882629108,
+      "recall": 0.14257461344839986,
+      "f1": 0.1428828828828829,
+      "median_error_px": 0.6428035131824016,
+      "p95_error_px": 0.9651155991544619,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.033190734684467316,
+      "mean_dy_px": 0.09259404242038727,
+      "f1_patient_bootstrap_95": [
+        0.12487770168104598,
+        0.1603937811393241
+      ]
+    },
+    {
+      "model": "baseline-offline",
+      "spp": 64,
+      "radius_px": 1.5,
+      "images": 8,
+      "tp": 4560,
+      "fp": 12054,
+      "fn": 12126,
+      "precision": 0.27446731672083785,
+      "recall": 0.2732829917295937,
+      "f1": 0.27387387387387385,
+      "median_error_px": 0.9733645194833696,
+      "p95_error_px": 1.4517656956622196,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.03422579541802406,
+      "mean_dy_px": 0.17176160216331482,
+      "f1_patient_bootstrap_95": [
+        0.25130701279971157,
+        0.2975578208247359
+      ]
+    },
+    {
+      "model": "baseline-offline",
+      "spp": 128,
+      "radius_px": 0.25,
+      "images": 8,
+      "tp": 278,
+      "fp": 15796,
+      "fn": 16408,
+      "precision": 0.017295010576085602,
+      "recall": 0.01666067361860242,
+      "f1": 0.01697191697191697,
+      "median_error_px": 0.17859224526195222,
+      "p95_error_px": 0.2440536831501728,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.002327514113858342,
+      "mean_dy_px": 0.0028942162171006203,
+      "f1_patient_bootstrap_95": [
+        0.01378721327476818,
+        0.019429490749334817
+      ]
+    },
+    {
+      "model": "baseline-offline",
+      "spp": 128,
+      "radius_px": 0.5,
+      "images": 8,
+      "tp": 1032,
+      "fp": 15042,
+      "fn": 15654,
+      "precision": 0.06420306084359836,
+      "recall": 0.061848256023013304,
+      "f1": 0.063003663003663,
+      "median_error_px": 0.34752699423328315,
+      "p95_error_px": 0.48741246706875574,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.00016556968330405653,
+      "mean_dy_px": 0.02885584905743599,
+      "f1_patient_bootstrap_95": [
+        0.05405075646656906,
+        0.07202524596250232
+      ]
+    },
+    {
+      "model": "baseline-offline",
+      "spp": 128,
+      "radius_px": 1.0,
+      "images": 8,
+      "tp": 3023,
+      "fp": 13051,
+      "fn": 13663,
+      "precision": 0.18806768694786613,
+      "recall": 0.18116984298214073,
+      "f1": 0.18455433455433456,
+      "median_error_px": 0.6356030773796796,
+      "p95_error_px": 0.9656930427893818,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.028834672644734383,
+      "mean_dy_px": 0.12625062465667725,
+      "f1_patient_bootstrap_95": [
+        0.16401857736494743,
+        0.2050500121980971
+      ]
+    },
+    {
+      "model": "baseline-offline",
+      "spp": 128,
+      "radius_px": 1.5,
+      "images": 8,
+      "tp": 5288,
+      "fp": 10786,
+      "fn": 11398,
+      "precision": 0.32897847455518225,
+      "recall": 0.31691238163730073,
+      "f1": 0.32283272283272285,
+      "median_error_px": 0.9167158215047271,
+      "p95_error_px": 1.448027344948276,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.03286461532115936,
+      "mean_dy_px": 0.21879810094833374,
+      "f1_patient_bootstrap_95": [
+        0.29736005866536297,
+        0.34825567211515
+      ]
+    },
+    {
+      "model": "baseline-online",
+      "spp": 16,
+      "radius_px": 0.25,
+      "images": 8,
+      "tp": 13,
+      "fp": 792,
+      "fn": 16673,
+      "precision": 0.016149068322981366,
+      "recall": 0.0007790962483519118,
+      "f1": 0.0014864787605054029,
+      "median_error_px": 0.1957434715437467,
+      "p95_error_px": 0.2384349465988642,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.0042439973913133144,
+      "mean_dy_px": -0.03987825661897659,
+      "f1_patient_bootstrap_95": [
+        0.0010610079575596816,
+        0.0020138733497426717
+      ]
+    },
+    {
+      "model": "baseline-online",
+      "spp": 16,
+      "radius_px": 0.5,
+      "images": 8,
+      "tp": 42,
+      "fp": 763,
+      "fn": 16644,
+      "precision": 0.05217391304347826,
+      "recall": 0.0025170801869830997,
+      "f1": 0.00480246984163284,
+      "median_error_px": 0.35078175519370147,
+      "p95_error_px": 0.47708889335993393,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.014084498398005962,
+      "mean_dy_px": -0.0384637750685215,
+      "f1_patient_bootstrap_95": [
+        0.0022169068315734206,
+        0.0068926553672316385
+      ]
+    },
+    {
+      "model": "baseline-online",
+      "spp": 16,
+      "radius_px": 1.0,
+      "images": 8,
+      "tp": 109,
+      "fp": 696,
+      "fn": 16577,
+      "precision": 0.13540372670807455,
+      "recall": 0.006532422390027568,
+      "f1": 0.012463552684237609,
+      "median_error_px": 0.5698600785237865,
+      "p95_error_px": 0.960311841829152,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.002311461605131626,
+      "mean_dy_px": 0.014490880072116852,
+      "f1_patient_bootstrap_95": [
+        0.0056006067323960095,
+        0.020677966101694915
+      ]
+    },
+    {
+      "model": "baseline-online",
+      "spp": 16,
+      "radius_px": 1.5,
+      "images": 8,
+      "tp": 221,
+      "fp": 584,
+      "fn": 16465,
+      "precision": 0.2745341614906832,
+      "recall": 0.0132446362219825,
+      "f1": 0.025270138928591847,
+      "median_error_px": 1.0070389511496078,
+      "p95_error_px": 1.4301052102956278,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.07681172341108322,
+      "mean_dy_px": 0.031144466251134872,
+      "f1_patient_bootstrap_95": [
+        0.01124780316344464,
+        0.038633318445734706
+      ]
+    },
+    {
+      "model": "baseline-online",
+      "spp": 32,
+      "radius_px": 0.25,
+      "images": 8,
+      "tp": 7,
+      "fp": 435,
+      "fn": 16679,
+      "precision": 0.01583710407239819,
+      "recall": 0.00041951336449718324,
+      "f1": 0.0008173750583839327,
+      "median_error_px": 0.2341399066756198,
+      "p95_error_px": 0.24782120246068426,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.08902577310800552,
+      "mean_dy_px": -0.1263776570558548,
+      "f1_patient_bootstrap_95": [
+        0.00023133422011451044,
+        0.0015110129598419249
+      ]
+    },
+    {
+      "model": "baseline-online",
+      "spp": 32,
+      "radius_px": 0.5,
+      "images": 8,
+      "tp": 30,
+      "fp": 412,
+      "fn": 16656,
+      "precision": 0.06787330316742081,
+      "recall": 0.0017979144192736426,
+      "f1": 0.003503035964502569,
+      "median_error_px": 0.3731063272690539,
+      "p95_error_px": 0.4775106315036574,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.09788678586483002,
+      "mean_dy_px": 0.00296045932918787,
+      "f1_patient_bootstrap_95": [
+        0.0011720581340834506,
+        0.006334581053843939
+      ]
+    },
+    {
+      "model": "baseline-online",
+      "spp": 32,
+      "radius_px": 1.0,
+      "images": 8,
+      "tp": 107,
+      "fp": 335,
+      "fn": 16579,
+      "precision": 0.2420814479638009,
+      "recall": 0.006412561428742658,
+      "f1": 0.01249416160672583,
+      "median_error_px": 0.6548638415653487,
+      "p95_error_px": 0.9711319829384792,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.017490742728114128,
+      "mean_dy_px": -0.05860672891139984,
+      "f1_patient_bootstrap_95": [
+        0.006151662131787531,
+        0.018407038666357952
+      ]
+    },
+    {
+      "model": "baseline-online",
+      "spp": 32,
+      "radius_px": 1.5,
+      "images": 8,
+      "tp": 203,
+      "fp": 239,
+      "fn": 16483,
+      "precision": 0.4592760180995475,
+      "recall": 0.012165887570418315,
+      "f1": 0.02370387669313405,
+      "median_error_px": 0.9720924177802723,
+      "p95_error_px": 1.4199567518860052,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.03128128871321678,
+      "mean_dy_px": -0.08512938767671585,
+      "f1_patient_bootstrap_95": [
+        0.010292203951259907,
+        0.03797175272053716
+      ]
+    },
+    {
+      "model": "baseline-online",
+      "spp": 64,
+      "radius_px": 0.25,
+      "images": 8,
+      "tp": 14,
+      "fp": 271,
+      "fn": 16672,
+      "precision": 0.04912280701754386,
+      "recall": 0.0008390267289943665,
+      "f1": 0.0016498733132991573,
+      "median_error_px": 0.18045734309908323,
+      "p95_error_px": 0.24246685892512843,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.001987457275390625,
+      "mean_dy_px": 0.0201252531260252,
+      "f1_patient_bootstrap_95": [
+        0.0007156488549618321,
+        0.002562012344241295
+      ]
+    },
+    {
+      "model": "baseline-online",
+      "spp": 64,
+      "radius_px": 0.5,
+      "images": 8,
+      "tp": 39,
+      "fp": 246,
+      "fn": 16647,
+      "precision": 0.1368421052631579,
+      "recall": 0.0023372887450557353,
+      "f1": 0.004596075658476224,
+      "median_error_px": 0.3371632114317411,
+      "p95_error_px": 0.4829269769929628,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.007149916607886553,
+      "mean_dy_px": 0.020135732367634773,
+      "f1_patient_bootstrap_95": [
+        0.0016698473282442748,
+        0.00745312681961104
+      ]
+    },
+    {
+      "model": "baseline-online",
+      "spp": 64,
+      "radius_px": 1.0,
+      "images": 8,
+      "tp": 113,
+      "fp": 172,
+      "fn": 16573,
+      "precision": 0.39649122807017545,
+      "recall": 0.006772144312597387,
+      "f1": 0.013316834600200342,
+      "median_error_px": 0.6432657173722196,
+      "p95_error_px": 0.9428153851909099,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.060702163726091385,
+      "mean_dy_px": 0.008522235788404942,
+      "f1_patient_bootstrap_95": [
+        0.005826050769870994,
+        0.0204009848751319
+      ]
+    },
+    {
+      "model": "baseline-online",
+      "spp": 64,
+      "radius_px": 1.5,
+      "images": 8,
+      "tp": 194,
+      "fp": 91,
+      "fn": 16492,
+      "precision": 0.6807017543859649,
+      "recall": 0.011626513244636223,
+      "f1": 0.022862530198574038,
+      "median_error_px": 0.869546645619959,
+      "p95_error_px": 1.4531116208330415,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.05108487233519554,
+      "mean_dy_px": -0.15889212489128113,
+      "f1_patient_bootstrap_95": [
+        0.009868616610189644,
+        0.033649900340016414
+      ]
+    },
+    {
+      "model": "baseline-online",
+      "spp": 128,
+      "radius_px": 0.25,
+      "images": 8,
+      "tp": 21,
+      "fp": 289,
+      "fn": 16665,
+      "precision": 0.06774193548387097,
+      "recall": 0.0012585400934915498,
+      "f1": 0.002471169686985173,
+      "median_error_px": 0.17569899555122492,
+      "p95_error_px": 0.24649376989209568,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.0009282429818995297,
+      "mean_dy_px": 0.0008799235220067203,
+      "f1_patient_bootstrap_95": [
+        0.000836470096194061,
+        0.003514115028698606
+      ]
+    },
+    {
+      "model": "baseline-online",
+      "spp": 128,
+      "radius_px": 0.5,
+      "images": 8,
+      "tp": 83,
+      "fp": 227,
+      "fn": 16603,
+      "precision": 0.267741935483871,
+      "recall": 0.004974229893323744,
+      "f1": 0.009767004000941397,
+      "median_error_px": 0.35329968749157553,
+      "p95_error_px": 0.48153268987352926,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.0517372228205204,
+      "mean_dy_px": 0.01640632376074791,
+      "f1_patient_bootstrap_95": [
+        0.003694214383602455,
+        0.013981125480601188
+      ]
+    },
+    {
+      "model": "baseline-online",
+      "spp": 128,
+      "radius_px": 1.0,
+      "images": 8,
+      "tp": 188,
+      "fp": 122,
+      "fn": 16498,
+      "precision": 0.6064516129032258,
+      "recall": 0.011266930360781493,
+      "f1": 0.022122852435867264,
+      "median_error_px": 0.5637960472120502,
+      "p95_error_px": 0.9410359770647201,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.011556463316082954,
+      "mean_dy_px": -0.07188914716243744,
+      "f1_patient_bootstrap_95": [
+        0.00716974368166338,
+        0.03427572136403381
+      ]
+    },
+    {
+      "model": "baseline-online",
+      "spp": 128,
+      "radius_px": 1.5,
+      "images": 8,
+      "tp": 258,
+      "fp": 52,
+      "fn": 16428,
+      "precision": 0.832258064516129,
+      "recall": 0.015462064005753326,
+      "f1": 0.03036008472581784,
+      "median_error_px": 0.6802896985627886,
+      "p95_error_px": 1.3589257516537008,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.07074394822120667,
+      "mean_dy_px": -0.2175961583852768,
+      "f1_patient_bootstrap_95": [
+        0.010515624066439624,
+        0.04593412999125619
+      ]
+    },
+    {
+      "model": "disk-mixed",
+      "spp": 16,
+      "radius_px": 0.25,
+      "images": 8,
+      "tp": 56,
+      "fp": 9146,
+      "fn": 16630,
+      "precision": 0.006085633557922191,
+      "recall": 0.003356106915977466,
+      "f1": 0.004326328800988875,
+      "median_error_px": 0.1624360628536023,
+      "p95_error_px": 0.23955534099401304,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.013338633812963963,
+      "mean_dy_px": -0.008373533375561237,
+      "f1_patient_bootstrap_95": [
+        0.0025532902626794075,
+        0.005784582160348617
+      ]
+    },
+    {
+      "model": "disk-mixed",
+      "spp": 16,
+      "radius_px": 0.5,
+      "images": 8,
+      "tp": 210,
+      "fp": 8992,
+      "fn": 16476,
+      "precision": 0.022821125842208214,
+      "recall": 0.012585400934915498,
+      "f1": 0.01622373300370828,
+      "median_error_px": 0.3350695173025855,
+      "p95_error_px": 0.48334218884133007,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.00994259025901556,
+      "mean_dy_px": -0.014564823359251022,
+      "f1_patient_bootstrap_95": [
+        0.014065899906745415,
+        0.018631619636644763
+      ]
+    },
+    {
+      "model": "disk-mixed",
+      "spp": 16,
+      "radius_px": 1.0,
+      "images": 8,
+      "tp": 832,
+      "fp": 8370,
+      "fn": 15854,
+      "precision": 0.09041512714627255,
+      "recall": 0.049862159894522355,
+      "f1": 0.06427688504326329,
+      "median_error_px": 0.6942811050686781,
+      "p95_error_px": 0.9709366732261603,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.012982368469238281,
+      "mean_dy_px": -0.0816613957285881,
+      "f1_patient_bootstrap_95": [
+        0.0519894311470314,
+        0.07738693467336684
+      ]
+    },
+    {
+      "model": "disk-mixed",
+      "spp": 16,
+      "radius_px": 1.5,
+      "images": 8,
+      "tp": 1719,
+      "fp": 7483,
+      "fn": 14967,
+      "precision": 0.18680721582264725,
+      "recall": 0.10302049622437973,
+      "f1": 0.13280284301606923,
+      "median_error_px": 1.0181500848736018,
+      "p95_error_px": 1.453186482780823,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.055743083357810974,
+      "mean_dy_px": -0.0903746485710144,
+      "f1_patient_bootstrap_95": [
+        0.11660585358279636,
+        0.14884293072960714
+      ]
+    },
+    {
+      "model": "disk-mixed",
+      "spp": 32,
+      "radius_px": 0.25,
+      "images": 8,
+      "tp": 70,
+      "fp": 8572,
+      "fn": 16616,
+      "precision": 0.00809997685720898,
+      "recall": 0.004195133644971833,
+      "f1": 0.005527479469361971,
+      "median_error_px": 0.17275756509446835,
+      "p95_error_px": 0.24048215327595968,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.020174680277705193,
+      "mean_dy_px": -0.007878439500927925,
+      "f1_patient_bootstrap_95": [
+        0.00398406374501992,
+        0.007043355767725779
+      ]
+    },
+    {
+      "model": "disk-mixed",
+      "spp": 32,
+      "radius_px": 0.5,
+      "images": 8,
+      "tp": 257,
+      "fp": 8385,
+      "fn": 16429,
+      "precision": 0.02973848646146725,
+      "recall": 0.015402133525110872,
+      "f1": 0.020293746051800378,
+      "median_error_px": 0.3457853426930254,
+      "p95_error_px": 0.48524811546166113,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.011438109911978245,
+      "mean_dy_px": -0.038317061960697174,
+      "f1_patient_bootstrap_95": [
+        0.017689243027888445,
+        0.022851776490843637
+      ]
+    },
+    {
+      "model": "disk-mixed",
+      "spp": 32,
+      "radius_px": 1.0,
+      "images": 8,
+      "tp": 868,
+      "fp": 7774,
+      "fn": 15818,
+      "precision": 0.10043971302939135,
+      "recall": 0.052019657197650726,
+      "f1": 0.06854074542008844,
+      "median_error_px": 0.69054209793178,
+      "p95_error_px": 0.9682561955643106,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.021274598315358162,
+      "mean_dy_px": -0.06606099009513855,
+      "f1_patient_bootstrap_95": [
+        0.06071713147410358,
+        0.07622476130849898
+      ]
+    },
+    {
+      "model": "disk-mixed",
+      "spp": 32,
+      "radius_px": 1.5,
+      "images": 8,
+      "tp": 1891,
+      "fp": 6751,
+      "fn": 14795,
+      "precision": 0.21881508909974542,
+      "recall": 0.11332853889488194,
+      "f1": 0.14932090966519268,
+      "median_error_px": 1.0444386501287946,
+      "p95_error_px": 1.457684829910507,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.04875747859477997,
+      "mean_dy_px": -0.15012842416763306,
+      "f1_patient_bootstrap_95": [
+        0.1343426294820717,
+        0.16403192987948037
+      ]
+    },
+    {
+      "model": "disk-mixed",
+      "spp": 64,
+      "radius_px": 0.25,
+      "images": 8,
+      "tp": 79,
+      "fp": 8374,
+      "fn": 16607,
+      "precision": 0.009345794392523364,
+      "recall": 0.004734507970753926,
+      "f1": 0.006285055093679144,
+      "median_error_px": 0.16724176606852995,
+      "p95_error_px": 0.2426868382836662,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.009007031098008156,
+      "mean_dy_px": 0.006619706749916077,
+      "f1_patient_bootstrap_95": [
+        0.004024938836713756,
+        0.0083356710615958
+      ]
+    },
+    {
+      "model": "disk-mixed",
+      "spp": 64,
+      "radius_px": 0.5,
+      "images": 8,
+      "tp": 292,
+      "fp": 8161,
+      "fn": 16394,
+      "precision": 0.034543948893883826,
+      "recall": 0.017499700347596788,
+      "f1": 0.023230836548788734,
+      "median_error_px": 0.3413416003908584,
+      "p95_error_px": 0.4840425692229698,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.0014500290853902698,
+      "mean_dy_px": -0.009254364296793938,
+      "f1_patient_bootstrap_95": [
+        0.01580772642955077,
+        0.0304552590266876
+      ]
+    },
+    {
+      "model": "disk-mixed",
+      "spp": 64,
+      "radius_px": 1.0,
+      "images": 8,
+      "tp": 1079,
+      "fp": 7374,
+      "fn": 15607,
+      "precision": 0.12764698923459128,
+      "recall": 0.06466498861320868,
+      "f1": 0.0858427145073392,
+      "median_error_px": 0.6875542775383738,
+      "p95_error_px": 0.9712592583033577,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.015332866460084915,
+      "mean_dy_px": -0.11243647336959839,
+      "f1_patient_bootstrap_95": [
+        0.06565045568190983,
+        0.1054945054945055
+      ]
+    },
+    {
+      "model": "disk-mixed",
+      "spp": 64,
+      "radius_px": 1.5,
+      "images": 8,
+      "tp": 2259,
+      "fp": 6194,
+      "fn": 14427,
+      "precision": 0.2672423991482314,
+      "recall": 0.1353829557713053,
+      "f1": 0.17972075261545806,
+      "median_error_px": 1.0229672981157658,
+      "p95_error_px": 1.4593112283680891,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.05581652373075485,
+      "mean_dy_px": -0.18041273951530457,
+      "f1_patient_bootstrap_95": [
+        0.14291475118961205,
+        0.21554160125588698
+      ]
+    },
+    {
+      "model": "disk-mixed",
+      "spp": 128,
+      "radius_px": 0.25,
+      "images": 8,
+      "tp": 96,
+      "fp": 8180,
+      "fn": 16590,
+      "precision": 0.011599806669888834,
+      "recall": 0.005753326141675656,
+      "f1": 0.0076916913708837435,
+      "median_error_px": 0.16539183694436024,
+      "p95_error_px": 0.23784613555845813,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.0007631381158716977,
+      "mean_dy_px": -0.0009281237726099789,
+      "f1_patient_bootstrap_95": [
+        0.005226623111474071,
+        0.01006526696547928
+      ]
+    },
+    {
+      "model": "disk-mixed",
+      "spp": 128,
+      "radius_px": 0.5,
+      "images": 8,
+      "tp": 370,
+      "fp": 7906,
+      "fn": 16316,
+      "precision": 0.04470758820686322,
+      "recall": 0.02217427783770826,
+      "f1": 0.02964506049194776,
+      "median_error_px": 0.3492992356926049,
+      "p95_error_px": 0.4872159794281037,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.006435363553464413,
+      "mean_dy_px": -0.02715039625763893,
+      "f1_patient_bootstrap_95": [
+        0.020253164556962026,
+        0.03868836989856098
+      ]
+    },
+    {
+      "model": "disk-mixed",
+      "spp": 128,
+      "radius_px": 1.0,
+      "images": 8,
+      "tp": 1297,
+      "fp": 6979,
+      "fn": 15389,
+      "precision": 0.15671822136297728,
+      "recall": 0.07772983339326381,
+      "f1": 0.10391795529204391,
+      "median_error_px": 0.693085481308497,
+      "p95_error_px": 0.9732935403877959,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.016279995441436768,
+      "mean_dy_px": -0.15438221395015717,
+      "f1_patient_bootstrap_95": [
+        0.08215598203348305,
+        0.12487221829047732
+      ]
+    },
+    {
+      "model": "disk-mixed",
+      "spp": 128,
+      "radius_px": 1.5,
+      "images": 8,
+      "tp": 2700,
+      "fp": 5576,
+      "fn": 13986,
+      "precision": 0.3262445625906235,
+      "recall": 0.16181229773462782,
+      "f1": 0.21632881980610527,
+      "median_error_px": 1.021684278217771,
+      "p95_error_px": 1.4486408910680328,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.036370906978845596,
+      "mean_dy_px": -0.25705984234809875,
+      "f1_patient_bootstrap_95": [
+        0.1713352388730094,
+        0.2596524337500983
+      ]
+    },
+    {
+      "model": "nooffset-mixed",
+      "spp": 16,
+      "radius_px": 0.25,
+      "images": 8,
+      "tp": 137,
+      "fp": 14324,
+      "fn": 16549,
+      "precision": 0.009473757001590484,
+      "recall": 0.008210475848016301,
+      "f1": 0.008796994895174496,
+      "median_error_px": 0.1724178414268372,
+      "p95_error_px": 0.2435727416255465,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.0011467760195955634,
+      "mean_dy_px": 0.0008049568277783692,
+      "f1_patient_bootstrap_95": [
+        0.006786325870488996,
+        0.010850027778685578
+      ]
+    },
+    {
+      "model": "nooffset-mixed",
+      "spp": 16,
+      "radius_px": 0.5,
+      "images": 8,
+      "tp": 507,
+      "fp": 13954,
+      "fn": 16179,
+      "precision": 0.035059816056980844,
+      "recall": 0.03038475368572456,
+      "f1": 0.03255530227630269,
+      "median_error_px": 0.3440327741101629,
+      "p95_error_px": 0.48602123433202477,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.0052303713746368885,
+      "mean_dy_px": -0.008495609275996685,
+      "f1_patient_bootstrap_95": [
+        0.028128950695322376,
+        0.040009182435313026
+      ]
+    },
+    {
+      "model": "nooffset-mixed",
+      "spp": 16,
+      "radius_px": 1.0,
+      "images": 8,
+      "tp": 1895,
+      "fp": 12566,
+      "fn": 14791,
+      "precision": 0.13104211327017495,
+      "recall": 0.11356826081745175,
+      "f1": 0.12168106077631875,
+      "median_error_px": 0.6881176344354324,
+      "p95_error_px": 0.974612001085237,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.004738544579595327,
+      "mean_dy_px": -0.0034865587949752808,
+      "f1_patient_bootstrap_95": [
+        0.10903919089759798,
+        0.13878595087397108
+      ]
+    },
+    {
+      "model": "nooffset-mixed",
+      "spp": 16,
+      "radius_px": 1.5,
+      "images": 8,
+      "tp": 3535,
+      "fp": 10926,
+      "fn": 13151,
+      "precision": 0.2444505912454187,
+      "recall": 0.21185424907107755,
+      "f1": 0.22698815295213023,
+      "median_error_px": 0.9635576690384593,
+      "p95_error_px": 1.4512236126932903,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.002830368233844638,
+      "mean_dy_px": -0.023522093892097473,
+      "f1_patient_bootstrap_95": [
+        0.21240506329113923,
+        0.24340664727605477
+      ]
+    },
+    {
+      "model": "nooffset-mixed",
+      "spp": 32,
+      "radius_px": 0.25,
+      "images": 8,
+      "tp": 227,
+      "fp": 13515,
+      "fn": 16459,
+      "precision": 0.016518701790132442,
+      "recall": 0.013604219105837229,
+      "f1": 0.014920467990009203,
+      "median_error_px": 0.1870574976065894,
+      "p95_error_px": 0.24470973779596883,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.003780180122703314,
+      "mean_dy_px": 0.008658640086650848,
+      "f1_patient_bootstrap_95": [
+        0.012698412698412698,
+        0.01720803041419329
+      ]
+    },
+    {
+      "model": "nooffset-mixed",
+      "spp": 32,
+      "radius_px": 0.5,
+      "images": 8,
+      "tp": 786,
+      "fp": 12956,
+      "fn": 15900,
+      "precision": 0.057196914568476205,
+      "recall": 0.04710535778496944,
+      "f1": 0.05166294202708032,
+      "median_error_px": 0.3481337924530818,
+      "p95_error_px": 0.4851837574181156,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.00023091051843948662,
+      "mean_dy_px": -0.0103042833507061,
+      "f1_patient_bootstrap_95": [
+        0.048214574244627564,
+        0.054485990761657506
+      ]
+    },
+    {
+      "model": "nooffset-mixed",
+      "spp": 32,
+      "radius_px": 1.0,
+      "images": 8,
+      "tp": 2431,
+      "fp": 11311,
+      "fn": 14255,
+      "precision": 0.1769029253383787,
+      "recall": 0.1456909984418075,
+      "f1": 0.1597870382542395,
+      "median_error_px": 0.6427857701568246,
+      "p95_error_px": 0.9577776133537292,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.02844727225601673,
+      "mean_dy_px": -0.01863018423318863,
+      "f1_patient_bootstrap_95": [
+        0.15225137674117267,
+        0.1675448542653238
+      ]
+    },
+    {
+      "model": "nooffset-mixed",
+      "spp": 32,
+      "radius_px": 1.5,
+      "images": 8,
+      "tp": 4278,
+      "fp": 9464,
+      "fn": 12408,
+      "precision": 0.31130839761315676,
+      "recall": 0.2563825961884214,
+      "f1": 0.28118837912449063,
+      "median_error_px": 0.9144042958000431,
+      "p95_error_px": 1.446361851692156,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.045454561710357666,
+      "mean_dy_px": -0.04016531631350517,
+      "f1_patient_bootstrap_95": [
+        0.27090938459053465,
+        0.29377044756990117
+      ]
+    },
+    {
+      "model": "nooffset-mixed",
+      "spp": 64,
+      "radius_px": 0.25,
+      "images": 8,
+      "tp": 298,
+      "fp": 12449,
+      "fn": 16388,
+      "precision": 0.023378049737193065,
+      "recall": 0.017859283231451518,
+      "f1": 0.020249379947677778,
+      "median_error_px": 0.18322265171124189,
+      "p95_error_px": 0.24383425002061995,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.008173411712050438,
+      "mean_dy_px": -0.013484571129083633,
+      "f1_patient_bootstrap_95": [
+        0.015756514712813953,
+        0.024825126868742286
+      ]
+    },
+    {
+      "model": "nooffset-mixed",
+      "spp": 64,
+      "radius_px": 0.5,
+      "images": 8,
+      "tp": 1012,
+      "fp": 11735,
+      "fn": 15674,
+      "precision": 0.07939122930885699,
+      "recall": 0.06064964641016421,
+      "f1": 0.06876635069479836,
+      "median_error_px": 0.33963518360159783,
+      "p95_error_px": 0.4872683681916959,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.00652107410132885,
+      "mean_dy_px": -0.0085519440472126,
+      "f1_patient_bootstrap_95": [
+        0.055080465961888085,
+        0.08270470443011932
+      ]
+    },
+    {
+      "model": "nooffset-mixed",
+      "spp": 64,
+      "radius_px": 1.0,
+      "images": 8,
+      "tp": 3049,
+      "fp": 9698,
+      "fn": 13637,
+      "precision": 0.23919353573389818,
+      "recall": 0.18272803547884453,
+      "f1": 0.20718241429687764,
+      "median_error_px": 0.6370486572368339,
+      "p95_error_px": 0.9633313703133236,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.01071048155426979,
+      "mean_dy_px": -0.008397246710956097,
+      "f1_patient_bootstrap_95": [
+        0.18045922833479228,
+        0.23439857358387053
+      ]
+    },
+    {
+      "model": "nooffset-mixed",
+      "spp": 64,
+      "radius_px": 1.5,
+      "images": 8,
+      "tp": 4922,
+      "fp": 7825,
+      "fn": 11764,
+      "precision": 0.38613006982034986,
+      "recall": 0.2949778257221623,
+      "f1": 0.334454523833792,
+      "median_error_px": 0.8623923935298246,
+      "p95_error_px": 1.425709189851883,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.03259989619255066,
+      "mean_dy_px": -0.03940055891871452,
+      "f1_patient_bootstrap_95": [
+        0.30489529324624604,
+        0.3645590453984364
+      ]
+    },
+    {
+      "model": "nooffset-mixed",
+      "spp": 128,
+      "radius_px": 0.25,
+      "images": 8,
+      "tp": 427,
+      "fp": 11562,
+      "fn": 16259,
+      "precision": 0.035615981316206524,
+      "recall": 0.02559031523432818,
+      "f1": 0.02978204010462075,
+      "median_error_px": 0.16983563945223296,
+      "p95_error_px": 0.24233678666809996,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.003587825456634164,
+      "mean_dy_px": 0.00531855458393693,
+      "f1_patient_bootstrap_95": [
+        0.02450282858431958,
+        0.03409169971474292
+      ]
+    },
+    {
+      "model": "nooffset-mixed",
+      "spp": 128,
+      "radius_px": 0.5,
+      "images": 8,
+      "tp": 1487,
+      "fp": 10502,
+      "fn": 15199,
+      "precision": 0.12403036116440071,
+      "recall": 0.08911662471533022,
+      "f1": 0.10371403661726242,
+      "median_error_px": 0.3441815921423138,
+      "p95_error_px": 0.4860376737686623,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.006430617533624172,
+      "mean_dy_px": 0.0028204466216266155,
+      "f1_patient_bootstrap_95": [
+        0.08727973568281938,
+        0.12059093800805824
+      ]
+    },
+    {
+      "model": "nooffset-mixed",
+      "spp": 128,
+      "radius_px": 1.0,
+      "images": 8,
+      "tp": 3895,
+      "fp": 8094,
+      "fn": 12791,
+      "precision": 0.3248811410459588,
+      "recall": 0.23342922210236125,
+      "f1": 0.27166521360069745,
+      "median_error_px": 0.591085829066619,
+      "p95_error_px": 0.9544632316035782,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.008130015805363655,
+      "mean_dy_px": -0.00594162056222558,
+      "f1_patient_bootstrap_95": [
+        0.23526982378854625,
+        0.30904078603237434
+      ]
+    },
+    {
+      "model": "nooffset-mixed",
+      "spp": 128,
+      "radius_px": 1.5,
+      "images": 8,
+      "tp": 5681,
+      "fp": 6308,
+      "fn": 11005,
+      "precision": 0.47385103011093505,
+      "recall": 0.3404650605297854,
+      "f1": 0.3962336530078466,
+      "median_error_px": 0.7668656808767275,
+      "p95_error_px": 1.4094654373140547,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.029795287176966667,
+      "mean_dy_px": -0.025080060586333275,
+      "f1_patient_bootstrap_95": [
+        0.35751651982378857,
+        0.43599349685445676
+      ]
+    },
+    {
+      "model": "sigma06-mixed",
+      "spp": 16,
+      "radius_px": 0.25,
+      "images": 8,
+      "tp": 223,
+      "fp": 18444,
+      "fn": 16463,
+      "precision": 0.011946215246156319,
+      "recall": 0.01336449718326741,
+      "f1": 0.012615619607954064,
+      "median_error_px": 0.17403870071052327,
+      "p95_error_px": 0.24324981693965086,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.012132943607866764,
+      "mean_dy_px": 0.012972280383110046,
+      "f1_patient_bootstrap_95": [
+        0.011050653503113255,
+        0.014534967555875992
+      ]
+    },
+    {
+      "model": "sigma06-mixed",
+      "spp": 16,
+      "radius_px": 0.5,
+      "images": 8,
+      "tp": 863,
+      "fp": 17804,
+      "fn": 15823,
+      "precision": 0.046231317297905396,
+      "recall": 0.05172000479443845,
+      "f1": 0.04882188215992985,
+      "median_error_px": 0.3504210280335371,
+      "p95_error_px": 0.48637324173666463,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.004790755920112133,
+      "mean_dy_px": 0.008454429917037487,
+      "f1_patient_bootstrap_95": [
+        0.04494823377570775,
+        0.05362084870848709
+      ]
+    },
+    {
+      "model": "sigma06-mixed",
+      "spp": 16,
+      "radius_px": 1.0,
+      "images": 8,
+      "tp": 2621,
+      "fp": 16046,
+      "fn": 14065,
+      "precision": 0.14040820699630363,
+      "recall": 0.1570777897638739,
+      "f1": 0.14827595960738835,
+      "median_error_px": 0.6476936561410078,
+      "p95_error_px": 0.9693374372876532,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.0005015649949200451,
+      "mean_dy_px": 0.013869618065655231,
+      "f1_patient_bootstrap_95": [
+        0.13885929000056083,
+        0.16224945926459985
+      ]
+    },
+    {
+      "model": "sigma06-mixed",
+      "spp": 16,
+      "radius_px": 1.5,
+      "images": 8,
+      "tp": 5018,
+      "fp": 13649,
+      "fn": 11668,
+      "precision": 0.2688166282744951,
+      "recall": 0.300731151863838,
+      "f1": 0.2838797273215852,
+      "median_error_px": 0.971982628961918,
+      "p95_error_px": 1.4517424061318156,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.01674610748887062,
+      "mean_dy_px": 0.012302138842642307,
+      "f1_patient_bootstrap_95": [
+        0.2667264875778139,
+        0.3094448449891853
+      ]
+    },
+    {
+      "model": "sigma06-mixed",
+      "spp": 32,
+      "radius_px": 0.25,
+      "images": 8,
+      "tp": 324,
+      "fp": 17507,
+      "fn": 16362,
+      "precision": 0.01817060176097807,
+      "recall": 0.019417475728155338,
+      "f1": 0.018773358055450936,
+      "median_error_px": 0.17155035937685842,
+      "p95_error_px": 0.2413746786025125,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.00932268425822258,
+      "mean_dy_px": 0.0037801882717758417,
+      "f1_patient_bootstrap_95": [
+        0.015640501896702654,
+        0.02221526017487397
+      ]
+    },
+    {
+      "model": "sigma06-mixed",
+      "spp": 32,
+      "radius_px": 0.5,
+      "images": 8,
+      "tp": 1152,
+      "fp": 16679,
+      "fn": 15534,
+      "precision": 0.06460658403903315,
+      "recall": 0.06903991370010787,
+      "f1": 0.06674971753049222,
+      "median_error_px": 0.34171811441909616,
+      "p95_error_px": 0.4860812933803825,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.013854105956852436,
+      "mean_dy_px": 0.007263948675245047,
+      "f1_patient_bootstrap_95": [
+        0.059593107025531666,
+        0.07398345566818129
+      ]
+    },
+    {
+      "model": "sigma06-mixed",
+      "spp": 32,
+      "radius_px": 1.0,
+      "images": 8,
+      "tp": 3455,
+      "fp": 14376,
+      "fn": 13231,
+      "precision": 0.19376367001289888,
+      "recall": 0.20705981061968118,
+      "f1": 0.20019121012834257,
+      "median_error_px": 0.6327214653856801,
+      "p95_error_px": 0.9654542990752922,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.008211812935769558,
+      "mean_dy_px": -0.007708842866122723,
+      "f1_patient_bootstrap_95": [
+        0.17820298541870785,
+        0.2224164045205639
+      ]
+    },
+    {
+      "model": "sigma06-mixed",
+      "spp": 32,
+      "radius_px": 1.5,
+      "images": 8,
+      "tp": 6194,
+      "fp": 11637,
+      "fn": 10492,
+      "precision": 0.3473725534182043,
+      "recall": 0.37120939709936474,
+      "f1": 0.3588956166526639,
+      "median_error_px": 0.9264972566750855,
+      "p95_error_px": 1.4419245912027756,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.006279860623180866,
+      "mean_dy_px": -0.024170104414224625,
+      "f1_patient_bootstrap_95": [
+        0.33565788715347816,
+        0.38414003134147423
+      ]
+    },
+    {
+      "model": "sigma06-mixed",
+      "spp": 64,
+      "radius_px": 0.25,
+      "images": 8,
+      "tp": 481,
+      "fp": 16535,
+      "fn": 16205,
+      "precision": 0.028267512929007994,
+      "recall": 0.028826561189020737,
+      "f1": 0.02854430004154056,
+      "median_error_px": 0.17611320265566935,
+      "p95_error_px": 0.2410870998655802,
+      "localization_population": "matched points only",
+      "mean_dx_px": -1.9295548554509878e-05,
+      "mean_dy_px": 0.004960288293659687,
+      "f1_patient_bootstrap_95": [
+        0.02523696682464455,
+        0.03186303649982166
+      ]
+    },
+    {
+      "model": "sigma06-mixed",
+      "spp": 64,
+      "radius_px": 0.5,
+      "images": 8,
+      "tp": 1825,
+      "fp": 15191,
+      "fn": 14861,
+      "precision": 0.10725199811941702,
+      "recall": 0.10937312717247992,
+      "f1": 0.10830217791229008,
+      "median_error_px": 0.34642371714625975,
+      "p95_error_px": 0.484254160365164,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.012244580313563347,
+      "mean_dy_px": 0.0064570242539048195,
+      "f1_patient_bootstrap_95": [
+        0.09146919431279621,
+        0.125193199381762
+      ]
+    },
+    {
+      "model": "sigma06-mixed",
+      "spp": 64,
+      "radius_px": 1.0,
+      "images": 8,
+      "tp": 4722,
+      "fp": 12294,
+      "fn": 11964,
+      "precision": 0.27750352609308887,
+      "recall": 0.28299172959367136,
+      "f1": 0.2802207584119637,
+      "median_error_px": 0.5899442474858851,
+      "p95_error_px": 0.9548322367171262,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.009933064691722393,
+      "mean_dy_px": -0.006925305817276239,
+      "f1_patient_bootstrap_95": [
+        0.2501184834123223,
+        0.3104268220187849
+      ]
+    },
+    {
+      "model": "sigma06-mixed",
+      "spp": 64,
+      "radius_px": 1.5,
+      "images": 8,
+      "tp": 7585,
+      "fp": 9431,
+      "fn": 9101,
+      "precision": 0.4457569346497414,
+      "recall": 0.4545726956730193,
+      "f1": 0.45012165450121655,
+      "median_error_px": 0.8340281938715424,
+      "p95_error_px": 1.4347877635416062,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.01868288405239582,
+      "mean_dy_px": -0.014317463152110577,
+      "f1_patient_bootstrap_95": [
+        0.4148104265402844,
+        0.48555463084056594
+      ]
+    },
+    {
+      "model": "sigma06-mixed",
+      "spp": 128,
+      "radius_px": 0.25,
+      "images": 8,
+      "tp": 748,
+      "fp": 15479,
+      "fn": 15938,
+      "precision": 0.0460960128181426,
+      "recall": 0.044827999520556154,
+      "f1": 0.045453164403123386,
+      "median_error_px": 0.17934296236865535,
+      "p95_error_px": 0.24440418974898753,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.001538954908028245,
+      "mean_dy_px": 0.0024900436401367188,
+      "f1_patient_bootstrap_95": [
+        0.03675083662914512,
+        0.05413278310474572
+      ]
+    },
+    {
+      "model": "sigma06-mixed",
+      "spp": 128,
+      "radius_px": 0.5,
+      "images": 8,
+      "tp": 2712,
+      "fp": 13515,
+      "fn": 13974,
+      "precision": 0.1671288593085598,
+      "recall": 0.1625314635023373,
+      "f1": 0.16479810409260778,
+      "median_error_px": 0.3371479538674331,
+      "p95_error_px": 0.48476494312269075,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.008728341199457645,
+      "mean_dy_px": 0.004609518684446812,
+      "f1_patient_bootstrap_95": [
+        0.14067538789169456,
+        0.18885787110086175
+      ]
+    },
+    {
+      "model": "sigma06-mixed",
+      "spp": 128,
+      "radius_px": 1.0,
+      "images": 8,
+      "tp": 6199,
+      "fp": 10028,
+      "fn": 10487,
+      "precision": 0.38201762494607755,
+      "recall": 0.371509049502577,
+      "f1": 0.3766900616777565,
+      "median_error_px": 0.5466055428139988,
+      "p95_error_px": 0.9459821260874214,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.0003501872415654361,
+      "mean_dy_px": -0.014886878430843353,
+      "f1_patient_bootstrap_95": [
+        0.3335564344386979,
+        0.41971112999150384
+      ]
+    },
+    {
+      "model": "sigma06-mixed",
+      "spp": 128,
+      "radius_px": 1.5,
+      "images": 8,
+      "tp": 9020,
+      "fp": 7207,
+      "fn": 7666,
+      "precision": 0.5558636839834843,
+      "recall": 0.5405729353949419,
+      "f1": 0.5481116883906055,
+      "median_error_px": 0.7292261685332814,
+      "p95_error_px": 1.4148976539522633,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.0014912839978933334,
+      "mean_dy_px": -0.032287146896123886,
+      "f1_patient_bootstrap_95": [
+        0.502342561606328,
+        0.5937613788081078
+      ]
+    },
+    {
+      "model": "sigma20-mixed",
+      "spp": 16,
+      "radius_px": 0.25,
+      "images": 8,
+      "tp": 43,
+      "fp": 8449,
+      "fn": 16643,
+      "precision": 0.005063589260480453,
+      "recall": 0.0025770106676255545,
+      "f1": 0.0034156803558662322,
+      "median_error_px": 0.17508710126237723,
+      "p95_error_px": 0.24682743743433969,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.0327291265130043,
+      "mean_dy_px": 0.019036758691072464,
+      "f1_patient_bootstrap_95": [
+        0.0026912573712747855,
+        0.004315587116010829
+      ]
+    },
+    {
+      "model": "sigma20-mixed",
+      "spp": 16,
+      "radius_px": 0.5,
+      "images": 8,
+      "tp": 160,
+      "fp": 8332,
+      "fn": 16526,
+      "precision": 0.018841262364578427,
+      "recall": 0.00958887690279276,
+      "f1": 0.012709508300897608,
+      "median_error_px": 0.33679307146911563,
+      "p95_error_px": 0.48766069646622384,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.03382091596722603,
+      "mean_dy_px": -0.017298603430390358,
+      "f1_patient_bootstrap_95": [
+        0.010708862782705986,
+        0.0151973265436028
+      ]
+    },
+    {
+      "model": "sigma20-mixed",
+      "spp": 16,
+      "radius_px": 1.0,
+      "images": 8,
+      "tp": 558,
+      "fp": 7934,
+      "fn": 16128,
+      "precision": 0.06570890249646727,
+      "recall": 0.03344120819848975,
+      "f1": 0.04432441019938041,
+      "median_error_px": 0.6769632330327495,
+      "p95_error_px": 0.9751158065308413,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.02080283686518669,
+      "mean_dy_px": -0.049872443079948425,
+      "f1_patient_bootstrap_95": [
+        0.036422240128928286,
+        0.05200126063662149
+      ]
+    },
+    {
+      "model": "sigma20-mixed",
+      "spp": 16,
+      "radius_px": 1.5,
+      "images": 8,
+      "tp": 1228,
+      "fp": 7264,
+      "fn": 15458,
+      "precision": 0.14460668864813941,
+      "recall": 0.07359463022893444,
+      "f1": 0.09754547620938915,
+      "median_error_px": 1.0545717822717542,
+      "p95_error_px": 1.453973612052052,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.07945534586906433,
+      "mean_dy_px": -0.11123115569353104,
+      "f1_patient_bootstrap_95": [
+        0.08887993553585818,
+        0.10549952726126693
+      ]
+    },
+    {
+      "model": "sigma20-mixed",
+      "spp": 32,
+      "radius_px": 0.25,
+      "images": 8,
+      "tp": 34,
+      "fp": 7677,
+      "fn": 16652,
+      "precision": 0.0044092854363895735,
+      "recall": 0.0020376363418434617,
+      "f1": 0.0027872279378612125,
+      "median_error_px": 0.17497430381489906,
+      "p95_error_px": 0.24432488524626603,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.01203245297074318,
+      "mean_dy_px": 0.018878264352679253,
+      "f1_patient_bootstrap_95": [
+        0.002474226804123711,
+        0.0030964797913950455
+      ]
+    },
+    {
+      "model": "sigma20-mixed",
+      "spp": 32,
+      "radius_px": 0.5,
+      "images": 8,
+      "tp": 149,
+      "fp": 7562,
+      "fn": 16537,
+      "precision": 0.019323045000648423,
+      "recall": 0.008929641615725759,
+      "f1": 0.012214616551215314,
+      "median_error_px": 0.3531561615817173,
+      "p95_error_px": 0.4819858073995321,
+      "localization_population": "matched points only",
+      "mean_dx_px": -0.02220158837735653,
+      "mean_dy_px": -0.01738380640745163,
+      "f1_patient_bootstrap_95": [
+        0.010556701030927835,
+        0.013852672750977835
+      ]
+    },
+    {
+      "model": "sigma20-mixed",
+      "spp": 32,
+      "radius_px": 1.0,
+      "images": 8,
+      "tp": 543,
+      "fp": 7168,
+      "fn": 16143,
+      "precision": 0.07041888211645701,
+      "recall": 0.03254225098885293,
+      "f1": 0.044513669713489364,
+      "median_error_px": 0.6859685824798805,
+      "p95_error_px": 0.9770953263009501,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.0629737451672554,
+      "mean_dy_px": -0.07475770264863968,
+      "f1_patient_bootstrap_95": [
+        0.037843030784010696,
+        0.05010505899466623
+      ]
+    },
+    {
+      "model": "sigma20-mixed",
+      "spp": 32,
+      "radius_px": 1.5,
+      "images": 8,
+      "tp": 1253,
+      "fp": 6458,
+      "fn": 15433,
+      "precision": 0.1624951368175334,
+      "recall": 0.07509289224499581,
+      "f1": 0.10271754723941469,
+      "median_error_px": 1.0759085425631651,
+      "p95_error_px": 1.4563472588134316,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.09129274636507034,
+      "mean_dy_px": -0.11291062831878662,
+      "f1_patient_bootstrap_95": [
+        0.09043711271143862,
+        0.11449217181854676
+      ]
+    },
+    {
+      "model": "sigma20-mixed",
+      "spp": 64,
+      "radius_px": 0.25,
+      "images": 8,
+      "tp": 48,
+      "fp": 7045,
+      "fn": 16638,
+      "precision": 0.006767235302410827,
+      "recall": 0.002876663070837828,
+      "f1": 0.004037175659195088,
+      "median_error_px": 0.1659785797177627,
+      "p95_error_px": 0.23659718246134107,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.01036977767944336,
+      "mean_dy_px": -0.00087030726717785,
+      "f1_patient_bootstrap_95": [
+        0.0030135610246107484,
+        0.005070565368038536
+      ]
+    },
+    {
+      "model": "sigma20-mixed",
+      "spp": 64,
+      "radius_px": 0.5,
+      "images": 8,
+      "tp": 180,
+      "fp": 6913,
+      "fn": 16506,
+      "precision": 0.025377132384040605,
+      "recall": 0.010787486515641856,
+      "f1": 0.01513940872198158,
+      "median_error_px": 0.3415164448977926,
+      "p95_error_px": 0.4852226402374401,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.004597642458975315,
+      "mean_dy_px": -0.0013544294051826,
+      "f1_patient_bootstrap_95": [
+        0.01093269559275709,
+        0.019143080146243274
+      ]
+    },
+    {
+      "model": "sigma20-mixed",
+      "spp": 64,
+      "radius_px": 1.0,
+      "images": 8,
+      "tp": 630,
+      "fp": 6463,
+      "fn": 16056,
+      "precision": 0.0888199633441421,
+      "recall": 0.037756202804746494,
+      "f1": 0.05298793052693553,
+      "median_error_px": 0.687775688598521,
+      "p95_error_px": 0.9721905663251298,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.04955208674073219,
+      "mean_dy_px": -0.0832173228263855,
+      "f1_patient_bootstrap_95": [
+        0.04057055005124701,
+        0.06267426859211786
+      ]
+    },
+    {
+      "model": "sigma20-mixed",
+      "spp": 64,
+      "radius_px": 1.5,
+      "images": 8,
+      "tp": 1284,
+      "fp": 5809,
+      "fn": 15402,
+      "precision": 0.18102354433948964,
+      "recall": 0.07695073714491191,
+      "f1": 0.10799444888346861,
+      "median_error_px": 1.012070724065818,
+      "p95_error_px": 1.4570430281413291,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.11359599232673645,
+      "mean_dy_px": -0.12946490943431854,
+      "f1_patient_bootstrap_95": [
+        0.09051649680428399,
+        0.12457995246291288
+      ]
+    },
+    {
+      "model": "sigma20-mixed",
+      "spp": 128,
+      "radius_px": 0.25,
+      "images": 8,
+      "tp": 47,
+      "fp": 6729,
+      "fn": 16639,
+      "precision": 0.006936245572609209,
+      "recall": 0.0028167325901953732,
+      "f1": 0.004006478561077487,
+      "median_error_px": 0.17268591084997695,
+      "p95_error_px": 0.24499446348255297,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.006448055617511272,
+      "mean_dy_px": -2.4267967091873288e-05,
+      "f1_patient_bootstrap_95": [
+        0.003569303985722784,
+        0.0044463445917058576
+      ]
+    },
+    {
+      "model": "sigma20-mixed",
+      "spp": 128,
+      "radius_px": 0.5,
+      "images": 8,
+      "tp": 188,
+      "fp": 6588,
+      "fn": 16498,
+      "precision": 0.027744982290436836,
+      "recall": 0.011266930360781493,
+      "f1": 0.01602591424430995,
+      "median_error_px": 0.3532970822628797,
+      "p95_error_px": 0.48567223863715137,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.04980558156967163,
+      "mean_dy_px": -0.028211349621415138,
+      "f1_patient_bootstrap_95": [
+        0.012586749428854693,
+        0.01850044553825264
+      ]
+    },
+    {
+      "model": "sigma20-mixed",
+      "spp": 128,
+      "radius_px": 1.0,
+      "images": 8,
+      "tp": 636,
+      "fp": 6140,
+      "fn": 16050,
+      "precision": 0.09386068476977567,
+      "recall": 0.038115785688601224,
+      "f1": 0.05421532691160174,
+      "median_error_px": 0.6798814378306188,
+      "p95_error_px": 0.9754876578335705,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.15081186592578888,
+      "mean_dy_px": -0.07894226908683777,
+      "f1_patient_bootstrap_95": [
+        0.046179171720672325,
+        0.06190039209143239
+      ]
+    },
+    {
+      "model": "sigma20-mixed",
+      "spp": 128,
+      "radius_px": 1.5,
+      "images": 8,
+      "tp": 1392,
+      "fp": 5384,
+      "fn": 15294,
+      "precision": 0.20543093270365997,
+      "recall": 0.08342322905429701,
+      "f1": 0.11865996078765664,
+      "median_error_px": 1.0459916282025161,
+      "p95_error_px": 1.458560659271986,
+      "localization_population": "matched points only",
+      "mean_dx_px": 0.2290698140859604,
+      "mean_dy_px": -0.16130267083644867,
+      "f1_patient_bootstrap_95": [
+        0.10108932461873639,
+        0.13942790230846436
+      ]
+    }
+  ],
+  "paired_differences": [
+    {
+      "model": "baseline-mixed",
+      "spp": 32,
+      "reference_spp": 16,
+      "radius_px": 0.25,
+      "delta_f1": 0.00698358172003594,
+      "patient_bootstrap_95": [
+        0.005236566201539434,
+        0.008014046300393709
+      ]
+    },
+    {
+      "model": "baseline-mixed",
+      "spp": 32,
+      "reference_spp": 16,
+      "radius_px": 0.5,
+      "delta_f1": 0.01872806382339843,
+      "patient_bootstrap_95": [
+        0.013737490099193471,
+        0.022033446292733863
+      ]
+    },
+    {
+      "model": "baseline-mixed",
+      "spp": 32,
+      "reference_spp": 16,
+      "radius_px": 1.0,
+      "delta_f1": 0.050013469899038515,
+      "patient_bootstrap_95": [
+        0.03753544383536769,
+        0.06120718497573327
+      ]
+    },
+    {
+      "model": "baseline-mixed",
+      "spp": 32,
+      "reference_spp": 16,
+      "radius_px": 1.5,
+      "delta_f1": 0.07546132387407367,
+      "patient_bootstrap_95": [
+        0.06418240278450427,
+        0.09394021773090103
+      ]
+    },
+    {
+      "model": "baseline-mixed",
+      "spp": 64,
+      "reference_spp": 16,
+      "radius_px": 0.25,
+      "delta_f1": 0.018822753244332226,
+      "patient_bootstrap_95": [
+        0.014622244223087557,
+        0.023022836113479342
+      ]
+    },
+    {
+      "model": "baseline-mixed",
+      "spp": 64,
+      "reference_spp": 16,
+      "radius_px": 0.5,
+      "delta_f1": 0.05821917249951846,
+      "patient_bootstrap_95": [
+        0.04276242943440684,
+        0.0736684757219483
+      ]
+    },
+    {
+      "model": "baseline-mixed",
+      "spp": 64,
+      "reference_spp": 16,
+      "radius_px": 1.0,
+      "delta_f1": 0.1289319513237494,
+      "patient_bootstrap_95": [
+        0.10154104571298325,
+        0.15630793526395526
+      ]
+    },
+    {
+      "model": "baseline-mixed",
+      "spp": 64,
+      "reference_spp": 16,
+      "radius_px": 1.5,
+      "delta_f1": 0.16548323183424263,
+      "patient_bootstrap_95": [
+        0.13616133426476718,
+        0.19478276737330125
+      ]
+    },
+    {
+      "model": "baseline-mixed",
+      "spp": 128,
+      "reference_spp": 16,
+      "radius_px": 0.25,
+      "delta_f1": 0.03855880786136465,
+      "patient_bootstrap_95": [
+        0.030323758649537534,
+        0.04671891844106183
+      ]
+    },
+    {
+      "model": "baseline-mixed",
+      "spp": 128,
+      "reference_spp": 16,
+      "radius_px": 0.5,
+      "delta_f1": 0.1217500518525656,
+      "patient_bootstrap_95": [
+        0.09737214181933732,
+        0.14588215549359734
+      ]
+    },
+    {
+      "model": "baseline-mixed",
+      "spp": 128,
+      "reference_spp": 16,
+      "radius_px": 1.0,
+      "delta_f1": 0.22966060777803116,
+      "patient_bootstrap_95": [
+        0.18523963765543938,
+        0.2736283789638492
+      ]
+    },
+    {
+      "model": "baseline-mixed",
+      "spp": 128,
+      "reference_spp": 16,
+      "radius_px": 1.5,
+      "delta_f1": 0.268970129492173,
+      "patient_bootstrap_95": [
+        0.22592710008348887,
+        0.3115433582079063
+      ]
+    },
+    {
+      "model": "baseline-offline",
+      "spp": 32,
+      "reference_spp": 16,
+      "radius_px": 0.25,
+      "delta_f1": 0.0022374461391154784,
+      "patient_bootstrap_95": [
+        0.00032761875400295556,
+        0.00419825565838498
+      ]
+    },
+    {
+      "model": "baseline-offline",
+      "spp": 32,
+      "reference_spp": 16,
+      "radius_px": 0.5,
+      "delta_f1": 0.008559205294886636,
+      "patient_bootstrap_95": [
+        0.007099035036612085,
+        0.010142931332004293
+      ]
+    },
+    {
+      "model": "baseline-offline",
+      "spp": 32,
+      "reference_spp": 16,
+      "radius_px": 1.0,
+      "delta_f1": 0.019158054528106178,
+      "patient_bootstrap_95": [
+        0.01597546952949995,
+        0.02331057771590149
+      ]
+    },
+    {
+      "model": "baseline-offline",
+      "spp": 32,
+      "reference_spp": 16,
+      "radius_px": 1.5,
+      "delta_f1": 0.031459743917825606,
+      "patient_bootstrap_95": [
+        0.025872127178938803,
+        0.03742373795121798
+      ]
+    },
+    {
+      "model": "baseline-offline",
+      "spp": 64,
+      "reference_spp": 16,
+      "radius_px": 0.25,
+      "delta_f1": 0.00524668804598127,
+      "patient_bootstrap_95": [
+        0.004340423120577587,
+        0.006713078494931983
+      ]
+    },
+    {
+      "model": "baseline-offline",
+      "spp": 64,
+      "reference_spp": 16,
+      "radius_px": 0.5,
+      "delta_f1": 0.019942812203623837,
+      "patient_bootstrap_95": [
+        0.01432529907784599,
+        0.025548684311899963
+      ]
+    },
+    {
+      "model": "baseline-offline",
+      "spp": 64,
+      "reference_spp": 16,
+      "radius_px": 1.0,
+      "delta_f1": 0.04526680085061455,
+      "patient_bootstrap_95": [
+        0.03248846637722867,
+        0.058008268341135
+      ]
+    },
+    {
+      "model": "baseline-offline",
+      "spp": 64,
+      "reference_spp": 16,
+      "radius_px": 1.5,
+      "delta_f1": 0.06589658337188967,
+      "patient_bootstrap_95": [
+        0.055400918200428584,
+        0.07785254018904345
+      ]
+    },
+    {
+      "model": "baseline-offline",
+      "spp": 128,
+      "reference_spp": 16,
+      "radius_px": 0.25,
+      "delta_f1": 0.009846232645525869,
+      "patient_bootstrap_95": [
+        0.007794358601494007,
+        0.011485744243112215
+      ]
+    },
+    {
+      "model": "baseline-offline",
+      "spp": 128,
+      "reference_spp": 16,
+      "radius_px": 0.5,
+      "delta_f1": 0.03676028902110065,
+      "patient_bootstrap_95": [
+        0.03168686437053114,
+        0.04264985636198614
+      ]
+    },
+    {
+      "model": "baseline-offline",
+      "spp": 128,
+      "reference_spp": 16,
+      "radius_px": 1.0,
+      "delta_f1": 0.08693825252206622,
+      "patient_bootstrap_95": [
+        0.0711540000548977,
+        0.102664499399908
+      ]
+    },
+    {
+      "model": "baseline-offline",
+      "spp": 128,
+      "reference_spp": 16,
+      "radius_px": 1.5,
+      "delta_f1": 0.11485543233073867,
+      "patient_bootstrap_95": [
+        0.10145396406607998,
+        0.12816164460339657
+      ]
+    },
+    {
+      "model": "baseline-online",
+      "spp": 32,
+      "reference_spp": 16,
+      "radius_px": 0.25,
+      "delta_f1": -0.0006691037021214701,
+      "patient_bootstrap_95": [
+        -0.0011163746747641957,
+        -0.0004213541899165292
+      ]
+    },
+    {
+      "model": "baseline-online",
+      "spp": 32,
+      "reference_spp": 16,
+      "radius_px": 0.5,
+      "delta_f1": -0.0012994338771302712,
+      "patient_bootstrap_95": [
+        -0.003122286380355283,
+        -6.237057908623465e-05
+      ]
+    },
+    {
+      "model": "baseline-online",
+      "spp": 32,
+      "reference_spp": 16,
+      "radius_px": 1.0,
+      "delta_f1": 3.0608922488220905e-05,
+      "patient_bootstrap_95": [
+        -0.003164892893616572,
+        0.003114655519683339
+      ]
+    },
+    {
+      "model": "baseline-online",
+      "spp": 32,
+      "reference_spp": 16,
+      "radius_px": 1.5,
+      "delta_f1": -0.001566262235457798,
+      "patient_bootstrap_95": [
+        -0.006410134473210375,
+        0.002191171800571611
+      ]
+    },
+    {
+      "model": "baseline-online",
+      "spp": 64,
+      "reference_spp": 16,
+      "radius_px": 0.25,
+      "delta_f1": 0.00016339455279375443,
+      "patient_bootstrap_95": [
+        -0.0004559973078969846,
+        0.000775500508600384
+      ]
+    },
+    {
+      "model": "baseline-online",
+      "spp": 64,
+      "reference_spp": 16,
+      "radius_px": 0.5,
+      "delta_f1": -0.0002063941831566161,
+      "patient_bootstrap_95": [
+        -0.0012584915230335718,
+        0.0007537074359576226
+      ]
+    },
+    {
+      "model": "baseline-online",
+      "spp": 64,
+      "reference_spp": 16,
+      "radius_px": 1.0,
+      "delta_f1": 0.0008532819159627336,
+      "patient_bootstrap_95": [
+        -0.0010518084306390448,
+        0.002730526989151834
+      ]
+    },
+    {
+      "model": "baseline-online",
+      "spp": 64,
+      "reference_spp": 16,
+      "radius_px": 1.5,
+      "delta_f1": -0.0024076087300178087,
+      "patient_bootstrap_95": [
+        -0.00625879882304925,
+        0.0023006329564227088
+      ]
+    },
+    {
+      "model": "baseline-online",
+      "spp": 128,
+      "reference_spp": 16,
+      "radius_px": 0.25,
+      "delta_f1": 0.00098469092647977,
+      "patient_bootstrap_95": [
+        -0.00033220272955308307,
+        0.0017922699990054593
+      ]
+    },
+    {
+      "model": "baseline-online",
+      "spp": 128,
+      "reference_spp": 16,
+      "radius_px": 0.5,
+      "delta_f1": 0.004964534159308557,
+      "patient_bootstrap_95": [
+        0.0014773075520290342,
+        0.007281706096947771
+      ]
+    },
+    {
+      "model": "baseline-online",
+      "spp": 128,
+      "reference_spp": 16,
+      "radius_px": 1.0,
+      "delta_f1": 0.009659299751629656,
+      "patient_bootstrap_95": [
+        0.0018389176487614931,
+        0.015361139259900385
+      ]
+    },
+    {
+      "model": "baseline-online",
+      "spp": 128,
+      "reference_spp": 16,
+      "radius_px": 1.5,
+      "delta_f1": 0.005089945797225992,
+      "patient_bootstrap_95": [
+        -0.0031947301392283647,
+        0.014349099940596348
+      ]
+    },
+    {
+      "model": "disk-mixed",
+      "spp": 32,
+      "reference_spp": 16,
+      "radius_px": 0.25,
+      "delta_f1": 0.0012011506683730962,
+      "patient_bootstrap_95": [
+        -4.519524614816483e-05,
+        0.0024080213589293734
+      ]
+    },
+    {
+      "model": "disk-mixed",
+      "spp": 32,
+      "reference_spp": 16,
+      "radius_px": 0.5,
+      "delta_f1": 0.004070013048092097,
+      "patient_bootstrap_95": [
+        0.0032805342635659866,
+        0.005062175818645105
+      ]
+    },
+    {
+      "model": "disk-mixed",
+      "spp": 32,
+      "reference_spp": 16,
+      "radius_px": 1.0,
+      "delta_f1": 0.004263860376825149,
+      "patient_bootstrap_95": [
+        -0.004954379705646647,
+        0.013382085243276574
+      ]
+    },
+    {
+      "model": "disk-mixed",
+      "spp": 32,
+      "reference_spp": 16,
+      "radius_px": 1.5,
+      "delta_f1": 0.016518066649123447,
+      "patient_bootstrap_95": [
+        0.00930844368767475,
+        0.023452287607164085
+      ]
+    },
+    {
+      "model": "disk-mixed",
+      "spp": 64,
+      "reference_spp": 16,
+      "radius_px": 0.25,
+      "delta_f1": 0.0019587262926902688,
+      "patient_bootstrap_95": [
+        0.0009332701919890956,
+        0.002938533640683033
+      ]
+    },
+    {
+      "model": "disk-mixed",
+      "spp": 64,
+      "reference_spp": 16,
+      "radius_px": 0.5,
+      "delta_f1": 0.007007103545080454,
+      "patient_bootstrap_95": [
+        0.0016783886452172558,
+        0.012157419401870193
+      ]
+    },
+    {
+      "model": "disk-mixed",
+      "spp": 64,
+      "reference_spp": 16,
+      "radius_px": 1.0,
+      "delta_f1": 0.02156582946407591,
+      "patient_bootstrap_95": [
+        0.009312546644946823,
+        0.03860676344295509
+      ]
+    },
+    {
+      "model": "disk-mixed",
+      "spp": 64,
+      "reference_spp": 16,
+      "radius_px": 1.5,
+      "delta_f1": 0.046917909599388824,
+      "patient_bootstrap_95": [
+        0.026308897606815693,
+        0.07412323807099647
+      ]
+    },
+    {
+      "model": "disk-mixed",
+      "spp": 128,
+      "reference_spp": 16,
+      "radius_px": 0.25,
+      "delta_f1": 0.0033653625698948685,
+      "patient_bootstrap_95": [
+        0.0008022508176436368,
+        0.004865796422066953
+      ]
+    },
+    {
+      "model": "disk-mixed",
+      "spp": 128,
+      "reference_spp": 16,
+      "radius_px": 0.5,
+      "delta_f1": 0.01342132748823948,
+      "patient_bootstrap_95": [
+        0.00612382677262851,
+        0.020390530273743577
+      ]
+    },
+    {
+      "model": "disk-mixed",
+      "spp": 128,
+      "reference_spp": 16,
+      "radius_px": 1.0,
+      "delta_f1": 0.03964107024878062,
+      "patient_bootstrap_95": [
+        0.020254157652933424,
+        0.05934685825753368
+      ]
+    },
+    {
+      "model": "disk-mixed",
+      "spp": 128,
+      "reference_spp": 16,
+      "radius_px": 1.5,
+      "delta_f1": 0.08352597679003604,
+      "patient_bootstrap_95": [
+        0.05149229607538461,
+        0.12155776469943305
+      ]
+    },
+    {
+      "model": "nooffset-mixed",
+      "spp": 32,
+      "reference_spp": 16,
+      "radius_px": 0.25,
+      "delta_f1": 0.006123473094834707,
+      "patient_bootstrap_95": [
+        0.0038827745228665125,
+        0.008668515994525677
+      ]
+    },
+    {
+      "model": "nooffset-mixed",
+      "spp": 32,
+      "reference_spp": 16,
+      "radius_px": 0.5,
+      "delta_f1": 0.01910763975077763,
+      "patient_bootstrap_95": [
+        0.014274186448025382,
+        0.023866053660879707
+      ]
+    },
+    {
+      "model": "nooffset-mixed",
+      "spp": 32,
+      "reference_spp": 16,
+      "radius_px": 1.0,
+      "delta_f1": 0.03810597747792076,
+      "patient_bootstrap_95": [
+        0.027710123173754597,
+        0.05165012791235163
+      ]
+    },
+    {
+      "model": "nooffset-mixed",
+      "spp": 32,
+      "reference_spp": 16,
+      "radius_px": 1.5,
+      "delta_f1": 0.054200226172360394,
+      "patient_bootstrap_95": [
+        0.04774097448311143,
+        0.06584839894266523
+      ]
+    },
+    {
+      "model": "nooffset-mixed",
+      "spp": 64,
+      "reference_spp": 16,
+      "radius_px": 0.25,
+      "delta_f1": 0.011452385052503282,
+      "patient_bootstrap_95": [
+        0.006940876537267767,
+        0.01604696899099104
+      ]
+    },
+    {
+      "model": "nooffset-mixed",
+      "spp": 64,
+      "reference_spp": 16,
+      "radius_px": 0.5,
+      "delta_f1": 0.03621104841849567,
+      "patient_bootstrap_95": [
+        0.025311716760406035,
+        0.04733389180506284
+      ]
+    },
+    {
+      "model": "nooffset-mixed",
+      "spp": 64,
+      "reference_spp": 16,
+      "radius_px": 1.0,
+      "delta_f1": 0.08550135352055889,
+      "patient_bootstrap_95": [
+        0.06266186024995773,
+        0.10879346159781231
+      ]
+    },
+    {
+      "model": "nooffset-mixed",
+      "spp": 64,
+      "reference_spp": 16,
+      "radius_px": 1.5,
+      "delta_f1": 0.10746637088166175,
+      "patient_bootstrap_95": [
+        0.07939382397321679,
+        0.1360687594628526
+      ]
+    },
+    {
+      "model": "nooffset-mixed",
+      "spp": 128,
+      "reference_spp": 16,
+      "radius_px": 0.25,
+      "delta_f1": 0.020985045209446253,
+      "patient_bootstrap_95": [
+        0.015147752173849583,
+        0.027305373844253925
+      ]
+    },
+    {
+      "model": "nooffset-mixed",
+      "spp": 128,
+      "reference_spp": 16,
+      "radius_px": 0.5,
+      "delta_f1": 0.07115873434095973,
+      "patient_bootstrap_95": [
+        0.05751098648133733,
+        0.08522012538300176
+      ]
+    },
+    {
+      "model": "nooffset-mixed",
+      "spp": 128,
+      "reference_spp": 16,
+      "radius_px": 1.0,
+      "delta_f1": 0.1499841528243787,
+      "patient_bootstrap_95": [
+        0.1174724557037117,
+        0.1834356740463161
+      ]
+    },
+    {
+      "model": "nooffset-mixed",
+      "spp": 128,
+      "reference_spp": 16,
+      "radius_px": 1.5,
+      "delta_f1": 0.16924550005571634,
+      "patient_bootstrap_95": [
+        0.13201505055075932,
+        0.20750321091887294
+      ]
+    },
+    {
+      "model": "sigma06-mixed",
+      "spp": 32,
+      "reference_spp": 16,
+      "radius_px": 0.25,
+      "delta_f1": 0.006157738447496872,
+      "patient_bootstrap_95": [
+        0.0040160363244494245,
+        0.009945470403948707
+      ]
+    },
+    {
+      "model": "sigma06-mixed",
+      "spp": 32,
+      "reference_spp": 16,
+      "radius_px": 0.5,
+      "delta_f1": 0.01792783537056237,
+      "patient_bootstrap_95": [
+        0.013491166659547027,
+        0.022010184778924337
+      ]
+    },
+    {
+      "model": "sigma06-mixed",
+      "spp": 32,
+      "reference_spp": 16,
+      "radius_px": 1.0,
+      "delta_f1": 0.05191525052095422,
+      "patient_bootstrap_95": [
+        0.03653071462740545,
+        0.06741040760469208
+      ]
+    },
+    {
+      "model": "sigma06-mixed",
+      "spp": 32,
+      "reference_spp": 16,
+      "radius_px": 1.5,
+      "delta_f1": 0.07501588933107872,
+      "patient_bootstrap_95": [
+        0.0634095123496225,
+        0.08962784412734681
+      ]
+    },
+    {
+      "model": "sigma06-mixed",
+      "spp": 64,
+      "reference_spp": 16,
+      "radius_px": 0.25,
+      "delta_f1": 0.015928680433586497,
+      "patient_bootstrap_95": [
+        0.01369247007503684,
+        0.018861543282703362
+      ]
+    },
+    {
+      "model": "sigma06-mixed",
+      "spp": 64,
+      "reference_spp": 16,
+      "radius_px": 0.5,
+      "delta_f1": 0.059480295752360225,
+      "patient_bootstrap_95": [
+        0.04573953728522392,
+        0.07321992849250503
+      ]
+    },
+    {
+      "model": "sigma06-mixed",
+      "spp": 64,
+      "reference_spp": 16,
+      "radius_px": 1.0,
+      "delta_f1": 0.13194479880457535,
+      "patient_bootstrap_95": [
+        0.10844621262101989,
+        0.15542082510291308
+      ]
+    },
+    {
+      "model": "sigma06-mixed",
+      "spp": 64,
+      "reference_spp": 16,
+      "radius_px": 1.5,
+      "delta_f1": 0.16624192717963138,
+      "patient_bootstrap_95": [
+        0.14256205173642872,
+        0.1898210081322445
+      ]
+    },
+    {
+      "model": "sigma06-mixed",
+      "spp": 128,
+      "reference_spp": 16,
+      "radius_px": 0.25,
+      "delta_f1": 0.03283754479516932,
+      "patient_bootstrap_95": [
+        0.02520633987953741,
+        0.04042554682626037
+      ]
+    },
+    {
+      "model": "sigma06-mixed",
+      "spp": 128,
+      "reference_spp": 16,
+      "radius_px": 0.5,
+      "delta_f1": 0.11597622193267793,
+      "patient_bootstrap_95": [
+        0.09494573086412228,
+        0.13688460021160478
+      ]
+    },
+    {
+      "model": "sigma06-mixed",
+      "spp": 128,
+      "reference_spp": 16,
+      "radius_px": 1.0,
+      "delta_f1": 0.22841410207036814,
+      "patient_bootstrap_95": [
+        0.19188416364739552,
+        0.26470513307563204
+      ]
+    },
+    {
+      "model": "sigma06-mixed",
+      "spp": 128,
+      "reference_spp": 16,
+      "radius_px": 1.5,
+      "delta_f1": 0.26423196106902036,
+      "patient_bootstrap_95": [
+        0.2300941868024723,
+        0.2980277560997863
+      ]
+    },
+    {
+      "model": "sigma20-mixed",
+      "spp": 32,
+      "reference_spp": 16,
+      "radius_px": 0.25,
+      "delta_f1": -0.0006284524180050198,
+      "patient_bootstrap_95": [
+        -0.0011854232751339422,
+        -7.507264422255706e-05
+      ]
+    },
+    {
+      "model": "sigma20-mixed",
+      "spp": 32,
+      "reference_spp": 16,
+      "radius_px": 0.5,
+      "delta_f1": -0.0004948917496822944,
+      "patient_bootstrap_95": [
+        -0.0020388907526574483,
+        0.0006970857348286615
+      ]
+    },
+    {
+      "model": "sigma20-mixed",
+      "spp": 32,
+      "reference_spp": 16,
+      "radius_px": 1.0,
+      "delta_f1": 0.00018925951410895397,
+      "patient_bootstrap_95": [
+        -0.005409910578814021,
+        0.005144487767862513
+      ]
+    },
+    {
+      "model": "sigma20-mixed",
+      "spp": 32,
+      "reference_spp": 16,
+      "radius_px": 1.5,
+      "delta_f1": 0.005172071030025538,
+      "patient_bootstrap_95": [
+        0.0003572031142152765,
+        0.012997690184040886
+      ]
+    },
+    {
+      "model": "sigma20-mixed",
+      "spp": 64,
+      "reference_spp": 16,
+      "radius_px": 0.25,
+      "delta_f1": 0.0006214953033288556,
+      "patient_bootstrap_95": [
+        -0.0010231328549957686,
+        0.002315112804195508
+      ]
+    },
+    {
+      "model": "sigma20-mixed",
+      "spp": 64,
+      "reference_spp": 16,
+      "radius_px": 0.5,
+      "delta_f1": 0.002429900421083972,
+      "patient_bootstrap_95": [
+        -0.001295776664338489,
+        0.006924324749733328
+      ]
+    },
+    {
+      "model": "sigma20-mixed",
+      "spp": 64,
+      "reference_spp": 16,
+      "radius_px": 1.0,
+      "delta_f1": 0.008663520327555123,
+      "patient_bootstrap_95": [
+        0.00357178167139139,
+        0.012418428110754068
+      ]
+    },
+    {
+      "model": "sigma20-mixed",
+      "spp": 64,
+      "reference_spp": 16,
+      "radius_px": 1.5,
+      "delta_f1": 0.01044897267407946,
+      "patient_bootstrap_95": [
+        0.0004365872070606486,
+        0.020967941913642513
+      ]
+    },
+    {
+      "model": "sigma20-mixed",
+      "spp": 128,
+      "reference_spp": 16,
+      "radius_px": 0.25,
+      "delta_f1": 0.0005907982052112551,
+      "patient_bootstrap_95": [
+        -0.0005517865138027324,
+        0.0017297594625970054
+      ]
+    },
+    {
+      "model": "sigma20-mixed",
+      "spp": 128,
+      "reference_spp": 16,
+      "radius_px": 0.5,
+      "delta_f1": 0.003316405943412341,
+      "patient_bootstrap_95": [
+        3.4354743323325096e-05,
+        0.006468002128325443
+      ]
+    },
+    {
+      "model": "sigma20-mixed",
+      "spp": 128,
+      "reference_spp": 16,
+      "radius_px": 1.0,
+      "delta_f1": 0.00989091671222133,
+      "patient_bootstrap_95": [
+        0.006894653141118569,
+        0.014746223684143515
+      ]
+    },
+    {
+      "model": "sigma20-mixed",
+      "spp": 128,
+      "reference_spp": 16,
+      "radius_px": 1.5,
+      "delta_f1": 0.021114484578267492,
+      "patient_bootstrap_95": [
+        0.010186594003042893,
+        0.03971135053959904
+      ]
+    }
+  ],
+  "bootstrap": {
+    "unit": "patient, all views and SPP levels kept paired",
+    "groups": 4,
+    "repeats": 2000,
+    "seed": 71,
+    "limitation": "Exploratory sampling uncertainty from four test patients, not training-seed or device uncertainty"
+  },
+  "external_manifest_sha256": "f010502cd270e3f2433ab5f63727cbdf6abe233b469459791ac3e383d76c3f3c",
+  "external_tolerance_sweep": [
+    {
+      "id": "real-04",
+      "model": "baseline-online",
+      "annotation": "Existing silver ROI, uncertainty uncalibrated, not independent expert gold",
+      "coordinate_units": "resized output pixels",
+      "scale_xy": [
+        0.2326454033771107,
+        0.2324455205811138
+      ],
+      "metrics": [
+        {
+          "radius_px": 0.25,
+          "images": 1,
+          "tp": 32,
+          "fp": 202,
+          "fn": 202,
+          "precision": 0.13675213675213677,
+          "recall": 0.13675213675213677,
+          "f1": 0.13675213675213677,
+          "median_error_px": 0.18392032124726004,
+          "p95_error_px": 0.24145726577979076,
+          "localization_population": "matched points only",
+          "mean_dx_px": -0.012616157531738281,
+          "mean_dy_px": -0.00881814956665039,
+          "rmse_error_px": 0.1791420566581447
+        },
+        {
+          "radius_px": 0.5,
+          "images": 1,
+          "tp": 116,
+          "fp": 118,
+          "fn": 118,
+          "precision": 0.49572649572649574,
+          "recall": 0.49572649572649574,
+          "f1": 0.49572649572649574,
+          "median_error_px": 0.33855672690659644,
+          "p95_error_px": 0.4801194203515446,
+          "localization_population": "matched points only",
+          "mean_dx_px": -0.004167490992052802,
+          "mean_dy_px": 0.001456622419686153,
+          "rmse_error_px": 0.3460345657303246
+        },
+        {
+          "radius_px": 1.0,
+          "images": 1,
+          "tp": 217,
+          "fp": 17,
+          "fn": 17,
+          "precision": 0.9273504273504274,
+          "recall": 0.9273504273504274,
+          "f1": 0.9273504273504274,
+          "median_error_px": 0.47944603331725705,
+          "p95_error_px": 0.9469731650611078,
+          "localization_population": "matched points only",
+          "mean_dx_px": -0.06846699516894081,
+          "mean_dy_px": 0.04556409774288055,
+          "rmse_error_px": 0.5481456291467768
+        },
+        {
+          "radius_px": 1.5,
+          "images": 1,
+          "tp": 234,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "median_error_px": 0.5102912387054268,
+          "p95_error_px": 1.087922526078919,
+          "localization_population": "matched points only",
+          "mean_dx_px": -0.11402283366928753,
+          "mean_dy_px": -0.006553160838591747,
+          "rmse_error_px": 0.6199462132769739
+        }
+      ]
+    },
+    {
+      "id": "real-04",
+      "model": "baseline-offline",
+      "annotation": "Existing silver ROI, uncertainty uncalibrated, not independent expert gold",
+      "coordinate_units": "resized output pixels",
+      "scale_xy": [
+        0.2326454033771107,
+        0.2324455205811138
+      ],
+      "metrics": [
+        {
+          "radius_px": 0.25,
+          "images": 1,
+          "tp": 30,
+          "fp": 405,
+          "fn": 204,
+          "precision": 0.06896551724137931,
+          "recall": 0.1282051282051282,
+          "f1": 0.08968609865470852,
+          "median_error_px": 0.16748192658047034,
+          "p95_error_px": 0.23436025030268706,
+          "localization_population": "matched points only",
+          "mean_dx_px": 0.001973724365234375,
+          "mean_dy_px": -0.004668680826822916,
+          "rmse_error_px": 0.17409775990821175
+        },
+        {
+          "radius_px": 0.5,
+          "images": 1,
+          "tp": 90,
+          "fp": 345,
+          "fn": 144,
+          "precision": 0.20689655172413793,
+          "recall": 0.38461538461538464,
+          "f1": 0.26905829596412556,
+          "median_error_px": 0.30801954478190996,
+          "p95_error_px": 0.48215986813447764,
+          "localization_population": "matched points only",
+          "mean_dx_px": -0.005030314127604167,
+          "mean_dy_px": 0.07941822475857205,
+          "rmse_error_px": 0.33096693556879586
+        },
+        {
+          "radius_px": 1.0,
+          "images": 1,
+          "tp": 197,
+          "fp": 238,
+          "fn": 37,
+          "precision": 0.4528735632183908,
+          "recall": 0.8418803418803419,
+          "f1": 0.5889387144992526,
+          "median_error_px": 0.5304119507575101,
+          "p95_error_px": 0.8897868793802136,
+          "localization_population": "matched points only",
+          "mean_dx_px": -0.07957195146434803,
+          "mean_dy_px": 0.31228775179325624,
+          "rmse_error_px": 0.5639972267882437
+        },
+        {
+          "radius_px": 1.5,
+          "images": 1,
+          "tp": 233,
+          "fp": 202,
+          "fn": 1,
+          "precision": 0.535632183908046,
+          "recall": 0.9957264957264957,
+          "f1": 0.6965620328849028,
+          "median_error_px": 0.580499570657346,
+          "p95_error_px": 1.2113328466373596,
+          "localization_population": "matched points only",
+          "mean_dx_px": -0.07965173025499597,
+          "mean_dy_px": 0.43447127771991517,
+          "rmse_error_px": 0.6972062680812788
+        }
+      ]
+    },
+    {
+      "id": "real-04",
+      "model": "baseline-mixed",
+      "annotation": "Existing silver ROI, uncertainty uncalibrated, not independent expert gold",
+      "coordinate_units": "resized output pixels",
+      "scale_xy": [
+        0.2326454033771107,
+        0.2324455205811138
+      ],
+      "metrics": [
+        {
+          "radius_px": 0.25,
+          "images": 1,
+          "tp": 28,
+          "fp": 209,
+          "fn": 206,
+          "precision": 0.11814345991561181,
+          "recall": 0.11965811965811966,
+          "f1": 0.11889596602972399,
+          "median_error_px": 0.18614374278502926,
+          "p95_error_px": 0.24468774253883344,
+          "localization_population": "matched points only",
+          "mean_dx_px": -0.0024937220982142855,
+          "mean_dy_px": -0.033335821969168525,
+          "rmse_error_px": 0.18174938759230697
+        },
+        {
+          "radius_px": 0.5,
+          "images": 1,
+          "tp": 84,
+          "fp": 153,
+          "fn": 150,
+          "precision": 0.35443037974683544,
+          "recall": 0.358974358974359,
+          "f1": 0.35668789808917195,
+          "median_error_px": 0.31230044501216037,
+          "p95_error_px": 0.4865959742978105,
+          "localization_population": "matched points only",
+          "mean_dx_px": -0.06345222109840029,
+          "mean_dy_px": 0.05641669318789527,
+          "rmse_error_px": 0.3419396146685518
+        },
+        {
+          "radius_px": 1.0,
+          "images": 1,
+          "tp": 176,
+          "fp": 61,
+          "fn": 58,
+          "precision": 0.7426160337552743,
+          "recall": 0.7521367521367521,
+          "f1": 0.7473460721868365,
+          "median_error_px": 0.515586963567025,
+          "p95_error_px": 0.9096861646903777,
+          "localization_population": "matched points only",
+          "mean_dx_px": -0.15853483026677911,
+          "mean_dy_px": 0.2615876414559104,
+          "rmse_error_px": 0.5591024059209405
+        },
+        {
+          "radius_px": 1.5,
+          "images": 1,
+          "tp": 225,
+          "fp": 12,
+          "fn": 9,
+          "precision": 0.9493670886075949,
+          "recall": 0.9615384615384616,
+          "f1": 0.9554140127388535,
+          "median_error_px": 0.6075746002725945,
+          "p95_error_px": 1.2240030078885429,
+          "localization_population": "matched points only",
+          "mean_dx_px": -0.15317396375868056,
+          "mean_dy_px": 0.2521656460232205,
+          "rmse_error_px": 0.7381764876783199
+        }
+      ]
+    },
+    {
+      "id": "real-04",
+      "model": "sigma06-mixed",
+      "annotation": "Existing silver ROI, uncertainty uncalibrated, not independent expert gold",
+      "coordinate_units": "resized output pixels",
+      "scale_xy": [
+        0.2326454033771107,
+        0.2324455205811138
+      ],
+      "metrics": [
+        {
+          "radius_px": 0.25,
+          "images": 1,
+          "tp": 37,
+          "fp": 201,
+          "fn": 197,
+          "precision": 0.15546218487394958,
+          "recall": 0.1581196581196581,
+          "f1": 0.15677966101694915,
+          "median_error_px": 0.18119572178106708,
+          "p95_error_px": 0.22537368569151892,
+          "localization_population": "matched points only",
+          "mean_dx_px": -0.03187664135082348,
+          "mean_dy_px": -0.0218760516192462,
+          "rmse_error_px": 0.17428981509585614
+        },
+        {
+          "radius_px": 0.5,
+          "images": 1,
+          "tp": 84,
+          "fp": 154,
+          "fn": 150,
+          "precision": 0.35294117647058826,
+          "recall": 0.358974358974359,
+          "f1": 0.3559322033898305,
+          "median_error_px": 0.27827006849809627,
+          "p95_error_px": 0.4902339307031489,
+          "localization_population": "matched points only",
+          "mean_dx_px": -0.1290701911562965,
+          "mean_dy_px": -0.0882561547415597,
+          "rmse_error_px": 0.32049552388430436
+        },
+        {
+          "radius_px": 1.0,
+          "images": 1,
+          "tp": 225,
+          "fp": 13,
+          "fn": 9,
+          "precision": 0.9453781512605042,
+          "recall": 0.9615384615384616,
+          "f1": 0.9533898305084746,
+          "median_error_px": 0.6007217091422421,
+          "p95_error_px": 0.9226255014350979,
+          "localization_population": "matched points only",
+          "mean_dx_px": -0.28849650065104165,
+          "mean_dy_px": -0.04909023708767361,
+          "rmse_error_px": 0.6193533392266166
+        },
+        {
+          "radius_px": 1.5,
+          "images": 1,
+          "tp": 234,
+          "fp": 4,
+          "fn": 0,
+          "precision": 0.9831932773109243,
+          "recall": 1.0,
+          "f1": 0.9915254237288136,
+          "median_error_px": 0.616506068829946,
+          "p95_error_px": 0.9681674390121631,
+          "localization_population": "matched points only",
+          "mean_dx_px": -0.30345359215369594,
+          "mean_dy_px": -0.0541985829671224,
+          "rmse_error_px": 0.6412814786958868
+        }
+      ]
+    },
+    {
+      "id": "real-04",
+      "model": "sigma20-mixed",
+      "annotation": "Existing silver ROI, uncertainty uncalibrated, not independent expert gold",
+      "coordinate_units": "resized output pixels",
+      "scale_xy": [
+        0.2326454033771107,
+        0.2324455205811138
+      ],
+      "metrics": [
+        {
+          "radius_px": 0.25,
+          "images": 1,
+          "tp": 0,
+          "fp": 214,
+          "fn": 234,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "median_error_px": null,
+          "p95_error_px": null,
+          "localization_population": "matched points only",
+          "mean_dx_px": null,
+          "mean_dy_px": null,
+          "rmse_error_px": null
+        },
+        {
+          "radius_px": 0.5,
+          "images": 1,
+          "tp": 1,
+          "fp": 213,
+          "fn": 233,
+          "precision": 0.004672897196261682,
+          "recall": 0.004273504273504274,
+          "f1": 0.004464285714285714,
+          "median_error_px": 0.48041208228211363,
+          "p95_error_px": 0.48041208228211363,
+          "localization_population": "matched points only",
+          "mean_dx_px": 0.48040771484375,
+          "mean_dy_px": 0.002048492431640625,
+          "rmse_error_px": 0.48041208228211363
+        },
+        {
+          "radius_px": 1.0,
+          "images": 1,
+          "tp": 63,
+          "fp": 151,
+          "fn": 171,
+          "precision": 0.29439252336448596,
+          "recall": 0.2692307692307692,
+          "f1": 0.28125,
+          "median_error_px": 0.7976786619889878,
+          "p95_error_px": 0.9795540298319156,
+          "localization_population": "matched points only",
+          "mean_dx_px": 0.7421337309337798,
+          "mean_dy_px": -0.11705362229120164,
+          "rmse_error_px": 0.8010364427563689
+        },
+        {
+          "radius_px": 1.5,
+          "images": 1,
+          "tp": 203,
+          "fp": 11,
+          "fn": 31,
+          "precision": 0.9485981308411215,
+          "recall": 0.8675213675213675,
+          "f1": 0.90625,
+          "median_error_px": 1.171694949550186,
+          "p95_error_px": 1.4378463571118179,
+          "localization_population": "matched points only",
+          "mean_dx_px": 0.7121816174737339,
+          "mean_dy_px": -0.13703743695038292,
+          "rmse_error_px": 1.1431200555489782
+        }
+      ]
+    },
+    {
+      "id": "real-04",
+      "model": "nooffset-mixed",
+      "annotation": "Existing silver ROI, uncertainty uncalibrated, not independent expert gold",
+      "coordinate_units": "resized output pixels",
+      "scale_xy": [
+        0.2326454033771107,
+        0.2324455205811138
+      ],
+      "metrics": [
+        {
+          "radius_px": 0.25,
+          "images": 1,
+          "tp": 98,
+          "fp": 141,
+          "fn": 136,
+          "precision": 0.4100418410041841,
+          "recall": 0.4188034188034188,
+          "f1": 0.4143763213530655,
+          "median_error_px": 0.17496706795827294,
+          "p95_error_px": 0.24317033257248846,
+          "localization_population": "matched points only",
+          "mean_dx_px": -0.03960519907425861,
+          "mean_dy_px": 0.02102120068608498,
+          "rmse_error_px": 0.17615270560325821
+        },
+        {
+          "radius_px": 0.5,
+          "images": 1,
+          "tp": 210,
+          "fp": 29,
+          "fn": 24,
+          "precision": 0.8786610878661087,
+          "recall": 0.8974358974358975,
+          "f1": 0.8879492600422833,
+          "median_error_px": 0.2602102228265495,
+          "p95_error_px": 0.4530314525342268,
+          "localization_population": "matched points only",
+          "mean_dx_px": -0.10471413021995908,
+          "mean_dy_px": 0.05788941156296503,
+          "rmse_error_px": 0.2906393119256638
+        },
+        {
+          "radius_px": 1.0,
+          "images": 1,
+          "tp": 234,
+          "fp": 5,
+          "fn": 0,
+          "precision": 0.9790794979079498,
+          "recall": 1.0,
+          "f1": 0.9894291754756871,
+          "median_error_px": 0.27754111763735534,
+          "p95_error_px": 0.5774459923718479,
+          "localization_population": "matched points only",
+          "mean_dx_px": -0.10230284470778245,
+          "mean_dy_px": 0.07100287869445279,
+          "rmse_error_px": 0.3295727377703211
+        },
+        {
+          "radius_px": 1.5,
+          "images": 1,
+          "tp": 234,
+          "fp": 5,
+          "fn": 0,
+          "precision": 0.9790794979079498,
+          "recall": 1.0,
+          "f1": 0.9894291754756871,
+          "median_error_px": 0.27754111763735534,
+          "p95_error_px": 0.5774459923718479,
+          "localization_population": "matched points only",
+          "mean_dx_px": -0.10230284470778245,
+          "mean_dy_px": 0.07100287869445279,
+          "rmse_error_px": 0.3295727377703211
+        }
+      ]
+    },
+    {
+      "id": "real-04",
+      "model": "disk-mixed",
+      "annotation": "Existing silver ROI, uncertainty uncalibrated, not independent expert gold",
+      "coordinate_units": "resized output pixels",
+      "scale_xy": [
+        0.2326454033771107,
+        0.2324455205811138
+      ],
+      "metrics": [
+        {
+          "radius_px": 0.25,
+          "images": 1,
+          "tp": 19,
+          "fp": 215,
+          "fn": 215,
+          "precision": 0.0811965811965812,
+          "recall": 0.0811965811965812,
+          "f1": 0.0811965811965812,
+          "median_error_px": 0.16657034535656168,
+          "p95_error_px": 0.22505291531753696,
+          "localization_population": "matched points only",
+          "mean_dx_px": -0.006170975534539474,
+          "mean_dy_px": 0.017728905928762334,
+          "rmse_error_px": 0.1647882684982807
+        },
+        {
+          "radius_px": 0.5,
+          "images": 1,
+          "tp": 87,
+          "fp": 147,
+          "fn": 147,
+          "precision": 0.3717948717948718,
+          "recall": 0.3717948717948718,
+          "f1": 0.3717948717948718,
+          "median_error_px": 0.3805118256527777,
+          "p95_error_px": 0.4864743283338227,
+          "localization_population": "matched points only",
+          "mean_dx_px": -0.04229832791734016,
+          "mean_dy_px": -0.04848725768341415,
+          "rmse_error_px": 0.35769054395628547
+        },
+        {
+          "radius_px": 1.0,
+          "images": 1,
+          "tp": 193,
+          "fp": 41,
+          "fn": 41,
+          "precision": 0.8247863247863247,
+          "recall": 0.8247863247863247,
+          "f1": 0.8247863247863247,
+          "median_error_px": 0.5267183905062471,
+          "p95_error_px": 0.9161066053138841,
+          "localization_population": "matched points only",
+          "mean_dx_px": -0.26744870200676,
+          "mean_dy_px": -0.11376601303179647,
+          "rmse_error_px": 0.578729852242178
+        },
+        {
+          "radius_px": 1.5,
+          "images": 1,
+          "tp": 234,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "median_error_px": 0.5758279034029996,
+          "p95_error_px": 1.2724123653546142,
+          "localization_population": "matched points only",
+          "mean_dx_px": -0.42269304063585067,
+          "mean_dy_px": -0.11860536102555756,
+          "rmse_error_px": 0.7260151742858099
+        }
+      ]
+    },
+    {
+      "id": "real-05",
+      "metrics": null,
+      "reason": "No complete annotated ROI. Quantitative accuracy not estimated"
+    },
+    {
+      "id": "real-06",
+      "metrics": null,
+      "reason": "No complete annotated ROI. Quantitative accuracy not estimated"
+    }
+  ],
+  "render_timings": [
+    {
+      "key": "00020-0-offline",
+      "source_id": "ptbxl-19334",
+      "group_id": "ptbxl-patient-12971.0",
+      "spp": 16,
+      "generation_seconds": 1.7246683439880144,
+      "accepted_points": 2052,
+      "geometry_and_validity_identical": true,
+      "original_capture_sha256": "74b9318606883180c3e15389481eb230847b8c4106e16463f8308acac7c22d72",
+      "file": "captures/00020-0-offline-spp16.pt",
+      "sha256": "ee4a447f1af98d571e5400a4eed0ce11a28430151940571234635ebe95b2989d",
+      "baseline_max_image_difference": 0.0
+    },
+    {
+      "key": "00020-0-offline",
+      "source_id": "ptbxl-19334",
+      "group_id": "ptbxl-patient-12971.0",
+      "spp": 32,
+      "generation_seconds": 1.8586734939890448,
+      "accepted_points": 2052,
+      "geometry_and_validity_identical": true,
+      "original_capture_sha256": "74b9318606883180c3e15389481eb230847b8c4106e16463f8308acac7c22d72",
+      "file": "captures/00020-0-offline-spp32.pt",
+      "sha256": "c9134dbfb71dc71e444a17327f34a990ca352175cc43aaf4a929b364b0b3b8e9"
+    },
+    {
+      "key": "00020-0-offline",
+      "source_id": "ptbxl-19334",
+      "group_id": "ptbxl-patient-12971.0",
+      "spp": 64,
+      "generation_seconds": 2.267093795002438,
+      "accepted_points": 2052,
+      "geometry_and_validity_identical": true,
+      "original_capture_sha256": "74b9318606883180c3e15389481eb230847b8c4106e16463f8308acac7c22d72",
+      "file": "captures/00020-0-offline-spp64.pt",
+      "sha256": "f96956bab9772808461ccf669812b58d800e971d1fd33420cd52f94b1c3693d8"
+    },
+    {
+      "key": "00020-0-offline",
+      "source_id": "ptbxl-19334",
+      "group_id": "ptbxl-patient-12971.0",
+      "spp": 128,
+      "generation_seconds": 3.6385978650068864,
+      "accepted_points": 2052,
+      "geometry_and_validity_identical": true,
+      "original_capture_sha256": "74b9318606883180c3e15389481eb230847b8c4106e16463f8308acac7c22d72",
+      "file": "captures/00020-0-offline-spp128.pt",
+      "sha256": "eb20c714c7eef676d5e9d789a0a1c145db3f8fa62d73e1a2ca6c3c3f6bfb8b96"
+    },
+    {
+      "key": "00020-1-offline",
+      "source_id": "ptbxl-19334",
+      "group_id": "ptbxl-patient-12971.0",
+      "spp": 16,
+      "generation_seconds": 1.912999876003596,
+      "accepted_points": 2106,
+      "geometry_and_validity_identical": true,
+      "original_capture_sha256": "a3ed383f134e72edeb7dc5a387c9fb03e7023f8fabcc61fab8b6e2fd9e2e5e0c",
+      "file": "captures/00020-1-offline-spp16.pt",
+      "sha256": "2ba03eb86795c42f447dbeb222c4b501e360e453dcbbeac93a858af315492316",
+      "baseline_max_image_difference": 0.0
+    },
+    {
+      "key": "00020-1-offline",
+      "source_id": "ptbxl-19334",
+      "group_id": "ptbxl-patient-12971.0",
+      "spp": 32,
+      "generation_seconds": 2.2156709499977296,
+      "accepted_points": 2106,
+      "geometry_and_validity_identical": true,
+      "original_capture_sha256": "a3ed383f134e72edeb7dc5a387c9fb03e7023f8fabcc61fab8b6e2fd9e2e5e0c",
+      "file": "captures/00020-1-offline-spp32.pt",
+      "sha256": "c31a54f84302025bbbd54baf5dce4f22877de7ffb970331d9cb9f7e0e36a679e"
+    },
+    {
+      "key": "00020-1-offline",
+      "source_id": "ptbxl-19334",
+      "group_id": "ptbxl-patient-12971.0",
+      "spp": 64,
+      "generation_seconds": 2.562918845011154,
+      "accepted_points": 2106,
+      "geometry_and_validity_identical": true,
+      "original_capture_sha256": "a3ed383f134e72edeb7dc5a387c9fb03e7023f8fabcc61fab8b6e2fd9e2e5e0c",
+      "file": "captures/00020-1-offline-spp64.pt",
+      "sha256": "747a7c01c54551b3b92c96d504965e2fb379608a5275fa3b5069973c8d42e68a"
+    },
+    {
+      "key": "00020-1-offline",
+      "source_id": "ptbxl-19334",
+      "group_id": "ptbxl-patient-12971.0",
+      "spp": 128,
+      "generation_seconds": 3.3476280059985584,
+      "accepted_points": 2106,
+      "geometry_and_validity_identical": true,
+      "original_capture_sha256": "a3ed383f134e72edeb7dc5a387c9fb03e7023f8fabcc61fab8b6e2fd9e2e5e0c",
+      "file": "captures/00020-1-offline-spp128.pt",
+      "sha256": "3000384883514a15405989a024f233bca6dd778feeae8c6919b4ebad6084c01c"
+    },
+    {
+      "key": "00021-0-offline",
+      "source_id": "ptbxl-14149",
+      "group_id": "ptbxl-patient-15879.0",
+      "spp": 16,
+      "generation_seconds": 1.6106256429920904,
+      "accepted_points": 2052,
+      "geometry_and_validity_identical": true,
+      "original_capture_sha256": "c62b2a8494626f319f893f8cdbdd05425bde3d5d4f0e7f65278b33c3c65a6d06",
+      "file": "captures/00021-0-offline-spp16.pt",
+      "sha256": "cac21f2b33cf306969393f8b350c51387c94b590d890d61b972ef3403db5ebfb",
+      "baseline_max_image_difference": 0.0
+    },
+    {
+      "key": "00021-0-offline",
+      "source_id": "ptbxl-14149",
+      "group_id": "ptbxl-patient-15879.0",
+      "spp": 32,
+      "generation_seconds": 2.2403412129933713,
+      "accepted_points": 2052,
+      "geometry_and_validity_identical": true,
+      "original_capture_sha256": "c62b2a8494626f319f893f8cdbdd05425bde3d5d4f0e7f65278b33c3c65a6d06",
+      "file": "captures/00021-0-offline-spp32.pt",
+      "sha256": "6a4cb4492f66471891a4f46bbb111f2d89ce525cc83c30e9f458c65ed2fafc68"
+    },
+    {
+      "key": "00021-0-offline",
+      "source_id": "ptbxl-14149",
+      "group_id": "ptbxl-patient-15879.0",
+      "spp": 64,
+      "generation_seconds": 2.5081881480000447,
+      "accepted_points": 2052,
+      "geometry_and_validity_identical": true,
+      "original_capture_sha256": "c62b2a8494626f319f893f8cdbdd05425bde3d5d4f0e7f65278b33c3c65a6d06",
+      "file": "captures/00021-0-offline-spp64.pt",
+      "sha256": "8efc868de9c053272a00886de27a63de168e91f042ef62556792a98d927e941d"
+    },
+    {
+      "key": "00021-0-offline",
+      "source_id": "ptbxl-14149",
+      "group_id": "ptbxl-patient-15879.0",
+      "spp": 128,
+      "generation_seconds": 3.5272128170036012,
+      "accepted_points": 2052,
+      "geometry_and_validity_identical": true,
+      "original_capture_sha256": "c62b2a8494626f319f893f8cdbdd05425bde3d5d4f0e7f65278b33c3c65a6d06",
+      "file": "captures/00021-0-offline-spp128.pt",
+      "sha256": "a36874bc018e5688da7f1d44b5d441632c3682f939ec11907113eaa8d802e546"
+    },
+    {
+      "key": "00021-1-offline",
+      "source_id": "ptbxl-14149",
+      "group_id": "ptbxl-patient-15879.0",
+      "spp": 16,
+      "generation_seconds": 2.093957978009712,
+      "accepted_points": 2106,
+      "geometry_and_validity_identical": true,
+      "original_capture_sha256": "bd117442a4e14cc733e45ec8d40e4e4b1a25849ff3934487d65cc33e75c62910",
+      "file": "captures/00021-1-offline-spp16.pt",
+      "sha256": "671fcd507655f9e04f520f68168d0163af9edf4a219985bc36ada9df7233e792",
+      "baseline_max_image_difference": 0.0
+    },
+    {
+      "key": "00021-1-offline",
+      "source_id": "ptbxl-14149",
+      "group_id": "ptbxl-patient-15879.0",
+      "spp": 32,
+      "generation_seconds": 2.2514542159915436,
+      "accepted_points": 2106,
+      "geometry_and_validity_identical": true,
+      "original_capture_sha256": "bd117442a4e14cc733e45ec8d40e4e4b1a25849ff3934487d65cc33e75c62910",
+      "file": "captures/00021-1-offline-spp32.pt",
+      "sha256": "d2d5c2970354922ee8fd44053f69e70a333f2d2d6f3b8d8eb6c64d4a5226f7ef"
+    },
+    {
+      "key": "00021-1-offline",
+      "source_id": "ptbxl-14149",
+      "group_id": "ptbxl-patient-15879.0",
+      "spp": 64,
+      "generation_seconds": 3.1721374000044307,
+      "accepted_points": 2106,
+      "geometry_and_validity_identical": true,
+      "original_capture_sha256": "bd117442a4e14cc733e45ec8d40e4e4b1a25849ff3934487d65cc33e75c62910",
+      "file": "captures/00021-1-offline-spp64.pt",
+      "sha256": "28ce23aa9e778cfacba02f5e2967f071e666a42736b14d695572e7ad94dd3694"
+    },
+    {
+      "key": "00021-1-offline",
+      "source_id": "ptbxl-14149",
+      "group_id": "ptbxl-patient-15879.0",
+      "spp": 128,
+      "generation_seconds": 4.839686086008442,
+      "accepted_points": 2106,
+      "geometry_and_validity_identical": true,
+      "original_capture_sha256": "bd117442a4e14cc733e45ec8d40e4e4b1a25849ff3934487d65cc33e75c62910",
+      "file": "captures/00021-1-offline-spp128.pt",
+      "sha256": "0de261d9d1d6b12bee16886d7a39fc55b3faeac1d199607e243fd7e4d8aa28e8"
+    },
+    {
+      "key": "00022-0-offline",
+      "source_id": "ptbxl-12031",
+      "group_id": "ptbxl-patient-504.0",
+      "spp": 16,
+      "generation_seconds": 1.9532942770019872,
+      "accepted_points": 2052,
+      "geometry_and_validity_identical": true,
+      "original_capture_sha256": "bd85e4bcafcceb420239e8e58968f86c4cc60bd773ebb1757161e6ce476a3214",
+      "file": "captures/00022-0-offline-spp16.pt",
+      "sha256": "5b8b19d76ed9b4f98465c1c91779801bb2fea71b7e936a64a93f8e364e4c8d7a",
+      "baseline_max_image_difference": 0.0
+    },
+    {
+      "key": "00022-0-offline",
+      "source_id": "ptbxl-12031",
+      "group_id": "ptbxl-patient-504.0",
+      "spp": 32,
+      "generation_seconds": 2.3982288359984523,
+      "accepted_points": 2052,
+      "geometry_and_validity_identical": true,
+      "original_capture_sha256": "bd85e4bcafcceb420239e8e58968f86c4cc60bd773ebb1757161e6ce476a3214",
+      "file": "captures/00022-0-offline-spp32.pt",
+      "sha256": "4065781089caf33bd8b21e1cdb3b2d632173cc23eb9dd09cf3901fa9f62c9d49"
+    },
+    {
+      "key": "00022-0-offline",
+      "source_id": "ptbxl-12031",
+      "group_id": "ptbxl-patient-504.0",
+      "spp": 64,
+      "generation_seconds": 2.928049107998959,
+      "accepted_points": 2052,
+      "geometry_and_validity_identical": true,
+      "original_capture_sha256": "bd85e4bcafcceb420239e8e58968f86c4cc60bd773ebb1757161e6ce476a3214",
+      "file": "captures/00022-0-offline-spp64.pt",
+      "sha256": "10d76dbbd819715f1ac52a7822fa77e60813c058ac90e514b10c64cb14b7dfb1"
+    },
+    {
+      "key": "00022-0-offline",
+      "source_id": "ptbxl-12031",
+      "group_id": "ptbxl-patient-504.0",
+      "spp": 128,
+      "generation_seconds": 4.93953238800168,
+      "accepted_points": 2052,
+      "geometry_and_validity_identical": true,
+      "original_capture_sha256": "bd85e4bcafcceb420239e8e58968f86c4cc60bd773ebb1757161e6ce476a3214",
+      "file": "captures/00022-0-offline-spp128.pt",
+      "sha256": "bd21c6ad4d655a47613b5af0495fc4c3fe803d01103a0a449e9824824847d852"
+    },
+    {
+      "key": "00022-1-offline",
+      "source_id": "ptbxl-12031",
+      "group_id": "ptbxl-patient-504.0",
+      "spp": 16,
+      "generation_seconds": 1.8248026310029672,
+      "accepted_points": 2106,
+      "geometry_and_validity_identical": true,
+      "original_capture_sha256": "9bea3f0ee3107fda5571a27f9bd30f43d9b98d01664d1c34d76309e60a14d533",
+      "file": "captures/00022-1-offline-spp16.pt",
+      "sha256": "36f114f770b2225ead90a6d18356bd8433c866f1c18d5a4291daea382e8303b9",
+      "baseline_max_image_difference": 0.0
+    },
+    {
+      "key": "00022-1-offline",
+      "source_id": "ptbxl-12031",
+      "group_id": "ptbxl-patient-504.0",
+      "spp": 32,
+      "generation_seconds": 2.3844946610042825,
+      "accepted_points": 2106,
+      "geometry_and_validity_identical": true,
+      "original_capture_sha256": "9bea3f0ee3107fda5571a27f9bd30f43d9b98d01664d1c34d76309e60a14d533",
+      "file": "captures/00022-1-offline-spp32.pt",
+      "sha256": "587f5331c23211467ee0d44401b8b1044b3db6f2be161ff165b69be5ee24b6cb"
+    },
+    {
+      "key": "00022-1-offline",
+      "source_id": "ptbxl-12031",
+      "group_id": "ptbxl-patient-504.0",
+      "spp": 64,
+      "generation_seconds": 2.9997283869888633,
+      "accepted_points": 2106,
+      "geometry_and_validity_identical": true,
+      "original_capture_sha256": "9bea3f0ee3107fda5571a27f9bd30f43d9b98d01664d1c34d76309e60a14d533",
+      "file": "captures/00022-1-offline-spp64.pt",
+      "sha256": "4e35ca11e4a45f713128499448e3cd818012346c016aa568d863a0ae2f5f1250"
+    },
+    {
+      "key": "00022-1-offline",
+      "source_id": "ptbxl-12031",
+      "group_id": "ptbxl-patient-504.0",
+      "spp": 128,
+      "generation_seconds": 5.147749928990379,
+      "accepted_points": 2106,
+      "geometry_and_validity_identical": true,
+      "original_capture_sha256": "9bea3f0ee3107fda5571a27f9bd30f43d9b98d01664d1c34d76309e60a14d533",
+      "file": "captures/00022-1-offline-spp128.pt",
+      "sha256": "e40bfc0a3c55886ec385dfaced49603f610138d2be34d932bd7cc6905f20f6f4"
+    },
+    {
+      "key": "00023-0-offline",
+      "source_id": "ptbxl-4893",
+      "group_id": "ptbxl-patient-5052.0",
+      "spp": 16,
+      "generation_seconds": 2.0915157589915907,
+      "accepted_points": 2106,
+      "geometry_and_validity_identical": true,
+      "original_capture_sha256": "7f7a71fcd649cb8deea8040e86f7c0a69b6f3b0617088cf661ec980029de101a",
+      "file": "captures/00023-0-offline-spp16.pt",
+      "sha256": "c846c65dd943d63ea26e4597daeeeed92dc12fe75408fbabf1b4dc6c7624795d",
+      "baseline_max_image_difference": 0.0
+    },
+    {
+      "key": "00023-0-offline",
+      "source_id": "ptbxl-4893",
+      "group_id": "ptbxl-patient-5052.0",
+      "spp": 32,
+      "generation_seconds": 2.576843340997584,
+      "accepted_points": 2106,
+      "geometry_and_validity_identical": true,
+      "original_capture_sha256": "7f7a71fcd649cb8deea8040e86f7c0a69b6f3b0617088cf661ec980029de101a",
+      "file": "captures/00023-0-offline-spp32.pt",
+      "sha256": "6a61bd51afaf2dfa4b4793458300144404ff3b8693d1c50f17410688268f021c"
+    },
+    {
+      "key": "00023-0-offline",
+      "source_id": "ptbxl-4893",
+      "group_id": "ptbxl-patient-5052.0",
+      "spp": 64,
+      "generation_seconds": 3.321459508006228,
+      "accepted_points": 2106,
+      "geometry_and_validity_identical": true,
+      "original_capture_sha256": "7f7a71fcd649cb8deea8040e86f7c0a69b6f3b0617088cf661ec980029de101a",
+      "file": "captures/00023-0-offline-spp64.pt",
+      "sha256": "73f978a44d508a3c9a7a8f46479b5783c265aa01d479683ec73d583b656c26ca"
+    },
+    {
+      "key": "00023-0-offline",
+      "source_id": "ptbxl-4893",
+      "group_id": "ptbxl-patient-5052.0",
+      "spp": 128,
+      "generation_seconds": 5.347354304001783,
+      "accepted_points": 2106,
+      "geometry_and_validity_identical": true,
+      "original_capture_sha256": "7f7a71fcd649cb8deea8040e86f7c0a69b6f3b0617088cf661ec980029de101a",
+      "file": "captures/00023-0-offline-spp128.pt",
+      "sha256": "3a3ff0c024477f3e35091e7ebcd996a2f7a92a1afd16ff0a458e3eee5c766d4d"
+    },
+    {
+      "key": "00023-1-offline",
+      "source_id": "ptbxl-4893",
+      "group_id": "ptbxl-patient-5052.0",
+      "spp": 16,
+      "generation_seconds": 1.8975215600075899,
+      "accepted_points": 2106,
+      "geometry_and_validity_identical": true,
+      "original_capture_sha256": "047dc9d850815627afb1f647024aaa38da112059b9aa94601bff6096d3b8b822",
+      "file": "captures/00023-1-offline-spp16.pt",
+      "sha256": "af3075db2c019a6b3ee7f62c54719a17549101528d2ac99d8633d52293fa75e3",
+      "baseline_max_image_difference": 0.0
+    },
+    {
+      "key": "00023-1-offline",
+      "source_id": "ptbxl-4893",
+      "group_id": "ptbxl-patient-5052.0",
+      "spp": 32,
+      "generation_seconds": 1.9156318130117143,
+      "accepted_points": 2106,
+      "geometry_and_validity_identical": true,
+      "original_capture_sha256": "047dc9d850815627afb1f647024aaa38da112059b9aa94601bff6096d3b8b822",
+      "file": "captures/00023-1-offline-spp32.pt",
+      "sha256": "10741a4ff97ba46c30d28d532c4b68e56f73915d503c2441167c5f45da27f690"
+    },
+    {
+      "key": "00023-1-offline",
+      "source_id": "ptbxl-4893",
+      "group_id": "ptbxl-patient-5052.0",
+      "spp": 64,
+      "generation_seconds": 2.744283252992318,
+      "accepted_points": 2106,
+      "geometry_and_validity_identical": true,
+      "original_capture_sha256": "047dc9d850815627afb1f647024aaa38da112059b9aa94601bff6096d3b8b822",
+      "file": "captures/00023-1-offline-spp64.pt",
+      "sha256": "4599d6565c78273dbfd975d4d2cce372734521d0e51d755468745bd89ef87a59"
+    },
+    {
+      "key": "00023-1-offline",
+      "source_id": "ptbxl-4893",
+      "group_id": "ptbxl-patient-5052.0",
+      "spp": 128,
+      "generation_seconds": 3.4106121360091493,
+      "accepted_points": 2106,
+      "geometry_and_validity_identical": true,
+      "original_capture_sha256": "047dc9d850815627afb1f647024aaa38da112059b9aa94601bff6096d3b8b822",
+      "file": "captures/00023-1-offline-spp128.pt",
+      "sha256": "4880fc8ec77033187dfdfa267c22eb65237e9acc4c9cf0302bdbf688869a8798"
+    }
+  ],
+  "replay": {
+    "predictions_verified": 224,
+    "captures_verified": 32,
+    "aggregates_reproduced": 112,
+    "paired_intervals_identical": true,
+    "driver_after_pairing_validation_sha256": "2e55552d1fb59a4535ef4b65e8a6068b3854f4b8db3d5a70dcb70b93b7bd6ddb",
+    "executed_source_archive_sha256": "fc89edef057541fb0867a5b283941870da27678f26112048bd0e2a94c04bf89f"
+  }
+}

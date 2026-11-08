@@ -1,0 +1,126 @@
+name: Frozen hybrid ECG Runpod pilot
+on:
+  push:
+    branches: ['research/hybrid-digitizer-*']
+    paths:
+      - '.github/workflows/hybrid-runpod.yml'
+      - 'reproductions/hybrid/plan.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: ecg-hybrid-runpod-control
+  cancel-in-progress: false
+jobs:
+  admit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      actions: write
+    outputs:
+      admitted: ${{ steps.admission.outputs.admitted }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Retire superseded hybrid runs only while they have no jobs
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python -m reproductions.hybrid.retire_pending
+      - id: admission
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python -m reproductions.runpod.admission --workflow hybrid-runpod.yml --plan reproductions/hybrid/plan.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: hybrid-admission-receipt
+          path: build/retired-pending-pilots.json
+  validate:
+    needs: admit
+    if: needs.admit.outputs.admitted == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      OMP_NUM_THREADS: '2'
+      MKL_NUM_THREADS: '2'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install the versioned validation stack used by the CPU controls
+        run: |
+          python -m pip install torch==2.7.0 --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install -e '.[benchmark]' numpy==2.5.4 scipy==1.18.1 Pillow==13.0.0 matplotlib==3.11.2 shapely==2.1.2 opencv-python-headless==4.11.0.86 PyYAML==6.0.3 pandas==3.1.0
+      - name: Integration and reference-isolation contracts before any paid allocation
+        run: |
+          python -m unittest discover -s tests -v
+          python -m unittest discover -s reproductions/tests -v
+  recover:
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Reuse the checkpoint already recovered without another paid pod
+        uses: actions/download-artifact@v4
+        with:
+          name: hybrid-grid-recovery
+          run-id: 41105577589
+          github-token: ${{ github.token }}
+          path: build/grid-recovery
+      - name: Verify exact selected checkpoint before any new allocation
+        run: echo '8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8  build/grid-recovery/grid-checkpoint.pt' | sha256sum --check
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: hybrid-grid-recovery
+          path: |
+            build/grid-recovery/control.json
+            build/grid-recovery/grid-checkpoint.pt
+  benchmark:
+    needs: recover
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      RUNPOD_API_KEY: ${{ secrets.RUNPOD_API }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: hybrid-grid-recovery
+          path: build/grid-recovery
+      - name: Install hash-verified Runpod CLI
+        run: |
+          curl --fail --location --silent --show-error https://github.com/runpod/runpodctl/releases/download/v3.0.1/runpodctl-linux-amd64 --output /tmp/runpodctl
+          echo 'b66d11eca8cacbf18a2de6943c6e18a79ffbdc8a3c30aa13a49dc6cfc15d4239  /tmp/runpodctl' | sha256sum --check
+          chmod 755 /tmp/runpodctl
+      - name: Read current stock and price, provision one bounded GPU
+        run: python -u -m reproductions.hybrid.controller --cli /tmp/runpodctl --out build/hybrid-run provision
+      - name: Native GPU inference and frozen reference-free hybrid evaluation
+        run: python -u -m reproductions.hybrid.controller --cli /tmp/runpodctl --out build/hybrid-run execute
+      - name: Terminate and externally verify our benchmark GPU
+        if: always()
+        run: python -u -m reproductions.hybrid.controller --cli /tmp/runpodctl --out build/hybrid-run cleanup
+      - uses: actions/upload-artifact@v4
+        id: upload
+        if: always()
+        with:
+          name: hybrid-gpu-measurements
+          path: |
+            build/hybrid-run/control.json
+            build/hybrid-run/results.tar.gz
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: hybrid-cleanup-receipt
+          path: build/hybrid-run/control.json

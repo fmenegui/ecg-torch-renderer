@@ -1,0 +1,550 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "id": "K001",
+      "kind": "primary_author_writeup",
+      "url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/writeups/1st-place-solution",
+      "title": "1st place solution",
+      "authors": "outrunner, Yijun, Arya, Bob, Shane Hsieh",
+      "retrieved": "2026-10-23",
+      "method": "Official public JSON API, complete rawMarkdown read",
+      "writeup_id": 65142,
+      "topic_id": 669584,
+      "response_bytes": 27910,
+      "response_sha256": "74797e5e844956446908eaed9a760315b17b158dd25007807af912e111671199",
+      "web_refs": [
+        "turn108search2"
+      ],
+      "source_republication": false
+    },
+    {
+      "id": "K002",
+      "kind": "primary_author_writeup",
+      "url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/writeups/2nd-place-solution",
+      "title": "2nd place solution",
+      "authors": "Takashi Someya",
+      "retrieved": "2026-10-23",
+      "method": "Official public JSON API, complete rawMarkdown read",
+      "writeup_id": 65240,
+      "topic_id": 669871,
+      "response_bytes": 36784,
+      "response_sha256": "e35f53de9a3e4caa6b02a14f136dfc64db15bdc112d4903e9655247154035f40",
+      "web_refs": [
+        "turn110search0",
+        "turn110search1"
+      ],
+      "source_republication": false
+    },
+    {
+      "id": "K003",
+      "kind": "primary_author_writeup",
+      "url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/writeups/3rd-place-solution",
+      "title": "3rd place solution",
+      "authors": "Tang",
+      "retrieved": "2026-10-23",
+      "method": "Official public JSON API, complete rawMarkdown read",
+      "writeup_id": 65167,
+      "topic_id": 669668,
+      "response_bytes": 17923,
+      "response_sha256": "085329c21a22e2ea7546dd6eb16abccbd76c27df1c2b2290e7bfd294d70fbaad",
+      "web_refs": [
+        "turn110search4"
+      ],
+      "source_republication": false
+    },
+    {
+      "id": "K004",
+      "kind": "primary_author_writeup",
+      "url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/writeups/4th-place-solution",
+      "title": "4th Place Solution",
+      "authors": "tomoon33",
+      "retrieved": "2026-10-23",
+      "method": "Official public JSON API, complete rawMarkdown read",
+      "writeup_id": 65250,
+      "topic_id": 669897,
+      "response_bytes": 25363,
+      "response_sha256": "5cb1ff28beff269a6d11e623a7d76b6508c2daac83a2c120af5d2d60846a64f5",
+      "web_refs": [
+        "turn108search3"
+      ],
+      "source_republication": false
+    },
+    {
+      "id": "K005",
+      "kind": "primary_author_writeup",
+      "url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/writeups/5th-place-solution",
+      "title": "5th place solution: Multi-stages Heatmap-based Modeling",
+      "authors": "Đăng Nguyễn Hồng",
+      "retrieved": "2026-10-23",
+      "method": "Official public JSON API, complete rawMarkdown read",
+      "writeup_id": 65346,
+      "topic_id": 670227,
+      "response_bytes": 72264,
+      "response_sha256": "d353183f66c5aad2ca58ba697f344056e86e6995afbd824d9f7023e0dda81607",
+      "web_refs": [
+        "turn112search0",
+        "turn112search1"
+      ],
+      "source_republication": false
+    },
+    {
+      "id": "K006",
+      "kind": "primary_author_writeup",
+      "url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/writeups/6th-place-solution",
+      "title": "6th place solution",
+      "authors": "AnnieGo",
+      "retrieved": "2026-10-23",
+      "method": "Official public JSON API, complete rawMarkdown read",
+      "writeup_id": 65138,
+      "topic_id": 669562,
+      "response_bytes": 13829,
+      "response_sha256": "5d79b24b9e5274acda3e534f865e7a4b7b4d4eedf788a4556bb13c57ab25a732",
+      "web_refs": [
+        "turn126search0"
+      ],
+      "source_republication": false
+    },
+    {
+      "id": "K007",
+      "kind": "primary_author_writeup",
+      "url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/writeups/7th-place-solution",
+      "title": "7th place solution",
+      "authors": "Harshit Sheoran, Bartley",
+      "retrieved": "2026-10-23",
+      "method": "Official public JSON API, complete rawMarkdown read",
+      "writeup_id": 65132,
+      "topic_id": 669548,
+      "response_bytes": 24313,
+      "response_sha256": "b93e205a5b8d9776a6a0a0c85de79a4964e2ca876224260a9e77e1f15292ef54",
+      "web_refs": [
+        "turn119search4"
+      ],
+      "source_republication": false
+    },
+    {
+      "id": "K008",
+      "kind": "primary_author_writeup",
+      "url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/writeups/8th-place-solution",
+      "title": "8th Place Solution",
+      "authors": "liuzhangzhen, D.Imanishi, James Day",
+      "retrieved": "2026-10-23",
+      "method": "Official public JSON API, complete rawMarkdown read",
+      "writeup_id": 65196,
+      "topic_id": 669740,
+      "response_bytes": 68739,
+      "response_sha256": "f4b13ffc7a6706e709935e6faab46d350cfde80bd1468655dd73c644a4da368b",
+      "web_refs": [
+        "turn140search1"
+      ],
+      "source_republication": false
+    },
+    {
+      "id": "K009",
+      "kind": "primary_author_writeup",
+      "url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/writeups/9th-place-solution",
+      "title": "9th Place Solution",
+      "authors": "YumeNeko",
+      "retrieved": "2026-10-23",
+      "method": "Official public JSON API, complete rawMarkdown read",
+      "writeup_id": 65330,
+      "topic_id": 670169,
+      "response_bytes": 24193,
+      "response_sha256": "b5fd14b260395c4f4329b3c4c58b46ef6e8ef7732c7cf8a83b25dd3db1d102cd",
+      "web_refs": [
+        "turn112search4"
+      ],
+      "source_republication": false
+    },
+    {
+      "id": "K010",
+      "kind": "primary_author_writeup",
+      "url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/writeups/top-10-solution-giba",
+      "title": "10th Place Solution - Yolo+Unet",
+      "authors": "Giba",
+      "retrieved": "2026-10-23",
+      "method": "Official public JSON API, complete rawMarkdown read",
+      "writeup_id": 65363,
+      "topic_id": 670262,
+      "response_bytes": 11292,
+      "response_sha256": "55ca415db331385b3ac9d58b29ed6c145dcaca4745c45bccc0245f8ab2846f25",
+      "web_refs": [],
+      "source_republication": false
+    },
+    {
+      "id": "K011",
+      "kind": "primary_author_writeup",
+      "url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/writeups/11th-place-solution",
+      "title": "11th Place Solution",
+      "authors": "zx2, fengxing, zacarioli",
+      "retrieved": "2026-10-23",
+      "method": "Official public JSON API, complete rawMarkdown read",
+      "writeup_id": 65360,
+      "topic_id": 670256,
+      "response_bytes": 8380,
+      "response_sha256": "2f32eabd3ad823d77f262b13ed1e5a29398b9b39d8f88b1f60f93a28ffc4eb3e",
+      "web_refs": [
+        "turn122search0"
+      ],
+      "source_republication": false
+    },
+    {
+      "id": "K012",
+      "kind": "primary_author_writeup",
+      "url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/writeups/12th-place-solution",
+      "title": "12th place solution",
+      "authors": "pln",
+      "retrieved": "2026-10-23",
+      "method": "Official public JSON API, complete rawMarkdown read",
+      "writeup_id": 65147,
+      "topic_id": 669594,
+      "response_bytes": 21578,
+      "response_sha256": "ddb96693083fa4b8af876e3d19d76487366a50e60e932fc64c7e13553c99884d",
+      "web_refs": [
+        "turn119search3"
+      ],
+      "source_republication": false
+    },
+    {
+      "id": "K013",
+      "kind": "primary_author_writeup",
+      "url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/writeups/13th-place-solution-public-lb-21-62-db-privat",
+      "title": "13th Place Solution",
+      "authors": "Maruichi01",
+      "retrieved": "2026-10-23",
+      "method": "Official public JSON API, complete rawMarkdown read",
+      "writeup_id": 65131,
+      "topic_id": 669546,
+      "response_bytes": 20238,
+      "response_sha256": "904b63c9d7804e9787004a2368b35d12b24f8694975431249f047df796b5629c",
+      "web_refs": [],
+      "source_republication": false
+    },
+    {
+      "id": "K014",
+      "kind": "primary_author_writeup",
+      "url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/writeups/14th-place-solution",
+      "title": "14th Place Solution",
+      "authors": "sshiyu",
+      "retrieved": "2026-10-23",
+      "method": "Official public JSON API, complete rawMarkdown read",
+      "writeup_id": 65137,
+      "topic_id": 669558,
+      "response_bytes": 38457,
+      "response_sha256": "16cc2f9ab4f2d14f253fe4cbe9bbede0ee052aadd8e6151de42cdc07514a06f2",
+      "web_refs": [
+        "turn119search2"
+      ],
+      "source_republication": false
+    },
+    {
+      "id": "K015",
+      "kind": "primary_author_writeup",
+      "url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/writeups/15th-place-solution",
+      "title": "15th place solution",
+      "authors": "Arunodhayan, FatLiuyun",
+      "retrieved": "2026-10-23",
+      "method": "Official public JSON API, complete rawMarkdown read",
+      "writeup_id": 65179,
+      "topic_id": 669697,
+      "response_bytes": 27291,
+      "response_sha256": "556f4c0584c740e8a502f64712088d7f20125caa131a5b831f0f0b8a5db8dad9",
+      "web_refs": [],
+      "source_republication": false
+    },
+    {
+      "id": "K017",
+      "kind": "primary_author_writeup",
+      "url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/writeups/17th-place-solution",
+      "title": "17th Place Solution: An Alternative Rectification Workflow",
+      "authors": "MaxChen303",
+      "retrieved": "2026-10-23",
+      "method": "Official public JSON API, complete rawMarkdown read",
+      "writeup_id": 65247,
+      "topic_id": 669887,
+      "response_bytes": 16968,
+      "response_sha256": "4f5e4c628e6f7829b9593d1cb6db60d09fef55f65da0f7bfc345a3014b9d2bfd",
+      "web_refs": [
+        "turn113search0"
+      ],
+      "source_republication": false
+    },
+    {
+      "id": "K021",
+      "kind": "primary_author_writeup",
+      "url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/writeups/21st-place-solution",
+      "title": "21st Place Solution",
+      "authors": "David List",
+      "retrieved": "2026-10-23",
+      "method": "Official public JSON API, complete rawMarkdown read",
+      "writeup_id": 65160,
+      "topic_id": 669645,
+      "response_bytes": 21838,
+      "response_sha256": "7881b5a56f3024be529fbb69cf0e1c4b248c764a52877a06aa780176ce5d9054",
+      "web_refs": [
+        "turn140search2"
+      ],
+      "source_republication": false
+    },
+    {
+      "id": "K024",
+      "kind": "primary_author_writeup",
+      "url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/writeups/24th-place-solution",
+      "title": "24th Place Solution",
+      "authors": "Rudr Pratap Singh, Uday Bhatia",
+      "retrieved": "2026-10-23",
+      "method": "Official public JSON API, complete rawMarkdown read",
+      "writeup_id": 65306,
+      "topic_id": 670060,
+      "response_bytes": 16992,
+      "response_sha256": "038e3698ec59933b20749da2d0be1de49873856dbe26204757492a45708bf36a",
+      "web_refs": [],
+      "source_republication": false
+    },
+    {
+      "id": "K026",
+      "kind": "primary_author_writeup",
+      "url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/writeups/26th-place-solution",
+      "title": "26th Place Solution",
+      "authors": "Boredom, Vampire, Shuyang Jiang, Large_Supper, BeeBoo",
+      "retrieved": "2026-10-23",
+      "method": "Official public JSON API, complete rawMarkdown read",
+      "writeup_id": 65135,
+      "topic_id": 669556,
+      "response_bytes": 14670,
+      "response_sha256": "5c2da1f65c7129f980162ef104f12923809d7a71fe082eb96b1ac4e134e6e216",
+      "web_refs": [
+        "turn119search0"
+      ],
+      "source_republication": false
+    },
+    {
+      "id": "K027",
+      "kind": "primary_author_writeup",
+      "url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/writeups/27th-place-solution-only-pre-and-postprocessing",
+      "title": "27th place solution - Only Pre&Postprocessing ",
+      "authors": "Zhihao Zhu, Van Dong Tran, BanhMiMatOng",
+      "retrieved": "2026-10-23",
+      "method": "Official public JSON API, complete rawMarkdown read",
+      "writeup_id": 65449,
+      "topic_id": 670511,
+      "response_bytes": 37478,
+      "response_sha256": "04caaf330cda7c5285aebcf5bb70c9c39a9ef1f88910a65cd2e16203f2fd8084",
+      "web_refs": [],
+      "source_republication": false
+    },
+    {
+      "id": "K051",
+      "kind": "primary_author_writeup",
+      "url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/writeups/51th-solution",
+      "title": "51st place solution",
+      "authors": "Ray, COLA KE LIU, HanCheng Li, JjaHe Li, Eddie Sun",
+      "retrieved": "2026-10-23",
+      "method": "Official public JSON API, complete rawMarkdown read",
+      "writeup_id": 66308,
+      "topic_id": 672944,
+      "response_bytes": 16189,
+      "response_sha256": "6f9f82e9e439c0f4dc5351ed6b6db66178cffecb77ecd7ecaea8913fc2a32b76",
+      "web_refs": [],
+      "source_republication": false
+    },
+    {
+      "id": "K097a",
+      "kind": "primary_author_writeup",
+      "url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/writeups/physionet-97th-place-solution",
+      "title": "PhysioNet | 97th place solution",
+      "authors": "sasa_leaf",
+      "retrieved": "2026-10-23",
+      "method": "Official public JSON API, complete rawMarkdown read",
+      "writeup_id": 65223,
+      "topic_id": 669817,
+      "response_bytes": 20591,
+      "response_sha256": "a581043d8ffb46882274e8878edbc05f6dba488c4fbec988d3f27677f4fa816c",
+      "web_refs": [],
+      "source_republication": false
+    },
+    {
+      "id": "K097b",
+      "kind": "primary_author_writeup",
+      "url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/writeups/104th-place-solution",
+      "title": "97th Place Solution",
+      "authors": "Evan, Momoko Yan, Cian Ron",
+      "retrieved": "2026-10-23",
+      "method": "Official public JSON API, complete rawMarkdown read",
+      "writeup_id": 65134,
+      "topic_id": 669553,
+      "response_bytes": 16403,
+      "response_sha256": "0c6e9083c827cb33a98932c9a375025dc96d8f9c5d83611ae45c4104add88d87",
+      "web_refs": [],
+      "source_republication": false
+    },
+    {
+      "id": "K098",
+      "kind": "primary_author_writeup",
+      "url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/writeups/physionet-98th-place-solution",
+      "title": "🥉PhysioNet 98th place solution Training+Inference",
+      "authors": "Kirderf",
+      "retrieved": "2026-10-23",
+      "method": "Official public JSON API, complete rawMarkdown read",
+      "writeup_id": 65154,
+      "topic_id": 669620,
+      "response_bytes": 5900,
+      "response_sha256": "c872855c6e94c9e573731359f2f5955a06b7534b9bd7768a6d4bbd15b7936b10",
+      "web_refs": [
+        "turn108search4"
+      ],
+      "source_republication": false
+    },
+    {
+      "id": "FORUM_forum-topics",
+      "kind": "primary_official_listing",
+      "url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/discussion",
+      "method": "Public GetTopicListByForumId API pagination",
+      "response_bytes": 22940,
+      "response_sha256": "8d0a3b285994013c9e761d819641b39e618366b7cf036977d4b8c65be6cce40b"
+    },
+    {
+      "id": "FORUM_forum-page-2",
+      "kind": "primary_official_listing",
+      "url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/discussion",
+      "method": "Public GetTopicListByForumId API pagination",
+      "response_bytes": 24068,
+      "response_sha256": "8b2b3d6e29c9f7b24855638c90ea2c22472d2ddbcd76dcab48ac679d747622a8"
+    },
+    {
+      "id": "FORUM_forum-page-3",
+      "kind": "primary_official_listing",
+      "url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/discussion",
+      "method": "Public GetTopicListByForumId API pagination",
+      "response_bytes": 22965,
+      "response_sha256": "6645abd72c664f7571c197e253881ccfc2929639e7ab604755eeaa522e25c8f6"
+    },
+    {
+      "id": "FORUM_forum-page-4",
+      "kind": "primary_official_listing",
+      "url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/discussion",
+      "method": "Public GetTopicListByForumId API pagination",
+      "response_bytes": 23433,
+      "response_sha256": "c55e7288a9f7996e64582d9bf3b4b49f9d0d2b2a224b9f31d88fb2b6def09813"
+    },
+    {
+      "id": "FORUM_forum-page-5",
+      "kind": "primary_official_listing",
+      "url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/discussion",
+      "method": "Public GetTopicListByForumId API pagination",
+      "response_bytes": 24101,
+      "response_sha256": "21325914f2b1784f6f4d230877741059bc6cc7ed7721eff9e08fb5ba34181623"
+    },
+    {
+      "id": "FORUM_forum-page-6",
+      "kind": "primary_official_listing",
+      "url": "https://www.kaggle.com/competitions/physionet-ecg-image-digitization/discussion",
+      "method": "Public GetTopicListByForumId API pagination",
+      "response_bytes": 19547,
+      "response_sha256": "6310e4cf2daf09ba91153fc0a23b72959039492039ad6cbf6a8232b55b91239f"
+    },
+    {
+      "id": "S5_REPO",
+      "kind": "primary_author_code_or_documentation",
+      "url": "https://github.com/dangnh0611/kaggle_ecg_digitization",
+      "web_refs": [
+        "turn112search2"
+      ],
+      "sha256": null,
+      "detail": "Public repo README and tree read. Commit8358d5b09a5b9519275e9b54c11716da5752a9d6."
+    },
+    {
+      "id": "S5_ABLATION",
+      "kind": "primary_author_code_or_documentation",
+      "url": "https://github.com/dangnh0611/kaggle_ecg_digitization/blob/8358d5b09a5b9519275e9b54c11716da5752a9d6/docs/ABLATION_STUDY.md",
+      "web_refs": [
+        "turn124view0"
+      ],
+      "sha256": null,
+      "detail": "Author fold0 downstream SNR. Metric includes shortII, totalII12.5sec. Not our execution and not pure geometry."
+    },
+    {
+      "id": "S5_CROP",
+      "kind": "primary_author_code_or_documentation",
+      "url": "https://github.com/dangnh0611/kaggle_ecg_digitization/blob/8358d5b09a5b9519275e9b54c11716da5752a9d6/src/ecg/utils/crop.py",
+      "web_refs": [],
+      "sha256": "338fecf217bc6b090e9c40a7bae6257423e7fd5cf96fc1afedb94241e095085e",
+      "detail": "Actual source read. Independent local H, hard cell selection, K4 fallback, optional Gaussian map smoothing, exterior cell clipping."
+    },
+    {
+      "id": "S5_INDEX",
+      "kind": "primary_author_code_or_documentation",
+      "url": "https://github.com/dangnh0611/kaggle_ecg_digitization/blob/8358d5b09a5b9519275e9b54c11716da5752a9d6/src/ecg/utils/keypoint_detection_postprocess.py",
+      "web_refs": [],
+      "sha256": "3e722f0915ef9ba52b07458db9ef7a7fa57159d860738a6fc4d5a8a6c1e8aae8",
+      "detail": "Actual registration source read by relevant sections. Hungarian gating and local inferred coordinate substitution."
+    },
+    {
+      "id": "S5_INTERPOLATE",
+      "kind": "primary_author_code_or_documentation",
+      "url": "https://github.com/dangnh0611/kaggle_ecg_digitization/blob/8358d5b09a5b9519275e9b54c11716da5752a9d6/src/ecg/utils/interpolate.py",
+      "web_refs": [],
+      "sha256": "3dac5ff577cfb258dea2869dfc155986e7d777a753924bde3e462626f7fe144d",
+      "detail": "Sampling source read. Pixel-origin correction explicit in CV2 path. Backends use differing kernels."
+    },
+    {
+      "id": "S5_DEFAULT_CONFIG",
+      "kind": "primary_author_code_or_documentation",
+      "url": "https://github.com/dangnh0611/kaggle_ecg_digitization/blob/8358d5b09a5b9519275e9b54c11716da5752a9d6/configs/data/signal_heatmap_dataset.yaml",
+      "web_refs": [],
+      "sha256": "8d14a67e265d48713cd2c1a8b5f91b8307f8fa6ba947d09884a52b0e2c3e0b97",
+      "detail": "Default config has Lanczos, smooth_sigma0 and kwargs{}. Final checkpoint configs were not downloaded, so do not identify every final model with this default."
+    },
+    {
+      "id": "S15_REPO",
+      "kind": "primary_author_code_or_documentation",
+      "url": "https://github.com/arunodhayan/physionetv1-kaggle",
+      "web_refs": [],
+      "sha256": null,
+      "detail": "Public repository README read via GitHub API/raw. Explicit boundary and align_corners repair. No repo license identified in metadata."
+    },
+    {
+      "id": "S4_REPO",
+      "kind": "primary_author_code_or_documentation",
+      "url": "https://github.com/uchiyama33/physionet_4th_place",
+      "web_refs": [],
+      "sha256": null,
+      "detail": "Public metadata and README read. Training and OOF preparation procedures available. Weights not checked."
+    },
+    {
+      "id": "S2_REPO",
+      "kind": "primary_author_code_or_documentation",
+      "url": "https://github.com/someya-takashi/physionet-image-digitization",
+      "web_refs": [],
+      "sha256": null,
+      "detail": "Public metadata and README read. Apache2.0. Author warns refactored code may regress from notebook."
+    },
+    {
+      "id": "S7_REPO",
+      "kind": "primary_author_code_or_documentation",
+      "url": "https://github.com/brendanartley/PhysioNet-Competition",
+      "web_refs": [
+        "turn138view2"
+      ],
+      "sha256": null,
+      "detail": "Public repo and README read. Native direct-crop arm and training code."
+    },
+    {
+      "id": "HENG_REPO",
+      "kind": "primary_author_code_or_documentation",
+      "url": "https://github.com/hengck23/kaggle-physionet-ecg-image-digitization",
+      "web_refs": [],
+      "sha256": null,
+      "detail": "M3 pinned source audit retained, not reexecuted in M4."
+    },
+    {
+      "id": "TANG_REPO",
+      "kind": "primary_author_code_or_documentation",
+      "url": "https://github.com/tanghaozhe/physionet-ecg-image-digitization-3rd-place",
+      "web_refs": [],
+      "sha256": null,
+      "detail": "M3 pinned source audit and strict checkpoint executions retained, not reexecuted in M4."
+    }
+  ],
+  "cache_policy": "Full external texts and frontend JS are internal reading receipts only. Do not include .source-cache in user deliverable or git. Published deliverables contain our analysis, URLs and hashes."
+}

@@ -1,0 +1,44 @@
+{
+  "schema": "physical-clock-source-ci-snapshot-v1",
+  "source_commit": "ecba21f2103e063b6d445c76b2c13b13b7d3544d",
+  "all_source_and_original_verification_jobs_passed": true,
+  "all_library_ci_jobs_completed": false,
+  "runs": [
+    {
+      "id": 41134126596,
+      "name": "Library contracts",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 41134126658,
+      "name": "Hybrid source and reference contracts",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 41134126555,
+      "name": "Digitization reference",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 41134119051,
+      "name": "Library contracts",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 41134119169,
+      "name": "Read exact ongoing ECG training status",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 41134119005,
+      "name": "Hybrid source and reference contracts",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ]
+}

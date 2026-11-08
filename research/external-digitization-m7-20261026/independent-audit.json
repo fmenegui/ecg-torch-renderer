@@ -1,0 +1,14 @@
+{
+  "schema": "external-m7-independent-audit-v1",
+  "passed": true,
+  "case_method_results": 72,
+  "images": 24,
+  "patients": 8,
+  "recount_checks": 3745,
+  "exact_rgb_cache_replays_verified": 27,
+  "decoded_RGB_inputs_checked": true,
+  "manifest_sha256": "f556d6477ecc42e1bc2bdf455fcdf97501faa877861103cf455007a681ff8a34",
+  "report_sha256": "5b7b67fcb6507e262c4f45b2dfa2920e76574aef80fbefc9964248927038c9c8",
+  "scorer_imported": false,
+  "no_scheduled_failure_dropped": true
+}

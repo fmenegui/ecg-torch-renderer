@@ -1,0 +1,28 @@
+{
+  "schema": "followup-current-validation-v2",
+  "tested_source_commit": "c266e20e71049e7bb056cf103ad75689442d328c",
+  "library_ci_run": 41116353741,
+  "library_ci_all_jobs_passed": true,
+  "original_source_ci_run": 41116353699,
+  "original_source_ci_passed": true,
+  "reproduction_tests": 81,
+  "reproduction_native_source_enabled": true,
+  "geometry_selection_contracts": 27,
+  "strict_lint_passed": true,
+  "integrated_test_count": 530,
+  "integrated_explicit_skips": 25,
+  "local_cuda_available": false,
+  "merger_original_selected_outputs_replayed": 24,
+  "merger_prediction_hashes_verified": 96,
+  "completed_selected_outputs_equal_direct": 24,
+  "all_scheduled_results_preserved": 96,
+  "gallery_unchanged_and_byte_identical_cases": 16,
+  "known_image_cli": {
+    "completed": true,
+    "device": "cpu",
+    "max_side": 1500,
+    "independent_accuracy_benchmark": false
+  },
+  "selection_policy_changed": false,
+  "reproduction_log_sha256": "71199222cff7d610bf2c834663e9f958998b5caa5e0fe15c27a74d469f80937a"
+}

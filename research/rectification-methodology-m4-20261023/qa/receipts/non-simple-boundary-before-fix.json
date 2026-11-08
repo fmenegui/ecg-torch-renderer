@@ -1,0 +1,37 @@
+{
+  "schema": "m4-qa-non-simple-boundary-attack-v1",
+  "date": "2026-10-23T11:11:41.322967+00:00",
+  "source_sha256": "42737558261ca6f5f87a04be8e208dc5a779918a487f39b11d1e3f76aaf37239",
+  "construction": "Two radial rows r=1,2 and25angular columns theta=0..2pi inclusive. Distinct endpoint IDs have coincident source positions. Closed annular strip has no positive-area triangle overlap but boundary attachment is not injective.",
+  "expected": "Reject non-simple boundary, or return ambiguous forward coordinates at the coincident seam.",
+  "triangles": 48,
+  "guard_result": {
+    "triangles": 48,
+    "orientation": -1,
+    "positive_area_overlaps": 0
+  },
+  "forward": [
+    [
+      0.0,
+      2.5
+    ]
+  ],
+  "forward_status": [
+    "returned-with-uncalibrated-uncertainty"
+  ],
+  "inverse": [
+    [
+      1.5,
+      0.0
+    ],
+    [
+      null,
+      null
+    ]
+  ],
+  "inverse_status": [
+    "returned-with-uncalibrated-uncertainty",
+    "ambiguous-or-inconsistent"
+  ],
+  "observed_failure": true
+}

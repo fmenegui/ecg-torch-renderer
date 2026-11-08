@@ -1,0 +1,26 @@
+{
+  "schema": "hybrid-sampling-development-v1",
+  "development_only": true,
+  "previously_inspected_m7_patients": true,
+  "new_holdout": false,
+  "native_max_side": 1500,
+  "adaptive_canvas_max_side": 1500,
+  "device": "cpu",
+  "policy": {
+    "schema": "ecg-selective-policy-v2-development",
+    "minimum_new_samples": 10,
+    "minimum_common_samples_per_lead": 100,
+    "minimum_correlation": 0.97,
+    "amplitude_ratio_low": 0.85,
+    "amplitude_ratio_high": 1.18,
+    "maximum_dc_difference_mv": 0.05,
+    "maximum_timing_difference_s": 0.02,
+    "maximum_extrapolated_fraction": 0.35
+  },
+  "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+  "policy_calibrated_on_known_development_outputs": true,
+  "manifest_sha256": "f556d6477ecc42e1bc2bdf455fcdf97501faa877861103cf455007a681ff8a34",
+  "new_training": false,
+  "learned_grid_and_correspondences": "Frozen M7 outputs, not recomputed or gold-corrected",
+  "inference_arguments": "RGB, original-derived mesh, public 500 Hz and 5000 samples only"
+}

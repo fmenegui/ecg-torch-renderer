@@ -1,0 +1,10 @@
+{
+  "status": "pass",
+  "assertions": 14,
+  "scope": "Synthetic postprocessor fixture only, not comparator inference",
+  "summarizer_sha256": "ac14b020e9cd4a457d0a16cac257452bec20f3389cbfe5b8f3f68b05c90a562f",
+  "metric_core_sha256": "8ed4cf91bc5b52c1c4bb1d0803d0f2644dbdc06573f799df8a73712b6f883e51",
+  "synthetic_test_split_results": 160,
+  "synthetic_metric_rows": 1280,
+  "real_result_files_opened": 0
+}

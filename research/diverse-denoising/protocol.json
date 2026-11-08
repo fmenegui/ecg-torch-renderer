@@ -1,0 +1,44 @@
+{
+  "status": "Second GPU attempt active after correcting the unavailable exclusion-list URL. Training not yet evidenced.",
+  "pod_id": "lopg4wu6ws5h3l",
+  "volume_id": "wxt8cq1hh1",
+  "gpu_hourly_usd": 0.59,
+  "source_upload_bytes": 316985,
+  "private_images_uploaded": false,
+  "local_waveforms_uploaded": false,
+  "local_patient_metadata_uploaded": false,
+  "pretrained_weights_uploaded": false,
+  "public_data_source": "https://physionet.org/content/ptb-xl/1.0.3/",
+  "cohort_target": {
+    "train": 1024,
+    "validation": 128,
+    "test": 128
+  },
+  "bank_target": 10240,
+  "training_variants": [
+    "point loss and visibility",
+    "point loss, visibility and RGB restoration"
+  ],
+  "training_seeds": [
+    1973,
+    20261021
+  ],
+  "planned_steps_per_trial": 10000,
+  "prespecified_joint_selection": "Choose the best jointly-trained trial by validation backend-macro F1, separately from the overall best point detector. This rule is recorded before any new validation or test results.",
+  "local_checks": {
+    "focused": 11,
+    "focused_passed": 11,
+    "full_suite": 371,
+    "full_errors_missing_original_fixture": 2,
+    "full_skipped": 12
+  },
+  "uploaded_public_exclusion_identifiers": 77,
+  "exclusion_identifiers_verified_against_official_metadata": true,
+  "local_clinical_or_demographic_fields_uploaded": false,
+  "first_attempt": {
+    "pod_id": "ail7fbi3yinsw8",
+    "status": "failed before training: exclusion-list URL returned HTTP 404",
+    "gpu_deleted_and_absence_verified": true,
+    "logs_recovered": true
+  }
+}

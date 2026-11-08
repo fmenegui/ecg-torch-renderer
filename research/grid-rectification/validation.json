@@ -1,0 +1,20 @@
+{
+  "full_suite_before_final_PNG_guard": {
+    "total": 351,
+    "passed": 343,
+    "skipped": 6,
+    "errors": 2,
+    "seconds": 68.417,
+    "cause": "Missing original tests/fixtures/raster-v021.npz"
+  },
+  "final_digitization_suite": {
+    "total": 56,
+    "passed": 56,
+    "seconds": 2.336
+  },
+  "new_grid_tests": 4,
+  "ruff_E_F": "passed",
+  "cuda": "not run",
+  "renderer_source_changed": false,
+  "paid_GPU_created": false
+}

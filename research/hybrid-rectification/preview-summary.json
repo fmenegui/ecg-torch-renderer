@@ -1,0 +1,17 @@
+{
+  "case_count": 32,
+  "mode": "old-checkpoint CPU preview only",
+  "new_training_executed": false,
+  "arms": {
+    "point-only": {
+      "accepted": 31,
+      "mean_all_case_grid_point_support": 0.9202779149553484,
+      "median_case_conditional_p95_mm": 0.19737385149203673
+    },
+    "hybrid-smooth": {
+      "accepted": 31,
+      "mean_all_case_grid_point_support": 0.9213160180517764,
+      "median_case_conditional_p95_mm": 0.1709107480089605
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "full_suite": {
+    "tests": 357,
+    "passed": 349,
+    "skipped": 6,
+    "errors": 2,
+    "seconds": 64.909,
+    "error_cause": "Missing original tests/fixtures/raster-v021.npz"
+  },
+  "focused_final": {
+    "tests": 61,
+    "passed": 61,
+    "seconds": 2.27
+  },
+  "ruff_E_F": "passed",
+  "new_tests": 5,
+  "neural_training": "1000 mixed-regime CPU steps, 4000 crop examples, 32 training captures from 16 patient groups",
+  "cuda": "not executed",
+  "real_image_validation": "not executed",
+  "renderer_source_changed": false,
+  "paid_gpu_created": false
+}

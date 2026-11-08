@@ -1,0 +1,58 @@
+{
+  "date": "2026-10-23",
+  "scope": "Separate sampling component, no frozen source/default/bank changes",
+  "shared_host": "Root model inference in progress; componentCPU only; no comparable end-to-end speed claim",
+  "files": [
+    {
+      "file": "protocol.json",
+      "bytes": 5093,
+      "sha256": "85adf1e4fe3f37b14fff7d6f32aea98e1db2828917e732bd7e3404653e5cd58a"
+    },
+    {
+      "file": "sampling_component.py",
+      "bytes": 16614,
+      "sha256": "8b9c3438e8c92630b9597f2ecd4435fa79d98a846e14f6ec5d1887061e59fc92"
+    },
+    {
+      "file": "README.md",
+      "bytes": 8827,
+      "sha256": "ed7aef4bc4f84c921147c1bbd28199de4198a181a8b96eb1b0335996df94b5e0"
+    },
+    {
+      "file": "timing-rerun-receipt.json",
+      "bytes": 690,
+      "sha256": "1c1ea8ed0f7fdd150c31b26c515bdbed7c09429786bfa48e964d83401c14a1b2"
+    },
+    {
+      "file": "results/results.json",
+      "bytes": 1468966,
+      "sha256": "92084bca13acc26cd20eaff29d25cf347a642ad48d96ccadeabb0bbe05bfaee2"
+    },
+    {
+      "file": "results/summary.csv",
+      "bytes": 2327,
+      "sha256": "3636516abb5f8f9e7a671a97b68f417cbccaa493d79cdc514aec91da79f6d0f8"
+    },
+    {
+      "file": "results/affine-isotropic.npz",
+      "bytes": 295041,
+      "sha256": "a583d84fe9245a9432ad0bebc7daa50591b47d9cb8f29f7c71de2aafbac70343"
+    },
+    {
+      "file": "results/affine-anisotropic-shear.npz",
+      "bytes": 312231,
+      "sha256": "642889537c5485566bc3c8c42aff2eae5233c24813a556a20b7fc6931e95ffb0"
+    },
+    {
+      "file": "results/contact-sheet.png",
+      "bytes": 33673,
+      "sha256": "0aa0053181911d0aa6cd371781766589a2837164eec1791d8ec7898ac54c9c64"
+    }
+  ],
+  "independent_QA": {
+    "status": "pass",
+    "checks": 32558,
+    "file": "../qa/sampling-candidate-review.json",
+    "sha256": "90f6ab355ed0f144a161f05775af02485946214a829fd9f3a88c2898d07f857b"
+  }
+}

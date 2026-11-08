@@ -1,0 +1,100 @@
+{
+  "reference": {
+    "title": "Digitizing paper ECGs at scale: an open-source algorithm for clinical research",
+    "authors": [
+      "Elias Stenhede",
+      "Agnar Martin Bjørnstad",
+      "Arian Ranjbar"
+    ],
+    "doi": "10.1038/s41746-025-02327-1",
+    "published": "2026-01-14",
+    "article_url": "https://www.nature.com/articles/s41746-025-02327-1",
+    "official_fulltext_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12891466/fullTextXML",
+    "repository": "https://github.com/Ahus-AIM/Open-ECG-Digitizer",
+    "commit": "97a15087d4abcda843da8c58ee74b1d8f47e6f9a"
+  },
+  "availability": "actual public code and actual weights downloaded and verified",
+  "authenticity": "unchanged official four geometry modules, wrapper geometry instrumented, downstream layout and signal omitted",
+  "weights": [
+    {
+      "file": "Open-ECG-Digitizer/weights/unet_weights_07072025.pt",
+      "bytes": 90464067,
+      "sha256": "17fe7071ef270102631306127262fc08c250d79d4e3aeb572ab1719dd34d320b",
+      "used_for_rectification": true
+    },
+    {
+      "file": "Open-ECG-Digitizer/weights/lead_name_unet_weights_07072025.pt",
+      "bytes": 23296757,
+      "sha256": "840bd6bf2433ee6c22db67f57c861d9d427f29e10a32eeb334f0bcf061b175a2",
+      "used_for_rectification": false
+    }
+  ],
+  "upstream_repository_license": "CC-BY-SA-4.0",
+  "article_license": "CC-BY-4.0",
+  "adapter_license": "CC-BY-SA-4.0 with upstream attribution and modifications stated",
+  "inference_api": {
+    "class": "NPJPerspectiveRectifier",
+    "constructor": "upstream_root=path, preset=generic|george-moody-2024|ahus, seed=1973",
+    "method": "infer(RGBuint8) -> (mapping,normalizedRGBfloat01,metadata)",
+    "mapping": "predict(source_queries_Nx2) -> (native_mm_Nx2,eligible_N_bool)",
+    "native_origin": "cropped output pixel(0,0), arbitrary continuous grid phase",
+    "native_units": "mm from original autocorrelation estimator, no gold scale fitting",
+    "source_to_output": "half-pixel resize + exact torchvision perspective corner coefficients + portrait clockwise rotation + actual row crop",
+    "eligibility": "source and output finite pixel-center bounds, no extrapolation beyond native cropped canvas",
+    "native_interpolation": "BILINEAR",
+    "gold_used": false,
+    "tps_dewarper_enabled": false,
+    "waveform_extractor_and_lead_identifier_executed": false
+  },
+  "source_files_sha256": {
+    "npj_adapter.py": "fd4a022d273c7682d14f99c3ff4910dbb8c7417d2f50e61b8fe2f13ac59d4aa9",
+    "test_adapter_controls.py": "9ff7bcc57457de65f48def57907651f4428974bb71acef7250d60b9a5a1624e6",
+    "smoke.py": "fdbea779c6f7eb7484cef5ad63986439df6bbe49afce69bbaf6ce0dc94371b85",
+    "notes.md": "0a3a21cccc3b1b8a189ae5a70bf0e2452c6ec2e4a820628b140286f2f53fa4a2"
+  },
+  "upstream_source_sha256": {
+    "src/model/unet.py": "549a06ed70eb1bc04a833c3fc0ec71f3cb46ba3e9fe6ad08262fd9dcd87b55a2",
+    "src/model/perspective_detector.py": "a5b50c3acbbacc3a57d7111b5b97dac56f0fd70d52c39506ba06b82265fb1de5",
+    "src/model/cropper.py": "e00342396d80e1395a7bad7e847b30841c46d20d3086330bf9fd10a16ac65ef2",
+    "src/model/pixel_size_finder.py": "82b18209b432daf6a1f4cb4cc3cfe6b9304737eabb53713b9492c3191158d197",
+    "src/model/inference_wrapper.py": "fc7ee888f4cb1065d3d6b80b1a73b7babd2f1cb989bce770515be9208b3d4fd2"
+  },
+  "tests": {
+    "controls": 3,
+    "status": "pass",
+    "log": "controls.log",
+    "original_wrapper_geometric_stage_parity": true,
+    "maximum_coordinate_ramp_tolerance_px": 0.0001,
+    "bank_images_scored_by_agent": 0
+  },
+  "smoke": {
+    "file": "smoke-result.json",
+    "input_sha256": "6c9346b556efb736802816143c9532201b7a213d1714db6a96e91462354bedfe",
+    "output_sha256": "deb59aa8c9208ac09cf30263b4f9878117ab757fe0d08bea1b608a9a5d938ca4",
+    "model_load_seconds": 0.3435563610000827,
+    "inference_seconds": 4.83268748699993,
+    "segmentation_seconds": 1.7624078639996696,
+    "geometry_seconds": 3.0645439329996407,
+    "chart_mm_per_pixel": 0.25,
+    "horizontal_50mm_vector_error_mm": 0.1738402012052924,
+    "scope": "single analytical chart, not clinical or bank performance, not used for preset selection"
+  },
+  "environment": {
+    "python": "3.12.14",
+    "torch": "2.8.0+cpu",
+    "torchvision": "0.23.0+cpu",
+    "numpy": "2.3.5",
+    "threads": 2,
+    "device": "cpu"
+  },
+  "source_cache_not_for_redistribution": [
+    "paper.xml",
+    "paper.txt",
+    "Open-ECG-Digitizer/"
+  ],
+  "web_source_refs": [
+    "turn78view1",
+    "turn93search0",
+    "turn93search4"
+  ]
+}

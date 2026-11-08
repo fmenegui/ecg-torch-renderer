@@ -1,0 +1,1084 @@
+{
+  "schema": "ECG-consensus-lattice-v1",
+  "development_only": true,
+  "split": "test",
+  "cases": [
+    {
+      "key": "220288-0",
+      "source_id": "ptbxl-20288",
+      "group_id": "ptbxl-patient-10264.0",
+      "split": "test",
+      "source_index": 220288,
+      "view": 0,
+      "backend": "torch-cached",
+      "layout": "1x1-long",
+      "file": "bank/220288-0.npz",
+      "sha256": "1ae55864988f57bf613ad8e2e375b57f979e3d301422aa8180d2d6e0092e59ae",
+      "query_file": "queries/220288-0.npz",
+      "query_archive_sha256": "f89a45a1ad25224ccaa170f32d82e92a4478612032511151e28b10c93f7314a3",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "03960b311dc84957e29895153a37c0d161198b9397c010e94b972b5766524b81",
+          "reference_sha256": "071def463b33afacce46f9c67d8b27983e4ee037285bbd6119d3bf1429456aab"
+        },
+        "grid": {
+          "source_sha256": "75d8ac5ec2eb99a473e396a0022319d23d42c0e9a904dffaac7632251fb28199",
+          "reference_sha256": "c4a7cc6eb85c2b92b003c158b389410e8253ad14d6dc1725d7ecc258afb0d81c"
+        },
+        "paper": {
+          "source_sha256": "c02de3ab86cc25d27dc48b83c3f9cf94586c62e4df7896b636abe4ceca179893",
+          "reference_sha256": "25b0a8efdcb8dbd44f1a151b6961d31f74513f6dbbf343d7b212229b77701887"
+        }
+      },
+      "anchor_seed": 1049774249097781056,
+      "points_path": "/workspace/scratch/97d5d6861006/ecg-work/m3/comparison/cases/220288-0/fresh-observations.npz",
+      "points_sha256": "1f689265cc7be4783eaec09cf739b2121f83fbd2290769ba80fd48ad6609a95a",
+      "orientation_receipt": "/workspace/scratch/97d5d6861006/ecg-work/m6-grid/orientation-test-final/220288-0/orientation.json",
+      "orientation_sha256": "c55dd913b9154e0d114881de82498632c418ebd12b4ca6fff6296b75135212c2"
+    },
+    {
+      "key": "220288-1",
+      "source_id": "ptbxl-20288",
+      "group_id": "ptbxl-patient-10264.0",
+      "split": "test",
+      "source_index": 220288,
+      "view": 1,
+      "backend": "torch-cached",
+      "layout": "3x4+r2",
+      "file": "bank/220288-1.npz",
+      "sha256": "8c93591340dd1c9bced19b04e55cbf43e4455ec5cb48b37059b35af2bd8c8a34",
+      "query_file": "queries/220288-1.npz",
+      "query_archive_sha256": "6f210ad7a11ca2f5be6ca6653e2b28f2aaf647f857e19c7537dc67903b719428",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "dc7f980975d3a5d5582120ae3784852938b3562cdec3f94a6f946c57cd4fdec8",
+          "reference_sha256": "82dbfc76449f9f8c5993f2c5468574839f988eb67d64ffc68207f303c9a57a0e"
+        },
+        "grid": {
+          "source_sha256": "5180cceaf547fe5878dd6a5734a041315c90be0cb84a235baf9c1a4461fbf0bb",
+          "reference_sha256": "b4fd19f9a14bb8fbebbd7953c1889e783958d4cd1017dda5803bb457783bdd79"
+        },
+        "paper": {
+          "source_sha256": "d70b456effde3cc37494ee6b52f72375ce4befabb1363c16edf16a64e6592c98",
+          "reference_sha256": "91d1317c1bb89503dd769d034de77be45d79f357fdfd76ac9c66621bd1687966"
+        }
+      },
+      "anchor_seed": 14626475624967645560,
+      "points_path": "/workspace/scratch/97d5d6861006/ecg-work/m3/comparison/cases/220288-1/fresh-observations.npz",
+      "points_sha256": "13ef9a54b1352ea21d1f5c27460adaeca3806731cb90b20979718c0f901bdfe9",
+      "orientation_receipt": "/workspace/scratch/97d5d6861006/ecg-work/m6-grid/orientation-test-final/220288-1/orientation.json",
+      "orientation_sha256": "c4f48840adc37f4975710a4484e8ea43a827764d6d84282c5d779a2201121169"
+    },
+    {
+      "key": "220288-2",
+      "source_id": "ptbxl-20288",
+      "group_id": "ptbxl-patient-10264.0",
+      "split": "test",
+      "source_index": 220288,
+      "view": 2,
+      "backend": "offline",
+      "layout": "12x1+r3",
+      "file": "bank/220288-2.npz",
+      "sha256": "48d1f9186b417e6b69b329aac3a7afdbf9206f9d3af3fb872fa4bcd639d25a4d",
+      "query_file": "queries/220288-2.npz",
+      "query_archive_sha256": "b53ccf412e47c20fea643a12e2a195daec7786652faa6ee6ddf62e6a4962a61d",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "f9590e1d3ff7c128517ae6077bed2c803fce466fab9afbabcfa9eecebe989bb5",
+          "reference_sha256": "2e8df9bb0ee78d61a5bdb59de675b7aab4df56dde45bc7110d1897cdf40314df"
+        },
+        "grid": {
+          "source_sha256": "0244c9071d8869e9777f676fa61b8dc0bbc366d03cfd49e4c072dad5c8599991",
+          "reference_sha256": "9e6db361a4e8bc5836931fb9a09dfa0ef1daa5300e952af99eda738a132794b2"
+        },
+        "paper": {
+          "source_sha256": "9c3354f2492bd6658b1b9eeb4a60fc5c18f52b81c7b4f14fee2fed9bfd2a6c6f",
+          "reference_sha256": "bbb0f9683da4b91d18e9d87358d4178cee454136cf89f7f1e2dc5bf195abeb4f"
+        }
+      },
+      "anchor_seed": 4746463743790449289,
+      "points_path": "/workspace/scratch/97d5d6861006/ecg-work/m3/comparison/cases/220288-2/fresh-observations.npz",
+      "points_sha256": "935b31187c69d0e24f9e9a8fd63d7b17122a5c76f241c965cff18002d97281e2",
+      "orientation_receipt": "/workspace/scratch/97d5d6861006/ecg-work/m6-grid/orientation-test-final/220288-2/orientation.json",
+      "orientation_sha256": "08161eb2326533ccaa28c3e6a85bee06c79ed99317c0c962a532a8431fc1349b"
+    },
+    {
+      "key": "220288-6",
+      "source_id": "ptbxl-20288",
+      "group_id": "ptbxl-patient-10264.0",
+      "split": "test",
+      "source_index": 220288,
+      "view": 6,
+      "backend": "offline",
+      "layout": "12x1+r1",
+      "file": "bank/220288-6.npz",
+      "sha256": "caee7f23bda284c09231b3f7812cc3de92bafe766ab06fed1520bdf169bea273",
+      "query_file": "queries/220288-6.npz",
+      "query_archive_sha256": "02d47b3e88844159a3aee130f523db3729240e2bc0516f7bd89a212eafff983d",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "9053ca3901119ba27402c7fe578a4137f55326fd0157957bfd1cfbb05f3b6f85",
+          "reference_sha256": "282afd98c6f2e6438466b067daa175bfeecc559470223c5c4472ccdbaaa711d7"
+        },
+        "grid": {
+          "source_sha256": "1689efd5d79acf857a9c8e0ab4cda70bc5692537be0b90caf69d8b2b7f41fbcd",
+          "reference_sha256": "0215efefa6edee39ee6e91640338caf0daaf4754751d81a857552776d0563f6e"
+        },
+        "paper": {
+          "source_sha256": "dcd6d3d8ea60aa00808da793273f7484df992760b66aec383a4a077dd839a3b3",
+          "reference_sha256": "d07cd4c666dea1de032e654de25603e5c905c94e90d2eab23f6926cad7a0cc4c"
+        }
+      },
+      "anchor_seed": 16921517149341327229,
+      "points_path": "/workspace/scratch/97d5d6861006/ecg-work/m3/comparison/cases/220288-6/fresh-observations.npz",
+      "points_sha256": "d97465c143bde343aac80ac6fdce1210010fed34e74c5be79c2a654dd89a3ad2",
+      "orientation_receipt": "/workspace/scratch/97d5d6861006/ecg-work/m6-grid/orientation-test-final/220288-6/orientation.json",
+      "orientation_sha256": "feeafe7bd8d6051a6f5cde019cd958a4d34f53922548935cb359b74a624b325e"
+    },
+    {
+      "key": "208777-0",
+      "source_id": "ptbxl-8777",
+      "group_id": "ptbxl-patient-1210.0",
+      "split": "test",
+      "source_index": 208777,
+      "view": 0,
+      "backend": "torch-cached",
+      "layout": "6x2+r1",
+      "file": "bank/208777-0.npz",
+      "sha256": "dd3063f76b11c3befe1707ec431cacf2a3d719761993673ffb37bc6d9b561db9",
+      "query_file": "queries/208777-0.npz",
+      "query_archive_sha256": "4907a7a1bd2a22f17cbf1376e81ef1c5c162dfe181f76df95df4c81e99b34bf9",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "490107be807a517ed9f8c9007bd4bafc24edd8dee73670b119f85bf624be1204",
+          "reference_sha256": "078dcd2c3f8c99b7de52c8298c0f0ee0c5e467511007f1ba2b97336d9dff7f20"
+        },
+        "grid": {
+          "source_sha256": "4436d90cadf98e7a36b5dcde05b7ceadef7d3c3bbaff8ba7613809d6bfd0f590",
+          "reference_sha256": "2921a4c5ea09ae0e1b226c7445ce2ca53be3bea27a6a35cd0780946d664ae5a1"
+        },
+        "paper": {
+          "source_sha256": "10b1663805c7dc25d92990181feac90f4e0df125c596ec6ee3ab79ee29cfbc60",
+          "reference_sha256": "a8110ab8a18d27b2891d73a18d15b73a7de927ed777f21d00d69fd8f07ce67ec"
+        }
+      },
+      "anchor_seed": 8119105545252667844,
+      "points_path": "/workspace/scratch/97d5d6861006/ecg-work/m3/comparison/cases/208777-0/fresh-observations.npz",
+      "points_sha256": "8620e7aab6c0f447d00f8147b0e1d7c5ae54664a32f13355a0d977a4fad3f79c",
+      "orientation_receipt": "/workspace/scratch/97d5d6861006/ecg-work/m6-grid/orientation-test-final/208777-0/orientation.json",
+      "orientation_sha256": "ba83ba9bbf07b84e4189fd594d43749820aff5145a353d59e787f92166902852"
+    },
+    {
+      "key": "208777-1",
+      "source_id": "ptbxl-8777",
+      "group_id": "ptbxl-patient-1210.0",
+      "split": "test",
+      "source_index": 208777,
+      "view": 1,
+      "backend": "torch-cached",
+      "layout": "2x6+r2",
+      "file": "bank/208777-1.npz",
+      "sha256": "615be188297451214783a473ae47a9b798ab9224f563f564f61e259231af9abe",
+      "query_file": "queries/208777-1.npz",
+      "query_archive_sha256": "258a83bdaa736c9d295ba57b3115f1ccaf3abf8294dc6536f75b5da3ba144aff",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "c3b20d3a70219056b22fbf989e1c5615aa036391f394239e714e5eaa785e248c",
+          "reference_sha256": "dfeed8e211c3fc1d344f3ea4c9ef931899c44e8c3f46a95441148a8c41e5ca66"
+        },
+        "grid": {
+          "source_sha256": "209c4a014c5fe6319f43c0eb38f80a79b1ccc8949ad818d2bd1cad27fd0ba21c",
+          "reference_sha256": "05ff64f4aaae77c34ba8dc607b2d147903497e581ab628b4aa4849b75220fe83"
+        },
+        "paper": {
+          "source_sha256": "4d399537bddad3331ce131192c358fa504ecf00fb30507a8e2900a504e62c2f3",
+          "reference_sha256": "69448c0d277bc38cd1f401e789d0620f89b5733c0d7a43e30e6392f148c3b5c3"
+        }
+      },
+      "anchor_seed": 4956778828067422937,
+      "points_path": "/workspace/scratch/97d5d6861006/ecg-work/m3/comparison/cases/208777-1/fresh-observations.npz",
+      "points_sha256": "057562ee359f9becfcfe86ca6f3a309dbd7869a07bde156fe58dc06c480a4ddf",
+      "orientation_receipt": "/workspace/scratch/97d5d6861006/ecg-work/m6-grid/orientation-test-final/208777-1/orientation.json",
+      "orientation_sha256": "bea5dfb593e5f9bf0b47aff07abd750375a47bf93f95e578d3c1dfde5019efa9"
+    },
+    {
+      "key": "208777-2",
+      "source_id": "ptbxl-8777",
+      "group_id": "ptbxl-patient-1210.0",
+      "split": "test",
+      "source_index": 208777,
+      "view": 2,
+      "backend": "offline",
+      "layout": "3x4-cabrera+r1",
+      "file": "bank/208777-2.npz",
+      "sha256": "8844409709cc75a50d34111482f7fcdd9ad0eeea52c15358e1f66c7908e8fbf9",
+      "query_file": "queries/208777-2.npz",
+      "query_archive_sha256": "786b9e2ad56c78dcbf485ff6c82b09efb6d9a6fb533a2d8af6b8643da6711fb7",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "ed4c92933f0865f3a2c422cd67aa1dc75471b773a33911d9c27d99308b10b0f7",
+          "reference_sha256": "8cd707db85a80688c0ce9b655b10c8dcf2d91e550ea649148172d1b1385888ff"
+        },
+        "grid": {
+          "source_sha256": "f95b30a29cc3bb5255b72b3ac8ab0423fcf8ad7570bf3a31192f29d494d9d9ed",
+          "reference_sha256": "dce8e86a4e5af8f737dd9aac119f2cd071e9f600dfe007f9dbd480bc72cab285"
+        },
+        "paper": {
+          "source_sha256": "149e2d76c81c14628f382284ab479119f74bab82e9a9c255628d65ed3dfa839f",
+          "reference_sha256": "2746b47e7c4092d383484dc7ea251d14b463f5d4d65db3444ebb917cb5d4a770"
+        }
+      },
+      "anchor_seed": 3110290610274673740,
+      "points_path": "/workspace/scratch/97d5d6861006/ecg-work/m3/comparison/cases/208777-2/fresh-observations.npz",
+      "points_sha256": "6e2519552eeb97cefd5e5d2235a7d3ea08564fe41d8df4451c8bc4d0e11022ed",
+      "orientation_receipt": "/workspace/scratch/97d5d6861006/ecg-work/m6-grid/orientation-test-final/208777-2/orientation.json",
+      "orientation_sha256": "53f437f77dc3b2233375c3e911eafd39b41d9f316a0469712401a222ca02a2de"
+    },
+    {
+      "key": "208777-6",
+      "source_id": "ptbxl-8777",
+      "group_id": "ptbxl-patient-1210.0",
+      "split": "test",
+      "source_index": 208777,
+      "view": 6,
+      "backend": "offline",
+      "layout": "4x3+r3",
+      "file": "bank/208777-6.npz",
+      "sha256": "52c3a2ccd41f87fb08b49180fbb23a84d18a2b35a1ac277c058b566d163b7f16",
+      "query_file": "queries/208777-6.npz",
+      "query_archive_sha256": "1e6bcaf5336ea802cf1e0ab3338372bdcc98e33018f1aca84191cef36f57befa",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "092cf8ecde6ccf1117e5bc2ee16ea8d4f529cf1475188251285c73f9bfe3fae8",
+          "reference_sha256": "7fcddc32ba48f6d08677880a5bfb234adadf2c3c43405f29bf684eade2edbbd5"
+        },
+        "grid": {
+          "source_sha256": "cda75c431a382a001673ed73df66d0f9a124c2a169893e447bda98f54013d91b",
+          "reference_sha256": "381fcdac3087d22b7bb122f8200a911ce8caab6176338bb96354edd3eb32d184"
+        },
+        "paper": {
+          "source_sha256": "4817a58ab740c4829dce218d891063092a9670b68ca36cf289f61ddf1dad6e26",
+          "reference_sha256": "0daa866bb57dc320e2d9256fc224558ccee3d0ebc1c5fe8c8587c24a887b3b85"
+        }
+      },
+      "anchor_seed": 12983529020379073686,
+      "points_path": "/workspace/scratch/97d5d6861006/ecg-work/m3/comparison/cases/208777-6/fresh-observations.npz",
+      "points_sha256": "b6c06efe6a021405cdcf0709a12c0fb1ffa95bf0ae0ab5203408d906e9ff50ee",
+      "orientation_receipt": "/workspace/scratch/97d5d6861006/ecg-work/m6-grid/orientation-test-final/208777-6/orientation.json",
+      "orientation_sha256": "24f66116552152c4e91269db67f9c156a1e897b052f424077b4d9bb085924839"
+    },
+    {
+      "key": "206852-0",
+      "source_id": "ptbxl-6852",
+      "group_id": "ptbxl-patient-8264.0",
+      "split": "test",
+      "source_index": 206852,
+      "view": 0,
+      "backend": "torch-cached",
+      "layout": "12x1",
+      "file": "bank/206852-0.npz",
+      "sha256": "66a562c02516c6f2e367cbe001fe21ebf8970479a5e8bf3a011db994f8a9f450",
+      "query_file": "queries/206852-0.npz",
+      "query_archive_sha256": "be7df1ef8c0ac11f64499068e833c2096a136e9229a00bfc9204e8ab360ed581",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "32eff9039625425eec32c0a88a879ded4f390d114f838666b942ba86e49694d6",
+          "reference_sha256": "c8e524e25991553236b7192cdc1627deff68e4ef8b6090c2d70c0f2c34c9f9ab"
+        },
+        "grid": {
+          "source_sha256": "935d895f8a8ad38a576e46f17288351b4bf9809bc2c5e22e90b392633c586d31",
+          "reference_sha256": "c022d636ce2953b5c9bc6438389b9bb689da2bd100203c4054c25dae83e4944b"
+        },
+        "paper": {
+          "source_sha256": "a2fff242126fc451165d02431b367f1c9afc6c15b5f587e703467c9437375b25",
+          "reference_sha256": "a8c7734599cb8c525dd4ffd69c2d1211f5503d57e7fd4fbf70c424a50bb85697"
+        }
+      },
+      "anchor_seed": 12683591520584769415,
+      "points_path": "/workspace/scratch/97d5d6861006/ecg-work/m3/comparison/cases/206852-0/fresh-observations.npz",
+      "points_sha256": "5b7b8cc72dc73d59d59a5a5362c02cd0cab448411eb5944dc38f44b3711ab61e",
+      "orientation_receipt": "/workspace/scratch/97d5d6861006/ecg-work/m6-grid/orientation-test-final/206852-0/orientation.json",
+      "orientation_sha256": "8beb90cffccfe75e51255144628565d8988143e6e9740788a5d7ae9591f5b483"
+    },
+    {
+      "key": "206852-1",
+      "source_id": "ptbxl-6852",
+      "group_id": "ptbxl-patient-8264.0",
+      "split": "test",
+      "source_index": 206852,
+      "view": 1,
+      "backend": "torch-cached",
+      "layout": "6x2+r3",
+      "file": "bank/206852-1.npz",
+      "sha256": "73279164bab857b1ac8c1c22bbcbb854d1d4f95c48480989616384ed0f8d7396",
+      "query_file": "queries/206852-1.npz",
+      "query_archive_sha256": "963f31db40e8a8a52fce775fbe107d96eb6dc4e1a7a5c6be50b548e6b2a5fab1",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "355a5abc527592970d91fa588e17c3ced0f4fa36078c105923099ab42725f26b",
+          "reference_sha256": "12ab156f2dfe94f2f49b800c687592abd1a1edc250ba4486d4a6eda05b1f6910"
+        },
+        "grid": {
+          "source_sha256": "eeec3eb544326b5edd204f34cf5e382bc91418328170ee9ff1e91e8ce087c3cf",
+          "reference_sha256": "6cf65d54d0ed8f55def9059d2e51849d9ddae6fb16182752831e1d6158f5a80c"
+        },
+        "paper": {
+          "source_sha256": "457a5f0fca175244b7a5ec34e75531197783fb502fd02a379a4e36b7fdad75b3",
+          "reference_sha256": "addd2aa7b3a7bc5d42cd171244d6108301fe4d8a8a748a80431a6ae3d299f1d5"
+        }
+      },
+      "anchor_seed": 9393278008329839634,
+      "points_path": "/workspace/scratch/97d5d6861006/ecg-work/m3/comparison/cases/206852-1/fresh-observations.npz",
+      "points_sha256": "ea2a2321f35f5d8115bd1e3f75ee3030ba6135c79db6d1ad668116d646c541d3",
+      "orientation_receipt": "/workspace/scratch/97d5d6861006/ecg-work/m6-grid/orientation-test-final/206852-1/orientation.json",
+      "orientation_sha256": "4d10f8f26223bf215e9f50cfd3d9dcbfbfa90223421ad8936f0290e0b8ad5c1f"
+    },
+    {
+      "key": "206852-2",
+      "source_id": "ptbxl-6852",
+      "group_id": "ptbxl-patient-8264.0",
+      "split": "test",
+      "source_index": 206852,
+      "view": 2,
+      "backend": "offline",
+      "layout": "4x3",
+      "file": "bank/206852-2.npz",
+      "sha256": "a60165943763daff1fa9d02b8e0a0edebdaf3c2fab38bebc426ceb7587571951",
+      "query_file": "queries/206852-2.npz",
+      "query_archive_sha256": "589620271c3134ce65b82ffc364008b0cc89a161d54188bb57bb122f6264088b",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "e5b00d9bebbaa987f80b8335bd43eee1b9bebfd7bb28cc6512a87a2bfa5a6e12",
+          "reference_sha256": "3cf3b3549d74fbdb36545a1b8cf2699645808d807a196a012826fd42c4b35999"
+        },
+        "grid": {
+          "source_sha256": "5fdf0efdf313802559aac181ce63fb122881f0a47b16397bc3f16eec5e774946",
+          "reference_sha256": "d49aebb99a056e9cc0053aa68a3beb640ea67d459b0ed33d4ad70472b40c4770"
+        },
+        "paper": {
+          "source_sha256": "c54a9e1088b81251eb96801dee75842e6a41fa667f916eb25d330bed63befe1c",
+          "reference_sha256": "2a583fac772491bac53e56d3ac1e24bc33bb03d51a217ca676fbea7332205909"
+        }
+      },
+      "anchor_seed": 6656043731691293140,
+      "points_path": "/workspace/scratch/97d5d6861006/ecg-work/m3/comparison/cases/206852-2/fresh-observations.npz",
+      "points_sha256": "1e60e621292d13d767d834b313d906ac31fbd313f6cb78d5c6a4860bd1defa2e",
+      "orientation_receipt": "/workspace/scratch/97d5d6861006/ecg-work/m6-grid/orientation-test-final/206852-2/orientation.json",
+      "orientation_sha256": "f5614ba69d12b6fe528315155c0e3bfb41969af6ee45aef577d8c07d4c86beba"
+    },
+    {
+      "key": "206852-6",
+      "source_id": "ptbxl-6852",
+      "group_id": "ptbxl-patient-8264.0",
+      "split": "test",
+      "source_index": 206852,
+      "view": 6,
+      "backend": "offline",
+      "layout": "2x6+r2",
+      "file": "bank/206852-6.npz",
+      "sha256": "17da2cbb01a2ad4d9520fbd56521d98958f915c64a616fad125e853986698b87",
+      "query_file": "queries/206852-6.npz",
+      "query_archive_sha256": "d9da25a407078de81c484cf582339f473e655f7db1dc56f60e62aa70bdd3faad",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "c91361bf099873100f67596962e596a831b222c17469aa9f2960884a37533903",
+          "reference_sha256": "342e145c644a007ffe3e701af2b638cb7a68aaabc634911c25d39731562e7645"
+        },
+        "grid": {
+          "source_sha256": "c605569dc7eb8c1d38bb78c84c2c87b7b54082a78303b4f154b63cdfd246af1f",
+          "reference_sha256": "be060714e3be9bd36d13ada7553537ed15822d88aac9f46ea02e4a14bd016099"
+        },
+        "paper": {
+          "source_sha256": "cdef1aa0eaba1f4b0e5afc6a5ce447207ed4a3252c4fae9b1b15a9018f787fde",
+          "reference_sha256": "5326397d4d2bb7dac542dbd0617a61e5d182de230017db8433eb00fa62dff1ef"
+        }
+      },
+      "anchor_seed": 4810545395792458349,
+      "points_path": "/workspace/scratch/97d5d6861006/ecg-work/m3/comparison/cases/206852-6/fresh-observations.npz",
+      "points_sha256": "23af7739f173abf56994c6c4cc18cdce1aa6ad93ff6796c644f93e03d3c626f9",
+      "orientation_receipt": "/workspace/scratch/97d5d6861006/ecg-work/m6-grid/orientation-test-final/206852-6/orientation.json",
+      "orientation_sha256": "59357702ccc61eecc1dc4e2cfef250a035b147410ed8d352dbadbf4b86cb4ef4"
+    },
+    {
+      "key": "208114-0",
+      "source_id": "ptbxl-8114",
+      "group_id": "ptbxl-patient-6191.0",
+      "split": "test",
+      "source_index": 208114,
+      "view": 0,
+      "backend": "torch-cached",
+      "layout": "3x4+r1",
+      "file": "bank/208114-0.npz",
+      "sha256": "1029fb5e2697e784e12990badaaa23c987f7f0b502b8ea54b9400f0f9c921926",
+      "query_file": "queries/208114-0.npz",
+      "query_archive_sha256": "d623827a10c5a90836dc45e1116c8b68abd0911d589d41bba52d95f6defec5be",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "60753b9ff396bc686468bbbcd25e1520010ff579d582c92e0e06909d22c2cff2",
+          "reference_sha256": "8255d7516377de32d0e586d0da80ea3bf54d13b3cc471c10f615b281fd6ff516"
+        },
+        "grid": {
+          "source_sha256": "fd9a33e6c05503f725d2658b41964cb76f650f546848fc2d2213bb3e986e206b",
+          "reference_sha256": "edff88cd3413cc72b58fdf17c05d466bf2f631aa4a68bf7916b2f0f8fbaa777d"
+        },
+        "paper": {
+          "source_sha256": "f16de25418fd4ed6561ffa3f9414547ea880e18052f9de954e82a1b4ecda83bc",
+          "reference_sha256": "7158f7159a2dea33b1863eab8a22611944efc9b67caecc0208db309f56b834a5"
+        }
+      },
+      "anchor_seed": 7476288497019570936,
+      "points_path": "/workspace/scratch/97d5d6861006/ecg-work/m3/comparison/cases/208114-0/fresh-observations.npz",
+      "points_sha256": "bbd55491c7e9eb9fecde00f6a284e015a35dc9d9ded900cf6fb8d01c07b9d271",
+      "orientation_receipt": "/workspace/scratch/97d5d6861006/ecg-work/m6-grid/orientation-test-final/208114-0/orientation.json",
+      "orientation_sha256": "e9604594ce9dce1c1cc3645c5fc41aacc3500aa91da255d7df94f7a9739d623b"
+    },
+    {
+      "key": "208114-1",
+      "source_id": "ptbxl-8114",
+      "group_id": "ptbxl-patient-6191.0",
+      "split": "test",
+      "source_index": 208114,
+      "view": 1,
+      "backend": "torch-cached",
+      "layout": "12x1+r2",
+      "file": "bank/208114-1.npz",
+      "sha256": "5492f8b98cf2ad75aa8edec22cd9d6282ce266d60749821e573f068169052805",
+      "query_file": "queries/208114-1.npz",
+      "query_archive_sha256": "91cfba205a6f6751a592b02f2134a9609da37d6772578585fac8228e4acb7a51",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "8fa4a0f32e2d7bf347c81b326514f3a0d2df961a26d8f3e1390e36941210965e",
+          "reference_sha256": "a5c0f53f64fcbfbbf6d8d651b43ba1d21198121a5c17d33b1e0808365e4dbee1"
+        },
+        "grid": {
+          "source_sha256": "7af3cf6c6714a992337a753678c58268b7801e61fa041f0a002be80619fced3a",
+          "reference_sha256": "748804704a69a749e4d991e3c86097fa2a5ca0e25f39358b259db169b236bc94"
+        },
+        "paper": {
+          "source_sha256": "f90c2fdefa7c51ec6fa27d4f121c405829b748561d56664ff0efa0707111fc0f",
+          "reference_sha256": "b376b27bc3729b0d250d5e5f7ac77611630875501d29a61f00baf954c614d0b2"
+        }
+      },
+      "anchor_seed": 14755030770857394677,
+      "points_path": "/workspace/scratch/97d5d6861006/ecg-work/m3/comparison/cases/208114-1/fresh-observations.npz",
+      "points_sha256": "b105b84e3910f31ee7e70d67f7398f03e6fcc339d3070fff4b452548e7fbbe7e",
+      "orientation_receipt": "/workspace/scratch/97d5d6861006/ecg-work/m6-grid/orientation-test-final/208114-1/orientation.json",
+      "orientation_sha256": "0715219ecee7631ffe309d880873fa00164d081760a8e40936e8f6af1a65b8ef"
+    },
+    {
+      "key": "208114-2",
+      "source_id": "ptbxl-8114",
+      "group_id": "ptbxl-patient-6191.0",
+      "split": "test",
+      "source_index": 208114,
+      "view": 2,
+      "backend": "offline",
+      "layout": "4x3+r2",
+      "file": "bank/208114-2.npz",
+      "sha256": "1b7211799549c037918edb56ce785c616fa97acd270b4c6cdb2597c717546d15",
+      "query_file": "queries/208114-2.npz",
+      "query_archive_sha256": "cb654e108324b05dc785d6a4c2bafb8a6762126efa1a7a034c762abddc98dad5",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "091b574c3d97e1aedc5446f1916258a86c0e05aabe3771e14ea99a39b2130ad8",
+          "reference_sha256": "d2189d4ca51f25412e4e9c821ab65c0044dec2632ee11b55622f670ad50b70dc"
+        },
+        "grid": {
+          "source_sha256": "cfad858b318e6ffd4ab88b5ef6959366dc060024070b62890b8aaba2a8d84f7b",
+          "reference_sha256": "1be4d53932d1ce3fdf9f3160ba7ad1e1316d72e831d6c291ffeb210e161ad5cc"
+        },
+        "paper": {
+          "source_sha256": "cd88994f1547661887c074da51ef72201e53d9137eec2da9a9816aa8a1c32b9e",
+          "reference_sha256": "7246d817f9383d8bd83f3466675126713f5258ea82a57f38758067d6a5a1c09a"
+        }
+      },
+      "anchor_seed": 13031177345341870803,
+      "points_path": "/workspace/scratch/97d5d6861006/ecg-work/m3/comparison/cases/208114-2/fresh-observations.npz",
+      "points_sha256": "78e5422a736bb29a8c8e73bc29c1a17a3d0c30849964b40e4f7377e2f89de8df",
+      "orientation_receipt": "/workspace/scratch/97d5d6861006/ecg-work/m6-grid/orientation-test-final/208114-2/orientation.json",
+      "orientation_sha256": "f26f41a36f9013edd8886d1dd88d9aa4903bd6f7bb15d1f302ef160b68f2d150"
+    },
+    {
+      "key": "208114-6",
+      "source_id": "ptbxl-8114",
+      "group_id": "ptbxl-patient-6191.0",
+      "split": "test",
+      "source_index": 208114,
+      "view": 6,
+      "backend": "offline",
+      "layout": "4x3",
+      "file": "bank/208114-6.npz",
+      "sha256": "b088595b33637c617da3b633d063e242d2a3b5f47edf9cf3e032dd92df668fa5",
+      "query_file": "queries/208114-6.npz",
+      "query_archive_sha256": "401cf503d42dd234714f4c9771f7067447e868c5ab0d283239b604d630f333c7",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "b891c9bbcdc4eb6a71f70886455913fc3c8c0767e948b7d37f487587ee15c06b",
+          "reference_sha256": "75dbe3e8dd0c3812e402e218303f052cd7914ac8728ffa39928de242da5d35b3"
+        },
+        "grid": {
+          "source_sha256": "d731b2ad573bde6ebf404d40d1d0ab5c1b700125b1e1dd76d86b78c1371cba2a",
+          "reference_sha256": "89cc2094890a40eb4dfca20dbfe77ca12b3a26f7705ab346571c653af348bcca"
+        },
+        "paper": {
+          "source_sha256": "8e62ecfa961c3a66ed8e29721c83388d124605a8df969481b6e5cbb0cf5f6dff",
+          "reference_sha256": "417822fb09f5304ade333a70c29a368fdafe4c3c8a971006f3302b7a999d63be"
+        }
+      },
+      "anchor_seed": 1487815517706126426,
+      "points_path": "/workspace/scratch/97d5d6861006/ecg-work/m3/comparison/cases/208114-6/fresh-observations.npz",
+      "points_sha256": "462cd7a1e720459b1c125dd9fcf27a4f7b45c8f27764d55f48daeb08649614e4",
+      "orientation_receipt": "/workspace/scratch/97d5d6861006/ecg-work/m6-grid/orientation-test-final/208114-6/orientation.json",
+      "orientation_sha256": "fea21390a9adb8aec93f30a797dea4de7a84fe34020f898e64e0bedab6491abb"
+    },
+    {
+      "key": "215864-0",
+      "source_id": "ptbxl-15864",
+      "group_id": "ptbxl-patient-13372.0",
+      "split": "test",
+      "source_index": 215864,
+      "view": 0,
+      "backend": "torch-cached",
+      "layout": "2x6+r2",
+      "file": "bank/215864-0.npz",
+      "sha256": "0b4d1cbd2934009a331c6fb32aca5e33a8fdb54c57408c0bb630d3acab47c33a",
+      "query_file": "queries/215864-0.npz",
+      "query_archive_sha256": "125386c64af1a3cfdd176eea9061237d4f61c445a5a67a14d4a5fdff66bcbdd0",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "4a3141f1c4a44fe7f2fcd1caab21a0a19028415e21ddcc4e1f2b53e59a35b325",
+          "reference_sha256": "40974467da351a26bd1aadde5ce9c47674004ecdd76fbcb9bfe925520ca4a834"
+        },
+        "grid": {
+          "source_sha256": "479d799e72148732c8ab7f5ac0f391e30fddf4aab83eb491f53f2a75a6f9c5f9",
+          "reference_sha256": "0edf8f52ca295d72c8f9952f4f63d2faade74b39a8a801740eccec7aa16df1ef"
+        },
+        "paper": {
+          "source_sha256": "9be03426418baa8f3992668abf8b6291ddb178125df218cdf543298f220b8bca",
+          "reference_sha256": "a7f3f38e5b07fdf4343f2994668a44d96a34dfe180ee27f0e8ae744f6d86b626"
+        }
+      },
+      "anchor_seed": 2052291191481313157,
+      "points_path": "/workspace/scratch/97d5d6861006/ecg-work/m3/comparison/cases/215864-0/fresh-observations.npz",
+      "points_sha256": "db93019da49d16441dcc7a9af950c1e78a67efb4bc20570785ad8dad62703e20",
+      "orientation_receipt": "/workspace/scratch/97d5d6861006/ecg-work/m6-grid/orientation-test-final/215864-0/orientation.json",
+      "orientation_sha256": "3cf1bdf7208f2351dfbc7b498a1b5dedee291a24acf1acb1ca99bb52fdbdf6c7"
+    },
+    {
+      "key": "215864-1",
+      "source_id": "ptbxl-15864",
+      "group_id": "ptbxl-patient-13372.0",
+      "split": "test",
+      "source_index": 215864,
+      "view": 1,
+      "backend": "torch-cached",
+      "layout": "3x4-cabrera+r1",
+      "file": "bank/215864-1.npz",
+      "sha256": "a7d316b32ecbdff6ff6d6a995e7a5ae821ce6577e5139ad392f8bc6c2d2cc7d7",
+      "query_file": "queries/215864-1.npz",
+      "query_archive_sha256": "1814508209b33e3fa754aec427e8ca653c31686fbf00c6c3dd728b67e0c5b454",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "cd630cf46e74a1fd4ffb5720dde53203403e1a353e0b0342f38560761a2a004f",
+          "reference_sha256": "401af43aa3953beeef0b42ca36a38b06b756e324ae92705f7503bbccefc82f18"
+        },
+        "grid": {
+          "source_sha256": "cc9864a4834ebe50db30f5e862d54393515725bcf367341bba50409fe231d21f",
+          "reference_sha256": "98715aa29d8f91e6a169f651f5a75be4a64ed03b116f1d3538477b64506c93fe"
+        },
+        "paper": {
+          "source_sha256": "0a3348fefd8d9c9c100b29aa43ab0cee47501036f953c6589add59d355663df3",
+          "reference_sha256": "1cf175f8b11e36723f8c6fcc50e944fdcaabdc5866fe076c7656501e99f362ce"
+        }
+      },
+      "anchor_seed": 9549651844186488047,
+      "points_path": "/workspace/scratch/97d5d6861006/ecg-work/m3/comparison/cases/215864-1/fresh-observations.npz",
+      "points_sha256": "e2c355cf2cdef8501e9d6048d3e208b6ed25e8bc0e8d8f03f01e0d5f7239dc7b",
+      "orientation_receipt": "/workspace/scratch/97d5d6861006/ecg-work/m6-grid/orientation-test-final/215864-1/orientation.json",
+      "orientation_sha256": "b926320a30a7c75a60edcf174c1a8405072c19065088b39c26fb5119965f1ba0"
+    },
+    {
+      "key": "215864-2",
+      "source_id": "ptbxl-15864",
+      "group_id": "ptbxl-patient-13372.0",
+      "split": "test",
+      "source_index": 215864,
+      "view": 2,
+      "backend": "offline",
+      "layout": "1x1-long",
+      "file": "bank/215864-2.npz",
+      "sha256": "0a0a8aba57afd902390e35aa2841659c4997bea71724c406f8c930d3ba6cf833",
+      "query_file": "queries/215864-2.npz",
+      "query_archive_sha256": "84dbc350beb70c82b212a2b7b0fcfbc729a30f7a5cfef07953d1cac3710559c9",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "306a38bbed24d41fb469330e5035b027b8ba56e98fd1e27819dc24c39cd5811d",
+          "reference_sha256": "09530f773f0cf982e00a12d60924dc2287ab3bc95cf1b654765466285e5f3b03"
+        },
+        "grid": {
+          "source_sha256": "741e5af50192676f961ea7a96552073568d2c24e00de62f176f368d7707e765c",
+          "reference_sha256": "e75b13390683ed60efb1018bdc45fd7692728220ed55cae3deb3eb4c20501d4d"
+        },
+        "paper": {
+          "source_sha256": "8d33fed72f421d216847994993cae88ff3e998f49be9bde30ff1a835927751aa",
+          "reference_sha256": "5310e335173e64ad5af3fb24840a769143ea2c72da718b85fb96e7a1d66d6256"
+        }
+      },
+      "anchor_seed": 3201647652966102737,
+      "points_path": "/workspace/scratch/97d5d6861006/ecg-work/m3/comparison/cases/215864-2/fresh-observations.npz",
+      "points_sha256": "fef89127cb0d27ecba39fdc468644d295fc219572b995248370f6d7dbf8bcf82",
+      "orientation_receipt": "/workspace/scratch/97d5d6861006/ecg-work/m6-grid/orientation-test-final/215864-2/orientation.json",
+      "orientation_sha256": "ad9b959aa9a96df4f54f880aaf8d90fdaf80a8709f28b5c866047acfcb5ae0bf"
+    },
+    {
+      "key": "215864-6",
+      "source_id": "ptbxl-15864",
+      "group_id": "ptbxl-patient-13372.0",
+      "split": "test",
+      "source_index": 215864,
+      "view": 6,
+      "backend": "offline",
+      "layout": "2x1-long",
+      "file": "bank/215864-6.npz",
+      "sha256": "e27915426e2e381fb14078213c95af6c28cfb98acb51b3a81c50cf518feb6b10",
+      "query_file": "queries/215864-6.npz",
+      "query_archive_sha256": "4f707ae8d31afeeb5ee119564d2a53d341d1395097d56f76d34bf5e79c3d55c3",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "34f81af7e394668e0257b28b5461842d605560f69a8b79c091196d011ff840bd",
+          "reference_sha256": "5477eda7153442162f0304d758768d7556404e2ac98314dfde62f12334f4ba57"
+        },
+        "grid": {
+          "source_sha256": "978215bb46692c44f28f05c3cf79bdef4014f7f4595a91a20b83f5920cdd4716",
+          "reference_sha256": "3e3e03722139f50a8cfc2baa351070cb27aff2e5012af8ad1258929d022768bf"
+        },
+        "paper": {
+          "source_sha256": "009c7aa910f9ada59155ddd51e085d5ca7007984d99968aa10f802ee7cc2a5b8",
+          "reference_sha256": "da67422ae0d7230e7841797be88a04cc618ac1e95978a8515ba7f91c116052ac"
+        }
+      },
+      "anchor_seed": 6195225564566607953,
+      "points_path": "/workspace/scratch/97d5d6861006/ecg-work/m3/comparison/cases/215864-6/fresh-observations.npz",
+      "points_sha256": "748c38bd48331b12511cb4ed9f7145bd4ac63199e46b539b77630410616ebdfb",
+      "orientation_receipt": "/workspace/scratch/97d5d6861006/ecg-work/m6-grid/orientation-test-final/215864-6/orientation.json",
+      "orientation_sha256": "59274b4043db419a2e5374921fb1ba88d732fb199be157154245385523cd394b"
+    },
+    {
+      "key": "211723-0",
+      "source_id": "ptbxl-11723",
+      "group_id": "ptbxl-patient-19518.0",
+      "split": "test",
+      "source_index": 211723,
+      "view": 0,
+      "backend": "torch-cached",
+      "layout": "2x6+r1",
+      "file": "bank/211723-0.npz",
+      "sha256": "372fcd6ddf89a703155d9e54af64812a6077546a248f5cb36e016e8d5e9abb7d",
+      "query_file": "queries/211723-0.npz",
+      "query_archive_sha256": "2cd15e6fcf223c83d669e6c9d938b2433afbdcda8a9e49bc831b2092f2fd70ad",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "a1ddd0ab2ed98fd7d2ebaf8898c65764091c02280de77faff21cc0a19d5cbe86",
+          "reference_sha256": "626bce3b4f8580dc3121a859994c74a9cd93043fad97cc32befad0ea615d93dd"
+        },
+        "grid": {
+          "source_sha256": "c7a3bfb106c377f626dccbf4cd4c412ef5b237410de7258035c19518a9c44218",
+          "reference_sha256": "bc3de5a1659d9a06cae80bb08141005ace98f8179888ba0e818e8a5e67127a77"
+        },
+        "paper": {
+          "source_sha256": "e9aaf439ba76bcad8595e52694f67d60bf3dc9634678aa1baaf21c6d32bc7107",
+          "reference_sha256": "2d475175b581d496fb7aa638a51e5e87bcf3b71017e9f0007d397fb582929c06"
+        }
+      },
+      "anchor_seed": 4706377927808023656,
+      "points_path": "/workspace/scratch/97d5d6861006/ecg-work/m3/comparison/cases/211723-0/fresh-observations.npz",
+      "points_sha256": "e56072ff5f7716621ca0f75cf2f3a2ccdbe2d57be3a8a712c0ef599e027a0de7",
+      "orientation_receipt": "/workspace/scratch/97d5d6861006/ecg-work/m6-grid/orientation-test-final/211723-0/orientation.json",
+      "orientation_sha256": "83dd9dc64e1290ceaf325ae4ab8b924188902c380dd072efea95b1947afa90ed"
+    },
+    {
+      "key": "211723-1",
+      "source_id": "ptbxl-11723",
+      "group_id": "ptbxl-patient-19518.0",
+      "split": "test",
+      "source_index": 211723,
+      "view": 1,
+      "backend": "torch-cached",
+      "layout": "3x4-cabrera",
+      "file": "bank/211723-1.npz",
+      "sha256": "43f05a4da932da12a693cd78d94a46abfe67238cfa8546adda40eefd125fc05e",
+      "query_file": "queries/211723-1.npz",
+      "query_archive_sha256": "ff7eac1a11e342d4d9d26aa70f5aba2a4450a492b9a119dd36970ccbf4d2777b",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "7b662bb6d6ec418d27ffc517434bb8c4e3254bf8994b529d0010c25e1c8713f3",
+          "reference_sha256": "17c027ccad354fe7ea8a07486f399b9fd18d2edddbbc685d41597be61c90ca96"
+        },
+        "grid": {
+          "source_sha256": "064aa129cf8c2109cd2de1cb10a3f5b0b2bb910d191578dc4a064ef94a4f9603",
+          "reference_sha256": "22411d8ac1767db87c99c714c9c2ab44b7081478a703b8631c96253f92dbbaad"
+        },
+        "paper": {
+          "source_sha256": "236b48293447cea3aeaf2c6bd768bd7aca0f5fe66fe05874996578c433ac7f3f",
+          "reference_sha256": "1bc75104bc745980e2af8c1fe56d056d9a2e7a65b87d0a626ed9dc1896d3cdfb"
+        }
+      },
+      "anchor_seed": 17509946385042271428,
+      "points_path": "/workspace/scratch/97d5d6861006/ecg-work/m3/comparison/cases/211723-1/fresh-observations.npz",
+      "points_sha256": "4576ff9080f8ab28b4c0e2da8a4b9dc63e21cd8b165dbcb62a4f4ea7b9b707b7",
+      "orientation_receipt": "/workspace/scratch/97d5d6861006/ecg-work/m6-grid/orientation-test-final/211723-1/orientation.json",
+      "orientation_sha256": "973fddf485fae6a5045014734284cd6efdf88dce4a5379ec529be80c1ee2b940"
+    },
+    {
+      "key": "211723-2",
+      "source_id": "ptbxl-11723",
+      "group_id": "ptbxl-patient-19518.0",
+      "split": "test",
+      "source_index": 211723,
+      "view": 2,
+      "backend": "offline",
+      "layout": "3x1-long",
+      "file": "bank/211723-2.npz",
+      "sha256": "5a3746d212ffe3d15799ec9df113b216bc5d8331e258623193530bbce85fec85",
+      "query_file": "queries/211723-2.npz",
+      "query_archive_sha256": "017f47bec0be01a352d34a8b2588e60c7512050c784822fe3987143b3f7ac0e6",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "6f2589851b966c697140777315c25ca5ccd7088c006aa817d086b0824617d98e",
+          "reference_sha256": "fea5409589eff51a5537afd61a4d70044374d62844752dd3fb6a70d81e4bffc3"
+        },
+        "grid": {
+          "source_sha256": "a08e4c9d4853698fb8fc1a3644e1339d84b983f39d1183892fa813b8ed5f0fcb",
+          "reference_sha256": "fe1b5ba058cf2515863df269ce3698c1f22277b96c7da9018b2db56f699604bc"
+        },
+        "paper": {
+          "source_sha256": "28b46b4ec0eb56c3983a625ece20558fe8df81bda94efe1b3ce270db71d27d2f",
+          "reference_sha256": "10c20f5cd983878c30b14a2d53b2c461cadbd6149e9d86d70c414ffbdc9fb554"
+        }
+      },
+      "anchor_seed": 14251026025073783888,
+      "points_path": "/workspace/scratch/97d5d6861006/ecg-work/m3/comparison/cases/211723-2/fresh-observations.npz",
+      "points_sha256": "045ac237ec7782f29f3e4c668042b9d030017b143555e5c3f8db1bd62f10e77d",
+      "orientation_receipt": "/workspace/scratch/97d5d6861006/ecg-work/m6-grid/orientation-test-final/211723-2/orientation.json",
+      "orientation_sha256": "e85d04ef761947493c8864cee2466f0a247cbb539e7f794bac516903ad6fc63f"
+    },
+    {
+      "key": "211723-6",
+      "source_id": "ptbxl-11723",
+      "group_id": "ptbxl-patient-19518.0",
+      "split": "test",
+      "source_index": 211723,
+      "view": 6,
+      "backend": "offline",
+      "layout": "12x1-cabrera",
+      "file": "bank/211723-6.npz",
+      "sha256": "b1c9a7b16303ce42ff72b924eab7dde430d2bdf8b80ceda4dfd530894f41265c",
+      "query_file": "queries/211723-6.npz",
+      "query_archive_sha256": "de31e25db256c3464dda86d1063c4636d6ecb52c12ec4c131b41d323c5894aab",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "d93077e4bbb205826ef0666403a783905b547eaa6858dc0e10568e3614e025df",
+          "reference_sha256": "28a05ffc8936b48babc7657c4cc41d7920ca1261beca3832462124bfaa0b13c2"
+        },
+        "grid": {
+          "source_sha256": "2aa2faffcaf84c84a978319201d152c336bd74c3d9a289f35f894a12c8859a13",
+          "reference_sha256": "6a07567d4f80b9e2d2369be063ecfb219b0eec5ec290914841f3361e9469d20e"
+        },
+        "paper": {
+          "source_sha256": "dc506a03b8f504b36ff4e4dd3ba3720338b89e1b4737fa7f60bcc89555bf827e",
+          "reference_sha256": "95f92488c64648bf985294bec752c980e9fdc4845f0c72ce00c5a4b65d83d688"
+        }
+      },
+      "anchor_seed": 14559104876751562776,
+      "points_path": "/workspace/scratch/97d5d6861006/ecg-work/m3/comparison/cases/211723-6/fresh-observations.npz",
+      "points_sha256": "0070e908e9c0b71af15846c6153d5063f168622556947ffbabba2c0492b5ca1f",
+      "orientation_receipt": "/workspace/scratch/97d5d6861006/ecg-work/m6-grid/orientation-test-final/211723-6/orientation.json",
+      "orientation_sha256": "f15725509c18140f9c60af508791c56974873d4684e108491f95ab6a8629b4ce"
+    },
+    {
+      "key": "211855-0",
+      "source_id": "ptbxl-11855",
+      "group_id": "ptbxl-patient-8288.0",
+      "split": "test",
+      "source_index": 211855,
+      "view": 0,
+      "backend": "torch-cached",
+      "layout": "12x1-cabrera",
+      "file": "bank/211855-0.npz",
+      "sha256": "f469133d69786df21b596ff765bf321830b03abd4147c3158be226504a50e8e3",
+      "query_file": "queries/211855-0.npz",
+      "query_archive_sha256": "6503c16b037380fe108d53c0c67b7a1601de4c3f1a71aad69703cd0840419714",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "afec3bd4535b51fa906d781088a2af720efc7df24ce9853bc16e462cea8eda65",
+          "reference_sha256": "3c977c2e13bc532a0db4b8d1ca59b05a0549bd105dc3f4827bffb76b8ae89fe9"
+        },
+        "grid": {
+          "source_sha256": "f307c070f9879ddfe02549f778ca98765b5046df8307b5d6e87f063da755eed6",
+          "reference_sha256": "67c6384d2e514f396f48c887d262152a2a91560be433576b167b637b9e15df32"
+        },
+        "paper": {
+          "source_sha256": "09dd25ec4ec432e2e91cb31a77ecf4aafeb64527a75fce099436e11c22eab33a",
+          "reference_sha256": "262df64e5da131fcbc8fb1ad874d28d24b6040059c1efa13f3204ea4796201a2"
+        }
+      },
+      "anchor_seed": 6719403195913005369,
+      "points_path": "/workspace/scratch/97d5d6861006/ecg-work/m3/comparison/cases/211855-0/fresh-observations.npz",
+      "points_sha256": "050612a0221d5db53942bcd764c8863d63cd1ae203559e13ef1895ca1dbc7c72",
+      "orientation_receipt": "/workspace/scratch/97d5d6861006/ecg-work/m6-grid/orientation-test-final/211855-0/orientation.json",
+      "orientation_sha256": "942cd89839c19c587dad3133d5219fa5cf5ba6576593c91f07fba525fdb3f32f"
+    },
+    {
+      "key": "211855-1",
+      "source_id": "ptbxl-11855",
+      "group_id": "ptbxl-patient-8288.0",
+      "split": "test",
+      "source_index": 211855,
+      "view": 1,
+      "backend": "torch-cached",
+      "layout": "12x1",
+      "file": "bank/211855-1.npz",
+      "sha256": "970a1a0a3fd9d9bdb3d09cc7aa690eca2734242cdd297faffb7e7c3db2ded47f",
+      "query_file": "queries/211855-1.npz",
+      "query_archive_sha256": "760ef7eba9b6df0c9cc0c8e622f2c45295ee349c6ce67f398150e6a9519df79e",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "2770148dcec446219b6e5b4da9333909e5c0b9c5c0b1f0d35779c078e1752330",
+          "reference_sha256": "46525f27172d33e267728eff31e312ee92c7e84bfc1ab356f5fdfd3368c9f3bb"
+        },
+        "grid": {
+          "source_sha256": "acb71057765f7e66312b70d13a0bd00329cadd25168623bed377c2a54b9e6d42",
+          "reference_sha256": "842bd1639695f9f1cc2bbef0020c8cec88d5133d56377ac006f8a72fb5a5a4b8"
+        },
+        "paper": {
+          "source_sha256": "025a2c6685357adcc381bfd7d54642ef247a8d57c5fc6f43a32e3f5d504fdedb",
+          "reference_sha256": "5ef14b605b6e189fd537d9583f5ac2979f8db836e385bb640e5d672df586705b"
+        }
+      },
+      "anchor_seed": 11175182077936071524,
+      "points_path": "/workspace/scratch/97d5d6861006/ecg-work/m3/comparison/cases/211855-1/fresh-observations.npz",
+      "points_sha256": "5d84b64534b2957df47020fd30a7ea0241af417784e3f73c61fac9940a600753",
+      "orientation_receipt": "/workspace/scratch/97d5d6861006/ecg-work/m6-grid/orientation-test-final/211855-1/orientation.json",
+      "orientation_sha256": "2ac6493a08e92db341189874c0b8f5a4446ea2f8bf8731acebc65f7a54d8bf6e"
+    },
+    {
+      "key": "211855-2",
+      "source_id": "ptbxl-11855",
+      "group_id": "ptbxl-patient-8288.0",
+      "split": "test",
+      "source_index": 211855,
+      "view": 2,
+      "backend": "offline",
+      "layout": "6x2+r3",
+      "file": "bank/211855-2.npz",
+      "sha256": "9e50ab2f10b129edcd391ca438ceb2578d35b3f44357d42929525b186fca4c82",
+      "query_file": "queries/211855-2.npz",
+      "query_archive_sha256": "81a43f3800e3abb0293ba116be9aab289c42b8e627981b5972d3840e9437afe0",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "5f8afa4bcfd4d656cd038512fe4e5a4679a7d5a327a94925d851e764437248a9",
+          "reference_sha256": "cb860588c410dc8f06546bcc96bac6e2307d0763ecd437dd00873add64a2c42d"
+        },
+        "grid": {
+          "source_sha256": "10a3c7e1b95e2ad0ad50130d6b87a55f28850f4642eaf3025429087ecb6194fc",
+          "reference_sha256": "1ad4489002bd84a797a70fc2178ba67edb197af7e92cee53390128705278cf18"
+        },
+        "paper": {
+          "source_sha256": "04495fa34888cfb689bfc1467d2f2550f42c02a4ac0dc5ce7f7fed3f1c371960",
+          "reference_sha256": "21cc59d1ed29f84630fc35e2f7fe6c56c89ed5ab5593d181ea79d658cdfbe8bb"
+        }
+      },
+      "anchor_seed": 2401366833021754008,
+      "points_path": "/workspace/scratch/97d5d6861006/ecg-work/m3/comparison/cases/211855-2/fresh-observations.npz",
+      "points_sha256": "bc4403ef465e5c71278d83dae427f1691e46037174b70b6f61c70dfdafd4af9b",
+      "orientation_receipt": "/workspace/scratch/97d5d6861006/ecg-work/m6-grid/orientation-test-final/211855-2/orientation.json",
+      "orientation_sha256": "42a9e678d147dd6423f154f0ab0f141e39befa5abfdb8ebc33a1bd9fdcce6383"
+    },
+    {
+      "key": "211855-6",
+      "source_id": "ptbxl-11855",
+      "group_id": "ptbxl-patient-8288.0",
+      "split": "test",
+      "source_index": 211855,
+      "view": 6,
+      "backend": "offline",
+      "layout": "6x2+r1",
+      "file": "bank/211855-6.npz",
+      "sha256": "75f1fb00675f1b15666be6fbb0c30ca15cfbb01b3bdff19fc6da190fbdb72836",
+      "query_file": "queries/211855-6.npz",
+      "query_archive_sha256": "cd9ed08f07aac4352c2d6cda1e901828ccc704528eb3ade012f0c59ecf3da951",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "0d32b4d81f2b57c2bb59fb9b177bbe766eaa5032a5e7660eff6c41ae09bd3445",
+          "reference_sha256": "45bebfd9490305a18cff32507bc8f62329a4b9473abd662be16db345dac597a3"
+        },
+        "grid": {
+          "source_sha256": "10e0131e0a0c8de649705b2d34b6f64c1fe7161bccb1ad8525726a3e537d94d5",
+          "reference_sha256": "b830178eccee5f72b196c4381d5200457a5216a12aa2063a6485270db7bc3864"
+        },
+        "paper": {
+          "source_sha256": "a6964a4ba60dc1c3943a9bdab52f9b3cd41075009057be24bbaed9317bf1d784",
+          "reference_sha256": "d55c8da950501b944e2378a7e3f53424a75abd9eeae20dd5befa3a4b7633755f"
+        }
+      },
+      "anchor_seed": 12557234403854050035,
+      "points_path": "/workspace/scratch/97d5d6861006/ecg-work/m3/comparison/cases/211855-6/fresh-observations.npz",
+      "points_sha256": "0868cf78484ea7bb4c774d6e7461fb281965c86811375b66025b5aed5c4890ee",
+      "orientation_receipt": "/workspace/scratch/97d5d6861006/ecg-work/m6-grid/orientation-test-final/211855-6/orientation.json",
+      "orientation_sha256": "be5aa46568a8cfd0a23a2b02ab45e2503ebc5dfac1e2e0fc1446b708b7828f51"
+    },
+    {
+      "key": "206056-0",
+      "source_id": "ptbxl-6056",
+      "group_id": "ptbxl-patient-935.0",
+      "split": "test",
+      "source_index": 206056,
+      "view": 0,
+      "backend": "torch-cached",
+      "layout": "4x3",
+      "file": "bank/206056-0.npz",
+      "sha256": "d0695e87137d5794b8a10ec269da206ee3b2b8d4697348c3428e43f1d2f68803",
+      "query_file": "queries/206056-0.npz",
+      "query_archive_sha256": "d4132486c6575b7ee201eff1c791a1758946731be832acb9111be9caa71c65a7",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "a1761cc0dc11882fe43b2e35b472d3cc2b7b0e0e890930bd3833d007e433aa7c",
+          "reference_sha256": "b0a8ab552bc8e53706f4041bbd1160b195da64e3e3759f490c7c86f53371ecde"
+        },
+        "grid": {
+          "source_sha256": "dd69b7b59a75fa51c6fcdcc47957ead7b352200d7aac8c528dbd67fe71449977",
+          "reference_sha256": "0bd0cd7ca2d5a95573898b4ac48a825861b8dabc59d7ba37b7f59d483abaa9b6"
+        },
+        "paper": {
+          "source_sha256": "4d317fa38865dd7655a3dc760d4e2f0b60ea4909f0a33b52d8006305b5987271",
+          "reference_sha256": "5ddbd1b6e8f883320b9850ea357fc3d8e5f2dc8feb539f1c6fd97149a4118d17"
+        }
+      },
+      "anchor_seed": 16418393182440951030,
+      "points_path": "/workspace/scratch/97d5d6861006/ecg-work/m3/comparison/cases/206056-0/fresh-observations.npz",
+      "points_sha256": "15bf1ff4c6f66bfa2d5c28aaf12fd329fbdaefed58929f0b8d34f4f99d95b5f4",
+      "orientation_receipt": "/workspace/scratch/97d5d6861006/ecg-work/m6-grid/orientation-test-final/206056-0/orientation.json",
+      "orientation_sha256": "702ca13af1f412ddbaad4adbc9f7bc9d0a74cc1626129cdefd3e97a90882bf7a"
+    },
+    {
+      "key": "206056-1",
+      "source_id": "ptbxl-6056",
+      "group_id": "ptbxl-patient-935.0",
+      "split": "test",
+      "source_index": 206056,
+      "view": 1,
+      "backend": "torch-cached",
+      "layout": "3x4-cabrera+r3",
+      "file": "bank/206056-1.npz",
+      "sha256": "d86230c39ca2a4430aaadacfbb233f39b07a1211adce806efea9d5201d0a3271",
+      "query_file": "queries/206056-1.npz",
+      "query_archive_sha256": "00b2dfab43ea573e47323406fac7a47a5e4f2848ac60d3f35fe82629172c3626",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "6d09786a61b463962d54a1d020d98280a75806145cfd2eb432f68cadf88799b2",
+          "reference_sha256": "7dca6cb02b12fa58f001bd988958b057bff46b23aefed95354485d172327fcf8"
+        },
+        "grid": {
+          "source_sha256": "6f94d4a6aee0d8ce9a0b059c69e0703ca69493799ea8d9489cf81b1c6ba7618e",
+          "reference_sha256": "8b949ee1dd245c1858df6eabb2fb7158e3d6a1dc405a30a2cc4460415a70d12d"
+        },
+        "paper": {
+          "source_sha256": "9e1ff45d3f89c55096869ad31dd0e43c78dc00c497da5798bae659f784d07517",
+          "reference_sha256": "e633f10f2bb1dc83445d33f03f9a6a6f162b13cd19e5391067ade34f599a6013"
+        }
+      },
+      "anchor_seed": 1267940074639607607,
+      "points_path": "/workspace/scratch/97d5d6861006/ecg-work/m3/comparison/cases/206056-1/fresh-observations.npz",
+      "points_sha256": "e83d0342dc0d8a269d35f0fa82062066032fcd14f436a6a47cab6f7ba8cf6d41",
+      "orientation_receipt": "/workspace/scratch/97d5d6861006/ecg-work/m6-grid/orientation-test-final/206056-1/orientation.json",
+      "orientation_sha256": "965e2ea2629302c7f10016d6df59e1b54bb1c7db3cfdd04ea4f1ae820d96e986"
+    },
+    {
+      "key": "206056-2",
+      "source_id": "ptbxl-6056",
+      "group_id": "ptbxl-patient-935.0",
+      "split": "test",
+      "source_index": 206056,
+      "view": 2,
+      "backend": "offline",
+      "layout": "3x4",
+      "file": "bank/206056-2.npz",
+      "sha256": "e44a6c3bf5646ec7742bd8436a811eb2540b4877f411d4bf7f18145f199fc919",
+      "query_file": "queries/206056-2.npz",
+      "query_archive_sha256": "85b83d1e376acc51adec55ba3cc918a319a9eeaf2398e369f9db2522813e43c5",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "bf88813916583633a972e38534f146e52bc1d79e3b8e96faf355cc9b4c47431a",
+          "reference_sha256": "6240cbf9aaf1d681f378faf4af7c1c25dae939986c27ea26e39cd55ff366dc57"
+        },
+        "grid": {
+          "source_sha256": "40184315a8dde14b37c7f974b0a121c345dbe611a054b81b0af162eb8c7d943f",
+          "reference_sha256": "62d546a0f0da819c59e35c32b81c1d042312f41f23d77a940bbc326d028238bf"
+        },
+        "paper": {
+          "source_sha256": "d231992caf2c0df6b642a59b9640a7578b0c796bc1ec7a7bda4ecdbae7fbeb3e",
+          "reference_sha256": "c5e11e0f45c339c6e7b5e9994994dbaf3e618be13f03b4bcf2c3f83c65e9c245"
+        }
+      },
+      "anchor_seed": 16154313996188355293,
+      "points_path": "/workspace/scratch/97d5d6861006/ecg-work/m3/comparison/cases/206056-2/fresh-observations.npz",
+      "points_sha256": "1cdb5a4ff8f895d4cc8c96fcbd7dba0d4ade36b8f89227ceabe4ce1221e57a63",
+      "orientation_receipt": "/workspace/scratch/97d5d6861006/ecg-work/m6-grid/orientation-test-final/206056-2/orientation.json",
+      "orientation_sha256": "0efe6861c139fb5be772991ffc70a97e187901992030cad556a196634aedf807"
+    },
+    {
+      "key": "206056-6",
+      "source_id": "ptbxl-6056",
+      "group_id": "ptbxl-patient-935.0",
+      "split": "test",
+      "source_index": 206056,
+      "view": 6,
+      "backend": "offline",
+      "layout": "1x1-long",
+      "file": "bank/206056-6.npz",
+      "sha256": "b24ea6dc634fec38c1197450fd4e5bbb81a26ff4be7887020cd6c0b71001af85",
+      "query_file": "queries/206056-6.npz",
+      "query_archive_sha256": "36dc784159ea2f80981215a264972389e1051fb50c8b52ea1c7b1437952fe100",
+      "hashes": {
+        "anchors": {
+          "source_sha256": "fc4d3df5ff4ab9146823484e95d2a02f0fe19496c62332fe887232f075962e2f",
+          "reference_sha256": "5a8e4db673eb9baefd0547055e86970b5192786d0eda552c3f7351195075a045"
+        },
+        "grid": {
+          "source_sha256": "0d47107f10861eb44777a61a11f3851322ab1dee78c660aba1506141ca47a4a1",
+          "reference_sha256": "f391af06d708a428ca8f33b2b8334026af58d7a84d310e1cfdeedcbdaad4bc76"
+        },
+        "paper": {
+          "source_sha256": "c9848214046987cb869d2bc073de058237bf11bf88dd027900e9c09bc1b94222",
+          "reference_sha256": "2dfb1f7c1e765e25de1ca4b59efc977b361421c52f67eb72d735f39e16d70417"
+        }
+      },
+      "anchor_seed": 4497732614208311235,
+      "points_path": "/workspace/scratch/97d5d6861006/ecg-work/m3/comparison/cases/206056-6/fresh-observations.npz",
+      "points_sha256": "379981357cbf6ab23f20c6780513e55eb6bbf6015b84dbcf0484fcc6a2310b7e",
+      "orientation_receipt": "/workspace/scratch/97d5d6861006/ecg-work/m6-grid/orientation-test-final/206056-6/orientation.json",
+      "orientation_sha256": "0b2603c7d86ef164b177abb0c4f37f9559e2c60b3e57ccb1f15afe67efd1d023"
+    }
+  ],
+  "new_training": false,
+  "reference_used_for_inference": false,
+  "semantic_orientation_method": "ECG text OCR",
+  "native_major_pitch_mm": 5.0,
+  "registration": "anchor-only translation, frozen M3 scorer",
+  "primary_threshold_mm": 0.5,
+  "primary_domain": "paper",
+  "render_requested": true,
+  "full_refinement_strength": 0.0,
+  "full_baseline": "B0, existing CLI default without optional point refinement",
+  "full_geometry_seed": 1973,
+  "RGB_cache": "within-case exact selected indices, IDs and supported cells, no approximate reuse",
+  "candidate_selection": "supported cells minus twice conflicting constraints, no query scoring",
+  "source_sha256": {
+    "ecg_gpu/digitization/consensus_lattice.py": "78f5094c14a9b6105617e24b4d1b08ac7d2cef7d8b0d72f9b7cf22f1ce7ad129",
+    "ecg_gpu/digitization/page_orientation.py": "2b39ce5dbe5a9f6e15d1077e3cd40f781ecdc344ee1f73377c2abc5e568a4e1f",
+    "examples/evaluate_consensus_lattice.py": "be0d64c711222a2bfaf0e9089953663ba34d6030d9ac39673aa1e97594043953",
+    "examples/rectification_comparison_metrics.py": "8ed4cf91bc5b52c1c4bb1d0803d0f2644dbdc06573f799df8a73712b6f883e51",
+    "examples/rectify_denoising_grid.py": "a58c7fa8760eb797d95fb16611b7ebf12dcfe38a1a4124cc85bba716c0b10545"
+  },
+  "schedule_sha256": "b7bde0fc53a2a6cfe0c63da30872c85634702517bf636efdfb52d5afaba51c73"
+}

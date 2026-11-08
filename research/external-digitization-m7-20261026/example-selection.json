@@ -1,0 +1,7 @@
+{
+  "rule": "Largest improvement and largest worsening in M6 all-printed NRMSE, selected for display after evaluation only",
+  "image_ids": [
+    "pm-29-photos_scans",
+    "pm-97-photos_samsung"
+  ]
+}

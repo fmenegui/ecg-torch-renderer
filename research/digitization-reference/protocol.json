@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "development_records": [
+    22,
+    66,
+    77,
+    85,
+    107
+  ],
+  "capture_kinds": [
+    "digital",
+    "color-scan",
+    "gray-scan",
+    "phone-photo"
+  ],
+  "reference_fs": 500,
+  "upstream_training_overlap": "unknown",
+  "source_images_redistributed": false,
+  "full_probe_image_id": "D0_000022_04",
+  "full_probe_selection": "first color scan, chosen before the cohort scores",
+  "input_manifest_sha256": "d0252415baf92d2c0640597fef75159cd97aaa5b40de0b2dc6ee6a866e03b1dd",
+  "patient_extract_sha256": "630b8d7920530622ab04bdcd715f6a1448a3121e9d7e37984e0dc4c496b09dc8",
+  "original_metadata_sha256": "7600de9c1b27d181d850b3c6038a35d7c3ddb6bb33b702e3a20252a6859d216b",
+  "artifact_lock_sha256": "f159a721daea3a41eb53fed4a341aaf13b4d37080c09086dcb6a693bdf69f875",
+  "first_full_attempt": "interrupted by OS memory limit while another inference and renderer tests ran concurrently, no completed score",
+  "corrected_full_attempt": "run in isolation with four CPU threads",
+  "cpu_timing_limit": "single-profile timings include concurrent work and are not isolated throughput",
+  "environment": {
+    "cpu_model": "AMD EPYC 9V74 80-Core Processor",
+    "memory_limit_bytes": 8589934592,
+    "packages": {
+      "torch": "2.14.1+cpu",
+      "torchvision": "0.29.1+cpu",
+      "numpy": "2.3.5",
+      "scipy": "1.17.0",
+      "pandas": "2.2.3",
+      "timm": "1.0.22",
+      "opencv-python-headless": "4.11.0.86",
+      "connected-components-3d": "3.26.1"
+    }
+  },
+  "measurements": {
+    "single_images": 20,
+    "single_snr_db": 22.689710727083046,
+    "single_color_scan_probe_snr_db": 21.745595792383902,
+    "full_checkpoints": 15,
+    "full_color_scan_probe_snr_db": 24.070857864510067,
+    "full_probe_seconds": 500.5985311179975,
+    "full_peak_rss_bytes": 5089095680,
+    "composed_single_probe_snr_db": 21.856943511696652,
+    "composed_probe_is_exploratory": true,
+    "float32_default_probe": {
+      "snr_db": 21.633289478212557,
+      "wall_seconds": 82.30597780899552,
+      "process_peak_rss_bytes": 5678632960,
+      "device": "cpu",
+      "threads": 2
+    }
+  }
+}

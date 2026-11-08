@@ -1,0 +1,426 @@
+{
+  "status": "pass_control_reproduced_sampling_failure",
+  "checks": 44,
+  "source_sha256": "0c3e6025332eaf582a4f3d57218cbf7ed0bdabad1efc7e7503cce3e9646de2da",
+  "cases": [
+    {
+      "source_column": 10,
+      "source_stroke_width_pixels": 1,
+      "source_stroke_width_mm": 0.1,
+      "source_density_pixels_per_mm": 10,
+      "output_density_pixels_per_mm": 4.0,
+      "source_region_trusted": false,
+      "RGB_resampled": true,
+      "output_origin_mm": [
+        -0.25,
+        -0.25
+      ],
+      "output_width": 83,
+      "output_height": 83,
+      "peak_darkness_0_to_255": 255,
+      "nonwhite_output_pixels": 81,
+      "stroke_completely_absent": false
+    },
+    {
+      "source_column": 10,
+      "source_stroke_width_pixels": 1,
+      "source_stroke_width_mm": 0.1,
+      "source_density_pixels_per_mm": 10,
+      "output_density_pixels_per_mm": 8.0,
+      "source_region_trusted": false,
+      "RGB_resampled": true,
+      "output_origin_mm": [
+        -0.125,
+        -0.125
+      ],
+      "output_width": 163,
+      "output_height": 163,
+      "peak_darkness_0_to_255": 255,
+      "nonwhite_output_pixels": 161,
+      "stroke_completely_absent": false
+    },
+    {
+      "source_column": 11,
+      "source_stroke_width_pixels": 1,
+      "source_stroke_width_mm": 0.1,
+      "source_density_pixels_per_mm": 10,
+      "output_density_pixels_per_mm": 4.0,
+      "source_region_trusted": false,
+      "RGB_resampled": true,
+      "output_origin_mm": [
+        -0.25,
+        -0.25
+      ],
+      "output_width": 83,
+      "output_height": 83,
+      "peak_darkness_0_to_255": 0,
+      "nonwhite_output_pixels": 0,
+      "stroke_completely_absent": true
+    },
+    {
+      "source_column": 11,
+      "source_stroke_width_pixels": 1,
+      "source_stroke_width_mm": 0.1,
+      "source_density_pixels_per_mm": 10,
+      "output_density_pixels_per_mm": 8.0,
+      "source_region_trusted": false,
+      "RGB_resampled": true,
+      "output_origin_mm": [
+        -0.125,
+        -0.125
+      ],
+      "output_width": 163,
+      "output_height": 163,
+      "peak_darkness_0_to_255": 191,
+      "nonwhite_output_pixels": 161,
+      "stroke_completely_absent": false
+    },
+    {
+      "source_column": 12,
+      "source_stroke_width_pixels": 1,
+      "source_stroke_width_mm": 0.1,
+      "source_density_pixels_per_mm": 10,
+      "output_density_pixels_per_mm": 4.0,
+      "source_region_trusted": false,
+      "RGB_resampled": true,
+      "output_origin_mm": [
+        -0.25,
+        -0.25
+      ],
+      "output_width": 83,
+      "output_height": 83,
+      "peak_darkness_0_to_255": 127,
+      "nonwhite_output_pixels": 81,
+      "stroke_completely_absent": false
+    },
+    {
+      "source_column": 12,
+      "source_stroke_width_pixels": 1,
+      "source_stroke_width_mm": 0.1,
+      "source_density_pixels_per_mm": 10,
+      "output_density_pixels_per_mm": 8.0,
+      "source_region_trusted": false,
+      "RGB_resampled": true,
+      "output_origin_mm": [
+        -0.125,
+        -0.125
+      ],
+      "output_width": 163,
+      "output_height": 163,
+      "peak_darkness_0_to_255": 127,
+      "nonwhite_output_pixels": 322,
+      "stroke_completely_absent": false
+    },
+    {
+      "source_column": 13,
+      "source_stroke_width_pixels": 1,
+      "source_stroke_width_mm": 0.1,
+      "source_density_pixels_per_mm": 10,
+      "output_density_pixels_per_mm": 4.0,
+      "source_region_trusted": false,
+      "RGB_resampled": true,
+      "output_origin_mm": [
+        -0.25,
+        -0.25
+      ],
+      "output_width": 83,
+      "output_height": 83,
+      "peak_darkness_0_to_255": 127,
+      "nonwhite_output_pixels": 81,
+      "stroke_completely_absent": false
+    },
+    {
+      "source_column": 13,
+      "source_stroke_width_pixels": 1,
+      "source_stroke_width_mm": 0.1,
+      "source_density_pixels_per_mm": 10,
+      "output_density_pixels_per_mm": 8.0,
+      "source_region_trusted": false,
+      "RGB_resampled": true,
+      "output_origin_mm": [
+        -0.125,
+        -0.125
+      ],
+      "output_width": 163,
+      "output_height": 163,
+      "peak_darkness_0_to_255": 127,
+      "nonwhite_output_pixels": 322,
+      "stroke_completely_absent": false
+    },
+    {
+      "source_column": 14,
+      "source_stroke_width_pixels": 1,
+      "source_stroke_width_mm": 0.1,
+      "source_density_pixels_per_mm": 10,
+      "output_density_pixels_per_mm": 4.0,
+      "source_region_trusted": false,
+      "RGB_resampled": true,
+      "output_origin_mm": [
+        -0.25,
+        -0.25
+      ],
+      "output_width": 83,
+      "output_height": 83,
+      "peak_darkness_0_to_255": 0,
+      "nonwhite_output_pixels": 0,
+      "stroke_completely_absent": true
+    },
+    {
+      "source_column": 14,
+      "source_stroke_width_pixels": 1,
+      "source_stroke_width_mm": 0.1,
+      "source_density_pixels_per_mm": 10,
+      "output_density_pixels_per_mm": 8.0,
+      "source_region_trusted": false,
+      "RGB_resampled": true,
+      "output_origin_mm": [
+        -0.125,
+        -0.125
+      ],
+      "output_width": 163,
+      "output_height": 163,
+      "peak_darkness_0_to_255": 191,
+      "nonwhite_output_pixels": 161,
+      "stroke_completely_absent": false
+    },
+    {
+      "source_column": 10,
+      "source_stroke_width_pixels": 10,
+      "source_stroke_width_mm": 1.0,
+      "source_density_pixels_per_mm": 10,
+      "output_density_pixels_per_mm": 4.0,
+      "source_region_trusted": false,
+      "RGB_resampled": true,
+      "output_origin_mm": [
+        -0.25,
+        -0.25
+      ],
+      "output_width": 83,
+      "output_height": 83,
+      "peak_darkness_0_to_255": 255,
+      "nonwhite_output_pixels": 324,
+      "stroke_completely_absent": false
+    },
+    {
+      "source_column": 10,
+      "source_stroke_width_pixels": 10,
+      "source_stroke_width_mm": 1.0,
+      "source_density_pixels_per_mm": 10,
+      "output_density_pixels_per_mm": 8.0,
+      "source_region_trusted": false,
+      "RGB_resampled": true,
+      "output_origin_mm": [
+        -0.125,
+        -0.125
+      ],
+      "output_width": 163,
+      "output_height": 163,
+      "peak_darkness_0_to_255": 255,
+      "nonwhite_output_pixels": 1288,
+      "stroke_completely_absent": false
+    },
+    {
+      "source_column": 11,
+      "source_stroke_width_pixels": 10,
+      "source_stroke_width_mm": 1.0,
+      "source_density_pixels_per_mm": 10,
+      "output_density_pixels_per_mm": 4.0,
+      "source_region_trusted": false,
+      "RGB_resampled": true,
+      "output_origin_mm": [
+        -0.25,
+        -0.25
+      ],
+      "output_width": 83,
+      "output_height": 83,
+      "peak_darkness_0_to_255": 255,
+      "nonwhite_output_pixels": 324,
+      "stroke_completely_absent": false
+    },
+    {
+      "source_column": 11,
+      "source_stroke_width_pixels": 10,
+      "source_stroke_width_mm": 1.0,
+      "source_density_pixels_per_mm": 10,
+      "output_density_pixels_per_mm": 8.0,
+      "source_region_trusted": false,
+      "RGB_resampled": true,
+      "output_origin_mm": [
+        -0.125,
+        -0.125
+      ],
+      "output_width": 163,
+      "output_height": 163,
+      "peak_darkness_0_to_255": 255,
+      "nonwhite_output_pixels": 1288,
+      "stroke_completely_absent": false
+    },
+    {
+      "source_column": 12,
+      "source_stroke_width_pixels": 10,
+      "source_stroke_width_mm": 1.0,
+      "source_density_pixels_per_mm": 10,
+      "output_density_pixels_per_mm": 4.0,
+      "source_region_trusted": false,
+      "RGB_resampled": true,
+      "output_origin_mm": [
+        -0.25,
+        -0.25
+      ],
+      "output_width": 83,
+      "output_height": 83,
+      "peak_darkness_0_to_255": 255,
+      "nonwhite_output_pixels": 324,
+      "stroke_completely_absent": false
+    },
+    {
+      "source_column": 12,
+      "source_stroke_width_pixels": 10,
+      "source_stroke_width_mm": 1.0,
+      "source_density_pixels_per_mm": 10,
+      "output_density_pixels_per_mm": 8.0,
+      "source_region_trusted": false,
+      "RGB_resampled": true,
+      "output_origin_mm": [
+        -0.125,
+        -0.125
+      ],
+      "output_width": 163,
+      "output_height": 163,
+      "peak_darkness_0_to_255": 255,
+      "nonwhite_output_pixels": 1449,
+      "stroke_completely_absent": false
+    },
+    {
+      "source_column": 13,
+      "source_stroke_width_pixels": 10,
+      "source_stroke_width_mm": 1.0,
+      "source_density_pixels_per_mm": 10,
+      "output_density_pixels_per_mm": 4.0,
+      "source_region_trusted": false,
+      "RGB_resampled": true,
+      "output_origin_mm": [
+        -0.25,
+        -0.25
+      ],
+      "output_width": 83,
+      "output_height": 83,
+      "peak_darkness_0_to_255": 255,
+      "nonwhite_output_pixels": 405,
+      "stroke_completely_absent": false
+    },
+    {
+      "source_column": 13,
+      "source_stroke_width_pixels": 10,
+      "source_stroke_width_mm": 1.0,
+      "source_density_pixels_per_mm": 10,
+      "output_density_pixels_per_mm": 8.0,
+      "source_region_trusted": false,
+      "RGB_resampled": true,
+      "output_origin_mm": [
+        -0.125,
+        -0.125
+      ],
+      "output_width": 163,
+      "output_height": 163,
+      "peak_darkness_0_to_255": 255,
+      "nonwhite_output_pixels": 1449,
+      "stroke_completely_absent": false
+    },
+    {
+      "source_column": 14,
+      "source_stroke_width_pixels": 10,
+      "source_stroke_width_mm": 1.0,
+      "source_density_pixels_per_mm": 10,
+      "output_density_pixels_per_mm": 4.0,
+      "source_region_trusted": false,
+      "RGB_resampled": true,
+      "output_origin_mm": [
+        -0.25,
+        -0.25
+      ],
+      "output_width": 83,
+      "output_height": 83,
+      "peak_darkness_0_to_255": 255,
+      "nonwhite_output_pixels": 324,
+      "stroke_completely_absent": false
+    },
+    {
+      "source_column": 14,
+      "source_stroke_width_pixels": 10,
+      "source_stroke_width_mm": 1.0,
+      "source_density_pixels_per_mm": 10,
+      "output_density_pixels_per_mm": 8.0,
+      "source_region_trusted": false,
+      "RGB_resampled": true,
+      "output_origin_mm": [
+        -0.125,
+        -0.125
+      ],
+      "output_width": 163,
+      "output_height": 163,
+      "peak_darkness_0_to_255": 255,
+      "nonwhite_output_pixels": 1449,
+      "stroke_completely_absent": false
+    }
+  ],
+  "method": "Frozen render_complete using cv2.remap INTER_LINEAR, no prefilter or supersampling. Exact affine source-pixel-centre to material map [x/10,y/10]. White 255, black 0.",
+  "thin_stroke_source_columns": [
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "thin_stroke_fully_lost_at4_columns": [
+    11,
+    14
+  ],
+  "thick_control": "1 mm = 10 source pixels. Every phase at 4 and 8 px/mm retains full black contrast 255.",
+  "contact_sheet": {
+    "file": "sampling-stroke-contact-sheet.png",
+    "sha256": "11e39204fd5d19f480ca32043d896e7bb839d568ee5419460eaa15db15fe2695",
+    "display": "Same physical viewport x0.5..3.5mm,y9..11mm, nearest display only, original and actual sampled PNG values."
+  },
+  "original_and_output_PNGs": [
+    {
+      "file": "original-width1-column10.png",
+      "sha256": "0625eb1c431efe6586ee1fcf77f108398637aa6370dcafc186a40e52da00329c"
+    },
+    {
+      "file": "bilinear-4px-width1-column10.png",
+      "sha256": "1f5652ab93b282682a89ba8ea83bb4a5fd783040d0b90d7ad0a86b2e6ce84c28"
+    },
+    {
+      "file": "bilinear-8px-width1-column10.png",
+      "sha256": "62cb1171089f7af02a636d249786cc022a4ffad6a1a14b2049d7b8170f166fc6"
+    },
+    {
+      "file": "original-width1-column11.png",
+      "sha256": "f16c464d7aa862e2d9127fdfecba97d710e97601b6af566757e99020c62f5c03"
+    },
+    {
+      "file": "bilinear-4px-width1-column11.png",
+      "sha256": "1d8aec324d2fd92da895ee7f2d7a9aa8dd5856611d666e52c9923109fc023c25"
+    },
+    {
+      "file": "bilinear-8px-width1-column11.png",
+      "sha256": "6eb7d128e73003c754609a24e4cdf90014531f829a1444a303e660a43ae0db77"
+    },
+    {
+      "file": "original-width10-column11.png",
+      "sha256": "40a48a7c72d5f6345815cfed00f48fd75bf7ad360cb2d59e72b7bfb561616f69"
+    },
+    {
+      "file": "bilinear-4px-width10-column11.png",
+      "sha256": "19f20c34ca46439ed9cb6b3f6c2f713c03d9294585357c3aecbf4938d610de81"
+    },
+    {
+      "file": "bilinear-8px-width10-column11.png",
+      "sha256": "b35d718fcdd466e3f1a9ded1650117d57cff0b6c321645264b517857a880e88c"
+    }
+  ],
+  "finding": "With exact geometry and no confidence-mask erasure, frozen bilinear point sampling at 4 px/mm completely misses some 0.1 mm strokes depending on phase. The 8 px/mm control retains some contrast at every tested phase.",
+  "scope": "Analytical stress control only, not a measurement of prevalence or clinical signal error. Does not establish 8 px/mm as universally sufficient or an optimal production choice.",
+  "decision": "Do not equate finite full-frame geometry or exact original archiving with resampled stroke fidelity. Investigate density, local area/antialias sampling and known-stroke retention before a preservation claim. No frozen method changed."
+}

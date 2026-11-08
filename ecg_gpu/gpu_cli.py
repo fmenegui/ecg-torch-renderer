@@ -146,6 +146,8 @@ def render_file(input_path,output_path,*,fs=None,units=None,device='auto',config
     batch=layer.render_batch(value,torch.as_tensor(rates,device=device),lengths=lengths,
                             stage='trace' if targets_dir is not None else 'image',
                             return_baselines=False,return_instances=needs_instances,return_instance_boxes=False,
+                            return_name_instances=targets_dir is not None and bool(
+                                {'name_masks', 'name_boxes'} & set(layer.supervision.outputs)),
                             as_texture=as_texture)
     output=Path(output_path)
     if output.suffix.lower() in {'.png','.jpg','.jpeg'}:

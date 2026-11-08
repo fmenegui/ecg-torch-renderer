@@ -1,0 +1,16 @@
+{
+  "code_commit": "0eb6a3f1a2b52f61737b24ec795048359102cb76",
+  "validation_text": "Os workflows Library contracts e Digitization reference passaram no commit 0eb6a3f, com checkout completo. Os 50 controles focados passaram. A execução local integral foi interrompida sem sumário. Os módulos restantes rodaram em processos separados e só dois controles de renderer ficaram bloqueados por dois artefatos upstream ausentes localmente. Esses artefatos não foram regenerados. A auditoria independente refez 8.561 verificações de hashes, consultas, métricas e intervalos, sem divergência.",
+  "ci": [
+    {
+      "name": "Library contracts",
+      "run_id": 39878414639,
+      "conclusion": "success"
+    },
+    {
+      "name": "Digitization reference",
+      "run_id": 39878414715,
+      "conclusion": "success"
+    }
+  ]
+}

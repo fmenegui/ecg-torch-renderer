@@ -1,0 +1,49 @@
+{
+  "schema": "reference-assisted-time-axis-diagnosis-v1",
+  "reference_assisted_diagnostic": true,
+  "predictions_changed": false,
+  "primary_scores_changed": false,
+  "selection_changed": false,
+  "new_external_validation": false,
+  "report_sha256": {
+    "native": "5d26e17a7e428e7985e29bc7d69c10a27b1c9707fd1cd22fc6d5ca4fd0364219",
+    "adaptive_then_native": "5d26e17a7e428e7985e29bc7d69c10a27b1c9707fd1cd22fc6d5ca4fd0364219",
+    "downstream_preserve": "10db44c006aa04803a0535f24aa6d46ae5af7922a8befa957ddf43efccc56b6b",
+    "downstream_landscape": "d5bbd811e5eb51ec6a19b6d32d01850d1329e15a531f64a1eb4fef37e99258f7"
+  },
+  "methods": {
+    "native": {
+      "eligible_leads": 121,
+      "scheduled_leads": 288,
+      "median_absolute_delay_ms": 114.0,
+      "leads_above_50ms_delay": 91,
+      "median_zero_lag_pcc": 0.01127478915009567,
+      "median_best_pcc": 0.47881833941744845
+    },
+    "adaptive_then_native": {
+      "eligible_leads": 108,
+      "scheduled_leads": 288,
+      "median_absolute_delay_ms": 78.0,
+      "leads_above_50ms_delay": 73,
+      "median_zero_lag_pcc": 0.09341454610493094,
+      "median_best_pcc": 0.49749105960437356
+    },
+    "downstream_preserve": {
+      "eligible_leads": 74,
+      "scheduled_leads": 288,
+      "median_absolute_delay_ms": 80.0,
+      "leads_above_50ms_delay": 51,
+      "median_zero_lag_pcc": 0.14440457781944693,
+      "median_best_pcc": 0.610332747281602
+    },
+    "downstream_landscape": {
+      "eligible_leads": 118,
+      "scheduled_leads": 288,
+      "median_absolute_delay_ms": 88.0,
+      "leads_above_50ms_delay": 80,
+      "median_zero_lag_pcc": 0.119922075856956,
+      "median_best_pcc": 0.5540112763111411
+    }
+  },
+  "warning": "Conditional diagnostic, not a paper or leaderboard metric. Periodic rhythms can make a large-lag match ambiguous."
+}

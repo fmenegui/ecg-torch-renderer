@@ -52,6 +52,9 @@ def build():
         'load_rgb_bank': load_rgb_bank,
         'render_seed': render_seed,
     }
+    from ecg_gpu import lead_name_detection_targets, paired_samples_from_render, export_paired_dataset
+    api.update({obj.__name__: obj for obj in (
+        lead_name_detection_targets, paired_samples_from_render, export_paired_dataset)})
     from ecg_gpu import DocumentTemplate, ThermalPrintConfig, LensConfig, SensorConfig, DisplayConfig, MaterialHistory, MeasuredPaperBank, SceneBank, PhysicalCamera, GridPointConfig, grid_point_targets, rasterize_grid_points, grid_point_loss, decode_grid_points
     from ecg_gpu.pathtrace import PathTraceConfig, capture_geometry_assets
     from ecg_gpu.paper_mechanics import SheetConfig

@@ -1,0 +1,46 @@
+{
+  "schema": "ecg-reproduction-manifest-v1",
+  "cohort_identity_verified": false,
+  "case_grouping": "source record, not asserted biological identity across records",
+  "cases": [
+    {
+      "case_id": "D2_000001_p00",
+      "patient_id": "source-record:D2_000001",
+      "split": "development",
+      "image": "raw/D2_000001_p00.jpg",
+      "image_sha256": "de33cda98547b81e287a771d8569462420b5e45d0803de0964d13ad0fab76073",
+      "reference": "gold/D2_000001_p00.npz",
+      "reference_sha256": "10c42d92654fbac52b7f061778f8f9287c1728fa8a51bb241acbca846e0a931c",
+      "reference_unit": "mV",
+      "fs": 1000,
+      "acquisition": "p00",
+      "page_family": "precordial"
+    },
+    {
+      "case_id": "D2_000001_p01",
+      "patient_id": "source-record:D2_000001",
+      "split": "development",
+      "image": "raw/D2_000001_p01.jpg",
+      "image_sha256": "5d1d329242f46c6999dfb4afd3196df3c360c6354e9720e5bfde8eb05f209ceb",
+      "reference": "gold/D2_000001_p01.npz",
+      "reference_sha256": "10c42d92654fbac52b7f061778f8f9287c1728fa8a51bb241acbca846e0a931c",
+      "reference_unit": "mV",
+      "fs": 1000,
+      "acquisition": "p01",
+      "page_family": "precordial"
+    },
+    {
+      "case_id": "D2_000001_p02",
+      "patient_id": "source-record:D2_000001",
+      "split": "development",
+      "image": "raw/D2_000001_p02.jpg",
+      "image_sha256": "515ac5cb4bc50d74df27d006c1db8e3fc5d14353301f1564f956ff66c60b4a23",
+      "reference": "gold/D2_000001_p02.npz",
+      "reference_sha256": "10c42d92654fbac52b7f061778f8f9287c1728fa8a51bb241acbca846e0a931c",
+      "reference_unit": "mV",
+      "fs": 1000,
+      "acquisition": "p02",
+      "page_family": "precordial"
+    }
+  ]
+}

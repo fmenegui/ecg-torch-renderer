@@ -1,0 +1,38 @@
+{
+  "cases": [
+    {
+      "case": "standard",
+      "status": "rectified",
+      "supported_pixel_fraction": 0.9711824255416416,
+      "input_sha256": "904cdb184a9a221516c09a83baeed41a99c11860ba7d3be08177fec39558948b",
+      "checkpoint_sha256": "e09218759a52bdf7324f88d7ef7615820f7d06908e9c4000ab93c1e50e57a54d"
+    },
+    {
+      "case": "six-rows",
+      "status": "rectified",
+      "supported_pixel_fraction": 0.9407490171556595,
+      "input_sha256": "1342b85f2c09a129702459ddb915dceb5ca24549c6e0e0c70bcab68757ee6183",
+      "checkpoint_sha256": "e09218759a52bdf7324f88d7ef7615820f7d06908e9c4000ab93c1e50e57a54d"
+    },
+    {
+      "case": "offline-flat",
+      "status": "rectified",
+      "supported_pixel_fraction": 0.9993523059027242,
+      "input_sha256": "927f21757407b5515d6481e41b9f8c705c2e1270172f0bb7ae0353e7c01184f8",
+      "checkpoint_sha256": "e09218759a52bdf7324f88d7ef7615820f7d06908e9c4000ab93c1e50e57a54d"
+    },
+    {
+      "case": "offline-fold",
+      "status": "rectified",
+      "supported_pixel_fraction": 0.9424461237298342,
+      "input_sha256": "4ab08fbee05cff66bc72b2b02e36b8697447b617cd0ee39cf705aa098756f786",
+      "checkpoint_sha256": "e09218759a52bdf7324f88d7ef7615820f7d06908e9c4000ab93c1e50e57a54d"
+    }
+  ],
+  "signal_extraction_evaluated": false,
+  "limits": [
+    "Previously examined synthetic transfer probes, not new test patients",
+    "Support refers to the inferred output canvas, not original-page completeness",
+    "Accepted local cells are not a guarantee of identity or waveform accuracy"
+  ]
+}

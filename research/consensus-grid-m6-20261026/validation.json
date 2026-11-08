@@ -1,0 +1,88 @@
+{
+  "source_commit": "b353dfd290573d153fc38fffc8391492d731a014",
+  "runs": [
+    40414009429,
+    40414009711
+  ],
+  "jobs": [
+    {
+      "id": 121891597134,
+      "name": "docs",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 121891597336,
+      "name": "quality",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 121891597451,
+      "name": "cpu (3.13, latest)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 121891597549,
+      "name": "optional-integrations",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 121891597634,
+      "name": "cpu (3.12, latest)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 121891597676,
+      "name": "cpu (3.10, 2.6.0)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 121891598318,
+      "name": "reference",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "all_jobs_passed": true,
+  "analytical_new_tests": {
+    "passed": 14,
+    "failed": 0
+  },
+  "local_integration": {
+    "tests": 484,
+    "errors": 2,
+    "skipped": 25,
+    "error_cause": "Original tests/fixtures/raster-v021.npz is unavailable in the reconstructed local checkout. The complete GitHub checkouts pass all original fixture tests.",
+    "expected_fixtures_regenerated": false
+  },
+  "gallery": {
+    "scenarios": 16,
+    "rendered": true,
+    "visually_inspected": true
+  },
+  "fresh_validation_detections": 24,
+  "scope": "CPU synthetic development geometry, no new training or clinical test",
+  "measurement_source_commit": "ee1437893f24b9cefa6c41714287f372a8f96de7",
+  "local_post_PNG_broad_attempt": {
+    "exit_code": 1,
+    "unittest_summary_available": false,
+    "last_visible_test": "test_warp_tear_pen_and_crop_use_same_visibility_for_masks_and_boxes",
+    "passed_full_suite": false,
+    "scope": "The broad command was executed again after the PNG change. It ended without a unittest summary. Complete GitHub checkouts pass all seven checks on the final source commit."
+  },
+  "independent_metric_count_checks": 5632,
+  "independent_RGB_samples": 18432,
+  "recovered_RGB_channel_values": 15354858,
+  "original_regression_fixtures_regenerated": false,
+  "source_png_checks": {
+    "truncation_preserves_previous_file": true,
+    "changed_pixels_rejected": true,
+    "pixel_exact_successful_write": true,
+    "refinement_CLI_tests_passed": 7
+  }
+}

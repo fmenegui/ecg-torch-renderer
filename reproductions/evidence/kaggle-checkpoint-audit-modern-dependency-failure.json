@@ -1,0 +1,117 @@
+{
+  "schema": "kaggle-native-checkpoint-audit-v1",
+  "environment": {
+    "python": "3.12.14",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+    "packages": {
+      "numpy": "2.5.4",
+      "scipy": "1.18.1",
+      "torch": "2.7.0+cpu",
+      "torchvision": "0.22.0+cpu",
+      "pillow": "13.0.0",
+      "opencv-python-headless": "4.11.0.86",
+      "timm": "1.0.30",
+      "albumentations": "1.4.24"
+    },
+    "cuda_available": false,
+    "cuda_build": null
+  },
+  "assets_lock_sha256": "0f5a0fd42c772d7f7a8b3e48019832d01491da6a5a56e89c1694caebf0758f30",
+  "native_inference_completed": false,
+  "records": [
+    {
+      "asset": "heng/weight/stage0-last.checkpoint.pth",
+      "module": "stage0_model",
+      "constructor": {
+        "pretrained": false
+      },
+      "status": "strict_load_passed",
+      "parameters": 14326454
+    },
+    {
+      "asset": "heng/weight/stage1-last.checkpoint.pth",
+      "module": "stage1_model",
+      "constructor": {
+        "pretrained": false
+      },
+      "status": "strict_load_passed",
+      "parameters": 24414710
+    },
+    {
+      "asset": "second/whole_b7_lb22.93.pth",
+      "module": "stage2_smp_model",
+      "constructor": {
+        "encoder_name": "tu-timm/tf_efficientnet_b7.ns_jft_in1k",
+        "encoder_weights": null,
+        "decoder_name": "unet",
+        "use_coord_conv": true,
+        "pretrained": false
+      },
+      "status": "failed",
+      "error_type": "ValueError",
+      "error": "Model name 'timm/tf_efficientnet_b7.ns_jft_in1k' has no source prefix but looks like a Hugging Face Hub repo id or a local path. Use 'hf-hub:timm/tf_efficientnet_b7.ns_jft_in1k' to load from the Hub or 'local-dir:timm/tf_efficientnet_b7.ns_jft_in1k' to load from a local folder."
+    },
+    {
+      "asset": "second/whole_v2_l_lb22.60.pth",
+      "module": "stage2_smp_model",
+      "constructor": {
+        "encoder_name": "tu-timm/tf_efficientnetv2_l.in21k",
+        "encoder_weights": null,
+        "decoder_name": "unet",
+        "use_coord_conv": true,
+        "pretrained": false
+      },
+      "status": "failed",
+      "error_type": "ValueError",
+      "error": "Model name 'timm/tf_efficientnetv2_l.in21k' has no source prefix but looks like a Hugging Face Hub repo id or a local path. Use 'hf-hub:timm/tf_efficientnetv2_l.in21k' to load from the Hub or 'local-dir:timm/tf_efficientnetv2_l.in21k' to load from a local folder."
+    },
+    {
+      "asset": "second/series_b6_shared_conv2d_lb23.10.pth",
+      "module": "stage2_lead_model",
+      "constructor": {
+        "encoder_name": "tu-timm/tf_efficientnet_b6.ns_jft_in1k",
+        "encoder_weights": null,
+        "fusion_type": "shared_conv2d"
+      },
+      "status": "failed",
+      "error_type": "ValueError",
+      "error": "Model name 'timm/tf_efficientnet_b6.ns_jft_in1k' has no source prefix but looks like a Hugging Face Hub repo id or a local path. Use 'hf-hub:timm/tf_efficientnet_b6.ns_jft_in1k' to load from the Hub or 'local-dir:timm/tf_efficientnet_b6.ns_jft_in1k' to load from a local folder."
+    },
+    {
+      "asset": "second/series_b6_shared_conv2d_lb23.00.pth",
+      "module": "stage2_lead_model",
+      "constructor": {
+        "encoder_name": "tu-timm/tf_efficientnet_b6.ns_jft_in1k",
+        "encoder_weights": null,
+        "fusion_type": "shared_conv2d"
+      },
+      "status": "failed",
+      "error_type": "ValueError",
+      "error": "Model name 'timm/tf_efficientnet_b6.ns_jft_in1k' has no source prefix but looks like a Hugging Face Hub repo id or a local path. Use 'hf-hub:timm/tf_efficientnet_b6.ns_jft_in1k' to load from the Hub or 'local-dir:timm/tf_efficientnet_b6.ns_jft_in1k' to load from a local folder."
+    },
+    {
+      "asset": "second/series_v2_l_conv3d_lb22.92.pth",
+      "module": "stage2_lead_model",
+      "constructor": {
+        "encoder_name": "tu-timm/tf_efficientnetv2_l.in21k",
+        "encoder_weights": null,
+        "fusion_type": "conv3d"
+      },
+      "status": "failed",
+      "error_type": "ValueError",
+      "error": "Model name 'timm/tf_efficientnetv2_l.in21k' has no source prefix but looks like a Hugging Face Hub repo id or a local path. Use 'hf-hub:timm/tf_efficientnetv2_l.in21k' to load from the Hub or 'local-dir:timm/tf_efficientnetv2_l.in21k' to load from a local folder."
+    },
+    {
+      "asset": "second/series_v2_l_conv2d_lb22.85.pth",
+      "module": "stage2_lead_model",
+      "constructor": {
+        "encoder_name": "tu-timm/tf_efficientnetv2_l.in21k",
+        "encoder_weights": null,
+        "fusion_type": "conv2d"
+      },
+      "status": "failed",
+      "error_type": "ValueError",
+      "error": "Model name 'timm/tf_efficientnetv2_l.in21k' has no source prefix but looks like a Hugging Face Hub repo id or a local path. Use 'hf-hub:timm/tf_efficientnetv2_l.in21k' to load from the Hub or 'local-dir:timm/tf_efficientnetv2_l.in21k' to load from a local folder."
+    }
+  ]
+}

@@ -1,0 +1,489 @@
+{
+  "schema_version": 1,
+  "runs": [
+    {
+      "profile": "heng-tang-single",
+      "geometry": "reference",
+      "precision": "bfloat16",
+      "images": 20,
+      "patients": 5,
+      "successes": 20,
+      "failures": 0,
+      "official_snr_db": 22.689710727083046,
+      "minimum_image_snr_db": 12.770799376978788,
+      "median_wall_seconds": 47.48059598750115,
+      "by_image_type": {
+        "color-scan": {
+          "images": 5,
+          "failures": 0,
+          "official_snr_db": 22.13429128866226
+        },
+        "digital": {
+          "images": 5,
+          "failures": 0,
+          "official_snr_db": 23.948483443292456
+        },
+        "gray-scan": {
+          "images": 5,
+          "failures": 0,
+          "official_snr_db": 21.805313925054058
+        },
+        "phone-photo": {
+          "images": 5,
+          "failures": 0,
+          "official_snr_db": 22.54880498605499
+        }
+      },
+      "metric": {
+        "name": "official Kaggle ECG metric v7",
+        "source_sha256": "2313548daed2fb2219f8b863791915670b25e67cf32988dd75799c3b2ec5c306",
+        "max_alignment_seconds": 0.2,
+        "power_ratio_cap": 1000000.0,
+        "aggregation": "mean capped linear image ratios, then 10*log10",
+        "failure_policy": "explicit zero-prediction penalty when reference is available"
+      },
+      "environment": {
+        "python": "3.12.14",
+        "torch": "2.14.1+cpu",
+        "cuda_available": false,
+        "cpu_threads": 2,
+        "machine": "x86_64"
+      },
+      "limits": [
+        "Development smoke evaluation, not the private Kaggle test",
+        "Unknown overlap with upstream model training data",
+        "Patient grouping does not establish distinct devices or sites",
+        "Official alignment can mask timing and DC errors, inspect raw RMSE too"
+      ]
+    },
+    {
+      "profile": "heng-tang-full",
+      "geometry": "reference",
+      "precision": "bfloat16",
+      "images": 1,
+      "patients": 1,
+      "successes": 1,
+      "failures": 0,
+      "official_snr_db": 24.070857864510067,
+      "minimum_image_snr_db": 24.070857864510067,
+      "median_wall_seconds": 500.5985311179975,
+      "by_image_type": {
+        "color-scan": {
+          "images": 1,
+          "failures": 0,
+          "official_snr_db": 24.070857864510067
+        }
+      },
+      "metric": {
+        "name": "official Kaggle ECG metric v7",
+        "source_sha256": "2313548daed2fb2219f8b863791915670b25e67cf32988dd75799c3b2ec5c306",
+        "max_alignment_seconds": 0.2,
+        "power_ratio_cap": 1000000.0,
+        "aggregation": "mean capped linear image ratios, then 10*log10",
+        "failure_policy": "explicit zero-prediction penalty when reference is available"
+      },
+      "environment": {
+        "python": "3.12.14",
+        "torch": "2.14.1+cpu",
+        "cuda_available": false,
+        "cpu_threads": 4,
+        "machine": "x86_64"
+      },
+      "limits": [
+        "Development smoke evaluation, not the private Kaggle test",
+        "Unknown overlap with upstream model training data",
+        "Patient grouping does not establish distinct devices or sites",
+        "Official alignment can mask timing and DC errors, inspect raw RMSE too"
+      ]
+    },
+    {
+      "profile": "heng-tang-single / composed",
+      "geometry": "composed",
+      "precision": "bfloat16",
+      "images": 1,
+      "patients": 1,
+      "successes": 1,
+      "failures": 0,
+      "official_snr_db": 21.856943511696652,
+      "minimum_image_snr_db": 21.856943511696652,
+      "median_wall_seconds": 51.46182466299797,
+      "by_image_type": {
+        "color-scan": {
+          "images": 1,
+          "failures": 0,
+          "official_snr_db": 21.856943511696652
+        }
+      },
+      "metric": {
+        "name": "official Kaggle ECG metric v7",
+        "source_sha256": "2313548daed2fb2219f8b863791915670b25e67cf32988dd75799c3b2ec5c306",
+        "max_alignment_seconds": 0.2,
+        "power_ratio_cap": 1000000.0,
+        "aggregation": "mean capped linear image ratios, then 10*log10",
+        "failure_policy": "explicit zero-prediction penalty when reference is available"
+      },
+      "environment": {
+        "python": "3.12.14",
+        "torch": "2.14.1+cpu",
+        "cuda_available": false,
+        "cpu_threads": 2,
+        "machine": "x86_64"
+      },
+      "limits": [
+        "Development smoke evaluation, not the private Kaggle test",
+        "Unknown overlap with upstream model training data",
+        "Patient grouping does not establish distinct devices or sites",
+        "Official alignment can mask timing and DC errors, inspect raw RMSE too"
+      ]
+    },
+    {
+      "profile": "heng-tang-single / float32",
+      "geometry": "reference",
+      "precision": "float32",
+      "images": 1,
+      "patients": 1,
+      "successes": 1,
+      "failures": 0,
+      "official_snr_db": 21.633289478212557,
+      "minimum_image_snr_db": 21.633289478212557,
+      "median_wall_seconds": 82.30597780899552,
+      "by_image_type": {
+        "color-scan": {
+          "images": 1,
+          "failures": 0,
+          "official_snr_db": 21.633289478212557
+        }
+      },
+      "metric": {
+        "name": "official Kaggle ECG metric v7",
+        "source_sha256": "2313548daed2fb2219f8b863791915670b25e67cf32988dd75799c3b2ec5c306",
+        "max_alignment_seconds": 0.2,
+        "power_ratio_cap": 1000000.0,
+        "aggregation": "mean capped linear image ratios, then 10*log10",
+        "failure_policy": "explicit zero-prediction penalty when reference is available"
+      },
+      "environment": {
+        "python": "3.12.14",
+        "torch": "2.14.1+cpu",
+        "cuda_available": false,
+        "cpu_threads": 2,
+        "machine": "x86_64"
+      },
+      "limits": [
+        "Development smoke evaluation, not the private Kaggle test",
+        "Unknown overlap with upstream model training data",
+        "Patient grouping does not establish distinct devices or sites",
+        "Official alignment can mask timing and DC errors, inspect raw RMSE too"
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "profile": "heng-tang-single",
+      "image_id": "D0_000022_02",
+      "patient_id": "20978.0",
+      "image_type": "digital",
+      "status": "success",
+      "snr_db": 22.640451109015387,
+      "mean_lead_raw_rmse_mv": 0.011902829294890916,
+      "wall_seconds": 49.344425848001265,
+      "precision": "bfloat16",
+      "image_sha256": "d6937484744c62aab24d627707aa7a056216671909e4c57d0bc9c5df3761625d",
+      "prediction_sha256": "8133765101138c2793c306836d826c7f79bb79a728d43f37d6b913ed80f6bbdd"
+    },
+    {
+      "profile": "heng-tang-single",
+      "image_id": "D0_000022_04",
+      "patient_id": "20978.0",
+      "image_type": "color-scan",
+      "status": "success",
+      "snr_db": 21.745595792383902,
+      "mean_lead_raw_rmse_mv": 0.013597587320688855,
+      "wall_seconds": 47.06177732000651,
+      "precision": "bfloat16",
+      "image_sha256": "abacc8ede0dd499c8c489532713aedfa3d96cc4df6b6441a493b7b7a1ec29f58",
+      "prediction_sha256": "778c96dcfc2f1fc676b967f8019c75cc984ce2c9206186c585e8e05e3ebaf56d"
+    },
+    {
+      "profile": "heng-tang-single",
+      "image_id": "D0_000022_05",
+      "patient_id": "20978.0",
+      "image_type": "gray-scan",
+      "status": "success",
+      "snr_db": 20.940341050232306,
+      "mean_lead_raw_rmse_mv": 0.014249846604999604,
+      "wall_seconds": 47.11343443700753,
+      "precision": "bfloat16",
+      "image_sha256": "d0b81b0619c6db71472c4aef6e706eb9d25ec509283b4b27939dfefd58c4816e",
+      "prediction_sha256": "a61d4fdfead59251a07e61d9bd35322cc216997bccfd53ea3d8a0e83a865d3b9"
+    },
+    {
+      "profile": "heng-tang-single",
+      "image_id": "D0_000022_06",
+      "patient_id": "20978.0",
+      "image_type": "phone-photo",
+      "status": "success",
+      "snr_db": 22.132080892106288,
+      "mean_lead_raw_rmse_mv": 0.01260197281397541,
+      "wall_seconds": 46.90293969999766,
+      "precision": "bfloat16",
+      "image_sha256": "4e9ad3b03bbd13f7ef494f1d142726b40879d903bb70c103b6732ab2455ffe60",
+      "prediction_sha256": "5b715adcd416bf5ac1aabd9d5fd6125f894d1351a86f70f082ca57f12885eaf2"
+    },
+    {
+      "profile": "heng-tang-single",
+      "image_id": "D0_000066_02",
+      "patient_id": "11352.0",
+      "image_type": "digital",
+      "status": "success",
+      "snr_db": 23.36427151952799,
+      "mean_lead_raw_rmse_mv": 0.01369281359096798,
+      "wall_seconds": 46.915801694995025,
+      "precision": "bfloat16",
+      "image_sha256": "f1d30d5a9a597bc94d3f79ca6cf7cdd12af882049c250a4b4ebc3e4e8c087bf5",
+      "prediction_sha256": "258d87254e07cdb3930c40525f71fd0da8615b6e961a604c00de80130c3c2f32"
+    },
+    {
+      "profile": "heng-tang-single",
+      "image_id": "D0_000066_04",
+      "patient_id": "11352.0",
+      "image_type": "color-scan",
+      "status": "success",
+      "snr_db": 21.403132566914064,
+      "mean_lead_raw_rmse_mv": 0.019021394663274235,
+      "wall_seconds": 45.915030329997535,
+      "precision": "bfloat16",
+      "image_sha256": "6c4ffcde916b7247502927272ab20797cb5b9994908fbb1e49580dcbbb3582f5",
+      "prediction_sha256": "15e473d5cb0594792c8f5f629a0bc094e51a4eea1444730fe3a5f0d0cfbbc3bf"
+    },
+    {
+      "profile": "heng-tang-single",
+      "image_id": "D0_000066_05",
+      "patient_id": "11352.0",
+      "image_type": "gray-scan",
+      "status": "success",
+      "snr_db": 21.694165106964718,
+      "mean_lead_raw_rmse_mv": 0.016016228826533384,
+      "wall_seconds": 46.49197698998614,
+      "precision": "bfloat16",
+      "image_sha256": "c4ca33a881cda91e0e522eb2157e46f1a821e8da03595c9cec190d7a2c34803d",
+      "prediction_sha256": "ffca3d17d2ed2e65d8a5c165cf454abbbd95c2ba52911feae35b9c621c60004c"
+    },
+    {
+      "profile": "heng-tang-single",
+      "image_id": "D0_000066_06",
+      "patient_id": "11352.0",
+      "image_type": "phone-photo",
+      "status": "success",
+      "snr_db": 22.23564315424943,
+      "mean_lead_raw_rmse_mv": 0.017890089005033694,
+      "wall_seconds": 49.35571085200354,
+      "precision": "bfloat16",
+      "image_sha256": "1b9e2d058bceb3e7f96464be48085aaa62c80d98b522cdcdccc1292ba2dfdf6b",
+      "prediction_sha256": "8e2e5ac031282b43ea8dc1667a43e737709aaf72a24381b53cf8a76d37439dc8"
+    },
+    {
+      "profile": "heng-tang-single",
+      "image_id": "D0_000077_02",
+      "patient_id": "8555.0",
+      "image_type": "digital",
+      "status": "success",
+      "snr_db": 26.570806938295203,
+      "mean_lead_raw_rmse_mv": 0.01086348997225431,
+      "wall_seconds": 45.46532181400107,
+      "precision": "bfloat16",
+      "image_sha256": "82a03199eec94210f5b6f9d25f4885ac7b10f1597d32c38c186f3c1463df0387",
+      "prediction_sha256": "fbaabac5c7f6f5f531c4cf608898ca82caab094f048dae87d8dcafe780e16c09"
+    },
+    {
+      "profile": "heng-tang-single",
+      "image_id": "D0_000077_04",
+      "patient_id": "8555.0",
+      "image_type": "color-scan",
+      "status": "success",
+      "snr_db": 24.419362884307034,
+      "mean_lead_raw_rmse_mv": 0.013285908922227344,
+      "wall_seconds": 53.94932923100714,
+      "precision": "bfloat16",
+      "image_sha256": "047c8e338832302fcbf2c496f5cf1b0b3dacaea32c5d06c74ecb6d194a478ec7",
+      "prediction_sha256": "c7d60f7c1bc90998a4f0f6ddb3b3ec8dfdf16336025bbc80ef819bbc41fbb956"
+    },
+    {
+      "profile": "heng-tang-single",
+      "image_id": "D0_000077_05",
+      "patient_id": "8555.0",
+      "image_type": "gray-scan",
+      "status": "success",
+      "snr_db": 24.227121252086285,
+      "mean_lead_raw_rmse_mv": 0.013205164067888386,
+      "wall_seconds": 48.329060837990255,
+      "precision": "bfloat16",
+      "image_sha256": "3d0a5b126b879d954d92b3ea8beb2d9e1820b8b080eae8acfb445fd119940de8",
+      "prediction_sha256": "53fb088a3f314afb2306c20858ac8b0eaaba74fc7a7e301c5deb5ea8f7134f3e"
+    },
+    {
+      "profile": "heng-tang-single",
+      "image_id": "D0_000077_06",
+      "patient_id": "8555.0",
+      "image_type": "phone-photo",
+      "status": "success",
+      "snr_db": 24.457422141323978,
+      "mean_lead_raw_rmse_mv": 0.013279723563290794,
+      "wall_seconds": 47.09394897799939,
+      "precision": "bfloat16",
+      "image_sha256": "764608fdbce4fcbbd4d4c783f084320e0e91023ee9191d3b8b13764e1fa07746",
+      "prediction_sha256": "4390d6181ba601c93960e8a1a734d2af783ee8891e11ace8dbdf43cb5268459f"
+    },
+    {
+      "profile": "heng-tang-single",
+      "image_id": "D0_000085_02",
+      "patient_id": "15904.0",
+      "image_type": "digital",
+      "status": "success",
+      "snr_db": 13.295289180862657,
+      "mean_lead_raw_rmse_mv": 0.04522023129873208,
+      "wall_seconds": 46.852633150992915,
+      "precision": "bfloat16",
+      "image_sha256": "3a29ca5e8da3797341d5adc72bf7bc662569cf04d5cadb5ee492b9b1d9975f12",
+      "prediction_sha256": "54983d115f48e166a29184eb886759fbb22e8612f9262a1a5f62f4c2a1a5537f"
+    },
+    {
+      "profile": "heng-tang-single",
+      "image_id": "D0_000085_04",
+      "patient_id": "15904.0",
+      "image_type": "color-scan",
+      "status": "success",
+      "snr_db": 13.499268602368309,
+      "mean_lead_raw_rmse_mv": 0.04736551133022507,
+      "wall_seconds": 46.06502246399759,
+      "precision": "bfloat16",
+      "image_sha256": "97db1c078384d7e450d803626fc454ec0bd25b4e4a6df2b0cfb4f651352505c6",
+      "prediction_sha256": "77c59879e15d10978a4fbaef8111373d0e1e29f537004632e3b4f70aefb6b9e3"
+    },
+    {
+      "profile": "heng-tang-single",
+      "image_id": "D0_000085_05",
+      "patient_id": "15904.0",
+      "image_type": "gray-scan",
+      "status": "success",
+      "snr_db": 12.770799376978788,
+      "mean_lead_raw_rmse_mv": 0.05141526529842671,
+      "wall_seconds": 50.822959601995535,
+      "precision": "bfloat16",
+      "image_sha256": "18c31ba7fb9206ee4facd07906c15c451c87987fc0fb6d6d47c46401a65fcbe9",
+      "prediction_sha256": "1f83d081699d1f6647018aba47611dfe638a47ed8fae22e30a59d2b9b735dddd"
+    },
+    {
+      "profile": "heng-tang-single",
+      "image_id": "D0_000085_06",
+      "patient_id": "15904.0",
+      "image_type": "phone-photo",
+      "status": "success",
+      "snr_db": 13.530913371993964,
+      "mean_lead_raw_rmse_mv": 0.045447946221153925,
+      "wall_seconds": 65.11157007499423,
+      "precision": "bfloat16",
+      "image_sha256": "925a66f3744cddb2d1131f0dae7376a501dfef5da332c962c653f8008948da3f",
+      "prediction_sha256": "5190a391d13c96b4a183c4c7114e5b3628859cb4e7030701cab7001af9f6919c"
+    },
+    {
+      "profile": "heng-tang-single",
+      "image_id": "D0_000107_02",
+      "patient_id": "13453.0",
+      "image_type": "digital",
+      "status": "success",
+      "snr_db": 25.624047302794985,
+      "mean_lead_raw_rmse_mv": 0.008659410474434782,
+      "wall_seconds": 52.5625928970112,
+      "precision": "bfloat16",
+      "image_sha256": "20b92d908f23de747e784e5669ad823c5d6a144e7a5a47c6bc5c6bfec3c1b297",
+      "prediction_sha256": "0e3b80cebcbcb88ce2d834e1d1a3d0c42746eb5c2b651df769e3964693b7025d"
+    },
+    {
+      "profile": "heng-tang-single",
+      "image_id": "D0_000107_04",
+      "patient_id": "13453.0",
+      "image_type": "color-scan",
+      "status": "success",
+      "snr_db": 23.630216739799152,
+      "mean_lead_raw_rmse_mv": 0.00995579584715756,
+      "wall_seconds": 49.559455853988766,
+      "precision": "bfloat16",
+      "image_sha256": "b6b2ba241f5415a75683d664161e33e90dab3ce662de2ea15195a5f5e51a32fd",
+      "prediction_sha256": "42c1700c72c638a29d3bee82f3c96764c1b6d064977b74c09c352b4c7cb8e4ca"
+    },
+    {
+      "profile": "heng-tang-single",
+      "image_id": "D0_000107_05",
+      "patient_id": "13453.0",
+      "image_type": "gray-scan",
+      "status": "success",
+      "snr_db": 23.05820895084483,
+      "mean_lead_raw_rmse_mv": 0.010187807318920104,
+      "wall_seconds": 47.84775753799477,
+      "precision": "bfloat16",
+      "image_sha256": "062844dbcdd46f195ec32c332ab220cbd9189fb17b47299edb23c28037325941",
+      "prediction_sha256": "0e6cd701bfe56c0d2d92f22ade53d259a661beffc9b8f37d83beb8d6d07d95cb"
+    },
+    {
+      "profile": "heng-tang-single",
+      "image_id": "D0_000107_06",
+      "patient_id": "13453.0",
+      "image_type": "phone-photo",
+      "status": "success",
+      "snr_db": 24.2625482300223,
+      "mean_lead_raw_rmse_mv": 0.009294729319968945,
+      "wall_seconds": 49.91845576000924,
+      "precision": "bfloat16",
+      "image_sha256": "cc96b7a0bffa9484e09d091fa3c62244f5843131fa85a38cd7917a71c05f009b",
+      "prediction_sha256": "b2269f4c382bbbb704d4f1248db24381dbb4d71f9dbdb5888830758fc07e588f"
+    },
+    {
+      "profile": "heng-tang-full",
+      "image_id": "D0_000022_04",
+      "patient_id": "20978.0",
+      "image_type": "color-scan",
+      "status": "success",
+      "snr_db": 24.070857864510067,
+      "mean_lead_raw_rmse_mv": 0.0108554258197238,
+      "wall_seconds": 500.5985311179975,
+      "precision": "bfloat16",
+      "image_sha256": "abacc8ede0dd499c8c489532713aedfa3d96cc4df6b6441a493b7b7a1ec29f58",
+      "prediction_sha256": "6cabaf41442ed953322a1ff0525e545049902319696fc059dcb4b5c7b5c72f1a"
+    },
+    {
+      "profile": "heng-tang-single / composed",
+      "image_id": "D0_000022_04",
+      "patient_id": "20978.0",
+      "image_type": "color-scan",
+      "status": "success",
+      "snr_db": 21.856943511696652,
+      "mean_lead_raw_rmse_mv": 0.013000537317802041,
+      "wall_seconds": 51.46182466299797,
+      "precision": "bfloat16",
+      "image_sha256": "abacc8ede0dd499c8c489532713aedfa3d96cc4df6b6441a493b7b7a1ec29f58",
+      "prediction_sha256": "4f54f73f415640d7e6fdd37952cba5ae5759d2089ca8dbea89af927ff072b280"
+    },
+    {
+      "profile": "heng-tang-single / float32",
+      "image_id": "D0_000022_04",
+      "patient_id": "20978.0",
+      "image_type": "color-scan",
+      "status": "success",
+      "snr_db": 21.633289478212557,
+      "mean_lead_raw_rmse_mv": 0.013451832857558913,
+      "wall_seconds": 82.30597780899552,
+      "precision": "float32",
+      "image_sha256": "abacc8ede0dd499c8c489532713aedfa3d96cc4df6b6441a493b7b7a1ec29f58",
+      "prediction_sha256": "8bce1abc509178780938e223fe2a0865394c45dfa09cac295c9c82d634a3633e"
+    }
+  ],
+  "interpretation": [
+    "Development smoke cohort, not the private Kaggle test",
+    "Training overlap of public checkpoints is unknown",
+    "A completed inference can still have a low-quality waveform",
+    "Comparison of one full-ensemble image does not establish a cohort-wide improvement",
+    "Single-profile CPU timings include concurrent work, not isolated throughput",
+    "Official score aligns time and DC, also inspect raw errors and low-scoring cases"
+  ]
+}

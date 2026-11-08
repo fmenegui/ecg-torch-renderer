@@ -1,0 +1,26 @@
+{
+  "schema": "ecg-runpod-pilot-plan-v1",
+  "generation": 5,
+  "worker_module": "reproductions.hybrid.worker",
+  "source_paths": [
+    "reproductions",
+    "ecg_gpu",
+    "examples"
+  ],
+  "gpu_candidates": [
+    "NVIDIA A40",
+    "NVIDIA L4"
+  ],
+  "gpu_id": "NVIDIA A40",
+  "minimum_gpu_memory_gb": 24,
+  "maximum_gpu_price_per_hour": 0.6,
+  "template_id": "runpod-torch-v280",
+  "storage_mode": "container_disk",
+  "volume_gb": 0,
+  "checkpoint_artifact_run_id": 41105577589,
+  "container_disk_gb": 40,
+  "maximum_pod_seconds": 1800,
+  "checkpoint_recovery_maximum_seconds": 900,
+  "combined_gpu_cost_cap_usd": 0.45,
+  "purpose": "Same frozen eight-patient 24-image comparison, retaining original grid observations, inferred IDs and full-frame meshes for failure analysis. No new cohort outcomes used. Not a superiority claim."
+}

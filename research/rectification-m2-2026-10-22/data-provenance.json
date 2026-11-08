@@ -1,0 +1,17 @@
+{
+  "source": "https://physionet.org/content/ptb-xl/1.0.3/",
+  "citation": "doi:10.1038/s41597-020-0495-6",
+  "license": "CC BY 4.0",
+  "gold_contract": "reference_mm, xy, ids and valid are renderer gold for evaluation only, never inference inputs",
+  "study_kind": "synthetic CPU/LLVM observations with source patients unseen by the frozen trained model",
+  "protocol_sha256": "73afc2352160a997b295c1ca2f2cb55a43cab899da15cc35c968ada44e7ef145",
+  "source_records_sha256": "06b84a11976c055b09a03ad924c50411ca1e70b384ec627c09ff8b18100277c8",
+  "completed_captures": 112,
+  "attempted_captures": 112,
+  "expected_captures": 112,
+  "failed_captures": 0,
+  "cuda_execution": false,
+  "new_training": false,
+  "gold_export_audit_sha256": "fd7482dbcea051347cb950c416e21aa0f49514ad9434a883d72251b5a4450888",
+  "manifest_sha256": "94085d4c2feb528d9508f143d36664fd03811830ab5ec06733a474d4fd4904fe"
+}

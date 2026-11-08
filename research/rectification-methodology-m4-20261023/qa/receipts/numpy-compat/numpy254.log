@@ -1,0 +1,32 @@
+test_11_full_decode_rgb_rgba_and_no_clobber (m4_numpy_compat_components.ExportTests.test_11_full_decode_rgb_rgba_and_no_clobber) ... ok
+test_12_corrupt_temporary_never_replaces_valid_target (m4_numpy_compat_components.ExportTests.test_12_corrupt_temporary_never_replaces_valid_target) ... ok
+test_13_encoding_and_replace_errors_preserve_existing (m4_numpy_compat_components.ExportTests.test_13_encoding_and_replace_errors_preserve_existing) ... ok
+test_14_png_terminal_crc_pixels_and_permissive_decoder (m4_numpy_compat_components.ExportTests.test_14_png_terminal_crc_pixels_and_permissive_decoder) ... ok
+test_15_clean_projective_formula_and_roundtrip (m4_numpy_compat_components.GeometryTests.test_15_clean_projective_formula_and_roundtrip) ... ok
+test_16_support_hole_and_exterior_are_not_bridged (m4_numpy_compat_components.GeometryTests.test_16_support_hole_and_exterior_are_not_bridged) ... ok
+test_17_horizon_and_malformed_ids_rejected (m4_numpy_compat_components.GeometryTests.test_17_horizon_and_malformed_ids_rejected) ... ok
+test_18_positive_area_double_wrap_rejected (m4_numpy_compat_components.GeometryTests.test_18_positive_area_double_wrap_rejected) ... ok
+test_19_non_simple_boundary_single_wrap_rejected (m4_numpy_compat_components.GeometryTests.test_19_non_simple_boundary_single_wrap_rejected) ... ok
+test_20_shared_residual_edges_and_inverse_limits (m4_numpy_compat_components.GeometryTests.test_20_shared_residual_edges_and_inverse_limits) ... ok
+test_21_no_gold_argument_and_explicit_unverified_identity (m4_numpy_compat_components.GeometryTests.test_21_no_gold_argument_and_explicit_unverified_identity) ... ok
+test_01_scalar_oracle_rgb_and_rgba (m4_numpy_compat_components.SamplingTests.test_01_scalar_oracle_rgb_and_rgba) ... ok
+test_02_trust_does_not_change_observed_rgb_or_alpha (m4_numpy_compat_components.SamplingTests.test_02_trust_does_not_change_observed_rgb_or_alpha) ... ok
+test_03_fully_supported_constant_and_box_identity (m4_numpy_compat_components.SamplingTests.test_03_fully_supported_constant_and_box_identity) ... ok
+test_04_nonfinite_and_extreme_do_not_sample_origin (m4_numpy_compat_components.SamplingTests.test_04_nonfinite_and_extreme_do_not_sample_origin) ... ok
+test_05_border_fraction_and_no_renormalization (m4_numpy_compat_components.SamplingTests.test_05_border_fraction_and_no_renormalization) ... ok
+test_06_rgba_hidden_color_and_partial_alpha (m4_numpy_compat_components.SamplingTests.test_06_rgba_hidden_color_and_partial_alpha) ... ok
+test_07_tile_size_and_fraction_parity (m4_numpy_compat_components.SamplingTests.test_07_tile_size_and_fraction_parity) ... ok
+test_08_explicit_coordinate_work_is_tile_bounded (m4_numpy_compat_components.SamplingTests.test_08_explicit_coordinate_work_is_tile_bounded) ... ok
+test_09_finite_rules_can_all_erase_observed_trace (m4_numpy_compat_components.SamplingTests.test_09_finite_rules_can_all_erase_observed_trace) ... ok
+test_10_invalid_contracts_raise (m4_numpy_compat_components.SamplingTests.test_10_invalid_contracts_raise) ... ok
+test_01_scalar_rectangle_clipping_rgb_rgba_borders_flips (m4_numpy_compat_axis.IndependentAxisAreaTests.test_01_scalar_rectangle_clipping_rgb_rgba_borders_flips) ... ok
+test_02_known_32to1_counterexample_positive_control (m4_numpy_compat_axis.IndependentAxisAreaTests.test_02_known_32to1_counterexample_positive_control) ... ok
+test_03_tile_partition_exact_and_full_source_identity (m4_numpy_compat_axis.IndependentAxisAreaTests.test_03_tile_partition_exact_and_full_source_identity) ... ok
+test_04_explicitly_rejects_off_diagonal_singular_nonfinite (m4_numpy_compat_axis.IndependentAxisAreaTests.test_04_explicitly_rejects_off_diagonal_singular_nonfinite) ... ok
+test_05_rejects_unresolved_tiny_footprint (m4_numpy_compat_axis.IndependentAxisAreaTests.test_05_rejects_unresolved_tiny_footprint) ... ok
+
+----------------------------------------------------------------------
+Ran 26 tests in 2.929s
+
+OK
+{"receipt": "/workspace/scratch/a57599a3e70e/m4/qa/receipts/numpy-compat/numpy254.json", "passed": true, "numpy": "2.5.4", "tests": 26, "triangles": 8204, "historical_receipts_unchanged": true}

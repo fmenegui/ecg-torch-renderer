@@ -1,0 +1,24 @@
+{
+  "captured_images_verified_sha256": 192,
+  "frozen_checkpoints_verified_sha256": 6,
+  "continued_checkpoint_bytes_equal_training_output": true,
+  "training_results_archive_sha256": "28636a66ef9f39031b52abbfdb65fa0808e0e48334c24cc3dbdbfe226233d6ee",
+  "completed_results_archive_sha256": "0671bd025f3334c237f40b68dc7af0e8f36d7c6bf024c0ba3404071cc19a053a",
+  "completed_result_returncode": 0,
+  "frozen_digitizer_image_attempts": 96,
+  "focused_checks_passed": 7,
+  "full_suite": {
+    "tests": 364,
+    "passed": 350,
+    "skipped": 12,
+    "errors": 2,
+    "error_cause": "Original raster-v021.npz fixture absent, not regenerated"
+  },
+  "visual_gallery_inspected": true,
+  "portable_cpu_checkpoint_check_passed": true,
+  "unavailable_evidence": [
+    "Independent clinical gold-standard benchmark",
+    "Proof of global injectivity",
+    "Output-density-matched causal geometry ablation"
+  ]
+}

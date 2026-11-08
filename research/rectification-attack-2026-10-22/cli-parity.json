@@ -1,0 +1,22 @@
+[
+  {
+    "key": "01026-5",
+    "profile": "banding",
+    "status": "partial-rectification",
+    "points": 7165,
+    "banding_removed": true,
+    "points_and_relative_ids_match_under_permutation": true,
+    "maximum_selected_point_difference_px": 3.0517578125e-05,
+    "source_for_rectification": "original RGB"
+  },
+  {
+    "key": "01025-2",
+    "profile": "banding",
+    "status": "partial-rectification",
+    "points": 316,
+    "banding_removed": true,
+    "points_and_relative_ids_match_under_permutation": true,
+    "maximum_selected_point_difference_px": 3.0517578125e-05,
+    "source_for_rectification": "original RGB"
+  }
+]

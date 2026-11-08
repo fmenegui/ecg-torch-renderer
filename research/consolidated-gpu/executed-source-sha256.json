@@ -1,0 +1,10 @@
+{
+  "bundle_sha256": "72db953544b50b380271aa95aabd817b82e3b3e0b06615828d68cbeae95c4176",
+  "files": {
+    "ecg_gpu/digitization/field_rectifier.py": "8ddb14a5bef4c2f9a8c3d6b9bc946b27e861b2aaed4af7cc8ec5c352b254f88e",
+    "examples/consolidated_grid_study.py": "8333d20d24c90964af9c4d1536f567b8d3df79cb72aa28d378527295c5f51411",
+    "examples/consolidated_signal_study.py": "45c82769f6761d1d7429b51cea8f247bb0479c7bf9703bdf3516e49d9afc4e38",
+    "examples/consolidated_references.py": "18a57ade150544ea873555c9f3c6c4519dd9fe7121ea029d542807c324168200",
+    "job.py": "4bd2e9f684250ad3b825c2ae069a3fb86504656ac297defa3d0f5fd14405504e"
+  }
+}

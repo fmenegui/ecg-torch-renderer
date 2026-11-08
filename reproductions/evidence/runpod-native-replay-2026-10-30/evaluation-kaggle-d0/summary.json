@@ -1,0 +1,22 @@
+{
+  "schema": "audited-common-evaluation-v1",
+  "method": "kaggle-second",
+  "manifest_sha256": "3f0cc7fa665a30876a4710e3638fa7258daa46a76fb936b8a6d763fb7b859203",
+  "native_receipt_sha256": "63c062dd687cbad1c3b44b4d8254bcd778f9c51fb7fd4b17151765d27fc38947",
+  "scheduled_images": 1,
+  "retained_images": 1,
+  "coverage": {
+    "patients_scheduled": 1,
+    "patients_with_defined_metric": 1,
+    "mean": 1.0,
+    "per_patient": {
+      "source-record:D0_000022": {
+        "scheduled": 1,
+        "defined": 1,
+        "mean": 1.0
+      }
+    }
+  },
+  "same_as_native_paper_or_kaggle_metric": false,
+  "paper_result_reproduced": false
+}

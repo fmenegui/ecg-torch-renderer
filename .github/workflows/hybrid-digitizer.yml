@@ -1,0 +1,28 @@
+name: Hybrid digitizer workspace
+on:
+  push:
+    branches: ['research/hybrid-digitizer-*']
+    paths:
+      - '.github/workflows/hybrid-digitizer.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Preserve the exact private source checkout for authorized local work
+        run: |
+          mkdir -p build/hybrid-source
+          git archive --format=tar.gz --output=build/hybrid-source/source.tar.gz HEAD
+          sha256sum build/hybrid-source/source.tar.gz > build/hybrid-source/SHA256SUMS
+          git rev-parse HEAD > build/hybrid-source/COMMIT
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hybrid-source
+          path: build/hybrid-source
+          retention-days: 7

@@ -1,0 +1,730 @@
+[
+  {
+    "key": "01274-0",
+    "kind": "native-retrospective",
+    "status": "rectification-proposal",
+    "metrics": {
+      "covered_fraction": 0.999755859375,
+      "good_coverage": 0.999755859375,
+      "wrong_covered_fraction": 0.0
+    },
+    "baseline": {
+      "good_coverage": 0.99755859375,
+      "wrong_covered_fraction": 0.0
+    }
+  },
+  {
+    "key": "01274-1",
+    "kind": "native-retrospective",
+    "status": "rectification-proposal",
+    "metrics": {
+      "covered_fraction": 0.977783203125,
+      "good_coverage": 0.9765625,
+      "wrong_covered_fraction": 0.001220703125
+    },
+    "baseline": {
+      "good_coverage": 0.939208984375,
+      "wrong_covered_fraction": 0.001220703125
+    }
+  },
+  {
+    "key": "01274-2",
+    "kind": "native-retrospective",
+    "status": "original-preserved",
+    "metrics": {
+      "covered_fraction": 0.946044921875,
+      "good_coverage": 0.946044921875,
+      "wrong_covered_fraction": 0.0,
+      "conditional_p95_mm": 0.16601642275820302
+    },
+    "baseline": {
+      "good_coverage": 0.946044921875,
+      "wrong_covered_fraction": 0.0
+    }
+  },
+  {
+    "key": "01274-3",
+    "kind": "native-retrospective",
+    "status": "rectification-proposal",
+    "metrics": {
+      "covered_fraction": 0.979248046875,
+      "good_coverage": 0.970458984375,
+      "wrong_covered_fraction": 0.0087890625
+    },
+    "baseline": {
+      "good_coverage": 0.921630859375,
+      "wrong_covered_fraction": 0.00634765625
+    }
+  },
+  {
+    "key": "01274-4",
+    "kind": "native-retrospective",
+    "status": "rectification-proposal",
+    "metrics": {
+      "covered_fraction": 0.510986328125,
+      "good_coverage": 0.4111328125,
+      "wrong_covered_fraction": 0.099853515625
+    },
+    "baseline": {
+      "good_coverage": 0.304931640625,
+      "wrong_covered_fraction": 0.03759765625
+    }
+  },
+  {
+    "key": "01274-5",
+    "kind": "native-retrospective",
+    "status": "original-preserved",
+    "metrics": {
+      "covered_fraction": 0.99365234375,
+      "good_coverage": 0.986083984375,
+      "wrong_covered_fraction": 0.007568359375,
+      "conditional_p95_mm": 0.23879051748220276
+    },
+    "baseline": {
+      "good_coverage": 0.986083984375,
+      "wrong_covered_fraction": 0.007568359375
+    }
+  },
+  {
+    "key": "01274-6",
+    "kind": "native-retrospective",
+    "status": "rectification-proposal",
+    "metrics": {
+      "covered_fraction": 0.029052734375,
+      "good_coverage": 0.021240234375,
+      "wrong_covered_fraction": 0.0078125
+    },
+    "baseline": {
+      "good_coverage": 0.00537109375,
+      "wrong_covered_fraction": 0.004150390625
+    }
+  },
+  {
+    "key": "01274-7",
+    "kind": "native-retrospective",
+    "status": "rectification-proposal",
+    "metrics": {
+      "covered_fraction": 0.974365234375,
+      "good_coverage": 0.973876953125,
+      "wrong_covered_fraction": 0.00048828125
+    },
+    "baseline": {
+      "good_coverage": 0.956298828125,
+      "wrong_covered_fraction": 0.000244140625
+    }
+  },
+  {
+    "key": "01275-0",
+    "kind": "native-retrospective",
+    "status": "rectification-proposal",
+    "metrics": {
+      "covered_fraction": 0.996826171875,
+      "good_coverage": 0.99658203125,
+      "wrong_covered_fraction": 0.000244140625
+    },
+    "baseline": {
+      "good_coverage": 0.97119140625,
+      "wrong_covered_fraction": 0.000244140625
+    }
+  },
+  {
+    "key": "01275-1",
+    "kind": "native-retrospective",
+    "status": "rectification-proposal",
+    "metrics": {
+      "covered_fraction": 0.9697265625,
+      "good_coverage": 0.967041015625,
+      "wrong_covered_fraction": 0.002685546875
+    },
+    "baseline": {
+      "good_coverage": 0.802734375,
+      "wrong_covered_fraction": 0.002685546875
+    }
+  },
+  {
+    "key": "01275-2",
+    "kind": "native-retrospective",
+    "status": "original-preserved",
+    "metrics": {
+      "covered_fraction": 0.668212890625,
+      "good_coverage": 0.639892578125,
+      "wrong_covered_fraction": 0.0283203125,
+      "conditional_p95_mm": 0.3963278097921833
+    },
+    "baseline": {
+      "good_coverage": 0.639892578125,
+      "wrong_covered_fraction": 0.0283203125
+    }
+  },
+  {
+    "key": "01275-3",
+    "kind": "native-retrospective",
+    "status": "rectification-proposal",
+    "metrics": {
+      "covered_fraction": 0.998291015625,
+      "good_coverage": 0.998291015625,
+      "wrong_covered_fraction": 0.0
+    },
+    "baseline": {
+      "good_coverage": 0.99169921875,
+      "wrong_covered_fraction": 0.0
+    }
+  },
+  {
+    "key": "01275-4",
+    "kind": "native-retrospective",
+    "status": "rectification-proposal",
+    "metrics": {
+      "covered_fraction": 0.97412109375,
+      "good_coverage": 0.973388671875,
+      "wrong_covered_fraction": 0.000732421875
+    },
+    "baseline": {
+      "good_coverage": 0.95556640625,
+      "wrong_covered_fraction": 0.000244140625
+    }
+  },
+  {
+    "key": "01275-5",
+    "kind": "native-retrospective",
+    "status": "rectification-proposal",
+    "metrics": {
+      "covered_fraction": 0.9921875,
+      "good_coverage": 0.986328125,
+      "wrong_covered_fraction": 0.005859375
+    },
+    "baseline": {
+      "good_coverage": 0.971435546875,
+      "wrong_covered_fraction": 0.005859375
+    }
+  },
+  {
+    "key": "01275-6",
+    "kind": "native-retrospective",
+    "status": "rectification-proposal",
+    "metrics": {
+      "covered_fraction": 0.1884765625,
+      "good_coverage": 0.15087890625,
+      "wrong_covered_fraction": 0.03759765625
+    },
+    "baseline": {
+      "good_coverage": 0.048583984375,
+      "wrong_covered_fraction": 0.00732421875
+    }
+  },
+  {
+    "key": "01275-7",
+    "kind": "native-retrospective",
+    "status": "original-preserved",
+    "metrics": {
+      "covered_fraction": 0.986572265625,
+      "good_coverage": 0.97802734375,
+      "wrong_covered_fraction": 0.008544921875,
+      "conditional_p95_mm": 0.201837841557748
+    },
+    "baseline": {
+      "good_coverage": 0.97802734375,
+      "wrong_covered_fraction": 0.008544921875
+    }
+  },
+  {
+    "key": "01276-0",
+    "kind": "native-retrospective",
+    "status": "rectification-proposal",
+    "metrics": {
+      "covered_fraction": 1.0,
+      "good_coverage": 1.0,
+      "wrong_covered_fraction": 0.0
+    },
+    "baseline": {
+      "good_coverage": 0.999755859375,
+      "wrong_covered_fraction": 0.0
+    }
+  },
+  {
+    "key": "01276-1",
+    "kind": "native-retrospective",
+    "status": "rectification-proposal",
+    "metrics": {
+      "covered_fraction": 0.8916015625,
+      "good_coverage": 0.886474609375,
+      "wrong_covered_fraction": 0.005126953125
+    },
+    "baseline": {
+      "good_coverage": 0.822265625,
+      "wrong_covered_fraction": 0.001953125
+    }
+  },
+  {
+    "key": "01276-2",
+    "kind": "native-retrospective",
+    "status": "rectification-proposal",
+    "metrics": {
+      "covered_fraction": 0.425048828125,
+      "good_coverage": 0.39501953125,
+      "wrong_covered_fraction": 0.030029296875
+    },
+    "baseline": {
+      "good_coverage": 0.200439453125,
+      "wrong_covered_fraction": 0.008056640625
+    }
+  },
+  {
+    "key": "01276-3",
+    "kind": "native-retrospective",
+    "status": "rectification-proposal",
+    "metrics": {
+      "covered_fraction": 0.999755859375,
+      "good_coverage": 0.998291015625,
+      "wrong_covered_fraction": 0.00146484375
+    },
+    "baseline": {
+      "good_coverage": 0.99755859375,
+      "wrong_covered_fraction": 0.001220703125
+    }
+  },
+  {
+    "key": "01276-4",
+    "kind": "native-retrospective",
+    "status": "rectification-proposal",
+    "metrics": {
+      "covered_fraction": 0.992431640625,
+      "good_coverage": 0.9921875,
+      "wrong_covered_fraction": 0.000244140625
+    },
+    "baseline": {
+      "good_coverage": 0.951904296875,
+      "wrong_covered_fraction": 0.000244140625
+    }
+  },
+  {
+    "key": "01276-5",
+    "kind": "native-retrospective",
+    "status": "rectification-proposal",
+    "metrics": {
+      "covered_fraction": 0.99951171875,
+      "good_coverage": 0.996337890625,
+      "wrong_covered_fraction": 0.003173828125
+    },
+    "baseline": {
+      "good_coverage": 0.99072265625,
+      "wrong_covered_fraction": 0.003173828125
+    }
+  },
+  {
+    "key": "01276-6",
+    "kind": "native-retrospective",
+    "status": "rectification-proposal",
+    "metrics": {
+      "covered_fraction": 0.916259765625,
+      "good_coverage": 0.8798828125,
+      "wrong_covered_fraction": 0.036376953125
+    },
+    "baseline": {
+      "good_coverage": 0.64990234375,
+      "wrong_covered_fraction": 0.020263671875
+    }
+  },
+  {
+    "key": "01276-7",
+    "kind": "native-retrospective",
+    "status": "rectification-proposal",
+    "metrics": {
+      "covered_fraction": 0.995361328125,
+      "good_coverage": 0.991943359375,
+      "wrong_covered_fraction": 0.00341796875
+    },
+    "baseline": {
+      "good_coverage": 0.96435546875,
+      "wrong_covered_fraction": 0.00341796875
+    }
+  },
+  {
+    "key": "01277-0",
+    "kind": "native-retrospective",
+    "status": "rectification-proposal",
+    "metrics": {
+      "covered_fraction": 0.998046875,
+      "good_coverage": 0.986572265625,
+      "wrong_covered_fraction": 0.011474609375
+    },
+    "baseline": {
+      "good_coverage": 0.975830078125,
+      "wrong_covered_fraction": 0.008544921875
+    }
+  },
+  {
+    "key": "01277-1",
+    "kind": "native-retrospective",
+    "status": "rectification-proposal",
+    "metrics": {
+      "covered_fraction": 0.999755859375,
+      "good_coverage": 0.999755859375,
+      "wrong_covered_fraction": 0.0
+    },
+    "baseline": {
+      "good_coverage": 0.998779296875,
+      "wrong_covered_fraction": 0.0
+    }
+  },
+  {
+    "key": "01277-2",
+    "kind": "native-retrospective",
+    "status": "original-preserved",
+    "metrics": {
+      "covered_fraction": 0.9296875,
+      "good_coverage": 0.92431640625,
+      "wrong_covered_fraction": 0.00537109375,
+      "conditional_p95_mm": 0.29745962780039514
+    },
+    "baseline": {
+      "good_coverage": 0.92431640625,
+      "wrong_covered_fraction": 0.00537109375
+    }
+  },
+  {
+    "key": "01277-3",
+    "kind": "native-retrospective",
+    "status": "rectification-proposal",
+    "metrics": {
+      "covered_fraction": 0.99951171875,
+      "good_coverage": 0.998291015625,
+      "wrong_covered_fraction": 0.001220703125
+    },
+    "baseline": {
+      "good_coverage": 0.996826171875,
+      "wrong_covered_fraction": 0.001220703125
+    }
+  },
+  {
+    "key": "01277-4",
+    "kind": "native-retrospective",
+    "status": "original-preserved",
+    "metrics": {
+      "covered_fraction": 0.14794921875,
+      "good_coverage": 0.12451171875,
+      "wrong_covered_fraction": 0.0234375,
+      "conditional_p95_mm": 0.7636804625009305
+    },
+    "baseline": {
+      "good_coverage": 0.12451171875,
+      "wrong_covered_fraction": 0.0234375
+    }
+  },
+  {
+    "key": "01277-5",
+    "kind": "native-retrospective",
+    "status": "rectification-proposal",
+    "metrics": {
+      "covered_fraction": 0.947265625,
+      "good_coverage": 0.945068359375,
+      "wrong_covered_fraction": 0.002197265625
+    },
+    "baseline": {
+      "good_coverage": 0.822265625,
+      "wrong_covered_fraction": 0.00146484375
+    }
+  },
+  {
+    "key": "01277-6",
+    "kind": "native-retrospective",
+    "status": "original-preserved",
+    "metrics": {
+      "covered_fraction": 0.34716796875,
+      "good_coverage": 0.33154296875,
+      "wrong_covered_fraction": 0.015625,
+      "conditional_p95_mm": 0.49078046989433827
+    },
+    "baseline": {
+      "good_coverage": 0.33154296875,
+      "wrong_covered_fraction": 0.015625
+    }
+  },
+  {
+    "key": "01277-7",
+    "kind": "native-retrospective",
+    "status": "original-preserved",
+    "metrics": {
+      "covered_fraction": 0.99853515625,
+      "good_coverage": 0.998291015625,
+      "wrong_covered_fraction": 0.000244140625,
+      "conditional_p95_mm": 0.19523667438743023
+    },
+    "baseline": {
+      "good_coverage": 0.998291015625,
+      "wrong_covered_fraction": 0.000244140625
+    }
+  },
+  {
+    "key": "01278-0",
+    "kind": "native-retrospective",
+    "status": "original-preserved",
+    "metrics": {
+      "covered_fraction": 0.985107421875,
+      "good_coverage": 0.983154296875,
+      "wrong_covered_fraction": 0.001953125,
+      "conditional_p95_mm": 0.16853846825829963
+    },
+    "baseline": {
+      "good_coverage": 0.983154296875,
+      "wrong_covered_fraction": 0.001953125
+    }
+  },
+  {
+    "key": "01278-1",
+    "kind": "native-retrospective",
+    "status": "rectification-proposal",
+    "metrics": {
+      "covered_fraction": 0.998046875,
+      "good_coverage": 0.998046875,
+      "wrong_covered_fraction": 0.0
+    },
+    "baseline": {
+      "good_coverage": 0.98876953125,
+      "wrong_covered_fraction": 0.0
+    }
+  },
+  {
+    "key": "01278-2",
+    "kind": "native-retrospective",
+    "status": "rectification-proposal",
+    "metrics": {
+      "covered_fraction": 0.06396484375,
+      "good_coverage": 0.032958984375,
+      "wrong_covered_fraction": 0.031005859375
+    },
+    "baseline": {
+      "good_coverage": 0.013427734375,
+      "wrong_covered_fraction": 0.007080078125
+    }
+  },
+  {
+    "key": "01278-3",
+    "kind": "native-retrospective",
+    "status": "rectification-proposal",
+    "metrics": {
+      "covered_fraction": 0.99951171875,
+      "good_coverage": 0.99951171875,
+      "wrong_covered_fraction": 0.0
+    },
+    "baseline": {
+      "good_coverage": 0.994873046875,
+      "wrong_covered_fraction": 0.0
+    }
+  },
+  {
+    "key": "01278-4",
+    "kind": "native-retrospective",
+    "status": "original-preserved",
+    "metrics": {
+      "covered_fraction": 0.99951171875,
+      "good_coverage": 0.998779296875,
+      "wrong_covered_fraction": 0.000732421875,
+      "conditional_p95_mm": 0.12019595881225524
+    },
+    "baseline": {
+      "good_coverage": 0.998779296875,
+      "wrong_covered_fraction": 0.000732421875
+    }
+  },
+  {
+    "key": "01278-5",
+    "kind": "native-retrospective",
+    "status": "original-preserved",
+    "metrics": {
+      "covered_fraction": 0.276611328125,
+      "good_coverage": 0.11572265625,
+      "wrong_covered_fraction": 0.160888671875,
+      "conditional_p95_mm": 7.435948386620913
+    },
+    "baseline": {
+      "good_coverage": 0.11572265625,
+      "wrong_covered_fraction": 0.160888671875
+    }
+  },
+  {
+    "key": "01278-6",
+    "kind": "native-retrospective",
+    "status": "original-preserved",
+    "metrics": {
+      "covered_fraction": 0.98291015625,
+      "good_coverage": 0.98046875,
+      "wrong_covered_fraction": 0.00244140625,
+      "conditional_p95_mm": 0.23721694326365583
+    },
+    "baseline": {
+      "good_coverage": 0.98046875,
+      "wrong_covered_fraction": 0.00244140625
+    }
+  },
+  {
+    "key": "01278-7",
+    "kind": "native-retrospective",
+    "status": "rectification-proposal",
+    "metrics": {
+      "covered_fraction": 0.992431640625,
+      "good_coverage": 0.99072265625,
+      "wrong_covered_fraction": 0.001708984375
+    },
+    "baseline": {
+      "good_coverage": 0.9443359375,
+      "wrong_covered_fraction": 0.00048828125
+    }
+  },
+  {
+    "key": "01279-0",
+    "kind": "native-retrospective",
+    "status": "rectification-proposal",
+    "metrics": {
+      "covered_fraction": 1.0,
+      "good_coverage": 1.0,
+      "wrong_covered_fraction": 0.0
+    },
+    "baseline": {
+      "good_coverage": 0.999755859375,
+      "wrong_covered_fraction": 0.0
+    }
+  },
+  {
+    "key": "01279-1",
+    "kind": "native-retrospective",
+    "status": "rectification-proposal",
+    "metrics": {
+      "covered_fraction": 0.970947265625,
+      "good_coverage": 0.9619140625,
+      "wrong_covered_fraction": 0.009033203125
+    },
+    "baseline": {
+      "good_coverage": 0.90234375,
+      "wrong_covered_fraction": 0.00341796875
+    }
+  },
+  {
+    "key": "01279-2",
+    "kind": "native-retrospective",
+    "status": "original-preserved",
+    "metrics": {
+      "covered_fraction": 0.28662109375,
+      "good_coverage": 0.22216796875,
+      "wrong_covered_fraction": 0.064453125,
+      "conditional_p95_mm": 5.037319790664393
+    },
+    "baseline": {
+      "good_coverage": 0.22216796875,
+      "wrong_covered_fraction": 0.064453125
+    }
+  },
+  {
+    "key": "01279-3",
+    "kind": "native-retrospective",
+    "status": "rectification-proposal",
+    "metrics": {
+      "covered_fraction": 0.99755859375,
+      "good_coverage": 0.9931640625,
+      "wrong_covered_fraction": 0.00439453125
+    },
+    "baseline": {
+      "good_coverage": 0.97265625,
+      "wrong_covered_fraction": 0.002197265625
+    }
+  },
+  {
+    "key": "01279-4",
+    "kind": "native-retrospective",
+    "status": "original-preserved",
+    "metrics": {
+      "covered_fraction": 0.997802734375,
+      "good_coverage": 0.04833984375,
+      "wrong_covered_fraction": 0.949462890625,
+      "conditional_p95_mm": 25.56189410139599
+    },
+    "baseline": {
+      "good_coverage": 0.04833984375,
+      "wrong_covered_fraction": 0.949462890625
+    }
+  },
+  {
+    "key": "01279-5",
+    "kind": "native-retrospective",
+    "status": "rectification-proposal",
+    "metrics": {
+      "covered_fraction": 0.99951171875,
+      "good_coverage": 0.9990234375,
+      "wrong_covered_fraction": 0.00048828125
+    },
+    "baseline": {
+      "good_coverage": 0.99853515625,
+      "wrong_covered_fraction": 0.00048828125
+    }
+  },
+  {
+    "key": "01279-6",
+    "kind": "native-retrospective",
+    "status": "original-preserved",
+    "metrics": {
+      "covered_fraction": 0.26953125,
+      "good_coverage": 0.261474609375,
+      "wrong_covered_fraction": 0.008056640625,
+      "conditional_p95_mm": 0.2677909396922172
+    },
+    "baseline": {
+      "good_coverage": 0.261474609375,
+      "wrong_covered_fraction": 0.008056640625
+    }
+  },
+  {
+    "key": "01279-7",
+    "kind": "native-retrospective",
+    "status": "original-preserved",
+    "metrics": {
+      "covered_fraction": 0.99951171875,
+      "good_coverage": 0.998779296875,
+      "wrong_covered_fraction": 0.000732421875,
+      "conditional_p95_mm": 0.11659911114641211
+    },
+    "baseline": {
+      "good_coverage": 0.998779296875,
+      "wrong_covered_fraction": 0.000732421875
+    }
+  },
+  {
+    "key": "01152-0",
+    "kind": "cached-reference",
+    "status": "original-preserved"
+  },
+  {
+    "key": "01152-1",
+    "kind": "cached-reference",
+    "status": "rectification-proposal"
+  },
+  {
+    "key": "01152-2",
+    "kind": "cached-reference",
+    "status": "rectification-proposal"
+  },
+  {
+    "key": "01152-3",
+    "kind": "cached-reference",
+    "status": "rectification-proposal"
+  },
+  {
+    "key": "01152-4",
+    "kind": "cached-reference",
+    "status": "rectification-proposal"
+  },
+  {
+    "key": "01152-5",
+    "kind": "cached-reference",
+    "status": "original-preserved"
+  },
+  {
+    "key": "01152-6",
+    "kind": "cached-reference",
+    "status": "rectification-proposal"
+  },
+  {
+    "key": "01152-7",
+    "kind": "cached-reference",
+    "status": "original-preserved"
+  }
+]

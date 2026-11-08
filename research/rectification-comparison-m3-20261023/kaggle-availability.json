@@ -1,0 +1,161 @@
+{
+  "date": "2026-10-23",
+  "authentic_model_available": true,
+  "authentic_source_available": true,
+  "model_load_strict": true,
+  "model_load_missing_keys": 0,
+  "model_load_unexpected_keys": 0,
+  "new_training": false,
+  "new_gpu": false,
+  "frozen_test_opened": false,
+  "dataset": {
+    "owner": "hengck23",
+    "slug": "hengck23-demo-submit-physionet",
+    "version": 3,
+    "licenseName": "Unknown",
+    "lastUpdated": "2025-11-14T11:05:56.893Z"
+  },
+  "repositories": [
+    {
+      "url": "https://github.com/hengck23/kaggle-physionet-ecg-image-digitization",
+      "commit": "95cfc6fecee9f2ccbd20f1c9acfd3706728303fd",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/tanghaozhe/physionet-ecg-image-digitization-3rd-place",
+      "commit": "f2b4ac2823007e3fb387a7e188e748ad832bb2b7",
+      "license": "No repository LICENSE file. prepare_inputs.py attributes original notebook Apache 2.0, adapted-code license not separately declared."
+    }
+  ],
+  "files": [
+    {
+      "file": "authentic-dataset/640106434-0001.gridpoint_xy.npy",
+      "bytes": 40256,
+      "sha256": "e695f580bd0de4df2fe2e2ba8c89809af819127b2e5936c2716830f421cef4ad",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hengck23/hengck23-demo-submit-physionet/640106434-0001.gridpoint_xy.npy"
+    },
+    {
+      "file": "authentic-dataset/stage0_model.py",
+      "bytes": 6151,
+      "sha256": "0cf35589870cd2a83d440ed3bbc5e503378509086c9023fc05a0d4181a327432",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hengck23/hengck23-demo-submit-physionet/stage0_model.py"
+    },
+    {
+      "file": "authentic-dataset/stage1_model.py",
+      "bytes": 7448,
+      "sha256": "5dbbc2d6338329bf5a5357fbb909bc76df0bf9cb1430002e8c16bd27a894b42b",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hengck23/hengck23-demo-submit-physionet/stage1_model.py"
+    },
+    {
+      "file": "authentic-dataset/stage0_common.py",
+      "bytes": 7741,
+      "sha256": "b34cf950fc0173c0154466a846db5835ff27aa8540e4e4490eca5f0b1a66fbd2",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hengck23/hengck23-demo-submit-physionet/stage0_common.py"
+    },
+    {
+      "file": "authentic-dataset/stage1_common.py",
+      "bytes": 13933,
+      "sha256": "f2af444fe85214848eda47dc0d2ac115cbc52170baf8899a7cb2156d3bceee71",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hengck23/hengck23-demo-submit-physionet/stage1_common.py"
+    },
+    {
+      "file": "authentic-dataset/weight/stage1-last.checkpoint.pth",
+      "bytes": 97834657,
+      "sha256": "313f1e5dafdc212977e4586ce118453866830be0fa32664e36054f7f4568a46a",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hengck23/hengck23-demo-submit-physionet/weight%2Fstage1-last.checkpoint.pth"
+    },
+    {
+      "file": "authentic-dataset/weight/stage0-last.checkpoint.pth",
+      "bytes": 57420817,
+      "sha256": "b7360dfce9c49305b54272cf242e93e5728823f439a8e5ad59c03b073988cfc9",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/hengck23/hengck23-demo-submit-physionet/weight%2Fstage0-last.checkpoint.pth"
+    }
+  ],
+  "wrapper_adaptations": [
+    "CPU float32 instead of CUDA float16",
+    "Author canonical reference NPY supplied to source-repo/frog path",
+    "No ImageNet download, strict load of complete original state_dict",
+    "Direct calls to original single-image stages instead of author multiprocessing/file-list launcher"
+  ],
+  "author_algorithm_changed": false,
+  "source_to_physical_map": {
+    "nominal_pitch_mm": 5,
+    "shape": [
+      44,
+      57
+    ],
+    "span_xy_mm": [
+      280,
+      215
+    ],
+    "grid_convention": "bilinear backward map, source-to-target inversion with retained author sampling convention",
+    "native_target_image": [
+      4400,
+      1700
+    ],
+    "native_pixel_density_xy_is_isotropic": false,
+    "query_return": "field.forward(source_xy)->(physical_xy_mm,eligible)",
+    "field_eligibility_is_evaluator_geometry_not_author_confidence": true
+  },
+  "source_repo_adapter_file": "kaggle_adapter.py",
+  "smokes": {
+    "model_load": "smoke/load-report.json",
+    "analytic": "analytic-controls.json",
+    "development_01024_0": "dev-wrapper-smoke-01024-0/report.json",
+    "author_overlay": "author-overlay-wrapper-smoke/report.json",
+    "author_native_stage1": "author-stage1-sanity.json",
+    "author_native_full_pipeline": "author-normalized-wrapper-smoke/report.json"
+  },
+  "redistribution_policy": "Keep external authors source/checkpoints out of our Git repository and results archive. Publish retrieval URLs, pins, hashes and own wrapper only.",
+  "positive_native_stage1_sanity": {
+    "role": "Positive native-distribution Stage1 execution sanity, no gold scoring",
+    "input_sha256": "476a90012330f32fccbb2d40be7e0b72911e191975e7e73de2599b9bf5b0870c",
+    "shape": [
+      1152,
+      1440,
+      3
+    ],
+    "seconds": 12.756446829999732,
+    "heatmap": {
+      "max": 1.0,
+      "above_threshold_pixels": 32932
+    },
+    "observed_nodes": 2508,
+    "filled_nodes_nonzero": 2508,
+    "finite_grid": true
+  },
+  "adapter_sha256": "79ab6da6f1b1932f7935317a4c32bbeb449a9fa1066791f3e15e906bddaf1c88",
+  "independent_QA": "m3/qa/kaggle-field-review.json",
+  "positive_native_pipeline_sanity": {
+    "status": "completed",
+    "input_shape": [
+      1152,
+      1440,
+      3
+    ],
+    "rotation_k": 0,
+    "stage0_seconds": 35.74366248199976,
+    "stage1_seconds": 12.706312373999936,
+    "grid_before_interpolation_observed_nodes": 2508,
+    "grid_after_interpolation_zero_nodes": 0,
+    "native_rectified_output": [
+      4400,
+      1700
+    ],
+    "inference_and_RGB_seconds": 49.40971573199977,
+    "inverse_map": {
+      "method": "Newton inversion of native bilinear cells, before inverse global homography",
+      "nominal_grid_pitch_mm": 5.0,
+      "gold_used": false,
+      "new_geometry_fit": false,
+      "total_cells": 2408,
+      "convex_cells": 2408,
+      "nonconvex_or_nonfinite_cells": 0,
+      "native_model_confidence": false,
+      "ambiguity_policy": "reject conflicting inverse positions, accept shared edges only if coordinates agree",
+      "pixel_convention": "author normalization retained, effective sample=x*W/(W-1)-0.5",
+      "image_resampling_quantization_modeled": false
+    },
+    "scope": "Already-author-normalized native input, execution fidelity only, not unrectified-raw accuracy or M3 test"
+  }
+}

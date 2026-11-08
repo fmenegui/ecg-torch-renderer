@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-22",
+  "archives": [
+    {
+      "filename": "ecg-retificacao-m2-banco-dev-2026-10-22.zip",
+      "bytes": 237524892,
+      "sha256": "8526523dd6601d736ec6a10cbe26749a8c029e808087b24cb9eab401d4e8c781"
+    },
+    {
+      "filename": "ecg-retificacao-m2-banco-novos-2026-10-22.zip",
+      "bytes": 315291922,
+      "sha256": "10d9592a0badb6ce4f3cb7c4acde06c04437a40211309559d3be734daab2df70"
+    },
+    {
+      "filename": "ecg-retificacao-m2-medicoes-2026-10-22.zip",
+      "bytes": 108903644,
+      "sha256": "ddd27c1eeb910c965b35f5971c030ece7e990ad757f27cf1cc5b70bc4ffca8c1"
+    },
+    {
+      "filename": "ecg-retificacao-m2-resultados-2026-10-22.html",
+      "bytes": 1877412,
+      "sha256": "707bc1c300f07d015ff67a6054290fe8078722fbb6a87553b1ab63ef4414d7a8"
+    }
+  ],
+  "extraction": "Extract all three ZIPs into a common directory. Move nextgen-bank into build/nextgen-bank. Do not regenerate the original upstream raster fixtures."
+}

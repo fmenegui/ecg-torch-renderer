@@ -1,0 +1,102 @@
+{
+  "scope": "Validation diagnostic only, no new-patient test",
+  "source_patient_groups": [
+    "ptbxl-patient-7809.0"
+  ],
+  "independent_source_patients": 1,
+  "inputs": [
+    {
+      "key": "01024-0",
+      "file": "bank/01024-0.npz",
+      "sha256": "6a947a655dbe96f6700b8bc88c6b81243cc81dc7f09c9b5a4c9478569b7d0ec5",
+      "backend": "torch-cached",
+      "split": "validation"
+    },
+    {
+      "key": "01024-1",
+      "file": "bank/01024-1.npz",
+      "sha256": "4fea6c3616377220fb7fa344528f2f8b9078b46611dbc9c9357826da35ae9f58",
+      "backend": "torch-cached",
+      "split": "validation"
+    },
+    {
+      "key": "01024-2",
+      "file": "bank/01024-2.npz",
+      "sha256": "0ab43b2e8c25bc88bcb626557ee2a70d51ea11272a53477f073073771bd0b2e4",
+      "backend": "offline",
+      "split": "validation"
+    },
+    {
+      "key": "01024-3",
+      "file": "bank/01024-3.npz",
+      "sha256": "989ad63dc56bf8c4ff11590a7f1d914102d833a80eabe18338d739d933a4a51e",
+      "backend": "torch-cached",
+      "split": "validation"
+    },
+    {
+      "key": "01024-4",
+      "file": "bank/01024-4.npz",
+      "sha256": "bf1f3d80af04401dc49c9b67bf259c363fb76772517e3df784e02ac4fce1266d",
+      "backend": "torch-cached",
+      "split": "validation"
+    },
+    {
+      "key": "01024-5",
+      "file": "bank/01024-5.npz",
+      "sha256": "6538c074aa9d936e3f07650fbc79954d06da7e662a9a5280cec5e241c87b685e",
+      "backend": "torch-cached",
+      "split": "validation"
+    },
+    {
+      "key": "01024-6",
+      "file": "bank/01024-6.npz",
+      "sha256": "5646ff3340654716bc176246910a252a9aa2eb4c71eb92978e9312a3e14e6382",
+      "backend": "offline",
+      "split": "validation"
+    },
+    {
+      "key": "01024-7",
+      "file": "bank/01024-7.npz",
+      "sha256": "37356e61a339785fec2f50c0c57a0874bdd1fd383a240aa4dd84a0e4288e5613",
+      "backend": "torch-cached",
+      "split": "validation"
+    }
+  ],
+  "configurations": {
+    "global": {
+      "max_tiles": 0
+    },
+    "roi384": {
+      "tile_size": 384,
+      "overlap": 96,
+      "max_tiles": 8
+    }
+  },
+  "matching_radius_original_px": 2.0,
+  "threshold": 0.85,
+  "max_points": 16384,
+  "nms_radius": 2,
+  "dedup_radius_source_px": 1.5,
+  "roi_margin": 64,
+  "min_roi_points": 4,
+  "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+  "module_sha256": "1da500a4445407338145c919710a16902cac7d3081ae08491076b742f684ee62",
+  "decoder_sha256": "4810c026aacebd640976490d73ce0f7f2a40dd7483f2dca1d969d3180b54ad84",
+  "runner_sha256": "35f124e7bf7311f0fa489328f17d3eb43235503ff92074a240e446792d56583e",
+  "no_configuration_selection_from_this_result": true,
+  "gold_not_passed_to_inference": true,
+  "variant_order": "alternating per image",
+  "hardware": {
+    "cpu_threads": 2,
+    "opencv_threads": 1,
+    "platform": "Linux-6.18.55-x86_64-with-glibc2.39"
+  },
+  "versions": {
+    "python": "3.12.14",
+    "torch": "2.8.0+cpu",
+    "opencv": "4.11.0",
+    "numpy": "2.3.5"
+  },
+  "timing_scope": "Observation inference including global/ROI/tile decoding, excluding data/model load and gold matching",
+  "timing_limit": "Shared virtual host with renderer running concurrently. One timed call per input/variant, no deployment confidence interval."
+}

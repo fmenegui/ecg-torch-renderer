@@ -1,0 +1,20 @@
+{
+  "notebook_sha256": "dd9351797f1d814f50f1d85a24346f648e168faacca3ee4009f1d3f885d1378d",
+  "notebook_ref": "hirotetsu/physionet-submission-3rd-place",
+  "notebook_version": 15,
+  "waveform_decoder": [
+    {
+      "gap": false,
+      "max_abs_mv": 3.48698402263814e-07,
+      "observed_fraction": 1.0
+    },
+    {
+      "gap": true,
+      "max_abs_mv": 2.54209575167863e-07,
+      "observed_fraction": 0.9484536082474226
+    }
+  ],
+  "lead_fusion_max_abs_mv": 2.220446049250313e-16,
+  "reference_geometry_bitwise_equal": true,
+  "limits": "Function-level numerical parity, not GPU/CPU network-output or private-score parity"
+}

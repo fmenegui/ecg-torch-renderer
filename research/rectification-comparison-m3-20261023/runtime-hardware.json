@@ -1,0 +1,48 @@
+{
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+  "cpu_model": "AMD EPYC 9V74 80-Core Processor",
+  "logical_cpus_visible": 9,
+  "affinity_cpus": 9,
+  "cgroup_cpu_max": "800000 100000",
+  "cgroup_memory_max": "8589934592",
+  "environment": {
+    "OMP_NUM_THREADS": "2",
+    "MKL_NUM_THREADS": "2",
+    "OPENBLAS_NUM_THREADS": "1"
+  },
+  "torch_intraop": 2,
+  "opencv_threads": 1,
+  "measurement": "separate introspection process under same declared launch environment, no inference",
+  "timing_scope": "loaded models, shared host, no coldstart or per-method peak-memory measurement",
+  "concurrent_work": "short analytical/control/report preparation and scenario export occurred during diagnostic run; native model inference itself remained serial",
+  "threadpools": [
+    {
+      "user_api": "openmp",
+      "internal_api": "openmp",
+      "num_threads": 2,
+      "prefix": "libgomp",
+      "filepath": "/workspace/scratch/a57599a3e70e/swarm-venv/lib/python3.12/site-packages/torch/lib/libgomp.so.1",
+      "version": null
+    },
+    {
+      "user_api": "blas",
+      "internal_api": "openblas",
+      "num_threads": 1,
+      "prefix": "libscipy_openblas",
+      "filepath": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/numpy.libs/libscipy_openblas64_-fdde5778.so",
+      "version": "0.3.30",
+      "threading_layer": "pthreads",
+      "architecture": "SkylakeX"
+    },
+    {
+      "user_api": "blas",
+      "internal_api": "openblas",
+      "num_threads": 1,
+      "prefix": "libopenblas",
+      "filepath": "/workspace/scratch/a57599a3e70e/swarm-venv/lib/python3.12/site-packages/opencv_python_headless.libs/libopenblas-r0-f650aae0.3.3.so",
+      "version": null,
+      "threading_layer": "disabled",
+      "architecture": "Barcelona"
+    }
+  ]
+}

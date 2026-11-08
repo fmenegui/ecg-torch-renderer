@@ -1,0 +1,37 @@
+{
+  "schema": "owned-training-probe-v1",
+  "read_at_utc": "2026-10-30T17:33:04.281232+00:00",
+  "pod_id": "qtobel8h5j6ykc",
+  "mutations": [],
+  "optimizer_progress_verified": false,
+  "limitation": "Boot logs and GPU utilization do not prove completed training epochs",
+  "pod": {
+    "id": "qtobel8h5j6ykc",
+    "name": "ecg-repro-41070920613-1",
+    "status": "RUNNING",
+    "gpu": {
+      "count": 1,
+      "id": "NVIDIA L40",
+      "memory": 250,
+      "vcpuCount": 32
+    },
+    "cost": 0.82,
+    "dataCenterId": "US-KS-2",
+    "createdAt": "2026-10-30T14:23:55.579Z"
+  },
+  "schema_read_errors": [
+    {
+      "http_status": 400,
+      "message": "{\"errors\":[{\"message\":\"GraphQL introspection is not allowed by Apollo Server, but the query contained __schema or __type. To enable introspection, pass introspection: true to ApolloServer in production\",\"locations\":[{\"line\":1,\"column\":9}],\"extensions\":{\"validationErrorCode\":\"INTROSPECTION_DISABLED\",\"code\":\"GRAPHQL_VALIDATION_FAILED\"}}]}\n"
+    }
+  ],
+  "runtime_field_names": [],
+  "logs": {
+    "system": [
+      "{\"source\":\"system\",\"line\":\"INFO: high memory utilization - 177.4GiB / 232.8GiB (76 %)\",\"ts\":\"2026-10-30T16:56:35Z\"}"
+    ],
+    "container": [
+      "{\"source\":\"container\",\"line\":\"This container image and its contents are governed by the NVIDIA Deep Learning Container License.\",\"ts\":\"2026-10-30T14:23:58.375675519Z\"}"
+    ]
+  }
+}

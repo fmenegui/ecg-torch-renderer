@@ -1,0 +1,65 @@
+{
+  "schema": "m4-independent-component-tests-v1",
+  "tests": 21,
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "passed": true,
+  "component_sources_stable_during_run": true,
+  "source_sha256": {
+    "m4/sampling/streaming_sampler.py": "b9a7a732533090271455d42fdc3b4784bf299e14f0b4fc82c564fadccc31f503",
+    "m4/sampling/pngio.py": "816c319d8bdd47ef82aff7057a4461d7b2b3249ce95d60a7a7fa3b93b3fd38b1",
+    "m4/geometry/geometry_selector.py": "0ce6062797c5e25dd9ce3d7b26a6a9fabe7779ca72b5ea4e55fcda564bed9e87",
+    "m4/qa/independent_component_tests.py": "f8129cfe2afb82250fd357b1fa6ff329f16fc2eea3ad9a4a70d6169cc85d8811"
+  },
+  "elapsed_seconds": 2.4560956219993386,
+  "notes": {
+    "shared_edges": {
+      "checked": 173,
+      "two_sided_epsilon_limit_max_mm": 3.726780080196184e-07,
+      "epsilon": 1e-07,
+      "scope": "Finite regular continuous residual construction only."
+    },
+    "scalar_oracle": {
+      "outputs": 12,
+      "max_uint8_difference": 0,
+      "tolerance_reason": "Independent scalar arithmetic can differ at final half-LSB ties. No cv2 reference sampling call."
+    },
+    "streaming": {
+      "max_query_points": 31,
+      "points": 125504,
+      "max_explicit_coordinate_bytes": 1736,
+      "scope": "Explicit owned coordinate arrays only, excludes callbacks/allocator/source/output."
+    },
+    "retained_alias_counterexample": {
+      "source": "65x65 white, column32 black",
+      "inverse": "source_xy=32+32*physical_xy, one output pixel of spacing1",
+      "outputs": {
+        "2": [
+          255,
+          255,
+          255
+        ],
+        "4": [
+          255,
+          255,
+          255
+        ],
+        "8": [
+          255,
+          255,
+          255
+        ]
+      },
+      "exact_encoded_bilinear_area_mean": 247.03125,
+      "exact_boxhold_area_mean": 247.03125,
+      "consequence": "Agreement of2/4/8 finite quadratures is not an accuracy certificate. All erase an observed stroke at32x minification."
+    }
+  },
+  "limits": [
+    "Finite component checks only",
+    "No neural rerun",
+    "No real clinical image or commercial endpoint evaluation",
+    "No claim of every possible input"
+  ]
+}

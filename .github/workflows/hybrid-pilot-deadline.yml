@@ -1,0 +1,81 @@
+name: Enforce exact owned pilot deadline
+on:
+  push:
+    branches: ['research/hybrid-digitizer-*']
+    paths: ['.github/workflows/hybrid-pilot-deadline.yml']
+permissions:
+  contents: read
+jobs:
+  enforce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Enforce the already authorized 30-minute lifetime of this exact pod
+        env:
+          RUNPOD_API_KEY: ${{ secrets.RUNPOD_API }}
+        run: |
+          python -u - <<'PY'
+          from datetime import datetime, timezone
+          import json, os, time, urllib.request, urllib.error
+          from pathlib import Path
+          from reproductions.runpod.training_probe import redact
+          key = os.environ['RUNPOD_API_KEY']
+          identity, name = 'q8d74l7dbdsck7', 'ecg-repro-41106791069-1'
+          endpoint = 'https://api.runpod.io/v2/pods/'+identity
+          def call(method):
+              req = urllib.request.Request(endpoint, method=method,
+                  headers={'Authorization': 'Bearer '+key, 'Content-Type': 'application/json'})
+              try:
+                  with urllib.request.urlopen(req, timeout=25) as response:
+                      body = response.read()
+                      return json.loads(body) if body else {}
+              except urllib.error.HTTPError as error:
+                  if error.code == 404:
+                      return None
+                  raise RuntimeError(redact(error.read(1500).decode(errors='replace'), key)) from error
+          def checked_read():
+              pod = call('GET')
+              if pod is not None and (pod.get('id') != identity or pod.get('name') != name):
+                  raise ValueError('Refusing to mutate a resource with different identity')
+              return pod
+          result = {'schema': 'exact-owned-pilot-deadline-v1', 'pod_id': identity,
+                    'pod_name': name, 'workflow_run': 41106791069, 'mutations': []}
+          pod = checked_read()
+          if pod is not None:
+              result['created_at'] = pod['createdAt']
+              result['price_per_hour'] = pod.get('cost')
+              created = datetime.fromisoformat(pod['createdAt'].replace('Z','+00:00')).timestamp()
+              deadline = created + 1800
+              result['deadline_utc'] = datetime.fromtimestamp(deadline, timezone.utc).isoformat()
+              if time.time() < created:
+                  raise ValueError('Unexpected clock relationship')
+              while pod is not None and time.time() < deadline:
+                  print(json.dumps({'pod_id': identity, 'deadline_utc': result['deadline_utc'],
+                                    'seconds_left': round(deadline-time.time())}), flush=True)
+                  time.sleep(min(20, max(0, deadline-time.time())))
+                  pod = checked_read()
+              if pod is not None:
+                  call('DELETE')
+                  result['mutations'].append({'method': 'DELETE', 'pod_id': identity,
+                                              'reason': 'Previously declared 1800-second lifetime reached'})
+                  for _ in range(12):
+                      if checked_read() is None:
+                          break
+                      time.sleep(5)
+          result['pod_absent_verified'] = checked_read() is None
+          result['read_at_utc'] = datetime.now(timezone.utc).isoformat()
+          path = Path('build/exact-pilot-deadline.json')
+          path.parent.mkdir(exist_ok=True)
+          path.write_text(json.dumps(result, indent=2)+'\n')
+          print(json.dumps(result), flush=True)
+          if not result['pod_absent_verified']:
+              raise RuntimeError('Exact pilot deletion was not externally verified')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: exact-owned-pilot-deadline
+          path: build/exact-pilot-deadline.json

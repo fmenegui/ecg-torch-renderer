@@ -18,6 +18,7 @@ _OUTPUTS = frozenset({
     'lead_masks', 'trace_mask', 'bw', 'wb', 'lead_boxes',
     'instance_masks', 'instance_boxes',
     'instance_visible_fraction',
+    'name_masks', 'name_boxes',
     'grid_points_mask', 'grid_points',
 })
 
@@ -37,6 +38,8 @@ class SupervisionConfig:
     use instance boxes instead. Instance outputs retain all 15 printed slots,
     regardless of ``leads``. Their canonical IDs and active flags identify
     repetitions and padded slots without changing the class vocabulary.
+    ``name_masks`` and ``name_boxes`` independently describe the lead-name
+    glyphs for those same printed slots, including repeated rhythm labels.
     """
     outputs: tuple[str, ...] = ('lead_masks',)
     leads: tuple[str, ...] = tuple(LEADS)
@@ -99,8 +102,9 @@ class ECGSupervisionLayer(ECGImageLayer):
     [B,3,H,W], ``batch['valid']`` is [B,1,H,W]. Requested masks are float32.
     Canonical lead identity is retained even for repeated rhythm strips and
     Cabrera's inverted aVR. Use independent sigmoid/BCE channels at crossings.
-    Masks describe waveform ink, excluding lead-name text, calibration pulses
-    and grid. Boxes tightly enclose that ink rather than an allocated cell.
+    Waveform masks exclude lead-name text, calibration pulses and grid.
+    Optional name masks/boxes instead enclose the lead-name glyph support.
+    Boxes tightly enclose the requested ink rather than an allocated cell.
     Instance ``active`` means enabled before capture, while ``box_valid``
     means target pixels survived visibility and the coverage threshold.
     The default returns 12 soft lead masks. Image-only networks can use
@@ -153,11 +157,13 @@ class ECGSupervisionLayer(ECGImageLayer):
     def forward(self, signals, fs=None, *, lengths=None, parameters=None, generator=None):
         requested = self.supervision.outputs
         instances_needed = bool({'instance_masks', 'instance_boxes', 'instance_visible_fraction'} & set(requested))
+        names_needed = bool({'name_masks', 'name_boxes'} & set(requested))
         points_only = bool(requested) and set(requested) <= {'grid_points', 'grid_points_mask'}
         rendered = self.render_batch(
             signals, fs, lengths=lengths, parameters=parameters, generator=generator,
             stage='image' if points_only else 'trace', photo=self.photo, return_instances=instances_needed,
             return_baselines=False, return_instance_boxes=False,
+            return_name_instances=names_needed,
             return_grid_points=bool({'grid_points', 'grid_points_mask'} & set(requested)),
             grid_point_config=self.supervision.grid_point_config,
         )
@@ -172,8 +178,11 @@ class ECGSupervisionLayer(ECGImageLayer):
         """
         requested = self.supervision.outputs
         instances_needed = bool({'instance_masks', 'instance_boxes', 'instance_visible_fraction'} & set(requested))
+        names_needed = bool({'name_masks', 'name_boxes'} & set(requested))
         traces_needed = bool({'lead_masks', 'lead_boxes', 'trace_mask', 'bw', 'wb'} & set(requested))
         required = {'valid'} | ({'traces'} if traces_needed else set()) | ({'instances'} if instances_needed else set())
+        if names_needed:
+            required.add('name_instances')
         if required - rendered.targets.keys():
             raise ValueError(f'RenderBatch lacks supervision targets: {sorted(required - rendered.targets.keys())}')
         valid = rendered.targets['valid']
@@ -181,6 +190,20 @@ class ECGSupervisionLayer(ECGImageLayer):
         # Apply only conditional visibility here. Keep full valid for losses.
         visibility = _conditional_visibility(valid, rendered.targets.get('frame_coverage'))
         batch = {'image': rendered.image, 'valid': valid}
+        if names_needed:
+            names = rendered.targets['name_instances']
+            if self.supervision.visible_only:
+                names = names * visibility
+            if self.supervision.binary:
+                names = (names > self.supervision.threshold).to(names.dtype)
+            if 'name_masks' in requested:
+                batch['name_masks'] = names
+            if 'name_boxes' in requested:
+                batch['name_boxes'], batch['name_box_valid'] = mask_bounding_boxes(names, self.supervision.threshold)
+            batch['name_lead_ids'] = rendered.metadata['lead_id']
+            batch['name_active'] = (rendered.metadata['active']
+                                    & (rendered.metadata['parameters']['label_present'] > 0))
+            batch['name_amplitude_sign'] = rendered.metadata['amplitude_sign']
         if {'grid_points', 'grid_points_mask'} & set(requested):
             if 'grid_points_mask' not in rendered.targets:
                 raise ValueError('Render with return_grid_points=True for grid point supervision')

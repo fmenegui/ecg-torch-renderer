@@ -1,0 +1,73 @@
+{
+  "schema": "m4-sampling-export-receipt-v1",
+  "date": "2026-10-23",
+  "status": "complete_sources_frozen_for_independent_integration",
+  "protocol_sha256": "228329fb3e8f50bcdb39911aa2ab91f3f7613f0ed6411d69ae8bdeff1900043e",
+  "axis_protocol_sha256": "5aa74013d005426eb1dabfd636d899ed72ec78e9bcca733b085361e1596a03e2",
+  "source_sha256": {
+    "streaming_sampler.py": "b9a7a732533090271455d42fdc3b4784bf299e14f0b4fc82c564fadccc31f503",
+    "pngio.py": "816c319d8bdd47ef82aff7057a4461d7b2b3249ce95d60a7a7fa3b93b3fd38b1",
+    "axis_aligned_area.py": "d7b347d7733d91530babf518ab2987c2558b4aebed3b4f37773f6b8fee49cc26",
+    "test_sampling_export.py": "bef65d94d087d5bb5da63c2a3ecfdf4a5c0ee2e8888db651e06f6eae522ed698",
+    "test_axis_area.py": "e922d7df4df38cd328f90681323c2266aa4b8e91c41ac7da681e7fed78ff0d53"
+  },
+  "initial_replay_executed_sampling_source_sha256": "b0331288ce2a660ef0a6e39f1bde5a6db13bf4a6d809f10c620de5b3c33b1448",
+  "initial_replay_file_hash_provenance": "The source_sha256 values in parity.json were read from disk at report finalization. The loaded numeric implementation is preserved at results/streaming_sampler_at_first_run.py. During the replay only input validation was tightened, without changes to numerical operations for valid arguments. Final tests and final-cost use final sources.",
+  "parity": {
+    "scenes": 280,
+    "outputs_compared": 3360,
+    "channel_values_compared": 16944480,
+    "mismatched_channel_values": 0,
+    "maximum_abs_difference": 0,
+    "tile_invariance_failures": 0,
+    "support_failures": 0
+  },
+  "parity_scope": "Every scored archived41x41 ROI pixel for all280 scenes, six arms and two tile budgets. Not a full-frame parity assertion.",
+  "tests": {
+    "sampling_export": 19,
+    "axis_area": 6,
+    "total": 25,
+    "status": "pass",
+    "log": "all-tests.log",
+    "initial_failure_retained": "axis-tests-initial.log"
+  },
+  "cost_checkpoint": "results/final-cost/benchmark.json",
+  "initial_cost_retained": "results/benchmark.json",
+  "cost_scope": "Shared host, CPU only, explicit one thread per library, includes preparation. Streaming is slower and has bounded coordinate memory. Additional evidence has cost. No GPU or isolated production latency claim.",
+  "axis_control": {
+    "cases": 60,
+    "largest_mean_abs_error": 0.0,
+    "disappearances": {
+      "exact-source-cell-area": 0,
+      "area-bilinear-2": 29,
+      "area-bilinear-4": 17,
+      "area-bilinear-8": 9
+    },
+    "main_counterexample": {
+      "width_source_pixels": 1,
+      "scale_source_pixels_per_output_pixel": 32,
+      "phase_source_pixels": 0.0,
+      "reference_encoded_mean": 247.03125,
+      "exact_cell_mean": 247.03125,
+      "exact_cell_mean_abs_error": 0.0,
+      "exact_cell_u8": 247,
+      "source_cell_area_fraction": 1.0,
+      "bilinear_2_u8": 255,
+      "bilinear_4_u8": 255,
+      "bilinear_8_u8": 255
+    },
+    "scope": "Exact area of a source-cell constant reconstruction under diagonal affine maps only. Different reconstruction model from bilinear. No general rectification or radiometric claim.",
+    "development_status": "Positive control developed after the independent fixed-grid counterexample. This is failure-directed development, not an unseen validation bank."
+  },
+  "production_files_changed": false,
+  "m3_files_changed": false,
+  "implementation_scope": "Offline NumPy/OpenCV only, outside torch training hot path.",
+  "independent_qa_owner": "/root/m4_adversarial_qa",
+  "not_claimed": [
+    "General geometric superiority",
+    "Universal8x8 or8px/mm adequacy",
+    "Radiometric conservation",
+    "Waveform or clinical accuracy",
+    "A finite-subgrid agreement certificate"
+  ]
+}

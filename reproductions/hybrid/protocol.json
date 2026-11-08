@@ -1,0 +1,73 @@
+{
+  "schema": "hybrid-prospective-protocol-v1",
+  "status": "frozen_before_new_cohort_inference",
+  "selection_policy": {
+    "schema": "ecg-selective-policy-v2-development",
+    "minimum_new_samples": 10,
+    "minimum_common_samples_per_lead": 100,
+    "minimum_correlation": 0.97,
+    "amplitude_ratio_low": 0.85,
+    "amplitude_ratio_high": 1.18,
+    "maximum_dc_difference_mv": 0.05,
+    "maximum_timing_difference_s": 0.02,
+    "maximum_extrapolated_fraction": 0.35
+  },
+  "selection_policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+  "public_axes": {
+    "fs": 500,
+    "samples": 5000,
+    "origin_s": 0.0,
+    "gain_mm_per_mv": 10.0
+  },
+  "ptbxl_metadata_sha256": "7600de9c1b27d181d850b3c6038a35d7c3ddb6bb33b702e3a20252a6859d216b",
+  "native_max_side": 3000,
+  "adaptive_canvas_max_side": 3000,
+  "inference_device": "cuda",
+  "selection_order": [
+    "native six-model specialist when inferred 3x4+1R and accepted",
+    "adaptive original RGB geometry when accepted",
+    "unchanged direct native output"
+  ],
+  "policy_calibration": "Known D0 and M7 development outputs, including D0 timing and DC tolerances. No frozen-cohort outcomes observed.",
+  "cohort_size": {
+    "patients": 8,
+    "images": 24
+  },
+  "prior_own_training_and_development_patient_overlap": false,
+  "upstream_training_overlap": "unknown",
+  "primary_scores": [
+    "patient macro finite printed support",
+    "patient macro raw all-printed NRMSE, missing penalized",
+    "all 12 lead failure counts"
+  ],
+  "secondary_scores": [
+    "same-sample common support raw RMSE",
+    "conditional aligned SNR for leads with >=90% support"
+  ],
+  "selection_api_inputs": [
+    "original RGB",
+    "public physical sampling metadata",
+    "candidate outputs",
+    "geometry checks",
+    "sealed native asset identities"
+  ],
+  "selection_api_excludes": [
+    "reference waveforms",
+    "true layout",
+    "printed gold mask",
+    "reference-derived gain or timing",
+    "diagnosis"
+  ],
+  "clinical_validation": false,
+  "superiority_established": false,
+  "cohort_role": "Small prospective engineering evaluation relative to our own model. Not an upstream-independent clinical validation.",
+  "receipt_revision": 2,
+  "retained_geometry_observations": [
+    "initial/final original-sensor point coordinates and confidence",
+    "native and semantically oriented relative grid IDs",
+    "selected points and supported cells",
+    "complete source/target mesh and triangle connectivity",
+    "last attempted stage on a rejected or incomplete candidate"
+  ],
+  "new_downstream_experiments": "Development controls only. Production pilot still uses the original native downstream geometry, unchanged policy and unchanged published weights."
+}

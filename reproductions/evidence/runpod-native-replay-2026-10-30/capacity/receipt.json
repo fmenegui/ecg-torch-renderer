@@ -1,0 +1,34 @@
+{
+  "schema": "npj-cuda-capacity-control-v1",
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.39",
+    "packages": {
+      "numpy": "2.5.4",
+      "scipy": "1.18.1",
+      "torch": "2.7.0+cu128",
+      "torchvision": "0.22.0+cu128",
+      "pillow": "13.0.0",
+      "opencv-python-headless": "4.11.0.86",
+      "timm": "1.0.30",
+      "albumentations": "1.4.24"
+    },
+    "cuda_available": true,
+    "cuda_build": "12.8",
+    "gpu": "NVIDIA L4"
+  },
+  "input": [
+    12,
+    3,
+    1024,
+    1024
+  ],
+  "synthetic_engineering_control": true,
+  "compiled": false,
+  "full_training_completed": false,
+  "cuda_rng_checkpoint_roundtrip_equal": true,
+  "full_shape_feasible": false,
+  "error": "CUDA out of memory. Tried to allocate 1.13 GiB. GPU 0 has a total capacity of 22.04 GiB of which 685.12 MiB is free. Including non-PyTorch memory, this process has 21.36 GiB memory in use. Of the allocated memory 20.67 GiB is allocated by PyTorch, and 474.67 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)",
+  "error_type": "OutOfMemoryError",
+  "seconds": 2.0402006842195988
+}

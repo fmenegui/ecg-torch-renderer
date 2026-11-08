@@ -1,0 +1,753 @@
+{
+  "status": "pass",
+  "checks": 1939,
+  "captures": 112,
+  "query_domains": 224,
+  "manifest_sha256": "94085d4c2feb528d9508f143d36664fd03811830ab5ec06733a474d4fd4904fe",
+  "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+  "opaque_noise_cases": 11,
+  "opaque_query_hits": 0,
+  "post_noise_opaque_support_is_reflected_in_valid": true,
+  "scope": "Exported renderer material support with recorded post-noise hard occlusion removed. Not independent real-camera visibility truth, not verification of every renderer occluder or optical effect.",
+  "new_comparator_scored": false,
+  "rows": [
+    {
+      "key": "01024-0",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "none"
+    },
+    {
+      "key": "01024-1",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "occlusion",
+      "fully_opaque_pixels": 1650,
+      "opaque_query_hits": {
+        "grid": 0,
+        "paper": 0
+      },
+      "support_bound_violations": 0
+    },
+    {
+      "key": "01024-2",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "none"
+    },
+    {
+      "key": "01024-3",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "sensor"
+    },
+    {
+      "key": "01024-4",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "blur_motion"
+    },
+    {
+      "key": "01024-5",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "jpeg_resolution"
+    },
+    {
+      "key": "01024-6",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "illumination"
+    },
+    {
+      "key": "01024-7",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "faded_print"
+    },
+    {
+      "key": "01025-0",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "none"
+    },
+    {
+      "key": "01025-1",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "color_gamma"
+    },
+    {
+      "key": "01025-2",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "scanner_banding"
+    },
+    {
+      "key": "01025-3",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "stain"
+    },
+    {
+      "key": "01025-4",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "occlusion",
+      "fully_opaque_pixels": 684,
+      "opaque_query_hits": {
+        "grid": 0,
+        "paper": 0
+      },
+      "support_bound_violations": 0
+    },
+    {
+      "key": "01025-5",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "none"
+    },
+    {
+      "key": "01025-6",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "sensor"
+    },
+    {
+      "key": "01025-7",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "blur_motion"
+    },
+    {
+      "key": "01026-0",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "none"
+    },
+    {
+      "key": "01026-1",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "jpeg_resolution"
+    },
+    {
+      "key": "01026-2",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "illumination"
+    },
+    {
+      "key": "01026-3",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "faded_print"
+    },
+    {
+      "key": "01026-4",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "color_gamma"
+    },
+    {
+      "key": "01026-5",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "scanner_banding"
+    },
+    {
+      "key": "01026-6",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "stain"
+    },
+    {
+      "key": "01026-7",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "occlusion",
+      "fully_opaque_pixels": 1827,
+      "opaque_query_hits": {
+        "grid": 0,
+        "paper": 0
+      },
+      "support_bound_violations": 0
+    },
+    {
+      "key": "01027-0",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "none"
+    },
+    {
+      "key": "01027-1",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "none"
+    },
+    {
+      "key": "01027-2",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "sensor"
+    },
+    {
+      "key": "01027-3",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "blur_motion"
+    },
+    {
+      "key": "01027-4",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "jpeg_resolution"
+    },
+    {
+      "key": "01027-5",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "illumination"
+    },
+    {
+      "key": "01027-6",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "faded_print"
+    },
+    {
+      "key": "01027-7",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "color_gamma"
+    },
+    {
+      "key": "01028-0",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "none"
+    },
+    {
+      "key": "01028-1",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "scanner_banding"
+    },
+    {
+      "key": "01028-2",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "stain"
+    },
+    {
+      "key": "01028-3",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "occlusion",
+      "fully_opaque_pixels": 4794,
+      "opaque_query_hits": {
+        "grid": 0,
+        "paper": 0
+      },
+      "support_bound_violations": 0
+    },
+    {
+      "key": "01028-4",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "none"
+    },
+    {
+      "key": "01028-5",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "sensor"
+    },
+    {
+      "key": "01028-6",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "blur_motion"
+    },
+    {
+      "key": "01028-7",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "jpeg_resolution"
+    },
+    {
+      "key": "01029-0",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "none"
+    },
+    {
+      "key": "01029-1",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "illumination"
+    },
+    {
+      "key": "01029-2",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "faded_print"
+    },
+    {
+      "key": "01029-3",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "color_gamma"
+    },
+    {
+      "key": "01029-4",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "scanner_banding"
+    },
+    {
+      "key": "01029-5",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "stain"
+    },
+    {
+      "key": "01029-6",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "occlusion",
+      "fully_opaque_pixels": 4257,
+      "opaque_query_hits": {
+        "grid": 0,
+        "paper": 0
+      },
+      "support_bound_violations": 0
+    },
+    {
+      "key": "01029-7",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "none"
+    },
+    {
+      "key": "220288-0",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "none"
+    },
+    {
+      "key": "220288-1",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "scanner_banding"
+    },
+    {
+      "key": "220288-2",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "stain"
+    },
+    {
+      "key": "220288-3",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "occlusion",
+      "fully_opaque_pixels": 3159,
+      "opaque_query_hits": {
+        "grid": 0,
+        "paper": 0
+      },
+      "support_bound_violations": 0
+    },
+    {
+      "key": "220288-4",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "none"
+    },
+    {
+      "key": "220288-5",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "sensor"
+    },
+    {
+      "key": "220288-6",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "blur_motion"
+    },
+    {
+      "key": "220288-7",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "jpeg_resolution"
+    },
+    {
+      "key": "208777-0",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "none"
+    },
+    {
+      "key": "208777-1",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "none"
+    },
+    {
+      "key": "208777-2",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "sensor"
+    },
+    {
+      "key": "208777-3",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "blur_motion"
+    },
+    {
+      "key": "208777-4",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "jpeg_resolution"
+    },
+    {
+      "key": "208777-5",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "illumination"
+    },
+    {
+      "key": "208777-6",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "faded_print"
+    },
+    {
+      "key": "208777-7",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "color_gamma"
+    },
+    {
+      "key": "206852-0",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "none"
+    },
+    {
+      "key": "206852-1",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "faded_print"
+    },
+    {
+      "key": "206852-2",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "color_gamma"
+    },
+    {
+      "key": "206852-3",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "scanner_banding"
+    },
+    {
+      "key": "206852-4",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "stain"
+    },
+    {
+      "key": "206852-5",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "occlusion",
+      "fully_opaque_pixels": 2272,
+      "opaque_query_hits": {
+        "grid": 0,
+        "paper": 0
+      },
+      "support_bound_violations": 0
+    },
+    {
+      "key": "206852-6",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "none"
+    },
+    {
+      "key": "206852-7",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "sensor"
+    },
+    {
+      "key": "208114-0",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "none"
+    },
+    {
+      "key": "208114-1",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "occlusion",
+      "fully_opaque_pixels": 10971,
+      "opaque_query_hits": {
+        "grid": 0,
+        "paper": 0
+      },
+      "support_bound_violations": 0
+    },
+    {
+      "key": "208114-2",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "none"
+    },
+    {
+      "key": "208114-3",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "sensor"
+    },
+    {
+      "key": "208114-4",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "blur_motion"
+    },
+    {
+      "key": "208114-5",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "jpeg_resolution"
+    },
+    {
+      "key": "208114-6",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "illumination"
+    },
+    {
+      "key": "208114-7",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "faded_print"
+    },
+    {
+      "key": "215864-0",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "none"
+    },
+    {
+      "key": "215864-1",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "occlusion",
+      "fully_opaque_pixels": 2450,
+      "opaque_query_hits": {
+        "grid": 0,
+        "paper": 0
+      },
+      "support_bound_violations": 0
+    },
+    {
+      "key": "215864-2",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "none"
+    },
+    {
+      "key": "215864-3",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "sensor"
+    },
+    {
+      "key": "215864-4",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "blur_motion"
+    },
+    {
+      "key": "215864-5",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "jpeg_resolution"
+    },
+    {
+      "key": "215864-6",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "illumination"
+    },
+    {
+      "key": "215864-7",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "faded_print"
+    },
+    {
+      "key": "211723-0",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "none"
+    },
+    {
+      "key": "211723-1",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "blur_motion"
+    },
+    {
+      "key": "211723-2",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "jpeg_resolution"
+    },
+    {
+      "key": "211723-3",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "illumination"
+    },
+    {
+      "key": "211723-4",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "faded_print"
+    },
+    {
+      "key": "211723-5",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "color_gamma"
+    },
+    {
+      "key": "211723-6",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "scanner_banding"
+    },
+    {
+      "key": "211723-7",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "stain"
+    },
+    {
+      "key": "211855-0",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "none"
+    },
+    {
+      "key": "211855-1",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "color_gamma"
+    },
+    {
+      "key": "211855-2",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "scanner_banding"
+    },
+    {
+      "key": "211855-3",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "stain"
+    },
+    {
+      "key": "211855-4",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "occlusion",
+      "fully_opaque_pixels": 1200,
+      "opaque_query_hits": {
+        "grid": 0,
+        "paper": 0
+      },
+      "support_bound_violations": 0
+    },
+    {
+      "key": "211855-5",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "none"
+    },
+    {
+      "key": "211855-6",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "sensor"
+    },
+    {
+      "key": "211855-7",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "blur_motion"
+    },
+    {
+      "key": "206056-0",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "none"
+    },
+    {
+      "key": "206056-1",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "jpeg_resolution"
+    },
+    {
+      "key": "206056-2",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "illumination"
+    },
+    {
+      "key": "206056-3",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "faded_print"
+    },
+    {
+      "key": "206056-4",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "color_gamma"
+    },
+    {
+      "key": "206056-5",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "scanner_banding"
+    },
+    {
+      "key": "206056-6",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "stain"
+    },
+    {
+      "key": "206056-7",
+      "capture_sha256_verified": true,
+      "query_domains_verified": 2,
+      "noise_family": "occlusion",
+      "fully_opaque_pixels": 3854,
+      "opaque_query_hits": {
+        "grid": 0,
+        "paper": 0
+      },
+      "support_bound_violations": 0
+    }
+  ]
+}

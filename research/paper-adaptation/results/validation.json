@@ -1,0 +1,28 @@
+{
+  "schema": "ecg-paper-experiment-validation-v1",
+  "complete_cases": 30,
+  "cloud_unit_tests": {
+    "run": 49,
+    "passed": 49,
+    "skipped": 0
+  },
+  "local_full_suite": {
+    "run": 345,
+    "passed": 337,
+    "skipped": 6,
+    "errors": 2,
+    "error_reason": "Original tests/fixtures/raster-v021.npz absent in supplied checkout, not regenerated"
+  },
+  "adverse_capture_gallery": {
+    "cases": 16,
+    "visually_reviewed": true
+  },
+  "renderer_modified": false,
+  "weights_changed": false,
+  "training_performed": false,
+  "runpod_deleted_confirmed": true,
+  "successful_pod_lifetime_seconds": 282.600723028183,
+  "successful_pod_catalog_compute_estimate_usd": 0.04631511849628554,
+  "estimated_total_created_pods_compute_usd": 0.06901446826524205,
+  "billing_note": "Catalog compute-only duration estimates, not the Runpod invoice, excludes disk and billing granularity"
+}

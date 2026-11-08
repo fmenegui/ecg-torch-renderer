@@ -1,0 +1,21 @@
+test_bad_records_and_leakage_fail_before_output_creation (test_paired_dataset.PairedDatasetTests.test_bad_records_and_leakage_fail_before_output_creation) ... ok
+test_crop_pixels_clean_mask_binary_bmp_and_file_hashes (test_paired_dataset.PairedDatasetTests.test_crop_pixels_clean_mask_binary_bmp_and_file_hashes) ... ok
+test_export_does_not_round_float64_reference_samples (test_paired_dataset.PairedDatasetTests.test_export_does_not_round_float64_reference_samples) ... ok
+test_invisible_and_inactive_instances_are_explicitly_omitted (test_paired_dataset.PairedDatasetTests.test_invisible_and_inactive_instances_are_explicitly_omitted) ... ok
+test_joint_detection_has_13_classes_and_repeated_name_objects (test_paired_dataset.PairedDatasetTests.test_joint_detection_has_13_classes_and_repeated_name_objects) ... ok
+test_json_uses_original_time_and_cabrera_polarity (test_paired_dataset.PairedDatasetTests.test_json_uses_original_time_and_cabrera_polarity) ... ok
+test_manifest_cli_reorders_declared_leads_and_keeps_original_units (test_paired_dataset.PairedDatasetTests.test_manifest_cli_reorders_declared_leads_and_keeps_original_units) ... ok
+test_missing_names_and_opaque_cover_are_not_detections (test_paired_dataset.PairedDatasetTests.test_missing_names_and_opaque_cover_are_not_detections) ... ok
+test_name_geometry_uses_the_same_photo_field_and_visibility (test_paired_dataset.PairedDatasetTests.test_name_geometry_uses_the_same_photo_field_and_visibility) ... ok
+test_name_targets_leave_rgb_and_existing_targets_identical (test_paired_dataset.PairedDatasetTests.test_name_targets_leave_rgb_and_existing_targets_identical) ... ok
+test_names_repeated_strips_and_cabrera_identity_without_host_reads (test_paired_dataset.PairedDatasetTests.test_names_repeated_strips_and_cabrera_identity_without_host_reads) ... ok
+test_nonempty_output_is_never_replaced (test_paired_dataset.PairedDatasetTests.test_nonempty_output_is_never_replaced) ... ok
+test_overlap_keeps_target_only_and_counts_foreign_instances (test_paired_dataset.PairedDatasetTests.test_overlap_keeps_target_only_and_counts_foreign_instances) ... ok
+test_streaming_plan_checks_missing_duplicate_and_changed_captures_atomically (test_paired_dataset.PairedDatasetTests.test_streaming_plan_checks_missing_duplicate_and_changed_captures_atomically) ... ok
+test_streaming_plan_matches_in_memory_export (test_paired_dataset.PairedDatasetTests.test_streaming_plan_matches_in_memory_export) ... ok
+test_three_tasks_share_patient_split_and_immutable_signal (test_paired_dataset.PairedDatasetTests.test_three_tasks_share_patient_split_and_immutable_signal) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 9.894s
+
+OK

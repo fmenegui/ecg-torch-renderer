@@ -1,0 +1,4784 @@
+[
+  {
+    "name": "raw-point-1973",
+    "by_backend": {
+      "online": {
+        "images": 16,
+        "tp": 29239,
+        "fp": 195,
+        "fn": 137,
+        "precision": 0.9933750084935788,
+        "recall": 0.9953363289760349,
+        "f1": 0.9943547015813637,
+        "median_error_px": 0.21722181447051278,
+        "p95_error_px": 0.5474273081421527,
+        "localization_population": "matched points only"
+      },
+      "offline": {
+        "images": 16,
+        "tp": 28354,
+        "fp": 935,
+        "fn": 979,
+        "precision": 0.9680767523643689,
+        "recall": 0.9666246207343265,
+        "f1": 0.9673501415850705,
+        "median_error_px": 0.4252663444481546,
+        "p95_error_px": 1.0599964848174714,
+        "localization_population": "matched points only"
+      }
+    },
+    "cases": [
+      {
+        "key": "040-0-online",
+        "group_id": "ptbxl-patient-20766.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1836,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "median_error_px": 0.17189636248615614,
+          "p95_error_px": 0.32676402242679026,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1836,
+          "consistent_nodes": 1836,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "040-0-offline",
+        "group_id": "ptbxl-patient-20766.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1818,
+          "fp": 18,
+          "fn": 18,
+          "precision": 0.9901960784313726,
+          "recall": 0.9901960784313726,
+          "f1": 0.9901960784313726,
+          "median_error_px": 0.44158914754691375,
+          "p95_error_px": 0.9718465433514772,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1745,
+        "identity": {
+          "matched_nodes": 1818,
+          "consistent_nodes": 1818,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "040-1-online",
+        "group_id": "ptbxl-patient-20766.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1794,
+          "fp": 69,
+          "fn": 42,
+          "precision": 0.9629629629629629,
+          "recall": 0.9771241830065359,
+          "f1": 0.9699918896999189,
+          "median_error_px": 0.23166799832963214,
+          "p95_error_px": 0.5883064438636826,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1756,
+        "identity": {
+          "matched_nodes": 1794,
+          "consistent_nodes": 1794,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "040-1-offline",
+        "group_id": "ptbxl-patient-20766.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1681,
+          "fp": 146,
+          "fn": 155,
+          "precision": 0.9200875752599891,
+          "recall": 0.9155773420479303,
+          "f1": 0.9178269178269178,
+          "median_error_px": 0.5086653592436148,
+          "p95_error_px": 1.227198539122765,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1715,
+        "identity": {
+          "matched_nodes": 1680,
+          "consistent_nodes": 1677,
+          "fraction": 0.9982142857142857
+        }
+      },
+      {
+        "key": "041-0-online",
+        "group_id": "ptbxl-patient-21218.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1836,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "median_error_px": 0.2302437964855915,
+          "p95_error_px": 0.517277886158226,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1836,
+          "consistent_nodes": 1836,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "041-0-offline",
+        "group_id": "ptbxl-patient-21218.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1798,
+          "fp": 37,
+          "fn": 38,
+          "precision": 0.9798365122615804,
+          "recall": 0.9793028322440087,
+          "f1": 0.9795695995641515,
+          "median_error_px": 0.4421933538572584,
+          "p95_error_px": 1.072370062183684,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1744,
+        "identity": {
+          "matched_nodes": 1798,
+          "consistent_nodes": 1798,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "041-1-online",
+        "group_id": "ptbxl-patient-21218.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1836,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "median_error_px": 0.20652886233973572,
+          "p95_error_px": 0.49527679706520744,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1836,
+          "consistent_nodes": 1836,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "041-1-offline",
+        "group_id": "ptbxl-patient-21218.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1812,
+          "fp": 27,
+          "fn": 24,
+          "precision": 0.9853181076672104,
+          "recall": 0.9869281045751634,
+          "f1": 0.9861224489795918,
+          "median_error_px": 0.40857961376608154,
+          "p95_error_px": 0.9661554497947668,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1746,
+        "identity": {
+          "matched_nodes": 1811,
+          "consistent_nodes": 1811,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "042-0-online",
+        "group_id": "ptbxl-patient-19670.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1836,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "median_error_px": 0.2280318115530066,
+          "p95_error_px": 0.4693217784730232,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1836,
+          "consistent_nodes": 1836,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "042-0-offline",
+        "group_id": "ptbxl-patient-19670.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1823,
+          "fp": 12,
+          "fn": 12,
+          "precision": 0.9934604904632153,
+          "recall": 0.9934604904632153,
+          "f1": 0.9934604904632153,
+          "median_error_px": 0.37139875628264546,
+          "p95_error_px": 0.8307660085044354,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1746,
+        "identity": {
+          "matched_nodes": 1823,
+          "consistent_nodes": 1823,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "042-1-online",
+        "group_id": "ptbxl-patient-19670.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1764,
+          "fp": 72,
+          "fn": 72,
+          "precision": 0.9607843137254902,
+          "recall": 0.9607843137254902,
+          "f1": 0.9607843137254902,
+          "median_error_px": 0.33520383038862533,
+          "p95_error_px": 0.8310826007209413,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1689,
+        "identity": {
+          "matched_nodes": 1764,
+          "consistent_nodes": 1764,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "042-1-offline",
+        "group_id": "ptbxl-patient-19670.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1758,
+          "fp": 76,
+          "fn": 77,
+          "precision": 0.9585605234460196,
+          "recall": 0.9580381471389646,
+          "f1": 0.9582992641046607,
+          "median_error_px": 0.474120247010565,
+          "p95_error_px": 1.124049123823522,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1731,
+        "identity": {
+          "matched_nodes": 1756,
+          "consistent_nodes": 1756,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "043-0-online",
+        "group_id": "ptbxl-patient-8700.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1834,
+          "fp": 42,
+          "fn": 2,
+          "precision": 0.9776119402985075,
+          "recall": 0.9989106753812637,
+          "f1": 0.9881465517241379,
+          "median_error_px": 0.29865846303915233,
+          "p95_error_px": 0.6266674101781814,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1834,
+          "consistent_nodes": 1834,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "043-0-offline",
+        "group_id": "ptbxl-patient-8700.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1800,
+          "fp": 47,
+          "fn": 36,
+          "precision": 0.9745533297238765,
+          "recall": 0.9803921568627451,
+          "f1": 0.977464023893565,
+          "median_error_px": 0.42096421678916385,
+          "p95_error_px": 1.0990973356154625,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1754,
+        "identity": {
+          "matched_nodes": 1800,
+          "consistent_nodes": 1800,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "043-1-online",
+        "group_id": "ptbxl-patient-8700.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1836,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "median_error_px": 0.18912970576492732,
+          "p95_error_px": 0.43937284235724106,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1836,
+          "consistent_nodes": 1836,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "043-1-offline",
+        "group_id": "ptbxl-patient-8700.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1802,
+          "fp": 38,
+          "fn": 34,
+          "precision": 0.9793478260869565,
+          "recall": 0.9814814814814815,
+          "f1": 0.9804134929270947,
+          "median_error_px": 0.4217476879859609,
+          "p95_error_px": 1.0011699407779882,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1802,
+          "consistent_nodes": 1802,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "044-0-online",
+        "group_id": "ptbxl-patient-7011.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1833,
+          "fp": 0,
+          "fn": 3,
+          "precision": 1.0,
+          "recall": 0.9983660130718954,
+          "f1": 0.9991823385118561,
+          "median_error_px": 0.19234639409446702,
+          "p95_error_px": 0.46341292951024277,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1737,
+        "identity": {
+          "matched_nodes": 1833,
+          "consistent_nodes": 1833,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "044-0-offline",
+        "group_id": "ptbxl-patient-7011.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1783,
+          "fp": 30,
+          "fn": 34,
+          "precision": 0.9834528405956977,
+          "recall": 0.9812878370941112,
+          "f1": 0.9823691460055096,
+          "median_error_px": 0.43371345933807864,
+          "p95_error_px": 1.099225170363268,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1703,
+        "identity": {
+          "matched_nodes": 1783,
+          "consistent_nodes": 1783,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "044-1-online",
+        "group_id": "ptbxl-patient-7011.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1836,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "median_error_px": 0.22557989936577888,
+          "p95_error_px": 0.4891773269131041,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1836,
+          "consistent_nodes": 1836,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "044-1-offline",
+        "group_id": "ptbxl-patient-7011.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1647,
+          "fp": 139,
+          "fn": 167,
+          "precision": 0.9221724524076148,
+          "recall": 0.9079382579933848,
+          "f1": 0.915,
+          "median_error_px": 0.48978168076810413,
+          "p95_error_px": 1.1789118432829446,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "rejected",
+        "cells": 1614,
+        "identity": null
+      },
+      {
+        "key": "045-0-online",
+        "group_id": "ptbxl-patient-6816.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1835,
+          "fp": 0,
+          "fn": 1,
+          "precision": 1.0,
+          "recall": 0.9994553376906318,
+          "f1": 0.9997275946608554,
+          "median_error_px": 0.23653672603886156,
+          "p95_error_px": 0.537953965215894,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1748,
+        "identity": {
+          "matched_nodes": 1835,
+          "consistent_nodes": 1835,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "045-0-offline",
+        "group_id": "ptbxl-patient-6816.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1762,
+          "fp": 59,
+          "fn": 74,
+          "precision": 0.9676002196595277,
+          "recall": 0.9596949891067538,
+          "f1": 0.9636313918512441,
+          "median_error_px": 0.41529595179592443,
+          "p95_error_px": 1.0445030122459518,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1723,
+        "identity": {
+          "matched_nodes": 1760,
+          "consistent_nodes": 1760,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "045-1-online",
+        "group_id": "ptbxl-patient-6816.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1831,
+          "fp": 1,
+          "fn": 5,
+          "precision": 0.9994541484716157,
+          "recall": 0.9972766884531591,
+          "f1": 0.9983642311886587,
+          "median_error_px": 0.22757915831179693,
+          "p95_error_px": 0.5056745276675862,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1744,
+        "identity": {
+          "matched_nodes": 1831,
+          "consistent_nodes": 1831,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "045-1-offline",
+        "group_id": "ptbxl-patient-6816.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1801,
+          "fp": 37,
+          "fn": 35,
+          "precision": 0.9798694232861807,
+          "recall": 0.9809368191721133,
+          "f1": 0.9804028307022319,
+          "median_error_px": 0.3748513078444433,
+          "p95_error_px": 0.8949521107521625,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1743,
+        "identity": {
+          "matched_nodes": 1801,
+          "consistent_nodes": 1801,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "046-0-online",
+        "group_id": "ptbxl-patient-16354.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1828,
+          "fp": 9,
+          "fn": 8,
+          "precision": 0.995100707675558,
+          "recall": 0.9956427015250545,
+          "f1": 0.9953716308194936,
+          "median_error_px": 0.21677762094898873,
+          "p95_error_px": 0.5720810145312712,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1742,
+        "identity": {
+          "matched_nodes": 1828,
+          "consistent_nodes": 1828,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "046-0-offline",
+        "group_id": "ptbxl-patient-16354.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1809,
+          "fp": 19,
+          "fn": 27,
+          "precision": 0.9896061269146609,
+          "recall": 0.9852941176470589,
+          "f1": 0.9874454148471615,
+          "median_error_px": 0.38914461954421986,
+          "p95_error_px": 0.9490530580246014,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1733,
+        "identity": {
+          "matched_nodes": 1808,
+          "consistent_nodes": 1808,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "046-1-online",
+        "group_id": "ptbxl-patient-16354.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1833,
+          "fp": 0,
+          "fn": 3,
+          "precision": 1.0,
+          "recall": 0.9983660130718954,
+          "f1": 0.9991823385118561,
+          "median_error_px": 0.2255550875356148,
+          "p95_error_px": 0.5443559472358086,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1737,
+        "identity": {
+          "matched_nodes": 1833,
+          "consistent_nodes": 1833,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "046-1-offline",
+        "group_id": "ptbxl-patient-16354.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1713,
+          "fp": 116,
+          "fn": 123,
+          "precision": 0.9365773646801531,
+          "recall": 0.9330065359477124,
+          "f1": 0.9347885402455661,
+          "median_error_px": 0.48146389065543277,
+          "p95_error_px": 1.1859975475447504,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1737,
+        "identity": {
+          "matched_nodes": 1711,
+          "consistent_nodes": 1711,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "047-0-online",
+        "group_id": "ptbxl-patient-6682.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1836,
+          "fp": 1,
+          "fn": 0,
+          "precision": 0.9994556341861731,
+          "recall": 1.0,
+          "f1": 0.9997277429893819,
+          "median_error_px": 0.19952188559531928,
+          "p95_error_px": 0.626529619888425,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1836,
+          "consistent_nodes": 1836,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "047-0-offline",
+        "group_id": "ptbxl-patient-6682.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1714,
+          "fp": 130,
+          "fn": 122,
+          "precision": 0.9295010845986985,
+          "recall": 0.9335511982570807,
+          "f1": 0.9315217391304348,
+          "median_error_px": 0.4553356695639398,
+          "p95_error_px": 1.1180967611408474,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1735,
+        "identity": {
+          "matched_nodes": 1712,
+          "consistent_nodes": 1699,
+          "fraction": 0.9924065420560748
+        }
+      },
+      {
+        "key": "047-1-online",
+        "group_id": "ptbxl-patient-6682.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1835,
+          "fp": 1,
+          "fn": 1,
+          "precision": 0.9994553376906318,
+          "recall": 0.9994553376906318,
+          "f1": 0.9994553376906318,
+          "median_error_px": 0.1859342994800794,
+          "p95_error_px": 0.3793256510066342,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1835,
+          "consistent_nodes": 1835,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "047-1-offline",
+        "group_id": "ptbxl-patient-6682.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1833,
+          "fp": 4,
+          "fn": 3,
+          "precision": 0.9978225367446925,
+          "recall": 0.9983660130718954,
+          "f1": 0.9980942009256738,
+          "median_error_px": 0.3669422857759954,
+          "p95_error_px": 0.7848754477906925,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1833,
+          "consistent_nodes": 1833,
+          "fraction": 1.0
+        }
+      }
+    ]
+  },
+  {
+    "name": "raw-point-20261021",
+    "by_backend": {
+      "online": {
+        "images": 16,
+        "tp": 29166,
+        "fp": 306,
+        "fn": 210,
+        "precision": 0.9896172638436482,
+        "recall": 0.9928513071895425,
+        "f1": 0.991231647634584,
+        "median_error_px": 0.3242148958086609,
+        "p95_error_px": 0.7353871293866556,
+        "localization_population": "matched points only"
+      },
+      "offline": {
+        "images": 16,
+        "tp": 28526,
+        "fp": 794,
+        "fn": 807,
+        "precision": 0.9729195088676671,
+        "recall": 0.9724883237309515,
+        "f1": 0.9727038685148245,
+        "median_error_px": 0.4206477850595812,
+        "p95_error_px": 1.0267871985731283,
+        "localization_population": "matched points only"
+      }
+    },
+    "cases": [
+      {
+        "key": "040-0-online",
+        "group_id": "ptbxl-patient-20766.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1836,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "median_error_px": 0.4316805570276767,
+          "p95_error_px": 0.6801966196090921,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1836,
+          "consistent_nodes": 1836,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "040-0-offline",
+        "group_id": "ptbxl-patient-20766.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1801,
+          "fp": 39,
+          "fn": 35,
+          "precision": 0.9788043478260869,
+          "recall": 0.9809368191721133,
+          "f1": 0.9798694232861807,
+          "median_error_px": 0.4418028214692774,
+          "p95_error_px": 0.9817899402865115,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1801,
+          "consistent_nodes": 1801,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "040-1-online",
+        "group_id": "ptbxl-patient-20766.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1810,
+          "fp": 27,
+          "fn": 26,
+          "precision": 0.985302123026674,
+          "recall": 0.985838779956427,
+          "f1": 0.9855703784372447,
+          "median_error_px": 0.2586077953507502,
+          "p95_error_px": 0.5237226413664953,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1747,
+        "identity": {
+          "matched_nodes": 1810,
+          "consistent_nodes": 1810,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "040-1-offline",
+        "group_id": "ptbxl-patient-20766.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1706,
+          "fp": 133,
+          "fn": 130,
+          "precision": 0.9276780859162589,
+          "recall": 0.9291938997821351,
+          "f1": 0.9284353741496598,
+          "median_error_px": 0.48689145402843914,
+          "p95_error_px": 1.135232251667896,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1738,
+        "identity": {
+          "matched_nodes": 1701,
+          "consistent_nodes": 1694,
+          "fraction": 0.9958847736625515
+        }
+      },
+      {
+        "key": "041-0-online",
+        "group_id": "ptbxl-patient-21218.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1836,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "median_error_px": 0.24469832046312254,
+          "p95_error_px": 0.4902591678920393,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1836,
+          "consistent_nodes": 1836,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "041-0-offline",
+        "group_id": "ptbxl-patient-21218.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1780,
+          "fp": 57,
+          "fn": 56,
+          "precision": 0.9689711486118672,
+          "recall": 0.9694989106753813,
+          "f1": 0.9692349578001633,
+          "median_error_px": 0.4368400535389168,
+          "p95_error_px": 1.1072251951615208,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1738,
+        "identity": {
+          "matched_nodes": 1780,
+          "consistent_nodes": 1780,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "041-1-online",
+        "group_id": "ptbxl-patient-21218.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1836,
+          "fp": 35,
+          "fn": 0,
+          "precision": 0.9812934259754142,
+          "recall": 1.0,
+          "f1": 0.990558403021311,
+          "median_error_px": 0.22717130630864812,
+          "p95_error_px": 0.43279840813575404,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1836,
+          "consistent_nodes": 1836,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "041-1-offline",
+        "group_id": "ptbxl-patient-21218.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1796,
+          "fp": 41,
+          "fn": 40,
+          "precision": 0.9776810016330975,
+          "recall": 0.9782135076252724,
+          "f1": 0.9779471821399401,
+          "median_error_px": 0.44985144885608563,
+          "p95_error_px": 1.0695952993090847,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1741,
+        "identity": {
+          "matched_nodes": 1796,
+          "consistent_nodes": 1796,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "042-0-online",
+        "group_id": "ptbxl-patient-19670.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1834,
+          "fp": 2,
+          "fn": 2,
+          "precision": 0.9989106753812637,
+          "recall": 0.9989106753812637,
+          "f1": 0.9989106753812637,
+          "median_error_px": 0.2689346993917472,
+          "p95_error_px": 0.5529829860502526,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1834,
+          "consistent_nodes": 1834,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "042-0-offline",
+        "group_id": "ptbxl-patient-19670.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1832,
+          "fp": 2,
+          "fn": 3,
+          "precision": 0.9989094874591058,
+          "recall": 0.9983651226158038,
+          "f1": 0.9986372308530935,
+          "median_error_px": 0.35297468356022743,
+          "p95_error_px": 0.7400954875234854,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1746,
+        "identity": {
+          "matched_nodes": 1832,
+          "consistent_nodes": 1832,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "042-1-online",
+        "group_id": "ptbxl-patient-19670.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1818,
+          "fp": 39,
+          "fn": 18,
+          "precision": 0.9789983844911146,
+          "recall": 0.9901960784313726,
+          "f1": 0.9845653939886271,
+          "median_error_px": 0.44348134107089765,
+          "p95_error_px": 0.9204476500824507,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1740,
+        "identity": {
+          "matched_nodes": 1818,
+          "consistent_nodes": 1818,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "042-1-offline",
+        "group_id": "ptbxl-patient-19670.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1796,
+          "fp": 38,
+          "fn": 39,
+          "precision": 0.9792802617230099,
+          "recall": 0.9787465940054496,
+          "f1": 0.9790133551376397,
+          "median_error_px": 0.4435052229605203,
+          "p95_error_px": 1.0178327938054652,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1740,
+        "identity": {
+          "matched_nodes": 1796,
+          "consistent_nodes": 1796,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "043-0-online",
+        "group_id": "ptbxl-patient-8700.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1771,
+          "fp": 116,
+          "fn": 65,
+          "precision": 0.9385267620561738,
+          "recall": 0.9645969498910676,
+          "f1": 0.9513832930432446,
+          "median_error_px": 0.3497378496845231,
+          "p95_error_px": 1.1285239870597277,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1760,
+        "identity": {
+          "matched_nodes": 1771,
+          "consistent_nodes": 1771,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "043-0-offline",
+        "group_id": "ptbxl-patient-8700.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1825,
+          "fp": 10,
+          "fn": 11,
+          "precision": 0.9945504087193461,
+          "recall": 0.9940087145969498,
+          "f1": 0.9942794878779624,
+          "median_error_px": 0.4084836928774097,
+          "p95_error_px": 0.975643365682608,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1747,
+        "identity": {
+          "matched_nodes": 1825,
+          "consistent_nodes": 1825,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "043-1-online",
+        "group_id": "ptbxl-patient-8700.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1836,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "median_error_px": 0.39808942408406284,
+          "p95_error_px": 0.6814539859857615,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1836,
+          "consistent_nodes": 1836,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "043-1-offline",
+        "group_id": "ptbxl-patient-8700.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1781,
+          "fp": 58,
+          "fn": 55,
+          "precision": 0.9684611201740077,
+          "recall": 0.9700435729847494,
+          "f1": 0.9692517006802721,
+          "median_error_px": 0.4234649218784814,
+          "p95_error_px": 0.9538104693153749,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1781,
+          "consistent_nodes": 1781,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "044-0-online",
+        "group_id": "ptbxl-patient-7011.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1836,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "median_error_px": 0.4381184560333471,
+          "p95_error_px": 0.7949221466904626,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1836,
+          "consistent_nodes": 1836,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "044-0-offline",
+        "group_id": "ptbxl-patient-7011.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1760,
+          "fp": 52,
+          "fn": 57,
+          "precision": 0.9713024282560706,
+          "recall": 0.9686296092460099,
+          "f1": 0.9699641774593551,
+          "median_error_px": 0.4361710114041263,
+          "p95_error_px": 1.1389216302767775,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1701,
+        "identity": {
+          "matched_nodes": 1760,
+          "consistent_nodes": 1760,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "044-1-online",
+        "group_id": "ptbxl-patient-7011.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1795,
+          "fp": 41,
+          "fn": 41,
+          "precision": 0.9776688453159041,
+          "recall": 0.9776688453159041,
+          "f1": 0.9776688453159041,
+          "median_error_px": 0.22660261512750074,
+          "p95_error_px": 0.46517228973521496,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1795,
+          "consistent_nodes": 1795,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "044-1-offline",
+        "group_id": "ptbxl-patient-7011.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1706,
+          "fp": 102,
+          "fn": 108,
+          "precision": 0.9435840707964602,
+          "recall": 0.9404630650496141,
+          "f1": 0.9420209828823854,
+          "median_error_px": 0.4775680821540583,
+          "p95_error_px": 1.1643501017885487,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1669,
+        "identity": {
+          "matched_nodes": 1692,
+          "consistent_nodes": 1669,
+          "fraction": 0.9864066193853428
+        }
+      },
+      {
+        "key": "045-0-online",
+        "group_id": "ptbxl-patient-6816.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1832,
+          "fp": 4,
+          "fn": 4,
+          "precision": 0.9978213507625272,
+          "recall": 0.9978213507625272,
+          "f1": 0.9978213507625272,
+          "median_error_px": 0.2786235750426972,
+          "p95_error_px": 0.5932935338373009,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1832,
+          "consistent_nodes": 1832,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "045-0-offline",
+        "group_id": "ptbxl-patient-6816.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1816,
+          "fp": 19,
+          "fn": 20,
+          "precision": 0.9896457765667575,
+          "recall": 0.9891067538126361,
+          "f1": 0.9893761917733588,
+          "median_error_px": 0.3807404602526707,
+          "p95_error_px": 0.905343524156937,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1747,
+        "identity": {
+          "matched_nodes": 1816,
+          "consistent_nodes": 1816,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "045-1-online",
+        "group_id": "ptbxl-patient-6816.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1787,
+          "fp": 36,
+          "fn": 49,
+          "precision": 0.9802523313219967,
+          "recall": 0.9733115468409586,
+          "f1": 0.9767696091828368,
+          "median_error_px": 0.23313812679120408,
+          "p95_error_px": 0.4745764658424855,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1735,
+        "identity": {
+          "matched_nodes": 1787,
+          "consistent_nodes": 1787,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "045-1-offline",
+        "group_id": "ptbxl-patient-6816.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1824,
+          "fp": 11,
+          "fn": 12,
+          "precision": 0.9940054495912807,
+          "recall": 0.9934640522875817,
+          "f1": 0.9937346771996731,
+          "median_error_px": 0.3581682349703373,
+          "p95_error_px": 0.8453866688513594,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1748,
+        "identity": {
+          "matched_nodes": 1824,
+          "consistent_nodes": 1824,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "046-0-online",
+        "group_id": "ptbxl-patient-16354.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1831,
+          "fp": 6,
+          "fn": 5,
+          "precision": 0.9967338051170387,
+          "recall": 0.9972766884531591,
+          "f1": 0.9970051728832018,
+          "median_error_px": 0.27505034025248276,
+          "p95_error_px": 0.5638103391168563,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1831,
+          "consistent_nodes": 1831,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "046-0-offline",
+        "group_id": "ptbxl-patient-16354.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1812,
+          "fp": 21,
+          "fn": 24,
+          "precision": 0.9885433715220949,
+          "recall": 0.9869281045751634,
+          "f1": 0.9877350776778414,
+          "median_error_px": 0.38913162216228037,
+          "p95_error_px": 0.8927624566667833,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1745,
+        "identity": {
+          "matched_nodes": 1812,
+          "consistent_nodes": 1812,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "046-1-online",
+        "group_id": "ptbxl-patient-16354.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1836,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "median_error_px": 0.4385493259150026,
+          "p95_error_px": 0.802255877353369,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1836,
+          "consistent_nodes": 1836,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "046-1-offline",
+        "group_id": "ptbxl-patient-16354.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1739,
+          "fp": 93,
+          "fn": 97,
+          "precision": 0.949235807860262,
+          "recall": 0.9471677559912854,
+          "f1": 0.9482006543075245,
+          "median_error_px": 0.4834851466545878,
+          "p95_error_px": 1.1283941908904163,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1740,
+        "identity": {
+          "matched_nodes": 1738,
+          "consistent_nodes": 1738,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "047-0-online",
+        "group_id": "ptbxl-patient-6682.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1836,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "median_error_px": 0.35872150128985547,
+          "p95_error_px": 0.7338999164411742,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1836,
+          "consistent_nodes": 1836,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "047-0-offline",
+        "group_id": "ptbxl-patient-6682.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1728,
+          "fp": 106,
+          "fn": 108,
+          "precision": 0.9422028353326063,
+          "recall": 0.9411764705882353,
+          "f1": 0.9416893732970028,
+          "median_error_px": 0.4315247721821732,
+          "p95_error_px": 1.0404855808967133,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1734,
+        "identity": {
+          "matched_nodes": 1727,
+          "consistent_nodes": 1727,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "047-1-online",
+        "group_id": "ptbxl-patient-6682.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1836,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "median_error_px": 0.4279134722625241,
+          "p95_error_px": 0.5745598023349769,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1836,
+          "consistent_nodes": 1836,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "047-1-offline",
+        "group_id": "ptbxl-patient-6682.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1824,
+          "fp": 12,
+          "fn": 12,
+          "precision": 0.9934640522875817,
+          "recall": 0.9934640522875817,
+          "f1": 0.9934640522875817,
+          "median_error_px": 0.39405117301962156,
+          "p95_error_px": 1.0425773500162174,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1824,
+          "consistent_nodes": 1824,
+          "fraction": 1.0
+        }
+      }
+    ]
+  },
+  {
+    "name": "contrast-point-1973",
+    "by_backend": {
+      "online": {
+        "images": 16,
+        "tp": 29170,
+        "fp": 145,
+        "fn": 206,
+        "precision": 0.9950537267610439,
+        "recall": 0.9929874727668845,
+        "f1": 0.9940195259920601,
+        "median_error_px": 0.1701947689720567,
+        "p95_error_px": 0.41773068375218303,
+        "localization_population": "matched points only"
+      },
+      "offline": {
+        "images": 16,
+        "tp": 27705,
+        "fp": 956,
+        "fn": 1628,
+        "precision": 0.9666445692753218,
+        "recall": 0.9444993693110149,
+        "f1": 0.9554436665861986,
+        "median_error_px": 0.284186571241031,
+        "p95_error_px": 0.7852007925296404,
+        "localization_population": "matched points only"
+      }
+    },
+    "cases": [
+      {
+        "key": "040-0-online",
+        "group_id": "ptbxl-patient-20766.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1836,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "median_error_px": 0.12363408955801947,
+          "p95_error_px": 0.27686894978333,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1836,
+          "consistent_nodes": 1836,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "040-0-offline",
+        "group_id": "ptbxl-patient-20766.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1768,
+          "fp": 23,
+          "fn": 68,
+          "precision": 0.9871580122836404,
+          "recall": 0.9629629629629629,
+          "f1": 0.974910394265233,
+          "median_error_px": 0.31502911503822284,
+          "p95_error_px": 0.8386705469447423,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1696,
+        "identity": {
+          "matched_nodes": 1768,
+          "consistent_nodes": 1768,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "040-1-online",
+        "group_id": "ptbxl-patient-20766.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1822,
+          "fp": 14,
+          "fn": 14,
+          "precision": 0.9923747276688453,
+          "recall": 0.9923747276688453,
+          "f1": 0.9923747276688453,
+          "median_error_px": 0.1883314603950005,
+          "p95_error_px": 0.47423416400723856,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1822,
+          "consistent_nodes": 1822,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "040-1-offline",
+        "group_id": "ptbxl-patient-20766.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1674,
+          "fp": 111,
+          "fn": 162,
+          "precision": 0.9378151260504202,
+          "recall": 0.9117647058823529,
+          "f1": 0.9246064623032312,
+          "median_error_px": 0.31842116256545305,
+          "p95_error_px": 0.9154642108972887,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1671,
+        "identity": {
+          "matched_nodes": 1674,
+          "consistent_nodes": 1673,
+          "fraction": 0.9994026284348865
+        }
+      },
+      {
+        "key": "041-0-online",
+        "group_id": "ptbxl-patient-21218.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1836,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "median_error_px": 0.18209994671181923,
+          "p95_error_px": 0.422833159253181,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1836,
+          "consistent_nodes": 1836,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "041-0-offline",
+        "group_id": "ptbxl-patient-21218.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1759,
+          "fp": 59,
+          "fn": 77,
+          "precision": 0.9675467546754676,
+          "recall": 0.9580610021786492,
+          "f1": 0.9627805145046524,
+          "median_error_px": 0.2684064369219885,
+          "p95_error_px": 0.7498561354690899,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1712,
+        "identity": {
+          "matched_nodes": 1759,
+          "consistent_nodes": 1759,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "041-1-online",
+        "group_id": "ptbxl-patient-21218.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1836,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "median_error_px": 0.17976212350011878,
+          "p95_error_px": 0.3582783918374801,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1836,
+          "consistent_nodes": 1836,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "041-1-offline",
+        "group_id": "ptbxl-patient-21218.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1746,
+          "fp": 61,
+          "fn": 90,
+          "precision": 0.9662423907028224,
+          "recall": 0.9509803921568627,
+          "f1": 0.9585506450727422,
+          "median_error_px": 0.31036161312848287,
+          "p95_error_px": 0.8444865751923174,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1708,
+        "identity": {
+          "matched_nodes": 1746,
+          "consistent_nodes": 1746,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "042-0-online",
+        "group_id": "ptbxl-patient-19670.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1792,
+          "fp": 14,
+          "fn": 44,
+          "precision": 0.9922480620155039,
+          "recall": 0.9760348583877996,
+          "f1": 0.9840746842394289,
+          "median_error_px": 0.19398320527456236,
+          "p95_error_px": 0.4223255303142623,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1713,
+        "identity": {
+          "matched_nodes": 1792,
+          "consistent_nodes": 1792,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "042-0-offline",
+        "group_id": "ptbxl-patient-19670.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1783,
+          "fp": 5,
+          "fn": 52,
+          "precision": 0.9972035794183445,
+          "recall": 0.9716621253405995,
+          "f1": 0.9842671818934584,
+          "median_error_px": 0.2403830866581651,
+          "p95_error_px": 0.5743507505606488,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1696,
+        "identity": {
+          "matched_nodes": 1783,
+          "consistent_nodes": 1783,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "042-1-online",
+        "group_id": "ptbxl-patient-19670.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1829,
+          "fp": 2,
+          "fn": 7,
+          "precision": 0.9989077007099946,
+          "recall": 0.9961873638344226,
+          "f1": 0.9975456776656667,
+          "median_error_px": 0.163764421705177,
+          "p95_error_px": 0.40923647749995795,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1743,
+        "identity": {
+          "matched_nodes": 1829,
+          "consistent_nodes": 1829,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "042-1-offline",
+        "group_id": "ptbxl-patient-19670.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1700,
+          "fp": 74,
+          "fn": 135,
+          "precision": 0.9582863585118376,
+          "recall": 0.9264305177111717,
+          "f1": 0.9420892213909671,
+          "median_error_px": 0.31087703934116145,
+          "p95_error_px": 0.7943254181055839,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1665,
+        "identity": {
+          "matched_nodes": 1700,
+          "consistent_nodes": 1700,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "043-0-online",
+        "group_id": "ptbxl-patient-8700.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1836,
+          "fp": 26,
+          "fn": 0,
+          "precision": 0.9860365198711063,
+          "recall": 1.0,
+          "f1": 0.9929691725256896,
+          "median_error_px": 0.18458670350577266,
+          "p95_error_px": 0.4208590360386132,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1773,
+        "identity": {
+          "matched_nodes": 1836,
+          "consistent_nodes": 1836,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "043-0-offline",
+        "group_id": "ptbxl-patient-8700.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1763,
+          "fp": 31,
+          "fn": 73,
+          "precision": 0.9827201783723523,
+          "recall": 0.960239651416122,
+          "f1": 0.9713498622589531,
+          "median_error_px": 0.29208717786579297,
+          "p95_error_px": 0.8520374007006517,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1690,
+        "identity": {
+          "matched_nodes": 1761,
+          "consistent_nodes": 1761,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "043-1-online",
+        "group_id": "ptbxl-patient-8700.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1836,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "median_error_px": 0.14781950185493276,
+          "p95_error_px": 0.4132172817743944,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1836,
+          "consistent_nodes": 1836,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "043-1-offline",
+        "group_id": "ptbxl-patient-8700.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1750,
+          "fp": 51,
+          "fn": 86,
+          "precision": 0.971682398667407,
+          "recall": 0.9531590413943355,
+          "f1": 0.962331591971405,
+          "median_error_px": 0.28862546877601714,
+          "p95_error_px": 0.702216836598122,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1673,
+        "identity": {
+          "matched_nodes": 1750,
+          "consistent_nodes": 1750,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "044-0-online",
+        "group_id": "ptbxl-patient-7011.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1836,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "median_error_px": 0.19200796852323218,
+          "p95_error_px": 0.46295958063194953,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1836,
+          "consistent_nodes": 1836,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "044-0-offline",
+        "group_id": "ptbxl-patient-7011.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1715,
+          "fp": 63,
+          "fn": 102,
+          "precision": 0.9645669291338582,
+          "recall": 0.9438635112823335,
+          "f1": 0.9541029207232267,
+          "median_error_px": 0.29120120759276985,
+          "p95_error_px": 0.8176447095111483,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1631,
+        "identity": {
+          "matched_nodes": 1715,
+          "consistent_nodes": 1715,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "044-1-online",
+        "group_id": "ptbxl-patient-7011.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1832,
+          "fp": 2,
+          "fn": 4,
+          "precision": 0.9989094874591058,
+          "recall": 0.9978213507625272,
+          "f1": 0.9983651226158038,
+          "median_error_px": 0.19049780902824137,
+          "p95_error_px": 0.39366638352898015,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1747,
+        "identity": {
+          "matched_nodes": 1832,
+          "consistent_nodes": 1832,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "044-1-offline",
+        "group_id": "ptbxl-patient-7011.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1662,
+          "fp": 88,
+          "fn": 152,
+          "precision": 0.9497142857142857,
+          "recall": 0.9162072767364939,
+          "f1": 0.9326599326599326,
+          "median_error_px": 0.3225480161029589,
+          "p95_error_px": 0.9628176991793966,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1599,
+        "identity": {
+          "matched_nodes": 1644,
+          "consistent_nodes": 1583,
+          "fraction": 0.9628953771289538
+        }
+      },
+      {
+        "key": "045-0-online",
+        "group_id": "ptbxl-patient-6816.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1787,
+          "fp": 0,
+          "fn": 49,
+          "precision": 1.0,
+          "recall": 0.9733115468409586,
+          "f1": 0.9864752967154292,
+          "median_error_px": 0.2030585672104325,
+          "p95_error_px": 0.4134218230772694,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1696,
+        "identity": {
+          "matched_nodes": 1787,
+          "consistent_nodes": 1787,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "045-0-offline",
+        "group_id": "ptbxl-patient-6816.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1735,
+          "fp": 44,
+          "fn": 101,
+          "precision": 0.9752670039347948,
+          "recall": 0.9449891067538126,
+          "f1": 0.9598893499308437,
+          "median_error_px": 0.2870549134903564,
+          "p95_error_px": 0.7402690919531217,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1661,
+        "identity": {
+          "matched_nodes": 1735,
+          "consistent_nodes": 1735,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "045-1-online",
+        "group_id": "ptbxl-patient-6816.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1810,
+          "fp": 25,
+          "fn": 26,
+          "precision": 0.9863760217983651,
+          "recall": 0.985838779956427,
+          "f1": 0.986107327703623,
+          "median_error_px": 0.1890500580284431,
+          "p95_error_px": 0.433021554950833,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1748,
+        "identity": {
+          "matched_nodes": 1810,
+          "consistent_nodes": 1810,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "045-1-offline",
+        "group_id": "ptbxl-patient-6816.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1737,
+          "fp": 63,
+          "fn": 99,
+          "precision": 0.965,
+          "recall": 0.946078431372549,
+          "f1": 0.9554455445544554,
+          "median_error_px": 0.24359066054359052,
+          "p95_error_px": 0.6265741074607466,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1703,
+        "identity": {
+          "matched_nodes": 1737,
+          "consistent_nodes": 1737,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "046-0-online",
+        "group_id": "ptbxl-patient-16354.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1784,
+          "fp": 49,
+          "fn": 52,
+          "precision": 0.9732678668848882,
+          "recall": 0.971677559912854,
+          "f1": 0.9724720632324885,
+          "median_error_px": 0.18401914843455186,
+          "p95_error_px": 0.4290877571212165,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1745,
+        "identity": {
+          "matched_nodes": 1784,
+          "consistent_nodes": 1784,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "046-0-offline",
+        "group_id": "ptbxl-patient-16354.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1755,
+          "fp": 42,
+          "fn": 81,
+          "precision": 0.9766277128547579,
+          "recall": 0.9558823529411765,
+          "f1": 0.9661436829066887,
+          "median_error_px": 0.26037612142438116,
+          "p95_error_px": 0.6901479934935035,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1701,
+        "identity": {
+          "matched_nodes": 1755,
+          "consistent_nodes": 1755,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "046-1-online",
+        "group_id": "ptbxl-patient-16354.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1828,
+          "fp": 13,
+          "fn": 8,
+          "precision": 0.9929386203150462,
+          "recall": 0.9956427015250545,
+          "f1": 0.9942888224095731,
+          "median_error_px": 0.1965873244240257,
+          "p95_error_px": 0.5961946543419471,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1748,
+        "identity": {
+          "matched_nodes": 1828,
+          "consistent_nodes": 1828,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "046-1-offline",
+        "group_id": "ptbxl-patient-16354.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1676,
+          "fp": 110,
+          "fn": 160,
+          "precision": 0.9384098544232923,
+          "recall": 0.9128540305010894,
+          "f1": 0.9254555494202098,
+          "median_error_px": 0.2884091100111874,
+          "p95_error_px": 0.7894914632213981,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1675,
+        "identity": {
+          "matched_nodes": 1676,
+          "consistent_nodes": 1676,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "047-0-online",
+        "group_id": "ptbxl-patient-6682.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1836,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "median_error_px": 0.14973395631090147,
+          "p95_error_px": 0.39608357428596475,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1836,
+          "consistent_nodes": 1836,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "047-0-offline",
+        "group_id": "ptbxl-patient-6682.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1675,
+          "fp": 115,
+          "fn": 161,
+          "precision": 0.9357541899441341,
+          "recall": 0.9123093681917211,
+          "f1": 0.9238830667402096,
+          "median_error_px": 0.294927095294376,
+          "p95_error_px": 0.7597738836008489,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "rejected",
+        "cells": 1658,
+        "identity": null
+      },
+      {
+        "key": "047-1-online",
+        "group_id": "ptbxl-patient-6682.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1834,
+          "fp": 0,
+          "fn": 2,
+          "precision": 1.0,
+          "recall": 0.9989106753812637,
+          "f1": 0.9994550408719346,
+          "median_error_px": 0.10878505543224945,
+          "p95_error_px": 0.2996560639917796,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1747,
+        "identity": {
+          "matched_nodes": 1834,
+          "consistent_nodes": 1834,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "047-1-offline",
+        "group_id": "ptbxl-patient-6682.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1807,
+          "fp": 16,
+          "fn": 29,
+          "precision": 0.9912232583653319,
+          "recall": 0.9842047930283224,
+          "f1": 0.9877015578026783,
+          "median_error_px": 0.25546535152834615,
+          "p95_error_px": 0.6873952029944029,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1732,
+        "identity": {
+          "matched_nodes": 1807,
+          "consistent_nodes": 1807,
+          "fraction": 1.0
+        }
+      }
+    ]
+  },
+  {
+    "name": "contrast-point-20261021",
+    "by_backend": {
+      "online": {
+        "images": 16,
+        "tp": 29234,
+        "fp": 200,
+        "fn": 142,
+        "precision": 0.9932051369164911,
+        "recall": 0.9951661220043573,
+        "f1": 0.9941846624723687,
+        "median_error_px": 0.23344503018631402,
+        "p95_error_px": 0.46461183259677885,
+        "localization_population": "matched points only"
+      },
+      "offline": {
+        "images": 16,
+        "tp": 28656,
+        "fp": 694,
+        "fn": 677,
+        "precision": 0.9763543441226575,
+        "recall": 0.9769201922749122,
+        "f1": 0.9766371862379224,
+        "median_error_px": 0.28299901047424103,
+        "p95_error_px": 0.7966940590620184,
+        "localization_population": "matched points only"
+      }
+    },
+    "cases": [
+      {
+        "key": "040-0-online",
+        "group_id": "ptbxl-patient-20766.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1836,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "median_error_px": 0.25052144577041335,
+          "p95_error_px": 0.39689427977780256,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1836,
+          "consistent_nodes": 1836,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "040-0-offline",
+        "group_id": "ptbxl-patient-20766.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1812,
+          "fp": 29,
+          "fn": 24,
+          "precision": 0.9842476914720261,
+          "recall": 0.9869281045751634,
+          "f1": 0.9855860756051129,
+          "median_error_px": 0.309068889557197,
+          "p95_error_px": 0.6967882256669018,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1747,
+        "identity": {
+          "matched_nodes": 1812,
+          "consistent_nodes": 1812,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "040-1-online",
+        "group_id": "ptbxl-patient-20766.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1782,
+          "fp": 75,
+          "fn": 54,
+          "precision": 0.9596122778675282,
+          "recall": 0.9705882352941176,
+          "f1": 0.9650690495532088,
+          "median_error_px": 0.2008496598586299,
+          "p95_error_px": 0.4384706177972899,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1750,
+        "identity": {
+          "matched_nodes": 1777,
+          "consistent_nodes": 1777,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "040-1-offline",
+        "group_id": "ptbxl-patient-20766.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1739,
+          "fp": 100,
+          "fn": 97,
+          "precision": 0.9456226209896683,
+          "recall": 0.9471677559912854,
+          "f1": 0.9463945578231292,
+          "median_error_px": 0.3373881722108779,
+          "p95_error_px": 1.0178504996971505,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1748,
+        "identity": {
+          "matched_nodes": 1738,
+          "consistent_nodes": 1738,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "041-0-online",
+        "group_id": "ptbxl-patient-21218.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1836,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "median_error_px": 0.18661696741812211,
+          "p95_error_px": 0.39845003036994886,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1836,
+          "consistent_nodes": 1836,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "041-0-offline",
+        "group_id": "ptbxl-patient-21218.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1817,
+          "fp": 19,
+          "fn": 19,
+          "precision": 0.9896514161220044,
+          "recall": 0.9896514161220044,
+          "f1": 0.9896514161220044,
+          "median_error_px": 0.25689656662495386,
+          "p95_error_px": 0.7895316215888573,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1817,
+          "consistent_nodes": 1817,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "041-1-online",
+        "group_id": "ptbxl-patient-21218.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1836,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "median_error_px": 0.1735495453244603,
+          "p95_error_px": 0.36291641389219886,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1836,
+          "consistent_nodes": 1836,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "041-1-offline",
+        "group_id": "ptbxl-patient-21218.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1804,
+          "fp": 29,
+          "fn": 32,
+          "precision": 0.9841789416257501,
+          "recall": 0.9825708061002179,
+          "f1": 0.9833742164077405,
+          "median_error_px": 0.3189457273348816,
+          "p95_error_px": 0.8171612087154213,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1743,
+        "identity": {
+          "matched_nodes": 1804,
+          "consistent_nodes": 1804,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "042-0-online",
+        "group_id": "ptbxl-patient-19670.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1806,
+          "fp": 30,
+          "fn": 30,
+          "precision": 0.9836601307189542,
+          "recall": 0.9836601307189542,
+          "f1": 0.9836601307189542,
+          "median_error_px": 0.1985420465546986,
+          "p95_error_px": 0.45073121313872655,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1806,
+          "consistent_nodes": 1806,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "042-0-offline",
+        "group_id": "ptbxl-patient-19670.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1832,
+          "fp": 4,
+          "fn": 3,
+          "precision": 0.9978213507625272,
+          "recall": 0.9983651226158038,
+          "f1": 0.9980931626259875,
+          "median_error_px": 0.2404822800240391,
+          "p95_error_px": 0.5426120656669354,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1748,
+        "identity": {
+          "matched_nodes": 1832,
+          "consistent_nodes": 1832,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "042-1-online",
+        "group_id": "ptbxl-patient-19670.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1796,
+          "fp": 74,
+          "fn": 40,
+          "precision": 0.960427807486631,
+          "recall": 0.9782135076252724,
+          "f1": 0.9692390717754992,
+          "median_error_px": 0.27818687621055527,
+          "p95_error_px": 0.553398787231778,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1745,
+        "identity": {
+          "matched_nodes": 1796,
+          "consistent_nodes": 1796,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "042-1-offline",
+        "group_id": "ptbxl-patient-19670.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1787,
+          "fp": 56,
+          "fn": 48,
+          "precision": 0.9696147585458491,
+          "recall": 0.973841961852861,
+          "f1": 0.9717237629146275,
+          "median_error_px": 0.31581238953154184,
+          "p95_error_px": 0.8697248389956301,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1747,
+        "identity": {
+          "matched_nodes": 1787,
+          "consistent_nodes": 1787,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "043-0-online",
+        "group_id": "ptbxl-patient-8700.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1836,
+          "fp": 3,
+          "fn": 0,
+          "precision": 0.99836867862969,
+          "recall": 1.0,
+          "f1": 0.9991836734693877,
+          "median_error_px": 0.2581056095145159,
+          "p95_error_px": 0.5055877893450862,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1750,
+        "identity": {
+          "matched_nodes": 1836,
+          "consistent_nodes": 1836,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "043-0-offline",
+        "group_id": "ptbxl-patient-8700.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1830,
+          "fp": 4,
+          "fn": 6,
+          "precision": 0.9978189749182116,
+          "recall": 0.9967320261437909,
+          "f1": 0.997275204359673,
+          "median_error_px": 0.2996720735418531,
+          "p95_error_px": 0.7834299452471714,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1746,
+        "identity": {
+          "matched_nodes": 1830,
+          "consistent_nodes": 1830,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "043-1-online",
+        "group_id": "ptbxl-patient-8700.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1836,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "median_error_px": 0.2788971683205712,
+          "p95_error_px": 0.4469908434685209,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1836,
+          "consistent_nodes": 1836,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "043-1-offline",
+        "group_id": "ptbxl-patient-8700.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1771,
+          "fp": 63,
+          "fn": 65,
+          "precision": 0.9656488549618321,
+          "recall": 0.9645969498910676,
+          "f1": 0.9651226158038148,
+          "median_error_px": 0.2813308801518738,
+          "p95_error_px": 0.7104116743507822,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1744,
+        "identity": {
+          "matched_nodes": 1771,
+          "consistent_nodes": 1771,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "044-0-online",
+        "group_id": "ptbxl-patient-7011.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1836,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "median_error_px": 0.30364194441595765,
+          "p95_error_px": 0.502551687390734,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1836,
+          "consistent_nodes": 1836,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "044-0-offline",
+        "group_id": "ptbxl-patient-7011.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1758,
+          "fp": 62,
+          "fn": 59,
+          "precision": 0.9659340659340659,
+          "recall": 0.9675288937809576,
+          "f1": 0.9667308221061315,
+          "median_error_px": 0.27659705527637024,
+          "p95_error_px": 0.8287984652539969,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1709,
+        "identity": {
+          "matched_nodes": 1757,
+          "consistent_nodes": 1757,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "044-1-online",
+        "group_id": "ptbxl-patient-7011.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1835,
+          "fp": 1,
+          "fn": 1,
+          "precision": 0.9994553376906318,
+          "recall": 0.9994553376906318,
+          "f1": 0.9994553376906318,
+          "median_error_px": 0.17795913823662277,
+          "p95_error_px": 0.3999229491756893,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1835,
+          "consistent_nodes": 1835,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "044-1-offline",
+        "group_id": "ptbxl-patient-7011.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1732,
+          "fp": 82,
+          "fn": 82,
+          "precision": 0.9547960308710033,
+          "recall": 0.9547960308710033,
+          "f1": 0.9547960308710033,
+          "median_error_px": 0.32768419057618203,
+          "p95_error_px": 1.0252538887093963,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "rejected",
+        "cells": 1657,
+        "identity": null
+      },
+      {
+        "key": "045-0-online",
+        "group_id": "ptbxl-patient-6816.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1826,
+          "fp": 10,
+          "fn": 10,
+          "precision": 0.9945533769063181,
+          "recall": 0.9945533769063181,
+          "f1": 0.9945533769063181,
+          "median_error_px": 0.19856353549200323,
+          "p95_error_px": 0.4341961208966131,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1826,
+          "consistent_nodes": 1826,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "045-0-offline",
+        "group_id": "ptbxl-patient-6816.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1821,
+          "fp": 15,
+          "fn": 15,
+          "precision": 0.9918300653594772,
+          "recall": 0.9918300653594772,
+          "f1": 0.9918300653594772,
+          "median_error_px": 0.2801056751895916,
+          "p95_error_px": 0.7435555705061996,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1746,
+        "identity": {
+          "matched_nodes": 1820,
+          "consistent_nodes": 1820,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "045-1-online",
+        "group_id": "ptbxl-patient-6816.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1832,
+          "fp": 4,
+          "fn": 4,
+          "precision": 0.9978213507625272,
+          "recall": 0.9978213507625272,
+          "f1": 0.9978213507625272,
+          "median_error_px": 0.19382512999352308,
+          "p95_error_px": 0.4579912912191619,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1832,
+          "consistent_nodes": 1832,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "045-1-offline",
+        "group_id": "ptbxl-patient-6816.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1822,
+          "fp": 17,
+          "fn": 14,
+          "precision": 0.9907558455682436,
+          "recall": 0.9923747276688453,
+          "f1": 0.9915646258503401,
+          "median_error_px": 0.2399430493483939,
+          "p95_error_px": 0.7437075251336898,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1746,
+        "identity": {
+          "matched_nodes": 1822,
+          "consistent_nodes": 1822,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "046-0-online",
+        "group_id": "ptbxl-patient-16354.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1833,
+          "fp": 3,
+          "fn": 3,
+          "precision": 0.9983660130718954,
+          "recall": 0.9983660130718954,
+          "f1": 0.9983660130718954,
+          "median_error_px": 0.2026350756659018,
+          "p95_error_px": 0.49824559847469313,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1833,
+          "consistent_nodes": 1833,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "046-0-offline",
+        "group_id": "ptbxl-patient-16354.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1805,
+          "fp": 31,
+          "fn": 31,
+          "precision": 0.9831154684095861,
+          "recall": 0.9831154684095861,
+          "f1": 0.9831154684095861,
+          "median_error_px": 0.26551303888126787,
+          "p95_error_px": 0.7218195896892846,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1805,
+          "consistent_nodes": 1805,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "046-1-online",
+        "group_id": "ptbxl-patient-16354.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1836,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "median_error_px": 0.2892699752177934,
+          "p95_error_px": 0.5275083611956969,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1836,
+          "consistent_nodes": 1836,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "046-1-offline",
+        "group_id": "ptbxl-patient-16354.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1744,
+          "fp": 89,
+          "fn": 92,
+          "precision": 0.9514457174031642,
+          "recall": 0.9498910675381264,
+          "f1": 0.9506677568819842,
+          "median_error_px": 0.28524209049565763,
+          "p95_error_px": 0.8399690509002421,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1744,
+        "identity": {
+          "matched_nodes": 1744,
+          "consistent_nodes": 1744,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "047-0-online",
+        "group_id": "ptbxl-patient-6682.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1836,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "median_error_px": 0.27815848085065425,
+          "p95_error_px": 0.4344710952346875,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1836,
+          "consistent_nodes": 1836,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "047-0-offline",
+        "group_id": "ptbxl-patient-6682.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1749,
+          "fp": 91,
+          "fn": 87,
+          "precision": 0.9505434782608696,
+          "recall": 0.9526143790849673,
+          "f1": 0.9515778019586507,
+          "median_error_px": 0.29097237521613023,
+          "p95_error_px": 0.7711000394311666,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1741,
+        "identity": {
+          "matched_nodes": 1746,
+          "consistent_nodes": 1743,
+          "fraction": 0.9982817869415808
+        }
+      },
+      {
+        "key": "047-1-online",
+        "group_id": "ptbxl-patient-6682.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1836,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "median_error_px": 0.24257751266486544,
+          "p95_error_px": 0.38544954102707696,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1836,
+          "consistent_nodes": 1836,
+          "fraction": 1.0
+        }
+      },
+      {
+        "key": "047-1-offline",
+        "group_id": "ptbxl-patient-6682.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1833,
+          "fp": 3,
+          "fn": 3,
+          "precision": 0.9983660130718954,
+          "recall": 0.9983660130718954,
+          "f1": 0.9983660130718954,
+          "median_error_px": 0.25274152089707563,
+          "p95_error_px": 0.6174845654704761,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 1749,
+        "identity": {
+          "matched_nodes": 1833,
+          "consistent_nodes": 1833,
+          "fraction": 1.0
+        }
+      }
+    ]
+  },
+  {
+    "name": "contrast-global-1973",
+    "by_backend": {
+      "online": {
+        "images": 16,
+        "tp": 28919,
+        "fp": 345,
+        "fn": 457,
+        "precision": 0.9882107709130673,
+        "recall": 0.984443082788671,
+        "f1": 0.9863233287858117,
+        "median_error_px": 0.35374675618873175,
+        "p95_error_px": 0.7670118753032065,
+        "localization_population": "matched points only"
+      },
+      "offline": {
+        "images": 16,
+        "tp": 27493,
+        "fp": 1753,
+        "fn": 1840,
+        "precision": 0.940060179169801,
+        "recall": 0.9372720144547098,
+        "f1": 0.9386640263575684,
+        "median_error_px": 0.4565162406074052,
+        "p95_error_px": 1.1317719806153523,
+        "localization_population": "matched points only"
+      }
+    },
+    "cases": [
+      {
+        "key": "040-0-online",
+        "group_id": "ptbxl-patient-20766.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1834,
+          "fp": 1,
+          "fn": 2,
+          "precision": 0.9994550408719346,
+          "recall": 0.9989106753812637,
+          "f1": 0.9991827839825661,
+          "median_error_px": 0.33165289238578255,
+          "p95_error_px": 0.5811994944466669,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 318,
+        "identity": {
+          "matched_nodes": 887,
+          "consistent_nodes": 413,
+          "fraction": 0.46561443066516345
+        }
+      },
+      {
+        "key": "040-0-offline",
+        "group_id": "ptbxl-patient-20766.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1744,
+          "fp": 88,
+          "fn": 92,
+          "precision": 0.9519650655021834,
+          "recall": 0.9498910675381264,
+          "f1": 0.95092693565976,
+          "median_error_px": 0.5028912219005321,
+          "p95_error_px": 1.2189543193811274,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 65,
+        "identity": {
+          "matched_nodes": 657,
+          "consistent_nodes": 309,
+          "fraction": 0.4703196347031963
+        }
+      },
+      {
+        "key": "040-1-online",
+        "group_id": "ptbxl-patient-20766.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1781,
+          "fp": 51,
+          "fn": 55,
+          "precision": 0.9721615720524017,
+          "recall": 0.9700435729847494,
+          "f1": 0.9711014176663032,
+          "median_error_px": 0.3656990466372276,
+          "p95_error_px": 0.75502143231127,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 296,
+        "identity": {
+          "matched_nodes": 896,
+          "consistent_nodes": 500,
+          "fraction": 0.5580357142857143
+        }
+      },
+      {
+        "key": "040-1-offline",
+        "group_id": "ptbxl-patient-20766.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1693,
+          "fp": 142,
+          "fn": 143,
+          "precision": 0.9226158038147139,
+          "recall": 0.9221132897603486,
+          "f1": 0.9223644783437756,
+          "median_error_px": 0.4724758262937618,
+          "p95_error_px": 1.1506253618185256,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 70,
+        "identity": {
+          "matched_nodes": 632,
+          "consistent_nodes": 184,
+          "fraction": 0.2911392405063291
+        }
+      },
+      {
+        "key": "041-0-online",
+        "group_id": "ptbxl-patient-21218.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1834,
+          "fp": 2,
+          "fn": 2,
+          "precision": 0.9989106753812637,
+          "recall": 0.9989106753812637,
+          "f1": 0.9989106753812637,
+          "median_error_px": 0.35576609487201505,
+          "p95_error_px": 0.8245837956006111,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 115,
+        "identity": {
+          "matched_nodes": 674,
+          "consistent_nodes": 168,
+          "fraction": 0.24925816023738873
+        }
+      },
+      {
+        "key": "041-0-offline",
+        "group_id": "ptbxl-patient-21218.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1733,
+          "fp": 96,
+          "fn": 103,
+          "precision": 0.9475123018042646,
+          "recall": 0.9438997821350763,
+          "f1": 0.9457025920873124,
+          "median_error_px": 0.4382668027434599,
+          "p95_error_px": 1.1012238324452868,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 71,
+        "identity": {
+          "matched_nodes": 659,
+          "consistent_nodes": 302,
+          "fraction": 0.4582701062215478
+        }
+      },
+      {
+        "key": "041-1-online",
+        "group_id": "ptbxl-patient-21218.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1836,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "median_error_px": 0.3416712623099733,
+          "p95_error_px": 0.638358640193287,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 173,
+        "identity": {
+          "matched_nodes": 760,
+          "consistent_nodes": 327,
+          "fraction": 0.43026315789473685
+        }
+      },
+      {
+        "key": "041-1-offline",
+        "group_id": "ptbxl-patient-21218.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1736,
+          "fp": 98,
+          "fn": 100,
+          "precision": 0.9465648854961832,
+          "recall": 0.9455337690631809,
+          "f1": 0.9460490463215259,
+          "median_error_px": 0.49099528022002226,
+          "p95_error_px": 1.207199550597568,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 58,
+        "identity": {
+          "matched_nodes": 674,
+          "consistent_nodes": 391,
+          "fraction": 0.5801186943620178
+        }
+      },
+      {
+        "key": "042-0-online",
+        "group_id": "ptbxl-patient-19670.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1792,
+          "fp": 50,
+          "fn": 44,
+          "precision": 0.9728555917480999,
+          "recall": 0.9760348583877996,
+          "f1": 0.9744426318651441,
+          "median_error_px": 0.33594943092358287,
+          "p95_error_px": 0.6555400467529365,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 154,
+        "identity": {
+          "matched_nodes": 756,
+          "consistent_nodes": 443,
+          "fraction": 0.5859788359788359
+        }
+      },
+      {
+        "key": "042-0-offline",
+        "group_id": "ptbxl-patient-19670.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1787,
+          "fp": 34,
+          "fn": 48,
+          "precision": 0.9813289401427787,
+          "recall": 0.973841961852861,
+          "f1": 0.9775711159737418,
+          "median_error_px": 0.42175491135182736,
+          "p95_error_px": 0.9329025263894118,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 64,
+        "identity": {
+          "matched_nodes": 681,
+          "consistent_nodes": 325,
+          "fraction": 0.47723935389133626
+        }
+      },
+      {
+        "key": "042-1-online",
+        "group_id": "ptbxl-patient-19670.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1699,
+          "fp": 99,
+          "fn": 137,
+          "precision": 0.9449388209121246,
+          "recall": 0.9253812636165577,
+          "f1": 0.9350577875619153,
+          "median_error_px": 0.3965052343152463,
+          "p95_error_px": 0.9351469720562173,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 175,
+        "identity": {
+          "matched_nodes": 742,
+          "consistent_nodes": 368,
+          "fraction": 0.49595687331536387
+        }
+      },
+      {
+        "key": "042-1-offline",
+        "group_id": "ptbxl-patient-19670.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1662,
+          "fp": 165,
+          "fn": 173,
+          "precision": 0.909688013136289,
+          "recall": 0.9057220708446867,
+          "f1": 0.9077007099945386,
+          "median_error_px": 0.5165806923507069,
+          "p95_error_px": 1.2556045694475144,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 99,
+        "identity": {
+          "matched_nodes": 668,
+          "consistent_nodes": 279,
+          "fraction": 0.4176646706586826
+        }
+      },
+      {
+        "key": "043-0-online",
+        "group_id": "ptbxl-patient-8700.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1817,
+          "fp": 10,
+          "fn": 19,
+          "precision": 0.9945265462506842,
+          "recall": 0.9896514161220044,
+          "f1": 0.9920829920829921,
+          "median_error_px": 0.3622481724265046,
+          "p95_error_px": 0.881652275395194,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 204,
+        "identity": {
+          "matched_nodes": 831,
+          "consistent_nodes": 339,
+          "fraction": 0.40794223826714804
+        }
+      },
+      {
+        "key": "043-0-offline",
+        "group_id": "ptbxl-patient-8700.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1761,
+          "fp": 65,
+          "fn": 75,
+          "precision": 0.9644030668127054,
+          "recall": 0.9591503267973857,
+          "f1": 0.9617695248498088,
+          "median_error_px": 0.4410203115790331,
+          "p95_error_px": 1.1226314659575145,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 84,
+        "identity": {
+          "matched_nodes": 640,
+          "consistent_nodes": 256,
+          "fraction": 0.4
+        }
+      },
+      {
+        "key": "043-1-online",
+        "group_id": "ptbxl-patient-8700.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1824,
+          "fp": 6,
+          "fn": 12,
+          "precision": 0.9967213114754099,
+          "recall": 0.9934640522875817,
+          "f1": 0.9950900163666121,
+          "median_error_px": 0.3638598377344685,
+          "p95_error_px": 0.814593987187358,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 175,
+        "identity": {
+          "matched_nodes": 738,
+          "consistent_nodes": 343,
+          "fraction": 0.46476964769647694
+        }
+      },
+      {
+        "key": "043-1-offline",
+        "group_id": "ptbxl-patient-8700.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1746,
+          "fp": 87,
+          "fn": 90,
+          "precision": 0.9525368248772504,
+          "recall": 0.9509803921568627,
+          "f1": 0.9517579721995094,
+          "median_error_px": 0.3899595050266099,
+          "p95_error_px": 1.019083788986232,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 84,
+        "identity": {
+          "matched_nodes": 659,
+          "consistent_nodes": 295,
+          "fraction": 0.44764795144157815
+        }
+      },
+      {
+        "key": "044-0-online",
+        "group_id": "ptbxl-patient-7011.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1794,
+          "fp": 36,
+          "fn": 42,
+          "precision": 0.980327868852459,
+          "recall": 0.9771241830065359,
+          "f1": 0.9787234042553191,
+          "median_error_px": 0.34536416277301785,
+          "p95_error_px": 0.7031703747332625,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 106,
+        "identity": {
+          "matched_nodes": 638,
+          "consistent_nodes": 247,
+          "fraction": 0.3871473354231975
+        }
+      },
+      {
+        "key": "044-0-offline",
+        "group_id": "ptbxl-patient-7011.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1629,
+          "fp": 182,
+          "fn": 188,
+          "precision": 0.8995030369961348,
+          "recall": 0.8965327462850853,
+          "f1": 0.8980154355016539,
+          "median_error_px": 0.4668105147874874,
+          "p95_error_px": 1.1523734604531477,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 82,
+        "identity": {
+          "matched_nodes": 642,
+          "consistent_nodes": 449,
+          "fraction": 0.6993769470404985
+        }
+      },
+      {
+        "key": "044-1-online",
+        "group_id": "ptbxl-patient-7011.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1827,
+          "fp": 8,
+          "fn": 9,
+          "precision": 0.9956403269754769,
+          "recall": 0.9950980392156863,
+          "f1": 0.995369109234541,
+          "median_error_px": 0.3335659085276138,
+          "p95_error_px": 0.6867904129215139,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 101,
+        "identity": {
+          "matched_nodes": 668,
+          "consistent_nodes": 147,
+          "fraction": 0.22005988023952097
+        }
+      },
+      {
+        "key": "044-1-offline",
+        "group_id": "ptbxl-patient-7011.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1664,
+          "fp": 142,
+          "fn": 150,
+          "precision": 0.9213732004429679,
+          "recall": 0.9173098125689085,
+          "f1": 0.9193370165745857,
+          "median_error_px": 0.47663903121674067,
+          "p95_error_px": 1.1659995821124916,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 44,
+        "identity": {
+          "matched_nodes": 623,
+          "consistent_nodes": 220,
+          "fraction": 0.35313001605136435
+        }
+      },
+      {
+        "key": "045-0-online",
+        "group_id": "ptbxl-patient-6816.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1824,
+          "fp": 10,
+          "fn": 12,
+          "precision": 0.9945474372955289,
+          "recall": 0.9934640522875817,
+          "f1": 0.9940054495912807,
+          "median_error_px": 0.34357161320638196,
+          "p95_error_px": 0.6843327570001603,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 124,
+        "identity": {
+          "matched_nodes": 686,
+          "consistent_nodes": 197,
+          "fraction": 0.28717201166180756
+        }
+      },
+      {
+        "key": "045-0-offline",
+        "group_id": "ptbxl-patient-6816.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1710,
+          "fp": 110,
+          "fn": 126,
+          "precision": 0.9395604395604396,
+          "recall": 0.9313725490196079,
+          "f1": 0.9354485776805251,
+          "median_error_px": 0.5012795999424327,
+          "p95_error_px": 1.149056672841294,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 73,
+        "identity": {
+          "matched_nodes": 695,
+          "consistent_nodes": 223,
+          "fraction": 0.320863309352518
+        }
+      },
+      {
+        "key": "045-1-online",
+        "group_id": "ptbxl-patient-6816.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1822,
+          "fp": 11,
+          "fn": 14,
+          "precision": 0.993998908892526,
+          "recall": 0.9923747276688453,
+          "f1": 0.9931861542654674,
+          "median_error_px": 0.3504845736940976,
+          "p95_error_px": 0.7838023179233636,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 103,
+        "identity": {
+          "matched_nodes": 678,
+          "consistent_nodes": 158,
+          "fraction": 0.23303834808259588
+        }
+      },
+      {
+        "key": "045-1-offline",
+        "group_id": "ptbxl-patient-6816.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1762,
+          "fp": 79,
+          "fn": 74,
+          "precision": 0.9570885388375883,
+          "recall": 0.9596949891067538,
+          "f1": 0.9583899918411749,
+          "median_error_px": 0.4663279670811423,
+          "p95_error_px": 1.0921638776950209,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 109,
+        "identity": {
+          "matched_nodes": 705,
+          "consistent_nodes": 362,
+          "fraction": 0.5134751773049645
+        }
+      },
+      {
+        "key": "046-0-online",
+        "group_id": "ptbxl-patient-16354.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1813,
+          "fp": 7,
+          "fn": 23,
+          "precision": 0.9961538461538462,
+          "recall": 0.9874727668845316,
+          "f1": 0.9917943107221007,
+          "median_error_px": 0.4003902353889617,
+          "p95_error_px": 0.7975829551623135,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 205,
+        "identity": {
+          "matched_nodes": 791,
+          "consistent_nodes": 439,
+          "fraction": 0.5549936788874842
+        }
+      },
+      {
+        "key": "046-0-offline",
+        "group_id": "ptbxl-patient-16354.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1773,
+          "fp": 61,
+          "fn": 63,
+          "precision": 0.9667393675027263,
+          "recall": 0.9656862745098039,
+          "f1": 0.9662125340599454,
+          "median_error_px": 0.41820940326900174,
+          "p95_error_px": 0.9765939337285278,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 84,
+        "identity": {
+          "matched_nodes": 688,
+          "consistent_nodes": 467,
+          "fraction": 0.6787790697674418
+        }
+      },
+      {
+        "key": "046-1-online",
+        "group_id": "ptbxl-patient-16354.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1771,
+          "fp": 30,
+          "fn": 65,
+          "precision": 0.9833425874514159,
+          "recall": 0.9645969498910676,
+          "f1": 0.9738795710750618,
+          "median_error_px": 0.3671281708307496,
+          "p95_error_px": 0.7578454191085215,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 89,
+        "identity": {
+          "matched_nodes": 625,
+          "consistent_nodes": 236,
+          "fraction": 0.3776
+        }
+      },
+      {
+        "key": "046-1-offline",
+        "group_id": "ptbxl-patient-16354.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1628,
+          "fp": 205,
+          "fn": 208,
+          "precision": 0.8881614839061648,
+          "recall": 0.8867102396514162,
+          "f1": 0.8874352684655219,
+          "median_error_px": 0.4665004600258249,
+          "p95_error_px": 1.1241847564159178,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 72,
+        "identity": {
+          "matched_nodes": 623,
+          "consistent_nodes": 223,
+          "fraction": 0.3579454253611557
+        }
+      },
+      {
+        "key": "047-0-online",
+        "group_id": "ptbxl-patient-6682.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1824,
+          "fp": 9,
+          "fn": 12,
+          "precision": 0.9950900163666121,
+          "recall": 0.9934640522875817,
+          "f1": 0.9942763695829926,
+          "median_error_px": 0.334332273198149,
+          "p95_error_px": 0.8677439941757182,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 160,
+        "identity": {
+          "matched_nodes": 713,
+          "consistent_nodes": 290,
+          "fraction": 0.4067321178120617
+        }
+      },
+      {
+        "key": "047-0-offline",
+        "group_id": "ptbxl-patient-6682.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1655,
+          "fp": 171,
+          "fn": 181,
+          "precision": 0.9063526834611172,
+          "recall": 0.9014161220043573,
+          "f1": 0.9038776624795194,
+          "median_error_px": 0.4742608478248865,
+          "p95_error_px": 1.130189353482574,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 86,
+        "identity": {
+          "matched_nodes": 651,
+          "consistent_nodes": 267,
+          "fraction": 0.41013824884792627
+        }
+      },
+      {
+        "key": "047-1-online",
+        "group_id": "ptbxl-patient-6682.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1827,
+          "fp": 15,
+          "fn": 9,
+          "precision": 0.99185667752443,
+          "recall": 0.9950980392156863,
+          "f1": 0.9934747145187602,
+          "median_error_px": 0.3489318348006874,
+          "p95_error_px": 0.8429762818261878,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 309,
+        "identity": {
+          "matched_nodes": 846,
+          "consistent_nodes": 473,
+          "fraction": 0.5591016548463357
+        }
+      },
+      {
+        "key": "047-1-offline",
+        "group_id": "ptbxl-patient-6682.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1810,
+          "fp": 28,
+          "fn": 26,
+          "precision": 0.984766050054407,
+          "recall": 0.985838779956427,
+          "f1": 0.985302123026674,
+          "median_error_px": 0.4058282385269635,
+          "p95_error_px": 1.069014448395979,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 77,
+        "identity": {
+          "matched_nodes": 738,
+          "consistent_nodes": 516,
+          "fraction": 0.6991869918699187
+        }
+      }
+    ]
+  },
+  {
+    "name": "contrast-global-20261021",
+    "by_backend": {
+      "online": {
+        "images": 16,
+        "tp": 28601,
+        "fp": 1010,
+        "fn": 775,
+        "precision": 0.9658910540002026,
+        "recall": 0.9736179193899782,
+        "f1": 0.9697390950548426,
+        "median_error_px": 0.35973652117221994,
+        "p95_error_px": 0.8366695178086324,
+        "localization_population": "matched points only"
+      },
+      "offline": {
+        "images": 16,
+        "tp": 26766,
+        "fp": 1991,
+        "fn": 2567,
+        "precision": 0.9307646833814376,
+        "recall": 0.9124876419050216,
+        "f1": 0.9215355482871407,
+        "median_error_px": 0.4548029178841851,
+        "p95_error_px": 1.0898750272947613,
+        "localization_population": "matched points only"
+      }
+    },
+    "cases": [
+      {
+        "key": "040-0-online",
+        "group_id": "ptbxl-patient-20766.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1836,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "median_error_px": 0.3407685300268383,
+          "p95_error_px": 0.5932781106693802,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 312,
+        "identity": {
+          "matched_nodes": 934,
+          "consistent_nodes": 525,
+          "fraction": 0.5620985010706638
+        }
+      },
+      {
+        "key": "040-0-offline",
+        "group_id": "ptbxl-patient-20766.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1704,
+          "fp": 97,
+          "fn": 132,
+          "precision": 0.9461410327595781,
+          "recall": 0.9281045751633987,
+          "f1": 0.937036018696728,
+          "median_error_px": 0.4721375605380266,
+          "p95_error_px": 1.1213890780434321,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 185,
+        "identity": {
+          "matched_nodes": 852,
+          "consistent_nodes": 466,
+          "fraction": 0.5469483568075117
+        }
+      },
+      {
+        "key": "040-1-online",
+        "group_id": "ptbxl-patient-20766.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1783,
+          "fp": 44,
+          "fn": 53,
+          "precision": 0.9759168035030104,
+          "recall": 0.9711328976034859,
+          "f1": 0.9735189735189735,
+          "median_error_px": 0.36543693127529986,
+          "p95_error_px": 0.7351469943302018,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 138,
+        "identity": {
+          "matched_nodes": 734,
+          "consistent_nodes": 251,
+          "fraction": 0.3419618528610354
+        }
+      },
+      {
+        "key": "040-1-offline",
+        "group_id": "ptbxl-patient-20766.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1611,
+          "fp": 185,
+          "fn": 225,
+          "precision": 0.8969933184855234,
+          "recall": 0.8774509803921569,
+          "f1": 0.887114537444934,
+          "median_error_px": 0.47545534256037464,
+          "p95_error_px": 1.1070685513161496,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 103,
+        "identity": {
+          "matched_nodes": 650,
+          "consistent_nodes": 143,
+          "fraction": 0.22
+        }
+      },
+      {
+        "key": "041-0-online",
+        "group_id": "ptbxl-patient-21218.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1836,
+          "fp": 1,
+          "fn": 0,
+          "precision": 0.9994556341861731,
+          "recall": 1.0,
+          "f1": 0.9997277429893819,
+          "median_error_px": 0.3198146193668455,
+          "p95_error_px": 0.6825602953646317,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 139,
+        "identity": {
+          "matched_nodes": 701,
+          "consistent_nodes": 272,
+          "fraction": 0.3880171184022825
+        }
+      },
+      {
+        "key": "041-0-offline",
+        "group_id": "ptbxl-patient-21218.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1695,
+          "fp": 108,
+          "fn": 141,
+          "precision": 0.940099833610649,
+          "recall": 0.923202614379085,
+          "f1": 0.9315746084089035,
+          "median_error_px": 0.4258564403620372,
+          "p95_error_px": 1.0287991926163265,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 128,
+        "identity": {
+          "matched_nodes": 703,
+          "consistent_nodes": 335,
+          "fraction": 0.47652916073968704
+        }
+      },
+      {
+        "key": "041-1-online",
+        "group_id": "ptbxl-patient-21218.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1835,
+          "fp": 2,
+          "fn": 1,
+          "precision": 0.9989112683723462,
+          "recall": 0.9994553376906318,
+          "f1": 0.9991832289681459,
+          "median_error_px": 0.30893210229329504,
+          "p95_error_px": 0.5718311049496233,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 206,
+        "identity": {
+          "matched_nodes": 818,
+          "consistent_nodes": 522,
+          "fraction": 0.6381418092909535
+        }
+      },
+      {
+        "key": "041-1-offline",
+        "group_id": "ptbxl-patient-21218.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1683,
+          "fp": 121,
+          "fn": 153,
+          "precision": 0.9329268292682927,
+          "recall": 0.9166666666666666,
+          "f1": 0.9247252747252748,
+          "median_error_px": 0.4789742126166095,
+          "p95_error_px": 1.110521614401193,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 130,
+        "identity": {
+          "matched_nodes": 692,
+          "consistent_nodes": 264,
+          "fraction": 0.3815028901734104
+        }
+      },
+      {
+        "key": "042-0-online",
+        "group_id": "ptbxl-patient-19670.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1780,
+          "fp": 53,
+          "fn": 56,
+          "precision": 0.9710856519367158,
+          "recall": 0.9694989106753813,
+          "f1": 0.970291632597438,
+          "median_error_px": 0.31358244805125585,
+          "p95_error_px": 0.6979523413138528,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 139,
+        "identity": {
+          "matched_nodes": 707,
+          "consistent_nodes": 211,
+          "fraction": 0.2984441301272984
+        }
+      },
+      {
+        "key": "042-0-offline",
+        "group_id": "ptbxl-patient-19670.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1758,
+          "fp": 35,
+          "fn": 77,
+          "precision": 0.9804796430563302,
+          "recall": 0.9580381471389646,
+          "f1": 0.9691289966923925,
+          "median_error_px": 0.40614564348105786,
+          "p95_error_px": 0.9284151388298331,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 200,
+        "identity": {
+          "matched_nodes": 792,
+          "consistent_nodes": 396,
+          "fraction": 0.5
+        }
+      },
+      {
+        "key": "042-1-online",
+        "group_id": "ptbxl-patient-19670.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1590,
+          "fp": 561,
+          "fn": 246,
+          "precision": 0.7391910739191074,
+          "recall": 0.8660130718954249,
+          "f1": 0.7975921745673439,
+          "median_error_px": 0.5486583915275879,
+          "p95_error_px": 1.2690172224422205,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 197,
+        "identity": {
+          "matched_nodes": 733,
+          "consistent_nodes": 486,
+          "fraction": 0.6630286493860846
+        }
+      },
+      {
+        "key": "042-1-offline",
+        "group_id": "ptbxl-patient-19670.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1687,
+          "fp": 113,
+          "fn": 148,
+          "precision": 0.9372222222222222,
+          "recall": 0.9193460490463216,
+          "f1": 0.9281980742778542,
+          "median_error_px": 0.517467610463461,
+          "p95_error_px": 1.1947267408975222,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 129,
+        "identity": {
+          "matched_nodes": 697,
+          "consistent_nodes": 335,
+          "fraction": 0.4806312769010043
+        }
+      },
+      {
+        "key": "043-0-online",
+        "group_id": "ptbxl-patient-8700.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1759,
+          "fp": 90,
+          "fn": 77,
+          "precision": 0.9513250405624663,
+          "recall": 0.9580610021786492,
+          "f1": 0.9546811397557666,
+          "median_error_px": 0.40582227656680175,
+          "p95_error_px": 1.054533294504832,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 182,
+        "identity": {
+          "matched_nodes": 760,
+          "consistent_nodes": 411,
+          "fraction": 0.5407894736842105
+        }
+      },
+      {
+        "key": "043-0-offline",
+        "group_id": "ptbxl-patient-8700.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1720,
+          "fp": 82,
+          "fn": 116,
+          "precision": 0.9544950055493896,
+          "recall": 0.9368191721132898,
+          "f1": 0.9455744914788345,
+          "median_error_px": 0.47577476914413064,
+          "p95_error_px": 1.1289170375052935,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 118,
+        "identity": {
+          "matched_nodes": 656,
+          "consistent_nodes": 311,
+          "fraction": 0.4740853658536585
+        }
+      },
+      {
+        "key": "043-1-online",
+        "group_id": "ptbxl-patient-8700.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1828,
+          "fp": 7,
+          "fn": 8,
+          "precision": 0.9961852861035423,
+          "recall": 0.9956427015250545,
+          "f1": 0.9959139199128303,
+          "median_error_px": 0.4062431313657552,
+          "p95_error_px": 0.7134226781211851,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 170,
+        "identity": {
+          "matched_nodes": 799,
+          "consistent_nodes": 348,
+          "fraction": 0.4355444305381727
+        }
+      },
+      {
+        "key": "043-1-offline",
+        "group_id": "ptbxl-patient-8700.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1673,
+          "fp": 120,
+          "fn": 163,
+          "precision": 0.9330730619074178,
+          "recall": 0.9112200435729847,
+          "f1": 0.9220170845963075,
+          "median_error_px": 0.4313330266335786,
+          "p95_error_px": 1.0919784665100605,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 166,
+        "identity": {
+          "matched_nodes": 789,
+          "consistent_nodes": 499,
+          "fraction": 0.632446134347275
+        }
+      },
+      {
+        "key": "044-0-online",
+        "group_id": "ptbxl-patient-7011.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1810,
+          "fp": 44,
+          "fn": 26,
+          "precision": 0.9762675296655879,
+          "recall": 0.985838779956427,
+          "f1": 0.981029810298103,
+          "median_error_px": 0.4116761492387681,
+          "p95_error_px": 0.7739196699226006,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 142,
+        "identity": {
+          "matched_nodes": 730,
+          "consistent_nodes": 377,
+          "fraction": 0.5164383561643836
+        }
+      },
+      {
+        "key": "044-0-offline",
+        "group_id": "ptbxl-patient-7011.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1636,
+          "fp": 158,
+          "fn": 181,
+          "precision": 0.9119286510590858,
+          "recall": 0.9003852504127683,
+          "f1": 0.9061201883134866,
+          "median_error_px": 0.4497098278480271,
+          "p95_error_px": 1.172718306692306,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 155,
+        "identity": {
+          "matched_nodes": 761,
+          "consistent_nodes": 368,
+          "fraction": 0.4835742444152431
+        }
+      },
+      {
+        "key": "044-1-online",
+        "group_id": "ptbxl-patient-7011.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1787,
+          "fp": 44,
+          "fn": 49,
+          "precision": 0.9759694156198798,
+          "recall": 0.9733115468409586,
+          "f1": 0.9746386692118898,
+          "median_error_px": 0.30973566164133304,
+          "p95_error_px": 0.6375896162853663,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 146,
+        "identity": {
+          "matched_nodes": 704,
+          "consistent_nodes": 168,
+          "fraction": 0.23863636363636365
+        }
+      },
+      {
+        "key": "044-1-offline",
+        "group_id": "ptbxl-patient-7011.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1544,
+          "fp": 236,
+          "fn": 270,
+          "precision": 0.8674157303370786,
+          "recall": 0.8511576626240352,
+          "f1": 0.85920979410128,
+          "median_error_px": 0.5078888498332583,
+          "p95_error_px": 1.2354776715425013,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 78,
+        "identity": {
+          "matched_nodes": 563,
+          "consistent_nodes": 132,
+          "fraction": 0.2344582593250444
+        }
+      },
+      {
+        "key": "045-0-online",
+        "group_id": "ptbxl-patient-6816.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1809,
+          "fp": 10,
+          "fn": 27,
+          "precision": 0.994502473886751,
+          "recall": 0.9852941176470589,
+          "f1": 0.9898768809849521,
+          "median_error_px": 0.32154471915164906,
+          "p95_error_px": 0.6651442341604057,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 150,
+        "identity": {
+          "matched_nodes": 710,
+          "consistent_nodes": 304,
+          "fraction": 0.428169014084507
+        }
+      },
+      {
+        "key": "045-0-offline",
+        "group_id": "ptbxl-patient-6816.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1668,
+          "fp": 107,
+          "fn": 168,
+          "precision": 0.9397183098591549,
+          "recall": 0.9084967320261438,
+          "f1": 0.9238438105787871,
+          "median_error_px": 0.4664125048357495,
+          "p95_error_px": 1.1079426205597642,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 124,
+        "identity": {
+          "matched_nodes": 664,
+          "consistent_nodes": 404,
+          "fraction": 0.608433734939759
+        }
+      },
+      {
+        "key": "045-1-online",
+        "group_id": "ptbxl-patient-6816.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1780,
+          "fp": 39,
+          "fn": 56,
+          "precision": 0.9785596481583287,
+          "recall": 0.9694989106753813,
+          "f1": 0.9740082079343365,
+          "median_error_px": 0.3200722602135293,
+          "p95_error_px": 0.681710940231802,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 126,
+        "identity": {
+          "matched_nodes": 674,
+          "consistent_nodes": 123,
+          "fraction": 0.1824925816023739
+        }
+      },
+      {
+        "key": "045-1-offline",
+        "group_id": "ptbxl-patient-6816.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1708,
+          "fp": 93,
+          "fn": 128,
+          "precision": 0.9483620210993893,
+          "recall": 0.9302832244008714,
+          "f1": 0.9392356337640912,
+          "median_error_px": 0.42855549645473023,
+          "p95_error_px": 0.9572005656155786,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 170,
+        "identity": {
+          "matched_nodes": 740,
+          "consistent_nodes": 351,
+          "fraction": 0.4743243243243243
+        }
+      },
+      {
+        "key": "046-0-online",
+        "group_id": "ptbxl-patient-16354.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1779,
+          "fp": 6,
+          "fn": 57,
+          "precision": 0.9966386554621849,
+          "recall": 0.9689542483660131,
+          "f1": 0.9826014913007457,
+          "median_error_px": 0.35200885544220745,
+          "p95_error_px": 0.7883737567849483,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 148,
+        "identity": {
+          "matched_nodes": 704,
+          "consistent_nodes": 370,
+          "fraction": 0.5255681818181818
+        }
+      },
+      {
+        "key": "046-0-offline",
+        "group_id": "ptbxl-patient-16354.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1722,
+          "fp": 80,
+          "fn": 114,
+          "precision": 0.9556048834628191,
+          "recall": 0.9379084967320261,
+          "f1": 0.9466739967014843,
+          "median_error_px": 0.4407855275170248,
+          "p95_error_px": 0.9822699600754471,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 177,
+        "identity": {
+          "matched_nodes": 799,
+          "consistent_nodes": 453,
+          "fraction": 0.5669586983729662
+        }
+      },
+      {
+        "key": "046-1-online",
+        "group_id": "ptbxl-patient-16354.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1758,
+          "fp": 43,
+          "fn": 78,
+          "precision": 0.9761243753470294,
+          "recall": 0.9575163398692811,
+          "f1": 0.9667308221061315,
+          "median_error_px": 0.4065949142891947,
+          "p95_error_px": 0.8107717498425301,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 139,
+        "identity": {
+          "matched_nodes": 749,
+          "consistent_nodes": 402,
+          "fraction": 0.5367156208277704
+        }
+      },
+      {
+        "key": "046-1-offline",
+        "group_id": "ptbxl-patient-16354.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1583,
+          "fp": 208,
+          "fn": 253,
+          "precision": 0.8838637632607482,
+          "recall": 0.8622004357298475,
+          "f1": 0.872897711607389,
+          "median_error_px": 0.45841180211411353,
+          "p95_error_px": 1.0830627427407902,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 118,
+        "identity": {
+          "matched_nodes": 623,
+          "consistent_nodes": 280,
+          "fraction": 0.449438202247191
+        }
+      },
+      {
+        "key": "047-0-online",
+        "group_id": "ptbxl-patient-6682.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1815,
+          "fp": 65,
+          "fn": 21,
+          "precision": 0.9654255319148937,
+          "recall": 0.988562091503268,
+          "f1": 0.9768568353067815,
+          "median_error_px": 0.42457205990958097,
+          "p95_error_px": 1.0965638580727852,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 210,
+        "identity": {
+          "matched_nodes": 857,
+          "consistent_nodes": 468,
+          "fraction": 0.5460910151691949
+        }
+      },
+      {
+        "key": "047-0-offline",
+        "group_id": "ptbxl-patient-6682.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1618,
+          "fp": 182,
+          "fn": 218,
+          "precision": 0.8988888888888888,
+          "recall": 0.8812636165577342,
+          "f1": 0.88998899889989,
+          "median_error_px": 0.463772477046678,
+          "p95_error_px": 1.1113386303032278,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 112,
+        "identity": {
+          "matched_nodes": 626,
+          "consistent_nodes": 176,
+          "fraction": 0.28115015974440893
+        }
+      },
+      {
+        "key": "047-1-online",
+        "group_id": "ptbxl-patient-6682.0",
+        "backend": "online",
+        "detection": {
+          "images": 1,
+          "tp": 1816,
+          "fp": 1,
+          "fn": 20,
+          "precision": 0.9994496422674739,
+          "recall": 0.9891067538126361,
+          "f1": 0.9942513003011224,
+          "median_error_px": 0.3316622015495313,
+          "p95_error_px": 0.6395426853125765,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 360,
+        "identity": {
+          "matched_nodes": 935,
+          "consistent_nodes": 455,
+          "fraction": 0.48663101604278075
+        }
+      },
+      {
+        "key": "047-1-offline",
+        "group_id": "ptbxl-patient-6682.0",
+        "backend": "offline",
+        "detection": {
+          "images": 1,
+          "tp": 1756,
+          "fp": 66,
+          "fn": 80,
+          "precision": 0.9637760702524698,
+          "recall": 0.9564270152505446,
+          "f1": 0.9600874794969929,
+          "median_error_px": 0.41712101412343233,
+          "p95_error_px": 1.016642757192359,
+          "localization_population": "matched points only"
+        },
+        "topology_status": "accepted",
+        "cells": 208,
+        "identity": {
+          "matched_nodes": 852,
+          "consistent_nodes": 409,
+          "fraction": 0.4800469483568075
+        }
+      }
+    ]
+  }
+]

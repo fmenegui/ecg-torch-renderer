@@ -7,6 +7,14 @@ a training loop. Input `[B,12,T]` signals in mV, get RGB with optional independe
 lead masks, black/white views and detection boxes. Rendering and target
 generation stay on the signal device.
 
+Version **0.13.0** adds per-occurrence **lead-name detection** and a paired
+dataset exporter for digitization, joint waveform/name detection and cropped
+waveform segmentation. Crops are separated by foreign-trace presence and keep
+original mV samples, source times, printed polarity and patient-group splits.
+The CLI streams captures from a frozen source plan. See
+[paired datasets](documentation/pages/training.md#paired-task-datasets) or run
+`python examples/export_paired_dataset.py --out build/paired-demo`.
+
 Both torch and offline rendering can export identified **5 mm grid
 intersections**, their visible image coordinates and a point-only mask.
 See [the grid-point guide](documentation/pages/grid-points.md) and
@@ -365,8 +373,35 @@ sources live in `documentation/pages`. CI rebuilds the site and uploads it as
 the `documentation` artifact. The committed `docs/` copy is regenerated only
 when a release refreshes it, so prefer the CI artifact for the current API.
 
-This is an image/target generator. It does not include a trained clinical
-digitizer or demonstrate superiority to a commercial system. Examples use
-artificial signals. [Contributing](CONTRIBUTING.md) · [Changelog](CHANGELOG.md) · MIT.
+## Optional image-to-signal reference
+
+The `digitization` extra integrates Heng's learned paper rectification and Tang's
+published waveform checkpoints. It supports a single-model development profile
+and the published fifteen-model inference ensemble. Downloads are explicit and
+SHA-256 pinned, and failures remain visible in signal-level evaluation.
+
+```bash
+python -m pip install -e '.[digitization]'
+ecg-digitize fetch --assets build/reference-assets
+python examples/prepare_digitization_reference.py --out build/digitization-data
+ecg-digitize run --assets build/reference-assets \
+  --manifest build/digitization-data/manifest.json --out build/digitization-run \
+  --device cpu --precision bfloat16
+```
+
+Install a matching Torch/torchvision stack first. The default adapter assumes the
+Kaggle 3x4 plus long-II layout. It does not infer arbitrary document calibration
+or establish clinical generalization. See the [digitization guide](documentation/pages/digitization.md)
+for full-ensemble setup, mV/time contracts, official-metric version and limitations.
+
+The renderer remains an image/target generator. The optional research reference
+does not establish superiority to a commercial system.
+[Contributing](CONTRIBUTING.md) · [Changelog](CHANGELOG.md) · MIT for this package's code.
+
+The [paired sampling study](research/grid-sampling-study/README.md) extends
+the detector pilot to all eight offline test images at 16/32/64/128 SPP, with
+frozen weights and thresholds. `examples/grid_sampling_study.py` exports
+multi-radius scoring, patient-paired bootstrap differences and CPU capture
+timing. Decimal coordinates alone do not establish physical subpixel accuracy.
 
 

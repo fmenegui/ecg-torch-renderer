@@ -1,0 +1,318 @@
+{
+  "schema": "m3-independent-methodology-decision-matrix-v1",
+  "date": "2026-10-23",
+  "audited_commit": "f4f6caef3b59b5830e93284cccadbc6855fc701e",
+  "status": "Independent critique and proposed decisions, not a promoted new algorithm",
+  "frozen_m2_modified": false,
+  "competitor_performance_claimed": false,
+  "decision_principle": "Choose from a measured frontier of physical accuracy, wrong mass, useful coverage, signal fidelity, failure rate and cost, using only information available at inference",
+  "evidence_classes": {
+    "source": "Exact source inspection at the audited commit",
+    "m2": "Previously frozen M2 new-patient results, now inspected",
+    "C01": "Coherent omission of every odd major-grid row and column",
+    "C02": "Two disconnected visible regions of one planar sheet",
+    "C03": "Perfect points under progressively stronger finite homographies",
+    "C04": "Geometry-only comparison of triangle interpolation and homography fitted to the same exact correspondences",
+    "CP": "Predeclared 12-scene, 60-arm analytical development probe of global homography and shared residual composition, including negative results"
+  },
+  "decisions": [
+    {
+      "id": "D01",
+      "priority": "P0 contract",
+      "choice": "Keep original RGB, evidence and eligibility as separate outputs",
+      "verdict": "retain",
+      "evidence": [
+        "source:complete_rectifier.render_complete",
+        "source:rectify_denoising_grid.write_geometry_output"
+      ],
+      "reason": "Missing grid does not imply missing visible text or waveform content",
+      "falsification": "E07: no-grid header, margins, grid dropouts and opaque physical occlusions",
+      "acceptance": "Original archive exactly matches input. Sampling source is original RGB. Grid confidence never directly zeros RGB. Hidden physical content is not claimed recovered.",
+      "limits": "Archived original preservation does not prove that a resampled thin waveform retains its amplitude or contrast"
+    },
+    {
+      "id": "D02",
+      "priority": "P0 contract",
+      "choice": "Use one identical cell complex for forward and inverse operations",
+      "verdict": "retain",
+      "evidence": [
+        "source:cell_mesh.CellMap",
+        "source:complete_rectifier.CompleteMap"
+      ],
+      "reason": "Independent triangulations can disagree even at shared observed cells",
+      "falsification": "Shared edges, holes, conflicting cells and round-trip controls",
+      "acceptance": "Forward/inverse use identical topology. Ambiguous overlap returns missing support. Bounds and orientation failures are explicit.",
+      "limits": "Round-trip and orientation are implementation/topology checks, not physical error certificates"
+    },
+    {
+      "id": "D03",
+      "priority": "P0 architecture",
+      "choice": "Replace implicit fixed adjacent-major-grid identity with explicit pitch and skipped-line hypotheses",
+      "verdict": "investigate_before_more_smoothing",
+      "evidence": [
+        "source:lattice.organize_lattice",
+        "source:canonical_mm=ids[:,::-1]*5",
+        "C01"
+      ],
+      "reason": "Perfectly consistent IDs can be physically wrong when a regular subgrid is detected",
+      "falsification": "E02: matched-density random dropout versus coherent 2x and 3x subgrids, major/minor ambiguity",
+      "acceptance": "Recover scale with extra observable evidence or declare it ambiguous. Do not certify mm from a periodic point set alone.",
+      "limits": "The C01 observed error is fault injection, not estimated detector failure frequency"
+    },
+    {
+      "id": "D04",
+      "priority": "P0 architecture",
+      "choice": "Retain multiple supported components and their registration ambiguity",
+      "verdict": "replace_largest_component_only_policy",
+      "evidence": [
+        "source:lattice.organize_lattice",
+        "C02"
+      ],
+      "reason": "Discarding smaller islands loses correct local coordinate evidence",
+      "falsification": "E03: visible islands with identifiable and unidentifiable relative offsets",
+      "acceptance": "Keep local charts without fabricating an integer global offset. Count local coverage and global registration separately.",
+      "limits": "More retained components do not by themselves imply a globally identifiable paper map"
+    },
+    {
+      "id": "D05",
+      "priority": "P0 architecture",
+      "choice": "Evaluate local orientation/spacing and multihypothesis lattice growth",
+      "verdict": "challenge_global_basis_and_fixed_neighbor_windows",
+      "evidence": [
+        "source:lattice.organize_lattice",
+        "source:local_cells.locally_supported_cells",
+        "C03"
+      ],
+      "reason": "Exact projective observations already fragment the current graph under stronger perspective",
+      "falsification": "E01/E04: perfect points first, network points second, increasing projective severity then nonrigid distortion",
+      "acceptance": "Measure components, retained points, cycle conflicts, ID agreement, physical G/W/C/R and rejection separately.",
+      "limits": "C03 native lattice rejection can still leave useful locally supported cells, so it is not a complete-RGB failure rate"
+    },
+    {
+      "id": "D06",
+      "priority": "P0 geometry",
+      "choice": "Include a fitted global homography and projective-plus-local residual as explicit challengers",
+      "verdict": "reject_universal_piecewise_affine_interpolant",
+      "evidence": [
+        "source:cell_mesh.forward_cell_map",
+        "source:frame_mesh.complete_frame_mesh",
+        "C04",
+        "CP"
+      ],
+      "reason": "Perfect projective anchors do not make affine cell interiors projectively exact. Shared diagonals are C0, not generally C1.",
+      "falsification": "E04b: flat homographies and genuine curved/creased controls with exact and noisy anchors",
+      "acceptance": "A flat-projective case should not acquire measurable interior bias or artificial diagonal kinks when a simpler model is supported. Curved controls must remain capable of rejecting a global-only map.",
+      "limits": "C04 is geometry-only with known IDs, not a native end-to-end or clinical comparison. Do not choose a branch using test gold.",
+      "candidate_composition": "F(x)=T(H(x)), F^-1(u)=H^-1(T^-1(u)), with T sharing one cell complex from H(observed) to canonical coordinates",
+      "warning": "Global H on a flat control is different from independent per-cell homographies. Numerical C0 continuity is not C1 continuity or physical accuracy. No image bank or RGB sampling was evaluated.",
+      "prototype_result_scope": "Positive ideal/projective and curved controls, but W regressions on oblique creases and noisy/incorrect anchors. Not a promoted branch and not native competitor execution."
+    },
+    {
+      "id": "D07",
+      "priority": "P0 geometry",
+      "choice": "Separate location noise, false points and wrong lattice IDs",
+      "verdict": "retain_soft_positions_but_add_discrete_hypothesis_controls",
+      "evidence": [
+        "source:robust_refinement.refine_grid_points",
+        "source:complete_rectifier.fit_complete_map",
+        "C01",
+        "m2"
+      ],
+      "reason": "Fixed-ID denoising cannot repair systematic correspondence errors and can preserve the severe error tail",
+      "falsification": "E06: hard anchors, soft anchors, explicit outliers and corrected/ambiguous ID hypotheses",
+      "acceptance": "Attribute improvements through separate ablations. A corrected association must be assessed against physical truth rather than only a lower fitting residual.",
+      "limits": "Preserving original observations for audit does not require imposing them as exact physical truth in every new candidate"
+    },
+    {
+      "id": "D08",
+      "priority": "P1 geometry",
+      "choice": "Keep the global curvature guard as a control and test region/edge-local regularization",
+      "verdict": "conditional_investigation",
+      "evidence": [
+        "source:robust_refinement._coherent_curvature_guard",
+        "m2:53_of_64_guarded",
+        "m2:clean_and_noisy_crease_controls"
+      ],
+      "reason": "Global abstention avoids known crease damage but suppresses useful denoising elsewhere and preserves coherent errors",
+      "falsification": "E05: no guard, global guard and localized guard with identical force/budget and both clean/noisy folds",
+      "acceptance": "Improvement in activation or G must not conceal clean-fold W regressions, iteration limits or skipped difficult regions.",
+      "limits": "The guard is a prior-conflict heuristic, not a true-crease certificate"
+    },
+    {
+      "id": "D09",
+      "priority": "P0 risk",
+      "choice": "Retain support heuristics but calibrate their physical meaning separately",
+      "verdict": "reject_self_agreement_as_accuracy_certificate",
+      "evidence": [
+        "source:complete_rectifier.CompleteMap.eligible_geometry",
+        "source:complete_rectifier.CompleteMap.__init__",
+        "C01"
+      ],
+      "reason": "Interpolated anchors and preserved local cells agree by construction even under coherent physical errors",
+      "falsification": "Low-residual wrong-ID and scale-alias cases, followed by held-out physical risk/coverage evaluation",
+      "acceptance": "Report G, W, C and R, raw finite maps and filtered maps. Any risk promise needs independent calibration units and explicit assumptions.",
+      "limits": "Distance to nearby points, hull membership and Jacobian orientation do not establish mm accuracy"
+    },
+    {
+      "id": "D10",
+      "priority": "P1 uncertainty",
+      "choice": "Keep ranking scores distinct from calibrated localization uncertainty",
+      "verdict": "retain_honest_labels_and_test_real_uncertainty",
+      "evidence": [
+        "source:robust_refinement._rank_weights",
+        "source:complete_rectifier.fit_complete_map",
+        "source:lattice.organize_lattice"
+      ],
+      "reason": "RANSAC/mesh fitting validates but does not weight scores. M2 rank weights are not probabilities or covariances.",
+      "falsification": "E06: heteroscedastic and coherent localization noise, wrong high-score points and calibrated held-out residuals",
+      "acceptance": "Any covariance or acceptance probability must be supported by calibration, including scale and viewpoint dependence.",
+      "limits": "A score-weighted least-squares replacement is not automatically more physically accurate"
+    },
+    {
+      "id": "D11",
+      "priority": "P0 output",
+      "choice": "Separate full map proposal, actually resampled RGB and partial coordinates",
+      "verdict": "retain_status_contract_and_extend_benchmark_counts",
+      "evidence": [
+        "source:complete_rectifier.render_complete",
+        "source:rectify_denoising_grid.write_geometry_output",
+        "m2:42_full_mesh_proposals"
+      ],
+      "reason": "Output-canvas bounds can return original RGB even after a full map is proposed. A coordinate-only evaluator does not establish image delivery.",
+      "falsification": "E07: output bounds, extreme scale, large margins and sparse support",
+      "acceptance": "Count proposal accepted, RGB resampled, original fallback, local field available and no eligible coordinate as separate outcomes.",
+      "limits": "Fallback original avoids damage but is not a successful global rectification"
+    },
+    {
+      "id": "D12",
+      "priority": "P0 output",
+      "choice": "Measure raster and signal fidelity after sampling",
+      "verdict": "add_required_endpoint",
+      "evidence": [
+        "source:complete_rectifier.render_complete:INTER_LINEAR",
+        "source:cell_mesh.remap_cells",
+        "C04"
+      ],
+      "reason": "A mathematically invertible coordinate map can still sub-sample thin traces or introduce geometric kinks",
+      "falsification": "E07/E10: thin traces, extrema, no-grid header, varying output density and fixed downstream extractor",
+      "acceptance": "Measure calibrated amplitude/time, sign, lead ownership and trace loss. Record native output and any common-density evaluation adapter separately.",
+      "limits": "Do not freely fit away gain or time errors in scoring. No clinical benefit follows directly from a geometric proxy."
+    },
+    {
+      "id": "D13",
+      "priority": "P0 evaluation",
+      "choice": "Publish relative-gauge and autonomous-orientation endpoints separately",
+      "verdict": "modify_comparison_protocol",
+      "evidence": [
+        "source:evaluate_nextgen_refinement.run",
+        "source:evaluate_rectification_diagnostic.alignment",
+        "source:evaluate_rectification_diagnostic.aligned_mm"
+      ],
+      "reason": "Evaluation-only D4 signs/permutation and integer origin can remove errors that matter to time, amplitude and lead identity",
+      "falsification": "E08: rotations, reflections, origin changes and known calibration",
+      "acceptance": "Use exactly the same permitted gauge for all relative-geometry methods and separately score the uncorrected autonomous output.",
+      "limits": "The existing gauge is scoring assistance, not gold supplied to inference, and must not be described as affine or scale rescue"
+    },
+    {
+      "id": "D14",
+      "priority": "P0 comparison",
+      "choice": "Separate native end-to-end, common-observation geometry and component substitution",
+      "verdict": "require_explicit_experiment_labels",
+      "evidence": [
+        "m2:no_competitors_executed",
+        "source:current_pipeline_stage_boundaries"
+      ],
+      "reason": "Feeding our anchors to an external interpolation recipe does not execute its native detector, preprocessing or calibrated pipeline",
+      "falsification": "E09: verify weights, source pins, documented inputs, output units and native failure modes",
+      "acceptance": "Label original implementation, adapted component, inspired reconstruction and unavailable proprietary product distinctly.",
+      "limits": "A product without code/API access receives availability=unavailable, not a fabricated score or a zero-performance ranking"
+    },
+    {
+      "id": "D15",
+      "priority": "P0 split",
+      "choice": "Treat inspected M2 assessment as retrospective for M3 method design",
+      "verdict": "reserve_new_confirmation_domain",
+      "evidence": [
+        "m2:64_assessment_cases_already_inspected",
+        "m2:published_regression_and_best_case_selection"
+      ],
+      "reason": "New decisions now use information learned from the prior assessment",
+      "falsification": "E11: freeze wrappers/configurations before native comparator scores and use an untouched domain or group for confirmation",
+      "acceptance": "Explicitly separate feasibility, retrospective comparison, selection and final confirmation. Record all patients and exclusions.",
+      "limits": "Renaming an already-inspected split does not restore independence"
+    },
+    {
+      "id": "D16",
+      "priority": "P0 generalization",
+      "choice": "Add alternative geometry truth and external photographic data",
+      "verdict": "required_for_broader_claim",
+      "evidence": [
+        "m2:same_renderer_family",
+        "m2:gold_export_composition_audit"
+      ],
+      "reason": "Patient separation does not remove shared generator, renderer or observation-model biases",
+      "falsification": "E11: independent analytic maps, generator-family holdout and real captures with justified reference coordinates or paired signals",
+      "acceptance": "State which endpoints have actual physical mm truth. Flat/photograph pairs or visual scores must not silently be treated as dense physical truth.",
+      "limits": "A renderer self-consistency audit is useful but does not establish external physical calibration"
+    },
+    {
+      "id": "D17",
+      "priority": "P0 selection",
+      "choice": "Use a Pareto decision and report all tails, not a single aggregate win",
+      "verdict": "retain_four_metrics_and_add_tail_gates",
+      "evidence": [
+        "m2:G_W_C_R",
+        "m2:development_01025-6_W_regression",
+        "m2:severe_test_tail"
+      ],
+      "reason": "A mean G gain can coexist with individual damage and an unchanged severe RMSE tail",
+      "falsification": "Report case-level regressions, support-common and all-returned error, failure rates and scenario strata",
+      "acceptance": "Prevent abstain-all from winning. State weights and intended utility before scores. Use descriptive small-sample uncertainty honestly.",
+      "limits": "Pixel/query count is not the number of independent patients"
+    },
+    {
+      "id": "D18",
+      "priority": "P0 selection",
+      "choice": "Choose per-image branches only from observable input evidence",
+      "verdict": "forbid_gold_or_generator_label_router",
+      "evidence": [
+        "source:bank_backend_and_scenario_are_evaluation_metadata",
+        "C04:model_family_tradeoff"
+      ],
+      "reason": "Picking the best method using the known rendering scenario or test error is not an autonomous algorithm",
+      "falsification": "Freeze any router on development, then evaluate untouched cases without backend/scenario labels",
+      "acceptance": "A best-of-methods oracle may be reported only as an upper bound, never mixed into deployed results.",
+      "limits": "A homography is appropriate for a flat control but may be biased on a real crease. A single universal branch is not established."
+    },
+    {
+      "id": "D19",
+      "priority": "P1 resources",
+      "choice": "Profile and bound full pipeline resources, including masks and retries",
+      "verdict": "require_end_to_end_cost",
+      "evidence": [
+        "source:complete_rectifier.CompleteMap.evidence",
+        "source:complete_rectifier.render_complete"
+      ],
+      "reason": "Hull products scale with query count times hull size and are repeated during eligibility. Geometry-only timings omit detector and RGB delivery.",
+      "falsification": "Large frame, complex hull, output density sweep, budget exhaustion and warm/cold runs on named hardware",
+      "acceptance": "Report stage timing, total wall time, peak memory, retries and output status. Precompute/reuse hull classifications where safe.",
+      "limits": "The approximately 472 MB two-buffer estimate at 48x4096 queries and 100 hull edges is a static bound, not a measured peak"
+    }
+  ],
+  "next_experiment_order": [
+    "Freeze stage boundaries, method identities, exact source/weight pins, native domains and unavailable-access status",
+    "Run source-controlled analytical diagnostics C01-C04 and native feasibility without method selection",
+    "Compare native methods retrospectively on identical M2 cases with all failures retained",
+    "Run separate detector/organizer/geometry-only ablations to attribute differences",
+    "Use development to choose candidates and any input-only router",
+    "Freeze candidates and confirm on new uninspected groups and an external/alternative generator domain"
+  ],
+  "prohibited_shortcuts": [
+    "Declaring an adapted interpolation recipe to be the original commercial or published system",
+    "Using test gold or renderer backend/scenario to select the winning method per image",
+    "Counting original-preserved fallback as a successfully rectified full RGB output",
+    "Treating a low fitting residual, round-trip, positive Jacobian or high detector F1 as physical accuracy",
+    "Equating eight repeated views with eight independent patients",
+    "Claiming universal, clinical or state-of-the-art superiority from these structural controls"
+  ]
+}

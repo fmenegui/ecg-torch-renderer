@@ -1,0 +1,240 @@
+{
+  "schema": "m4-sampling-cost-v1",
+  "protocol_sha256": "228329fb3e8f50bcdb39911aa2ab91f3f7613f0ed6411d69ae8bdeff1900043e",
+  "source_sha256": "b9a7a732533090271455d42fdc3b4784bf299e14f0b4fc82c564fadccc31f503",
+  "hardware": {
+    "cpu_model": "AMD EPYC 9V74 80-Core Processor",
+    "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "opencv": "4.11.0",
+    "logical_cpu_count": 9,
+    "process_affinity_cpu_count": 9,
+    "cgroup_cpu_max": "800000 100000",
+    "threads": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    }
+  },
+  "source_shape": [
+    1100,
+    1400,
+    3
+  ],
+  "output_shape": [
+    768,
+    1024
+  ],
+  "source_float32_bytes": 18480000,
+  "collected_output_and_evidence_bytes": 11796480,
+  "all_methods_same_output_for_each_n": true,
+  "measurements": [
+    {
+      "method": "cached-m3",
+      "subgrid": 2,
+      "samples": [
+        {
+          "total_seconds": 0.1849863670013292,
+          "map_seconds": 0.14317494799979613,
+          "application_seconds": 0.04181141900153307
+        },
+        {
+          "total_seconds": 0.17133781600023212,
+          "map_seconds": 0.1319027460012876,
+          "application_seconds": 0.03943506999894453
+        },
+        {
+          "total_seconds": 0.16540875299870095,
+          "map_seconds": 0.13138217699997767,
+          "application_seconds": 0.034026575998723274
+        }
+      ],
+      "median_total_seconds": 0.17133781600023212,
+      "output_pixels_per_second": 4589949.950097033,
+      "peak_rss_bytes": 173293568,
+      "repeated_output_sha256": [
+        "fcc63f86193b6a5f280458cfd096d21c6eedbe90f8a469508f941549bb2873a7",
+        "fcc63f86193b6a5f280458cfd096d21c6eedbe90f8a469508f941549bb2873a7",
+        "fcc63f86193b6a5f280458cfd096d21c6eedbe90f8a469508f941549bb2873a7"
+      ],
+      "output_hashes_identical": true,
+      "opencv_threads": 1,
+      "map_cache_bytes": 25165824
+    },
+    {
+      "method": "tiled",
+      "subgrid": 2,
+      "samples": [
+        {
+          "total_seconds": 0.28727824599991436
+        },
+        {
+          "total_seconds": 0.30436570399979246
+        },
+        {
+          "total_seconds": 0.279883114999393
+        }
+      ],
+      "median_total_seconds": 0.28727824599991436,
+      "output_pixels_per_second": 2737527.1568604414,
+      "peak_rss_bytes": 81543168,
+      "repeated_output_sha256": [
+        "fcc63f86193b6a5f280458cfd096d21c6eedbe90f8a469508f941549bb2873a7",
+        "fcc63f86193b6a5f280458cfd096d21c6eedbe90f8a469508f941549bb2873a7",
+        "fcc63f86193b6a5f280458cfd096d21c6eedbe90f8a469508f941549bb2873a7"
+      ],
+      "output_hashes_identical": true,
+      "opencv_threads": 1,
+      "stats": {
+        "tiles": 48,
+        "inverse_calls": 192,
+        "inverse_points": 3145728,
+        "max_query_points": 16384,
+        "max_coordinate_bytes": 917504,
+        "max_accounted_array_bytes": 1736704,
+        "source_float_bytes": 18480000
+      }
+    },
+    {
+      "method": "cached-m3",
+      "subgrid": 4,
+      "samples": [
+        {
+          "total_seconds": 0.5811548009987746,
+          "map_seconds": 0.4654384489986114,
+          "application_seconds": 0.11571635200016317
+        },
+        {
+          "total_seconds": 0.6225720889997319,
+          "map_seconds": 0.482363647000966,
+          "application_seconds": 0.14020844199876592
+        },
+        {
+          "total_seconds": 0.6850321339989023,
+          "map_seconds": 0.5281585379998432,
+          "application_seconds": 0.15687359599905903
+        }
+      ],
+      "median_total_seconds": 0.6225720889997319,
+      "output_pixels_per_second": 1263198.2928491654,
+      "peak_rss_bytes": 337313792,
+      "repeated_output_sha256": [
+        "281d7caa1248508bc079223dc34ae0ac7294293f790cff9e6b1a3fabe6ea75bd",
+        "281d7caa1248508bc079223dc34ae0ac7294293f790cff9e6b1a3fabe6ea75bd",
+        "281d7caa1248508bc079223dc34ae0ac7294293f790cff9e6b1a3fabe6ea75bd"
+      ],
+      "output_hashes_identical": true,
+      "opencv_threads": 1,
+      "map_cache_bytes": 100663296
+    },
+    {
+      "method": "tiled",
+      "subgrid": 4,
+      "samples": [
+        {
+          "total_seconds": 1.1227530809992459
+        },
+        {
+          "total_seconds": 1.0415746999988187
+        },
+        {
+          "total_seconds": 1.0658676460006973
+        }
+      ],
+      "median_total_seconds": 1.0658676460006973,
+      "output_pixels_per_second": 737832.6970996974,
+      "peak_rss_bytes": 81084416,
+      "repeated_output_sha256": [
+        "281d7caa1248508bc079223dc34ae0ac7294293f790cff9e6b1a3fabe6ea75bd",
+        "281d7caa1248508bc079223dc34ae0ac7294293f790cff9e6b1a3fabe6ea75bd",
+        "281d7caa1248508bc079223dc34ae0ac7294293f790cff9e6b1a3fabe6ea75bd"
+      ],
+      "output_hashes_identical": true,
+      "opencv_threads": 1,
+      "stats": {
+        "tiles": 48,
+        "inverse_calls": 768,
+        "inverse_points": 12582912,
+        "max_query_points": 16384,
+        "max_coordinate_bytes": 917504,
+        "max_accounted_array_bytes": 1736704,
+        "source_float_bytes": 18480000
+      }
+    },
+    {
+      "method": "cached-m3",
+      "subgrid": 8,
+      "samples": [
+        {
+          "total_seconds": 2.4204336919992784,
+          "map_seconds": 2.044399993999832,
+          "application_seconds": 0.3760336979994463
+        },
+        {
+          "total_seconds": 2.1849967739999556,
+          "map_seconds": 1.8058641379993787,
+          "application_seconds": 0.3791326360005769
+        },
+        {
+          "total_seconds": 2.1443731549989025,
+          "map_seconds": 1.7445359859993914,
+          "application_seconds": 0.39983716899951105
+        }
+      ],
+      "median_total_seconds": 2.1849967739999556,
+      "output_pixels_per_second": 359923.6435302929,
+      "peak_rss_bytes": 941293568,
+      "repeated_output_sha256": [
+        "d5696e6789a4f19214e38a20b38f9a6f637bea191f5db40622317ce8f71e2864",
+        "d5696e6789a4f19214e38a20b38f9a6f637bea191f5db40622317ce8f71e2864",
+        "d5696e6789a4f19214e38a20b38f9a6f637bea191f5db40622317ce8f71e2864"
+      ],
+      "output_hashes_identical": true,
+      "opencv_threads": 1,
+      "map_cache_bytes": 402653184
+    },
+    {
+      "method": "tiled",
+      "subgrid": 8,
+      "samples": [
+        {
+          "total_seconds": 4.000430650999988
+        },
+        {
+          "total_seconds": 3.812675457000296
+        },
+        {
+          "total_seconds": 3.5704534300002706
+        }
+      ],
+      "median_total_seconds": 3.812675457000296,
+      "output_pixels_per_second": 206267.7531485311,
+      "peak_rss_bytes": 81547264,
+      "repeated_output_sha256": [
+        "d5696e6789a4f19214e38a20b38f9a6f637bea191f5db40622317ce8f71e2864",
+        "d5696e6789a4f19214e38a20b38f9a6f637bea191f5db40622317ce8f71e2864",
+        "d5696e6789a4f19214e38a20b38f9a6f637bea191f5db40622317ce8f71e2864"
+      ],
+      "output_hashes_identical": true,
+      "opencv_threads": 1,
+      "stats": {
+        "tiles": 48,
+        "inverse_calls": 3072,
+        "inverse_points": 50331648,
+        "max_query_points": 16384,
+        "max_coordinate_bytes": 917504,
+        "max_accounted_array_bytes": 1736704,
+        "source_float_bytes": 18480000
+      }
+    }
+  ],
+  "scope": "CPU affine callback including conversion, coordinates, sampling and collection. Separate fresh processes, three repeated images. Peak RSS is lifetime high water, including imports and previous repeats. Host is shared. No GPU or production-pipeline timing claim.",
+  "large_frame_formula": {
+    "output_pixels": 16000000,
+    "subgrid": 8,
+    "old_coordinate_cache_bytes": 8192000000,
+    "tile_coordinate_array_bytes_at_budget_16384": 917504,
+    "note": "Only coordinate arrays in the tile formula, not total process/image memory or callback internals."
+  }
+}

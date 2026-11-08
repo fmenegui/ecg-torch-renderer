@@ -1,0 +1,5235 @@
+{
+  "records": [
+    {
+      "source_id": "ptbxl-10026",
+      "group_id": "ptbxl-patient-16646.0"
+    },
+    {
+      "source_id": "ptbxl-10050",
+      "group_id": "ptbxl-patient-19252.0"
+    },
+    {
+      "source_id": "ptbxl-10060",
+      "group_id": "ptbxl-patient-495.0"
+    },
+    {
+      "source_id": "ptbxl-10078",
+      "group_id": "ptbxl-patient-13438.0"
+    },
+    {
+      "source_id": "ptbxl-10145",
+      "group_id": "ptbxl-patient-1347.0"
+    },
+    {
+      "source_id": "ptbxl-10150",
+      "group_id": "ptbxl-patient-4149.0"
+    },
+    {
+      "source_id": "ptbxl-10184",
+      "group_id": "ptbxl-patient-17992.0"
+    },
+    {
+      "source_id": "ptbxl-10219",
+      "group_id": "ptbxl-patient-17647.0"
+    },
+    {
+      "source_id": "ptbxl-1022",
+      "group_id": "ptbxl-patient-6648.0"
+    },
+    {
+      "source_id": "ptbxl-10220",
+      "group_id": "ptbxl-patient-16034.0"
+    },
+    {
+      "source_id": "ptbxl-10273",
+      "group_id": "ptbxl-patient-10471.0"
+    },
+    {
+      "source_id": "ptbxl-1029",
+      "group_id": "ptbxl-patient-3999.0"
+    },
+    {
+      "source_id": "ptbxl-10292",
+      "group_id": "ptbxl-patient-5746.0"
+    },
+    {
+      "source_id": "ptbxl-10303",
+      "group_id": "ptbxl-patient-10757.0"
+    },
+    {
+      "source_id": "ptbxl-10308",
+      "group_id": "ptbxl-patient-1880.0"
+    },
+    {
+      "source_id": "ptbxl-10319",
+      "group_id": "ptbxl-patient-2335.0"
+    },
+    {
+      "source_id": "ptbxl-10325",
+      "group_id": "ptbxl-patient-7216.0"
+    },
+    {
+      "source_id": "ptbxl-10390",
+      "group_id": "ptbxl-patient-483.0"
+    },
+    {
+      "source_id": "ptbxl-10396",
+      "group_id": "ptbxl-patient-5368.0"
+    },
+    {
+      "source_id": "ptbxl-10411",
+      "group_id": "ptbxl-patient-17783.0"
+    },
+    {
+      "source_id": "ptbxl-10416",
+      "group_id": "ptbxl-patient-15226.0"
+    },
+    {
+      "source_id": "ptbxl-10444",
+      "group_id": "ptbxl-patient-4768.0"
+    },
+    {
+      "source_id": "ptbxl-10452",
+      "group_id": "ptbxl-patient-12988.0"
+    },
+    {
+      "source_id": "ptbxl-10458",
+      "group_id": "ptbxl-patient-1275.0"
+    },
+    {
+      "source_id": "ptbxl-10468",
+      "group_id": "ptbxl-patient-5278.0"
+    },
+    {
+      "source_id": "ptbxl-10503",
+      "group_id": "ptbxl-patient-1650.0"
+    },
+    {
+      "source_id": "ptbxl-10520",
+      "group_id": "ptbxl-patient-4550.0"
+    },
+    {
+      "source_id": "ptbxl-10540",
+      "group_id": "ptbxl-patient-4387.0"
+    },
+    {
+      "source_id": "ptbxl-10556",
+      "group_id": "ptbxl-patient-11085.0"
+    },
+    {
+      "source_id": "ptbxl-10584",
+      "group_id": "ptbxl-patient-1765.0"
+    },
+    {
+      "source_id": "ptbxl-10586",
+      "group_id": "ptbxl-patient-958.0"
+    },
+    {
+      "source_id": "ptbxl-10599",
+      "group_id": "ptbxl-patient-9036.0"
+    },
+    {
+      "source_id": "ptbxl-10616",
+      "group_id": "ptbxl-patient-7179.0"
+    },
+    {
+      "source_id": "ptbxl-10617",
+      "group_id": "ptbxl-patient-5398.0"
+    },
+    {
+      "source_id": "ptbxl-10625",
+      "group_id": "ptbxl-patient-5570.0"
+    },
+    {
+      "source_id": "ptbxl-10656",
+      "group_id": "ptbxl-patient-13058.0"
+    },
+    {
+      "source_id": "ptbxl-10676",
+      "group_id": "ptbxl-patient-5864.0"
+    },
+    {
+      "source_id": "ptbxl-1068",
+      "group_id": "ptbxl-patient-1886.0"
+    },
+    {
+      "source_id": "ptbxl-10693",
+      "group_id": "ptbxl-patient-339.0"
+    },
+    {
+      "source_id": "ptbxl-10698",
+      "group_id": "ptbxl-patient-12322.0"
+    },
+    {
+      "source_id": "ptbxl-10704",
+      "group_id": "ptbxl-patient-3604.0"
+    },
+    {
+      "source_id": "ptbxl-10743",
+      "group_id": "ptbxl-patient-1921.0"
+    },
+    {
+      "source_id": "ptbxl-10744",
+      "group_id": "ptbxl-patient-20851.0"
+    },
+    {
+      "source_id": "ptbxl-10750",
+      "group_id": "ptbxl-patient-2521.0"
+    },
+    {
+      "source_id": "ptbxl-10751",
+      "group_id": "ptbxl-patient-4732.0"
+    },
+    {
+      "source_id": "ptbxl-10782",
+      "group_id": "ptbxl-patient-7935.0"
+    },
+    {
+      "source_id": "ptbxl-10850",
+      "group_id": "ptbxl-patient-17865.0"
+    },
+    {
+      "source_id": "ptbxl-10873",
+      "group_id": "ptbxl-patient-21528.0"
+    },
+    {
+      "source_id": "ptbxl-10937",
+      "group_id": "ptbxl-patient-17259.0"
+    },
+    {
+      "source_id": "ptbxl-10942",
+      "group_id": "ptbxl-patient-9423.0"
+    },
+    {
+      "source_id": "ptbxl-10990",
+      "group_id": "ptbxl-patient-1122.0"
+    },
+    {
+      "source_id": "ptbxl-10992",
+      "group_id": "ptbxl-patient-14216.0"
+    },
+    {
+      "source_id": "ptbxl-11025",
+      "group_id": "ptbxl-patient-14960.0"
+    },
+    {
+      "source_id": "ptbxl-11026",
+      "group_id": "ptbxl-patient-14420.0"
+    },
+    {
+      "source_id": "ptbxl-11037",
+      "group_id": "ptbxl-patient-3058.0"
+    },
+    {
+      "source_id": "ptbxl-1104",
+      "group_id": "ptbxl-patient-5004.0"
+    },
+    {
+      "source_id": "ptbxl-11043",
+      "group_id": "ptbxl-patient-17348.0"
+    },
+    {
+      "source_id": "ptbxl-11044",
+      "group_id": "ptbxl-patient-6423.0"
+    },
+    {
+      "source_id": "ptbxl-1108",
+      "group_id": "ptbxl-patient-7629.0"
+    },
+    {
+      "source_id": "ptbxl-11080",
+      "group_id": "ptbxl-patient-4380.0"
+    },
+    {
+      "source_id": "ptbxl-11121",
+      "group_id": "ptbxl-patient-6155.0"
+    },
+    {
+      "source_id": "ptbxl-11136",
+      "group_id": "ptbxl-patient-3334.0"
+    },
+    {
+      "source_id": "ptbxl-11158",
+      "group_id": "ptbxl-patient-1340.0"
+    },
+    {
+      "source_id": "ptbxl-11166",
+      "group_id": "ptbxl-patient-12380.0"
+    },
+    {
+      "source_id": "ptbxl-11198",
+      "group_id": "ptbxl-patient-21730.0"
+    },
+    {
+      "source_id": "ptbxl-11200",
+      "group_id": "ptbxl-patient-14745.0"
+    },
+    {
+      "source_id": "ptbxl-11215",
+      "group_id": "ptbxl-patient-9454.0"
+    },
+    {
+      "source_id": "ptbxl-11216",
+      "group_id": "ptbxl-patient-16274.0"
+    },
+    {
+      "source_id": "ptbxl-11218",
+      "group_id": "ptbxl-patient-11203.0"
+    },
+    {
+      "source_id": "ptbxl-11227",
+      "group_id": "ptbxl-patient-19386.0"
+    },
+    {
+      "source_id": "ptbxl-11229",
+      "group_id": "ptbxl-patient-10339.0"
+    },
+    {
+      "source_id": "ptbxl-11244",
+      "group_id": "ptbxl-patient-13607.0"
+    },
+    {
+      "source_id": "ptbxl-11255",
+      "group_id": "ptbxl-patient-9210.0"
+    },
+    {
+      "source_id": "ptbxl-1126",
+      "group_id": "ptbxl-patient-6610.0"
+    },
+    {
+      "source_id": "ptbxl-11262",
+      "group_id": "ptbxl-patient-9317.0"
+    },
+    {
+      "source_id": "ptbxl-11272",
+      "group_id": "ptbxl-patient-9393.0"
+    },
+    {
+      "source_id": "ptbxl-11303",
+      "group_id": "ptbxl-patient-14859.0"
+    },
+    {
+      "source_id": "ptbxl-11310",
+      "group_id": "ptbxl-patient-15326.0"
+    },
+    {
+      "source_id": "ptbxl-11330",
+      "group_id": "ptbxl-patient-18357.0"
+    },
+    {
+      "source_id": "ptbxl-11337",
+      "group_id": "ptbxl-patient-13132.0"
+    },
+    {
+      "source_id": "ptbxl-11363",
+      "group_id": "ptbxl-patient-17019.0"
+    },
+    {
+      "source_id": "ptbxl-11366",
+      "group_id": "ptbxl-patient-18122.0"
+    },
+    {
+      "source_id": "ptbxl-11368",
+      "group_id": "ptbxl-patient-11950.0"
+    },
+    {
+      "source_id": "ptbxl-11371",
+      "group_id": "ptbxl-patient-17181.0"
+    },
+    {
+      "source_id": "ptbxl-1138",
+      "group_id": "ptbxl-patient-5307.0"
+    },
+    {
+      "source_id": "ptbxl-11399",
+      "group_id": "ptbxl-patient-13943.0"
+    },
+    {
+      "source_id": "ptbxl-11415",
+      "group_id": "ptbxl-patient-21142.0"
+    },
+    {
+      "source_id": "ptbxl-11423",
+      "group_id": "ptbxl-patient-9404.0"
+    },
+    {
+      "source_id": "ptbxl-11432",
+      "group_id": "ptbxl-patient-19858.0"
+    },
+    {
+      "source_id": "ptbxl-11466",
+      "group_id": "ptbxl-patient-19459.0"
+    },
+    {
+      "source_id": "ptbxl-11486",
+      "group_id": "ptbxl-patient-21372.0"
+    },
+    {
+      "source_id": "ptbxl-11489",
+      "group_id": "ptbxl-patient-11408.0"
+    },
+    {
+      "source_id": "ptbxl-1150",
+      "group_id": "ptbxl-patient-333.0"
+    },
+    {
+      "source_id": "ptbxl-11513",
+      "group_id": "ptbxl-patient-19809.0"
+    },
+    {
+      "source_id": "ptbxl-11536",
+      "group_id": "ptbxl-patient-9863.0"
+    },
+    {
+      "source_id": "ptbxl-11587",
+      "group_id": "ptbxl-patient-10774.0"
+    },
+    {
+      "source_id": "ptbxl-11589",
+      "group_id": "ptbxl-patient-9657.0"
+    },
+    {
+      "source_id": "ptbxl-1160",
+      "group_id": "ptbxl-patient-6742.0"
+    },
+    {
+      "source_id": "ptbxl-11609",
+      "group_id": "ptbxl-patient-17546.0"
+    },
+    {
+      "source_id": "ptbxl-11622",
+      "group_id": "ptbxl-patient-14645.0"
+    },
+    {
+      "source_id": "ptbxl-11623",
+      "group_id": "ptbxl-patient-9176.0"
+    },
+    {
+      "source_id": "ptbxl-11640",
+      "group_id": "ptbxl-patient-15195.0"
+    },
+    {
+      "source_id": "ptbxl-11641",
+      "group_id": "ptbxl-patient-20940.0"
+    },
+    {
+      "source_id": "ptbxl-11667",
+      "group_id": "ptbxl-patient-12489.0"
+    },
+    {
+      "source_id": "ptbxl-11694",
+      "group_id": "ptbxl-patient-16860.0"
+    },
+    {
+      "source_id": "ptbxl-11709",
+      "group_id": "ptbxl-patient-21203.0"
+    },
+    {
+      "source_id": "ptbxl-11723",
+      "group_id": "ptbxl-patient-19518.0"
+    },
+    {
+      "source_id": "ptbxl-11726",
+      "group_id": "ptbxl-patient-2489.0"
+    },
+    {
+      "source_id": "ptbxl-11752",
+      "group_id": "ptbxl-patient-14344.0"
+    },
+    {
+      "source_id": "ptbxl-11760",
+      "group_id": "ptbxl-patient-11817.0"
+    },
+    {
+      "source_id": "ptbxl-11771",
+      "group_id": "ptbxl-patient-15761.0"
+    },
+    {
+      "source_id": "ptbxl-11781",
+      "group_id": "ptbxl-patient-9647.0"
+    },
+    {
+      "source_id": "ptbxl-11808",
+      "group_id": "ptbxl-patient-13758.0"
+    },
+    {
+      "source_id": "ptbxl-1182",
+      "group_id": "ptbxl-patient-5298.0"
+    },
+    {
+      "source_id": "ptbxl-11826",
+      "group_id": "ptbxl-patient-6290.0"
+    },
+    {
+      "source_id": "ptbxl-11830",
+      "group_id": "ptbxl-patient-5290.0"
+    },
+    {
+      "source_id": "ptbxl-11843",
+      "group_id": "ptbxl-patient-13781.0"
+    },
+    {
+      "source_id": "ptbxl-11855",
+      "group_id": "ptbxl-patient-8288.0"
+    },
+    {
+      "source_id": "ptbxl-1186",
+      "group_id": "ptbxl-patient-651.0"
+    },
+    {
+      "source_id": "ptbxl-11874",
+      "group_id": "ptbxl-patient-14705.0"
+    },
+    {
+      "source_id": "ptbxl-11880",
+      "group_id": "ptbxl-patient-14349.0"
+    },
+    {
+      "source_id": "ptbxl-11891",
+      "group_id": "ptbxl-patient-16321.0"
+    },
+    {
+      "source_id": "ptbxl-11907",
+      "group_id": "ptbxl-patient-19696.0"
+    },
+    {
+      "source_id": "ptbxl-11934",
+      "group_id": "ptbxl-patient-21446.0"
+    },
+    {
+      "source_id": "ptbxl-11960",
+      "group_id": "ptbxl-patient-5412.0"
+    },
+    {
+      "source_id": "ptbxl-11966",
+      "group_id": "ptbxl-patient-5731.0"
+    },
+    {
+      "source_id": "ptbxl-11973",
+      "group_id": "ptbxl-patient-1980.0"
+    },
+    {
+      "source_id": "ptbxl-11975",
+      "group_id": "ptbxl-patient-2732.0"
+    },
+    {
+      "source_id": "ptbxl-12",
+      "group_id": "ptbxl-patient-11031.0"
+    },
+    {
+      "source_id": "ptbxl-12018",
+      "group_id": "ptbxl-patient-6718.0"
+    },
+    {
+      "source_id": "ptbxl-12060",
+      "group_id": "ptbxl-patient-379.0"
+    },
+    {
+      "source_id": "ptbxl-12064",
+      "group_id": "ptbxl-patient-3295.0"
+    },
+    {
+      "source_id": "ptbxl-12084",
+      "group_id": "ptbxl-patient-16466.0"
+    },
+    {
+      "source_id": "ptbxl-12094",
+      "group_id": "ptbxl-patient-5957.0"
+    },
+    {
+      "source_id": "ptbxl-12107",
+      "group_id": "ptbxl-patient-1123.0"
+    },
+    {
+      "source_id": "ptbxl-1214",
+      "group_id": "ptbxl-patient-7645.0"
+    },
+    {
+      "source_id": "ptbxl-12146",
+      "group_id": "ptbxl-patient-3562.0"
+    },
+    {
+      "source_id": "ptbxl-1216",
+      "group_id": "ptbxl-patient-1941.0"
+    },
+    {
+      "source_id": "ptbxl-12182",
+      "group_id": "ptbxl-patient-21316.0"
+    },
+    {
+      "source_id": "ptbxl-12192",
+      "group_id": "ptbxl-patient-12202.0"
+    },
+    {
+      "source_id": "ptbxl-12197",
+      "group_id": "ptbxl-patient-13119.0"
+    },
+    {
+      "source_id": "ptbxl-12211",
+      "group_id": "ptbxl-patient-8540.0"
+    },
+    {
+      "source_id": "ptbxl-12213",
+      "group_id": "ptbxl-patient-10461.0"
+    },
+    {
+      "source_id": "ptbxl-1222",
+      "group_id": "ptbxl-patient-5402.0"
+    },
+    {
+      "source_id": "ptbxl-12234",
+      "group_id": "ptbxl-patient-12148.0"
+    },
+    {
+      "source_id": "ptbxl-12243",
+      "group_id": "ptbxl-patient-17116.0"
+    },
+    {
+      "source_id": "ptbxl-12247",
+      "group_id": "ptbxl-patient-13954.0"
+    },
+    {
+      "source_id": "ptbxl-12294",
+      "group_id": "ptbxl-patient-3153.0"
+    },
+    {
+      "source_id": "ptbxl-1231",
+      "group_id": "ptbxl-patient-636.0"
+    },
+    {
+      "source_id": "ptbxl-12343",
+      "group_id": "ptbxl-patient-1091.0"
+    },
+    {
+      "source_id": "ptbxl-12344",
+      "group_id": "ptbxl-patient-7386.0"
+    },
+    {
+      "source_id": "ptbxl-12350",
+      "group_id": "ptbxl-patient-7330.0"
+    },
+    {
+      "source_id": "ptbxl-12367",
+      "group_id": "ptbxl-patient-17953.0"
+    },
+    {
+      "source_id": "ptbxl-12391",
+      "group_id": "ptbxl-patient-577.0"
+    },
+    {
+      "source_id": "ptbxl-12392",
+      "group_id": "ptbxl-patient-5269.0"
+    },
+    {
+      "source_id": "ptbxl-12399",
+      "group_id": "ptbxl-patient-367.0"
+    },
+    {
+      "source_id": "ptbxl-12405",
+      "group_id": "ptbxl-patient-8491.0"
+    },
+    {
+      "source_id": "ptbxl-12410",
+      "group_id": "ptbxl-patient-5340.0"
+    },
+    {
+      "source_id": "ptbxl-12417",
+      "group_id": "ptbxl-patient-472.0"
+    },
+    {
+      "source_id": "ptbxl-12437",
+      "group_id": "ptbxl-patient-2770.0"
+    },
+    {
+      "source_id": "ptbxl-1244",
+      "group_id": "ptbxl-patient-11302.0"
+    },
+    {
+      "source_id": "ptbxl-12444",
+      "group_id": "ptbxl-patient-11636.0"
+    },
+    {
+      "source_id": "ptbxl-12446",
+      "group_id": "ptbxl-patient-13755.0"
+    },
+    {
+      "source_id": "ptbxl-12459",
+      "group_id": "ptbxl-patient-13741.0"
+    },
+    {
+      "source_id": "ptbxl-12464",
+      "group_id": "ptbxl-patient-4945.0"
+    },
+    {
+      "source_id": "ptbxl-12470",
+      "group_id": "ptbxl-patient-11604.0"
+    },
+    {
+      "source_id": "ptbxl-12484",
+      "group_id": "ptbxl-patient-10442.0"
+    },
+    {
+      "source_id": "ptbxl-12486",
+      "group_id": "ptbxl-patient-1371.0"
+    },
+    {
+      "source_id": "ptbxl-12534",
+      "group_id": "ptbxl-patient-2188.0"
+    },
+    {
+      "source_id": "ptbxl-12595",
+      "group_id": "ptbxl-patient-7607.0"
+    },
+    {
+      "source_id": "ptbxl-12596",
+      "group_id": "ptbxl-patient-511.0"
+    },
+    {
+      "source_id": "ptbxl-1260",
+      "group_id": "ptbxl-patient-21209.0"
+    },
+    {
+      "source_id": "ptbxl-1261",
+      "group_id": "ptbxl-patient-8420.0"
+    },
+    {
+      "source_id": "ptbxl-12614",
+      "group_id": "ptbxl-patient-6356.0"
+    },
+    {
+      "source_id": "ptbxl-12615",
+      "group_id": "ptbxl-patient-3872.0"
+    },
+    {
+      "source_id": "ptbxl-1262",
+      "group_id": "ptbxl-patient-10650.0"
+    },
+    {
+      "source_id": "ptbxl-12625",
+      "group_id": "ptbxl-patient-1106.0"
+    },
+    {
+      "source_id": "ptbxl-12628",
+      "group_id": "ptbxl-patient-18989.0"
+    },
+    {
+      "source_id": "ptbxl-12629",
+      "group_id": "ptbxl-patient-3213.0"
+    },
+    {
+      "source_id": "ptbxl-12634",
+      "group_id": "ptbxl-patient-4653.0"
+    },
+    {
+      "source_id": "ptbxl-12642",
+      "group_id": "ptbxl-patient-2333.0"
+    },
+    {
+      "source_id": "ptbxl-12647",
+      "group_id": "ptbxl-patient-11927.0"
+    },
+    {
+      "source_id": "ptbxl-12673",
+      "group_id": "ptbxl-patient-14797.0"
+    },
+    {
+      "source_id": "ptbxl-12694",
+      "group_id": "ptbxl-patient-7895.0"
+    },
+    {
+      "source_id": "ptbxl-12717",
+      "group_id": "ptbxl-patient-2428.0"
+    },
+    {
+      "source_id": "ptbxl-12734",
+      "group_id": "ptbxl-patient-12480.0"
+    },
+    {
+      "source_id": "ptbxl-12741",
+      "group_id": "ptbxl-patient-15976.0"
+    },
+    {
+      "source_id": "ptbxl-1275",
+      "group_id": "ptbxl-patient-9170.0"
+    },
+    {
+      "source_id": "ptbxl-12773",
+      "group_id": "ptbxl-patient-5128.0"
+    },
+    {
+      "source_id": "ptbxl-12780",
+      "group_id": "ptbxl-patient-7090.0"
+    },
+    {
+      "source_id": "ptbxl-12805",
+      "group_id": "ptbxl-patient-21686.0"
+    },
+    {
+      "source_id": "ptbxl-12834",
+      "group_id": "ptbxl-patient-9832.0"
+    },
+    {
+      "source_id": "ptbxl-12845",
+      "group_id": "ptbxl-patient-11106.0"
+    },
+    {
+      "source_id": "ptbxl-12860",
+      "group_id": "ptbxl-patient-18898.0"
+    },
+    {
+      "source_id": "ptbxl-12918",
+      "group_id": "ptbxl-patient-9907.0"
+    },
+    {
+      "source_id": "ptbxl-12921",
+      "group_id": "ptbxl-patient-12693.0"
+    },
+    {
+      "source_id": "ptbxl-12937",
+      "group_id": "ptbxl-patient-4224.0"
+    },
+    {
+      "source_id": "ptbxl-12943",
+      "group_id": "ptbxl-patient-2214.0"
+    },
+    {
+      "source_id": "ptbxl-12945",
+      "group_id": "ptbxl-patient-5584.0"
+    },
+    {
+      "source_id": "ptbxl-12957",
+      "group_id": "ptbxl-patient-20526.0"
+    },
+    {
+      "source_id": "ptbxl-12963",
+      "group_id": "ptbxl-patient-387.0"
+    },
+    {
+      "source_id": "ptbxl-12972",
+      "group_id": "ptbxl-patient-16854.0"
+    },
+    {
+      "source_id": "ptbxl-12984",
+      "group_id": "ptbxl-patient-2725.0"
+    },
+    {
+      "source_id": "ptbxl-13004",
+      "group_id": "ptbxl-patient-19324.0"
+    },
+    {
+      "source_id": "ptbxl-13005",
+      "group_id": "ptbxl-patient-17594.0"
+    },
+    {
+      "source_id": "ptbxl-13023",
+      "group_id": "ptbxl-patient-19926.0"
+    },
+    {
+      "source_id": "ptbxl-13060",
+      "group_id": "ptbxl-patient-9737.0"
+    },
+    {
+      "source_id": "ptbxl-13065",
+      "group_id": "ptbxl-patient-21583.0"
+    },
+    {
+      "source_id": "ptbxl-13072",
+      "group_id": "ptbxl-patient-7500.0"
+    },
+    {
+      "source_id": "ptbxl-13080",
+      "group_id": "ptbxl-patient-1602.0"
+    },
+    {
+      "source_id": "ptbxl-13122",
+      "group_id": "ptbxl-patient-6878.0"
+    },
+    {
+      "source_id": "ptbxl-13145",
+      "group_id": "ptbxl-patient-18250.0"
+    },
+    {
+      "source_id": "ptbxl-13147",
+      "group_id": "ptbxl-patient-20548.0"
+    },
+    {
+      "source_id": "ptbxl-13161",
+      "group_id": "ptbxl-patient-13380.0"
+    },
+    {
+      "source_id": "ptbxl-13196",
+      "group_id": "ptbxl-patient-9665.0"
+    },
+    {
+      "source_id": "ptbxl-13236",
+      "group_id": "ptbxl-patient-13718.0"
+    },
+    {
+      "source_id": "ptbxl-13318",
+      "group_id": "ptbxl-patient-20026.0"
+    },
+    {
+      "source_id": "ptbxl-13378",
+      "group_id": "ptbxl-patient-8747.0"
+    },
+    {
+      "source_id": "ptbxl-13381",
+      "group_id": "ptbxl-patient-19494.0"
+    },
+    {
+      "source_id": "ptbxl-13409",
+      "group_id": "ptbxl-patient-11504.0"
+    },
+    {
+      "source_id": "ptbxl-13413",
+      "group_id": "ptbxl-patient-11009.0"
+    },
+    {
+      "source_id": "ptbxl-13422",
+      "group_id": "ptbxl-patient-11232.0"
+    },
+    {
+      "source_id": "ptbxl-13432",
+      "group_id": "ptbxl-patient-16448.0"
+    },
+    {
+      "source_id": "ptbxl-13463",
+      "group_id": "ptbxl-patient-11153.0"
+    },
+    {
+      "source_id": "ptbxl-13475",
+      "group_id": "ptbxl-patient-16467.0"
+    },
+    {
+      "source_id": "ptbxl-13479",
+      "group_id": "ptbxl-patient-18631.0"
+    },
+    {
+      "source_id": "ptbxl-13492",
+      "group_id": "ptbxl-patient-13842.0"
+    },
+    {
+      "source_id": "ptbxl-13511",
+      "group_id": "ptbxl-patient-21075.0"
+    },
+    {
+      "source_id": "ptbxl-13518",
+      "group_id": "ptbxl-patient-18399.0"
+    },
+    {
+      "source_id": "ptbxl-13519",
+      "group_id": "ptbxl-patient-14744.0"
+    },
+    {
+      "source_id": "ptbxl-13528",
+      "group_id": "ptbxl-patient-18779.0"
+    },
+    {
+      "source_id": "ptbxl-13552",
+      "group_id": "ptbxl-patient-8699.0"
+    },
+    {
+      "source_id": "ptbxl-13560",
+      "group_id": "ptbxl-patient-11789.0"
+    },
+    {
+      "source_id": "ptbxl-13569",
+      "group_id": "ptbxl-patient-14945.0"
+    },
+    {
+      "source_id": "ptbxl-13594",
+      "group_id": "ptbxl-patient-14350.0"
+    },
+    {
+      "source_id": "ptbxl-13597",
+      "group_id": "ptbxl-patient-13949.0"
+    },
+    {
+      "source_id": "ptbxl-13620",
+      "group_id": "ptbxl-patient-19407.0"
+    },
+    {
+      "source_id": "ptbxl-13627",
+      "group_id": "ptbxl-patient-15606.0"
+    },
+    {
+      "source_id": "ptbxl-13653",
+      "group_id": "ptbxl-patient-14365.0"
+    },
+    {
+      "source_id": "ptbxl-13661",
+      "group_id": "ptbxl-patient-10859.0"
+    },
+    {
+      "source_id": "ptbxl-13663",
+      "group_id": "ptbxl-patient-15389.0"
+    },
+    {
+      "source_id": "ptbxl-13667",
+      "group_id": "ptbxl-patient-10402.0"
+    },
+    {
+      "source_id": "ptbxl-13686",
+      "group_id": "ptbxl-patient-10918.0"
+    },
+    {
+      "source_id": "ptbxl-13688",
+      "group_id": "ptbxl-patient-20096.0"
+    },
+    {
+      "source_id": "ptbxl-13692",
+      "group_id": "ptbxl-patient-13506.0"
+    },
+    {
+      "source_id": "ptbxl-13730",
+      "group_id": "ptbxl-patient-19322.0"
+    },
+    {
+      "source_id": "ptbxl-13731",
+      "group_id": "ptbxl-patient-11492.0"
+    },
+    {
+      "source_id": "ptbxl-13735",
+      "group_id": "ptbxl-patient-20565.0"
+    },
+    {
+      "source_id": "ptbxl-13748",
+      "group_id": "ptbxl-patient-15672.0"
+    },
+    {
+      "source_id": "ptbxl-1375",
+      "group_id": "ptbxl-patient-6192.0"
+    },
+    {
+      "source_id": "ptbxl-13757",
+      "group_id": "ptbxl-patient-17010.0"
+    },
+    {
+      "source_id": "ptbxl-13759",
+      "group_id": "ptbxl-patient-20471.0"
+    },
+    {
+      "source_id": "ptbxl-13765",
+      "group_id": "ptbxl-patient-12551.0"
+    },
+    {
+      "source_id": "ptbxl-1377",
+      "group_id": "ptbxl-patient-5112.0"
+    },
+    {
+      "source_id": "ptbxl-13800",
+      "group_id": "ptbxl-patient-11122.0"
+    },
+    {
+      "source_id": "ptbxl-13835",
+      "group_id": "ptbxl-patient-3089.0"
+    },
+    {
+      "source_id": "ptbxl-13848",
+      "group_id": "ptbxl-patient-21761.0"
+    },
+    {
+      "source_id": "ptbxl-13863",
+      "group_id": "ptbxl-patient-15705.0"
+    },
+    {
+      "source_id": "ptbxl-13873",
+      "group_id": "ptbxl-patient-12571.0"
+    },
+    {
+      "source_id": "ptbxl-13881",
+      "group_id": "ptbxl-patient-18311.0"
+    },
+    {
+      "source_id": "ptbxl-13885",
+      "group_id": "ptbxl-patient-11910.0"
+    },
+    {
+      "source_id": "ptbxl-13903",
+      "group_id": "ptbxl-patient-3817.0"
+    },
+    {
+      "source_id": "ptbxl-13950",
+      "group_id": "ptbxl-patient-3266.0"
+    },
+    {
+      "source_id": "ptbxl-13951",
+      "group_id": "ptbxl-patient-6073.0"
+    },
+    {
+      "source_id": "ptbxl-13962",
+      "group_id": "ptbxl-patient-610.0"
+    },
+    {
+      "source_id": "ptbxl-13987",
+      "group_id": "ptbxl-patient-21557.0"
+    },
+    {
+      "source_id": "ptbxl-13997",
+      "group_id": "ptbxl-patient-6378.0"
+    },
+    {
+      "source_id": "ptbxl-14062",
+      "group_id": "ptbxl-patient-1718.0"
+    },
+    {
+      "source_id": "ptbxl-14074",
+      "group_id": "ptbxl-patient-7083.0"
+    },
+    {
+      "source_id": "ptbxl-14081",
+      "group_id": "ptbxl-patient-313.0"
+    },
+    {
+      "source_id": "ptbxl-14090",
+      "group_id": "ptbxl-patient-5372.0"
+    },
+    {
+      "source_id": "ptbxl-14093",
+      "group_id": "ptbxl-patient-2048.0"
+    },
+    {
+      "source_id": "ptbxl-14101",
+      "group_id": "ptbxl-patient-6033.0"
+    },
+    {
+      "source_id": "ptbxl-14112",
+      "group_id": "ptbxl-patient-20672.0"
+    },
+    {
+      "source_id": "ptbxl-14114",
+      "group_id": "ptbxl-patient-14474.0"
+    },
+    {
+      "source_id": "ptbxl-14130",
+      "group_id": "ptbxl-patient-2495.0"
+    },
+    {
+      "source_id": "ptbxl-14132",
+      "group_id": "ptbxl-patient-3106.0"
+    },
+    {
+      "source_id": "ptbxl-14137",
+      "group_id": "ptbxl-patient-11629.0"
+    },
+    {
+      "source_id": "ptbxl-1416",
+      "group_id": "ptbxl-patient-16693.0"
+    },
+    {
+      "source_id": "ptbxl-14164",
+      "group_id": "ptbxl-patient-15834.0"
+    },
+    {
+      "source_id": "ptbxl-14168",
+      "group_id": "ptbxl-patient-10425.0"
+    },
+    {
+      "source_id": "ptbxl-14177",
+      "group_id": "ptbxl-patient-12745.0"
+    },
+    {
+      "source_id": "ptbxl-14189",
+      "group_id": "ptbxl-patient-15257.0"
+    },
+    {
+      "source_id": "ptbxl-14190",
+      "group_id": "ptbxl-patient-8497.0"
+    },
+    {
+      "source_id": "ptbxl-14207",
+      "group_id": "ptbxl-patient-18528.0"
+    },
+    {
+      "source_id": "ptbxl-1421",
+      "group_id": "ptbxl-patient-4879.0"
+    },
+    {
+      "source_id": "ptbxl-14241",
+      "group_id": "ptbxl-patient-5068.0"
+    },
+    {
+      "source_id": "ptbxl-14266",
+      "group_id": "ptbxl-patient-2186.0"
+    },
+    {
+      "source_id": "ptbxl-14281",
+      "group_id": "ptbxl-patient-20596.0"
+    },
+    {
+      "source_id": "ptbxl-14311",
+      "group_id": "ptbxl-patient-615.0"
+    },
+    {
+      "source_id": "ptbxl-14322",
+      "group_id": "ptbxl-patient-6685.0"
+    },
+    {
+      "source_id": "ptbxl-14353",
+      "group_id": "ptbxl-patient-7022.0"
+    },
+    {
+      "source_id": "ptbxl-1436",
+      "group_id": "ptbxl-patient-15502.0"
+    },
+    {
+      "source_id": "ptbxl-14363",
+      "group_id": "ptbxl-patient-10917.0"
+    },
+    {
+      "source_id": "ptbxl-14383",
+      "group_id": "ptbxl-patient-403.0"
+    },
+    {
+      "source_id": "ptbxl-14385",
+      "group_id": "ptbxl-patient-3687.0"
+    },
+    {
+      "source_id": "ptbxl-14389",
+      "group_id": "ptbxl-patient-14875.0"
+    },
+    {
+      "source_id": "ptbxl-14395",
+      "group_id": "ptbxl-patient-1982.0"
+    },
+    {
+      "source_id": "ptbxl-14403",
+      "group_id": "ptbxl-patient-488.0"
+    },
+    {
+      "source_id": "ptbxl-14406",
+      "group_id": "ptbxl-patient-14466.0"
+    },
+    {
+      "source_id": "ptbxl-1441",
+      "group_id": "ptbxl-patient-19273.0"
+    },
+    {
+      "source_id": "ptbxl-14415",
+      "group_id": "ptbxl-patient-19405.0"
+    },
+    {
+      "source_id": "ptbxl-14428",
+      "group_id": "ptbxl-patient-16801.0"
+    },
+    {
+      "source_id": "ptbxl-14451",
+      "group_id": "ptbxl-patient-19039.0"
+    },
+    {
+      "source_id": "ptbxl-14457",
+      "group_id": "ptbxl-patient-1249.0"
+    },
+    {
+      "source_id": "ptbxl-14481",
+      "group_id": "ptbxl-patient-4662.0"
+    },
+    {
+      "source_id": "ptbxl-14483",
+      "group_id": "ptbxl-patient-15747.0"
+    },
+    {
+      "source_id": "ptbxl-14493",
+      "group_id": "ptbxl-patient-3716.0"
+    },
+    {
+      "source_id": "ptbxl-14512",
+      "group_id": "ptbxl-patient-5951.0"
+    },
+    {
+      "source_id": "ptbxl-14520",
+      "group_id": "ptbxl-patient-20194.0"
+    },
+    {
+      "source_id": "ptbxl-14538",
+      "group_id": "ptbxl-patient-4745.0"
+    },
+    {
+      "source_id": "ptbxl-14586",
+      "group_id": "ptbxl-patient-2625.0"
+    },
+    {
+      "source_id": "ptbxl-14608",
+      "group_id": "ptbxl-patient-1983.0"
+    },
+    {
+      "source_id": "ptbxl-14623",
+      "group_id": "ptbxl-patient-341.0"
+    },
+    {
+      "source_id": "ptbxl-14635",
+      "group_id": "ptbxl-patient-4130.0"
+    },
+    {
+      "source_id": "ptbxl-1464",
+      "group_id": "ptbxl-patient-19465.0"
+    },
+    {
+      "source_id": "ptbxl-14643",
+      "group_id": "ptbxl-patient-2064.0"
+    },
+    {
+      "source_id": "ptbxl-14666",
+      "group_id": "ptbxl-patient-3985.0"
+    },
+    {
+      "source_id": "ptbxl-14681",
+      "group_id": "ptbxl-patient-5176.0"
+    },
+    {
+      "source_id": "ptbxl-14734",
+      "group_id": "ptbxl-patient-6330.0"
+    },
+    {
+      "source_id": "ptbxl-14766",
+      "group_id": "ptbxl-patient-19348.0"
+    },
+    {
+      "source_id": "ptbxl-1481",
+      "group_id": "ptbxl-patient-15390.0"
+    },
+    {
+      "source_id": "ptbxl-14838",
+      "group_id": "ptbxl-patient-9754.0"
+    },
+    {
+      "source_id": "ptbxl-14843",
+      "group_id": "ptbxl-patient-9310.0"
+    },
+    {
+      "source_id": "ptbxl-14854",
+      "group_id": "ptbxl-patient-18624.0"
+    },
+    {
+      "source_id": "ptbxl-14870",
+      "group_id": "ptbxl-patient-5464.0"
+    },
+    {
+      "source_id": "ptbxl-14887",
+      "group_id": "ptbxl-patient-1841.0"
+    },
+    {
+      "source_id": "ptbxl-14911",
+      "group_id": "ptbxl-patient-9685.0"
+    },
+    {
+      "source_id": "ptbxl-14918",
+      "group_id": "ptbxl-patient-21139.0"
+    },
+    {
+      "source_id": "ptbxl-1493",
+      "group_id": "ptbxl-patient-10691.0"
+    },
+    {
+      "source_id": "ptbxl-14979",
+      "group_id": "ptbxl-patient-475.0"
+    },
+    {
+      "source_id": "ptbxl-14985",
+      "group_id": "ptbxl-patient-8828.0"
+    },
+    {
+      "source_id": "ptbxl-14999",
+      "group_id": "ptbxl-patient-5184.0"
+    },
+    {
+      "source_id": "ptbxl-15022",
+      "group_id": "ptbxl-patient-11110.0"
+    },
+    {
+      "source_id": "ptbxl-15056",
+      "group_id": "ptbxl-patient-1498.0"
+    },
+    {
+      "source_id": "ptbxl-1506",
+      "group_id": "ptbxl-patient-5907.0"
+    },
+    {
+      "source_id": "ptbxl-15076",
+      "group_id": "ptbxl-patient-18599.0"
+    },
+    {
+      "source_id": "ptbxl-15079",
+      "group_id": "ptbxl-patient-6194.0"
+    },
+    {
+      "source_id": "ptbxl-15108",
+      "group_id": "ptbxl-patient-2257.0"
+    },
+    {
+      "source_id": "ptbxl-1511",
+      "group_id": "ptbxl-patient-767.0"
+    },
+    {
+      "source_id": "ptbxl-15148",
+      "group_id": "ptbxl-patient-21147.0"
+    },
+    {
+      "source_id": "ptbxl-15228",
+      "group_id": "ptbxl-patient-12387.0"
+    },
+    {
+      "source_id": "ptbxl-15242",
+      "group_id": "ptbxl-patient-19484.0"
+    },
+    {
+      "source_id": "ptbxl-15251",
+      "group_id": "ptbxl-patient-11092.0"
+    },
+    {
+      "source_id": "ptbxl-15260",
+      "group_id": "ptbxl-patient-12277.0"
+    },
+    {
+      "source_id": "ptbxl-15291",
+      "group_id": "ptbxl-patient-15975.0"
+    },
+    {
+      "source_id": "ptbxl-1531",
+      "group_id": "ptbxl-patient-3428.0"
+    },
+    {
+      "source_id": "ptbxl-15326",
+      "group_id": "ptbxl-patient-21578.0"
+    },
+    {
+      "source_id": "ptbxl-15331",
+      "group_id": "ptbxl-patient-17516.0"
+    },
+    {
+      "source_id": "ptbxl-15383",
+      "group_id": "ptbxl-patient-18774.0"
+    },
+    {
+      "source_id": "ptbxl-15388",
+      "group_id": "ptbxl-patient-17373.0"
+    },
+    {
+      "source_id": "ptbxl-15399",
+      "group_id": "ptbxl-patient-10889.0"
+    },
+    {
+      "source_id": "ptbxl-154",
+      "group_id": "ptbxl-patient-13617.0"
+    },
+    {
+      "source_id": "ptbxl-15423",
+      "group_id": "ptbxl-patient-18341.0"
+    },
+    {
+      "source_id": "ptbxl-15425",
+      "group_id": "ptbxl-patient-18385.0"
+    },
+    {
+      "source_id": "ptbxl-15426",
+      "group_id": "ptbxl-patient-18132.0"
+    },
+    {
+      "source_id": "ptbxl-15438",
+      "group_id": "ptbxl-patient-14800.0"
+    },
+    {
+      "source_id": "ptbxl-15448",
+      "group_id": "ptbxl-patient-18275.0"
+    },
+    {
+      "source_id": "ptbxl-15456",
+      "group_id": "ptbxl-patient-18183.0"
+    },
+    {
+      "source_id": "ptbxl-15466",
+      "group_id": "ptbxl-patient-19854.0"
+    },
+    {
+      "source_id": "ptbxl-15473",
+      "group_id": "ptbxl-patient-20379.0"
+    },
+    {
+      "source_id": "ptbxl-15508",
+      "group_id": "ptbxl-patient-13133.0"
+    },
+    {
+      "source_id": "ptbxl-15520",
+      "group_id": "ptbxl-patient-11306.0"
+    },
+    {
+      "source_id": "ptbxl-15545",
+      "group_id": "ptbxl-patient-10862.0"
+    },
+    {
+      "source_id": "ptbxl-15575",
+      "group_id": "ptbxl-patient-16635.0"
+    },
+    {
+      "source_id": "ptbxl-15580",
+      "group_id": "ptbxl-patient-15836.0"
+    },
+    {
+      "source_id": "ptbxl-1561",
+      "group_id": "ptbxl-patient-15726.0"
+    },
+    {
+      "source_id": "ptbxl-15629",
+      "group_id": "ptbxl-patient-14654.0"
+    },
+    {
+      "source_id": "ptbxl-15639",
+      "group_id": "ptbxl-patient-13998.0"
+    },
+    {
+      "source_id": "ptbxl-15648",
+      "group_id": "ptbxl-patient-17807.0"
+    },
+    {
+      "source_id": "ptbxl-15661",
+      "group_id": "ptbxl-patient-15105.0"
+    },
+    {
+      "source_id": "ptbxl-15662",
+      "group_id": "ptbxl-patient-17808.0"
+    },
+    {
+      "source_id": "ptbxl-15695",
+      "group_id": "ptbxl-patient-13610.0"
+    },
+    {
+      "source_id": "ptbxl-15705",
+      "group_id": "ptbxl-patient-21081.0"
+    },
+    {
+      "source_id": "ptbxl-15706",
+      "group_id": "ptbxl-patient-8612.0"
+    },
+    {
+      "source_id": "ptbxl-1571",
+      "group_id": "ptbxl-patient-11710.0"
+    },
+    {
+      "source_id": "ptbxl-15716",
+      "group_id": "ptbxl-patient-16106.0"
+    },
+    {
+      "source_id": "ptbxl-15720",
+      "group_id": "ptbxl-patient-12775.0"
+    },
+    {
+      "source_id": "ptbxl-15724",
+      "group_id": "ptbxl-patient-8659.0"
+    },
+    {
+      "source_id": "ptbxl-15733",
+      "group_id": "ptbxl-patient-2366.0"
+    },
+    {
+      "source_id": "ptbxl-15744",
+      "group_id": "ptbxl-patient-936.0"
+    },
+    {
+      "source_id": "ptbxl-15745",
+      "group_id": "ptbxl-patient-4747.0"
+    },
+    {
+      "source_id": "ptbxl-15753",
+      "group_id": "ptbxl-patient-4382.0"
+    },
+    {
+      "source_id": "ptbxl-15758",
+      "group_id": "ptbxl-patient-6611.0"
+    },
+    {
+      "source_id": "ptbxl-1577",
+      "group_id": "ptbxl-patient-7809.0"
+    },
+    {
+      "source_id": "ptbxl-15786",
+      "group_id": "ptbxl-patient-12457.0"
+    },
+    {
+      "source_id": "ptbxl-15793",
+      "group_id": "ptbxl-patient-8129.0"
+    },
+    {
+      "source_id": "ptbxl-15796",
+      "group_id": "ptbxl-patient-10943.0"
+    },
+    {
+      "source_id": "ptbxl-15799",
+      "group_id": "ptbxl-patient-17354.0"
+    },
+    {
+      "source_id": "ptbxl-15821",
+      "group_id": "ptbxl-patient-11562.0"
+    },
+    {
+      "source_id": "ptbxl-15825",
+      "group_id": "ptbxl-patient-8185.0"
+    },
+    {
+      "source_id": "ptbxl-15842",
+      "group_id": "ptbxl-patient-8048.0"
+    },
+    {
+      "source_id": "ptbxl-15846",
+      "group_id": "ptbxl-patient-8908.0"
+    },
+    {
+      "source_id": "ptbxl-15855",
+      "group_id": "ptbxl-patient-9629.0"
+    },
+    {
+      "source_id": "ptbxl-15856",
+      "group_id": "ptbxl-patient-11058.0"
+    },
+    {
+      "source_id": "ptbxl-15864",
+      "group_id": "ptbxl-patient-13372.0"
+    },
+    {
+      "source_id": "ptbxl-15874",
+      "group_id": "ptbxl-patient-2947.0"
+    },
+    {
+      "source_id": "ptbxl-15877",
+      "group_id": "ptbxl-patient-7530.0"
+    },
+    {
+      "source_id": "ptbxl-1588",
+      "group_id": "ptbxl-patient-3113.0"
+    },
+    {
+      "source_id": "ptbxl-15882",
+      "group_id": "ptbxl-patient-12694.0"
+    },
+    {
+      "source_id": "ptbxl-15887",
+      "group_id": "ptbxl-patient-18492.0"
+    },
+    {
+      "source_id": "ptbxl-15897",
+      "group_id": "ptbxl-patient-17622.0"
+    },
+    {
+      "source_id": "ptbxl-15898",
+      "group_id": "ptbxl-patient-20598.0"
+    },
+    {
+      "source_id": "ptbxl-15921",
+      "group_id": "ptbxl-patient-16502.0"
+    },
+    {
+      "source_id": "ptbxl-1594",
+      "group_id": "ptbxl-patient-1443.0"
+    },
+    {
+      "source_id": "ptbxl-1595",
+      "group_id": "ptbxl-patient-3742.0"
+    },
+    {
+      "source_id": "ptbxl-1596",
+      "group_id": "ptbxl-patient-15876.0"
+    },
+    {
+      "source_id": "ptbxl-1599",
+      "group_id": "ptbxl-patient-5495.0"
+    },
+    {
+      "source_id": "ptbxl-16019",
+      "group_id": "ptbxl-patient-14947.0"
+    },
+    {
+      "source_id": "ptbxl-1604",
+      "group_id": "ptbxl-patient-3512.0"
+    },
+    {
+      "source_id": "ptbxl-1605",
+      "group_id": "ptbxl-patient-5385.0"
+    },
+    {
+      "source_id": "ptbxl-16056",
+      "group_id": "ptbxl-patient-7541.0"
+    },
+    {
+      "source_id": "ptbxl-16081",
+      "group_id": "ptbxl-patient-1382.0"
+    },
+    {
+      "source_id": "ptbxl-16088",
+      "group_id": "ptbxl-patient-14366.0"
+    },
+    {
+      "source_id": "ptbxl-16096",
+      "group_id": "ptbxl-patient-1783.0"
+    },
+    {
+      "source_id": "ptbxl-16121",
+      "group_id": "ptbxl-patient-12904.0"
+    },
+    {
+      "source_id": "ptbxl-16155",
+      "group_id": "ptbxl-patient-14341.0"
+    },
+    {
+      "source_id": "ptbxl-16157",
+      "group_id": "ptbxl-patient-9738.0"
+    },
+    {
+      "source_id": "ptbxl-16160",
+      "group_id": "ptbxl-patient-20793.0"
+    },
+    {
+      "source_id": "ptbxl-16177",
+      "group_id": "ptbxl-patient-7168.0"
+    },
+    {
+      "source_id": "ptbxl-16216",
+      "group_id": "ptbxl-patient-7242.0"
+    },
+    {
+      "source_id": "ptbxl-1623",
+      "group_id": "ptbxl-patient-3743.0"
+    },
+    {
+      "source_id": "ptbxl-16249",
+      "group_id": "ptbxl-patient-4542.0"
+    },
+    {
+      "source_id": "ptbxl-16278",
+      "group_id": "ptbxl-patient-15071.0"
+    },
+    {
+      "source_id": "ptbxl-16284",
+      "group_id": "ptbxl-patient-5504.0"
+    },
+    {
+      "source_id": "ptbxl-16308",
+      "group_id": "ptbxl-patient-8739.0"
+    },
+    {
+      "source_id": "ptbxl-1631",
+      "group_id": "ptbxl-patient-2352.0"
+    },
+    {
+      "source_id": "ptbxl-16310",
+      "group_id": "ptbxl-patient-4696.0"
+    },
+    {
+      "source_id": "ptbxl-16318",
+      "group_id": "ptbxl-patient-5212.0"
+    },
+    {
+      "source_id": "ptbxl-16322",
+      "group_id": "ptbxl-patient-20685.0"
+    },
+    {
+      "source_id": "ptbxl-16323",
+      "group_id": "ptbxl-patient-7164.0"
+    },
+    {
+      "source_id": "ptbxl-1636",
+      "group_id": "ptbxl-patient-7909.0"
+    },
+    {
+      "source_id": "ptbxl-16390",
+      "group_id": "ptbxl-patient-617.0"
+    },
+    {
+      "source_id": "ptbxl-1641",
+      "group_id": "ptbxl-patient-2379.0"
+    },
+    {
+      "source_id": "ptbxl-16413",
+      "group_id": "ptbxl-patient-17451.0"
+    },
+    {
+      "source_id": "ptbxl-16423",
+      "group_id": "ptbxl-patient-17813.0"
+    },
+    {
+      "source_id": "ptbxl-16428",
+      "group_id": "ptbxl-patient-12861.0"
+    },
+    {
+      "source_id": "ptbxl-16458",
+      "group_id": "ptbxl-patient-2005.0"
+    },
+    {
+      "source_id": "ptbxl-16459",
+      "group_id": "ptbxl-patient-5664.0"
+    },
+    {
+      "source_id": "ptbxl-16465",
+      "group_id": "ptbxl-patient-5703.0"
+    },
+    {
+      "source_id": "ptbxl-16477",
+      "group_id": "ptbxl-patient-13713.0"
+    },
+    {
+      "source_id": "ptbxl-16486",
+      "group_id": "ptbxl-patient-9225.0"
+    },
+    {
+      "source_id": "ptbxl-16497",
+      "group_id": "ptbxl-patient-14022.0"
+    },
+    {
+      "source_id": "ptbxl-1650",
+      "group_id": "ptbxl-patient-5249.0"
+    },
+    {
+      "source_id": "ptbxl-1651",
+      "group_id": "ptbxl-patient-18986.0"
+    },
+    {
+      "source_id": "ptbxl-16510",
+      "group_id": "ptbxl-patient-1731.0"
+    },
+    {
+      "source_id": "ptbxl-16521",
+      "group_id": "ptbxl-patient-20762.0"
+    },
+    {
+      "source_id": "ptbxl-16522",
+      "group_id": "ptbxl-patient-15740.0"
+    },
+    {
+      "source_id": "ptbxl-16528",
+      "group_id": "ptbxl-patient-17474.0"
+    },
+    {
+      "source_id": "ptbxl-16544",
+      "group_id": "ptbxl-patient-4104.0"
+    },
+    {
+      "source_id": "ptbxl-16555",
+      "group_id": "ptbxl-patient-12711.0"
+    },
+    {
+      "source_id": "ptbxl-16558",
+      "group_id": "ptbxl-patient-5852.0"
+    },
+    {
+      "source_id": "ptbxl-16571",
+      "group_id": "ptbxl-patient-7261.0"
+    },
+    {
+      "source_id": "ptbxl-16601",
+      "group_id": "ptbxl-patient-4818.0"
+    },
+    {
+      "source_id": "ptbxl-16642",
+      "group_id": "ptbxl-patient-1463.0"
+    },
+    {
+      "source_id": "ptbxl-16650",
+      "group_id": "ptbxl-patient-4460.0"
+    },
+    {
+      "source_id": "ptbxl-16673",
+      "group_id": "ptbxl-patient-21368.0"
+    },
+    {
+      "source_id": "ptbxl-16680",
+      "group_id": "ptbxl-patient-11666.0"
+    },
+    {
+      "source_id": "ptbxl-16681",
+      "group_id": "ptbxl-patient-14613.0"
+    },
+    {
+      "source_id": "ptbxl-16712",
+      "group_id": "ptbxl-patient-18256.0"
+    },
+    {
+      "source_id": "ptbxl-16722",
+      "group_id": "ptbxl-patient-18950.0"
+    },
+    {
+      "source_id": "ptbxl-16725",
+      "group_id": "ptbxl-patient-11387.0"
+    },
+    {
+      "source_id": "ptbxl-16726",
+      "group_id": "ptbxl-patient-14232.0"
+    },
+    {
+      "source_id": "ptbxl-16737",
+      "group_id": "ptbxl-patient-13664.0"
+    },
+    {
+      "source_id": "ptbxl-16746",
+      "group_id": "ptbxl-patient-16113.0"
+    },
+    {
+      "source_id": "ptbxl-16776",
+      "group_id": "ptbxl-patient-530.0"
+    },
+    {
+      "source_id": "ptbxl-16781",
+      "group_id": "ptbxl-patient-717.0"
+    },
+    {
+      "source_id": "ptbxl-16784",
+      "group_id": "ptbxl-patient-18760.0"
+    },
+    {
+      "source_id": "ptbxl-16805",
+      "group_id": "ptbxl-patient-460.0"
+    },
+    {
+      "source_id": "ptbxl-16828",
+      "group_id": "ptbxl-patient-7355.0"
+    },
+    {
+      "source_id": "ptbxl-16831",
+      "group_id": "ptbxl-patient-3448.0"
+    },
+    {
+      "source_id": "ptbxl-16838",
+      "group_id": "ptbxl-patient-12966.0"
+    },
+    {
+      "source_id": "ptbxl-1684",
+      "group_id": "ptbxl-patient-4825.0"
+    },
+    {
+      "source_id": "ptbxl-16850",
+      "group_id": "ptbxl-patient-18097.0"
+    },
+    {
+      "source_id": "ptbxl-16853",
+      "group_id": "ptbxl-patient-9770.0"
+    },
+    {
+      "source_id": "ptbxl-16870",
+      "group_id": "ptbxl-patient-5487.0"
+    },
+    {
+      "source_id": "ptbxl-16880",
+      "group_id": "ptbxl-patient-8165.0"
+    },
+    {
+      "source_id": "ptbxl-16890",
+      "group_id": "ptbxl-patient-19807.0"
+    },
+    {
+      "source_id": "ptbxl-16944",
+      "group_id": "ptbxl-patient-3504.0"
+    },
+    {
+      "source_id": "ptbxl-16986",
+      "group_id": "ptbxl-patient-9951.0"
+    },
+    {
+      "source_id": "ptbxl-17031",
+      "group_id": "ptbxl-patient-8243.0"
+    },
+    {
+      "source_id": "ptbxl-17038",
+      "group_id": "ptbxl-patient-9995.0"
+    },
+    {
+      "source_id": "ptbxl-17048",
+      "group_id": "ptbxl-patient-9545.0"
+    },
+    {
+      "source_id": "ptbxl-17086",
+      "group_id": "ptbxl-patient-14486.0"
+    },
+    {
+      "source_id": "ptbxl-17094",
+      "group_id": "ptbxl-patient-15473.0"
+    },
+    {
+      "source_id": "ptbxl-17097",
+      "group_id": "ptbxl-patient-11949.0"
+    },
+    {
+      "source_id": "ptbxl-17123",
+      "group_id": "ptbxl-patient-11156.0"
+    },
+    {
+      "source_id": "ptbxl-17132",
+      "group_id": "ptbxl-patient-10701.0"
+    },
+    {
+      "source_id": "ptbxl-17155",
+      "group_id": "ptbxl-patient-15466.0"
+    },
+    {
+      "source_id": "ptbxl-1717",
+      "group_id": "ptbxl-patient-20306.0"
+    },
+    {
+      "source_id": "ptbxl-17171",
+      "group_id": "ptbxl-patient-10587.0"
+    },
+    {
+      "source_id": "ptbxl-17182",
+      "group_id": "ptbxl-patient-10853.0"
+    },
+    {
+      "source_id": "ptbxl-17189",
+      "group_id": "ptbxl-patient-18207.0"
+    },
+    {
+      "source_id": "ptbxl-17199",
+      "group_id": "ptbxl-patient-17538.0"
+    },
+    {
+      "source_id": "ptbxl-17278",
+      "group_id": "ptbxl-patient-12532.0"
+    },
+    {
+      "source_id": "ptbxl-17284",
+      "group_id": "ptbxl-patient-14192.0"
+    },
+    {
+      "source_id": "ptbxl-1730",
+      "group_id": "ptbxl-patient-12115.0"
+    },
+    {
+      "source_id": "ptbxl-17325",
+      "group_id": "ptbxl-patient-16295.0"
+    },
+    {
+      "source_id": "ptbxl-17349",
+      "group_id": "ptbxl-patient-18040.0"
+    },
+    {
+      "source_id": "ptbxl-17351",
+      "group_id": "ptbxl-patient-9253.0"
+    },
+    {
+      "source_id": "ptbxl-17376",
+      "group_id": "ptbxl-patient-15356.0"
+    },
+    {
+      "source_id": "ptbxl-17427",
+      "group_id": "ptbxl-patient-9518.0"
+    },
+    {
+      "source_id": "ptbxl-17442",
+      "group_id": "ptbxl-patient-12623.0"
+    },
+    {
+      "source_id": "ptbxl-17458",
+      "group_id": "ptbxl-patient-18042.0"
+    },
+    {
+      "source_id": "ptbxl-17501",
+      "group_id": "ptbxl-patient-15024.0"
+    },
+    {
+      "source_id": "ptbxl-17506",
+      "group_id": "ptbxl-patient-8063.0"
+    },
+    {
+      "source_id": "ptbxl-1754",
+      "group_id": "ptbxl-patient-16022.0"
+    },
+    {
+      "source_id": "ptbxl-17545",
+      "group_id": "ptbxl-patient-16447.0"
+    },
+    {
+      "source_id": "ptbxl-17561",
+      "group_id": "ptbxl-patient-18205.0"
+    },
+    {
+      "source_id": "ptbxl-17565",
+      "group_id": "ptbxl-patient-18513.0"
+    },
+    {
+      "source_id": "ptbxl-17600",
+      "group_id": "ptbxl-patient-18202.0"
+    },
+    {
+      "source_id": "ptbxl-1763",
+      "group_id": "ptbxl-patient-21187.0"
+    },
+    {
+      "source_id": "ptbxl-17632",
+      "group_id": "ptbxl-patient-18834.0"
+    },
+    {
+      "source_id": "ptbxl-17657",
+      "group_id": "ptbxl-patient-6490.0"
+    },
+    {
+      "source_id": "ptbxl-17666",
+      "group_id": "ptbxl-patient-2565.0"
+    },
+    {
+      "source_id": "ptbxl-17684",
+      "group_id": "ptbxl-patient-21194.0"
+    },
+    {
+      "source_id": "ptbxl-17705",
+      "group_id": "ptbxl-patient-7552.0"
+    },
+    {
+      "source_id": "ptbxl-17728",
+      "group_id": "ptbxl-patient-3281.0"
+    },
+    {
+      "source_id": "ptbxl-17733",
+      "group_id": "ptbxl-patient-5045.0"
+    },
+    {
+      "source_id": "ptbxl-17736",
+      "group_id": "ptbxl-patient-2931.0"
+    },
+    {
+      "source_id": "ptbxl-1774",
+      "group_id": "ptbxl-patient-6800.0"
+    },
+    {
+      "source_id": "ptbxl-17749",
+      "group_id": "ptbxl-patient-20398.0"
+    },
+    {
+      "source_id": "ptbxl-17755",
+      "group_id": "ptbxl-patient-4733.0"
+    },
+    {
+      "source_id": "ptbxl-17835",
+      "group_id": "ptbxl-patient-6725.0"
+    },
+    {
+      "source_id": "ptbxl-17838",
+      "group_id": "ptbxl-patient-6767.0"
+    },
+    {
+      "source_id": "ptbxl-17839",
+      "group_id": "ptbxl-patient-7047.0"
+    },
+    {
+      "source_id": "ptbxl-17843",
+      "group_id": "ptbxl-patient-7660.0"
+    },
+    {
+      "source_id": "ptbxl-17856",
+      "group_id": "ptbxl-patient-5622.0"
+    },
+    {
+      "source_id": "ptbxl-1787",
+      "group_id": "ptbxl-patient-3946.0"
+    },
+    {
+      "source_id": "ptbxl-17877",
+      "group_id": "ptbxl-patient-5685.0"
+    },
+    {
+      "source_id": "ptbxl-17878",
+      "group_id": "ptbxl-patient-559.0"
+    },
+    {
+      "source_id": "ptbxl-1790",
+      "group_id": "ptbxl-patient-1839.0"
+    },
+    {
+      "source_id": "ptbxl-17905",
+      "group_id": "ptbxl-patient-19051.0"
+    },
+    {
+      "source_id": "ptbxl-17919",
+      "group_id": "ptbxl-patient-11785.0"
+    },
+    {
+      "source_id": "ptbxl-17938",
+      "group_id": "ptbxl-patient-19186.0"
+    },
+    {
+      "source_id": "ptbxl-17968",
+      "group_id": "ptbxl-patient-17246.0"
+    },
+    {
+      "source_id": "ptbxl-18015",
+      "group_id": "ptbxl-patient-4125.0"
+    },
+    {
+      "source_id": "ptbxl-18017",
+      "group_id": "ptbxl-patient-584.0"
+    },
+    {
+      "source_id": "ptbxl-18043",
+      "group_id": "ptbxl-patient-3219.0"
+    },
+    {
+      "source_id": "ptbxl-18056",
+      "group_id": "ptbxl-patient-16813.0"
+    },
+    {
+      "source_id": "ptbxl-18061",
+      "group_id": "ptbxl-patient-17723.0"
+    },
+    {
+      "source_id": "ptbxl-18062",
+      "group_id": "ptbxl-patient-6503.0"
+    },
+    {
+      "source_id": "ptbxl-1807",
+      "group_id": "ptbxl-patient-2140.0"
+    },
+    {
+      "source_id": "ptbxl-18072",
+      "group_id": "ptbxl-patient-7792.0"
+    },
+    {
+      "source_id": "ptbxl-1809",
+      "group_id": "ptbxl-patient-361.0"
+    },
+    {
+      "source_id": "ptbxl-18091",
+      "group_id": "ptbxl-patient-14675.0"
+    },
+    {
+      "source_id": "ptbxl-18109",
+      "group_id": "ptbxl-patient-5744.0"
+    },
+    {
+      "source_id": "ptbxl-18114",
+      "group_id": "ptbxl-patient-7871.0"
+    },
+    {
+      "source_id": "ptbxl-18128",
+      "group_id": "ptbxl-patient-11601.0"
+    },
+    {
+      "source_id": "ptbxl-18129",
+      "group_id": "ptbxl-patient-6716.0"
+    },
+    {
+      "source_id": "ptbxl-18167",
+      "group_id": "ptbxl-patient-5071.0"
+    },
+    {
+      "source_id": "ptbxl-1817",
+      "group_id": "ptbxl-patient-11885.0"
+    },
+    {
+      "source_id": "ptbxl-18212",
+      "group_id": "ptbxl-patient-2056.0"
+    },
+    {
+      "source_id": "ptbxl-18231",
+      "group_id": "ptbxl-patient-11024.0"
+    },
+    {
+      "source_id": "ptbxl-18232",
+      "group_id": "ptbxl-patient-2754.0"
+    },
+    {
+      "source_id": "ptbxl-18263",
+      "group_id": "ptbxl-patient-690.0"
+    },
+    {
+      "source_id": "ptbxl-18268",
+      "group_id": "ptbxl-patient-685.0"
+    },
+    {
+      "source_id": "ptbxl-18292",
+      "group_id": "ptbxl-patient-16403.0"
+    },
+    {
+      "source_id": "ptbxl-18293",
+      "group_id": "ptbxl-patient-500.0"
+    },
+    {
+      "source_id": "ptbxl-18303",
+      "group_id": "ptbxl-patient-12055.0"
+    },
+    {
+      "source_id": "ptbxl-18304",
+      "group_id": "ptbxl-patient-21000.0"
+    },
+    {
+      "source_id": "ptbxl-18313",
+      "group_id": "ptbxl-patient-11813.0"
+    },
+    {
+      "source_id": "ptbxl-18320",
+      "group_id": "ptbxl-patient-2656.0"
+    },
+    {
+      "source_id": "ptbxl-18352",
+      "group_id": "ptbxl-patient-4598.0"
+    },
+    {
+      "source_id": "ptbxl-18354",
+      "group_id": "ptbxl-patient-9371.0"
+    },
+    {
+      "source_id": "ptbxl-18394",
+      "group_id": "ptbxl-patient-4430.0"
+    },
+    {
+      "source_id": "ptbxl-18401",
+      "group_id": "ptbxl-patient-451.0"
+    },
+    {
+      "source_id": "ptbxl-18427",
+      "group_id": "ptbxl-patient-14079.0"
+    },
+    {
+      "source_id": "ptbxl-18456",
+      "group_id": "ptbxl-patient-21073.0"
+    },
+    {
+      "source_id": "ptbxl-18458",
+      "group_id": "ptbxl-patient-15658.0"
+    },
+    {
+      "source_id": "ptbxl-18462",
+      "group_id": "ptbxl-patient-13523.0"
+    },
+    {
+      "source_id": "ptbxl-18491",
+      "group_id": "ptbxl-patient-11808.0"
+    },
+    {
+      "source_id": "ptbxl-18529",
+      "group_id": "ptbxl-patient-15344.0"
+    },
+    {
+      "source_id": "ptbxl-18592",
+      "group_id": "ptbxl-patient-16374.0"
+    },
+    {
+      "source_id": "ptbxl-18601",
+      "group_id": "ptbxl-patient-11645.0"
+    },
+    {
+      "source_id": "ptbxl-18606",
+      "group_id": "ptbxl-patient-12713.0"
+    },
+    {
+      "source_id": "ptbxl-18628",
+      "group_id": "ptbxl-patient-19691.0"
+    },
+    {
+      "source_id": "ptbxl-18675",
+      "group_id": "ptbxl-patient-17157.0"
+    },
+    {
+      "source_id": "ptbxl-18704",
+      "group_id": "ptbxl-patient-19506.0"
+    },
+    {
+      "source_id": "ptbxl-18717",
+      "group_id": "ptbxl-patient-16189.0"
+    },
+    {
+      "source_id": "ptbxl-18730",
+      "group_id": "ptbxl-patient-15582.0"
+    },
+    {
+      "source_id": "ptbxl-18740",
+      "group_id": "ptbxl-patient-18520.0"
+    },
+    {
+      "source_id": "ptbxl-1875",
+      "group_id": "ptbxl-patient-2508.0"
+    },
+    {
+      "source_id": "ptbxl-18754",
+      "group_id": "ptbxl-patient-11196.0"
+    },
+    {
+      "source_id": "ptbxl-1878",
+      "group_id": "ptbxl-patient-11778.0"
+    },
+    {
+      "source_id": "ptbxl-18805",
+      "group_id": "ptbxl-patient-14115.0"
+    },
+    {
+      "source_id": "ptbxl-18822",
+      "group_id": "ptbxl-patient-8825.0"
+    },
+    {
+      "source_id": "ptbxl-18824",
+      "group_id": "ptbxl-patient-10469.0"
+    },
+    {
+      "source_id": "ptbxl-1885",
+      "group_id": "ptbxl-patient-17863.0"
+    },
+    {
+      "source_id": "ptbxl-1886",
+      "group_id": "ptbxl-patient-3682.0"
+    },
+    {
+      "source_id": "ptbxl-18865",
+      "group_id": "ptbxl-patient-14566.0"
+    },
+    {
+      "source_id": "ptbxl-18885",
+      "group_id": "ptbxl-patient-12730.0"
+    },
+    {
+      "source_id": "ptbxl-18914",
+      "group_id": "ptbxl-patient-18837.0"
+    },
+    {
+      "source_id": "ptbxl-18915",
+      "group_id": "ptbxl-patient-10755.0"
+    },
+    {
+      "source_id": "ptbxl-18932",
+      "group_id": "ptbxl-patient-20678.0"
+    },
+    {
+      "source_id": "ptbxl-18933",
+      "group_id": "ptbxl-patient-8094.0"
+    },
+    {
+      "source_id": "ptbxl-18954",
+      "group_id": "ptbxl-patient-16213.0"
+    },
+    {
+      "source_id": "ptbxl-18988",
+      "group_id": "ptbxl-patient-18895.0"
+    },
+    {
+      "source_id": "ptbxl-19014",
+      "group_id": "ptbxl-patient-10390.0"
+    },
+    {
+      "source_id": "ptbxl-19021",
+      "group_id": "ptbxl-patient-13832.0"
+    },
+    {
+      "source_id": "ptbxl-19023",
+      "group_id": "ptbxl-patient-19841.0"
+    },
+    {
+      "source_id": "ptbxl-19050",
+      "group_id": "ptbxl-patient-18147.0"
+    },
+    {
+      "source_id": "ptbxl-19062",
+      "group_id": "ptbxl-patient-16203.0"
+    },
+    {
+      "source_id": "ptbxl-1907",
+      "group_id": "ptbxl-patient-7931.0"
+    },
+    {
+      "source_id": "ptbxl-19070",
+      "group_id": "ptbxl-patient-15254.0"
+    },
+    {
+      "source_id": "ptbxl-19074",
+      "group_id": "ptbxl-patient-11323.0"
+    },
+    {
+      "source_id": "ptbxl-19107",
+      "group_id": "ptbxl-patient-14514.0"
+    },
+    {
+      "source_id": "ptbxl-19112",
+      "group_id": "ptbxl-patient-10144.0"
+    },
+    {
+      "source_id": "ptbxl-19113",
+      "group_id": "ptbxl-patient-8820.0"
+    },
+    {
+      "source_id": "ptbxl-19124",
+      "group_id": "ptbxl-patient-8630.0"
+    },
+    {
+      "source_id": "ptbxl-19130",
+      "group_id": "ptbxl-patient-13513.0"
+    },
+    {
+      "source_id": "ptbxl-19132",
+      "group_id": "ptbxl-patient-10197.0"
+    },
+    {
+      "source_id": "ptbxl-19139",
+      "group_id": "ptbxl-patient-19152.0"
+    },
+    {
+      "source_id": "ptbxl-19140",
+      "group_id": "ptbxl-patient-15780.0"
+    },
+    {
+      "source_id": "ptbxl-19141",
+      "group_id": "ptbxl-patient-18485.0"
+    },
+    {
+      "source_id": "ptbxl-1915",
+      "group_id": "ptbxl-patient-16166.0"
+    },
+    {
+      "source_id": "ptbxl-19205",
+      "group_id": "ptbxl-patient-12709.0"
+    },
+    {
+      "source_id": "ptbxl-19249",
+      "group_id": "ptbxl-patient-18080.0"
+    },
+    {
+      "source_id": "ptbxl-19285",
+      "group_id": "ptbxl-patient-8275.0"
+    },
+    {
+      "source_id": "ptbxl-19298",
+      "group_id": "ptbxl-patient-19189.0"
+    },
+    {
+      "source_id": "ptbxl-19305",
+      "group_id": "ptbxl-patient-15115.0"
+    },
+    {
+      "source_id": "ptbxl-19311",
+      "group_id": "ptbxl-patient-15440.0"
+    },
+    {
+      "source_id": "ptbxl-19315",
+      "group_id": "ptbxl-patient-12282.0"
+    },
+    {
+      "source_id": "ptbxl-19327",
+      "group_id": "ptbxl-patient-9844.0"
+    },
+    {
+      "source_id": "ptbxl-19328",
+      "group_id": "ptbxl-patient-9875.0"
+    },
+    {
+      "source_id": "ptbxl-19364",
+      "group_id": "ptbxl-patient-8767.0"
+    },
+    {
+      "source_id": "ptbxl-19383",
+      "group_id": "ptbxl-patient-20726.0"
+    },
+    {
+      "source_id": "ptbxl-19384",
+      "group_id": "ptbxl-patient-21388.0"
+    },
+    {
+      "source_id": "ptbxl-19387",
+      "group_id": "ptbxl-patient-15245.0"
+    },
+    {
+      "source_id": "ptbxl-19395",
+      "group_id": "ptbxl-patient-19801.0"
+    },
+    {
+      "source_id": "ptbxl-19496",
+      "group_id": "ptbxl-patient-10247.0"
+    },
+    {
+      "source_id": "ptbxl-19508",
+      "group_id": "ptbxl-patient-12308.0"
+    },
+    {
+      "source_id": "ptbxl-19522",
+      "group_id": "ptbxl-patient-20442.0"
+    },
+    {
+      "source_id": "ptbxl-1957",
+      "group_id": "ptbxl-patient-14555.0"
+    },
+    {
+      "source_id": "ptbxl-19571",
+      "group_id": "ptbxl-patient-15609.0"
+    },
+    {
+      "source_id": "ptbxl-19592",
+      "group_id": "ptbxl-patient-17515.0"
+    },
+    {
+      "source_id": "ptbxl-19602",
+      "group_id": "ptbxl-patient-20528.0"
+    },
+    {
+      "source_id": "ptbxl-19616",
+      "group_id": "ptbxl-patient-16145.0"
+    },
+    {
+      "source_id": "ptbxl-19619",
+      "group_id": "ptbxl-patient-16904.0"
+    },
+    {
+      "source_id": "ptbxl-1962",
+      "group_id": "ptbxl-patient-2037.0"
+    },
+    {
+      "source_id": "ptbxl-19620",
+      "group_id": "ptbxl-patient-16349.0"
+    },
+    {
+      "source_id": "ptbxl-19628",
+      "group_id": "ptbxl-patient-12556.0"
+    },
+    {
+      "source_id": "ptbxl-19662",
+      "group_id": "ptbxl-patient-11123.0"
+    },
+    {
+      "source_id": "ptbxl-19670",
+      "group_id": "ptbxl-patient-17427.0"
+    },
+    {
+      "source_id": "ptbxl-19696",
+      "group_id": "ptbxl-patient-20150.0"
+    },
+    {
+      "source_id": "ptbxl-19699",
+      "group_id": "ptbxl-patient-13604.0"
+    },
+    {
+      "source_id": "ptbxl-19708",
+      "group_id": "ptbxl-patient-12094.0"
+    },
+    {
+      "source_id": "ptbxl-19750",
+      "group_id": "ptbxl-patient-15431.0"
+    },
+    {
+      "source_id": "ptbxl-19803",
+      "group_id": "ptbxl-patient-16459.0"
+    },
+    {
+      "source_id": "ptbxl-19819",
+      "group_id": "ptbxl-patient-9248.0"
+    },
+    {
+      "source_id": "ptbxl-1983",
+      "group_id": "ptbxl-patient-2323.0"
+    },
+    {
+      "source_id": "ptbxl-19871",
+      "group_id": "ptbxl-patient-8467.0"
+    },
+    {
+      "source_id": "ptbxl-19886",
+      "group_id": "ptbxl-patient-16976.0"
+    },
+    {
+      "source_id": "ptbxl-19887",
+      "group_id": "ptbxl-patient-21592.0"
+    },
+    {
+      "source_id": "ptbxl-19891",
+      "group_id": "ptbxl-patient-18841.0"
+    },
+    {
+      "source_id": "ptbxl-19893",
+      "group_id": "ptbxl-patient-11891.0"
+    },
+    {
+      "source_id": "ptbxl-19938",
+      "group_id": "ptbxl-patient-19747.0"
+    },
+    {
+      "source_id": "ptbxl-19964",
+      "group_id": "ptbxl-patient-10723.0"
+    },
+    {
+      "source_id": "ptbxl-19969",
+      "group_id": "ptbxl-patient-16558.0"
+    },
+    {
+      "source_id": "ptbxl-19976",
+      "group_id": "ptbxl-patient-20080.0"
+    },
+    {
+      "source_id": "ptbxl-19977",
+      "group_id": "ptbxl-patient-11971.0"
+    },
+    {
+      "source_id": "ptbxl-19980",
+      "group_id": "ptbxl-patient-10053.0"
+    },
+    {
+      "source_id": "ptbxl-19987",
+      "group_id": "ptbxl-patient-10531.0"
+    },
+    {
+      "source_id": "ptbxl-19994",
+      "group_id": "ptbxl-patient-13995.0"
+    },
+    {
+      "source_id": "ptbxl-20001",
+      "group_id": "ptbxl-patient-18065.0"
+    },
+    {
+      "source_id": "ptbxl-20003",
+      "group_id": "ptbxl-patient-8282.0"
+    },
+    {
+      "source_id": "ptbxl-20010",
+      "group_id": "ptbxl-patient-19227.0"
+    },
+    {
+      "source_id": "ptbxl-20012",
+      "group_id": "ptbxl-patient-12177.0"
+    },
+    {
+      "source_id": "ptbxl-20018",
+      "group_id": "ptbxl-patient-12395.0"
+    },
+    {
+      "source_id": "ptbxl-20045",
+      "group_id": "ptbxl-patient-21331.0"
+    },
+    {
+      "source_id": "ptbxl-20121",
+      "group_id": "ptbxl-patient-20541.0"
+    },
+    {
+      "source_id": "ptbxl-20128",
+      "group_id": "ptbxl-patient-20077.0"
+    },
+    {
+      "source_id": "ptbxl-20143",
+      "group_id": "ptbxl-patient-21455.0"
+    },
+    {
+      "source_id": "ptbxl-20147",
+      "group_id": "ptbxl-patient-15376.0"
+    },
+    {
+      "source_id": "ptbxl-20175",
+      "group_id": "ptbxl-patient-13398.0"
+    },
+    {
+      "source_id": "ptbxl-20179",
+      "group_id": "ptbxl-patient-10392.0"
+    },
+    {
+      "source_id": "ptbxl-20180",
+      "group_id": "ptbxl-patient-12378.0"
+    },
+    {
+      "source_id": "ptbxl-20195",
+      "group_id": "ptbxl-patient-14494.0"
+    },
+    {
+      "source_id": "ptbxl-2023",
+      "group_id": "ptbxl-patient-14410.0"
+    },
+    {
+      "source_id": "ptbxl-20236",
+      "group_id": "ptbxl-patient-13308.0"
+    },
+    {
+      "source_id": "ptbxl-20238",
+      "group_id": "ptbxl-patient-20445.0"
+    },
+    {
+      "source_id": "ptbxl-20252",
+      "group_id": "ptbxl-patient-12203.0"
+    },
+    {
+      "source_id": "ptbxl-20255",
+      "group_id": "ptbxl-patient-13651.0"
+    },
+    {
+      "source_id": "ptbxl-20285",
+      "group_id": "ptbxl-patient-11740.0"
+    },
+    {
+      "source_id": "ptbxl-20286",
+      "group_id": "ptbxl-patient-13708.0"
+    },
+    {
+      "source_id": "ptbxl-20288",
+      "group_id": "ptbxl-patient-10264.0"
+    },
+    {
+      "source_id": "ptbxl-20291",
+      "group_id": "ptbxl-patient-13201.0"
+    },
+    {
+      "source_id": "ptbxl-20292",
+      "group_id": "ptbxl-patient-16736.0"
+    },
+    {
+      "source_id": "ptbxl-2030",
+      "group_id": "ptbxl-patient-378.0"
+    },
+    {
+      "source_id": "ptbxl-20311",
+      "group_id": "ptbxl-patient-20580.0"
+    },
+    {
+      "source_id": "ptbxl-20339",
+      "group_id": "ptbxl-patient-15402.0"
+    },
+    {
+      "source_id": "ptbxl-2036",
+      "group_id": "ptbxl-patient-3309.0"
+    },
+    {
+      "source_id": "ptbxl-20375",
+      "group_id": "ptbxl-patient-11390.0"
+    },
+    {
+      "source_id": "ptbxl-20380",
+      "group_id": "ptbxl-patient-10891.0"
+    },
+    {
+      "source_id": "ptbxl-20381",
+      "group_id": "ptbxl-patient-12559.0"
+    },
+    {
+      "source_id": "ptbxl-20403",
+      "group_id": "ptbxl-patient-21545.0"
+    },
+    {
+      "source_id": "ptbxl-20406",
+      "group_id": "ptbxl-patient-17065.0"
+    },
+    {
+      "source_id": "ptbxl-20415",
+      "group_id": "ptbxl-patient-15765.0"
+    },
+    {
+      "source_id": "ptbxl-20439",
+      "group_id": "ptbxl-patient-19110.0"
+    },
+    {
+      "source_id": "ptbxl-20467",
+      "group_id": "ptbxl-patient-14480.0"
+    },
+    {
+      "source_id": "ptbxl-20507",
+      "group_id": "ptbxl-patient-11427.0"
+    },
+    {
+      "source_id": "ptbxl-20523",
+      "group_id": "ptbxl-patient-15483.0"
+    },
+    {
+      "source_id": "ptbxl-20534",
+      "group_id": "ptbxl-patient-13291.0"
+    },
+    {
+      "source_id": "ptbxl-20541",
+      "group_id": "ptbxl-patient-18969.0"
+    },
+    {
+      "source_id": "ptbxl-20560",
+      "group_id": "ptbxl-patient-20224.0"
+    },
+    {
+      "source_id": "ptbxl-2057",
+      "group_id": "ptbxl-patient-5472.0"
+    },
+    {
+      "source_id": "ptbxl-20590",
+      "group_id": "ptbxl-patient-21150.0"
+    },
+    {
+      "source_id": "ptbxl-20604",
+      "group_id": "ptbxl-patient-15327.0"
+    },
+    {
+      "source_id": "ptbxl-20608",
+      "group_id": "ptbxl-patient-19306.0"
+    },
+    {
+      "source_id": "ptbxl-20610",
+      "group_id": "ptbxl-patient-9896.0"
+    },
+    {
+      "source_id": "ptbxl-20639",
+      "group_id": "ptbxl-patient-20460.0"
+    },
+    {
+      "source_id": "ptbxl-20673",
+      "group_id": "ptbxl-patient-19556.0"
+    },
+    {
+      "source_id": "ptbxl-20695",
+      "group_id": "ptbxl-patient-8373.0"
+    },
+    {
+      "source_id": "ptbxl-20729",
+      "group_id": "ptbxl-patient-9958.0"
+    },
+    {
+      "source_id": "ptbxl-20788",
+      "group_id": "ptbxl-patient-11420.0"
+    },
+    {
+      "source_id": "ptbxl-20798",
+      "group_id": "ptbxl-patient-8117.0"
+    },
+    {
+      "source_id": "ptbxl-20854",
+      "group_id": "ptbxl-patient-8794.0"
+    },
+    {
+      "source_id": "ptbxl-2086",
+      "group_id": "ptbxl-patient-7677.0"
+    },
+    {
+      "source_id": "ptbxl-20871",
+      "group_id": "ptbxl-patient-13907.0"
+    },
+    {
+      "source_id": "ptbxl-20884",
+      "group_id": "ptbxl-patient-15246.0"
+    },
+    {
+      "source_id": "ptbxl-20927",
+      "group_id": "ptbxl-patient-19817.0"
+    },
+    {
+      "source_id": "ptbxl-20933",
+      "group_id": "ptbxl-patient-8579.0"
+    },
+    {
+      "source_id": "ptbxl-20955",
+      "group_id": "ptbxl-patient-12731.0"
+    },
+    {
+      "source_id": "ptbxl-20960",
+      "group_id": "ptbxl-patient-13578.0"
+    },
+    {
+      "source_id": "ptbxl-20967",
+      "group_id": "ptbxl-patient-13969.0"
+    },
+    {
+      "source_id": "ptbxl-21005",
+      "group_id": "ptbxl-patient-21138.0"
+    },
+    {
+      "source_id": "ptbxl-21019",
+      "group_id": "ptbxl-patient-11099.0"
+    },
+    {
+      "source_id": "ptbxl-21090",
+      "group_id": "ptbxl-patient-20775.0"
+    },
+    {
+      "source_id": "ptbxl-21093",
+      "group_id": "ptbxl-patient-19420.0"
+    },
+    {
+      "source_id": "ptbxl-21128",
+      "group_id": "ptbxl-patient-21057.0"
+    },
+    {
+      "source_id": "ptbxl-21176",
+      "group_id": "ptbxl-patient-14011.0"
+    },
+    {
+      "source_id": "ptbxl-21182",
+      "group_id": "ptbxl-patient-15347.0"
+    },
+    {
+      "source_id": "ptbxl-21192",
+      "group_id": "ptbxl-patient-13917.0"
+    },
+    {
+      "source_id": "ptbxl-21196",
+      "group_id": "ptbxl-patient-9596.0"
+    },
+    {
+      "source_id": "ptbxl-21198",
+      "group_id": "ptbxl-patient-18790.0"
+    },
+    {
+      "source_id": "ptbxl-2120",
+      "group_id": "ptbxl-patient-7111.0"
+    },
+    {
+      "source_id": "ptbxl-21218",
+      "group_id": "ptbxl-patient-11316.0"
+    },
+    {
+      "source_id": "ptbxl-2122",
+      "group_id": "ptbxl-patient-3263.0"
+    },
+    {
+      "source_id": "ptbxl-21226",
+      "group_id": "ptbxl-patient-16086.0"
+    },
+    {
+      "source_id": "ptbxl-21227",
+      "group_id": "ptbxl-patient-13695.0"
+    },
+    {
+      "source_id": "ptbxl-21237",
+      "group_id": "ptbxl-patient-12481.0"
+    },
+    {
+      "source_id": "ptbxl-21238",
+      "group_id": "ptbxl-patient-13299.0"
+    },
+    {
+      "source_id": "ptbxl-21239",
+      "group_id": "ptbxl-patient-21392.0"
+    },
+    {
+      "source_id": "ptbxl-21240",
+      "group_id": "ptbxl-patient-8603.0"
+    },
+    {
+      "source_id": "ptbxl-21246",
+      "group_id": "ptbxl-patient-11019.0"
+    },
+    {
+      "source_id": "ptbxl-21250",
+      "group_id": "ptbxl-patient-13852.0"
+    },
+    {
+      "source_id": "ptbxl-21280",
+      "group_id": "ptbxl-patient-11877.0"
+    },
+    {
+      "source_id": "ptbxl-21308",
+      "group_id": "ptbxl-patient-14534.0"
+    },
+    {
+      "source_id": "ptbxl-21318",
+      "group_id": "ptbxl-patient-15964.0"
+    },
+    {
+      "source_id": "ptbxl-21320",
+      "group_id": "ptbxl-patient-12873.0"
+    },
+    {
+      "source_id": "ptbxl-2133",
+      "group_id": "ptbxl-patient-4323.0"
+    },
+    {
+      "source_id": "ptbxl-21345",
+      "group_id": "ptbxl-patient-16110.0"
+    },
+    {
+      "source_id": "ptbxl-21350",
+      "group_id": "ptbxl-patient-16963.0"
+    },
+    {
+      "source_id": "ptbxl-21358",
+      "group_id": "ptbxl-patient-17706.0"
+    },
+    {
+      "source_id": "ptbxl-21374",
+      "group_id": "ptbxl-patient-21484.0"
+    },
+    {
+      "source_id": "ptbxl-21420",
+      "group_id": "ptbxl-patient-9205.0"
+    },
+    {
+      "source_id": "ptbxl-21430",
+      "group_id": "ptbxl-patient-9918.0"
+    },
+    {
+      "source_id": "ptbxl-21466",
+      "group_id": "ptbxl-patient-9287.0"
+    },
+    {
+      "source_id": "ptbxl-21476",
+      "group_id": "ptbxl-patient-9857.0"
+    },
+    {
+      "source_id": "ptbxl-21490",
+      "group_id": "ptbxl-patient-18603.0"
+    },
+    {
+      "source_id": "ptbxl-21493",
+      "group_id": "ptbxl-patient-17112.0"
+    },
+    {
+      "source_id": "ptbxl-21541",
+      "group_id": "ptbxl-patient-10108.0"
+    },
+    {
+      "source_id": "ptbxl-21548",
+      "group_id": "ptbxl-patient-20458.0"
+    },
+    {
+      "source_id": "ptbxl-21555",
+      "group_id": "ptbxl-patient-15028.0"
+    },
+    {
+      "source_id": "ptbxl-21561",
+      "group_id": "ptbxl-patient-19299.0"
+    },
+    {
+      "source_id": "ptbxl-21570",
+      "group_id": "ptbxl-patient-11262.0"
+    },
+    {
+      "source_id": "ptbxl-21571",
+      "group_id": "ptbxl-patient-14445.0"
+    },
+    {
+      "source_id": "ptbxl-21584",
+      "group_id": "ptbxl-patient-14848.0"
+    },
+    {
+      "source_id": "ptbxl-21589",
+      "group_id": "ptbxl-patient-16381.0"
+    },
+    {
+      "source_id": "ptbxl-216",
+      "group_id": "ptbxl-patient-18577.0"
+    },
+    {
+      "source_id": "ptbxl-2160",
+      "group_id": "ptbxl-patient-15956.0"
+    },
+    {
+      "source_id": "ptbxl-21605",
+      "group_id": "ptbxl-patient-16659.0"
+    },
+    {
+      "source_id": "ptbxl-2161",
+      "group_id": "ptbxl-patient-20411.0"
+    },
+    {
+      "source_id": "ptbxl-2164",
+      "group_id": "ptbxl-patient-11482.0"
+    },
+    {
+      "source_id": "ptbxl-21672",
+      "group_id": "ptbxl-patient-14670.0"
+    },
+    {
+      "source_id": "ptbxl-21681",
+      "group_id": "ptbxl-patient-9831.0"
+    },
+    {
+      "source_id": "ptbxl-21682",
+      "group_id": "ptbxl-patient-8518.0"
+    },
+    {
+      "source_id": "ptbxl-21721",
+      "group_id": "ptbxl-patient-9285.0"
+    },
+    {
+      "source_id": "ptbxl-21728",
+      "group_id": "ptbxl-patient-18421.0"
+    },
+    {
+      "source_id": "ptbxl-21806",
+      "group_id": "ptbxl-patient-20136.0"
+    },
+    {
+      "source_id": "ptbxl-21836",
+      "group_id": "ptbxl-patient-8873.0"
+    },
+    {
+      "source_id": "ptbxl-2191",
+      "group_id": "ptbxl-patient-1760.0"
+    },
+    {
+      "source_id": "ptbxl-2222",
+      "group_id": "ptbxl-patient-7501.0"
+    },
+    {
+      "source_id": "ptbxl-2225",
+      "group_id": "ptbxl-patient-6757.0"
+    },
+    {
+      "source_id": "ptbxl-2226",
+      "group_id": "ptbxl-patient-7071.0"
+    },
+    {
+      "source_id": "ptbxl-2236",
+      "group_id": "ptbxl-patient-862.0"
+    },
+    {
+      "source_id": "ptbxl-2244",
+      "group_id": "ptbxl-patient-957.0"
+    },
+    {
+      "source_id": "ptbxl-2247",
+      "group_id": "ptbxl-patient-7914.0"
+    },
+    {
+      "source_id": "ptbxl-2253",
+      "group_id": "ptbxl-patient-420.0"
+    },
+    {
+      "source_id": "ptbxl-2298",
+      "group_id": "ptbxl-patient-6620.0"
+    },
+    {
+      "source_id": "ptbxl-2318",
+      "group_id": "ptbxl-patient-7351.0"
+    },
+    {
+      "source_id": "ptbxl-2323",
+      "group_id": "ptbxl-patient-4078.0"
+    },
+    {
+      "source_id": "ptbxl-2341",
+      "group_id": "ptbxl-patient-14475.0"
+    },
+    {
+      "source_id": "ptbxl-2363",
+      "group_id": "ptbxl-patient-18735.0"
+    },
+    {
+      "source_id": "ptbxl-2368",
+      "group_id": "ptbxl-patient-15335.0"
+    },
+    {
+      "source_id": "ptbxl-2373",
+      "group_id": "ptbxl-patient-12857.0"
+    },
+    {
+      "source_id": "ptbxl-2375",
+      "group_id": "ptbxl-patient-17107.0"
+    },
+    {
+      "source_id": "ptbxl-2382",
+      "group_id": "ptbxl-patient-12589.0"
+    },
+    {
+      "source_id": "ptbxl-2386",
+      "group_id": "ptbxl-patient-10088.0"
+    },
+    {
+      "source_id": "ptbxl-2429",
+      "group_id": "ptbxl-patient-8456.0"
+    },
+    {
+      "source_id": "ptbxl-2437",
+      "group_id": "ptbxl-patient-21766.0"
+    },
+    {
+      "source_id": "ptbxl-2452",
+      "group_id": "ptbxl-patient-16035.0"
+    },
+    {
+      "source_id": "ptbxl-2467",
+      "group_id": "ptbxl-patient-7513.0"
+    },
+    {
+      "source_id": "ptbxl-2474",
+      "group_id": "ptbxl-patient-16810.0"
+    },
+    {
+      "source_id": "ptbxl-2501",
+      "group_id": "ptbxl-patient-13611.0"
+    },
+    {
+      "source_id": "ptbxl-253",
+      "group_id": "ptbxl-patient-2096.0"
+    },
+    {
+      "source_id": "ptbxl-2555",
+      "group_id": "ptbxl-patient-1263.0"
+    },
+    {
+      "source_id": "ptbxl-2564",
+      "group_id": "ptbxl-patient-16701.0"
+    },
+    {
+      "source_id": "ptbxl-2566",
+      "group_id": "ptbxl-patient-11477.0"
+    },
+    {
+      "source_id": "ptbxl-2616",
+      "group_id": "ptbxl-patient-4156.0"
+    },
+    {
+      "source_id": "ptbxl-2618",
+      "group_id": "ptbxl-patient-1055.0"
+    },
+    {
+      "source_id": "ptbxl-262",
+      "group_id": "ptbxl-patient-6501.0"
+    },
+    {
+      "source_id": "ptbxl-2624",
+      "group_id": "ptbxl-patient-2143.0"
+    },
+    {
+      "source_id": "ptbxl-2633",
+      "group_id": "ptbxl-patient-19401.0"
+    },
+    {
+      "source_id": "ptbxl-2635",
+      "group_id": "ptbxl-patient-18171.0"
+    },
+    {
+      "source_id": "ptbxl-2637",
+      "group_id": "ptbxl-patient-20095.0"
+    },
+    {
+      "source_id": "ptbxl-2660",
+      "group_id": "ptbxl-patient-2175.0"
+    },
+    {
+      "source_id": "ptbxl-2668",
+      "group_id": "ptbxl-patient-3019.0"
+    },
+    {
+      "source_id": "ptbxl-2691",
+      "group_id": "ptbxl-patient-4308.0"
+    },
+    {
+      "source_id": "ptbxl-2705",
+      "group_id": "ptbxl-patient-581.0"
+    },
+    {
+      "source_id": "ptbxl-2718",
+      "group_id": "ptbxl-patient-21167.0"
+    },
+    {
+      "source_id": "ptbxl-2725",
+      "group_id": "ptbxl-patient-16041.0"
+    },
+    {
+      "source_id": "ptbxl-2730",
+      "group_id": "ptbxl-patient-955.0"
+    },
+    {
+      "source_id": "ptbxl-2772",
+      "group_id": "ptbxl-patient-5331.0"
+    },
+    {
+      "source_id": "ptbxl-283",
+      "group_id": "ptbxl-patient-4715.0"
+    },
+    {
+      "source_id": "ptbxl-2843",
+      "group_id": "ptbxl-patient-2779.0"
+    },
+    {
+      "source_id": "ptbxl-2847",
+      "group_id": "ptbxl-patient-15204.0"
+    },
+    {
+      "source_id": "ptbxl-2866",
+      "group_id": "ptbxl-patient-15336.0"
+    },
+    {
+      "source_id": "ptbxl-2875",
+      "group_id": "ptbxl-patient-15931.0"
+    },
+    {
+      "source_id": "ptbxl-2922",
+      "group_id": "ptbxl-patient-13701.0"
+    },
+    {
+      "source_id": "ptbxl-2948",
+      "group_id": "ptbxl-patient-345.0"
+    },
+    {
+      "source_id": "ptbxl-3015",
+      "group_id": "ptbxl-patient-2587.0"
+    },
+    {
+      "source_id": "ptbxl-3021",
+      "group_id": "ptbxl-patient-6182.0"
+    },
+    {
+      "source_id": "ptbxl-3032",
+      "group_id": "ptbxl-patient-7644.0"
+    },
+    {
+      "source_id": "ptbxl-3049",
+      "group_id": "ptbxl-patient-11180.0"
+    },
+    {
+      "source_id": "ptbxl-3054",
+      "group_id": "ptbxl-patient-11657.0"
+    },
+    {
+      "source_id": "ptbxl-3056",
+      "group_id": "ptbxl-patient-1691.0"
+    },
+    {
+      "source_id": "ptbxl-3065",
+      "group_id": "ptbxl-patient-5207.0"
+    },
+    {
+      "source_id": "ptbxl-3073",
+      "group_id": "ptbxl-patient-6270.0"
+    },
+    {
+      "source_id": "ptbxl-311",
+      "group_id": "ptbxl-patient-4302.0"
+    },
+    {
+      "source_id": "ptbxl-3120",
+      "group_id": "ptbxl-patient-4251.0"
+    },
+    {
+      "source_id": "ptbxl-3143",
+      "group_id": "ptbxl-patient-18317.0"
+    },
+    {
+      "source_id": "ptbxl-3149",
+      "group_id": "ptbxl-patient-13982.0"
+    },
+    {
+      "source_id": "ptbxl-3151",
+      "group_id": "ptbxl-patient-4366.0"
+    },
+    {
+      "source_id": "ptbxl-3154",
+      "group_id": "ptbxl-patient-698.0"
+    },
+    {
+      "source_id": "ptbxl-3155",
+      "group_id": "ptbxl-patient-732.0"
+    },
+    {
+      "source_id": "ptbxl-3160",
+      "group_id": "ptbxl-patient-19275.0"
+    },
+    {
+      "source_id": "ptbxl-3166",
+      "group_id": "ptbxl-patient-4961.0"
+    },
+    {
+      "source_id": "ptbxl-3168",
+      "group_id": "ptbxl-patient-2966.0"
+    },
+    {
+      "source_id": "ptbxl-3211",
+      "group_id": "ptbxl-patient-4560.0"
+    },
+    {
+      "source_id": "ptbxl-3217",
+      "group_id": "ptbxl-patient-5939.0"
+    },
+    {
+      "source_id": "ptbxl-3246",
+      "group_id": "ptbxl-patient-1597.0"
+    },
+    {
+      "source_id": "ptbxl-3286",
+      "group_id": "ptbxl-patient-751.0"
+    },
+    {
+      "source_id": "ptbxl-3296",
+      "group_id": "ptbxl-patient-5271.0"
+    },
+    {
+      "source_id": "ptbxl-3298",
+      "group_id": "ptbxl-patient-16115.0"
+    },
+    {
+      "source_id": "ptbxl-3301",
+      "group_id": "ptbxl-patient-6118.0"
+    },
+    {
+      "source_id": "ptbxl-3306",
+      "group_id": "ptbxl-patient-465.0"
+    },
+    {
+      "source_id": "ptbxl-3310",
+      "group_id": "ptbxl-patient-18908.0"
+    },
+    {
+      "source_id": "ptbxl-3379",
+      "group_id": "ptbxl-patient-3938.0"
+    },
+    {
+      "source_id": "ptbxl-3394",
+      "group_id": "ptbxl-patient-7910.0"
+    },
+    {
+      "source_id": "ptbxl-3401",
+      "group_id": "ptbxl-patient-7511.0"
+    },
+    {
+      "source_id": "ptbxl-343",
+      "group_id": "ptbxl-patient-4004.0"
+    },
+    {
+      "source_id": "ptbxl-3430",
+      "group_id": "ptbxl-patient-6259.0"
+    },
+    {
+      "source_id": "ptbxl-3431",
+      "group_id": "ptbxl-patient-2705.0"
+    },
+    {
+      "source_id": "ptbxl-3436",
+      "group_id": "ptbxl-patient-5858.0"
+    },
+    {
+      "source_id": "ptbxl-3440",
+      "group_id": "ptbxl-patient-5158.0"
+    },
+    {
+      "source_id": "ptbxl-3441",
+      "group_id": "ptbxl-patient-594.0"
+    },
+    {
+      "source_id": "ptbxl-3448",
+      "group_id": "ptbxl-patient-1319.0"
+    },
+    {
+      "source_id": "ptbxl-3455",
+      "group_id": "ptbxl-patient-2908.0"
+    },
+    {
+      "source_id": "ptbxl-3482",
+      "group_id": "ptbxl-patient-1190.0"
+    },
+    {
+      "source_id": "ptbxl-3508",
+      "group_id": "ptbxl-patient-5670.0"
+    },
+    {
+      "source_id": "ptbxl-3514",
+      "group_id": "ptbxl-patient-9185.0"
+    },
+    {
+      "source_id": "ptbxl-3525",
+      "group_id": "ptbxl-patient-7155.0"
+    },
+    {
+      "source_id": "ptbxl-3533",
+      "group_id": "ptbxl-patient-5466.0"
+    },
+    {
+      "source_id": "ptbxl-3539",
+      "group_id": "ptbxl-patient-4475.0"
+    },
+    {
+      "source_id": "ptbxl-3552",
+      "group_id": "ptbxl-patient-18493.0"
+    },
+    {
+      "source_id": "ptbxl-3570",
+      "group_id": "ptbxl-patient-10776.0"
+    },
+    {
+      "source_id": "ptbxl-3579",
+      "group_id": "ptbxl-patient-16625.0"
+    },
+    {
+      "source_id": "ptbxl-3604",
+      "group_id": "ptbxl-patient-15888.0"
+    },
+    {
+      "source_id": "ptbxl-361",
+      "group_id": "ptbxl-patient-13000.0"
+    },
+    {
+      "source_id": "ptbxl-3620",
+      "group_id": "ptbxl-patient-14609.0"
+    },
+    {
+      "source_id": "ptbxl-3641",
+      "group_id": "ptbxl-patient-18809.0"
+    },
+    {
+      "source_id": "ptbxl-366",
+      "group_id": "ptbxl-patient-16163.0"
+    },
+    {
+      "source_id": "ptbxl-374",
+      "group_id": "ptbxl-patient-8032.0"
+    },
+    {
+      "source_id": "ptbxl-3748",
+      "group_id": "ptbxl-patient-8038.0"
+    },
+    {
+      "source_id": "ptbxl-3751",
+      "group_id": "ptbxl-patient-16786.0"
+    },
+    {
+      "source_id": "ptbxl-381",
+      "group_id": "ptbxl-patient-15843.0"
+    },
+    {
+      "source_id": "ptbxl-3824",
+      "group_id": "ptbxl-patient-4426.0"
+    },
+    {
+      "source_id": "ptbxl-3855",
+      "group_id": "ptbxl-patient-11055.0"
+    },
+    {
+      "source_id": "ptbxl-3858",
+      "group_id": "ptbxl-patient-16853.0"
+    },
+    {
+      "source_id": "ptbxl-3870",
+      "group_id": "ptbxl-patient-15051.0"
+    },
+    {
+      "source_id": "ptbxl-3871",
+      "group_id": "ptbxl-patient-15694.0"
+    },
+    {
+      "source_id": "ptbxl-388",
+      "group_id": "ptbxl-patient-16023.0"
+    },
+    {
+      "source_id": "ptbxl-3885",
+      "group_id": "ptbxl-patient-20553.0"
+    },
+    {
+      "source_id": "ptbxl-3905",
+      "group_id": "ptbxl-patient-16933.0"
+    },
+    {
+      "source_id": "ptbxl-3912",
+      "group_id": "ptbxl-patient-9133.0"
+    },
+    {
+      "source_id": "ptbxl-3936",
+      "group_id": "ptbxl-patient-6678.0"
+    },
+    {
+      "source_id": "ptbxl-3938",
+      "group_id": "ptbxl-patient-21577.0"
+    },
+    {
+      "source_id": "ptbxl-3943",
+      "group_id": "ptbxl-patient-10225.0"
+    },
+    {
+      "source_id": "ptbxl-3978",
+      "group_id": "ptbxl-patient-553.0"
+    },
+    {
+      "source_id": "ptbxl-4011",
+      "group_id": "ptbxl-patient-11023.0"
+    },
+    {
+      "source_id": "ptbxl-4033",
+      "group_id": "ptbxl-patient-13534.0"
+    },
+    {
+      "source_id": "ptbxl-4035",
+      "group_id": "ptbxl-patient-2675.0"
+    },
+    {
+      "source_id": "ptbxl-4079",
+      "group_id": "ptbxl-patient-4492.0"
+    },
+    {
+      "source_id": "ptbxl-4098",
+      "group_id": "ptbxl-patient-3536.0"
+    },
+    {
+      "source_id": "ptbxl-4100",
+      "group_id": "ptbxl-patient-4381.0"
+    },
+    {
+      "source_id": "ptbxl-4135",
+      "group_id": "ptbxl-patient-1926.0"
+    },
+    {
+      "source_id": "ptbxl-4167",
+      "group_id": "ptbxl-patient-21197.0"
+    },
+    {
+      "source_id": "ptbxl-4188",
+      "group_id": "ptbxl-patient-11728.0"
+    },
+    {
+      "source_id": "ptbxl-419",
+      "group_id": "ptbxl-patient-1909.0"
+    },
+    {
+      "source_id": "ptbxl-4191",
+      "group_id": "ptbxl-patient-12354.0"
+    },
+    {
+      "source_id": "ptbxl-423",
+      "group_id": "ptbxl-patient-1752.0"
+    },
+    {
+      "source_id": "ptbxl-4241",
+      "group_id": "ptbxl-patient-8103.0"
+    },
+    {
+      "source_id": "ptbxl-4247",
+      "group_id": "ptbxl-patient-13803.0"
+    },
+    {
+      "source_id": "ptbxl-4267",
+      "group_id": "ptbxl-patient-13875.0"
+    },
+    {
+      "source_id": "ptbxl-4316",
+      "group_id": "ptbxl-patient-13866.0"
+    },
+    {
+      "source_id": "ptbxl-4393",
+      "group_id": "ptbxl-patient-19409.0"
+    },
+    {
+      "source_id": "ptbxl-4395",
+      "group_id": "ptbxl-patient-7589.0"
+    },
+    {
+      "source_id": "ptbxl-4447",
+      "group_id": "ptbxl-patient-18578.0"
+    },
+    {
+      "source_id": "ptbxl-4475",
+      "group_id": "ptbxl-patient-4167.0"
+    },
+    {
+      "source_id": "ptbxl-4476",
+      "group_id": "ptbxl-patient-19972.0"
+    },
+    {
+      "source_id": "ptbxl-4503",
+      "group_id": "ptbxl-patient-15600.0"
+    },
+    {
+      "source_id": "ptbxl-4509",
+      "group_id": "ptbxl-patient-20091.0"
+    },
+    {
+      "source_id": "ptbxl-4536",
+      "group_id": "ptbxl-patient-5431.0"
+    },
+    {
+      "source_id": "ptbxl-4539",
+      "group_id": "ptbxl-patient-6484.0"
+    },
+    {
+      "source_id": "ptbxl-4563",
+      "group_id": "ptbxl-patient-2480.0"
+    },
+    {
+      "source_id": "ptbxl-4565",
+      "group_id": "ptbxl-patient-16987.0"
+    },
+    {
+      "source_id": "ptbxl-460",
+      "group_id": "ptbxl-patient-19795.0"
+    },
+    {
+      "source_id": "ptbxl-4602",
+      "group_id": "ptbxl-patient-6066.0"
+    },
+    {
+      "source_id": "ptbxl-4603",
+      "group_id": "ptbxl-patient-17810.0"
+    },
+    {
+      "source_id": "ptbxl-4610",
+      "group_id": "ptbxl-patient-6853.0"
+    },
+    {
+      "source_id": "ptbxl-4611",
+      "group_id": "ptbxl-patient-16807.0"
+    },
+    {
+      "source_id": "ptbxl-4620",
+      "group_id": "ptbxl-patient-3729.0"
+    },
+    {
+      "source_id": "ptbxl-4635",
+      "group_id": "ptbxl-patient-525.0"
+    },
+    {
+      "source_id": "ptbxl-4667",
+      "group_id": "ptbxl-patient-17154.0"
+    },
+    {
+      "source_id": "ptbxl-4668",
+      "group_id": "ptbxl-patient-10759.0"
+    },
+    {
+      "source_id": "ptbxl-4680",
+      "group_id": "ptbxl-patient-17453.0"
+    },
+    {
+      "source_id": "ptbxl-4682",
+      "group_id": "ptbxl-patient-729.0"
+    },
+    {
+      "source_id": "ptbxl-4696",
+      "group_id": "ptbxl-patient-20542.0"
+    },
+    {
+      "source_id": "ptbxl-472",
+      "group_id": "ptbxl-patient-1360.0"
+    },
+    {
+      "source_id": "ptbxl-4733",
+      "group_id": "ptbxl-patient-21541.0"
+    },
+    {
+      "source_id": "ptbxl-4745",
+      "group_id": "ptbxl-patient-17305.0"
+    },
+    {
+      "source_id": "ptbxl-4771",
+      "group_id": "ptbxl-patient-6657.0"
+    },
+    {
+      "source_id": "ptbxl-4809",
+      "group_id": "ptbxl-patient-9903.0"
+    },
+    {
+      "source_id": "ptbxl-4821",
+      "group_id": "ptbxl-patient-19968.0"
+    },
+    {
+      "source_id": "ptbxl-4874",
+      "group_id": "ptbxl-patient-19358.0"
+    },
+    {
+      "source_id": "ptbxl-4901",
+      "group_id": "ptbxl-patient-18479.0"
+    },
+    {
+      "source_id": "ptbxl-4905",
+      "group_id": "ptbxl-patient-7099.0"
+    },
+    {
+      "source_id": "ptbxl-4911",
+      "group_id": "ptbxl-patient-14924.0"
+    },
+    {
+      "source_id": "ptbxl-4923",
+      "group_id": "ptbxl-patient-2099.0"
+    },
+    {
+      "source_id": "ptbxl-4941",
+      "group_id": "ptbxl-patient-3573.0"
+    },
+    {
+      "source_id": "ptbxl-4942",
+      "group_id": "ptbxl-patient-477.0"
+    },
+    {
+      "source_id": "ptbxl-4973",
+      "group_id": "ptbxl-patient-7542.0"
+    },
+    {
+      "source_id": "ptbxl-4995",
+      "group_id": "ptbxl-patient-20822.0"
+    },
+    {
+      "source_id": "ptbxl-500",
+      "group_id": "ptbxl-patient-1168.0"
+    },
+    {
+      "source_id": "ptbxl-5012",
+      "group_id": "ptbxl-patient-8551.0"
+    },
+    {
+      "source_id": "ptbxl-5030",
+      "group_id": "ptbxl-patient-14633.0"
+    },
+    {
+      "source_id": "ptbxl-5042",
+      "group_id": "ptbxl-patient-16543.0"
+    },
+    {
+      "source_id": "ptbxl-5076",
+      "group_id": "ptbxl-patient-20497.0"
+    },
+    {
+      "source_id": "ptbxl-5079",
+      "group_id": "ptbxl-patient-16948.0"
+    },
+    {
+      "source_id": "ptbxl-5109",
+      "group_id": "ptbxl-patient-17295.0"
+    },
+    {
+      "source_id": "ptbxl-5184",
+      "group_id": "ptbxl-patient-10364.0"
+    },
+    {
+      "source_id": "ptbxl-5197",
+      "group_id": "ptbxl-patient-17147.0"
+    },
+    {
+      "source_id": "ptbxl-5200",
+      "group_id": "ptbxl-patient-12314.0"
+    },
+    {
+      "source_id": "ptbxl-5220",
+      "group_id": "ptbxl-patient-11899.0"
+    },
+    {
+      "source_id": "ptbxl-5228",
+      "group_id": "ptbxl-patient-17636.0"
+    },
+    {
+      "source_id": "ptbxl-5231",
+      "group_id": "ptbxl-patient-18951.0"
+    },
+    {
+      "source_id": "ptbxl-5233",
+      "group_id": "ptbxl-patient-15357.0"
+    },
+    {
+      "source_id": "ptbxl-5236",
+      "group_id": "ptbxl-patient-13341.0"
+    },
+    {
+      "source_id": "ptbxl-5273",
+      "group_id": "ptbxl-patient-20862.0"
+    },
+    {
+      "source_id": "ptbxl-5276",
+      "group_id": "ptbxl-patient-13847.0"
+    },
+    {
+      "source_id": "ptbxl-5281",
+      "group_id": "ptbxl-patient-14040.0"
+    },
+    {
+      "source_id": "ptbxl-531",
+      "group_id": "ptbxl-patient-16818.0"
+    },
+    {
+      "source_id": "ptbxl-5310",
+      "group_id": "ptbxl-patient-17263.0"
+    },
+    {
+      "source_id": "ptbxl-5316",
+      "group_id": "ptbxl-patient-14208.0"
+    },
+    {
+      "source_id": "ptbxl-5327",
+      "group_id": "ptbxl-patient-16192.0"
+    },
+    {
+      "source_id": "ptbxl-5336",
+      "group_id": "ptbxl-patient-14803.0"
+    },
+    {
+      "source_id": "ptbxl-5342",
+      "group_id": "ptbxl-patient-20105.0"
+    },
+    {
+      "source_id": "ptbxl-5344",
+      "group_id": "ptbxl-patient-10605.0"
+    },
+    {
+      "source_id": "ptbxl-5359",
+      "group_id": "ptbxl-patient-16891.0"
+    },
+    {
+      "source_id": "ptbxl-5367",
+      "group_id": "ptbxl-patient-7988.0"
+    },
+    {
+      "source_id": "ptbxl-5368",
+      "group_id": "ptbxl-patient-18436.0"
+    },
+    {
+      "source_id": "ptbxl-5375",
+      "group_id": "ptbxl-patient-17277.0"
+    },
+    {
+      "source_id": "ptbxl-5378",
+      "group_id": "ptbxl-patient-21166.0"
+    },
+    {
+      "source_id": "ptbxl-5383",
+      "group_id": "ptbxl-patient-8881.0"
+    },
+    {
+      "source_id": "ptbxl-5469",
+      "group_id": "ptbxl-patient-18635.0"
+    },
+    {
+      "source_id": "ptbxl-5471",
+      "group_id": "ptbxl-patient-14545.0"
+    },
+    {
+      "source_id": "ptbxl-5484",
+      "group_id": "ptbxl-patient-21777.0"
+    },
+    {
+      "source_id": "ptbxl-5511",
+      "group_id": "ptbxl-patient-21300.0"
+    },
+    {
+      "source_id": "ptbxl-5543",
+      "group_id": "ptbxl-patient-8963.0"
+    },
+    {
+      "source_id": "ptbxl-5545",
+      "group_id": "ptbxl-patient-16599.0"
+    },
+    {
+      "source_id": "ptbxl-5557",
+      "group_id": "ptbxl-patient-10267.0"
+    },
+    {
+      "source_id": "ptbxl-5564",
+      "group_id": "ptbxl-patient-16073.0"
+    },
+    {
+      "source_id": "ptbxl-557",
+      "group_id": "ptbxl-patient-16895.0"
+    },
+    {
+      "source_id": "ptbxl-5597",
+      "group_id": "ptbxl-patient-21358.0"
+    },
+    {
+      "source_id": "ptbxl-5599",
+      "group_id": "ptbxl-patient-17214.0"
+    },
+    {
+      "source_id": "ptbxl-5633",
+      "group_id": "ptbxl-patient-13928.0"
+    },
+    {
+      "source_id": "ptbxl-5688",
+      "group_id": "ptbxl-patient-9087.0"
+    },
+    {
+      "source_id": "ptbxl-569",
+      "group_id": "ptbxl-patient-2936.0"
+    },
+    {
+      "source_id": "ptbxl-570",
+      "group_id": "ptbxl-patient-7793.0"
+    },
+    {
+      "source_id": "ptbxl-5701",
+      "group_id": "ptbxl-patient-17650.0"
+    },
+    {
+      "source_id": "ptbxl-5708",
+      "group_id": "ptbxl-patient-18619.0"
+    },
+    {
+      "source_id": "ptbxl-5734",
+      "group_id": "ptbxl-patient-3227.0"
+    },
+    {
+      "source_id": "ptbxl-5800",
+      "group_id": "ptbxl-patient-8810.0"
+    },
+    {
+      "source_id": "ptbxl-5828",
+      "group_id": "ptbxl-patient-5392.0"
+    },
+    {
+      "source_id": "ptbxl-5837",
+      "group_id": "ptbxl-patient-9716.0"
+    },
+    {
+      "source_id": "ptbxl-5849",
+      "group_id": "ptbxl-patient-4691.0"
+    },
+    {
+      "source_id": "ptbxl-5855",
+      "group_id": "ptbxl-patient-4755.0"
+    },
+    {
+      "source_id": "ptbxl-5857",
+      "group_id": "ptbxl-patient-14338.0"
+    },
+    {
+      "source_id": "ptbxl-5860",
+      "group_id": "ptbxl-patient-15043.0"
+    },
+    {
+      "source_id": "ptbxl-588",
+      "group_id": "ptbxl-patient-15114.0"
+    },
+    {
+      "source_id": "ptbxl-5885",
+      "group_id": "ptbxl-patient-20115.0"
+    },
+    {
+      "source_id": "ptbxl-5894",
+      "group_id": "ptbxl-patient-8045.0"
+    },
+    {
+      "source_id": "ptbxl-5895",
+      "group_id": "ptbxl-patient-16560.0"
+    },
+    {
+      "source_id": "ptbxl-5914",
+      "group_id": "ptbxl-patient-15439.0"
+    },
+    {
+      "source_id": "ptbxl-5926",
+      "group_id": "ptbxl-patient-19478.0"
+    },
+    {
+      "source_id": "ptbxl-5930",
+      "group_id": "ptbxl-patient-21034.0"
+    },
+    {
+      "source_id": "ptbxl-5961",
+      "group_id": "ptbxl-patient-9038.0"
+    },
+    {
+      "source_id": "ptbxl-5969",
+      "group_id": "ptbxl-patient-20611.0"
+    },
+    {
+      "source_id": "ptbxl-6004",
+      "group_id": "ptbxl-patient-2482.0"
+    },
+    {
+      "source_id": "ptbxl-6018",
+      "group_id": "ptbxl-patient-7303.0"
+    },
+    {
+      "source_id": "ptbxl-6043",
+      "group_id": "ptbxl-patient-4650.0"
+    },
+    {
+      "source_id": "ptbxl-6056",
+      "group_id": "ptbxl-patient-935.0"
+    },
+    {
+      "source_id": "ptbxl-6124",
+      "group_id": "ptbxl-patient-9691.0"
+    },
+    {
+      "source_id": "ptbxl-613",
+      "group_id": "ptbxl-patient-382.0"
+    },
+    {
+      "source_id": "ptbxl-6131",
+      "group_id": "ptbxl-patient-19964.0"
+    },
+    {
+      "source_id": "ptbxl-6145",
+      "group_id": "ptbxl-patient-2000.0"
+    },
+    {
+      "source_id": "ptbxl-6155",
+      "group_id": "ptbxl-patient-8934.0"
+    },
+    {
+      "source_id": "ptbxl-6194",
+      "group_id": "ptbxl-patient-18933.0"
+    },
+    {
+      "source_id": "ptbxl-6196",
+      "group_id": "ptbxl-patient-17334.0"
+    },
+    {
+      "source_id": "ptbxl-620",
+      "group_id": "ptbxl-patient-7477.0"
+    },
+    {
+      "source_id": "ptbxl-6216",
+      "group_id": "ptbxl-patient-18693.0"
+    },
+    {
+      "source_id": "ptbxl-6222",
+      "group_id": "ptbxl-patient-8204.0"
+    },
+    {
+      "source_id": "ptbxl-6227",
+      "group_id": "ptbxl-patient-15999.0"
+    },
+    {
+      "source_id": "ptbxl-6231",
+      "group_id": "ptbxl-patient-10187.0"
+    },
+    {
+      "source_id": "ptbxl-6232",
+      "group_id": "ptbxl-patient-12287.0"
+    },
+    {
+      "source_id": "ptbxl-6254",
+      "group_id": "ptbxl-patient-8769.0"
+    },
+    {
+      "source_id": "ptbxl-6255",
+      "group_id": "ptbxl-patient-8492.0"
+    },
+    {
+      "source_id": "ptbxl-6281",
+      "group_id": "ptbxl-patient-16104.0"
+    },
+    {
+      "source_id": "ptbxl-6295",
+      "group_id": "ptbxl-patient-406.0"
+    },
+    {
+      "source_id": "ptbxl-63",
+      "group_id": "ptbxl-patient-15265.0"
+    },
+    {
+      "source_id": "ptbxl-6302",
+      "group_id": "ptbxl-patient-19626.0"
+    },
+    {
+      "source_id": "ptbxl-6308",
+      "group_id": "ptbxl-patient-19225.0"
+    },
+    {
+      "source_id": "ptbxl-6325",
+      "group_id": "ptbxl-patient-305.0"
+    },
+    {
+      "source_id": "ptbxl-6328",
+      "group_id": "ptbxl-patient-4508.0"
+    },
+    {
+      "source_id": "ptbxl-633",
+      "group_id": "ptbxl-patient-709.0"
+    },
+    {
+      "source_id": "ptbxl-6331",
+      "group_id": "ptbxl-patient-386.0"
+    },
+    {
+      "source_id": "ptbxl-6363",
+      "group_id": "ptbxl-patient-17898.0"
+    },
+    {
+      "source_id": "ptbxl-6380",
+      "group_id": "ptbxl-patient-7870.0"
+    },
+    {
+      "source_id": "ptbxl-6383",
+      "group_id": "ptbxl-patient-17494.0"
+    },
+    {
+      "source_id": "ptbxl-6399",
+      "group_id": "ptbxl-patient-16896.0"
+    },
+    {
+      "source_id": "ptbxl-6417",
+      "group_id": "ptbxl-patient-7754.0"
+    },
+    {
+      "source_id": "ptbxl-6429",
+      "group_id": "ptbxl-patient-19920.0"
+    },
+    {
+      "source_id": "ptbxl-6443",
+      "group_id": "ptbxl-patient-4851.0"
+    },
+    {
+      "source_id": "ptbxl-6446",
+      "group_id": "ptbxl-patient-19105.0"
+    },
+    {
+      "source_id": "ptbxl-6464",
+      "group_id": "ptbxl-patient-8184.0"
+    },
+    {
+      "source_id": "ptbxl-6496",
+      "group_id": "ptbxl-patient-6827.0"
+    },
+    {
+      "source_id": "ptbxl-653",
+      "group_id": "ptbxl-patient-2459.0"
+    },
+    {
+      "source_id": "ptbxl-6544",
+      "group_id": "ptbxl-patient-19293.0"
+    },
+    {
+      "source_id": "ptbxl-6573",
+      "group_id": "ptbxl-patient-2858.0"
+    },
+    {
+      "source_id": "ptbxl-6579",
+      "group_id": "ptbxl-patient-7334.0"
+    },
+    {
+      "source_id": "ptbxl-6581",
+      "group_id": "ptbxl-patient-20675.0"
+    },
+    {
+      "source_id": "ptbxl-6629",
+      "group_id": "ptbxl-patient-7912.0"
+    },
+    {
+      "source_id": "ptbxl-6670",
+      "group_id": "ptbxl-patient-5601.0"
+    },
+    {
+      "source_id": "ptbxl-6690",
+      "group_id": "ptbxl-patient-412.0"
+    },
+    {
+      "source_id": "ptbxl-6708",
+      "group_id": "ptbxl-patient-4934.0"
+    },
+    {
+      "source_id": "ptbxl-671",
+      "group_id": "ptbxl-patient-3977.0"
+    },
+    {
+      "source_id": "ptbxl-6720",
+      "group_id": "ptbxl-patient-3459.0"
+    },
+    {
+      "source_id": "ptbxl-6729",
+      "group_id": "ptbxl-patient-724.0"
+    },
+    {
+      "source_id": "ptbxl-6740",
+      "group_id": "ptbxl-patient-1781.0"
+    },
+    {
+      "source_id": "ptbxl-6745",
+      "group_id": "ptbxl-patient-3356.0"
+    },
+    {
+      "source_id": "ptbxl-6748",
+      "group_id": "ptbxl-patient-2074.0"
+    },
+    {
+      "source_id": "ptbxl-6751",
+      "group_id": "ptbxl-patient-11767.0"
+    },
+    {
+      "source_id": "ptbxl-6772",
+      "group_id": "ptbxl-patient-2116.0"
+    },
+    {
+      "source_id": "ptbxl-6774",
+      "group_id": "ptbxl-patient-15200.0"
+    },
+    {
+      "source_id": "ptbxl-6784",
+      "group_id": "ptbxl-patient-3300.0"
+    },
+    {
+      "source_id": "ptbxl-6795",
+      "group_id": "ptbxl-patient-6516.0"
+    },
+    {
+      "source_id": "ptbxl-6822",
+      "group_id": "ptbxl-patient-12832.0"
+    },
+    {
+      "source_id": "ptbxl-6843",
+      "group_id": "ptbxl-patient-16645.0"
+    },
+    {
+      "source_id": "ptbxl-6852",
+      "group_id": "ptbxl-patient-8264.0"
+    },
+    {
+      "source_id": "ptbxl-6854",
+      "group_id": "ptbxl-patient-12116.0"
+    },
+    {
+      "source_id": "ptbxl-6879",
+      "group_id": "ptbxl-patient-9763.0"
+    },
+    {
+      "source_id": "ptbxl-6892",
+      "group_id": "ptbxl-patient-4831.0"
+    },
+    {
+      "source_id": "ptbxl-6909",
+      "group_id": "ptbxl-patient-20712.0"
+    },
+    {
+      "source_id": "ptbxl-6920",
+      "group_id": "ptbxl-patient-4047.0"
+    },
+    {
+      "source_id": "ptbxl-693",
+      "group_id": "ptbxl-patient-381.0"
+    },
+    {
+      "source_id": "ptbxl-6983",
+      "group_id": "ptbxl-patient-19396.0"
+    },
+    {
+      "source_id": "ptbxl-6984",
+      "group_id": "ptbxl-patient-12416.0"
+    },
+    {
+      "source_id": "ptbxl-6994",
+      "group_id": "ptbxl-patient-3668.0"
+    },
+    {
+      "source_id": "ptbxl-7006",
+      "group_id": "ptbxl-patient-5157.0"
+    },
+    {
+      "source_id": "ptbxl-7013",
+      "group_id": "ptbxl-patient-17831.0"
+    },
+    {
+      "source_id": "ptbxl-7015",
+      "group_id": "ptbxl-patient-8245.0"
+    },
+    {
+      "source_id": "ptbxl-7027",
+      "group_id": "ptbxl-patient-13822.0"
+    },
+    {
+      "source_id": "ptbxl-703",
+      "group_id": "ptbxl-patient-4900.0"
+    },
+    {
+      "source_id": "ptbxl-7036",
+      "group_id": "ptbxl-patient-1130.0"
+    },
+    {
+      "source_id": "ptbxl-7044",
+      "group_id": "ptbxl-patient-11668.0"
+    },
+    {
+      "source_id": "ptbxl-7066",
+      "group_id": "ptbxl-patient-14977.0"
+    },
+    {
+      "source_id": "ptbxl-7095",
+      "group_id": "ptbxl-patient-15852.0"
+    },
+    {
+      "source_id": "ptbxl-7097",
+      "group_id": "ptbxl-patient-20313.0"
+    },
+    {
+      "source_id": "ptbxl-7108",
+      "group_id": "ptbxl-patient-16241.0"
+    },
+    {
+      "source_id": "ptbxl-7119",
+      "group_id": "ptbxl-patient-15409.0"
+    },
+    {
+      "source_id": "ptbxl-7136",
+      "group_id": "ptbxl-patient-15994.0"
+    },
+    {
+      "source_id": "ptbxl-7142",
+      "group_id": "ptbxl-patient-10407.0"
+    },
+    {
+      "source_id": "ptbxl-7145",
+      "group_id": "ptbxl-patient-20322.0"
+    },
+    {
+      "source_id": "ptbxl-7146",
+      "group_id": "ptbxl-patient-10223.0"
+    },
+    {
+      "source_id": "ptbxl-7149",
+      "group_id": "ptbxl-patient-12618.0"
+    },
+    {
+      "source_id": "ptbxl-7171",
+      "group_id": "ptbxl-patient-13561.0"
+    },
+    {
+      "source_id": "ptbxl-7235",
+      "group_id": "ptbxl-patient-18455.0"
+    },
+    {
+      "source_id": "ptbxl-7256",
+      "group_id": "ptbxl-patient-20531.0"
+    },
+    {
+      "source_id": "ptbxl-7265",
+      "group_id": "ptbxl-patient-14681.0"
+    },
+    {
+      "source_id": "ptbxl-7275",
+      "group_id": "ptbxl-patient-18706.0"
+    },
+    {
+      "source_id": "ptbxl-7286",
+      "group_id": "ptbxl-patient-15895.0"
+    },
+    {
+      "source_id": "ptbxl-7301",
+      "group_id": "ptbxl-patient-17945.0"
+    },
+    {
+      "source_id": "ptbxl-7309",
+      "group_id": "ptbxl-patient-9510.0"
+    },
+    {
+      "source_id": "ptbxl-731",
+      "group_id": "ptbxl-patient-6322.0"
+    },
+    {
+      "source_id": "ptbxl-7329",
+      "group_id": "ptbxl-patient-13562.0"
+    },
+    {
+      "source_id": "ptbxl-7334",
+      "group_id": "ptbxl-patient-17350.0"
+    },
+    {
+      "source_id": "ptbxl-7353",
+      "group_id": "ptbxl-patient-20554.0"
+    },
+    {
+      "source_id": "ptbxl-7365",
+      "group_id": "ptbxl-patient-8304.0"
+    },
+    {
+      "source_id": "ptbxl-7377",
+      "group_id": "ptbxl-patient-19049.0"
+    },
+    {
+      "source_id": "ptbxl-7382",
+      "group_id": "ptbxl-patient-18544.0"
+    },
+    {
+      "source_id": "ptbxl-7392",
+      "group_id": "ptbxl-patient-11095.0"
+    },
+    {
+      "source_id": "ptbxl-7407",
+      "group_id": "ptbxl-patient-16765.0"
+    },
+    {
+      "source_id": "ptbxl-7484",
+      "group_id": "ptbxl-patient-16611.0"
+    },
+    {
+      "source_id": "ptbxl-7515",
+      "group_id": "ptbxl-patient-11471.0"
+    },
+    {
+      "source_id": "ptbxl-7520",
+      "group_id": "ptbxl-patient-10297.0"
+    },
+    {
+      "source_id": "ptbxl-7521",
+      "group_id": "ptbxl-patient-14565.0"
+    },
+    {
+      "source_id": "ptbxl-7523",
+      "group_id": "ptbxl-patient-19168.0"
+    },
+    {
+      "source_id": "ptbxl-7527",
+      "group_id": "ptbxl-patient-15715.0"
+    },
+    {
+      "source_id": "ptbxl-7548",
+      "group_id": "ptbxl-patient-20927.0"
+    },
+    {
+      "source_id": "ptbxl-7554",
+      "group_id": "ptbxl-patient-17832.0"
+    },
+    {
+      "source_id": "ptbxl-7610",
+      "group_id": "ptbxl-patient-17752.0"
+    },
+    {
+      "source_id": "ptbxl-7615",
+      "group_id": "ptbxl-patient-13815.0"
+    },
+    {
+      "source_id": "ptbxl-7623",
+      "group_id": "ptbxl-patient-17869.0"
+    },
+    {
+      "source_id": "ptbxl-7627",
+      "group_id": "ptbxl-patient-17569.0"
+    },
+    {
+      "source_id": "ptbxl-7631",
+      "group_id": "ptbxl-patient-14370.0"
+    },
+    {
+      "source_id": "ptbxl-7639",
+      "group_id": "ptbxl-patient-16179.0"
+    },
+    {
+      "source_id": "ptbxl-7661",
+      "group_id": "ptbxl-patient-16950.0"
+    },
+    {
+      "source_id": "ptbxl-7663",
+      "group_id": "ptbxl-patient-3702.0"
+    },
+    {
+      "source_id": "ptbxl-7709",
+      "group_id": "ptbxl-patient-13155.0"
+    },
+    {
+      "source_id": "ptbxl-7718",
+      "group_id": "ptbxl-patient-4723.0"
+    },
+    {
+      "source_id": "ptbxl-7720",
+      "group_id": "ptbxl-patient-19176.0"
+    },
+    {
+      "source_id": "ptbxl-7725",
+      "group_id": "ptbxl-patient-16393.0"
+    },
+    {
+      "source_id": "ptbxl-7747",
+      "group_id": "ptbxl-patient-17406.0"
+    },
+    {
+      "source_id": "ptbxl-7748",
+      "group_id": "ptbxl-patient-12495.0"
+    },
+    {
+      "source_id": "ptbxl-7774",
+      "group_id": "ptbxl-patient-16941.0"
+    },
+    {
+      "source_id": "ptbxl-7805",
+      "group_id": "ptbxl-patient-13687.0"
+    },
+    {
+      "source_id": "ptbxl-7808",
+      "group_id": "ptbxl-patient-3034.0"
+    },
+    {
+      "source_id": "ptbxl-7817",
+      "group_id": "ptbxl-patient-3262.0"
+    },
+    {
+      "source_id": "ptbxl-784",
+      "group_id": "ptbxl-patient-19047.0"
+    },
+    {
+      "source_id": "ptbxl-7846",
+      "group_id": "ptbxl-patient-15585.0"
+    },
+    {
+      "source_id": "ptbxl-7865",
+      "group_id": "ptbxl-patient-10677.0"
+    },
+    {
+      "source_id": "ptbxl-7891",
+      "group_id": "ptbxl-patient-12620.0"
+    },
+    {
+      "source_id": "ptbxl-7944",
+      "group_id": "ptbxl-patient-12569.0"
+    },
+    {
+      "source_id": "ptbxl-7961",
+      "group_id": "ptbxl-patient-377.0"
+    },
+    {
+      "source_id": "ptbxl-7978",
+      "group_id": "ptbxl-patient-10524.0"
+    },
+    {
+      "source_id": "ptbxl-8003",
+      "group_id": "ptbxl-patient-13228.0"
+    },
+    {
+      "source_id": "ptbxl-8008",
+      "group_id": "ptbxl-patient-3004.0"
+    },
+    {
+      "source_id": "ptbxl-8015",
+      "group_id": "ptbxl-patient-19542.0"
+    },
+    {
+      "source_id": "ptbxl-8030",
+      "group_id": "ptbxl-patient-446.0"
+    },
+    {
+      "source_id": "ptbxl-8037",
+      "group_id": "ptbxl-patient-2389.0"
+    },
+    {
+      "source_id": "ptbxl-8044",
+      "group_id": "ptbxl-patient-7759.0"
+    },
+    {
+      "source_id": "ptbxl-8052",
+      "group_id": "ptbxl-patient-7469.0"
+    },
+    {
+      "source_id": "ptbxl-8059",
+      "group_id": "ptbxl-patient-14539.0"
+    },
+    {
+      "source_id": "ptbxl-8078",
+      "group_id": "ptbxl-patient-6752.0"
+    },
+    {
+      "source_id": "ptbxl-8089",
+      "group_id": "ptbxl-patient-6970.0"
+    },
+    {
+      "source_id": "ptbxl-8092",
+      "group_id": "ptbxl-patient-512.0"
+    },
+    {
+      "source_id": "ptbxl-8114",
+      "group_id": "ptbxl-patient-6191.0"
+    },
+    {
+      "source_id": "ptbxl-8146",
+      "group_id": "ptbxl-patient-12140.0"
+    },
+    {
+      "source_id": "ptbxl-8149",
+      "group_id": "ptbxl-patient-10423.0"
+    },
+    {
+      "source_id": "ptbxl-8158",
+      "group_id": "ptbxl-patient-16109.0"
+    },
+    {
+      "source_id": "ptbxl-817",
+      "group_id": "ptbxl-patient-3820.0"
+    },
+    {
+      "source_id": "ptbxl-8176",
+      "group_id": "ptbxl-patient-21764.0"
+    },
+    {
+      "source_id": "ptbxl-8183",
+      "group_id": "ptbxl-patient-9505.0"
+    },
+    {
+      "source_id": "ptbxl-8189",
+      "group_id": "ptbxl-patient-15932.0"
+    },
+    {
+      "source_id": "ptbxl-8206",
+      "group_id": "ptbxl-patient-20315.0"
+    },
+    {
+      "source_id": "ptbxl-823",
+      "group_id": "ptbxl-patient-1791.0"
+    },
+    {
+      "source_id": "ptbxl-8242",
+      "group_id": "ptbxl-patient-20109.0"
+    },
+    {
+      "source_id": "ptbxl-8279",
+      "group_id": "ptbxl-patient-13557.0"
+    },
+    {
+      "source_id": "ptbxl-8284",
+      "group_id": "ptbxl-patient-5287.0"
+    },
+    {
+      "source_id": "ptbxl-8323",
+      "group_id": "ptbxl-patient-3061.0"
+    },
+    {
+      "source_id": "ptbxl-8351",
+      "group_id": "ptbxl-patient-13977.0"
+    },
+    {
+      "source_id": "ptbxl-8352",
+      "group_id": "ptbxl-patient-14988.0"
+    },
+    {
+      "source_id": "ptbxl-8353",
+      "group_id": "ptbxl-patient-8983.0"
+    },
+    {
+      "source_id": "ptbxl-8391",
+      "group_id": "ptbxl-patient-7496.0"
+    },
+    {
+      "source_id": "ptbxl-8392",
+      "group_id": "ptbxl-patient-1454.0"
+    },
+    {
+      "source_id": "ptbxl-84",
+      "group_id": "ptbxl-patient-19197.0"
+    },
+    {
+      "source_id": "ptbxl-8406",
+      "group_id": "ptbxl-patient-15485.0"
+    },
+    {
+      "source_id": "ptbxl-8417",
+      "group_id": "ptbxl-patient-16742.0"
+    },
+    {
+      "source_id": "ptbxl-8452",
+      "group_id": "ptbxl-patient-4855.0"
+    },
+    {
+      "source_id": "ptbxl-8463",
+      "group_id": "ptbxl-patient-5530.0"
+    },
+    {
+      "source_id": "ptbxl-8465",
+      "group_id": "ptbxl-patient-5348.0"
+    },
+    {
+      "source_id": "ptbxl-8480",
+      "group_id": "ptbxl-patient-642.0"
+    },
+    {
+      "source_id": "ptbxl-8505",
+      "group_id": "ptbxl-patient-3899.0"
+    },
+    {
+      "source_id": "ptbxl-8509",
+      "group_id": "ptbxl-patient-20651.0"
+    },
+    {
+      "source_id": "ptbxl-8524",
+      "group_id": "ptbxl-patient-3181.0"
+    },
+    {
+      "source_id": "ptbxl-8561",
+      "group_id": "ptbxl-patient-1013.0"
+    },
+    {
+      "source_id": "ptbxl-8564",
+      "group_id": "ptbxl-patient-17123.0"
+    },
+    {
+      "source_id": "ptbxl-8570",
+      "group_id": "ptbxl-patient-11026.0"
+    },
+    {
+      "source_id": "ptbxl-8590",
+      "group_id": "ptbxl-patient-8034.0"
+    },
+    {
+      "source_id": "ptbxl-8662",
+      "group_id": "ptbxl-patient-1937.0"
+    },
+    {
+      "source_id": "ptbxl-8676",
+      "group_id": "ptbxl-patient-18972.0"
+    },
+    {
+      "source_id": "ptbxl-8699",
+      "group_id": "ptbxl-patient-1975.0"
+    },
+    {
+      "source_id": "ptbxl-8714",
+      "group_id": "ptbxl-patient-7633.0"
+    },
+    {
+      "source_id": "ptbxl-8722",
+      "group_id": "ptbxl-patient-11868.0"
+    },
+    {
+      "source_id": "ptbxl-874",
+      "group_id": "ptbxl-patient-352.0"
+    },
+    {
+      "source_id": "ptbxl-875",
+      "group_id": "ptbxl-patient-1541.0"
+    },
+    {
+      "source_id": "ptbxl-8758",
+      "group_id": "ptbxl-patient-3819.0"
+    },
+    {
+      "source_id": "ptbxl-8777",
+      "group_id": "ptbxl-patient-1210.0"
+    },
+    {
+      "source_id": "ptbxl-8806",
+      "group_id": "ptbxl-patient-18128.0"
+    },
+    {
+      "source_id": "ptbxl-881",
+      "group_id": "ptbxl-patient-2682.0"
+    },
+    {
+      "source_id": "ptbxl-8810",
+      "group_id": "ptbxl-patient-9399.0"
+    },
+    {
+      "source_id": "ptbxl-8834",
+      "group_id": "ptbxl-patient-21657.0"
+    },
+    {
+      "source_id": "ptbxl-8844",
+      "group_id": "ptbxl-patient-13108.0"
+    },
+    {
+      "source_id": "ptbxl-8858",
+      "group_id": "ptbxl-patient-8499.0"
+    },
+    {
+      "source_id": "ptbxl-8866",
+      "group_id": "ptbxl-patient-6376.0"
+    },
+    {
+      "source_id": "ptbxl-8873",
+      "group_id": "ptbxl-patient-7291.0"
+    },
+    {
+      "source_id": "ptbxl-8913",
+      "group_id": "ptbxl-patient-1521.0"
+    },
+    {
+      "source_id": "ptbxl-8929",
+      "group_id": "ptbxl-patient-682.0"
+    },
+    {
+      "source_id": "ptbxl-8939",
+      "group_id": "ptbxl-patient-6413.0"
+    },
+    {
+      "source_id": "ptbxl-8940",
+      "group_id": "ptbxl-patient-7736.0"
+    },
+    {
+      "source_id": "ptbxl-8972",
+      "group_id": "ptbxl-patient-10011.0"
+    },
+    {
+      "source_id": "ptbxl-9000",
+      "group_id": "ptbxl-patient-1059.0"
+    },
+    {
+      "source_id": "ptbxl-9025",
+      "group_id": "ptbxl-patient-17517.0"
+    },
+    {
+      "source_id": "ptbxl-9029",
+      "group_id": "ptbxl-patient-18209.0"
+    },
+    {
+      "source_id": "ptbxl-903",
+      "group_id": "ptbxl-patient-2586.0"
+    },
+    {
+      "source_id": "ptbxl-9042",
+      "group_id": "ptbxl-patient-953.0"
+    },
+    {
+      "source_id": "ptbxl-9056",
+      "group_id": "ptbxl-patient-17620.0"
+    },
+    {
+      "source_id": "ptbxl-908",
+      "group_id": "ptbxl-patient-2853.0"
+    },
+    {
+      "source_id": "ptbxl-9110",
+      "group_id": "ptbxl-patient-4136.0"
+    },
+    {
+      "source_id": "ptbxl-9114",
+      "group_id": "ptbxl-patient-899.0"
+    },
+    {
+      "source_id": "ptbxl-9133",
+      "group_id": "ptbxl-patient-7152.0"
+    },
+    {
+      "source_id": "ptbxl-9149",
+      "group_id": "ptbxl-patient-15355.0"
+    },
+    {
+      "source_id": "ptbxl-9181",
+      "group_id": "ptbxl-patient-21493.0"
+    },
+    {
+      "source_id": "ptbxl-9185",
+      "group_id": "ptbxl-patient-19532.0"
+    },
+    {
+      "source_id": "ptbxl-9226",
+      "group_id": "ptbxl-patient-17328.0"
+    },
+    {
+      "source_id": "ptbxl-9227",
+      "group_id": "ptbxl-patient-12272.0"
+    },
+    {
+      "source_id": "ptbxl-9233",
+      "group_id": "ptbxl-patient-20800.0"
+    },
+    {
+      "source_id": "ptbxl-9246",
+      "group_id": "ptbxl-patient-19200.0"
+    },
+    {
+      "source_id": "ptbxl-9265",
+      "group_id": "ptbxl-patient-16015.0"
+    },
+    {
+      "source_id": "ptbxl-9319",
+      "group_id": "ptbxl-patient-14574.0"
+    },
+    {
+      "source_id": "ptbxl-9331",
+      "group_id": "ptbxl-patient-16429.0"
+    },
+    {
+      "source_id": "ptbxl-9350",
+      "group_id": "ptbxl-patient-13627.0"
+    },
+    {
+      "source_id": "ptbxl-9354",
+      "group_id": "ptbxl-patient-14771.0"
+    },
+    {
+      "source_id": "ptbxl-9365",
+      "group_id": "ptbxl-patient-21520.0"
+    },
+    {
+      "source_id": "ptbxl-937",
+      "group_id": "ptbxl-patient-4085.0"
+    },
+    {
+      "source_id": "ptbxl-9427",
+      "group_id": "ptbxl-patient-10815.0"
+    },
+    {
+      "source_id": "ptbxl-9433",
+      "group_id": "ptbxl-patient-17148.0"
+    },
+    {
+      "source_id": "ptbxl-9458",
+      "group_id": "ptbxl-patient-9963.0"
+    },
+    {
+      "source_id": "ptbxl-9489",
+      "group_id": "ptbxl-patient-16097.0"
+    },
+    {
+      "source_id": "ptbxl-9497",
+      "group_id": "ptbxl-patient-18945.0"
+    },
+    {
+      "source_id": "ptbxl-9500",
+      "group_id": "ptbxl-patient-8955.0"
+    },
+    {
+      "source_id": "ptbxl-9502",
+      "group_id": "ptbxl-patient-18437.0"
+    },
+    {
+      "source_id": "ptbxl-9503",
+      "group_id": "ptbxl-patient-12325.0"
+    },
+    {
+      "source_id": "ptbxl-9510",
+      "group_id": "ptbxl-patient-15525.0"
+    },
+    {
+      "source_id": "ptbxl-9531",
+      "group_id": "ptbxl-patient-16804.0"
+    },
+    {
+      "source_id": "ptbxl-9550",
+      "group_id": "ptbxl-patient-13203.0"
+    },
+    {
+      "source_id": "ptbxl-9558",
+      "group_id": "ptbxl-patient-18946.0"
+    },
+    {
+      "source_id": "ptbxl-9596",
+      "group_id": "ptbxl-patient-13191.0"
+    },
+    {
+      "source_id": "ptbxl-9681",
+      "group_id": "ptbxl-patient-11062.0"
+    },
+    {
+      "source_id": "ptbxl-970",
+      "group_id": "ptbxl-patient-3272.0"
+    },
+    {
+      "source_id": "ptbxl-9716",
+      "group_id": "ptbxl-patient-1690.0"
+    },
+    {
+      "source_id": "ptbxl-9721",
+      "group_id": "ptbxl-patient-20758.0"
+    },
+    {
+      "source_id": "ptbxl-9731",
+      "group_id": "ptbxl-patient-7471.0"
+    },
+    {
+      "source_id": "ptbxl-9736",
+      "group_id": "ptbxl-patient-1681.0"
+    },
+    {
+      "source_id": "ptbxl-9737",
+      "group_id": "ptbxl-patient-7619.0"
+    },
+    {
+      "source_id": "ptbxl-9744",
+      "group_id": "ptbxl-patient-6532.0"
+    },
+    {
+      "source_id": "ptbxl-9753",
+      "group_id": "ptbxl-patient-14940.0"
+    },
+    {
+      "source_id": "ptbxl-9774",
+      "group_id": "ptbxl-patient-12451.0"
+    },
+    {
+      "source_id": "ptbxl-9776",
+      "group_id": "ptbxl-patient-4222.0"
+    },
+    {
+      "source_id": "ptbxl-9789",
+      "group_id": "ptbxl-patient-14683.0"
+    },
+    {
+      "source_id": "ptbxl-979",
+      "group_id": "ptbxl-patient-5334.0"
+    },
+    {
+      "source_id": "ptbxl-9793",
+      "group_id": "ptbxl-patient-919.0"
+    },
+    {
+      "source_id": "ptbxl-9801",
+      "group_id": "ptbxl-patient-3444.0"
+    },
+    {
+      "source_id": "ptbxl-9802",
+      "group_id": "ptbxl-patient-6321.0"
+    },
+    {
+      "source_id": "ptbxl-9808",
+      "group_id": "ptbxl-patient-8834.0"
+    },
+    {
+      "source_id": "ptbxl-9812",
+      "group_id": "ptbxl-patient-8118.0"
+    },
+    {
+      "source_id": "ptbxl-9827",
+      "group_id": "ptbxl-patient-10356.0"
+    },
+    {
+      "source_id": "ptbxl-9842",
+      "group_id": "ptbxl-patient-4619.0"
+    },
+    {
+      "source_id": "ptbxl-985",
+      "group_id": "ptbxl-patient-7407.0"
+    },
+    {
+      "source_id": "ptbxl-9857",
+      "group_id": "ptbxl-patient-13510.0"
+    },
+    {
+      "source_id": "ptbxl-9894",
+      "group_id": "ptbxl-patient-13528.0"
+    },
+    {
+      "source_id": "ptbxl-9895",
+      "group_id": "ptbxl-patient-8141.0"
+    },
+    {
+      "source_id": "ptbxl-9911",
+      "group_id": "ptbxl-patient-18193.0"
+    },
+    {
+      "source_id": "ptbxl-9940",
+      "group_id": "ptbxl-patient-4603.0"
+    },
+    {
+      "source_id": "ptbxl-9943",
+      "group_id": "ptbxl-patient-8797.0"
+    },
+    {
+      "source_id": "ptbxl-9973",
+      "group_id": "ptbxl-patient-19206.0"
+    },
+    {
+      "source_id": "ptbxl-9990",
+      "group_id": "ptbxl-patient-438.0"
+    }
+  ],
+  "excluded_patient_ids": [
+    "10127",
+    "10328",
+    "10415",
+    "10463",
+    "10505",
+    "11352",
+    "11684",
+    "11704",
+    "12743",
+    "12769",
+    "12876",
+    "12924",
+    "12971",
+    "13099",
+    "13453",
+    "13892",
+    "14778",
+    "14818",
+    "15080",
+    "15879",
+    "15904",
+    "16354",
+    "16743",
+    "16763",
+    "17372",
+    "17765",
+    "17853",
+    "18104",
+    "1819",
+    "1866",
+    "18813",
+    "19137",
+    "19328",
+    "19502",
+    "19669",
+    "19670",
+    "19839",
+    "20537",
+    "20766",
+    "20978",
+    "21193",
+    "21218",
+    "2315",
+    "2458",
+    "3192",
+    "3638",
+    "3975",
+    "3979",
+    "418",
+    "4349",
+    "504",
+    "5052",
+    "628",
+    "6334",
+    "6386",
+    "6682",
+    "6816",
+    "7011",
+    "7252",
+    "735",
+    "7400",
+    "7869",
+    "8100",
+    "8360",
+    "8449",
+    "8555",
+    "8700",
+    "8885",
+    "8964",
+    "9068",
+    "9190",
+    "930",
+    "9379",
+    "9389",
+    "984",
+    "9960",
+    "9970"
+  ]
+}

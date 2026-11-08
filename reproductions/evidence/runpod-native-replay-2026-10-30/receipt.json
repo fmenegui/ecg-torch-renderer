@@ -1,0 +1,166 @@
+{
+  "schema": "ecg-kaggle-gpu-followup-v1",
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.39",
+    "packages": {
+      "numpy": "2.5.4",
+      "scipy": "1.18.1",
+      "torch": "2.7.0+cu128",
+      "torchvision": "0.22.0+cu128",
+      "pillow": "13.0.0",
+      "opencv-python-headless": "4.11.0.86",
+      "timm": "1.0.30",
+      "albumentations": "1.4.24"
+    },
+    "cuda_available": true,
+    "cuda_build": "12.8",
+    "gpu": "NVIDIA L4"
+  },
+  "stages": [
+    {
+      "name": "source-bootstrap",
+      "status": "completed",
+      "command": [
+        "/opt/ecg-reproduction/bin/python",
+        "-m",
+        "reproductions.bootstrap",
+        "--method",
+        "npj",
+        "--dest",
+        "/workspace/sources"
+      ],
+      "returncode": 0,
+      "seconds": 24.018009033054113
+    },
+    {
+      "name": "npj-public-d0-500hz",
+      "status": "completed",
+      "command": [
+        "/opt/ecg-reproduction/bin/python",
+        "-m",
+        "reproductions.npj.infer",
+        "--upstream",
+        "/workspace/sources/npj",
+        "--preset",
+        "george-moody-2024",
+        "--target-num-samples",
+        "5000",
+        "--image",
+        "/workspace/public-development-pilot/raw/D0_000022_02.png",
+        "--out",
+        "/workspace/outputs/npj-d0-500hz"
+      ],
+      "returncode": 0,
+      "seconds": 20.36151463119313
+    },
+    {
+      "name": "npj-audited-d0",
+      "status": "completed",
+      "command": [
+        "/opt/ecg-reproduction/bin/python",
+        "-m",
+        "reproductions.evaluate",
+        "--manifest",
+        "/workspace/public-development-pilot/d0.json",
+        "--method",
+        "npj",
+        "--predictions",
+        "/workspace/outputs/npj-d0-500hz",
+        "--out",
+        "/workspace/outputs/evaluation-npj-d0"
+      ],
+      "returncode": 0,
+      "seconds": 0.4667368517257273
+    },
+    {
+      "name": "kaggle-asset-download",
+      "status": "completed",
+      "command": [
+        "/opt/ecg-reproduction/bin/python",
+        "-m",
+        "reproductions.kaggle.fetch_assets",
+        "--dest",
+        "/workspace/kaggle-assets"
+      ],
+      "returncode": 0,
+      "seconds": 51.97037743870169
+    },
+    {
+      "name": "kaggle-compatible-timm",
+      "status": "completed",
+      "command": [
+        "/opt/ecg-reproduction/bin/python",
+        "-m",
+        "pip",
+        "install",
+        "--no-deps",
+        "--target",
+        "/workspace/kaggle-timm-compat",
+        "timm==1.0.22"
+      ],
+      "returncode": 0,
+      "seconds": 8.985612202901393
+    },
+    {
+      "name": "kaggle-native-six-gpu",
+      "status": "completed",
+      "command": [
+        "/opt/ecg-reproduction/bin/python",
+        "-m",
+        "reproductions.kaggle.replay",
+        "--notebook",
+        "/workspace/kaggle-assets/notebook.api.json",
+        "--assets",
+        "/workspace/kaggle-assets",
+        "--assets-lock",
+        "/workspace/kaggle-assets/assets.lock.json",
+        "--competition-data",
+        "/workspace/public-development-pilot/kaggle-image-only",
+        "--out",
+        "/workspace/outputs/kaggle-d0",
+        "--timeout-seconds",
+        "600"
+      ],
+      "returncode": 0,
+      "seconds": 33.289664754644036
+    },
+    {
+      "name": "kaggle-audited-d0",
+      "status": "completed",
+      "command": [
+        "/opt/ecg-reproduction/bin/python",
+        "-m",
+        "reproductions.evaluate",
+        "--manifest",
+        "/workspace/public-development-pilot/d0.json",
+        "--method",
+        "kaggle-second",
+        "--predictions",
+        "/workspace/outputs/kaggle-d0",
+        "--out",
+        "/workspace/outputs/evaluation-kaggle-d0"
+      ],
+      "returncode": 0,
+      "seconds": 0.41689271992072463
+    },
+    {
+      "name": "full-shape-cuda-capacity",
+      "status": "completed",
+      "command": [
+        "/opt/ecg-reproduction/bin/python",
+        "-m",
+        "reproductions.runpod.capacity_probe",
+        "--upstream",
+        "/workspace/sources/npj",
+        "--out",
+        "/workspace/outputs/capacity"
+      ],
+      "returncode": 0,
+      "seconds": 4.5760584101080894
+    }
+  ],
+  "paper_or_leaderboard_reproduced": false,
+  "cohort": "one PTB-XL development record, potential overlap with original Kaggle training data",
+  "status": "completed"
+}

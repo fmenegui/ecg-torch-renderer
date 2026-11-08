@@ -1,0 +1,68 @@
+{
+  "schema": "coordinate-preserving-time-axis-comparison-v1",
+  "scope": "analytical fixture only",
+  "native_source": {
+    "commit": "97a15087d4abcda843da8c58ee74b1d8f47e6f9a",
+    "tracked_files_clean": true
+  },
+  "native_module_sha256": "dace2ea2f52468efba81e8ab20a0793c35a1376c51c35ca0a002e7fcd0a07c85",
+  "native_source_modified": false,
+  "neural_network_inference": false,
+  "real_photo_improvement_established": false,
+  "fs": 500,
+  "pixels_per_mm": 20,
+  "paper_speed_mm_s": 25,
+  "gain_mm_mv": 10.0,
+  "x_origin_fixed": true,
+  "baselines_supplied": true,
+  "rows": [
+    {
+      "leading_missing_columns": 0,
+      "physical_missing_duration_s": 0.0,
+      "true_peak_s": 4.0,
+      "native_peak_s": 4.0,
+      "native_peak_error_ms": 0.0,
+      "input_missing_samples": 0,
+      "native_output_missing_samples": 0,
+      "physical_peak_s": 4.0,
+      "physical_peak_error_ms": 0.0,
+      "physical_output_missing_samples": 0
+    },
+    {
+      "leading_missing_columns": 100,
+      "physical_missing_duration_s": 0.2,
+      "true_peak_s": 4.0,
+      "native_peak_s": 3.878,
+      "native_peak_error_ms": -121.99999999999989,
+      "input_missing_samples": 300,
+      "native_output_missing_samples": 0,
+      "physical_peak_s": 4.0,
+      "physical_peak_error_ms": 0.0,
+      "physical_output_missing_samples": 300
+    },
+    {
+      "leading_missing_columns": 200,
+      "physical_missing_duration_s": 0.4,
+      "true_peak_s": 4.0,
+      "native_peak_s": 3.75,
+      "native_peak_error_ms": -250.0,
+      "input_missing_samples": 600,
+      "native_output_missing_samples": 0,
+      "physical_peak_s": 4.0,
+      "physical_peak_error_ms": 0.0,
+      "physical_output_missing_samples": 600
+    },
+    {
+      "leading_missing_columns": 500,
+      "physical_missing_duration_s": 1.0,
+      "true_peak_s": 4.0,
+      "native_peak_s": 3.334,
+      "native_peak_error_ms": -665.9999999999999,
+      "input_missing_samples": 1500,
+      "native_output_missing_samples": 0,
+      "physical_peak_s": 4.0,
+      "physical_peak_error_ms": 0.0,
+      "physical_output_missing_samples": 1500
+    }
+  ]
+}

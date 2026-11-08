@@ -1,0 +1,35 @@
+{
+  "verified_at_unix": 1792614712.60333,
+  "stages": [
+    {
+      "stage": "first-data-preparation",
+      "seconds": 245.117023229599,
+      "catalog_gpu_usd_per_hour": 0.5,
+      "estimated_gpu_usd": 0.03404403100411097
+    },
+    {
+      "stage": "slow-dependency-preparation-and-supervisor-failure",
+      "seconds": 695.6252431869507,
+      "catalog_gpu_usd_per_hour": 0.5,
+      "estimated_gpu_usd": 0.09661461710929871
+    },
+    {
+      "stage": "detector-training-and-test",
+      "seconds": 1129.890126466751,
+      "catalog_gpu_usd_per_hour": 0.59,
+      "estimated_gpu_usd": 0.18517643739316197
+    },
+    {
+      "stage": "frozen-signal-and-reference-comparison",
+      "seconds": 838.1072990894318,
+      "catalog_gpu_usd_per_hour": 0.59,
+      "estimated_gpu_usd": 0.13735647401743464
+    }
+  ],
+  "estimated_gpu_total_usd": 0.4531915595240063,
+  "cost_note": "Catalog rate multiplied by observed creation-to-deletion read-back time, not an invoice. Storage excluded.",
+  "all_owned_temporary_compute_absent": true,
+  "all_owned_temporary_network_volumes_absent": true,
+  "original_pod_unmodified": true,
+  "original_pod_final_status": "EXITED"
+}

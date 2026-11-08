@@ -1,0 +1,36 @@
+{
+  "measurement_date": "2026-10-22",
+  "execution_timezone": "UTC",
+  "python": "3.12.14",
+  "packages": {
+    "torch": "2.8.0+cpu",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "opencv-python-headless": "4.11.0.86",
+    "shapely": "2.1.2",
+    "mitsuba": "3.9.1",
+    "drjit": "1.5.0"
+  },
+  "model_checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+  "new_neural_training": false,
+  "assessment_complete": true,
+  "test_json_sha256": "836c5419dab77c8fe39fd0156febb6bf3cbaf5dd33ac1061252f0151c5ababb4",
+  "selection_sha256": "c808d97eacf0e20f2d3aa60e92e2005ac664bc8a979d6cd5891d4c9ea2d95052",
+  "source_hashes": {
+    "examples/evaluate_nextgen_refinement.py": "f860feaa28e2f30ae74f9068de9eda991d0df10716ee0791b15bea9a06e758c3",
+    "ecg_gpu/digitization/robust_refinement.py": "0b2d2f15ba3f86e63d7532a47d6f87bccded1b5f65ac56499f2d6ed765241ced",
+    "ecg_gpu/digitization/complete_rectifier.py": "0c3e6025332eaf582a4f3d57218cbf7ed0bdabad1efc7e7503cce3e9646de2da",
+    "ecg_gpu/digitization/frame_mesh.py": "89dc2e121bbdfca6c5b8eaa48a0f021375a2bd5c1e802c8c697f929ade733205",
+    "ecg_gpu/digitization/cell_mesh.py": "566253fba786de84475f00d593b80876b3869499d3703c18a71c9a5396cf37d6",
+    "ecg_gpu/digitization/lattice.py": "48a3e69fe00c5cfd5319c326ee83a97cf368fe4f879c82f62f7f7450e5a689b6",
+    "ecg_gpu/digitization/local_cells.py": "18ca49ff9c5c37ee2a67037fcc0e0fecbfa98939854e6fd1d97a5b164777109c",
+    "ecg_gpu/digitization/observation.py": "a841e312e2b2cb60aa818870d84989b1e0c052ed5c55f863b0de7d921af02607",
+    "ecg_gpu/digitization/denoising_grid.py": "e79e6cc0c09c84319b2a6639a8c8e900f03ef0ddce118672ca7376ff77b0e153",
+    "ecg_gpu/digitization/field_rectifier.py": "8ddb14a5bef4c2f9a8c3d6b9bc946b27e861b2aaed4af7cc8ec5c352b254f88e",
+    "ecg_gpu/grid_point_learning.py": "4810c026aacebd640976490d73ce0f7f2a40dd7483f2dca1d969d3180b54ad84",
+    "examples/diverse_grid_study.py": "d708ab2a5b4a86e49786b1f5a9c8ef32738ae090c4fe70047c47f985dd3e9e8c",
+    "examples/evaluate_rectification_diagnostic.py": "43b8356348e433fee3f3452b04275c8e6c424e136ec6d33b9dd0c90501b28537",
+    "ecg_gpu/grid_evaluation.py": "618c7a4f75e64ad5ae41e4f20b96992cd34abb8f6d443749e733e3bed6bbc551"
+  },
+  "clinical_or_external_real_image_validation": false
+}

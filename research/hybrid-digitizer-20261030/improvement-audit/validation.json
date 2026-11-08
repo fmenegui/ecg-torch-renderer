@@ -1,0 +1,44 @@
+{
+  "schema": "ecg-improvement-audit-validation-v1",
+  "integrated_suite": {
+    "tests_run": 541,
+    "failures": 0,
+    "errors": 0,
+    "skips": 25,
+    "successful": true,
+    "seconds": 72.47409363099723
+  },
+  "reproduction_tests": 83,
+  "original_npj_source_enabled": true,
+  "new_root_tests": 11,
+  "new_native_diagnostic_tests": 2,
+  "targeted_signal_and_summary_tests": 17,
+  "strict_lint_passed": true,
+  "local_cuda_available": false,
+  "new_gpu_inference": false,
+  "original_prediction_banks_modified": false,
+  "original_upstream_source_modified": false,
+  "reference_received_by_new_evaluator_only": true,
+  "gallery_cases": 16,
+  "gallery_visually_inspected": true,
+  "gallery_montage_sha256": "95ab8b8f4c055b6329151874b9751b8b1b4ded2986239ec84955dc288b72b93f",
+  "gallery_byte_identical_to_previously_inspected": true,
+  "source_sha256": {
+    "ecg_gpu/digitization/support_audit.py": "1ca583760f3c282914306691501cf7725132685ab904da93531e0614069af35b",
+    "ecg_gpu/digitization/physical_trace.py": "475491962f4d31acb69f692d9ea79ff3e6d46cf65d034487dccbd9a4b249ef92",
+    "ecg_gpu/digitization/external_evaluation.py": "cf79e937fd6081fc1cf109c70d3a681b59754c2ee9ef291781e336ea69bf9814",
+    "examples/audit_digitizer_support.py": "1dc92f09a2775b7f72d3a5974e92a95c52541afe96ec07539257aac59a348d24",
+    "examples/compare_trace_time_axes.py": "7c124f349c82e701804b7a9f814774c8528e900193f892456a7e7a6da3f2c723",
+    "examples/summarize_external_digitization.py": "a6a9a00a2f7733c26f3f9ab3064c668a963ad734530816224b690ba8272d3159",
+    "reproductions/kaggle/replay.py": "49d926cf16feeee2c27f64caa0530d891f47cde37f9217abbb8808aaa9601f52",
+    "tests/test_support_audit.py": "29654f1a61effa9877f262cc1f892e4908cdd79f022b3138c98a9bf043987964",
+    "tests/test_physical_trace.py": "095e239d460f1793e086d6d28f4320a1d2d78392412dc054f182c88493d30d69",
+    "reproductions/tests/test_notebook.py": "f1f6de62154c7287810332d7671c1869e359518d048ec8b79cb7c6d125fc7701"
+  },
+  "logs_sha256": {
+    "improvement-integrated-verified.log": "3308f1a54974c7fa754b8687814facbcfb4f9a156ea23f8b0e4bdca71675a23a",
+    "improvement-reproduction-final.log": "439eda1f27ca8c7fa1e4daf4051931aad2b447813d603c7fef7402fcc6e65ac9",
+    "improvement-targeted-final.log": "9928f8b512577075de55e1e73714b1685b8f4c825c98875795b672adebfb160c",
+    "improvement-time-axis.log": "6d88f7cced92dadb8159c0e559fda50faca4cdf4c98cbabe1a72689f3caa969e"
+  }
+}

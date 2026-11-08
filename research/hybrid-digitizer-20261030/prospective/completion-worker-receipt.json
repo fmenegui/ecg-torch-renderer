@@ -1,0 +1,45 @@
+{
+  "schema": "hybrid-inference-completion-v1",
+  "status": "completed_with_native_failures",
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-6.8.0-147-generic-x86_64-with-glibc2.39",
+    "packages": {
+      "numpy": "2.5.4",
+      "scipy": "1.18.1",
+      "torch": "2.7.0+cu128",
+      "torchvision": "0.22.0+cu128",
+      "pillow": "13.0.0",
+      "opencv-python-headless": "4.11.0.86",
+      "timm": "1.0.30",
+      "albumentations": "1.4.24"
+    },
+    "cuda_available": true,
+    "cuda_build": "12.8",
+    "gpu": "NVIDIA A40"
+  },
+  "input_manifest_sha256": "fee5f97ecd8c965cd384904fdc0b813064f1ec6b34c937e09e27b90535d48cb0",
+  "stages": [
+    {
+      "name": "kaggle-pinned-assets",
+      "returncode": 0,
+      "seconds": 19.313908757059835
+    },
+    {
+      "name": "kaggle-compatible-timm",
+      "returncode": 0,
+      "seconds": 1.869044819031842
+    }
+  ],
+  "reference_inputs_received": false,
+  "reference_scoring_performed": false,
+  "selection_policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+  "new_model_training": false,
+  "original_run_preserved": true,
+  "clinical_validity_established": false,
+  "reused_repair_workflow_run": 41113820943,
+  "specialist_images": 6,
+  "specialist_returned": 0,
+  "prediction_seal_sha256": "beaa9a8ae259ed9cd92fd439a583a6a93f193f4533994536bfbacf421b66755b",
+  "native_batch_status": "completed"
+}

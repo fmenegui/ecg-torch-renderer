@@ -1,0 +1,2530 @@
+[
+  {
+    "key": "220288-0",
+    "method": "E0-native-M2",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "220288-0",
+    "method": "E1-orientation-oracle",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "220288-0",
+    "method": "E0-native-cell-map",
+    "details": {
+      "input_points": 7265,
+      "retained_points": 7265,
+      "components": 1,
+      "cells": 7091,
+      "status": "accepted",
+      "triangles": 14182,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "220288-0",
+    "method": "E2-matched-inferred-IDs",
+    "details": {
+      "input_points": 7176,
+      "retained_points": 7176,
+      "components": 1,
+      "cells": 7004,
+      "status": "accepted",
+      "triangles": 14008,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "220288-0",
+    "method": "E2-oracle-association-IDs",
+    "details": {
+      "input_points": 7265,
+      "matched_points": 7176,
+      "excluded_unmatched_or_duplicate_detections": 89,
+      "missing_truth_points": 0,
+      "gold_used": true,
+      "triangles": 14008,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "220288-0",
+    "method": "E3-perfect-points-inferred-IDs",
+    "details": {
+      "input_points": 7176,
+      "retained_points": 7176,
+      "components": 1,
+      "cells": 7004,
+      "status": "accepted",
+      "triangles": 14008,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "220288-0",
+    "method": "E4-perfect-points-perfect-IDs",
+    "details": {
+      "input_points": 7176,
+      "gold_used": true,
+      "triangles": 14008,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "220288-1",
+    "method": "E0-native-M2",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "220288-1",
+    "method": "E1-orientation-oracle",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "220288-1",
+    "method": "E0-native-cell-map",
+    "details": {
+      "input_points": 410,
+      "retained_points": 402,
+      "components": 2,
+      "cells": 280,
+      "status": "accepted",
+      "triangles": 560,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "220288-1",
+    "method": "E2-matched-inferred-IDs",
+    "details": {
+      "input_points": 407,
+      "retained_points": 399,
+      "components": 2,
+      "cells": 278,
+      "status": "accepted",
+      "triangles": 556,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "220288-1",
+    "method": "E2-oracle-association-IDs",
+    "details": {
+      "input_points": 410,
+      "matched_points": 407,
+      "excluded_unmatched_or_duplicate_detections": 3,
+      "missing_truth_points": 103,
+      "gold_used": true,
+      "triangles": 556,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "220288-1",
+    "method": "E3-perfect-points-inferred-IDs",
+    "details": {
+      "input_points": 510,
+      "retained_points": 510,
+      "components": 1,
+      "cells": 464,
+      "status": "accepted",
+      "triangles": 928,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "220288-1",
+    "method": "E4-perfect-points-perfect-IDs",
+    "details": {
+      "input_points": 510,
+      "gold_used": true,
+      "triangles": 928,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "220288-2",
+    "method": "E0-native-M2",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "220288-2",
+    "method": "E1-orientation-oracle",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "220288-2",
+    "method": "E0-native-cell-map",
+    "details": {
+      "input_points": 432,
+      "retained_points": 431,
+      "components": 2,
+      "cells": 316,
+      "status": "accepted",
+      "triangles": 632,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "220288-2",
+    "method": "E2-matched-inferred-IDs",
+    "details": {
+      "input_points": 425,
+      "retained_points": 424,
+      "components": 2,
+      "cells": 305,
+      "status": "accepted",
+      "triangles": 610,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "220288-2",
+    "method": "E2-oracle-association-IDs",
+    "details": {
+      "input_points": 432,
+      "matched_points": 425,
+      "excluded_unmatched_or_duplicate_detections": 7,
+      "missing_truth_points": 68,
+      "gold_used": true,
+      "triangles": 610,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "220288-2",
+    "method": "E3-perfect-points-inferred-IDs",
+    "details": {
+      "input_points": 493,
+      "retained_points": 493,
+      "components": 1,
+      "cells": 448,
+      "status": "accepted",
+      "triangles": 896,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "220288-2",
+    "method": "E4-perfect-points-perfect-IDs",
+    "details": {
+      "input_points": 493,
+      "gold_used": true,
+      "triangles": 896,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "220288-6",
+    "method": "E0-native-M2",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "220288-6",
+    "method": "E1-orientation-oracle",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "220288-6",
+    "method": "E0-native-cell-map",
+    "details": {
+      "input_points": 3327,
+      "retained_points": 3327,
+      "components": 1,
+      "cells": 3199,
+      "status": "accepted",
+      "triangles": 6398,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "220288-6",
+    "method": "E2-matched-inferred-IDs",
+    "details": {
+      "input_points": 3322,
+      "retained_points": 3322,
+      "components": 1,
+      "cells": 3193,
+      "status": "accepted",
+      "triangles": 6386,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "220288-6",
+    "method": "E2-oracle-association-IDs",
+    "details": {
+      "input_points": 3327,
+      "matched_points": 3322,
+      "excluded_unmatched_or_duplicate_detections": 5,
+      "missing_truth_points": 22,
+      "gold_used": true,
+      "triangles": 6386,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "220288-6",
+    "method": "E3-perfect-points-inferred-IDs",
+    "details": {
+      "input_points": 3344,
+      "retained_points": 3344,
+      "components": 1,
+      "cells": 3221,
+      "status": "accepted",
+      "triangles": 6442,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "220288-6",
+    "method": "E4-perfect-points-perfect-IDs",
+    "details": {
+      "input_points": 3344,
+      "gold_used": true,
+      "triangles": 6442,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208777-0",
+    "method": "E0-native-M2",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "208777-0",
+    "method": "E1-orientation-oracle",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "208777-0",
+    "method": "E0-native-cell-map",
+    "details": {
+      "input_points": 1786,
+      "retained_points": 1786,
+      "components": 1,
+      "cells": 1684,
+      "status": "accepted",
+      "triangles": 3368,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208777-0",
+    "method": "E2-matched-inferred-IDs",
+    "details": {
+      "input_points": 1783,
+      "retained_points": 1783,
+      "components": 1,
+      "cells": 1681,
+      "status": "accepted",
+      "triangles": 3362,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208777-0",
+    "method": "E2-oracle-association-IDs",
+    "details": {
+      "input_points": 1786,
+      "matched_points": 1783,
+      "excluded_unmatched_or_duplicate_detections": 3,
+      "missing_truth_points": 0,
+      "gold_used": true,
+      "triangles": 3362,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208777-0",
+    "method": "E3-perfect-points-inferred-IDs",
+    "details": {
+      "input_points": 1783,
+      "retained_points": 1783,
+      "components": 1,
+      "cells": 1681,
+      "status": "accepted",
+      "triangles": 3362,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208777-0",
+    "method": "E4-perfect-points-perfect-IDs",
+    "details": {
+      "input_points": 1783,
+      "gold_used": true,
+      "triangles": 3362,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208777-1",
+    "method": "E0-native-M2",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "208777-1",
+    "method": "E1-orientation-oracle",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "208777-1",
+    "method": "E0-native-cell-map",
+    "details": {
+      "input_points": 1938,
+      "retained_points": 1938,
+      "components": 1,
+      "cells": 1843,
+      "status": "accepted",
+      "triangles": 3686,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208777-1",
+    "method": "E2-matched-inferred-IDs",
+    "details": {
+      "input_points": 1835,
+      "retained_points": 1835,
+      "components": 1,
+      "cells": 1745,
+      "status": "accepted",
+      "triangles": 3490,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208777-1",
+    "method": "E2-oracle-association-IDs",
+    "details": {
+      "input_points": 1938,
+      "matched_points": 1835,
+      "excluded_unmatched_or_duplicate_detections": 103,
+      "missing_truth_points": 1,
+      "gold_used": true,
+      "triangles": 3490,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208777-1",
+    "method": "E3-perfect-points-inferred-IDs",
+    "details": {
+      "input_points": 1836,
+      "retained_points": 1836,
+      "components": 1,
+      "cells": 1749,
+      "status": "accepted",
+      "triangles": 3498,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208777-1",
+    "method": "E4-perfect-points-perfect-IDs",
+    "details": {
+      "input_points": 1836,
+      "gold_used": true,
+      "triangles": 3498,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208777-2",
+    "method": "E0-native-M2",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "208777-2",
+    "method": "E1-orientation-oracle",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "208777-2",
+    "method": "E0-native-cell-map",
+    "details": {
+      "input_points": 3775,
+      "retained_points": 3775,
+      "components": 1,
+      "cells": 3510,
+      "status": "accepted",
+      "triangles": 7020,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208777-2",
+    "method": "E2-matched-inferred-IDs",
+    "details": {
+      "input_points": 3761,
+      "retained_points": 3761,
+      "components": 1,
+      "cells": 3490,
+      "status": "accepted",
+      "triangles": 6980,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208777-2",
+    "method": "E2-oracle-association-IDs",
+    "details": {
+      "input_points": 3775,
+      "matched_points": 3761,
+      "excluded_unmatched_or_duplicate_detections": 14,
+      "missing_truth_points": 136,
+      "gold_used": true,
+      "triangles": 6980,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208777-2",
+    "method": "E3-perfect-points-inferred-IDs",
+    "details": {
+      "input_points": 3897,
+      "retained_points": 3897,
+      "components": 1,
+      "cells": 3754,
+      "status": "accepted",
+      "triangles": 7508,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208777-2",
+    "method": "E4-perfect-points-perfect-IDs",
+    "details": {
+      "input_points": 3897,
+      "gold_used": true,
+      "triangles": 7508,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208777-6",
+    "method": "E0-native-M2",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "208777-6",
+    "method": "E1-orientation-oracle",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "208777-6",
+    "method": "E0-native-cell-map",
+    "details": {
+      "input_points": 3270,
+      "retained_points": 3264,
+      "components": 7,
+      "cells": 3097,
+      "status": "accepted",
+      "triangles": 6194,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208777-6",
+    "method": "E2-matched-inferred-IDs",
+    "details": {
+      "input_points": 3241,
+      "retained_points": 3241,
+      "components": 1,
+      "cells": 3061,
+      "status": "accepted",
+      "triangles": 6122,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208777-6",
+    "method": "E2-oracle-association-IDs",
+    "details": {
+      "input_points": 3270,
+      "matched_points": 3241,
+      "excluded_unmatched_or_duplicate_detections": 29,
+      "missing_truth_points": 69,
+      "gold_used": true,
+      "triangles": 6122,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208777-6",
+    "method": "E3-perfect-points-inferred-IDs",
+    "details": {
+      "input_points": 3310,
+      "retained_points": 3310,
+      "components": 1,
+      "cells": 3170,
+      "status": "accepted",
+      "triangles": 6340,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208777-6",
+    "method": "E4-perfect-points-perfect-IDs",
+    "details": {
+      "input_points": 3310,
+      "gold_used": true,
+      "triangles": 6340,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206852-0",
+    "method": "E0-native-M2",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "206852-0",
+    "method": "E1-orientation-oracle",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "206852-0",
+    "method": "E0-native-cell-map",
+    "details": {
+      "input_points": 505,
+      "retained_points": 496,
+      "components": 9,
+      "cells": 430,
+      "status": "accepted",
+      "triangles": 860,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206852-0",
+    "method": "E2-matched-inferred-IDs",
+    "details": {
+      "input_points": 476,
+      "retained_points": 476,
+      "components": 1,
+      "cells": 400,
+      "status": "accepted",
+      "triangles": 800,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206852-0",
+    "method": "E2-oracle-association-IDs",
+    "details": {
+      "input_points": 505,
+      "matched_points": 476,
+      "excluded_unmatched_or_duplicate_detections": 29,
+      "missing_truth_points": 17,
+      "gold_used": true,
+      "triangles": 800,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206852-0",
+    "method": "E3-perfect-points-inferred-IDs",
+    "details": {
+      "input_points": 493,
+      "retained_points": 493,
+      "components": 1,
+      "cells": 448,
+      "status": "accepted",
+      "triangles": 896,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206852-0",
+    "method": "E4-perfect-points-perfect-IDs",
+    "details": {
+      "input_points": 493,
+      "gold_used": true,
+      "triangles": 896,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206852-1",
+    "method": "E0-native-M2",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "206852-1",
+    "method": "E1-orientation-oracle",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "206852-1",
+    "method": "E0-native-cell-map",
+    "details": {
+      "input_points": 7166,
+      "retained_points": 7166,
+      "components": 1,
+      "cells": 6986,
+      "status": "accepted",
+      "triangles": 13972,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206852-1",
+    "method": "E2-matched-inferred-IDs",
+    "details": {
+      "input_points": 7164,
+      "retained_points": 7164,
+      "components": 1,
+      "cells": 6986,
+      "status": "accepted",
+      "triangles": 13972,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206852-1",
+    "method": "E2-oracle-association-IDs",
+    "details": {
+      "input_points": 7166,
+      "matched_points": 7164,
+      "excluded_unmatched_or_duplicate_detections": 2,
+      "missing_truth_points": 12,
+      "gold_used": true,
+      "triangles": 13972,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206852-1",
+    "method": "E3-perfect-points-inferred-IDs",
+    "details": {
+      "input_points": 7176,
+      "retained_points": 7176,
+      "components": 1,
+      "cells": 7004,
+      "status": "accepted",
+      "triangles": 14008,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206852-1",
+    "method": "E4-perfect-points-perfect-IDs",
+    "details": {
+      "input_points": 7176,
+      "gold_used": true,
+      "triangles": 14008,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206852-2",
+    "method": "E0-native-M2",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "206852-2",
+    "method": "E1-orientation-oracle",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "206852-2",
+    "method": "E0-native-cell-map",
+    "details": {
+      "input_points": 1688,
+      "retained_points": 619,
+      "components": 211,
+      "cells": 105,
+      "status": "rejected",
+      "triangles": 210,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206852-2",
+    "method": "E2-matched-inferred-IDs",
+    "details": {
+      "input_points": 1144,
+      "retained_points": 560,
+      "components": 86,
+      "cells": 442,
+      "status": "rejected",
+      "triangles": 884,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206852-2",
+    "method": "E2-oracle-association-IDs",
+    "details": {
+      "input_points": 1688,
+      "matched_points": 1144,
+      "excluded_unmatched_or_duplicate_detections": 544,
+      "missing_truth_points": 795,
+      "gold_used": true,
+      "triangles": 1598,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206852-2",
+    "method": "E3-perfect-points-inferred-IDs",
+    "details": {
+      "input_points": 1939,
+      "retained_points": 809,
+      "components": 88,
+      "cells": 621,
+      "status": "rejected",
+      "triangles": 1242,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206852-2",
+    "method": "E4-perfect-points-perfect-IDs",
+    "details": {
+      "input_points": 1939,
+      "gold_used": true,
+      "triangles": 3632,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206852-6",
+    "method": "E0-native-M2",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "206852-6",
+    "method": "E1-orientation-oracle",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "206852-6",
+    "method": "E0-native-cell-map",
+    "details": {
+      "input_points": 1899,
+      "retained_points": 1898,
+      "components": 2,
+      "cells": 1802,
+      "status": "accepted",
+      "triangles": 3604,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206852-6",
+    "method": "E2-matched-inferred-IDs",
+    "details": {
+      "input_points": 1886,
+      "retained_points": 1886,
+      "components": 1,
+      "cells": 1793,
+      "status": "accepted",
+      "triangles": 3586,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206852-6",
+    "method": "E2-oracle-association-IDs",
+    "details": {
+      "input_points": 1899,
+      "matched_points": 1886,
+      "excluded_unmatched_or_duplicate_detections": 13,
+      "missing_truth_points": 4,
+      "gold_used": true,
+      "triangles": 3586,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206852-6",
+    "method": "E3-perfect-points-inferred-IDs",
+    "details": {
+      "input_points": 1890,
+      "retained_points": 1890,
+      "components": 1,
+      "cells": 1802,
+      "status": "accepted",
+      "triangles": 3604,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206852-6",
+    "method": "E4-perfect-points-perfect-IDs",
+    "details": {
+      "input_points": 1890,
+      "gold_used": true,
+      "triangles": 3604,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208114-0",
+    "method": "E0-native-M2",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "208114-0",
+    "method": "E1-orientation-oracle",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "208114-0",
+    "method": "E0-native-cell-map",
+    "details": {
+      "input_points": 476,
+      "retained_points": 472,
+      "components": 5,
+      "cells": 399,
+      "status": "accepted",
+      "triangles": 798,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208114-0",
+    "method": "E2-matched-inferred-IDs",
+    "details": {
+      "input_points": 468,
+      "retained_points": 468,
+      "components": 1,
+      "cells": 389,
+      "status": "accepted",
+      "triangles": 778,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208114-0",
+    "method": "E2-oracle-association-IDs",
+    "details": {
+      "input_points": 476,
+      "matched_points": 468,
+      "excluded_unmatched_or_duplicate_detections": 8,
+      "missing_truth_points": 25,
+      "gold_used": true,
+      "triangles": 778,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208114-0",
+    "method": "E3-perfect-points-inferred-IDs",
+    "details": {
+      "input_points": 493,
+      "retained_points": 493,
+      "components": 1,
+      "cells": 448,
+      "status": "accepted",
+      "triangles": 896,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208114-0",
+    "method": "E4-perfect-points-perfect-IDs",
+    "details": {
+      "input_points": 493,
+      "gold_used": true,
+      "triangles": 896,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208114-1",
+    "method": "E0-native-M2",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "208114-1",
+    "method": "E1-orientation-oracle",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "208114-1",
+    "method": "E0-native-cell-map",
+    "details": {
+      "input_points": 460,
+      "retained_points": 459,
+      "components": 2,
+      "cells": 377,
+      "status": "accepted",
+      "triangles": 754,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208114-1",
+    "method": "E2-matched-inferred-IDs",
+    "details": {
+      "input_points": 457,
+      "retained_points": 457,
+      "components": 1,
+      "cells": 375,
+      "status": "accepted",
+      "triangles": 750,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208114-1",
+    "method": "E2-oracle-association-IDs",
+    "details": {
+      "input_points": 460,
+      "matched_points": 457,
+      "excluded_unmatched_or_duplicate_detections": 3,
+      "missing_truth_points": 15,
+      "gold_used": true,
+      "triangles": 750,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208114-1",
+    "method": "E3-perfect-points-inferred-IDs",
+    "details": {
+      "input_points": 472,
+      "retained_points": 472,
+      "components": 1,
+      "cells": 410,
+      "status": "accepted",
+      "triangles": 820,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208114-1",
+    "method": "E4-perfect-points-perfect-IDs",
+    "details": {
+      "input_points": 472,
+      "gold_used": true,
+      "triangles": 820,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208114-2",
+    "method": "E0-native-M2",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "208114-2",
+    "method": "E1-orientation-oracle",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "208114-2",
+    "method": "E0-native-cell-map",
+    "details": {
+      "input_points": 408,
+      "retained_points": 396,
+      "components": 13,
+      "cells": 227,
+      "status": "accepted",
+      "triangles": 454,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208114-2",
+    "method": "E2-matched-inferred-IDs",
+    "details": {
+      "input_points": 367,
+      "retained_points": 365,
+      "components": 3,
+      "cells": 183,
+      "status": "accepted",
+      "triangles": 366,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208114-2",
+    "method": "E2-oracle-association-IDs",
+    "details": {
+      "input_points": 408,
+      "matched_points": 367,
+      "excluded_unmatched_or_duplicate_detections": 41,
+      "missing_truth_points": 125,
+      "gold_used": true,
+      "triangles": 366,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208114-2",
+    "method": "E3-perfect-points-inferred-IDs",
+    "details": {
+      "input_points": 492,
+      "retained_points": 492,
+      "components": 1,
+      "cells": 444,
+      "status": "accepted",
+      "triangles": 888,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208114-2",
+    "method": "E4-perfect-points-perfect-IDs",
+    "details": {
+      "input_points": 492,
+      "gold_used": true,
+      "triangles": 888,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208114-6",
+    "method": "E0-native-M2",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "208114-6",
+    "method": "E1-orientation-oracle",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "208114-6",
+    "method": "E0-native-cell-map",
+    "details": {
+      "input_points": 460,
+      "retained_points": 405,
+      "components": 40,
+      "cells": 269,
+      "status": "accepted",
+      "triangles": 538,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208114-6",
+    "method": "E2-matched-inferred-IDs",
+    "details": {
+      "input_points": 376,
+      "retained_points": 372,
+      "components": 4,
+      "cells": 236,
+      "status": "accepted",
+      "triangles": 472,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208114-6",
+    "method": "E2-oracle-association-IDs",
+    "details": {
+      "input_points": 460,
+      "matched_points": 376,
+      "excluded_unmatched_or_duplicate_detections": 84,
+      "missing_truth_points": 116,
+      "gold_used": true,
+      "triangles": 472,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208114-6",
+    "method": "E3-perfect-points-inferred-IDs",
+    "details": {
+      "input_points": 492,
+      "retained_points": 492,
+      "components": 1,
+      "cells": 444,
+      "status": "accepted",
+      "triangles": 888,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "208114-6",
+    "method": "E4-perfect-points-perfect-IDs",
+    "details": {
+      "input_points": 492,
+      "gold_used": true,
+      "triangles": 888,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "215864-0",
+    "method": "E0-native-M2",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "215864-0",
+    "method": "E1-orientation-oracle",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "215864-0",
+    "method": "E0-native-cell-map",
+    "details": {
+      "input_points": 7250,
+      "retained_points": 7250,
+      "components": 1,
+      "cells": 7060,
+      "status": "accepted",
+      "triangles": 14120,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "215864-0",
+    "method": "E2-matched-inferred-IDs",
+    "details": {
+      "input_points": 7172,
+      "retained_points": 7172,
+      "components": 1,
+      "cells": 6995,
+      "status": "accepted",
+      "triangles": 13990,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "215864-0",
+    "method": "E2-oracle-association-IDs",
+    "details": {
+      "input_points": 7250,
+      "matched_points": 7172,
+      "excluded_unmatched_or_duplicate_detections": 78,
+      "missing_truth_points": 4,
+      "gold_used": true,
+      "triangles": 13990,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "215864-0",
+    "method": "E3-perfect-points-inferred-IDs",
+    "details": {
+      "input_points": 7176,
+      "retained_points": 7176,
+      "components": 1,
+      "cells": 7004,
+      "status": "accepted",
+      "triangles": 14008,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "215864-0",
+    "method": "E4-perfect-points-perfect-IDs",
+    "details": {
+      "input_points": 7176,
+      "gold_used": true,
+      "triangles": 14008,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "215864-1",
+    "method": "E0-native-M2",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "215864-1",
+    "method": "E1-orientation-oracle",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "215864-1",
+    "method": "E0-native-cell-map",
+    "details": {
+      "input_points": 517,
+      "retained_points": 517,
+      "components": 1,
+      "cells": 465,
+      "status": "accepted",
+      "triangles": 930,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "215864-1",
+    "method": "E2-matched-inferred-IDs",
+    "details": {
+      "input_points": 513,
+      "retained_points": 513,
+      "components": 1,
+      "cells": 451,
+      "status": "accepted",
+      "triangles": 902,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "215864-1",
+    "method": "E2-oracle-association-IDs",
+    "details": {
+      "input_points": 517,
+      "matched_points": 513,
+      "excluded_unmatched_or_duplicate_detections": 4,
+      "missing_truth_points": 23,
+      "gold_used": true,
+      "triangles": 902,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "215864-1",
+    "method": "E3-perfect-points-inferred-IDs",
+    "details": {
+      "input_points": 536,
+      "retained_points": 536,
+      "components": 1,
+      "cells": 484,
+      "status": "accepted",
+      "triangles": 968,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "215864-1",
+    "method": "E4-perfect-points-perfect-IDs",
+    "details": {
+      "input_points": 536,
+      "gold_used": true,
+      "triangles": 968,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "215864-2",
+    "method": "E0-native-M2",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "215864-2",
+    "method": "E1-orientation-oracle",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "215864-2",
+    "method": "E0-native-cell-map",
+    "details": {
+      "input_points": 1852,
+      "retained_points": 1830,
+      "components": 21,
+      "cells": 1629,
+      "status": "accepted",
+      "triangles": 3258,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "215864-2",
+    "method": "E2-matched-inferred-IDs",
+    "details": {
+      "input_points": 1776,
+      "retained_points": 1772,
+      "components": 3,
+      "cells": 1529,
+      "status": "accepted",
+      "triangles": 3058,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "215864-2",
+    "method": "E2-oracle-association-IDs",
+    "details": {
+      "input_points": 1852,
+      "matched_points": 1776,
+      "excluded_unmatched_or_duplicate_detections": 76,
+      "missing_truth_points": 107,
+      "gold_used": true,
+      "triangles": 3072,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "215864-2",
+    "method": "E3-perfect-points-inferred-IDs",
+    "details": {
+      "input_points": 1883,
+      "retained_points": 1883,
+      "components": 1,
+      "cells": 1795,
+      "status": "accepted",
+      "triangles": 3590,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "215864-2",
+    "method": "E4-perfect-points-perfect-IDs",
+    "details": {
+      "input_points": 1883,
+      "gold_used": true,
+      "triangles": 3590,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "215864-6",
+    "method": "E0-native-M2",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "215864-6",
+    "method": "E1-orientation-oracle",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "215864-6",
+    "method": "E0-native-cell-map",
+    "details": {
+      "input_points": 2856,
+      "retained_points": 2649,
+      "components": 44,
+      "cells": 2027,
+      "status": "rejected",
+      "triangles": 4054,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "215864-6",
+    "method": "E2-matched-inferred-IDs",
+    "details": {
+      "input_points": 2700,
+      "retained_points": 2232,
+      "components": 38,
+      "cells": 1828,
+      "status": "rejected",
+      "triangles": 3656,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "215864-6",
+    "method": "E2-oracle-association-IDs",
+    "details": {
+      "input_points": 2856,
+      "matched_points": 2700,
+      "excluded_unmatched_or_duplicate_detections": 156,
+      "missing_truth_points": 339,
+      "gold_used": true,
+      "triangles": 4474,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "215864-6",
+    "method": "E3-perfect-points-inferred-IDs",
+    "details": {
+      "input_points": 3039,
+      "retained_points": 2933,
+      "components": 5,
+      "cells": 2684,
+      "status": "accepted",
+      "triangles": 5368,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "215864-6",
+    "method": "E4-perfect-points-perfect-IDs",
+    "details": {
+      "input_points": 3039,
+      "gold_used": true,
+      "triangles": 5828,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211723-0",
+    "method": "E0-native-M2",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "211723-0",
+    "method": "E1-orientation-oracle",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "211723-0",
+    "method": "E0-native-cell-map",
+    "details": {
+      "input_points": 7217,
+      "retained_points": 7217,
+      "components": 1,
+      "cells": 7031,
+      "status": "accepted",
+      "triangles": 14062,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211723-0",
+    "method": "E2-matched-inferred-IDs",
+    "details": {
+      "input_points": 7172,
+      "retained_points": 7172,
+      "components": 1,
+      "cells": 7000,
+      "status": "accepted",
+      "triangles": 14000,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211723-0",
+    "method": "E2-oracle-association-IDs",
+    "details": {
+      "input_points": 7217,
+      "matched_points": 7172,
+      "excluded_unmatched_or_duplicate_detections": 45,
+      "missing_truth_points": 4,
+      "gold_used": true,
+      "triangles": 14000,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211723-0",
+    "method": "E3-perfect-points-inferred-IDs",
+    "details": {
+      "input_points": 7176,
+      "retained_points": 7176,
+      "components": 1,
+      "cells": 7004,
+      "status": "accepted",
+      "triangles": 14008,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211723-0",
+    "method": "E4-perfect-points-perfect-IDs",
+    "details": {
+      "input_points": 7176,
+      "gold_used": true,
+      "triangles": 14008,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211723-1",
+    "method": "E0-native-M2",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "211723-1",
+    "method": "E1-orientation-oracle",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "211723-1",
+    "method": "E0-native-cell-map",
+    "details": {
+      "input_points": 1831,
+      "retained_points": 1828,
+      "components": 4,
+      "cells": 1677,
+      "status": "accepted",
+      "triangles": 3354,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211723-1",
+    "method": "E2-matched-inferred-IDs",
+    "details": {
+      "input_points": 1764,
+      "retained_points": 1764,
+      "components": 1,
+      "cells": 1629,
+      "status": "accepted",
+      "triangles": 3258,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211723-1",
+    "method": "E2-oracle-association-IDs",
+    "details": {
+      "input_points": 1831,
+      "matched_points": 1764,
+      "excluded_unmatched_or_duplicate_detections": 67,
+      "missing_truth_points": 72,
+      "gold_used": true,
+      "triangles": 3258,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211723-1",
+    "method": "E3-perfect-points-inferred-IDs",
+    "details": {
+      "input_points": 1836,
+      "retained_points": 1836,
+      "components": 1,
+      "cells": 1749,
+      "status": "accepted",
+      "triangles": 3498,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211723-1",
+    "method": "E4-perfect-points-perfect-IDs",
+    "details": {
+      "input_points": 1836,
+      "gold_used": true,
+      "triangles": 3498,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211723-2",
+    "method": "E0-native-M2",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "211723-2",
+    "method": "E1-orientation-oracle",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "211723-2",
+    "method": "E0-native-cell-map",
+    "details": {
+      "input_points": 50,
+      "retained_points": 7,
+      "components": 25,
+      "cells": 0,
+      "status": "rejected",
+      "triangles": 0,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211723-2",
+    "method": "E2-matched-inferred-IDs",
+    "details": {
+      "input_points": 35,
+      "retained_points": 6,
+      "components": 17,
+      "cells": 0,
+      "status": "rejected",
+      "triangles": 0,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211723-2",
+    "method": "E2-oracle-association-IDs",
+    "details": {
+      "input_points": 50,
+      "matched_points": 35,
+      "excluded_unmatched_or_duplicate_detections": 15,
+      "missing_truth_points": 458,
+      "gold_used": true,
+      "triangles": 2,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211723-2",
+    "method": "E3-perfect-points-inferred-IDs",
+    "details": {
+      "input_points": 493,
+      "retained_points": 493,
+      "components": 1,
+      "cells": 448,
+      "status": "accepted",
+      "triangles": 896,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211723-2",
+    "method": "E4-perfect-points-perfect-IDs",
+    "details": {
+      "input_points": 493,
+      "gold_used": true,
+      "triangles": 896,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211723-6",
+    "method": "E0-native-M2",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "211723-6",
+    "method": "E1-orientation-oracle",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "211723-6",
+    "method": "E0-native-cell-map",
+    "details": {
+      "input_points": 1496,
+      "retained_points": 894,
+      "components": 116,
+      "cells": 526,
+      "status": "rejected",
+      "triangles": 1052,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211723-6",
+    "method": "E2-matched-inferred-IDs",
+    "details": {
+      "input_points": 1155,
+      "retained_points": 759,
+      "components": 72,
+      "cells": 494,
+      "status": "accepted",
+      "triangles": 988,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211723-6",
+    "method": "E2-oracle-association-IDs",
+    "details": {
+      "input_points": 1496,
+      "matched_points": 1155,
+      "excluded_unmatched_or_duplicate_detections": 341,
+      "missing_truth_points": 1418,
+      "gold_used": true,
+      "triangles": 1414,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211723-6",
+    "method": "E3-perfect-points-inferred-IDs",
+    "details": {
+      "input_points": 2573,
+      "retained_points": 1086,
+      "components": 85,
+      "cells": 559,
+      "status": "rejected",
+      "triangles": 1118,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211723-6",
+    "method": "E4-perfect-points-perfect-IDs",
+    "details": {
+      "input_points": 2573,
+      "gold_used": true,
+      "triangles": 4864,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211855-0",
+    "method": "E0-native-M2",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "211855-0",
+    "method": "E1-orientation-oracle",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "211855-0",
+    "method": "E0-native-cell-map",
+    "details": {
+      "input_points": 513,
+      "retained_points": 505,
+      "components": 7,
+      "cells": 439,
+      "status": "accepted",
+      "triangles": 878,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211855-0",
+    "method": "E2-matched-inferred-IDs",
+    "details": {
+      "input_points": 502,
+      "retained_points": 502,
+      "components": 1,
+      "cells": 431,
+      "status": "accepted",
+      "triangles": 862,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211855-0",
+    "method": "E2-oracle-association-IDs",
+    "details": {
+      "input_points": 513,
+      "matched_points": 502,
+      "excluded_unmatched_or_duplicate_detections": 11,
+      "missing_truth_points": 14,
+      "gold_used": true,
+      "triangles": 862,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211855-0",
+    "method": "E3-perfect-points-inferred-IDs",
+    "details": {
+      "input_points": 516,
+      "retained_points": 516,
+      "components": 1,
+      "cells": 467,
+      "status": "accepted",
+      "triangles": 934,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211855-0",
+    "method": "E4-perfect-points-perfect-IDs",
+    "details": {
+      "input_points": 516,
+      "gold_used": true,
+      "triangles": 934,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211855-1",
+    "method": "E0-native-M2",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "211855-1",
+    "method": "E1-orientation-oracle",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "211855-1",
+    "method": "E0-native-cell-map",
+    "details": {
+      "input_points": 411,
+      "retained_points": 357,
+      "components": 38,
+      "cells": 157,
+      "status": "rejected",
+      "triangles": 314,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211855-1",
+    "method": "E2-matched-inferred-IDs",
+    "details": {
+      "input_points": 305,
+      "retained_points": 288,
+      "components": 11,
+      "cells": 102,
+      "status": "accepted",
+      "triangles": 204,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211855-1",
+    "method": "E2-oracle-association-IDs",
+    "details": {
+      "input_points": 411,
+      "matched_points": 305,
+      "excluded_unmatched_or_duplicate_detections": 106,
+      "missing_truth_points": 235,
+      "gold_used": true,
+      "triangles": 204,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211855-1",
+    "method": "E3-perfect-points-inferred-IDs",
+    "details": {
+      "input_points": 540,
+      "retained_points": 540,
+      "components": 1,
+      "cells": 493,
+      "status": "accepted",
+      "triangles": 986,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211855-1",
+    "method": "E4-perfect-points-perfect-IDs",
+    "details": {
+      "input_points": 540,
+      "gold_used": true,
+      "triangles": 986,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211855-2",
+    "method": "E0-native-M2",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "211855-2",
+    "method": "E1-orientation-oracle",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "211855-2",
+    "method": "E0-native-cell-map",
+    "details": {
+      "input_points": 3769,
+      "retained_points": 3723,
+      "components": 43,
+      "cells": 3088,
+      "status": "rejected",
+      "triangles": 6176,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211855-2",
+    "method": "E2-matched-inferred-IDs",
+    "details": {
+      "input_points": 3300,
+      "retained_points": 3291,
+      "components": 7,
+      "cells": 2426,
+      "status": "accepted",
+      "triangles": 4852,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211855-2",
+    "method": "E2-oracle-association-IDs",
+    "details": {
+      "input_points": 3769,
+      "matched_points": 3300,
+      "excluded_unmatched_or_duplicate_detections": 469,
+      "missing_truth_points": 696,
+      "gold_used": true,
+      "triangles": 4852,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211855-2",
+    "method": "E3-perfect-points-inferred-IDs",
+    "details": {
+      "input_points": 3996,
+      "retained_points": 3996,
+      "components": 1,
+      "cells": 3865,
+      "status": "accepted",
+      "triangles": 7730,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211855-2",
+    "method": "E4-perfect-points-perfect-IDs",
+    "details": {
+      "input_points": 3996,
+      "gold_used": true,
+      "triangles": 7730,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211855-6",
+    "method": "E0-native-M2",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "211855-6",
+    "method": "E1-orientation-oracle",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "211855-6",
+    "method": "E0-native-cell-map",
+    "details": {
+      "input_points": 670,
+      "retained_points": 466,
+      "components": 87,
+      "cells": 175,
+      "status": "rejected",
+      "triangles": 350,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211855-6",
+    "method": "E2-matched-inferred-IDs",
+    "details": {
+      "input_points": 470,
+      "retained_points": 364,
+      "components": 62,
+      "cells": 146,
+      "status": "accepted",
+      "triangles": 292,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211855-6",
+    "method": "E2-oracle-association-IDs",
+    "details": {
+      "input_points": 670,
+      "matched_points": 470,
+      "excluded_unmatched_or_duplicate_detections": 200,
+      "missing_truth_points": 1397,
+      "gold_used": true,
+      "triangles": 306,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211855-6",
+    "method": "E3-perfect-points-inferred-IDs",
+    "details": {
+      "input_points": 1867,
+      "retained_points": 923,
+      "components": 3,
+      "cells": 852,
+      "status": "accepted",
+      "triangles": 1704,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "211855-6",
+    "method": "E4-perfect-points-perfect-IDs",
+    "details": {
+      "input_points": 1867,
+      "gold_used": true,
+      "triangles": 3522,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206056-0",
+    "method": "E0-native-M2",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "206056-0",
+    "method": "E1-orientation-oracle",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "206056-0",
+    "method": "E0-native-cell-map",
+    "details": {
+      "input_points": 508,
+      "retained_points": 507,
+      "components": 2,
+      "cells": 442,
+      "status": "accepted",
+      "triangles": 884,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206056-0",
+    "method": "E2-matched-inferred-IDs",
+    "details": {
+      "input_points": 502,
+      "retained_points": 502,
+      "components": 1,
+      "cells": 430,
+      "status": "accepted",
+      "triangles": 860,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206056-0",
+    "method": "E2-oracle-association-IDs",
+    "details": {
+      "input_points": 508,
+      "matched_points": 502,
+      "excluded_unmatched_or_duplicate_detections": 6,
+      "missing_truth_points": 20,
+      "gold_used": true,
+      "triangles": 860,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206056-0",
+    "method": "E3-perfect-points-inferred-IDs",
+    "details": {
+      "input_points": 522,
+      "retained_points": 522,
+      "components": 1,
+      "cells": 476,
+      "status": "accepted",
+      "triangles": 952,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206056-0",
+    "method": "E4-perfect-points-perfect-IDs",
+    "details": {
+      "input_points": 522,
+      "gold_used": true,
+      "triangles": 952,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206056-1",
+    "method": "E0-native-M2",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "206056-1",
+    "method": "E1-orientation-oracle",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "206056-1",
+    "method": "E0-native-cell-map",
+    "details": {
+      "input_points": 541,
+      "retained_points": 396,
+      "components": 72,
+      "cells": 172,
+      "status": "rejected",
+      "triangles": 344,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206056-1",
+    "method": "E2-matched-inferred-IDs",
+    "details": {
+      "input_points": 321,
+      "retained_points": 276,
+      "components": 12,
+      "cells": 102,
+      "status": "accepted",
+      "triangles": 204,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206056-1",
+    "method": "E2-oracle-association-IDs",
+    "details": {
+      "input_points": 541,
+      "matched_points": 321,
+      "excluded_unmatched_or_duplicate_detections": 220,
+      "missing_truth_points": 188,
+      "gold_used": true,
+      "triangles": 226,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206056-1",
+    "method": "E3-perfect-points-inferred-IDs",
+    "details": {
+      "input_points": 509,
+      "retained_points": 509,
+      "components": 1,
+      "cells": 460,
+      "status": "accepted",
+      "triangles": 920,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206056-1",
+    "method": "E4-perfect-points-perfect-IDs",
+    "details": {
+      "input_points": 509,
+      "gold_used": true,
+      "triangles": 920,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206056-2",
+    "method": "E0-native-M2",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "206056-2",
+    "method": "E1-orientation-oracle",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "206056-2",
+    "method": "E0-native-cell-map",
+    "details": {
+      "input_points": 1894,
+      "retained_points": 1894,
+      "components": 1,
+      "cells": 1792,
+      "status": "accepted",
+      "triangles": 3584,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206056-2",
+    "method": "E2-matched-inferred-IDs",
+    "details": {
+      "input_points": 1879,
+      "retained_points": 1879,
+      "components": 1,
+      "cells": 1781,
+      "status": "accepted",
+      "triangles": 3562,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206056-2",
+    "method": "E2-oracle-association-IDs",
+    "details": {
+      "input_points": 1894,
+      "matched_points": 1879,
+      "excluded_unmatched_or_duplicate_detections": 15,
+      "missing_truth_points": 11,
+      "gold_used": true,
+      "triangles": 3562,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206056-2",
+    "method": "E3-perfect-points-inferred-IDs",
+    "details": {
+      "input_points": 1890,
+      "retained_points": 1890,
+      "components": 1,
+      "cells": 1802,
+      "status": "accepted",
+      "triangles": 3604,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206056-2",
+    "method": "E4-perfect-points-perfect-IDs",
+    "details": {
+      "input_points": 1890,
+      "gold_used": true,
+      "triangles": 3604,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206056-6",
+    "method": "E0-native-M2",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "206056-6",
+    "method": "E1-orientation-oracle",
+    "details": {},
+    "failure": null
+  },
+  {
+    "key": "206056-6",
+    "method": "E0-native-cell-map",
+    "details": {
+      "input_points": 403,
+      "retained_points": 401,
+      "components": 3,
+      "cells": 287,
+      "status": "accepted",
+      "triangles": 574,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206056-6",
+    "method": "E2-matched-inferred-IDs",
+    "details": {
+      "input_points": 389,
+      "retained_points": 388,
+      "components": 2,
+      "cells": 270,
+      "status": "accepted",
+      "triangles": 540,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206056-6",
+    "method": "E2-oracle-association-IDs",
+    "details": {
+      "input_points": 403,
+      "matched_points": 389,
+      "excluded_unmatched_or_duplicate_detections": 14,
+      "missing_truth_points": 104,
+      "gold_used": true,
+      "triangles": 540,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206056-6",
+    "method": "E3-perfect-points-inferred-IDs",
+    "details": {
+      "input_points": 493,
+      "retained_points": 493,
+      "components": 1,
+      "cells": 448,
+      "status": "accepted",
+      "triangles": 896,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  },
+  {
+    "key": "206056-6",
+    "method": "E4-perfect-points-perfect-IDs",
+    "details": {
+      "input_points": 493,
+      "gold_used": true,
+      "triangles": 896,
+      "scope": "partial coordinates only, RGB not rectified"
+    },
+    "failure": null
+  }
+]

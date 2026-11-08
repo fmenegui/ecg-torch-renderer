@@ -1,0 +1,38 @@
+{
+  "schema": "hybrid-validation-opencv-major-control-v1",
+  "source_commit": "136ab4ea883f1d1500ced7ffa77e1ad88e763ab2",
+  "only_changed_dependency": "opencv-python-headless",
+  "task": "research/rectification-methodology-m4-20261023/replay_components.py --task qa",
+  "fixture_and_tolerance_unchanged": true,
+  "rows": [
+    {
+      "label": "opencv-4.11",
+      "environment": {
+        "opencv": "4.11.0",
+        "numpy": "2.5.4",
+        "torch": "2.7.0+cpu"
+      },
+      "tests": 21,
+      "passed": true,
+      "failures": 0,
+      "log_sha256": "36ee30abdde21c63107f58dde95ebf9214eacdc5a09b211018fd82fd3fc8df49",
+      "failed_assertion": null
+    },
+    {
+      "label": "opencv-5.0",
+      "environment": {
+        "opencv": "5.0.0",
+        "numpy": "2.5.4",
+        "torch": "2.7.0+cpu"
+      },
+      "tests": 21,
+      "passed": false,
+      "failures": 1,
+      "log_sha256": "df16eec15c760181ee1d47d258074f9e030431d5625cde83115750a0e54b568d",
+      "failed_assertion": "Maximum uint8 difference 2 exceeds unchanged tolerance 1 for RGB bilinear quadrature with subgrid 2"
+    }
+  ],
+  "conclusion": "The independent M4 sampler oracle is compatible with the measured OpenCV 4.11 environment. OpenCV 5 numerical behavior fails this unchanged contract. The paid pilot now pins the validation environment before allocating resources.",
+  "failed_ci_run": 41103754477,
+  "paid_resources_created_by_failed_ci": false
+}

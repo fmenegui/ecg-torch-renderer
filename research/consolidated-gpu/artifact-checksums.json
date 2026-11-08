@@ -1,0 +1,20 @@
+{
+  "source_commit": "e35c86b13fe0050ad9fd0d29603e3a34010293a2",
+  "artifacts": [
+    {
+      "file": "ecg-consolidado-gpu-20261021.html",
+      "bytes": 7037034,
+      "sha256": "d3b7ac1c19fdb4cbb466aae15230f954efeb4a1988dcee9acc0998e085dfd3f3"
+    },
+    {
+      "file": "ecg-comparacao-detectores-20261021.png",
+      "bytes": 53536,
+      "sha256": "a10340321c6cd35f489dfd6fca9e8ae11ea50913ab138dde627fe67eaf37fb5f"
+    },
+    {
+      "file": "ecg-experimentos-gpu-20261021.zip",
+      "bytes": 323708551,
+      "sha256": "b6a83d41e375aef1d01479052fb16eb4d756d2a28527c4ebe0547e55834ec2af"
+    }
+  ]
+}

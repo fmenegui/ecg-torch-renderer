@@ -1,0 +1,11 @@
+{
+  "filename": "ecg-digitalizacao-m6-medicoes-2026-10-26.zip",
+  "bytes": 96539340,
+  "sha256": "4eeca8ea7260fcb9bd14f0acbf05d32de8ffbe9b32ca349641b72a6fdb1d06c3",
+  "payload_files": 2926,
+  "unique_payloads": 1313,
+  "exact_aliases": 1613,
+  "logical_bytes": 512632768,
+  "ZIP_CRC_passed": true,
+  "all_payload_hashes_verified": true
+}

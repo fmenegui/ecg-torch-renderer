@@ -1,0 +1,10 @@
+{
+  "schema": "runpod-preflight-v1",
+  "checks": {
+    "pod_id_present": false,
+    "api_key_present": false,
+    "cli_present": false
+  },
+  "resources_created": [],
+  "gpu_execution_started": false
+}

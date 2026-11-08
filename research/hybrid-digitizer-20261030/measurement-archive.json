@@ -1,0 +1,11 @@
+{
+  "file_name": "ecg-hybrid-medicoes-2026-10-30.zip",
+  "size_bytes": 156285269,
+  "sha256": "8974a8b8d48a5086494dbec6cfa06dc02a9a01fa10c2f5a11e18568c8b579226",
+  "entries": 351,
+  "crc_checked": true,
+  "source_code_included": false,
+  "library_file_id": "libfile_7769e6a645dc819186ae53471b4cf226",
+  "library_file_name": "ecg-hybrid-medicoes-2026-10-30.zip",
+  "measurement_kind": "Development 1500-pixel CPU paired inference and stored-output replays, not a fresh GPU holdout"
+}

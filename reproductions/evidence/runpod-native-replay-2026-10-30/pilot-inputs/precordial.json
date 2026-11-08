@@ -1,0 +1,6 @@
+{
+  "schema": "ecg-reproduction-manifest-v1",
+  "cohort_identity_verified": false,
+  "case_grouping": "source record, not asserted biological identity across records",
+  "cases": []
+}

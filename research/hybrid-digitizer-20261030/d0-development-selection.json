@@ -1,0 +1,146 @@
+{
+  "policy": {
+    "schema": "ecg-selective-policy-v2-development",
+    "minimum_new_samples": 10,
+    "minimum_common_samples_per_lead": 100,
+    "minimum_correlation": 0.97,
+    "amplitude_ratio_low": 0.85,
+    "amplitude_ratio_high": 1.18,
+    "maximum_dc_difference_mv": 0.05,
+    "maximum_timing_difference_s": 0.02,
+    "maximum_extrapolated_fraction": 0.35
+  },
+  "decision": {
+    "schema": "ecg-selective-decision-v1",
+    "policy_sha256": "e0169ac065122c4335032f509fae2e51ef15db9906659364b68f931312aabaa3",
+    "selected": "candidate",
+    "reason": "support_gain_with_preserved_shared_signal",
+    "reference_used": false,
+    "numeric_support_is_not_accuracy": true,
+    "lead_checks": {
+      "I": {
+        "accepted": true,
+        "common_samples": 1245,
+        "zero_lag_correlation": 0.9091926510696263,
+        "best_relative_correlation": 0.9953771818653037,
+        "amplitude_std_ratio": 1.0243783841774206,
+        "absolute_dc_difference_mv": 0.004022579571527157,
+        "best_relative_lag_samples": -3
+      },
+      "II": {
+        "accepted": true,
+        "common_samples": 5000,
+        "zero_lag_correlation": 0.9456761695563245,
+        "best_relative_correlation": 0.9851462202850348,
+        "amplitude_std_ratio": 1.0287636101653905,
+        "absolute_dc_difference_mv": 0.0012234237495925952,
+        "best_relative_lag_samples": -2
+      },
+      "III": {
+        "accepted": true,
+        "common_samples": 1250,
+        "zero_lag_correlation": 0.8789743756853529,
+        "best_relative_correlation": 0.9863428607445057,
+        "amplitude_std_ratio": 1.0175715980900393,
+        "absolute_dc_difference_mv": 0.0194262126126441,
+        "best_relative_lag_samples": -3
+      },
+      "aVR": {
+        "accepted": true,
+        "common_samples": 1217,
+        "zero_lag_correlation": 0.9323939886516892,
+        "best_relative_correlation": 0.9929970271908769,
+        "amplitude_std_ratio": 1.0286564860614145,
+        "absolute_dc_difference_mv": 0.003023595247572869,
+        "best_relative_lag_samples": -2
+      },
+      "aVL": {
+        "accepted": true,
+        "common_samples": 1217,
+        "zero_lag_correlation": 0.9361773896770671,
+        "best_relative_correlation": 0.9915918003506514,
+        "amplitude_std_ratio": 1.0186456040526912,
+        "absolute_dc_difference_mv": 0.007479356663114571,
+        "best_relative_lag_samples": -2
+      },
+      "aVF": {
+        "accepted": true,
+        "common_samples": 1217,
+        "zero_lag_correlation": 0.9177907505696178,
+        "best_relative_correlation": 0.9792958944514242,
+        "amplitude_std_ratio": 1.0582340763423552,
+        "absolute_dc_difference_mv": 0.01983889367019525,
+        "best_relative_lag_samples": -2
+      },
+      "V1": {
+        "accepted": true,
+        "common_samples": 1247,
+        "zero_lag_correlation": 0.972526594443682,
+        "best_relative_correlation": 0.9966340396816143,
+        "amplitude_std_ratio": 1.0338656502235346,
+        "absolute_dc_difference_mv": 0.003314769735267594,
+        "best_relative_lag_samples": -2
+      },
+      "V2": {
+        "accepted": true,
+        "common_samples": 1247,
+        "zero_lag_correlation": 0.9681290496196131,
+        "best_relative_correlation": 0.9948198108964823,
+        "amplitude_std_ratio": 1.0326571645321383,
+        "absolute_dc_difference_mv": 0.006986743748343068,
+        "best_relative_lag_samples": -2
+      },
+      "V3": {
+        "accepted": true,
+        "common_samples": 1250,
+        "zero_lag_correlation": 0.9338648897812984,
+        "best_relative_correlation": 0.9863280475163771,
+        "amplitude_std_ratio": 1.0827042650643073,
+        "absolute_dc_difference_mv": 0.019842557994488225,
+        "best_relative_lag_samples": -2
+      },
+      "V4": {
+        "accepted": true,
+        "common_samples": 1248,
+        "zero_lag_correlation": 0.9625485399571833,
+        "best_relative_correlation": 0.9900204759215837,
+        "amplitude_std_ratio": 1.075634913056015,
+        "absolute_dc_difference_mv": 0.004751004200707426,
+        "best_relative_lag_samples": -1
+      },
+      "V5": {
+        "accepted": true,
+        "common_samples": 1250,
+        "zero_lag_correlation": 0.9679053624602303,
+        "best_relative_correlation": 0.9919390343078742,
+        "amplitude_std_ratio": 1.0442570055751335,
+        "absolute_dc_difference_mv": 0.0079798122002315,
+        "best_relative_lag_samples": -1
+      },
+      "V6": {
+        "accepted": true,
+        "common_samples": 1250,
+        "zero_lag_correlation": 0.9727294058144406,
+        "best_relative_correlation": 0.9925323986850528,
+        "amplitude_std_ratio": 1.030321581285576,
+        "absolute_dc_difference_mv": 0.020220364129431036,
+        "best_relative_lag_samples": -1
+      }
+    },
+    "route": "native_specialist",
+    "specialist_profile": "kaggle-second-final-six",
+    "specialist_assets_lock_sha256": "0dfbfeb64ecb5cced0680d5854eeffe3120d491ef7bf3755bba421a2d62c3905",
+    "direct_finite_samples": 18638,
+    "candidate_finite_samples": 18750,
+    "lost_finite_samples": 0,
+    "new_finite_samples": 112
+  },
+  "source_image_sha256": "d6937484744c62aab24d627707aa7a056216671909e4c57d0bc9c5df3761625d",
+  "input_npz_sha256": "a35573ade0f50f1354e0b35d751bb6cfaac5189070e9f9c8db39c1fd83c899ae",
+  "native_series_sha256": "d3f8babe663a26223256a66d61bad2218908529484877d882e2a0c9e3c25862c",
+  "selected_npz_sha256": "56a3c2d26d54c649b2572c19af9c1afdd6a54c9fdeea3a549c6bcd76b07bab02",
+  "new_inference": false,
+  "policy_calibrated_on_this_known_case": true,
+  "held_out": false,
+  "reference_waveform_opened": false
+}

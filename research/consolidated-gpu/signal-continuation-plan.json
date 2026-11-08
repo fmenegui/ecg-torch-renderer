@@ -1,0 +1,28 @@
+{
+  "recorded_at_unix": 1792612638.6375434,
+  "model_selection_already_frozen": true,
+  "signal_predictions_observed_before_this_plan": 0,
+  "repair": "Configure Git LFS filters locally, then require unchanged upstream commit, clean tracked worktree and original weight hashes",
+  "trained_checkpoint_sha256": {
+    "raw-point-1973": "aca55efe5fd56fe6b0626fde304f7155b1e8be034c193bc7048a4a66c573cc43",
+    "raw-point-20261021": "8f31ef1c5bb3de4101c496638a55b81ae5b8eebf518bb4dc0cf0879ba5299df7",
+    "contrast-point-1973": "abc496969a8f3c71f229f695223fa9f6a76effa3e5bfbefdf1af1ac4a9841fcb",
+    "contrast-point-20261021": "e09218759a52bdf7324f88d7ef7615820f7d06908e9c4000ab93c1e50e57a54d",
+    "contrast-global-1973": "8030b711586256bdd4f3d7fe5291cc16cc38cd7e435a7710db55548313d7e5c4",
+    "contrast-global-20261021": "cc6371d6a1856edd1c15cbaba81bd160a710cf941c4a53bf205c14f992171c08"
+  },
+  "input_images": "Recovered, hash-verified original/oracle/learned PNGs, not regenerated",
+  "arms": [
+    "original",
+    "oracle",
+    "learned",
+    "resize-2x"
+  ],
+  "resize_control": "Bilinear 2x original RGB without geometric correction, included before any signal predictions to inspect scale effects",
+  "additional_references": [
+    "npj configured nonlinear dewarping enabled",
+    "locked Kaggle single profile"
+  ],
+  "no_retraining": true,
+  "no_test_dependent_parameter_change": true
+}

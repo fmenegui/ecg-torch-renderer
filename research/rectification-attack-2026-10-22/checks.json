@@ -1,0 +1,69 @@
+{
+  "focused_tests": {
+    "run": 26,
+    "passed": 26
+  },
+  "integration_tests": {
+    "run": 392,
+    "passed": 378,
+    "skipped": 12,
+    "errors": 2,
+    "seconds": 181.502,
+    "error_reason": "Original binary regression fixtures absent from reconstructed local checkout",
+    "absent_original_files": [
+      "tests/fixtures/raster-v021.npz",
+      "references/ecg-gpu-generator-v021.zip"
+    ],
+    "fixtures_regenerated": false
+  },
+  "fatal_ruff": "passed E9,F63,F7,F82",
+  "capture_gallery": {
+    "images": 16,
+    "device": "CPU",
+    "visually_reviewed": true
+  },
+  "cuda_execution": false,
+  "new_training": false,
+  "new_gpu_provisioned": false,
+  "cli_diagnostic_parity": [
+    {
+      "key": "01026-5",
+      "profile": "banding",
+      "status": "partial-rectification",
+      "points": 7165,
+      "banding_removed": true,
+      "points_and_relative_ids_match_under_permutation": true,
+      "maximum_selected_point_difference_px": 3.0517578125e-05,
+      "source_for_rectification": "original RGB"
+    },
+    {
+      "key": "01025-2",
+      "profile": "banding",
+      "status": "partial-rectification",
+      "points": 316,
+      "banding_removed": true,
+      "points_and_relative_ids_match_under_permutation": true,
+      "maximum_selected_point_difference_px": 3.0517578125e-05,
+      "source_for_rectification": "original RGB"
+    }
+  ],
+  "strict_digitization_lint": "passed E,F ignoring E501",
+  "previous_ci_diagnosis": {
+    "commit": "bd4f9e369e63ac2f1ea685f50f3e9f88a2eb74a6",
+    "failed_job_id": 119803049545,
+    "reason": "offline_noise.blur_motion imports optional cv2 but CPU matrix installed only benchmark extra",
+    "fix": "Install opencv-python-headless>=4.11,<5 in CPU matrix",
+    "local_denoising_grid_tests": 3,
+    "test_expectations_weakened": false
+  },
+  "html_browser_qa": "Chromium unavailable. Download failed. Static HTML and decoded previews will be checked separately.",
+  "html_report_qa": {
+    "articles": 48,
+    "embedded_images_decoded": 144,
+    "unique_reserved_captures": 48,
+    "self_contained_images": true,
+    "gallery_visually_reviewed": true,
+    "javascript_syntax": "passed node --check",
+    "browser_runtime_check": "unavailable, Chromium download failed"
+  }
+}

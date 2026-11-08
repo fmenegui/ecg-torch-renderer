@@ -1,0 +1,30 @@
+test_identity_rgb_exact_all_borders (test_axis_area.AxisAreaTests.test_identity_rgb_exact_all_borders) ... ok
+test_main_32_to_1_attack_positive_control (test_axis_area.AxisAreaTests.test_main_32_to_1_attack_positive_control) ... ok
+test_partial_source_area_does_not_renormalise_or_erase (test_axis_area.AxisAreaTests.test_partial_source_area_does_not_renormalise_or_erase) ... ok
+test_random_rgb_rgba_against_independent_scalar_overlap (test_axis_area.AxisAreaTests.test_random_rgb_rgba_against_independent_scalar_overlap) ... ok
+test_rejects_unsupported_geometry_and_unresolved_area (test_axis_area.AxisAreaTests.test_rejects_unsupported_geometry_and_unresolved_area) ... ok
+test_rgba_hidden_rgb_has_zero_weight (test_axis_area.AxisAreaTests.test_rgba_hidden_rgb_has_zero_weight) ... ok
+test_atomic_no_clobber_race (test_sampling_export.PngTests.test_atomic_no_clobber_race) ... ok
+test_default_refuses_existing_and_guard_allows_explicit_replace (test_sampling_export.PngTests.test_default_refuses_existing_and_guard_allows_explicit_replace) ... ok
+test_failed_decode_keeps_existing_file (test_sampling_export.PngTests.test_failed_decode_keeps_existing_file) ... ok
+test_guard_rechecked_before_replace (test_sampling_export.PngTests.test_guard_rechecked_before_replace) ... ok
+test_lock_is_not_stolen_and_invalid_inputs_do_not_write (test_sampling_export.PngTests.test_lock_is_not_stolen_and_invalid_inputs_do_not_write) ... ok
+test_permissive_decoder_setting_fails_closed (test_sampling_export.PngTests.test_permissive_decoder_setting_fails_closed) ... ok
+test_rgb_rgba_verified_roundtrip (test_sampling_export.PngTests.test_rgb_rgba_verified_roundtrip) ... ok
+test_truncated_encoded_temp_never_published (test_sampling_export.PngTests.test_truncated_encoded_temp_never_published) ... ok
+test_bad_arguments_and_callbacks (test_sampling_export.SamplingTests.test_bad_arguments_and_callbacks) ... ok
+test_constant_interior_all_arms_and_anisotropy (test_sampling_export.SamplingTests.test_constant_interior_all_arms_and_anisotropy) ... ok
+test_geometry_trust_has_no_effect_on_rgb_or_rgba (test_sampling_export.SamplingTests.test_geometry_trust_has_no_effect_on_rgb_or_rgba) ... ok
+test_identity_bilinear_scalar_reference_and_edge_fill (test_sampling_export.SamplingTests.test_identity_bilinear_scalar_reference_and_edge_fill) ... ok
+test_identity_nearest_including_edges (test_sampling_export.SamplingTests.test_identity_nearest_including_edges) ... ok
+test_invalid_no_valid_sentinel_or_warning (test_sampling_export.SamplingTests.test_invalid_no_valid_sentinel_or_warning) ... ok
+test_iterator_does_not_allocate_a_collected_output (test_sampling_export.SamplingTests.test_iterator_does_not_allocate_a_collected_output) ... ok
+test_partial_border_support_does_not_gate_rgb (test_sampling_export.SamplingTests.test_partial_border_support_does_not_gate_rgb) ... ok
+test_rgba_hidden_colours_do_not_bleed (test_sampling_export.SamplingTests.test_rgba_hidden_colours_do_not_bleed) ... ok
+test_thin_trace_and_disclosed_bilinear_blur (test_sampling_export.SamplingTests.test_thin_trace_and_disclosed_bilinear_blur) ... ok
+test_tile_invariance_rectangles_anisotropic_and_partial_tiles (test_sampling_export.SamplingTests.test_tile_invariance_rectangles_anisotropic_and_partial_tiles) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 2.393s
+
+OK

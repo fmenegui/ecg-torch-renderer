@@ -1,0 +1,101 @@
+{
+  "run_id": "41064387591-1",
+  "name": "ecg-repro-41064387591-1",
+  "selection": {
+    "gpu": {
+      "available": true,
+      "communityCloud": false,
+      "communityPricePerHr": null,
+      "dataCenterAvailability": [
+        {
+          "dataCenterId": "EU-RO-1",
+          "stockStatus": "Low"
+        },
+        {
+          "dataCenterId": "EUR-IS-2",
+          "stockStatus": "Low"
+        },
+        {
+          "dataCenterId": "US-MO-2",
+          "stockStatus": "Low"
+        }
+      ],
+      "displayName": "L4",
+      "gpuId": "NVIDIA L4",
+      "memoryInGb": 24,
+      "secureCloud": true,
+      "securePricePerHr": 0.59,
+      "stockStatus": "Low"
+    },
+    "template": {
+      "category": "NVIDIA",
+      "containerDiskInGb": 30,
+      "id": "runpod-torch-v280",
+      "imageName": "runpod/pytorch:1.0.2-cu1281-torch280-ubuntu2404",
+      "isPublic": true,
+      "isRunpod": true,
+      "name": "Runpod Pytorch 2.8.0",
+      "volumeInGb": 50,
+      "volumeMountPath": "/workspace"
+    },
+    "data_center": "EU-RO-1",
+    "data_center_metadata": {
+      "compliance": [
+        "GDPR",
+        "HIPAA"
+      ],
+      "globalNetwork": true,
+      "id": "EU-RO-1",
+      "name": "EU-RO-1",
+      "networkVolumeTypes": [
+        "STANDARD"
+      ],
+      "region": "EUROPE"
+    },
+    "gpu_price_per_hour": 0.59,
+    "read_at": "2026-10-30T13:36:02.711603+00:00",
+    "storage_price_reference": {
+      "type": "STANDARD",
+      "usd_per_gb_month": 0.07,
+      "volume_gb": 30,
+      "source": "https://www.runpod.io/pricing"
+    }
+  },
+  "status": "failed_or_timeout",
+  "plan": {
+    "schema": "ecg-runpod-pilot-plan-v1",
+    "generation": 3,
+    "gpu_candidates": [
+      "NVIDIA A40",
+      "NVIDIA L4"
+    ],
+    "gpu_id": "NVIDIA A40",
+    "data_center": "EU-SE-1",
+    "maximum_gpu_price_per_hour": 0.6,
+    "template_id": "runpod-torch-v280",
+    "volume_gb": 30,
+    "container_disk_gb": 40,
+    "maximum_pod_seconds": 1800,
+    "purpose": "GPU engineering pilot and explicitly small public development cohort, not a headline reproduction"
+  },
+  "private_key": "/home/runner/.runpod/ssh/runpodctl-ssh-key",
+  "ssh_key_added": false,
+  "volume_id": "15s2v1m2jv",
+  "deadline": 1793369164.4661832,
+  "pod_id": "6mwiw1chqb7zfm",
+  "connection": {
+    "ip": "213.173.105.12",
+    "port": 17566
+  },
+  "runtime_connection_source": "GraphQL live SSH mapping, REST v2 telemetry unavailable",
+  "watchdog": {
+    "watchdog_armed": true,
+    "pod_id": "6mwiw1chqb7zfm",
+    "deadline": 1793369164.4661832
+  },
+  "worker_returncode": 2,
+  "results_sha256": "3243f311e5f5f1d11e2cb2b74834993f53e9458671d124766565862606d0880f",
+  "results_copied_and_verified": true,
+  "error": "GPU pilot did not complete, inspect preserved logs",
+  "pod_absent_verified": true
+}

@@ -1,0 +1,11 @@
+# Separate native notebook environment. The current timm 1.0.30 rejects the
+# author's historical tu-timm/timm/... names. Keep that failed audit on record.
+timm==1.0.22
+segmentation-models-pytorch==0.5.0
+numpy==2.5.4
+scipy==1.18.1
+pandas==3.1.0
+Pillow==13.0.0
+opencv-python-headless==4.11.0.86
+connected-components-3d==4.1.1
+matplotlib==3.11.2

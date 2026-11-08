@@ -1,0 +1,71 @@
+{
+  "schema": "m4-independent-sampling-results-audit-v1",
+  "passed": true,
+  "checks": 23819,
+  "saved_comparisons_checked": 3360,
+  "direct_affine_outputs_rerun": 192,
+  "direct_affine_scene_indices": [
+    0,
+    9,
+    13,
+    35,
+    69,
+    70,
+    119,
+    139
+  ],
+  "direct_affine_max_uint8_difference": 0,
+  "direct_affine_mismatched_channel_values": 0,
+  "quality_summaries_recomputed": 12,
+  "source_report_sha256": "a051dfdb9eccbf3b5eb69fdcbcca7e9148bec9cb760a5d696e5f84277a7abd8b",
+  "benchmark_sha256": "9dcaccbda4b93d61df1891cd769138abec07fb2b4df5bfb73cb6249898fa2882",
+  "source_bindings": {
+    "streaming_sampler.py": "b9a7a732533090271455d42fdc3b4784bf299e14f0b4fc82c564fadccc31f503",
+    "pngio.py": "816c319d8bdd47ef82aff7057a4461d7b2b3249ce95d60a7a7fa3b93b3fd38b1",
+    "evaluate.py": "a9b2c782f908b6fa319699ed2e9e1510e508db84a84920dbab1b9040c07bbb65"
+  },
+  "cost_rows": [
+    {
+      "method": "cached-m3",
+      "subgrid": 2,
+      "median_total_seconds": 0.16735972899914486,
+      "peak_rss_bytes": 172916736
+    },
+    {
+      "method": "tiled",
+      "subgrid": 2,
+      "median_total_seconds": 0.28832998200050497,
+      "peak_rss_bytes": 81252352
+    },
+    {
+      "method": "cached-m3",
+      "subgrid": 4,
+      "median_total_seconds": 0.5439787260002049,
+      "peak_rss_bytes": 337043456
+    },
+    {
+      "method": "tiled",
+      "subgrid": 4,
+      "median_total_seconds": 0.9828714809991652,
+      "peak_rss_bytes": 81514496
+    },
+    {
+      "method": "cached-m3",
+      "subgrid": 8,
+      "median_total_seconds": 2.6918051120010205,
+      "peak_rss_bytes": 940994560
+    },
+    {
+      "method": "tiled",
+      "subgrid": 8,
+      "median_total_seconds": 5.4038853220008605,
+      "peak_rss_bytes": 81211392
+    }
+  ],
+  "limits": [
+    "All3360saved comparisons structurally audited,192selectedoutputs rerun from direct affine formula",
+    "Benchmark medians and scope audited, peak RSS not independently remeasured",
+    "M3 parity is on41x41interiorROI only, not full-frame or nonlinear fidelity",
+    "One-level uint8 tolerance acknowledges direct affine versus CellMap tie arithmetic, not geometry tuning"
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "schema": "external-m7-completed-results-v1",
+  "status": "completed",
+  "patients": 8,
+  "images": 24,
+  "case_method_results": 72,
+  "actual_native_forward_calls": 45,
+  "exact_RGB_cache_aliases": 27,
+  "independent_checks": 3745,
+  "source_lead_checks": 96,
+  "run_report_sha256": "5b7b67fcb6507e262c4f45b2dfa2920e76574aef80fbefc9964248927038c9c8",
+  "manifest_sha256": "f556d6477ecc42e1bc2bdf455fcdf97501faa877861103cf455007a681ff8a34",
+  "native_upstream_commit": "97a15087d4abcda843da8c58ee74b1d8f47e6f9a",
+  "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+  "M6_patient_macro_coverage": 0.4655479166666666,
+  "native_patient_macro_coverage": 0.5656677777777779,
+  "text_orientation_resolved": 0,
+  "M6_all_printed_NRMSE_delta": {
+    "delta": -0.11209966514655972,
+    "descriptive_patient_bootstrap_95": [
+      -0.2467230056523749,
+      -0.020647008573141612
+    ],
+    "per_patient_delta": {
+      "ptbxl-patient-15393.0": 0.02453312454591039,
+      "ptbxl-patient-16629.0": -0.05413138040535603,
+      "ptbxl-patient-16806.0": 0.017847777754592453,
+      "ptbxl-patient-18616.0": -0.09528239384469939,
+      "ptbxl-patient-3609.0": -0.02548260728891849,
+      "ptbxl-patient-391.0": -0.14451819073968264,
+      "ptbxl-patient-8220.0": -0.5439422246073138,
+      "ptbxl-patient-9641.0": -0.0758214265870103
+    }
+  },
+  "M6_coverage_delta": {
+    "delta": -0.10011986111111112,
+    "descriptive_patient_bootstrap_95": [
+      -0.17242430555555555,
+      -0.03538712152777843
+    ],
+    "per_patient_delta": {
+      "ptbxl-patient-15393.0": 0.018244444444444452,
+      "ptbxl-patient-16629.0": -0.017133333333333334,
+      "ptbxl-patient-16806.0": -0.1272000000000001,
+      "ptbxl-patient-18616.0": -0.28917777777777776,
+      "ptbxl-patient-3609.0": -0.19551111111111108,
+      "ptbxl-patient-391.0": -0.007466666666666649,
+      "ptbxl-patient-8220.0": -0.12823111111111107,
+      "ptbxl-patient-9641.0": -0.054483333333333384
+    }
+  },
+  "decision": "Keep M6 experimental. Better raw error in this small CPU pilot trades off against lost coverage. No clinical or state-of-the-art claim.",
+  "raw_measurements": {
+    "file": "ecg-digitalizacao-m7-medicoes-2026-10-26.zip",
+    "bytes": 13333487,
+    "sha256": "635672470ae68c98a7c6d45cf1f57b46263afc1ae13edffddd663ebc02584885",
+    "payload_files": 693,
+    "all_member_CRC_and_SHA256_verified": true
+  },
+  "raw_archive_replay": {
+    "waveform_recount_passed": true,
+    "source_recount_passed": true,
+    "source_photographs_required": false
+  },
+  "inference_and_preparation_source_unchanged_from_frozen_protocol": true,
+  "report_html_sha256": "c6c5c83c3efa8bbdf25cd2d7145d82c8568f457e8042b20a48dcf35252b6c1e6",
+  "deliverables": {
+    "report": "https://chatgpt.com/library?file_id=libfile_c6785ff652948191bd9587fd3d6d6bf2&account_id=personal",
+    "measurements": "https://chatgpt.com/library?file_id=libfile_98e63e0adad48191879db92d2a8588d5&account_id=personal"
+  }
+}

@@ -1,0 +1,793 @@
+{
+  "passed": true,
+  "scheduled_cases": 32,
+  "methods": [
+    "baseline-cells",
+    "baseline-full",
+    "baseline-text-cells",
+    "baseline-text-full",
+    "consensus-cells",
+    "consensus-full",
+    "consensus-text-cells",
+    "consensus-text-full"
+  ],
+  "coordinate_count_checks": 4096,
+  "registration_and_binding_checks": 1160,
+  "observed_cell_checks": 235466,
+  "original_RGB_sample_checks": 18432,
+  "full_frame_cases": [
+    {
+      "key": "220288-0",
+      "method": "baseline-full",
+      "resampled": true
+    },
+    {
+      "key": "220288-0",
+      "method": "baseline-text-full",
+      "resampled": true
+    },
+    {
+      "key": "220288-0",
+      "method": "consensus-full",
+      "resampled": true
+    },
+    {
+      "key": "220288-0",
+      "method": "consensus-text-full",
+      "resampled": true
+    },
+    {
+      "key": "220288-1",
+      "method": "baseline-full",
+      "resampled": true
+    },
+    {
+      "key": "220288-1",
+      "method": "baseline-text-full",
+      "resampled": true
+    },
+    {
+      "key": "220288-1",
+      "method": "consensus-full",
+      "resampled": true
+    },
+    {
+      "key": "220288-1",
+      "method": "consensus-text-full",
+      "resampled": true
+    },
+    {
+      "key": "220288-2",
+      "method": "baseline-full",
+      "resampled": true
+    },
+    {
+      "key": "220288-2",
+      "method": "baseline-text-full",
+      "resampled": true
+    },
+    {
+      "key": "220288-2",
+      "method": "consensus-full",
+      "resampled": true
+    },
+    {
+      "key": "220288-2",
+      "method": "consensus-text-full",
+      "resampled": true
+    },
+    {
+      "key": "220288-6",
+      "method": "baseline-full",
+      "resampled": false
+    },
+    {
+      "key": "220288-6",
+      "method": "baseline-text-full",
+      "resampled": false
+    },
+    {
+      "key": "220288-6",
+      "method": "consensus-full",
+      "resampled": false
+    },
+    {
+      "key": "220288-6",
+      "method": "consensus-text-full",
+      "resampled": false
+    },
+    {
+      "key": "208777-0",
+      "method": "baseline-full",
+      "resampled": true
+    },
+    {
+      "key": "208777-0",
+      "method": "baseline-text-full",
+      "resampled": true
+    },
+    {
+      "key": "208777-0",
+      "method": "consensus-full",
+      "resampled": true
+    },
+    {
+      "key": "208777-0",
+      "method": "consensus-text-full",
+      "resampled": true
+    },
+    {
+      "key": "208777-1",
+      "method": "baseline-full",
+      "resampled": false
+    },
+    {
+      "key": "208777-1",
+      "method": "baseline-text-full",
+      "resampled": false
+    },
+    {
+      "key": "208777-1",
+      "method": "consensus-full",
+      "resampled": false
+    },
+    {
+      "key": "208777-1",
+      "method": "consensus-text-full",
+      "resampled": false
+    },
+    {
+      "key": "208777-2",
+      "method": "baseline-full",
+      "resampled": false
+    },
+    {
+      "key": "208777-2",
+      "method": "baseline-text-full",
+      "resampled": false
+    },
+    {
+      "key": "208777-2",
+      "method": "consensus-full",
+      "resampled": false
+    },
+    {
+      "key": "208777-2",
+      "method": "consensus-text-full",
+      "resampled": false
+    },
+    {
+      "key": "208777-6",
+      "method": "baseline-full",
+      "resampled": false
+    },
+    {
+      "key": "208777-6",
+      "method": "baseline-text-full",
+      "resampled": false
+    },
+    {
+      "key": "208777-6",
+      "method": "consensus-full",
+      "resampled": false
+    },
+    {
+      "key": "208777-6",
+      "method": "consensus-text-full",
+      "resampled": false
+    },
+    {
+      "key": "206852-0",
+      "method": "baseline-full",
+      "resampled": true
+    },
+    {
+      "key": "206852-0",
+      "method": "baseline-text-full",
+      "resampled": true
+    },
+    {
+      "key": "206852-0",
+      "method": "consensus-full",
+      "resampled": true
+    },
+    {
+      "key": "206852-0",
+      "method": "consensus-text-full",
+      "resampled": true
+    },
+    {
+      "key": "206852-1",
+      "method": "baseline-full",
+      "resampled": true
+    },
+    {
+      "key": "206852-1",
+      "method": "baseline-text-full",
+      "resampled": true
+    },
+    {
+      "key": "206852-1",
+      "method": "consensus-full",
+      "resampled": true
+    },
+    {
+      "key": "206852-1",
+      "method": "consensus-text-full",
+      "resampled": true
+    },
+    {
+      "key": "206852-2",
+      "method": "baseline-full",
+      "resampled": false
+    },
+    {
+      "key": "206852-2",
+      "method": "baseline-text-full",
+      "resampled": false
+    },
+    {
+      "key": "206852-2",
+      "method": "consensus-full",
+      "resampled": false
+    },
+    {
+      "key": "206852-2",
+      "method": "consensus-text-full",
+      "resampled": false
+    },
+    {
+      "key": "206852-6",
+      "method": "baseline-full",
+      "resampled": true
+    },
+    {
+      "key": "206852-6",
+      "method": "baseline-text-full",
+      "resampled": true
+    },
+    {
+      "key": "206852-6",
+      "method": "consensus-full",
+      "resampled": true
+    },
+    {
+      "key": "206852-6",
+      "method": "consensus-text-full",
+      "resampled": true
+    },
+    {
+      "key": "208114-0",
+      "method": "baseline-full",
+      "resampled": true
+    },
+    {
+      "key": "208114-0",
+      "method": "baseline-text-full",
+      "resampled": true
+    },
+    {
+      "key": "208114-0",
+      "method": "consensus-full",
+      "resampled": true
+    },
+    {
+      "key": "208114-0",
+      "method": "consensus-text-full",
+      "resampled": true
+    },
+    {
+      "key": "208114-1",
+      "method": "baseline-full",
+      "resampled": true
+    },
+    {
+      "key": "208114-1",
+      "method": "baseline-text-full",
+      "resampled": true
+    },
+    {
+      "key": "208114-1",
+      "method": "consensus-full",
+      "resampled": true
+    },
+    {
+      "key": "208114-1",
+      "method": "consensus-text-full",
+      "resampled": true
+    },
+    {
+      "key": "208114-2",
+      "method": "baseline-full",
+      "resampled": true
+    },
+    {
+      "key": "208114-2",
+      "method": "baseline-text-full",
+      "resampled": true
+    },
+    {
+      "key": "208114-2",
+      "method": "consensus-full",
+      "resampled": true
+    },
+    {
+      "key": "208114-2",
+      "method": "consensus-text-full",
+      "resampled": true
+    },
+    {
+      "key": "208114-6",
+      "method": "baseline-full",
+      "resampled": true
+    },
+    {
+      "key": "208114-6",
+      "method": "baseline-text-full",
+      "resampled": true
+    },
+    {
+      "key": "208114-6",
+      "method": "consensus-full",
+      "resampled": true
+    },
+    {
+      "key": "208114-6",
+      "method": "consensus-text-full",
+      "resampled": true
+    },
+    {
+      "key": "215864-0",
+      "method": "baseline-full",
+      "resampled": false
+    },
+    {
+      "key": "215864-0",
+      "method": "baseline-text-full",
+      "resampled": false
+    },
+    {
+      "key": "215864-0",
+      "method": "consensus-full",
+      "resampled": false
+    },
+    {
+      "key": "215864-0",
+      "method": "consensus-text-full",
+      "resampled": false
+    },
+    {
+      "key": "215864-1",
+      "method": "baseline-full",
+      "resampled": true
+    },
+    {
+      "key": "215864-1",
+      "method": "baseline-text-full",
+      "resampled": true
+    },
+    {
+      "key": "215864-1",
+      "method": "consensus-full",
+      "resampled": true
+    },
+    {
+      "key": "215864-1",
+      "method": "consensus-text-full",
+      "resampled": true
+    },
+    {
+      "key": "215864-2",
+      "method": "baseline-full",
+      "resampled": false
+    },
+    {
+      "key": "215864-2",
+      "method": "baseline-text-full",
+      "resampled": false
+    },
+    {
+      "key": "215864-2",
+      "method": "consensus-full",
+      "resampled": false
+    },
+    {
+      "key": "215864-2",
+      "method": "consensus-text-full",
+      "resampled": false
+    },
+    {
+      "key": "215864-6",
+      "method": "baseline-full",
+      "resampled": false
+    },
+    {
+      "key": "215864-6",
+      "method": "baseline-text-full",
+      "resampled": false
+    },
+    {
+      "key": "215864-6",
+      "method": "consensus-full",
+      "resampled": false
+    },
+    {
+      "key": "215864-6",
+      "method": "consensus-text-full",
+      "resampled": false
+    },
+    {
+      "key": "211723-0",
+      "method": "baseline-full",
+      "resampled": true
+    },
+    {
+      "key": "211723-0",
+      "method": "baseline-text-full",
+      "resampled": true
+    },
+    {
+      "key": "211723-0",
+      "method": "consensus-full",
+      "resampled": true
+    },
+    {
+      "key": "211723-0",
+      "method": "consensus-text-full",
+      "resampled": true
+    },
+    {
+      "key": "211723-1",
+      "method": "baseline-full",
+      "resampled": true
+    },
+    {
+      "key": "211723-1",
+      "method": "baseline-text-full",
+      "resampled": true
+    },
+    {
+      "key": "211723-1",
+      "method": "consensus-full",
+      "resampled": true
+    },
+    {
+      "key": "211723-1",
+      "method": "consensus-text-full",
+      "resampled": true
+    },
+    {
+      "key": "211723-2",
+      "method": "baseline-full",
+      "resampled": false
+    },
+    {
+      "key": "211723-2",
+      "method": "baseline-text-full",
+      "resampled": false
+    },
+    {
+      "key": "211723-2",
+      "method": "consensus-full",
+      "resampled": false
+    },
+    {
+      "key": "211723-2",
+      "method": "consensus-text-full",
+      "resampled": false
+    },
+    {
+      "key": "211723-6",
+      "method": "baseline-full",
+      "resampled": false
+    },
+    {
+      "key": "211723-6",
+      "method": "baseline-text-full",
+      "resampled": false
+    },
+    {
+      "key": "211723-6",
+      "method": "consensus-full",
+      "resampled": false
+    },
+    {
+      "key": "211723-6",
+      "method": "consensus-text-full",
+      "resampled": false
+    },
+    {
+      "key": "211855-0",
+      "method": "baseline-full",
+      "resampled": true
+    },
+    {
+      "key": "211855-0",
+      "method": "baseline-text-full",
+      "resampled": true
+    },
+    {
+      "key": "211855-0",
+      "method": "consensus-full",
+      "resampled": true
+    },
+    {
+      "key": "211855-0",
+      "method": "consensus-text-full",
+      "resampled": true
+    },
+    {
+      "key": "211855-1",
+      "method": "baseline-full",
+      "resampled": false
+    },
+    {
+      "key": "211855-1",
+      "method": "baseline-text-full",
+      "resampled": false
+    },
+    {
+      "key": "211855-1",
+      "method": "consensus-full",
+      "resampled": false
+    },
+    {
+      "key": "211855-1",
+      "method": "consensus-text-full",
+      "resampled": false
+    },
+    {
+      "key": "211855-2",
+      "method": "baseline-full",
+      "resampled": false
+    },
+    {
+      "key": "211855-2",
+      "method": "baseline-text-full",
+      "resampled": false
+    },
+    {
+      "key": "211855-2",
+      "method": "consensus-full",
+      "resampled": false
+    },
+    {
+      "key": "211855-2",
+      "method": "consensus-text-full",
+      "resampled": false
+    },
+    {
+      "key": "211855-6",
+      "method": "baseline-full",
+      "resampled": false
+    },
+    {
+      "key": "211855-6",
+      "method": "baseline-text-full",
+      "resampled": false
+    },
+    {
+      "key": "211855-6",
+      "method": "consensus-full",
+      "resampled": false
+    },
+    {
+      "key": "211855-6",
+      "method": "consensus-text-full",
+      "resampled": false
+    },
+    {
+      "key": "206056-0",
+      "method": "baseline-full",
+      "resampled": true
+    },
+    {
+      "key": "206056-0",
+      "method": "baseline-text-full",
+      "resampled": true
+    },
+    {
+      "key": "206056-0",
+      "method": "consensus-full",
+      "resampled": true
+    },
+    {
+      "key": "206056-0",
+      "method": "consensus-text-full",
+      "resampled": true
+    },
+    {
+      "key": "206056-1",
+      "method": "baseline-full",
+      "resampled": false
+    },
+    {
+      "key": "206056-1",
+      "method": "baseline-text-full",
+      "resampled": false
+    },
+    {
+      "key": "206056-1",
+      "method": "consensus-full",
+      "resampled": false
+    },
+    {
+      "key": "206056-1",
+      "method": "consensus-text-full",
+      "resampled": false
+    },
+    {
+      "key": "206056-2",
+      "method": "baseline-full",
+      "resampled": true
+    },
+    {
+      "key": "206056-2",
+      "method": "baseline-text-full",
+      "resampled": true
+    },
+    {
+      "key": "206056-2",
+      "method": "consensus-full",
+      "resampled": true
+    },
+    {
+      "key": "206056-2",
+      "method": "consensus-text-full",
+      "resampled": true
+    },
+    {
+      "key": "206056-6",
+      "method": "baseline-full",
+      "resampled": true
+    },
+    {
+      "key": "206056-6",
+      "method": "baseline-text-full",
+      "resampled": true
+    },
+    {
+      "key": "206056-6",
+      "method": "consensus-full",
+      "resampled": true
+    },
+    {
+      "key": "206056-6",
+      "method": "consensus-text-full",
+      "resampled": true
+    }
+  ],
+  "baseline_replay": [
+    {
+      "key": "220288-0",
+      "coordinates_and_eligibility_exact": true
+    },
+    {
+      "key": "220288-1",
+      "coordinates_and_eligibility_exact": true
+    },
+    {
+      "key": "220288-2",
+      "coordinates_and_eligibility_exact": true
+    },
+    {
+      "key": "220288-6",
+      "coordinates_and_eligibility_exact": true
+    },
+    {
+      "key": "208777-0",
+      "coordinates_and_eligibility_exact": true
+    },
+    {
+      "key": "208777-1",
+      "coordinates_and_eligibility_exact": true
+    },
+    {
+      "key": "208777-2",
+      "coordinates_and_eligibility_exact": true
+    },
+    {
+      "key": "208777-6",
+      "coordinates_and_eligibility_exact": true
+    },
+    {
+      "key": "206852-0",
+      "coordinates_and_eligibility_exact": true
+    },
+    {
+      "key": "206852-1",
+      "coordinates_and_eligibility_exact": true
+    },
+    {
+      "key": "206852-2",
+      "coordinates_and_eligibility_exact": true
+    },
+    {
+      "key": "206852-6",
+      "coordinates_and_eligibility_exact": true
+    },
+    {
+      "key": "208114-0",
+      "coordinates_and_eligibility_exact": true
+    },
+    {
+      "key": "208114-1",
+      "coordinates_and_eligibility_exact": true
+    },
+    {
+      "key": "208114-2",
+      "coordinates_and_eligibility_exact": true
+    },
+    {
+      "key": "208114-6",
+      "coordinates_and_eligibility_exact": true
+    },
+    {
+      "key": "215864-0",
+      "coordinates_and_eligibility_exact": true
+    },
+    {
+      "key": "215864-1",
+      "coordinates_and_eligibility_exact": true
+    },
+    {
+      "key": "215864-2",
+      "coordinates_and_eligibility_exact": true
+    },
+    {
+      "key": "215864-6",
+      "coordinates_and_eligibility_exact": true
+    },
+    {
+      "key": "211723-0",
+      "coordinates_and_eligibility_exact": true
+    },
+    {
+      "key": "211723-1",
+      "coordinates_and_eligibility_exact": true
+    },
+    {
+      "key": "211723-2",
+      "coordinates_and_eligibility_exact": true
+    },
+    {
+      "key": "211723-6",
+      "coordinates_and_eligibility_exact": true
+    },
+    {
+      "key": "211855-0",
+      "coordinates_and_eligibility_exact": true
+    },
+    {
+      "key": "211855-1",
+      "coordinates_and_eligibility_exact": true
+    },
+    {
+      "key": "211855-2",
+      "coordinates_and_eligibility_exact": true
+    },
+    {
+      "key": "211855-6",
+      "coordinates_and_eligibility_exact": true
+    },
+    {
+      "key": "206056-0",
+      "coordinates_and_eligibility_exact": true
+    },
+    {
+      "key": "206056-1",
+      "coordinates_and_eligibility_exact": true
+    },
+    {
+      "key": "206056-2",
+      "coordinates_and_eligibility_exact": true
+    },
+    {
+      "key": "206056-6",
+      "coordinates_and_eligibility_exact": true
+    }
+  ],
+  "source_sha256": "b8b01a79753448e4440ca3bf715890c56e0bc21ae0b576ae8d771644ecaaedf9",
+  "evaluation_protocol_sha256": "fbafdd8619a61ba66ccfa957cca54a2a5110d0ede6ef2a8e732ae8cce9d2ef69",
+  "scope": "Independent numerical recount and sampling audit, not independent physical truth or clinical validation"
+}

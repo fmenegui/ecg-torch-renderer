@@ -1,0 +1,3147 @@
+{
+  "split": "validation",
+  "cases": [
+    {
+      "key": "01024-0",
+      "group_id": "ptbxl-patient-7809.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "fit": {
+        "status": "full-frame-rectification",
+        "reason": null,
+        "physical_coordinates_available": true,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true,
+        "global_inlier_fraction": 1.0,
+        "method": "constrained completion preserving original observed-cell triangles",
+        "global_prior": "projective",
+        "mesh_triangles": 3782,
+        "minimum_triangle_area_ratio": 0.8630077654325953,
+        "boundary": "full source image boundary, with finite projective target",
+        "boundary_self_intersections_checked": true,
+        "all_mesh_triangles_orientation_checked": true,
+        "mesh_node_layout": "observed vertices and full-frame boundary",
+        "observed_cell_map_changed": false,
+        "output_boundary_crops_to_detected_grid": false,
+        "evidence_is_accuracy_certificate": false
+      },
+      "result": {
+        "covered_fraction": 1.0,
+        "good_coverage": 1.0,
+        "wrong_covered_fraction": 0.0,
+        "conditional_p95_mm": 0.08585371088663211,
+        "roundtrip_max_px": 6.653351596650979e-13,
+        "evidence_query_fractions": {
+          "extrapolated": 0.0,
+          "interpolated": 0.00048828125,
+          "observed_cells": 0.99951171875
+        },
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.999755859375,
+            "good_coverage": 0.999755859375,
+            "wrong_covered_fraction": 0.0
+          },
+          "0.5": {
+            "covered_fraction": 1.0,
+            "good_coverage": 1.0,
+            "wrong_covered_fraction": 0.0
+          },
+          "0.75": {
+            "covered_fraction": 1.0,
+            "good_coverage": 1.0,
+            "wrong_covered_fraction": 0.0
+          },
+          "1.0": {
+            "covered_fraction": 1.0,
+            "good_coverage": 1.0,
+            "wrong_covered_fraction": 0.0
+          },
+          "1.25": {
+            "covered_fraction": 1.0,
+            "good_coverage": 1.0,
+            "wrong_covered_fraction": 0.0
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.99951171875,
+        "wrong_covered_fraction": 0.0
+      },
+      "seconds": 2.386492358004034,
+      "coordinate_mode": "complete-map"
+    },
+    {
+      "key": "01024-1",
+      "group_id": "ptbxl-patient-7809.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "fit": {
+        "status": "full-frame-rectification",
+        "reason": null,
+        "physical_coordinates_available": true,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true,
+        "global_inlier_fraction": 0.999031007751938,
+        "method": "constrained completion preserving original observed-cell triangles",
+        "global_prior": "projective",
+        "mesh_triangles": 14442,
+        "minimum_triangle_area_ratio": 0.7215624556944155,
+        "boundary": "full source image boundary, with finite projective target",
+        "boundary_self_intersections_checked": true,
+        "all_mesh_triangles_orientation_checked": true,
+        "mesh_node_layout": "observed vertices and full-frame boundary",
+        "observed_cell_map_changed": false,
+        "output_boundary_crops_to_detected_grid": false,
+        "evidence_is_accuracy_certificate": false
+      },
+      "result": {
+        "covered_fraction": 1.0,
+        "good_coverage": 1.0,
+        "wrong_covered_fraction": 0.0,
+        "conditional_p95_mm": 0.14636988400479983,
+        "roundtrip_max_px": 2.5421149729252077e-13,
+        "evidence_query_fractions": {
+          "extrapolated": 0.0,
+          "interpolated": 0.002197265625,
+          "observed_cells": 0.997802734375
+        },
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.998046875,
+            "good_coverage": 0.998046875,
+            "wrong_covered_fraction": 0.0
+          },
+          "0.5": {
+            "covered_fraction": 0.9990234375,
+            "good_coverage": 0.9990234375,
+            "wrong_covered_fraction": 0.0
+          },
+          "0.75": {
+            "covered_fraction": 1.0,
+            "good_coverage": 1.0,
+            "wrong_covered_fraction": 0.0
+          },
+          "1.0": {
+            "covered_fraction": 1.0,
+            "good_coverage": 1.0,
+            "wrong_covered_fraction": 0.0
+          },
+          "1.25": {
+            "covered_fraction": 1.0,
+            "good_coverage": 1.0,
+            "wrong_covered_fraction": 0.0
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.997802734375,
+        "wrong_covered_fraction": 0.0
+      },
+      "seconds": 5.348592535003263,
+      "coordinate_mode": "complete-map"
+    },
+    {
+      "key": "01024-2",
+      "group_id": "ptbxl-patient-7809.0",
+      "backend": "offline",
+      "split": "validation",
+      "fit": {
+        "status": "full-frame-rectification",
+        "reason": null,
+        "physical_coordinates_available": true,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true,
+        "global_inlier_fraction": 0.9980879541108987,
+        "method": "constrained completion preserving original observed-cell triangles",
+        "global_prior": "projective",
+        "mesh_triangles": 1032,
+        "minimum_triangle_area_ratio": 0.83498610595593,
+        "boundary": "full source image boundary, with finite projective target",
+        "boundary_self_intersections_checked": true,
+        "all_mesh_triangles_orientation_checked": true,
+        "mesh_node_layout": "observed vertices and full-frame boundary",
+        "observed_cell_map_changed": false,
+        "output_boundary_crops_to_detected_grid": false,
+        "evidence_is_accuracy_certificate": false
+      },
+      "result": {
+        "covered_fraction": 1.0,
+        "good_coverage": 0.990234375,
+        "wrong_covered_fraction": 0.009765625,
+        "conditional_p95_mm": 0.22422130964348322,
+        "roundtrip_max_px": 2.2737367544323206e-13,
+        "evidence_query_fractions": {
+          "extrapolated": 0.000244140625,
+          "interpolated": 0.041015625,
+          "observed_cells": 0.958740234375
+        },
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.96435546875,
+            "good_coverage": 0.956298828125,
+            "wrong_covered_fraction": 0.008056640625
+          },
+          "0.5": {
+            "covered_fraction": 0.98095703125,
+            "good_coverage": 0.97216796875,
+            "wrong_covered_fraction": 0.0087890625
+          },
+          "0.75": {
+            "covered_fraction": 0.991943359375,
+            "good_coverage": 0.982666015625,
+            "wrong_covered_fraction": 0.00927734375
+          },
+          "1.0": {
+            "covered_fraction": 0.998046875,
+            "good_coverage": 0.98828125,
+            "wrong_covered_fraction": 0.009765625
+          },
+          "1.25": {
+            "covered_fraction": 0.999755859375,
+            "good_coverage": 0.989990234375,
+            "wrong_covered_fraction": 0.009765625
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.95068359375,
+        "wrong_covered_fraction": 0.008056640625
+      },
+      "seconds": 0.9355658360000234,
+      "coordinate_mode": "complete-map"
+    },
+    {
+      "key": "01024-3",
+      "group_id": "ptbxl-patient-7809.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "fit": {
+        "status": "original-preserved",
+        "reason": "no orientation-preserving completion of a grid gap",
+        "physical_coordinates_available": false,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true
+      },
+      "result": {
+        "covered_fraction": 0.992919921875,
+        "good_coverage": 0.990966796875,
+        "wrong_covered_fraction": 0.001953125,
+        "conditional_p95_mm": 0.25217606907742135,
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.992919921875,
+            "good_coverage": 0.990966796875,
+            "wrong_covered_fraction": 0.001953125,
+            "conditional_p95_mm": 0.25217606907742135
+          },
+          "0.5": {
+            "covered_fraction": 0.992919921875,
+            "good_coverage": 0.990966796875,
+            "wrong_covered_fraction": 0.001953125,
+            "conditional_p95_mm": 0.25217606907742135
+          },
+          "0.75": {
+            "covered_fraction": 0.992919921875,
+            "good_coverage": 0.990966796875,
+            "wrong_covered_fraction": 0.001953125,
+            "conditional_p95_mm": 0.25217606907742135
+          },
+          "1.0": {
+            "covered_fraction": 0.992919921875,
+            "good_coverage": 0.990966796875,
+            "wrong_covered_fraction": 0.001953125,
+            "conditional_p95_mm": 0.25217606907742135
+          },
+          "1.25": {
+            "covered_fraction": 0.992919921875,
+            "good_coverage": 0.990966796875,
+            "wrong_covered_fraction": 0.001953125,
+            "conditional_p95_mm": 0.25217606907742135
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.990966796875,
+        "wrong_covered_fraction": 0.001953125
+      },
+      "seconds": 0.728116885999043,
+      "coordinate_mode": "previous-observed-cell-field"
+    },
+    {
+      "key": "01024-4",
+      "group_id": "ptbxl-patient-7809.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "fit": {
+        "status": "full-frame-rectification",
+        "reason": null,
+        "physical_coordinates_available": true,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true,
+        "global_inlier_fraction": 1.0,
+        "method": "constrained completion preserving original observed-cell triangles",
+        "global_prior": "projective",
+        "mesh_triangles": 974,
+        "minimum_triangle_area_ratio": 0.9057792974804827,
+        "boundary": "full source image boundary, with finite projective target",
+        "boundary_self_intersections_checked": true,
+        "all_mesh_triangles_orientation_checked": true,
+        "mesh_node_layout": "observed vertices and full-frame boundary",
+        "observed_cell_map_changed": false,
+        "output_boundary_crops_to_detected_grid": false,
+        "evidence_is_accuracy_certificate": false
+      },
+      "result": {
+        "covered_fraction": 1.0,
+        "good_coverage": 0.984375,
+        "wrong_covered_fraction": 0.015625,
+        "conditional_p95_mm": 0.2532210161331573,
+        "roundtrip_max_px": 2.524257446472634e-12,
+        "evidence_query_fractions": {
+          "extrapolated": 0.059326171875,
+          "interpolated": 0.06396484375,
+          "observed_cells": 0.876708984375
+        },
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.8857421875,
+            "good_coverage": 0.8857421875,
+            "wrong_covered_fraction": 0.0
+          },
+          "0.5": {
+            "covered_fraction": 0.91455078125,
+            "good_coverage": 0.91455078125,
+            "wrong_covered_fraction": 0.0
+          },
+          "0.75": {
+            "covered_fraction": 0.938232421875,
+            "good_coverage": 0.938232421875,
+            "wrong_covered_fraction": 0.0
+          },
+          "1.0": {
+            "covered_fraction": 0.940673828125,
+            "good_coverage": 0.940673828125,
+            "wrong_covered_fraction": 0.0
+          },
+          "1.25": {
+            "covered_fraction": 0.940673828125,
+            "good_coverage": 0.940673828125,
+            "wrong_covered_fraction": 0.0
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.876708984375,
+        "wrong_covered_fraction": 0.0
+      },
+      "seconds": 0.8640413399989484,
+      "coordinate_mode": "complete-map"
+    },
+    {
+      "key": "01024-5",
+      "group_id": "ptbxl-patient-7809.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "fit": {
+        "status": "full-frame-rectification",
+        "reason": null,
+        "physical_coordinates_available": true,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true,
+        "global_inlier_fraction": 0.9839357429718876,
+        "method": "constrained completion preserving original observed-cell triangles",
+        "global_prior": "projective",
+        "mesh_triangles": 968,
+        "minimum_triangle_area_ratio": 0.6576743614816779,
+        "boundary": "full source image boundary, with finite projective target",
+        "boundary_self_intersections_checked": true,
+        "all_mesh_triangles_orientation_checked": true,
+        "mesh_node_layout": "observed vertices and full-frame boundary",
+        "observed_cell_map_changed": false,
+        "output_boundary_crops_to_detected_grid": false,
+        "evidence_is_accuracy_certificate": false
+      },
+      "result": {
+        "covered_fraction": 1.0,
+        "good_coverage": 0.960205078125,
+        "wrong_covered_fraction": 0.039794921875,
+        "conditional_p95_mm": 0.39600301876985045,
+        "roundtrip_max_px": 2.3437142008433856e-13,
+        "evidence_query_fractions": {
+          "extrapolated": 0.0,
+          "interpolated": 0.1943359375,
+          "observed_cells": 0.8056640625
+        },
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.828857421875,
+            "good_coverage": 0.81396484375,
+            "wrong_covered_fraction": 0.014892578125
+          },
+          "0.5": {
+            "covered_fraction": 0.8984375,
+            "good_coverage": 0.8759765625,
+            "wrong_covered_fraction": 0.0224609375
+          },
+          "0.75": {
+            "covered_fraction": 0.9521484375,
+            "good_coverage": 0.920166015625,
+            "wrong_covered_fraction": 0.031982421875
+          },
+          "1.0": {
+            "covered_fraction": 0.98388671875,
+            "good_coverage": 0.94677734375,
+            "wrong_covered_fraction": 0.037109375
+          },
+          "1.25": {
+            "covered_fraction": 0.994140625,
+            "good_coverage": 0.954833984375,
+            "wrong_covered_fraction": 0.039306640625
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.793212890625,
+        "wrong_covered_fraction": 0.012451171875
+      },
+      "seconds": 0.8188474709968432,
+      "coordinate_mode": "complete-map"
+    },
+    {
+      "key": "01024-6",
+      "group_id": "ptbxl-patient-7809.0",
+      "backend": "offline",
+      "split": "validation",
+      "fit": {
+        "status": "original-preserved",
+        "reason": "no orientation-preserving completion of a grid gap",
+        "physical_coordinates_available": false,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true
+      },
+      "result": {
+        "covered_fraction": 0.775390625,
+        "good_coverage": 0.775390625,
+        "wrong_covered_fraction": 0.0,
+        "conditional_p95_mm": 0.1452777134894609,
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.775390625,
+            "good_coverage": 0.775390625,
+            "wrong_covered_fraction": 0.0,
+            "conditional_p95_mm": 0.1452777134894609
+          },
+          "0.5": {
+            "covered_fraction": 0.775390625,
+            "good_coverage": 0.775390625,
+            "wrong_covered_fraction": 0.0,
+            "conditional_p95_mm": 0.1452777134894609
+          },
+          "0.75": {
+            "covered_fraction": 0.775390625,
+            "good_coverage": 0.775390625,
+            "wrong_covered_fraction": 0.0,
+            "conditional_p95_mm": 0.1452777134894609
+          },
+          "1.0": {
+            "covered_fraction": 0.775390625,
+            "good_coverage": 0.775390625,
+            "wrong_covered_fraction": 0.0,
+            "conditional_p95_mm": 0.1452777134894609
+          },
+          "1.25": {
+            "covered_fraction": 0.775390625,
+            "good_coverage": 0.775390625,
+            "wrong_covered_fraction": 0.0,
+            "conditional_p95_mm": 0.1452777134894609
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.775390625,
+        "wrong_covered_fraction": 0.0
+      },
+      "seconds": 0.1997462489962345,
+      "coordinate_mode": "previous-observed-cell-field"
+    },
+    {
+      "key": "01024-7",
+      "group_id": "ptbxl-patient-7809.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "fit": {
+        "status": "full-frame-rectification",
+        "reason": null,
+        "physical_coordinates_available": true,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true,
+        "global_inlier_fraction": 1.0,
+        "method": "constrained completion preserving original observed-cell triangles",
+        "global_prior": "projective",
+        "mesh_triangles": 3782,
+        "minimum_triangle_area_ratio": 0.7648081705710963,
+        "boundary": "full source image boundary, with finite projective target",
+        "boundary_self_intersections_checked": true,
+        "all_mesh_triangles_orientation_checked": true,
+        "mesh_node_layout": "observed vertices and full-frame boundary",
+        "observed_cell_map_changed": false,
+        "output_boundary_crops_to_detected_grid": false,
+        "evidence_is_accuracy_certificate": false
+      },
+      "result": {
+        "covered_fraction": 1.0,
+        "good_coverage": 0.998779296875,
+        "wrong_covered_fraction": 0.001220703125,
+        "conditional_p95_mm": 0.15128905789889796,
+        "roundtrip_max_px": 2.278173318171838e-13,
+        "evidence_query_fractions": {
+          "extrapolated": 0.0,
+          "interpolated": 0.000244140625,
+          "observed_cells": 0.999755859375
+        },
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.999755859375,
+            "good_coverage": 0.99853515625,
+            "wrong_covered_fraction": 0.001220703125
+          },
+          "0.5": {
+            "covered_fraction": 1.0,
+            "good_coverage": 0.998779296875,
+            "wrong_covered_fraction": 0.001220703125
+          },
+          "0.75": {
+            "covered_fraction": 1.0,
+            "good_coverage": 0.998779296875,
+            "wrong_covered_fraction": 0.001220703125
+          },
+          "1.0": {
+            "covered_fraction": 1.0,
+            "good_coverage": 0.998779296875,
+            "wrong_covered_fraction": 0.001220703125
+          },
+          "1.25": {
+            "covered_fraction": 1.0,
+            "good_coverage": 0.998779296875,
+            "wrong_covered_fraction": 0.001220703125
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.99853515625,
+        "wrong_covered_fraction": 0.001220703125
+      },
+      "seconds": 2.092419049993623,
+      "coordinate_mode": "complete-map"
+    },
+    {
+      "key": "01025-0",
+      "group_id": "ptbxl-patient-13741.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "fit": {
+        "status": "full-frame-rectification",
+        "reason": null,
+        "physical_coordinates_available": true,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true,
+        "global_inlier_fraction": 0.9753086419753086,
+        "method": "constrained completion preserving original observed-cell triangles",
+        "global_prior": "projective",
+        "mesh_triangles": 950,
+        "minimum_triangle_area_ratio": 0.8575265673226122,
+        "boundary": "full source image boundary, with finite projective target",
+        "boundary_self_intersections_checked": true,
+        "all_mesh_triangles_orientation_checked": true,
+        "mesh_node_layout": "observed vertices and full-frame boundary",
+        "observed_cell_map_changed": false,
+        "output_boundary_crops_to_detected_grid": false,
+        "evidence_is_accuracy_certificate": false
+      },
+      "result": {
+        "covered_fraction": 1.0,
+        "good_coverage": 0.999755859375,
+        "wrong_covered_fraction": 0.000244140625,
+        "conditional_p95_mm": 0.10678105912170362,
+        "roundtrip_max_px": 2.5421149729252077e-13,
+        "evidence_query_fractions": {
+          "extrapolated": 0.0,
+          "interpolated": 0.113037109375,
+          "observed_cells": 0.886962890625
+        },
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.89892578125,
+            "good_coverage": 0.898681640625,
+            "wrong_covered_fraction": 0.000244140625
+          },
+          "0.5": {
+            "covered_fraction": 0.9326171875,
+            "good_coverage": 0.932373046875,
+            "wrong_covered_fraction": 0.000244140625
+          },
+          "0.75": {
+            "covered_fraction": 0.95947265625,
+            "good_coverage": 0.959228515625,
+            "wrong_covered_fraction": 0.000244140625
+          },
+          "1.0": {
+            "covered_fraction": 0.979248046875,
+            "good_coverage": 0.97900390625,
+            "wrong_covered_fraction": 0.000244140625
+          },
+          "1.25": {
+            "covered_fraction": 0.988525390625,
+            "good_coverage": 0.98828125,
+            "wrong_covered_fraction": 0.000244140625
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.88671875,
+        "wrong_covered_fraction": 0.000244140625
+      },
+      "seconds": 0.7763327270004083,
+      "coordinate_mode": "complete-map"
+    },
+    {
+      "key": "01025-1",
+      "group_id": "ptbxl-patient-13741.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "fit": {
+        "status": "original-preserved",
+        "reason": "no orientation-preserving completion of a grid gap",
+        "physical_coordinates_available": false,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true
+      },
+      "result": {
+        "covered_fraction": 0.949462890625,
+        "good_coverage": 0.949462890625,
+        "wrong_covered_fraction": 0.0,
+        "conditional_p95_mm": 0.14134534851196837,
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.949462890625,
+            "good_coverage": 0.949462890625,
+            "wrong_covered_fraction": 0.0,
+            "conditional_p95_mm": 0.14134534851196837
+          },
+          "0.5": {
+            "covered_fraction": 0.949462890625,
+            "good_coverage": 0.949462890625,
+            "wrong_covered_fraction": 0.0,
+            "conditional_p95_mm": 0.14134534851196837
+          },
+          "0.75": {
+            "covered_fraction": 0.949462890625,
+            "good_coverage": 0.949462890625,
+            "wrong_covered_fraction": 0.0,
+            "conditional_p95_mm": 0.14134534851196837
+          },
+          "1.0": {
+            "covered_fraction": 0.949462890625,
+            "good_coverage": 0.949462890625,
+            "wrong_covered_fraction": 0.0,
+            "conditional_p95_mm": 0.14134534851196837
+          },
+          "1.25": {
+            "covered_fraction": 0.949462890625,
+            "good_coverage": 0.949462890625,
+            "wrong_covered_fraction": 0.0,
+            "conditional_p95_mm": 0.14134534851196837
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.949462890625,
+        "wrong_covered_fraction": 0.0
+      },
+      "seconds": 0.1338171399984276,
+      "coordinate_mode": "previous-observed-cell-field"
+    },
+    {
+      "key": "01025-2",
+      "group_id": "ptbxl-patient-13741.0",
+      "backend": "offline",
+      "split": "validation",
+      "fit": {
+        "status": "full-frame-rectification",
+        "reason": null,
+        "physical_coordinates_available": true,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true,
+        "global_inlier_fraction": 0.9576271186440678,
+        "method": "constrained completion preserving original observed-cell triangles",
+        "global_prior": "projective",
+        "mesh_triangles": 370,
+        "minimum_triangle_area_ratio": 0.7217517476171176,
+        "boundary": "full source image boundary, with finite projective target",
+        "boundary_self_intersections_checked": true,
+        "all_mesh_triangles_orientation_checked": true,
+        "mesh_node_layout": "observed vertices and full-frame boundary",
+        "observed_cell_map_changed": false,
+        "output_boundary_crops_to_detected_grid": false,
+        "evidence_is_accuracy_certificate": false
+      },
+      "result": {
+        "covered_fraction": 1.0,
+        "good_coverage": 0.666259765625,
+        "wrong_covered_fraction": 0.333740234375,
+        "conditional_p95_mm": 1.6251784346512061,
+        "roundtrip_max_px": 3.738292218135344e-12,
+        "evidence_query_fractions": {
+          "extrapolated": 0.27294921875,
+          "interpolated": 0.56640625,
+          "observed_cells": 0.16064453125
+        },
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.201416015625,
+            "good_coverage": 0.1787109375,
+            "wrong_covered_fraction": 0.022705078125
+          },
+          "0.5": {
+            "covered_fraction": 0.345703125,
+            "good_coverage": 0.29833984375,
+            "wrong_covered_fraction": 0.04736328125
+          },
+          "0.75": {
+            "covered_fraction": 0.474853515625,
+            "good_coverage": 0.4033203125,
+            "wrong_covered_fraction": 0.071533203125
+          },
+          "1.0": {
+            "covered_fraction": 0.574462890625,
+            "good_coverage": 0.480712890625,
+            "wrong_covered_fraction": 0.09375
+          },
+          "1.25": {
+            "covered_fraction": 0.634765625,
+            "good_coverage": 0.526123046875,
+            "wrong_covered_fraction": 0.108642578125
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.144287109375,
+        "wrong_covered_fraction": 0.016357421875
+      },
+      "seconds": 0.5557994140035589,
+      "coordinate_mode": "complete-map"
+    },
+    {
+      "key": "01025-3",
+      "group_id": "ptbxl-patient-13741.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "fit": {
+        "status": "full-frame-rectification",
+        "reason": null,
+        "physical_coordinates_available": true,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true,
+        "global_inlier_fraction": 1.0,
+        "method": "constrained completion preserving original observed-cell triangles",
+        "global_prior": "projective",
+        "mesh_triangles": 3726,
+        "minimum_triangle_area_ratio": 0.7987045243261697,
+        "boundary": "full source image boundary, with finite projective target",
+        "boundary_self_intersections_checked": true,
+        "all_mesh_triangles_orientation_checked": true,
+        "mesh_node_layout": "observed vertices and full-frame boundary",
+        "observed_cell_map_changed": false,
+        "output_boundary_crops_to_detected_grid": false,
+        "evidence_is_accuracy_certificate": false
+      },
+      "result": {
+        "covered_fraction": 1.0,
+        "good_coverage": 0.997802734375,
+        "wrong_covered_fraction": 0.002197265625,
+        "conditional_p95_mm": 0.13411671288698096,
+        "roundtrip_max_px": 1.2862197421537486e-12,
+        "evidence_query_fractions": {
+          "extrapolated": 0.000732421875,
+          "interpolated": 0.012939453125,
+          "observed_cells": 0.986328125
+        },
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.988037109375,
+            "good_coverage": 0.988037109375,
+            "wrong_covered_fraction": 0.0
+          },
+          "0.5": {
+            "covered_fraction": 0.99169921875,
+            "good_coverage": 0.99169921875,
+            "wrong_covered_fraction": 0.0
+          },
+          "0.75": {
+            "covered_fraction": 0.99560546875,
+            "good_coverage": 0.9951171875,
+            "wrong_covered_fraction": 0.00048828125
+          },
+          "1.0": {
+            "covered_fraction": 0.998291015625,
+            "good_coverage": 0.996337890625,
+            "wrong_covered_fraction": 0.001953125
+          },
+          "1.25": {
+            "covered_fraction": 0.998779296875,
+            "good_coverage": 0.99658203125,
+            "wrong_covered_fraction": 0.002197265625
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.986328125,
+        "wrong_covered_fraction": 0.0
+      },
+      "seconds": 2.0746633339949767,
+      "coordinate_mode": "complete-map"
+    },
+    {
+      "key": "01025-4",
+      "group_id": "ptbxl-patient-13741.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "fit": {
+        "status": "original-preserved",
+        "reason": "no orientation-preserving completion of a grid gap",
+        "physical_coordinates_available": false,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true
+      },
+      "result": {
+        "covered_fraction": 0.98876953125,
+        "good_coverage": 0.987060546875,
+        "wrong_covered_fraction": 0.001708984375,
+        "conditional_p95_mm": 0.16719334797414698,
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.98876953125,
+            "good_coverage": 0.987060546875,
+            "wrong_covered_fraction": 0.001708984375,
+            "conditional_p95_mm": 0.16719334797414698
+          },
+          "0.5": {
+            "covered_fraction": 0.98876953125,
+            "good_coverage": 0.987060546875,
+            "wrong_covered_fraction": 0.001708984375,
+            "conditional_p95_mm": 0.16719334797414698
+          },
+          "0.75": {
+            "covered_fraction": 0.98876953125,
+            "good_coverage": 0.987060546875,
+            "wrong_covered_fraction": 0.001708984375,
+            "conditional_p95_mm": 0.16719334797414698
+          },
+          "1.0": {
+            "covered_fraction": 0.98876953125,
+            "good_coverage": 0.987060546875,
+            "wrong_covered_fraction": 0.001708984375,
+            "conditional_p95_mm": 0.16719334797414698
+          },
+          "1.25": {
+            "covered_fraction": 0.98876953125,
+            "good_coverage": 0.987060546875,
+            "wrong_covered_fraction": 0.001708984375,
+            "conditional_p95_mm": 0.16719334797414698
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.987060546875,
+        "wrong_covered_fraction": 0.001708984375
+      },
+      "seconds": 0.6657106600032421,
+      "coordinate_mode": "previous-observed-cell-field"
+    },
+    {
+      "key": "01025-5",
+      "group_id": "ptbxl-patient-13741.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "fit": {
+        "status": "full-frame-rectification",
+        "reason": null,
+        "physical_coordinates_available": true,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true,
+        "global_inlier_fraction": 1.0,
+        "method": "constrained completion preserving original observed-cell triangles",
+        "global_prior": "projective",
+        "mesh_triangles": 1032,
+        "minimum_triangle_area_ratio": 0.8591264715871116,
+        "boundary": "full source image boundary, with finite projective target",
+        "boundary_self_intersections_checked": true,
+        "all_mesh_triangles_orientation_checked": true,
+        "mesh_node_layout": "observed vertices and full-frame boundary",
+        "observed_cell_map_changed": false,
+        "output_boundary_crops_to_detected_grid": false,
+        "evidence_is_accuracy_certificate": false
+      },
+      "result": {
+        "covered_fraction": 1.0,
+        "good_coverage": 0.99951171875,
+        "wrong_covered_fraction": 0.00048828125,
+        "conditional_p95_mm": 0.12033946877365534,
+        "roundtrip_max_px": 2.5421149729252077e-13,
+        "evidence_query_fractions": {
+          "extrapolated": 0.0,
+          "interpolated": 0.052978515625,
+          "observed_cells": 0.947021484375
+        },
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.95654296875,
+            "good_coverage": 0.9560546875,
+            "wrong_covered_fraction": 0.00048828125
+          },
+          "0.5": {
+            "covered_fraction": 0.979736328125,
+            "good_coverage": 0.979248046875,
+            "wrong_covered_fraction": 0.00048828125
+          },
+          "0.75": {
+            "covered_fraction": 0.99658203125,
+            "good_coverage": 0.99609375,
+            "wrong_covered_fraction": 0.00048828125
+          },
+          "1.0": {
+            "covered_fraction": 1.0,
+            "good_coverage": 0.99951171875,
+            "wrong_covered_fraction": 0.00048828125
+          },
+          "1.25": {
+            "covered_fraction": 1.0,
+            "good_coverage": 0.99951171875,
+            "wrong_covered_fraction": 0.00048828125
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.946533203125,
+        "wrong_covered_fraction": 0.00048828125
+      },
+      "seconds": 0.7626643980038352,
+      "coordinate_mode": "complete-map"
+    },
+    {
+      "key": "01025-6",
+      "group_id": "ptbxl-patient-13741.0",
+      "backend": "offline",
+      "split": "validation",
+      "fit": {
+        "status": "original-preserved",
+        "reason": "no orientation-preserving completion of a grid gap",
+        "physical_coordinates_available": false,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true
+      },
+      "result": {
+        "covered_fraction": 0.03564453125,
+        "good_coverage": 0.020751953125,
+        "wrong_covered_fraction": 0.014892578125,
+        "conditional_p95_mm": 5.200475155148149,
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.03564453125,
+            "good_coverage": 0.020751953125,
+            "wrong_covered_fraction": 0.014892578125,
+            "conditional_p95_mm": 5.200475155148149
+          },
+          "0.5": {
+            "covered_fraction": 0.03564453125,
+            "good_coverage": 0.020751953125,
+            "wrong_covered_fraction": 0.014892578125,
+            "conditional_p95_mm": 5.200475155148149
+          },
+          "0.75": {
+            "covered_fraction": 0.03564453125,
+            "good_coverage": 0.020751953125,
+            "wrong_covered_fraction": 0.014892578125,
+            "conditional_p95_mm": 5.200475155148149
+          },
+          "1.0": {
+            "covered_fraction": 0.03564453125,
+            "good_coverage": 0.020751953125,
+            "wrong_covered_fraction": 0.014892578125,
+            "conditional_p95_mm": 5.200475155148149
+          },
+          "1.25": {
+            "covered_fraction": 0.03564453125,
+            "good_coverage": 0.020751953125,
+            "wrong_covered_fraction": 0.014892578125,
+            "conditional_p95_mm": 5.200475155148149
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.020751953125,
+        "wrong_covered_fraction": 0.014892578125
+      },
+      "seconds": 0.024731896999583114,
+      "coordinate_mode": "previous-observed-cell-field"
+    },
+    {
+      "key": "01025-7",
+      "group_id": "ptbxl-patient-13741.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "fit": {
+        "status": "full-frame-rectification",
+        "reason": null,
+        "physical_coordinates_available": true,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true,
+        "global_inlier_fraction": 0.9930041152263375,
+        "method": "constrained completion preserving original observed-cell triangles",
+        "global_prior": "projective",
+        "mesh_triangles": 14574,
+        "minimum_triangle_area_ratio": 0.55151717844236,
+        "boundary": "full source image boundary, with finite projective target",
+        "boundary_self_intersections_checked": true,
+        "all_mesh_triangles_orientation_checked": true,
+        "mesh_node_layout": "observed vertices and full-frame boundary",
+        "observed_cell_map_changed": false,
+        "output_boundary_crops_to_detected_grid": false,
+        "evidence_is_accuracy_certificate": false
+      },
+      "result": {
+        "covered_fraction": 1.0,
+        "good_coverage": 0.99658203125,
+        "wrong_covered_fraction": 0.00341796875,
+        "conditional_p95_mm": 0.24324010153110334,
+        "roundtrip_max_px": 3.2155493553843714e-12,
+        "evidence_query_fractions": {
+          "extrapolated": 0.000732421875,
+          "interpolated": 0.0068359375,
+          "observed_cells": 0.992431640625
+        },
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.993896484375,
+            "good_coverage": 0.991943359375,
+            "wrong_covered_fraction": 0.001953125
+          },
+          "0.5": {
+            "covered_fraction": 0.995361328125,
+            "good_coverage": 0.9931640625,
+            "wrong_covered_fraction": 0.002197265625
+          },
+          "0.75": {
+            "covered_fraction": 0.997802734375,
+            "good_coverage": 0.995361328125,
+            "wrong_covered_fraction": 0.00244140625
+          },
+          "1.0": {
+            "covered_fraction": 0.999267578125,
+            "good_coverage": 0.99609375,
+            "wrong_covered_fraction": 0.003173828125
+          },
+          "1.25": {
+            "covered_fraction": 0.999267578125,
+            "good_coverage": 0.99609375,
+            "wrong_covered_fraction": 0.003173828125
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.990478515625,
+        "wrong_covered_fraction": 0.001953125
+      },
+      "seconds": 4.344473058998119,
+      "coordinate_mode": "complete-map"
+    },
+    {
+      "key": "01026-0",
+      "group_id": "ptbxl-patient-8456.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "fit": {
+        "status": "original-preserved",
+        "reason": "no orientation-preserving completion of a grid gap",
+        "physical_coordinates_available": false,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true
+      },
+      "result": {
+        "covered_fraction": 0.9873046875,
+        "good_coverage": 0.980712890625,
+        "wrong_covered_fraction": 0.006591796875,
+        "conditional_p95_mm": 0.17377530768661387,
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.9873046875,
+            "good_coverage": 0.980712890625,
+            "wrong_covered_fraction": 0.006591796875,
+            "conditional_p95_mm": 0.17377530768661387
+          },
+          "0.5": {
+            "covered_fraction": 0.9873046875,
+            "good_coverage": 0.980712890625,
+            "wrong_covered_fraction": 0.006591796875,
+            "conditional_p95_mm": 0.17377530768661387
+          },
+          "0.75": {
+            "covered_fraction": 0.9873046875,
+            "good_coverage": 0.980712890625,
+            "wrong_covered_fraction": 0.006591796875,
+            "conditional_p95_mm": 0.17377530768661387
+          },
+          "1.0": {
+            "covered_fraction": 0.9873046875,
+            "good_coverage": 0.980712890625,
+            "wrong_covered_fraction": 0.006591796875,
+            "conditional_p95_mm": 0.17377530768661387
+          },
+          "1.25": {
+            "covered_fraction": 0.9873046875,
+            "good_coverage": 0.980712890625,
+            "wrong_covered_fraction": 0.006591796875,
+            "conditional_p95_mm": 0.17377530768661387
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.980712890625,
+        "wrong_covered_fraction": 0.006591796875
+      },
+      "seconds": 0.5679953380022198,
+      "coordinate_mode": "previous-observed-cell-field"
+    },
+    {
+      "key": "01026-1",
+      "group_id": "ptbxl-patient-8456.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "fit": {
+        "status": "full-frame-rectification",
+        "reason": null,
+        "physical_coordinates_available": true,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true,
+        "global_inlier_fraction": 1.0,
+        "method": "constrained completion preserving original observed-cell triangles",
+        "global_prior": "projective",
+        "mesh_triangles": 3654,
+        "minimum_triangle_area_ratio": 0.6608815406664258,
+        "boundary": "full source image boundary, with finite projective target",
+        "boundary_self_intersections_checked": true,
+        "all_mesh_triangles_orientation_checked": true,
+        "mesh_node_layout": "observed vertices and full-frame boundary",
+        "observed_cell_map_changed": false,
+        "output_boundary_crops_to_detected_grid": false,
+        "evidence_is_accuracy_certificate": false
+      },
+      "result": {
+        "covered_fraction": 1.0,
+        "good_coverage": 0.998291015625,
+        "wrong_covered_fraction": 0.001708984375,
+        "conditional_p95_mm": 0.2573271188705965,
+        "roundtrip_max_px": 2.258944878123386e-12,
+        "evidence_query_fractions": {
+          "extrapolated": 0.015625,
+          "interpolated": 0.02197265625,
+          "observed_cells": 0.96240234375
+        },
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.966552734375,
+            "good_coverage": 0.96630859375,
+            "wrong_covered_fraction": 0.000244140625
+          },
+          "0.5": {
+            "covered_fraction": 0.9775390625,
+            "good_coverage": 0.977294921875,
+            "wrong_covered_fraction": 0.000244140625
+          },
+          "0.75": {
+            "covered_fraction": 0.984130859375,
+            "good_coverage": 0.98388671875,
+            "wrong_covered_fraction": 0.000244140625
+          },
+          "1.0": {
+            "covered_fraction": 0.984375,
+            "good_coverage": 0.984130859375,
+            "wrong_covered_fraction": 0.000244140625
+          },
+          "1.25": {
+            "covered_fraction": 0.984375,
+            "good_coverage": 0.984130859375,
+            "wrong_covered_fraction": 0.000244140625
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.962158203125,
+        "wrong_covered_fraction": 0.000244140625
+      },
+      "seconds": 1.9618628729949705,
+      "coordinate_mode": "complete-map"
+    },
+    {
+      "key": "01026-3",
+      "group_id": "ptbxl-patient-8456.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "fit": {
+        "status": "full-frame-rectification",
+        "reason": null,
+        "physical_coordinates_available": true,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true,
+        "global_inlier_fraction": 1.0,
+        "method": "constrained completion preserving original observed-cell triangles",
+        "global_prior": "projective",
+        "mesh_triangles": 3704,
+        "minimum_triangle_area_ratio": 0.8581870201695271,
+        "boundary": "full source image boundary, with finite projective target",
+        "boundary_self_intersections_checked": true,
+        "all_mesh_triangles_orientation_checked": true,
+        "mesh_node_layout": "observed vertices and full-frame boundary",
+        "observed_cell_map_changed": false,
+        "output_boundary_crops_to_detected_grid": false,
+        "evidence_is_accuracy_certificate": false
+      },
+      "result": {
+        "covered_fraction": 1.0,
+        "good_coverage": 1.0,
+        "wrong_covered_fraction": 0.0,
+        "conditional_p95_mm": 0.1010656225348633,
+        "roundtrip_max_px": 1.792371338686685e-12,
+        "evidence_query_fractions": {
+          "extrapolated": 0.0107421875,
+          "interpolated": 0.037109375,
+          "observed_cells": 0.9521484375
+        },
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.956298828125,
+            "good_coverage": 0.956298828125,
+            "wrong_covered_fraction": 0.0
+          },
+          "0.5": {
+            "covered_fraction": 0.974609375,
+            "good_coverage": 0.974609375,
+            "wrong_covered_fraction": 0.0
+          },
+          "0.75": {
+            "covered_fraction": 0.9853515625,
+            "good_coverage": 0.9853515625,
+            "wrong_covered_fraction": 0.0
+          },
+          "1.0": {
+            "covered_fraction": 0.98876953125,
+            "good_coverage": 0.98876953125,
+            "wrong_covered_fraction": 0.0
+          },
+          "1.25": {
+            "covered_fraction": 0.9892578125,
+            "good_coverage": 0.9892578125,
+            "wrong_covered_fraction": 0.0
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.9521484375,
+        "wrong_covered_fraction": 0.0
+      },
+      "seconds": 2.0582757649972336,
+      "coordinate_mode": "complete-map"
+    },
+    {
+      "key": "01026-4",
+      "group_id": "ptbxl-patient-8456.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "fit": {
+        "status": "full-frame-rectification",
+        "reason": null,
+        "physical_coordinates_available": true,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true,
+        "global_inlier_fraction": 0.9734896051346449,
+        "method": "constrained completion preserving original observed-cell triangles",
+        "global_prior": "projective",
+        "mesh_triangles": 14336,
+        "minimum_triangle_area_ratio": 0.6393973773121197,
+        "boundary": "full source image boundary, with finite projective target",
+        "boundary_self_intersections_checked": true,
+        "all_mesh_triangles_orientation_checked": true,
+        "mesh_node_layout": "observed vertices and full-frame boundary",
+        "observed_cell_map_changed": false,
+        "output_boundary_crops_to_detected_grid": false,
+        "evidence_is_accuracy_certificate": false
+      },
+      "result": {
+        "covered_fraction": 1.0,
+        "good_coverage": 0.999755859375,
+        "wrong_covered_fraction": 0.000244140625,
+        "conditional_p95_mm": 0.1546066283215709,
+        "roundtrip_max_px": 3.2155493553843714e-12,
+        "evidence_query_fractions": {
+          "extrapolated": 0.0,
+          "interpolated": 0.001220703125,
+          "observed_cells": 0.998779296875
+        },
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.999267578125,
+            "good_coverage": 0.9990234375,
+            "wrong_covered_fraction": 0.000244140625
+          },
+          "0.5": {
+            "covered_fraction": 0.999755859375,
+            "good_coverage": 0.99951171875,
+            "wrong_covered_fraction": 0.000244140625
+          },
+          "0.75": {
+            "covered_fraction": 1.0,
+            "good_coverage": 0.999755859375,
+            "wrong_covered_fraction": 0.000244140625
+          },
+          "1.0": {
+            "covered_fraction": 1.0,
+            "good_coverage": 0.999755859375,
+            "wrong_covered_fraction": 0.000244140625
+          },
+          "1.25": {
+            "covered_fraction": 1.0,
+            "good_coverage": 0.999755859375,
+            "wrong_covered_fraction": 0.000244140625
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.99853515625,
+        "wrong_covered_fraction": 0.000244140625
+      },
+      "seconds": 5.190196111005207,
+      "coordinate_mode": "complete-map"
+    },
+    {
+      "key": "01026-5",
+      "group_id": "ptbxl-patient-8456.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "fit": {
+        "status": "original-preserved",
+        "reason": "no orientation-preserving completion of a grid gap",
+        "physical_coordinates_available": false,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true
+      },
+      "result": {
+        "covered_fraction": 0.97802734375,
+        "good_coverage": 0.955078125,
+        "wrong_covered_fraction": 0.02294921875,
+        "conditional_p95_mm": 0.4195737055034373,
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.97802734375,
+            "good_coverage": 0.955078125,
+            "wrong_covered_fraction": 0.02294921875,
+            "conditional_p95_mm": 0.4195737055034373
+          },
+          "0.5": {
+            "covered_fraction": 0.97802734375,
+            "good_coverage": 0.955078125,
+            "wrong_covered_fraction": 0.02294921875,
+            "conditional_p95_mm": 0.4195737055034373
+          },
+          "0.75": {
+            "covered_fraction": 0.97802734375,
+            "good_coverage": 0.955078125,
+            "wrong_covered_fraction": 0.02294921875,
+            "conditional_p95_mm": 0.4195737055034373
+          },
+          "1.0": {
+            "covered_fraction": 0.97802734375,
+            "good_coverage": 0.955078125,
+            "wrong_covered_fraction": 0.02294921875,
+            "conditional_p95_mm": 0.4195737055034373
+          },
+          "1.25": {
+            "covered_fraction": 0.97802734375,
+            "good_coverage": 0.955078125,
+            "wrong_covered_fraction": 0.02294921875,
+            "conditional_p95_mm": 0.4195737055034373
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.955078125,
+        "wrong_covered_fraction": 0.02294921875
+      },
+      "seconds": 0.9459551019972423,
+      "coordinate_mode": "previous-observed-cell-field"
+    },
+    {
+      "key": "01026-6",
+      "group_id": "ptbxl-patient-8456.0",
+      "backend": "offline",
+      "split": "validation",
+      "fit": {
+        "status": "original-preserved",
+        "reason": "no orientation-preserving completion of a grid gap",
+        "physical_coordinates_available": false,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true
+      },
+      "result": {
+        "covered_fraction": 0.131103515625,
+        "good_coverage": 0.12451171875,
+        "wrong_covered_fraction": 0.006591796875,
+        "conditional_p95_mm": 0.500002111449343,
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.131103515625,
+            "good_coverage": 0.12451171875,
+            "wrong_covered_fraction": 0.006591796875,
+            "conditional_p95_mm": 0.500002111449343
+          },
+          "0.5": {
+            "covered_fraction": 0.131103515625,
+            "good_coverage": 0.12451171875,
+            "wrong_covered_fraction": 0.006591796875,
+            "conditional_p95_mm": 0.500002111449343
+          },
+          "0.75": {
+            "covered_fraction": 0.131103515625,
+            "good_coverage": 0.12451171875,
+            "wrong_covered_fraction": 0.006591796875,
+            "conditional_p95_mm": 0.500002111449343
+          },
+          "1.0": {
+            "covered_fraction": 0.131103515625,
+            "good_coverage": 0.12451171875,
+            "wrong_covered_fraction": 0.006591796875,
+            "conditional_p95_mm": 0.500002111449343
+          },
+          "1.25": {
+            "covered_fraction": 0.131103515625,
+            "good_coverage": 0.12451171875,
+            "wrong_covered_fraction": 0.006591796875,
+            "conditional_p95_mm": 0.500002111449343
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.12451171875,
+        "wrong_covered_fraction": 0.006591796875
+      },
+      "seconds": 0.017965415994694922,
+      "coordinate_mode": "previous-observed-cell-field"
+    },
+    {
+      "key": "01026-7",
+      "group_id": "ptbxl-patient-8456.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "fit": {
+        "status": "original-preserved",
+        "reason": "no orientation-preserving completion of a grid gap",
+        "physical_coordinates_available": false,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true
+      },
+      "result": {
+        "covered_fraction": 0.58251953125,
+        "good_coverage": 0.57861328125,
+        "wrong_covered_fraction": 0.00390625,
+        "conditional_p95_mm": 0.28432694816872023,
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.58251953125,
+            "good_coverage": 0.57861328125,
+            "wrong_covered_fraction": 0.00390625,
+            "conditional_p95_mm": 0.28432694816872023
+          },
+          "0.5": {
+            "covered_fraction": 0.58251953125,
+            "good_coverage": 0.57861328125,
+            "wrong_covered_fraction": 0.00390625,
+            "conditional_p95_mm": 0.28432694816872023
+          },
+          "0.75": {
+            "covered_fraction": 0.58251953125,
+            "good_coverage": 0.57861328125,
+            "wrong_covered_fraction": 0.00390625,
+            "conditional_p95_mm": 0.28432694816872023
+          },
+          "1.0": {
+            "covered_fraction": 0.58251953125,
+            "good_coverage": 0.57861328125,
+            "wrong_covered_fraction": 0.00390625,
+            "conditional_p95_mm": 0.28432694816872023
+          },
+          "1.25": {
+            "covered_fraction": 0.58251953125,
+            "good_coverage": 0.57861328125,
+            "wrong_covered_fraction": 0.00390625,
+            "conditional_p95_mm": 0.28432694816872023
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.57861328125,
+        "wrong_covered_fraction": 0.00390625
+      },
+      "seconds": 0.41495920400484465,
+      "coordinate_mode": "previous-observed-cell-field"
+    },
+    {
+      "key": "01027-0",
+      "group_id": "ptbxl-patient-732.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "fit": {
+        "status": "full-frame-rectification",
+        "reason": null,
+        "physical_coordinates_available": true,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true,
+        "global_inlier_fraction": 1.0,
+        "method": "constrained completion preserving original observed-cell triangles",
+        "global_prior": "projective",
+        "mesh_triangles": 602,
+        "minimum_triangle_area_ratio": 0.9384802138100199,
+        "boundary": "full source image boundary, with finite projective target",
+        "boundary_self_intersections_checked": true,
+        "all_mesh_triangles_orientation_checked": true,
+        "mesh_node_layout": "observed vertices and full-frame boundary",
+        "observed_cell_map_changed": false,
+        "output_boundary_crops_to_detected_grid": false,
+        "evidence_is_accuracy_certificate": false
+      },
+      "result": {
+        "covered_fraction": 1.0,
+        "good_coverage": 0.739501953125,
+        "wrong_covered_fraction": 0.260498046875,
+        "conditional_p95_mm": 1.0901545806317339,
+        "roundtrip_max_px": 1.7353542628454474e-12,
+        "evidence_query_fractions": {
+          "extrapolated": 0.40771484375,
+          "interpolated": 0.077392578125,
+          "observed_cells": 0.514892578125
+        },
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.526611328125,
+            "good_coverage": 0.526611328125,
+            "wrong_covered_fraction": 0.0
+          },
+          "0.5": {
+            "covered_fraction": 0.55615234375,
+            "good_coverage": 0.55615234375,
+            "wrong_covered_fraction": 0.0
+          },
+          "0.75": {
+            "covered_fraction": 0.575927734375,
+            "good_coverage": 0.575927734375,
+            "wrong_covered_fraction": 0.0
+          },
+          "1.0": {
+            "covered_fraction": 0.59033203125,
+            "good_coverage": 0.59033203125,
+            "wrong_covered_fraction": 0.0
+          },
+          "1.25": {
+            "covered_fraction": 0.59228515625,
+            "good_coverage": 0.59228515625,
+            "wrong_covered_fraction": 0.0
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.514892578125,
+        "wrong_covered_fraction": 0.0
+      },
+      "seconds": 0.7928926870008581,
+      "coordinate_mode": "complete-map"
+    },
+    {
+      "key": "01027-1",
+      "group_id": "ptbxl-patient-732.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "fit": {
+        "status": "full-frame-rectification",
+        "reason": null,
+        "physical_coordinates_available": true,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true,
+        "global_inlier_fraction": 1.0,
+        "method": "constrained completion preserving original observed-cell triangles",
+        "global_prior": "projective",
+        "mesh_triangles": 3782,
+        "minimum_triangle_area_ratio": 0.8631248005577227,
+        "boundary": "full source image boundary, with finite projective target",
+        "boundary_self_intersections_checked": true,
+        "all_mesh_triangles_orientation_checked": true,
+        "mesh_node_layout": "observed vertices and full-frame boundary",
+        "observed_cell_map_changed": false,
+        "output_boundary_crops_to_detected_grid": false,
+        "evidence_is_accuracy_certificate": false
+      },
+      "result": {
+        "covered_fraction": 1.0,
+        "good_coverage": 0.99609375,
+        "wrong_covered_fraction": 0.00390625,
+        "conditional_p95_mm": 0.08642019812964187,
+        "roundtrip_max_px": 2.5421149729252077e-13,
+        "evidence_query_fractions": {
+          "extrapolated": 0.0,
+          "interpolated": 0.0,
+          "observed_cells": 1.0
+        },
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 1.0,
+            "good_coverage": 0.99609375,
+            "wrong_covered_fraction": 0.00390625
+          },
+          "0.5": {
+            "covered_fraction": 1.0,
+            "good_coverage": 0.99609375,
+            "wrong_covered_fraction": 0.00390625
+          },
+          "0.75": {
+            "covered_fraction": 1.0,
+            "good_coverage": 0.99609375,
+            "wrong_covered_fraction": 0.00390625
+          },
+          "1.0": {
+            "covered_fraction": 1.0,
+            "good_coverage": 0.99609375,
+            "wrong_covered_fraction": 0.00390625
+          },
+          "1.25": {
+            "covered_fraction": 1.0,
+            "good_coverage": 0.99609375,
+            "wrong_covered_fraction": 0.00390625
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.99609375,
+        "wrong_covered_fraction": 0.00390625
+      },
+      "seconds": 2.264771017995372,
+      "coordinate_mode": "complete-map"
+    },
+    {
+      "key": "01027-2",
+      "group_id": "ptbxl-patient-732.0",
+      "backend": "offline",
+      "split": "validation",
+      "fit": {
+        "status": "full-frame-rectification",
+        "reason": null,
+        "physical_coordinates_available": true,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true,
+        "global_inlier_fraction": 0.9840182648401826,
+        "method": "constrained completion preserving original observed-cell triangles",
+        "global_prior": "projective",
+        "mesh_triangles": 830,
+        "minimum_triangle_area_ratio": 0.6762467458808055,
+        "boundary": "full source image boundary, with finite projective target",
+        "boundary_self_intersections_checked": true,
+        "all_mesh_triangles_orientation_checked": true,
+        "mesh_node_layout": "observed vertices and full-frame boundary",
+        "observed_cell_map_changed": false,
+        "output_boundary_crops_to_detected_grid": false,
+        "evidence_is_accuracy_certificate": false
+      },
+      "result": {
+        "covered_fraction": 1.0,
+        "good_coverage": 0.912353515625,
+        "wrong_covered_fraction": 0.087646484375,
+        "conditional_p95_mm": 0.6344404698899232,
+        "roundtrip_max_px": 2.8489839874377293e-12,
+        "evidence_query_fractions": {
+          "extrapolated": 0.003662109375,
+          "interpolated": 0.318115234375,
+          "observed_cells": 0.67822265625
+        },
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.72216796875,
+            "good_coverage": 0.6796875,
+            "wrong_covered_fraction": 0.04248046875
+          },
+          "0.5": {
+            "covered_fraction": 0.844482421875,
+            "good_coverage": 0.78369140625,
+            "wrong_covered_fraction": 0.060791015625
+          },
+          "0.75": {
+            "covered_fraction": 0.927734375,
+            "good_coverage": 0.854248046875,
+            "wrong_covered_fraction": 0.073486328125
+          },
+          "1.0": {
+            "covered_fraction": 0.966064453125,
+            "good_coverage": 0.885986328125,
+            "wrong_covered_fraction": 0.080078125
+          },
+          "1.25": {
+            "covered_fraction": 0.980712890625,
+            "good_coverage": 0.898193359375,
+            "wrong_covered_fraction": 0.08251953125
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.640380859375,
+        "wrong_covered_fraction": 0.037841796875
+      },
+      "seconds": 0.8542344759989646,
+      "coordinate_mode": "complete-map"
+    },
+    {
+      "key": "01027-3",
+      "group_id": "ptbxl-patient-732.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "fit": {
+        "status": "full-frame-rectification",
+        "reason": null,
+        "physical_coordinates_available": true,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true,
+        "global_inlier_fraction": 1.0,
+        "method": "constrained completion preserving original observed-cell triangles",
+        "global_prior": "projective",
+        "mesh_triangles": 3778,
+        "minimum_triangle_area_ratio": 0.8553917893614272,
+        "boundary": "full source image boundary, with finite projective target",
+        "boundary_self_intersections_checked": true,
+        "all_mesh_triangles_orientation_checked": true,
+        "mesh_node_layout": "observed vertices and full-frame boundary",
+        "observed_cell_map_changed": false,
+        "output_boundary_crops_to_detected_grid": false,
+        "evidence_is_accuracy_certificate": false
+      },
+      "result": {
+        "covered_fraction": 1.0,
+        "good_coverage": 0.998779296875,
+        "wrong_covered_fraction": 0.001220703125,
+        "conditional_p95_mm": 0.19738086344454894,
+        "roundtrip_max_px": 4.61658157843134e-12,
+        "evidence_query_fractions": {
+          "extrapolated": 0.0,
+          "interpolated": 0.003662109375,
+          "observed_cells": 0.996337890625
+        },
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.997314453125,
+            "good_coverage": 0.996337890625,
+            "wrong_covered_fraction": 0.0009765625
+          },
+          "0.5": {
+            "covered_fraction": 0.998779296875,
+            "good_coverage": 0.99755859375,
+            "wrong_covered_fraction": 0.001220703125
+          },
+          "0.75": {
+            "covered_fraction": 0.999267578125,
+            "good_coverage": 0.998046875,
+            "wrong_covered_fraction": 0.001220703125
+          },
+          "1.0": {
+            "covered_fraction": 1.0,
+            "good_coverage": 0.998779296875,
+            "wrong_covered_fraction": 0.001220703125
+          },
+          "1.25": {
+            "covered_fraction": 1.0,
+            "good_coverage": 0.998779296875,
+            "wrong_covered_fraction": 0.001220703125
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.995361328125,
+        "wrong_covered_fraction": 0.0009765625
+      },
+      "seconds": 2.6103568999969866,
+      "coordinate_mode": "complete-map"
+    },
+    {
+      "key": "01027-4",
+      "group_id": "ptbxl-patient-732.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "fit": {
+        "status": "original-preserved",
+        "reason": "no orientation-preserving completion of a grid gap",
+        "physical_coordinates_available": false,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true
+      },
+      "result": {
+        "covered_fraction": 0.53076171875,
+        "good_coverage": 0.4775390625,
+        "wrong_covered_fraction": 0.05322265625,
+        "conditional_p95_mm": 0.7284112127385978,
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.53076171875,
+            "good_coverage": 0.4775390625,
+            "wrong_covered_fraction": 0.05322265625,
+            "conditional_p95_mm": 0.7284112127385978
+          },
+          "0.5": {
+            "covered_fraction": 0.53076171875,
+            "good_coverage": 0.4775390625,
+            "wrong_covered_fraction": 0.05322265625,
+            "conditional_p95_mm": 0.7284112127385978
+          },
+          "0.75": {
+            "covered_fraction": 0.53076171875,
+            "good_coverage": 0.4775390625,
+            "wrong_covered_fraction": 0.05322265625,
+            "conditional_p95_mm": 0.7284112127385978
+          },
+          "1.0": {
+            "covered_fraction": 0.53076171875,
+            "good_coverage": 0.4775390625,
+            "wrong_covered_fraction": 0.05322265625,
+            "conditional_p95_mm": 0.7284112127385978
+          },
+          "1.25": {
+            "covered_fraction": 0.53076171875,
+            "good_coverage": 0.4775390625,
+            "wrong_covered_fraction": 0.05322265625,
+            "conditional_p95_mm": 0.7284112127385978
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.4775390625,
+        "wrong_covered_fraction": 0.05322265625
+      },
+      "seconds": 0.06683989199518692,
+      "coordinate_mode": "previous-observed-cell-field"
+    },
+    {
+      "key": "01027-5",
+      "group_id": "ptbxl-patient-732.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "fit": {
+        "status": "original-preserved",
+        "reason": "no orientation-preserving completion of a grid gap",
+        "physical_coordinates_available": false,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true
+      },
+      "result": {
+        "covered_fraction": 0.898681640625,
+        "good_coverage": 0.87353515625,
+        "wrong_covered_fraction": 0.025146484375,
+        "conditional_p95_mm": 0.1850091532885821,
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.898681640625,
+            "good_coverage": 0.87353515625,
+            "wrong_covered_fraction": 0.025146484375,
+            "conditional_p95_mm": 0.1850091532885821
+          },
+          "0.5": {
+            "covered_fraction": 0.898681640625,
+            "good_coverage": 0.87353515625,
+            "wrong_covered_fraction": 0.025146484375,
+            "conditional_p95_mm": 0.1850091532885821
+          },
+          "0.75": {
+            "covered_fraction": 0.898681640625,
+            "good_coverage": 0.87353515625,
+            "wrong_covered_fraction": 0.025146484375,
+            "conditional_p95_mm": 0.1850091532885821
+          },
+          "1.0": {
+            "covered_fraction": 0.898681640625,
+            "good_coverage": 0.87353515625,
+            "wrong_covered_fraction": 0.025146484375,
+            "conditional_p95_mm": 0.1850091532885821
+          },
+          "1.25": {
+            "covered_fraction": 0.898681640625,
+            "good_coverage": 0.87353515625,
+            "wrong_covered_fraction": 0.025146484375,
+            "conditional_p95_mm": 0.1850091532885821
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.87353515625,
+        "wrong_covered_fraction": 0.025146484375
+      },
+      "seconds": 0.14212192799459444,
+      "coordinate_mode": "previous-observed-cell-field"
+    },
+    {
+      "key": "01027-6",
+      "group_id": "ptbxl-patient-732.0",
+      "backend": "offline",
+      "split": "validation",
+      "fit": {
+        "status": "original-preserved",
+        "reason": "no orientation-preserving completion of a grid gap",
+        "physical_coordinates_available": false,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true
+      },
+      "result": {
+        "covered_fraction": 0.392822265625,
+        "good_coverage": 0.387451171875,
+        "wrong_covered_fraction": 0.00537109375,
+        "conditional_p95_mm": 0.21283024603574177,
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.392822265625,
+            "good_coverage": 0.387451171875,
+            "wrong_covered_fraction": 0.00537109375,
+            "conditional_p95_mm": 0.21283024603574177
+          },
+          "0.5": {
+            "covered_fraction": 0.392822265625,
+            "good_coverage": 0.387451171875,
+            "wrong_covered_fraction": 0.00537109375,
+            "conditional_p95_mm": 0.21283024603574177
+          },
+          "0.75": {
+            "covered_fraction": 0.392822265625,
+            "good_coverage": 0.387451171875,
+            "wrong_covered_fraction": 0.00537109375,
+            "conditional_p95_mm": 0.21283024603574177
+          },
+          "1.0": {
+            "covered_fraction": 0.392822265625,
+            "good_coverage": 0.387451171875,
+            "wrong_covered_fraction": 0.00537109375,
+            "conditional_p95_mm": 0.21283024603574177
+          },
+          "1.25": {
+            "covered_fraction": 0.392822265625,
+            "good_coverage": 0.387451171875,
+            "wrong_covered_fraction": 0.00537109375,
+            "conditional_p95_mm": 0.21283024603574177
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.387451171875,
+        "wrong_covered_fraction": 0.00537109375
+      },
+      "seconds": 0.08067430099617923,
+      "coordinate_mode": "previous-observed-cell-field"
+    },
+    {
+      "key": "01027-7",
+      "group_id": "ptbxl-patient-732.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "fit": {
+        "status": "full-frame-rectification",
+        "reason": null,
+        "physical_coordinates_available": true,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true,
+        "global_inlier_fraction": 0.9990320796460177,
+        "method": "constrained completion preserving original observed-cell triangles",
+        "global_prior": "projective",
+        "mesh_triangles": 14458,
+        "minimum_triangle_area_ratio": 0.5376069850467744,
+        "boundary": "full source image boundary, with finite projective target",
+        "boundary_self_intersections_checked": true,
+        "all_mesh_triangles_orientation_checked": true,
+        "mesh_node_layout": "observed vertices and full-frame boundary",
+        "observed_cell_map_changed": false,
+        "output_boundary_crops_to_detected_grid": false,
+        "evidence_is_accuracy_certificate": false
+      },
+      "result": {
+        "covered_fraction": 1.0,
+        "good_coverage": 1.0,
+        "wrong_covered_fraction": 0.0,
+        "conditional_p95_mm": 0.13836937582967598,
+        "roundtrip_max_px": 3.2155493553843714e-12,
+        "evidence_query_fractions": {
+          "extrapolated": 0.000244140625,
+          "interpolated": 0.000244140625,
+          "observed_cells": 0.99951171875
+        },
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.999755859375,
+            "good_coverage": 0.999755859375,
+            "wrong_covered_fraction": 0.0
+          },
+          "0.5": {
+            "covered_fraction": 0.999755859375,
+            "good_coverage": 0.999755859375,
+            "wrong_covered_fraction": 0.0
+          },
+          "0.75": {
+            "covered_fraction": 0.999755859375,
+            "good_coverage": 0.999755859375,
+            "wrong_covered_fraction": 0.0
+          },
+          "1.0": {
+            "covered_fraction": 0.999755859375,
+            "good_coverage": 0.999755859375,
+            "wrong_covered_fraction": 0.0
+          },
+          "1.25": {
+            "covered_fraction": 0.999755859375,
+            "good_coverage": 0.999755859375,
+            "wrong_covered_fraction": 0.0
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.99951171875,
+        "wrong_covered_fraction": 0.0
+      },
+      "seconds": 4.498296796002251,
+      "coordinate_mode": "complete-map"
+    },
+    {
+      "key": "01028-0",
+      "group_id": "ptbxl-patient-11092.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "fit": {
+        "status": "full-frame-rectification",
+        "reason": null,
+        "physical_coordinates_available": true,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true,
+        "global_inlier_fraction": 1.0,
+        "method": "constrained completion preserving original observed-cell triangles",
+        "global_prior": "projective",
+        "mesh_triangles": 1042,
+        "minimum_triangle_area_ratio": 0.8575462982437536,
+        "boundary": "full source image boundary, with finite projective target",
+        "boundary_self_intersections_checked": true,
+        "all_mesh_triangles_orientation_checked": true,
+        "mesh_node_layout": "observed vertices and full-frame boundary",
+        "observed_cell_map_changed": false,
+        "output_boundary_crops_to_detected_grid": false,
+        "evidence_is_accuracy_certificate": false
+      },
+      "result": {
+        "covered_fraction": 1.0,
+        "good_coverage": 0.9990234375,
+        "wrong_covered_fraction": 0.0009765625,
+        "conditional_p95_mm": 0.07331635474593608,
+        "roundtrip_max_px": 1.9625391020817993e-12,
+        "evidence_query_fractions": {
+          "extrapolated": 0.0,
+          "interpolated": 0.008544921875,
+          "observed_cells": 0.991455078125
+        },
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.993408203125,
+            "good_coverage": 0.992431640625,
+            "wrong_covered_fraction": 0.0009765625
+          },
+          "0.5": {
+            "covered_fraction": 0.9970703125,
+            "good_coverage": 0.99609375,
+            "wrong_covered_fraction": 0.0009765625
+          },
+          "0.75": {
+            "covered_fraction": 0.99951171875,
+            "good_coverage": 0.99853515625,
+            "wrong_covered_fraction": 0.0009765625
+          },
+          "1.0": {
+            "covered_fraction": 1.0,
+            "good_coverage": 0.9990234375,
+            "wrong_covered_fraction": 0.0009765625
+          },
+          "1.25": {
+            "covered_fraction": 1.0,
+            "good_coverage": 0.9990234375,
+            "wrong_covered_fraction": 0.0009765625
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.990478515625,
+        "wrong_covered_fraction": 0.0009765625
+      },
+      "seconds": 1.062767317998805,
+      "coordinate_mode": "complete-map"
+    },
+    {
+      "key": "01028-1",
+      "group_id": "ptbxl-patient-11092.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "fit": {
+        "status": "original-preserved",
+        "reason": "no orientation-preserving completion of a grid gap",
+        "physical_coordinates_available": false,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true
+      },
+      "result": {
+        "covered_fraction": 0.94482421875,
+        "good_coverage": 0.9296875,
+        "wrong_covered_fraction": 0.01513671875,
+        "conditional_p95_mm": 0.1805424142846025,
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.94482421875,
+            "good_coverage": 0.9296875,
+            "wrong_covered_fraction": 0.01513671875,
+            "conditional_p95_mm": 0.1805424142846025
+          },
+          "0.5": {
+            "covered_fraction": 0.94482421875,
+            "good_coverage": 0.9296875,
+            "wrong_covered_fraction": 0.01513671875,
+            "conditional_p95_mm": 0.1805424142846025
+          },
+          "0.75": {
+            "covered_fraction": 0.94482421875,
+            "good_coverage": 0.9296875,
+            "wrong_covered_fraction": 0.01513671875,
+            "conditional_p95_mm": 0.1805424142846025
+          },
+          "1.0": {
+            "covered_fraction": 0.94482421875,
+            "good_coverage": 0.9296875,
+            "wrong_covered_fraction": 0.01513671875,
+            "conditional_p95_mm": 0.1805424142846025
+          },
+          "1.25": {
+            "covered_fraction": 0.94482421875,
+            "good_coverage": 0.9296875,
+            "wrong_covered_fraction": 0.01513671875,
+            "conditional_p95_mm": 0.1805424142846025
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.9296875,
+        "wrong_covered_fraction": 0.01513671875
+      },
+      "seconds": 0.16377594599907752,
+      "coordinate_mode": "previous-observed-cell-field"
+    },
+    {
+      "key": "01028-2",
+      "group_id": "ptbxl-patient-11092.0",
+      "backend": "offline",
+      "split": "validation",
+      "fit": {
+        "status": "original-preserved",
+        "reason": "no orientation-preserving completion of a grid gap",
+        "physical_coordinates_available": false,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true
+      },
+      "result": {
+        "covered_fraction": 0.864013671875,
+        "good_coverage": 0.862060546875,
+        "wrong_covered_fraction": 0.001953125,
+        "conditional_p95_mm": 0.18946432960544313,
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.864013671875,
+            "good_coverage": 0.862060546875,
+            "wrong_covered_fraction": 0.001953125,
+            "conditional_p95_mm": 0.18946432960544313
+          },
+          "0.5": {
+            "covered_fraction": 0.864013671875,
+            "good_coverage": 0.862060546875,
+            "wrong_covered_fraction": 0.001953125,
+            "conditional_p95_mm": 0.18946432960544313
+          },
+          "0.75": {
+            "covered_fraction": 0.864013671875,
+            "good_coverage": 0.862060546875,
+            "wrong_covered_fraction": 0.001953125,
+            "conditional_p95_mm": 0.18946432960544313
+          },
+          "1.0": {
+            "covered_fraction": 0.864013671875,
+            "good_coverage": 0.862060546875,
+            "wrong_covered_fraction": 0.001953125,
+            "conditional_p95_mm": 0.18946432960544313
+          },
+          "1.25": {
+            "covered_fraction": 0.864013671875,
+            "good_coverage": 0.862060546875,
+            "wrong_covered_fraction": 0.001953125,
+            "conditional_p95_mm": 0.18946432960544313
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.862060546875,
+        "wrong_covered_fraction": 0.001953125
+      },
+      "seconds": 0.22045475600316422,
+      "coordinate_mode": "previous-observed-cell-field"
+    },
+    {
+      "key": "01028-3",
+      "group_id": "ptbxl-patient-11092.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "fit": {
+        "status": "full-frame-rectification",
+        "reason": null,
+        "physical_coordinates_available": true,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true,
+        "global_inlier_fraction": 1.0,
+        "method": "constrained completion preserving original observed-cell triangles",
+        "global_prior": "projective",
+        "mesh_triangles": 1004,
+        "minimum_triangle_area_ratio": 0.9228094580507274,
+        "boundary": "full source image boundary, with finite projective target",
+        "boundary_self_intersections_checked": true,
+        "all_mesh_triangles_orientation_checked": true,
+        "mesh_node_layout": "observed vertices and full-frame boundary",
+        "observed_cell_map_changed": false,
+        "output_boundary_crops_to_detected_grid": false,
+        "evidence_is_accuracy_certificate": false
+      },
+      "result": {
+        "covered_fraction": 1.0,
+        "good_coverage": 1.0,
+        "wrong_covered_fraction": 0.0,
+        "conditional_p95_mm": 0.05985566350054264,
+        "roundtrip_max_px": 2.5421149729252077e-13,
+        "evidence_query_fractions": {
+          "extrapolated": 0.001953125,
+          "interpolated": 0.035888671875,
+          "observed_cells": 0.962158203125
+        },
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.971435546875,
+            "good_coverage": 0.971435546875,
+            "wrong_covered_fraction": 0.0
+          },
+          "0.5": {
+            "covered_fraction": 0.988525390625,
+            "good_coverage": 0.988525390625,
+            "wrong_covered_fraction": 0.0
+          },
+          "0.75": {
+            "covered_fraction": 0.996826171875,
+            "good_coverage": 0.996826171875,
+            "wrong_covered_fraction": 0.0
+          },
+          "1.0": {
+            "covered_fraction": 0.998046875,
+            "good_coverage": 0.998046875,
+            "wrong_covered_fraction": 0.0
+          },
+          "1.25": {
+            "covered_fraction": 0.998046875,
+            "good_coverage": 0.998046875,
+            "wrong_covered_fraction": 0.0
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.962158203125,
+        "wrong_covered_fraction": 0.0
+      },
+      "seconds": 0.7922671929991338,
+      "coordinate_mode": "complete-map"
+    },
+    {
+      "key": "01028-4",
+      "group_id": "ptbxl-patient-11092.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "fit": {
+        "status": "original-preserved",
+        "reason": "no orientation-preserving completion of a grid gap",
+        "physical_coordinates_available": false,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true
+      },
+      "result": {
+        "covered_fraction": 0.996337890625,
+        "good_coverage": 0.996337890625,
+        "wrong_covered_fraction": 0.0,
+        "conditional_p95_mm": 0.13431008954168625,
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.996337890625,
+            "good_coverage": 0.996337890625,
+            "wrong_covered_fraction": 0.0,
+            "conditional_p95_mm": 0.13431008954168625
+          },
+          "0.5": {
+            "covered_fraction": 0.996337890625,
+            "good_coverage": 0.996337890625,
+            "wrong_covered_fraction": 0.0,
+            "conditional_p95_mm": 0.13431008954168625
+          },
+          "0.75": {
+            "covered_fraction": 0.996337890625,
+            "good_coverage": 0.996337890625,
+            "wrong_covered_fraction": 0.0,
+            "conditional_p95_mm": 0.13431008954168625
+          },
+          "1.0": {
+            "covered_fraction": 0.996337890625,
+            "good_coverage": 0.996337890625,
+            "wrong_covered_fraction": 0.0,
+            "conditional_p95_mm": 0.13431008954168625
+          },
+          "1.25": {
+            "covered_fraction": 0.996337890625,
+            "good_coverage": 0.996337890625,
+            "wrong_covered_fraction": 0.0,
+            "conditional_p95_mm": 0.13431008954168625
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.996337890625,
+        "wrong_covered_fraction": 0.0
+      },
+      "seconds": 0.8209539300005417,
+      "coordinate_mode": "previous-observed-cell-field"
+    },
+    {
+      "key": "01028-5",
+      "group_id": "ptbxl-patient-11092.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "fit": {
+        "status": "original-preserved",
+        "reason": "no orientation-preserving completion of a grid gap",
+        "physical_coordinates_available": false,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true
+      },
+      "result": {
+        "covered_fraction": 0.643310546875,
+        "good_coverage": 0.5869140625,
+        "wrong_covered_fraction": 0.056396484375,
+        "conditional_p95_mm": 0.7564040393188611,
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.643310546875,
+            "good_coverage": 0.5869140625,
+            "wrong_covered_fraction": 0.056396484375,
+            "conditional_p95_mm": 0.7564040393188611
+          },
+          "0.5": {
+            "covered_fraction": 0.643310546875,
+            "good_coverage": 0.5869140625,
+            "wrong_covered_fraction": 0.056396484375,
+            "conditional_p95_mm": 0.7564040393188611
+          },
+          "0.75": {
+            "covered_fraction": 0.643310546875,
+            "good_coverage": 0.5869140625,
+            "wrong_covered_fraction": 0.056396484375,
+            "conditional_p95_mm": 0.7564040393188611
+          },
+          "1.0": {
+            "covered_fraction": 0.643310546875,
+            "good_coverage": 0.5869140625,
+            "wrong_covered_fraction": 0.056396484375,
+            "conditional_p95_mm": 0.7564040393188611
+          },
+          "1.25": {
+            "covered_fraction": 0.643310546875,
+            "good_coverage": 0.5869140625,
+            "wrong_covered_fraction": 0.056396484375,
+            "conditional_p95_mm": 0.7564040393188611
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.5869140625,
+        "wrong_covered_fraction": 0.056396484375
+      },
+      "seconds": 0.05056021799828159,
+      "coordinate_mode": "previous-observed-cell-field"
+    },
+    {
+      "key": "01028-6",
+      "group_id": "ptbxl-patient-11092.0",
+      "backend": "offline",
+      "split": "validation",
+      "fit": {
+        "status": "original-preserved",
+        "reason": "insufficient 2D grid evidence",
+        "physical_coordinates_available": false,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true
+      },
+      "result": {
+        "covered_fraction": 0.0,
+        "good_coverage": 0.0,
+        "wrong_covered_fraction": 0.0,
+        "conditional_p95_mm": null,
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.0,
+            "good_coverage": 0.0,
+            "wrong_covered_fraction": 0.0,
+            "conditional_p95_mm": null
+          },
+          "0.5": {
+            "covered_fraction": 0.0,
+            "good_coverage": 0.0,
+            "wrong_covered_fraction": 0.0,
+            "conditional_p95_mm": null
+          },
+          "0.75": {
+            "covered_fraction": 0.0,
+            "good_coverage": 0.0,
+            "wrong_covered_fraction": 0.0,
+            "conditional_p95_mm": null
+          },
+          "1.0": {
+            "covered_fraction": 0.0,
+            "good_coverage": 0.0,
+            "wrong_covered_fraction": 0.0,
+            "conditional_p95_mm": null
+          },
+          "1.25": {
+            "covered_fraction": 0.0,
+            "good_coverage": 0.0,
+            "wrong_covered_fraction": 0.0,
+            "conditional_p95_mm": null
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.0,
+        "wrong_covered_fraction": 0.0
+      },
+      "seconds": 0.00028814299730584025,
+      "coordinate_mode": "previous-observed-cell-field"
+    },
+    {
+      "key": "01028-7",
+      "group_id": "ptbxl-patient-11092.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "fit": {
+        "status": "original-preserved",
+        "reason": "no orientation-preserving completion of a grid gap",
+        "physical_coordinates_available": false,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true
+      },
+      "result": {
+        "covered_fraction": 0.90087890625,
+        "good_coverage": 0.8291015625,
+        "wrong_covered_fraction": 0.07177734375,
+        "conditional_p95_mm": 0.5574342789332881,
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.90087890625,
+            "good_coverage": 0.8291015625,
+            "wrong_covered_fraction": 0.07177734375,
+            "conditional_p95_mm": 0.5574342789332881
+          },
+          "0.5": {
+            "covered_fraction": 0.90087890625,
+            "good_coverage": 0.8291015625,
+            "wrong_covered_fraction": 0.07177734375,
+            "conditional_p95_mm": 0.5574342789332881
+          },
+          "0.75": {
+            "covered_fraction": 0.90087890625,
+            "good_coverage": 0.8291015625,
+            "wrong_covered_fraction": 0.07177734375,
+            "conditional_p95_mm": 0.5574342789332881
+          },
+          "1.0": {
+            "covered_fraction": 0.90087890625,
+            "good_coverage": 0.8291015625,
+            "wrong_covered_fraction": 0.07177734375,
+            "conditional_p95_mm": 0.5574342789332881
+          },
+          "1.25": {
+            "covered_fraction": 0.90087890625,
+            "good_coverage": 0.8291015625,
+            "wrong_covered_fraction": 0.07177734375,
+            "conditional_p95_mm": 0.5574342789332881
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.8291015625,
+        "wrong_covered_fraction": 0.07177734375
+      },
+      "seconds": 0.580720323996502,
+      "coordinate_mode": "previous-observed-cell-field"
+    },
+    {
+      "key": "01029-0",
+      "group_id": "ptbxl-patient-12988.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "fit": {
+        "status": "full-frame-rectification",
+        "reason": null,
+        "physical_coordinates_available": true,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true,
+        "global_inlier_fraction": 1.0,
+        "method": "constrained completion preserving original observed-cell triangles",
+        "global_prior": "projective",
+        "mesh_triangles": 3782,
+        "minimum_triangle_area_ratio": 0.9128182267261092,
+        "boundary": "full source image boundary, with finite projective target",
+        "boundary_self_intersections_checked": true,
+        "all_mesh_triangles_orientation_checked": true,
+        "mesh_node_layout": "observed vertices and full-frame boundary",
+        "observed_cell_map_changed": false,
+        "output_boundary_crops_to_detected_grid": false,
+        "evidence_is_accuracy_certificate": false
+      },
+      "result": {
+        "covered_fraction": 1.0,
+        "good_coverage": 1.0,
+        "wrong_covered_fraction": 0.0,
+        "conditional_p95_mm": 0.12010596721741362,
+        "roundtrip_max_px": 2.5421149729252077e-13,
+        "evidence_query_fractions": {
+          "extrapolated": 0.0,
+          "interpolated": 0.0,
+          "observed_cells": 1.0
+        },
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 1.0,
+            "good_coverage": 1.0,
+            "wrong_covered_fraction": 0.0
+          },
+          "0.5": {
+            "covered_fraction": 1.0,
+            "good_coverage": 1.0,
+            "wrong_covered_fraction": 0.0
+          },
+          "0.75": {
+            "covered_fraction": 1.0,
+            "good_coverage": 1.0,
+            "wrong_covered_fraction": 0.0
+          },
+          "1.0": {
+            "covered_fraction": 1.0,
+            "good_coverage": 1.0,
+            "wrong_covered_fraction": 0.0
+          },
+          "1.25": {
+            "covered_fraction": 1.0,
+            "good_coverage": 1.0,
+            "wrong_covered_fraction": 0.0
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 1.0,
+        "wrong_covered_fraction": 0.0
+      },
+      "seconds": 2.107580402996973,
+      "coordinate_mode": "complete-map"
+    },
+    {
+      "key": "01029-1",
+      "group_id": "ptbxl-patient-12988.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "fit": {
+        "status": "full-frame-rectification",
+        "reason": null,
+        "physical_coordinates_available": true,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true,
+        "global_inlier_fraction": 1.0,
+        "method": "constrained completion preserving original observed-cell triangles",
+        "global_prior": "projective",
+        "mesh_triangles": 3782,
+        "minimum_triangle_area_ratio": 0.8649432949681581,
+        "boundary": "full source image boundary, with finite projective target",
+        "boundary_self_intersections_checked": true,
+        "all_mesh_triangles_orientation_checked": true,
+        "mesh_node_layout": "observed vertices and full-frame boundary",
+        "observed_cell_map_changed": false,
+        "output_boundary_crops_to_detected_grid": false,
+        "evidence_is_accuracy_certificate": false
+      },
+      "result": {
+        "covered_fraction": 1.0,
+        "good_coverage": 1.0,
+        "wrong_covered_fraction": 0.0,
+        "conditional_p95_mm": 0.08857902106561144,
+        "roundtrip_max_px": 1.4779288903810084e-12,
+        "evidence_query_fractions": {
+          "extrapolated": 0.0,
+          "interpolated": 0.00048828125,
+          "observed_cells": 0.99951171875
+        },
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.999755859375,
+            "good_coverage": 0.999755859375,
+            "wrong_covered_fraction": 0.0
+          },
+          "0.5": {
+            "covered_fraction": 1.0,
+            "good_coverage": 1.0,
+            "wrong_covered_fraction": 0.0
+          },
+          "0.75": {
+            "covered_fraction": 1.0,
+            "good_coverage": 1.0,
+            "wrong_covered_fraction": 0.0
+          },
+          "1.0": {
+            "covered_fraction": 1.0,
+            "good_coverage": 1.0,
+            "wrong_covered_fraction": 0.0
+          },
+          "1.25": {
+            "covered_fraction": 1.0,
+            "good_coverage": 1.0,
+            "wrong_covered_fraction": 0.0
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.99951171875,
+        "wrong_covered_fraction": 0.0
+      },
+      "seconds": 2.335662407997006,
+      "coordinate_mode": "complete-map"
+    },
+    {
+      "key": "01029-2",
+      "group_id": "ptbxl-patient-12988.0",
+      "backend": "offline",
+      "split": "validation",
+      "fit": {
+        "status": "original-preserved",
+        "reason": "no orientation-preserving completion of a grid gap",
+        "physical_coordinates_available": false,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true
+      },
+      "result": {
+        "covered_fraction": 0.9609375,
+        "good_coverage": 0.9609375,
+        "wrong_covered_fraction": 0.0,
+        "conditional_p95_mm": 0.13755788615741688,
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.9609375,
+            "good_coverage": 0.9609375,
+            "wrong_covered_fraction": 0.0,
+            "conditional_p95_mm": 0.13755788615741688
+          },
+          "0.5": {
+            "covered_fraction": 0.9609375,
+            "good_coverage": 0.9609375,
+            "wrong_covered_fraction": 0.0,
+            "conditional_p95_mm": 0.13755788615741688
+          },
+          "0.75": {
+            "covered_fraction": 0.9609375,
+            "good_coverage": 0.9609375,
+            "wrong_covered_fraction": 0.0,
+            "conditional_p95_mm": 0.13755788615741688
+          },
+          "1.0": {
+            "covered_fraction": 0.9609375,
+            "good_coverage": 0.9609375,
+            "wrong_covered_fraction": 0.0,
+            "conditional_p95_mm": 0.13755788615741688
+          },
+          "1.25": {
+            "covered_fraction": 0.9609375,
+            "good_coverage": 0.9609375,
+            "wrong_covered_fraction": 0.0,
+            "conditional_p95_mm": 0.13755788615741688
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.9609375,
+        "wrong_covered_fraction": 0.0
+      },
+      "seconds": 0.26679001699812943,
+      "coordinate_mode": "previous-observed-cell-field"
+    },
+    {
+      "key": "01029-3",
+      "group_id": "ptbxl-patient-12988.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "fit": {
+        "status": "full-frame-rectification",
+        "reason": null,
+        "physical_coordinates_available": true,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true,
+        "global_inlier_fraction": 1.0,
+        "method": "constrained completion preserving original observed-cell triangles",
+        "global_prior": "projective",
+        "mesh_triangles": 3782,
+        "minimum_triangle_area_ratio": 0.7005524020835133,
+        "boundary": "full source image boundary, with finite projective target",
+        "boundary_self_intersections_checked": true,
+        "all_mesh_triangles_orientation_checked": true,
+        "mesh_node_layout": "observed vertices and full-frame boundary",
+        "observed_cell_map_changed": false,
+        "output_boundary_crops_to_detected_grid": false,
+        "evidence_is_accuracy_certificate": false
+      },
+      "result": {
+        "covered_fraction": 1.0,
+        "good_coverage": 1.0,
+        "wrong_covered_fraction": 0.0,
+        "conditional_p95_mm": 0.08456351746110426,
+        "roundtrip_max_px": 4.547473508864641e-13,
+        "evidence_query_fractions": {
+          "extrapolated": 0.0,
+          "interpolated": 0.00048828125,
+          "observed_cells": 0.99951171875
+        },
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.999755859375,
+            "good_coverage": 0.999755859375,
+            "wrong_covered_fraction": 0.0
+          },
+          "0.5": {
+            "covered_fraction": 1.0,
+            "good_coverage": 1.0,
+            "wrong_covered_fraction": 0.0
+          },
+          "0.75": {
+            "covered_fraction": 1.0,
+            "good_coverage": 1.0,
+            "wrong_covered_fraction": 0.0
+          },
+          "1.0": {
+            "covered_fraction": 1.0,
+            "good_coverage": 1.0,
+            "wrong_covered_fraction": 0.0
+          },
+          "1.25": {
+            "covered_fraction": 1.0,
+            "good_coverage": 1.0,
+            "wrong_covered_fraction": 0.0
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.99951171875,
+        "wrong_covered_fraction": 0.0
+      },
+      "seconds": 2.645556810006383,
+      "coordinate_mode": "complete-map"
+    },
+    {
+      "key": "01029-4",
+      "group_id": "ptbxl-patient-12988.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "fit": {
+        "status": "original-preserved",
+        "reason": "insufficient 2D grid evidence",
+        "physical_coordinates_available": false,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true
+      },
+      "result": {
+        "covered_fraction": 0.000732421875,
+        "good_coverage": 0.0,
+        "wrong_covered_fraction": 0.000732421875,
+        "conditional_p95_mm": 26.563557742620883,
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.000732421875,
+            "good_coverage": 0.0,
+            "wrong_covered_fraction": 0.000732421875,
+            "conditional_p95_mm": 26.563557742620883
+          },
+          "0.5": {
+            "covered_fraction": 0.000732421875,
+            "good_coverage": 0.0,
+            "wrong_covered_fraction": 0.000732421875,
+            "conditional_p95_mm": 26.563557742620883
+          },
+          "0.75": {
+            "covered_fraction": 0.000732421875,
+            "good_coverage": 0.0,
+            "wrong_covered_fraction": 0.000732421875,
+            "conditional_p95_mm": 26.563557742620883
+          },
+          "1.0": {
+            "covered_fraction": 0.000732421875,
+            "good_coverage": 0.0,
+            "wrong_covered_fraction": 0.000732421875,
+            "conditional_p95_mm": 26.563557742620883
+          },
+          "1.25": {
+            "covered_fraction": 0.000732421875,
+            "good_coverage": 0.0,
+            "wrong_covered_fraction": 0.000732421875,
+            "conditional_p95_mm": 26.563557742620883
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.0,
+        "wrong_covered_fraction": 0.000732421875
+      },
+      "seconds": 0.0022968690027482808,
+      "coordinate_mode": "previous-observed-cell-field"
+    },
+    {
+      "key": "01029-5",
+      "group_id": "ptbxl-patient-12988.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "fit": {
+        "status": "full-frame-rectification",
+        "reason": null,
+        "physical_coordinates_available": true,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true,
+        "global_inlier_fraction": 1.0,
+        "method": "constrained completion preserving original observed-cell triangles",
+        "global_prior": "projective",
+        "mesh_triangles": 3780,
+        "minimum_triangle_area_ratio": 0.8188264177411725,
+        "boundary": "full source image boundary, with finite projective target",
+        "boundary_self_intersections_checked": true,
+        "all_mesh_triangles_orientation_checked": true,
+        "mesh_node_layout": "observed vertices and full-frame boundary",
+        "observed_cell_map_changed": false,
+        "output_boundary_crops_to_detected_grid": false,
+        "evidence_is_accuracy_certificate": false
+      },
+      "result": {
+        "covered_fraction": 1.0,
+        "good_coverage": 1.0,
+        "wrong_covered_fraction": 0.0,
+        "conditional_p95_mm": 0.08366086478706224,
+        "roundtrip_max_px": 3.595093471822542e-13,
+        "evidence_query_fractions": {
+          "extrapolated": 0.0,
+          "interpolated": 0.001708984375,
+          "observed_cells": 0.998291015625
+        },
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.998779296875,
+            "good_coverage": 0.998779296875,
+            "wrong_covered_fraction": 0.0
+          },
+          "0.5": {
+            "covered_fraction": 0.999755859375,
+            "good_coverage": 0.999755859375,
+            "wrong_covered_fraction": 0.0
+          },
+          "0.75": {
+            "covered_fraction": 1.0,
+            "good_coverage": 1.0,
+            "wrong_covered_fraction": 0.0
+          },
+          "1.0": {
+            "covered_fraction": 1.0,
+            "good_coverage": 1.0,
+            "wrong_covered_fraction": 0.0
+          },
+          "1.25": {
+            "covered_fraction": 1.0,
+            "good_coverage": 1.0,
+            "wrong_covered_fraction": 0.0
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.998291015625,
+        "wrong_covered_fraction": 0.0
+      },
+      "seconds": 2.7732274380032322,
+      "coordinate_mode": "complete-map"
+    },
+    {
+      "key": "01029-6",
+      "group_id": "ptbxl-patient-12988.0",
+      "backend": "offline",
+      "split": "validation",
+      "fit": {
+        "status": "original-preserved",
+        "reason": "complete map cannot be indexed safely",
+        "physical_coordinates_available": false,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true,
+        "detail": "Irregular cell geometry exceeds spatial-index bound"
+      },
+      "result": {
+        "covered_fraction": 0.2314453125,
+        "good_coverage": 0.14697265625,
+        "wrong_covered_fraction": 0.08447265625,
+        "conditional_p95_mm": 5.084780040841845,
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.2314453125,
+            "good_coverage": 0.14697265625,
+            "wrong_covered_fraction": 0.08447265625,
+            "conditional_p95_mm": 5.084780040841845
+          },
+          "0.5": {
+            "covered_fraction": 0.2314453125,
+            "good_coverage": 0.14697265625,
+            "wrong_covered_fraction": 0.08447265625,
+            "conditional_p95_mm": 5.084780040841845
+          },
+          "0.75": {
+            "covered_fraction": 0.2314453125,
+            "good_coverage": 0.14697265625,
+            "wrong_covered_fraction": 0.08447265625,
+            "conditional_p95_mm": 5.084780040841845
+          },
+          "1.0": {
+            "covered_fraction": 0.2314453125,
+            "good_coverage": 0.14697265625,
+            "wrong_covered_fraction": 0.08447265625,
+            "conditional_p95_mm": 5.084780040841845
+          },
+          "1.25": {
+            "covered_fraction": 0.2314453125,
+            "good_coverage": 0.14697265625,
+            "wrong_covered_fraction": 0.08447265625,
+            "conditional_p95_mm": 5.084780040841845
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.14697265625,
+        "wrong_covered_fraction": 0.08447265625
+      },
+      "seconds": 0.05724689999624388,
+      "coordinate_mode": "previous-observed-cell-field"
+    },
+    {
+      "key": "01029-7",
+      "group_id": "ptbxl-patient-12988.0",
+      "backend": "torch-cached",
+      "split": "validation",
+      "fit": {
+        "status": "full-frame-rectification",
+        "reason": null,
+        "physical_coordinates_available": true,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true,
+        "global_inlier_fraction": 1.0,
+        "method": "constrained completion preserving original observed-cell triangles",
+        "global_prior": "projective",
+        "mesh_triangles": 3782,
+        "minimum_triangle_area_ratio": 0.9243060875023069,
+        "boundary": "full source image boundary, with finite projective target",
+        "boundary_self_intersections_checked": true,
+        "all_mesh_triangles_orientation_checked": true,
+        "mesh_node_layout": "observed vertices and full-frame boundary",
+        "observed_cell_map_changed": false,
+        "output_boundary_crops_to_detected_grid": false,
+        "evidence_is_accuracy_certificate": false
+      },
+      "result": {
+        "covered_fraction": 1.0,
+        "good_coverage": 1.0,
+        "wrong_covered_fraction": 0.0,
+        "conditional_p95_mm": 0.12392374772400798,
+        "roundtrip_max_px": 3.91889924529623e-12,
+        "evidence_query_fractions": {
+          "extrapolated": 0.0,
+          "interpolated": 0.001220703125,
+          "observed_cells": 0.998779296875
+        },
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.999755859375,
+            "good_coverage": 0.999755859375,
+            "wrong_covered_fraction": 0.0
+          },
+          "0.5": {
+            "covered_fraction": 1.0,
+            "good_coverage": 1.0,
+            "wrong_covered_fraction": 0.0
+          },
+          "0.75": {
+            "covered_fraction": 1.0,
+            "good_coverage": 1.0,
+            "wrong_covered_fraction": 0.0
+          },
+          "1.0": {
+            "covered_fraction": 1.0,
+            "good_coverage": 1.0,
+            "wrong_covered_fraction": 0.0
+          },
+          "1.25": {
+            "covered_fraction": 1.0,
+            "good_coverage": 1.0,
+            "wrong_covered_fraction": 0.0
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.998779296875,
+        "wrong_covered_fraction": 0.0
+      },
+      "seconds": 2.558203546999721,
+      "coordinate_mode": "complete-map"
+    },
+    {
+      "key": "01026-2",
+      "group_id": "ptbxl-patient-8456.0",
+      "backend": "offline",
+      "split": "validation",
+      "fit": {
+        "status": "full-frame-rectification",
+        "reason": null,
+        "physical_coordinates_available": true,
+        "rgb_source": "original input",
+        "grid_mask_erases_rgb": false,
+        "geometry_is_inferred": true,
+        "global_inlier_fraction": 0.9896049896049897,
+        "method": "constrained completion preserving original observed-cell triangles",
+        "global_prior": "projective",
+        "mesh_triangles": 944,
+        "minimum_triangle_area_ratio": 0.7900706065358553,
+        "boundary": "full source image boundary, with finite projective target",
+        "boundary_self_intersections_checked": true,
+        "all_mesh_triangles_orientation_checked": true,
+        "mesh_node_layout": "observed vertices and full-frame boundary",
+        "observed_cell_map_changed": false,
+        "output_boundary_crops_to_detected_grid": false,
+        "evidence_is_accuracy_certificate": false
+      },
+      "result": {
+        "covered_fraction": 1.0,
+        "good_coverage": 0.992431640625,
+        "wrong_covered_fraction": 0.007568359375,
+        "conditional_p95_mm": 0.25037947049524323,
+        "roundtrip_max_px": 3.865352482534945e-12,
+        "evidence_query_fractions": {
+          "extrapolated": 0.0029296875,
+          "interpolated": 0.068359375,
+          "observed_cells": 0.9287109375
+        },
+        "eligibility": {
+          "0.25": {
+            "covered_fraction": 0.9423828125,
+            "good_coverage": 0.9375,
+            "wrong_covered_fraction": 0.0048828125
+          },
+          "0.5": {
+            "covered_fraction": 0.97802734375,
+            "good_coverage": 0.9716796875,
+            "wrong_covered_fraction": 0.00634765625
+          },
+          "0.75": {
+            "covered_fraction": 0.994140625,
+            "good_coverage": 0.987060546875,
+            "wrong_covered_fraction": 0.007080078125
+          },
+          "1.0": {
+            "covered_fraction": 0.996826171875,
+            "good_coverage": 0.989501953125,
+            "wrong_covered_fraction": 0.00732421875
+          },
+          "1.25": {
+            "covered_fraction": 0.9970703125,
+            "good_coverage": 0.98974609375,
+            "wrong_covered_fraction": 0.00732421875
+          }
+        }
+      },
+      "baseline": {
+        "good_coverage": 0.92431640625,
+        "wrong_covered_fraction": 0.00439453125
+      },
+      "seconds": 0.9112246980002965,
+      "coordinate_mode": "complete-map"
+    }
+  ],
+  "method": "constrained full-frame cell completion",
+  "source_sha256": "536b1c3cc5780ad29179ada32e39fa0905d50fa57430d5d75c2ad782b73223ea",
+  "fixed_query_domain": true,
+  "gold_used_for_fit": false,
+  "test_previously_inspected": false,
+  "new_independent_test": false
+}

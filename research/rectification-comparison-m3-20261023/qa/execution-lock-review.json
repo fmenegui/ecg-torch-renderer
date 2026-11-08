@@ -1,0 +1,19 @@
+{
+  "status": "pass",
+  "checks": 194,
+  "failures": [],
+  "lock_file": "/workspace/scratch/a57599a3e70e/ecg-torch-renderer/build/m3-comparison/lock.json",
+  "lock_sha256": "a667f1cbbe3dc3334df1721a821af063691240eb0b3fdd7b72af5150f1127b3c",
+  "protocol_sha256": "83debefdb2b1bd33735c8883c0f0d3d17acc590a309ba82e79ac55a785013be0",
+  "methods": [
+    "our-B0",
+    "our-M2",
+    "npj-generic",
+    "npj-george-moody-2024",
+    "kaggle-third"
+  ],
+  "source_files": 89,
+  "weight_assets": 5,
+  "query_archives": 56,
+  "scope": "Frozen source/weight/config/runtime-path/budget/schedule/query bindings only. No result files read and no model inference."
+}

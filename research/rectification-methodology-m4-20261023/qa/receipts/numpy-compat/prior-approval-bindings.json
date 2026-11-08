@@ -1,0 +1,11 @@
+{
+  "historical_geometry_sha256": "0ce6062797c5e25dd9ce3d7b26a6a9fabe7779ca72b5ea4e55fcda564bed9e87",
+  "new_geometry_sha256": "421ebe98bdd9b5c18daf039837297d8592e9fdb4f937b466311033a9f6be7fe0",
+  "historical_test_receipt_sha256": {
+    "m4/qa/receipts/independent-component-tests.json": "58f1e175d454d430e33b7b96577d00d7ab90bda0956cd635dfdd0b412ee8cc7e",
+    "m4/qa/receipts/independent-axis-area-tests.json": "3f03402b2c4922ab8c66130e4ec6d2054a08e22e2a94e988d696c3810558bec2"
+  },
+  "preservation": "Prior approval receipts remain unchanged. Compatibility runs use separate receipt paths.",
+  "local_baseline_numpy": "2.3.5",
+  "target_numpy": "2.5.4 isolated runtime supplied by integrator"
+}

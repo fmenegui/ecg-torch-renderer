@@ -1,0 +1,390 @@
+{
+  "schema": "m4-identifiability-cornercases-v1",
+  "scope": "Threat model and constructive analytical controls, not exhaustive proof all cornercases have been handled.",
+  "certainty_vocabulary": [
+    "resolved",
+    "ambiguous",
+    "unsupported"
+  ],
+  "certainty_semantics": "Conditional on declared observation and model. Neither evidence declaration nor residual is a physical certificate.",
+  "spatial_support_vocabulary": [
+    "observed_anchor",
+    "observed_line",
+    "interpolated",
+    "extrapolated",
+    "unknown",
+    "occluded"
+  ],
+  "global_contract": [
+    "originalRGB retained and fully decodable",
+    "geometry support neverusedasRGB transparency mask",
+    "scale/orientation/geometry/origin/signal calibration statuses independent",
+    "numeric checks not physicalconfidence",
+    "charts and visibility for noninjectiveprojections",
+    "all failures andsurvivinghypotheses retained"
+  ],
+  "registered_control_cases": [
+    {
+      "control_id": "ID01",
+      "case": "1vs5vs10mm_pitch_alias",
+      "observation_class": "exact_RGB",
+      "admissible_world_class": "uniform grid without reliable major/minor distinction or units",
+      "identifiability_from_current_input": "not_unique",
+      "recommended_states": "scale:ambiguous; geometry:relative_chart_only; orientation:ambiguous",
+      "additional_evidence_that_can_resolve": [
+        "known physical unit calibrator",
+        "trustworthy original grid family",
+        "visible and identifiable major/minor lines"
+      ],
+      "operational_action": "retain pitch hypotheses1/5/10 and other supported families; do not label coordinatesmm from point residual",
+      "scope_limit": "No claim all ECG paper has these exact aliases. Reliable unit conventions can exclude worlds."
+    },
+    {
+      "control_id": "ID02",
+      "case": "square_grid_D4_symmetry",
+      "observation_class": "exact_RGB",
+      "admissible_world_class": "square crop with pure square grid and no semantic cue",
+      "identifiability_from_current_input": "eight_semantic_poses",
+      "recommended_states": "orientation:ambiguous; scale:independent",
+      "additional_evidence_that_can_resolve": [
+        "asymmetric known-upright text with reflection interpretation",
+        "ordered fiducials",
+        "trusted capture orientation metadata"
+      ],
+      "operational_action": "export D4 candidates and chart-relative geometry; preserve source for review",
+      "scope_limit": "An asymmetric border or readable text may break some or all symmetry."
+    },
+    {
+      "control_id": "ID03",
+      "case": "integer_skipped_rows_or_columns",
+      "observation_class": "extracted_points_only",
+      "admissible_world_class": "detector drops every second major line while intermediate lines remain inRGB",
+      "identifiability_from_current_input": "recoverable_from_RGB_not_from_reduced_points",
+      "recommended_states": "scale:ambiguous_until_RGB_rechecked; geometry:conditionally_ambiguous",
+      "additional_evidence_that_can_resolve": [
+        "line counting between point pairs",
+        "major/minor appearance",
+        "joint edge jump labeling with latent integer differences"
+      ],
+      "operational_action": "revisit source lines, permit jumps greater than1, relabel rather than only smooth fixedIDs",
+      "scope_limit": "Information loss by frontend is not an information-theoretic limit of the original image."
+    },
+    {
+      "control_id": "ID04",
+      "case": "disconnected_component_integer_phase",
+      "observation_class": "exact_RGB_under_explicit_physical_model",
+      "admissible_world_class": "orthographic developable strips with hidden20mm or25mm bridge and5mm grid phase",
+      "identifiability_from_current_input": "not_unique_without_bridge_or_surface_constraint",
+      "recommended_states": "geometry:local_charts_resolvable; origin:relative_phase_ambiguous",
+      "additional_evidence_that_can_resolve": [
+        "visible indexed bridge",
+        "independent3D information",
+        "supported whole-plane constraint that excludes fold",
+        "additional view"
+      ],
+      "operational_action": "keep all components and phase hypotheses; never drop all but largest or force one global origin",
+      "scope_limit": "A trustworthy plane model may register disconnected visible islands. Uncertain plane assumption is not evidence."
+    },
+    {
+      "control_id": "ID05",
+      "case": "visible_no_grid_fold",
+      "observation_class": "exact_RGB_under_explicit_physical_and_photometric_model",
+      "admissible_world_class": "blank developable V strip, orthographic camera, constant radiance, unknown arc length",
+      "identifiability_from_current_input": "not_unique_in_declared_world_class",
+      "recommended_states": "geometry:ambiguous_in_blank_strip; support:visible_but_unobserved_geometry",
+      "additional_evidence_that_can_resolve": [
+        "marks or internal grid",
+        "known surface bounds",
+        "known lighting/depth cue",
+        "second view"
+      ],
+      "operational_action": "preserve visibleRGB, expose uncertainty and chart-relative map; do not certify interpolation solely from flanking grid",
+      "scope_limit": "Real shading/texture can add information. This is not an assertion every blank strip is unrecoverable."
+    },
+    {
+      "control_id": "ID06",
+      "case": "fixed_boundaries_unknown_interior",
+      "observation_class": "exact_RGB_for_general_2D_maps",
+      "admissible_world_class": "orientation-preservingC1 maps allowing2D material deformation with blank interior",
+      "identifiability_from_current_input": "not_unique_in_general_map_class",
+      "recommended_states": "geometry:interior_ambiguous_without_stronger_model",
+      "additional_evidence_that_can_resolve": [
+        "validated nonstretchable surface/camera constraints",
+        "internal feature correspondences",
+        "justified curvature bound with error envelope"
+      ],
+      "operational_action": "report model-conditional interpolation and spatial support; do not convert roundtrip to physical-error bound",
+      "scope_limit": "No universal impossibility theorem for nonstretchable paper or calibrated planar perspective."
+    },
+    {
+      "control_id": "ID07",
+      "case": "partial_crop_absolute_origin",
+      "observation_class": "exact_RGB",
+      "admissible_world_class": "periodic crop without physical origin or crop provenance",
+      "identifiability_from_current_input": "relative_shape_can_be_unique_absolute_origin_not",
+      "recommended_states": "origin:ambiguous; geometry:relative_resolved_if_other_evidence_sufficient",
+      "additional_evidence_that_can_resolve": [
+        "crop transform provenance",
+        "time marker",
+        "paper coordinate fiducial",
+        "per-lead baseline and window metadata"
+      ],
+      "operational_action": "keep origin gauge explicit and do not turn arbitrary canvas zero into signal zero",
+      "scope_limit": "M3 translation gauge removes global origin for shape comparison only. Baseline is separate from page origin."
+    },
+    {
+      "control_id": "ID08",
+      "case": "mirror_and_upside_down_text",
+      "observation_class": "exact_RGB",
+      "admissible_world_class": "symmetricII font token on symmetric grid",
+      "identifiability_from_current_input": "II_does_not_break_horizontal_mirror_or180_rotation",
+      "recommended_states": "orientation:ambiguous_when_only_symmetric_text",
+      "additional_evidence_that_can_resolve": [
+        "asymmetric glyph with reliable upright convention",
+        "joint reflectedOCR evaluation",
+        "layout geometry and independent fiducials"
+      ],
+      "operational_action": "evaluate reflection explicitly, propagate OCR alternatives and flag conflicting cues",
+      "scope_limit": "Ordinary asymmetric text may make orientation identifiable. Control positiveF has8 distinct views, not anOCR accuracy benchmark."
+    },
+    {
+      "control_id": "ID09",
+      "case": "folds_with_overlap",
+      "observation_class": "physical_many_to_one_projection_and_exact_RGB_occlusion",
+      "admissible_world_class": "two parallel strips joined by semicylindrical hinge under orthographic camera",
+      "identifiability_from_current_input": "visible_chart_only_hidden_chart_not_recoverable",
+      "recommended_states": "geometry:unsupported_as_single_global_bijection; support:occluded_back_chart",
+      "additional_evidence_that_can_resolve": [
+        "separate view",
+        "original scan",
+        "depth and visibility plus additional observation of hidden surface"
+      ],
+      "operational_action": "export visible charts and visibility; reject one global inverse over both layers; do not hallucinate hidden traces",
+      "scope_limit": "Visibility can make the inverse single-valued on the front chart, never on all folded material from the same pixel."
+    },
+    {
+      "control_id": "ID10",
+      "case": "opaque_occlusion",
+      "observation_class": "exact_RGB",
+      "admissible_world_class": "distinct document content fully hidden under opaque foreground",
+      "identifiability_from_current_input": "hidden_content_not_identifiable",
+      "recommended_states": "support:occluded; geometry:may_be_interpolated_conditionally_but_content_unsupported",
+      "additional_evidence_that_can_resolve": [
+        "another frame without occluder",
+        "source document",
+        "independent original signal"
+      ],
+      "operational_action": "archive visible source; mark hidden material unknown; keep any inpainting separate from observed output",
+      "scope_limit": "Not a claim of irrecoverability when another source of information exists."
+    },
+    {
+      "control_id": "ID11",
+      "case": "inconsistent_lead_labels",
+      "observation_class": "input_constraint_contradiction",
+      "admissible_world_class": "expected uniqueI/II metadata but reliable observedII/II labels",
+      "identifiability_from_current_input": "no_hard_consistent_assignment_two_tied_soft_assignments",
+      "recommended_states": "data_quality:contradictory; semantic_assignment:ambiguous",
+      "additional_evidence_that_can_resolve": [
+        "correct layout/provenance",
+        "OCR alternatives",
+        "per-strip lead and time-window metadata"
+      ],
+      "operational_action": "retain conflict and competing assignments; use trace IDs and time windows for legitimate repeatedII strips",
+      "scope_limit": "RepeatedII is common in some layouts and is not itself invalid. Contradiction depends on explicit unique-lead premise."
+    },
+    {
+      "control_id": "ID12",
+      "case": "photocopy_anisotropic_stretch",
+      "observation_class": "lattice_observation_alias",
+      "admissible_world_class": "unknown original grid family versus square5mm original stretched1.1x0.9",
+      "identifiability_from_current_input": "resolvable_for_original_coordinates_if_square5mm_prior_trusted",
+      "recommended_states": "scale:resolved_conditionally_or_ambiguous_if_grid_family_unknown",
+      "additional_evidence_that_can_resolve": [
+        "known original square5mm grid",
+        "copy scale/provenance",
+        "physical calibrator",
+        "source image"
+      ],
+      "operational_action": "keep original-documentmm and photocopy-papermm separate; correct both axes using trustworthy original grid",
+      "scope_limit": "Do not describe ordinary anisotropic photocopy stretch as uncorrectable with known square grid. Different targets explain alias."
+    },
+    {
+      "control_id": "ID13",
+      "case": "mixed_grid_scales_and_layout_panels",
+      "observation_class": "model_limit_with_input_units",
+      "admissible_world_class": "composite page with known5mm and10mm panel intervals at20px spacing",
+      "identifiability_from_current_input": "identifiable_per_panel_but_not_representable_by_one_shared_scale",
+      "recommended_states": "geometry:unsupported_by_shared_scale_model; scale:per_chart_resolved_with_metadata",
+      "additional_evidence_that_can_resolve": [
+        "panel boundaries",
+        "panel-specific units",
+        "separate lead namespaces and time windows"
+      ],
+      "operational_action": "segment charts and keep inter-panel alignment unknown unless independently linked",
+      "scope_limit": "The control rejects one shared scalar, not every conceivable global nonuniform warp."
+    },
+    {
+      "control_id": "ID14",
+      "case": "missing_speed_gain",
+      "observation_class": "exact_RGB",
+      "admissible_world_class": "same drawn trace with speed/gain legend and independently known calibration pulse absent",
+      "identifiability_from_current_input": "paper_mm_does_not_identify_s_or_mV",
+      "recommended_states": "signal_calibration:ambiguous",
+      "additional_evidence_that_can_resolve": [
+        "reliable speed/gain legend",
+        "pulse with known amplitude and duration",
+        "original digital waveform/provenance"
+      ],
+      "operational_action": "output geometry inmm while signal units remain absent or candidates; never infer calibration by making waveform typical",
+      "scope_limit": "The missing-pulse wording means absent independent known calibration. Generic displayed pulse without trustworthy units is not enough."
+    },
+    {
+      "control_id": "ID15",
+      "case": "no_grid_visible_content",
+      "observation_class": "content_policy_counterexample",
+      "admissible_world_class": "grid-free box containing visible text and trace",
+      "identifiability_from_current_input": "content_presence_is_observable_even_without_grid",
+      "recommended_states": "geometry:support_may_be_weak; content:visible_and_preserved",
+      "additional_evidence_that_can_resolve": [
+        "geometric prior or other anchors only for warp, never for deciding whetherRGB exists"
+      ],
+      "operational_action": "preserveRGB and separate source footprint, geometry support and visibility; keep identity fallback exact",
+      "scope_limit": "Does not claimM3 currently masksRGB by grid. CurrentM3 audit says the source and fallback are preserved."
+    },
+    {
+      "control_id": "ID16",
+      "case": "ordered_physical_fiducials_positive",
+      "observation_class": "positive_added_input_evidence",
+      "admissible_world_class": "four ordered asymmetric fiducials with physical coordinates available as input",
+      "identifiability_from_current_input": "one_of24_registered_pitch_pose_candidates_survives",
+      "recommended_states": "scale:resolved_conditionally; orientation:resolved_conditionally; geometry:resolved_in_affine_control",
+      "additional_evidence_that_can_resolve": [
+        "already provided input fiducial identities andmm coordinates"
+      ],
+      "operational_action": "document evidence that breaks symmetry; fit within declared model and retain new-data risk evaluation requirement",
+      "scope_limit": "Not anECG inference result, not gold-assisted selection and not proof fiducials are available on ordinary documents."
+    }
+  ],
+  "additional_threats_not_experimented": [
+    {
+      "case": "nonstandard_grid_units",
+      "threat": "2.5mm or nonmetric graph paper, ECG printed on graph-like decorative background",
+      "required_response": "multi-family scale and explicitunknown",
+      "experimental_status": "NOT_TESTED_IN_THIS_PACKAGE"
+    },
+    {
+      "case": "dotted_double_dashed_grid",
+      "threat": "dotted and double lines produce different harmonics",
+      "required_response": "line family hypotheses and phase aliases",
+      "experimental_status": "NOT_TESTED_IN_THIS_PACKAGE"
+    },
+    {
+      "case": "photocopy_color_erasure",
+      "threat": "red grid drops out while black trace survives",
+      "required_response": "no-grid RGB preservation plus externalunit evidence",
+      "experimental_status": "NOT_TESTED_IN_THIS_PACKAGE"
+    },
+    {
+      "case": "moire_and_sensor_alias",
+      "threat": "periodicgrid aliases under sampling/demosaic",
+      "required_response": "multiscale periodicity uncertainty and adverse sampling controls",
+      "experimental_status": "NOT_TESTED_IN_THIS_PACKAGE"
+    },
+    {
+      "case": "defocus_motion_blur",
+      "threat": "two nearbylines merge anddetector switcheslinefamily",
+      "required_response": "RGB line integration with image-quality uncertainty",
+      "experimental_status": "NOT_TESTED_IN_THIS_PACKAGE"
+    },
+    {
+      "case": "rolling_shutter",
+      "threat": "nonprojective distortion from camera motion",
+      "required_response": "explicit capture model or partial/unsupported geometry",
+      "experimental_status": "NOT_TESTED_IN_THIS_PACKAGE"
+    },
+    {
+      "case": "lens_distortion",
+      "threat": "radial/tangential distortions violate pinholehomography",
+      "required_response": "calibratedlens hypothesis plus heldoutline checks",
+      "experimental_status": "NOT_TESTED_IN_THIS_PACKAGE"
+    },
+    {
+      "case": "wet_or_stretched_paper",
+      "threat": "originalpaper material metric changes",
+      "required_response": "original versus current metric target and physicalprior validation",
+      "experimental_status": "NOT_TESTED_IN_THIS_PACKAGE"
+    },
+    {
+      "case": "show_through_backside",
+      "threat": "backprint may be mistaken for frontgrid or trace",
+      "required_response": "layer/contrast evidence, uncertaintrace identity",
+      "experimental_status": "NOT_TESTED_IN_THIS_PACKAGE"
+    },
+    {
+      "case": "stacked_or_pasted_pages",
+      "threat": "distinct sheets overlap or are composed intooneJPEG",
+      "required_response": "panel/material instance segmentation and independentorigins",
+      "experimental_status": "NOT_TESTED_IN_THIS_PACKAGE"
+    },
+    {
+      "case": "no_grid_anywhere",
+      "threat": "image may still contain useful waveform andtext",
+      "required_response": "document-semantic calibration or relative geometry withunknownmm",
+      "experimental_status": "NOT_TESTED_IN_THIS_PACKAGE"
+    },
+    {
+      "case": "mixed_speed_gain_per_strip",
+      "threat": "one page may have multiple speed/gain settings",
+      "required_response": "per-strip units and timewindows",
+      "experimental_status": "NOT_TESTED_IN_THIS_PACKAGE"
+    },
+    {
+      "case": "overprinted_two_time_traces",
+      "threat": "two recordings share oneimage region",
+      "required_response": "multitrace assignment and provenance, notonecurve prior",
+      "experimental_status": "NOT_TESTED_IN_THIS_PACKAGE"
+    },
+    {
+      "case": "handwritten_annotations",
+      "threat": "ink interfereswithgrid andmaycontainimportant clinicaltext",
+      "required_response": "contentpreservation and explicitoutlier hypotheses",
+      "experimental_status": "NOT_TESTED_IN_THIS_PACKAGE"
+    },
+    {
+      "case": "cropped_calibrator",
+      "threat": "pulse or unit label cut atcropedge",
+      "required_response": "partial evidence andremaininghypotheses",
+      "experimental_status": "NOT_TESTED_IN_THIS_PACKAGE"
+    },
+    {
+      "case": "JPEG_or_print_halftone",
+      "threat": "grid andthintrace canmergewithblock anddotpatterns",
+      "required_response": "strokefidelity scoring andcandidate ambiguity",
+      "experimental_status": "NOT_TESTED_IN_THIS_PACKAGE"
+    },
+    {
+      "case": "nonuniform_printer_drift",
+      "threat": "localstretch andfeedslip cannotassumeonecopyA",
+      "required_response": "calibratedlocalmetric andcrease/model discrimination",
+      "experimental_status": "NOT_TESTED_IN_THIS_PACKAGE"
+    },
+    {
+      "case": "cabrera_or_nonstandard_lead_order",
+      "threat": "layoutpriors maynotmatch declaredleadorder",
+      "required_response": "leadlabel semantics with permittedformat registry",
+      "experimental_status": "NOT_TESTED_IN_THIS_PACKAGE"
+    },
+    {
+      "case": "header_upright_trace_rotated",
+      "threat": "compositepage hascontradictoryorientationbetweenpanels",
+      "required_response": "per-panelpose and explicitglobalcue conflict",
+      "experimental_status": "NOT_TESTED_IN_THIS_PACKAGE"
+    },
+    {
+      "case": "quantized_nearly_equivalent_worlds",
+      "threat": "differentweakgridlines maptoidenticaluint8 values",
+      "required_response": "equivalence afterquantization, notunquantizedfloatprior",
+      "experimental_status": "NOT_TESTED_IN_THIS_PACKAGE"
+    }
+  ]
+}

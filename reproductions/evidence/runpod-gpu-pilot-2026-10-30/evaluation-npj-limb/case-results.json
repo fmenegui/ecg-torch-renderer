@@ -1,0 +1,644 @@
+[
+  {
+    "case_id": "D2_000001_l00",
+    "patient_id": "source-record:D2_000001",
+    "acquisition": "l00",
+    "status": "returned",
+    "error": null,
+    "coverage": 0.9995333333333334,
+    "leads": [
+      {
+        "lead": "I",
+        "status": "returned",
+        "coverage_definition": "finite returned predictions on original printed times, not physical visibility or confidence",
+        "printed_samples": 5000,
+        "returned_samples": 4998,
+        "coverage": 0.9996,
+        "entirely_missing": false,
+        "all_printed_zero_scoring_only": {
+          "rmse_mv": 0.012386000026528808,
+          "snr_db": 20.088308315009783,
+          "snr_status": "finite",
+          "pcc": 0.9960122052917976
+        },
+        "observed": {
+          "rmse_mv": 0.012375348736892854,
+          "snr_db": 20.097428296119606,
+          "snr_status": "finite",
+          "pcc": 0.996026851155173
+        },
+        "aligned": {
+          "rmse_mv": 0.01113544289001465,
+          "snr_db": 21.006355866759833,
+          "snr_status": "finite",
+          "pcc": 0.996026851155173,
+          "lag_samples": 0,
+          "coverage_on_original_printed": 0.9996,
+          "dc_centered": true
+        }
+      },
+      {
+        "lead": "II",
+        "status": "returned",
+        "coverage_definition": "finite returned predictions on original printed times, not physical visibility or confidence",
+        "printed_samples": 5000,
+        "returned_samples": 4998,
+        "coverage": 0.9996,
+        "entirely_missing": false,
+        "all_printed_zero_scoring_only": {
+          "rmse_mv": 0.027139470908319543,
+          "snr_db": 18.252776146611126,
+          "snr_status": "finite",
+          "pcc": 0.9929906291731038
+        },
+        "observed": {
+          "rmse_mv": 0.02544166253334296,
+          "snr_db": 18.8077305759314,
+          "snr_status": "finite",
+          "pcc": 0.9938691162592159
+        },
+        "aligned": {
+          "rmse_mv": 0.016598493882320115,
+          "snr_db": 22.52051599261162,
+          "snr_status": "finite",
+          "pcc": 0.9971976178296014,
+          "lag_samples": 2,
+          "coverage_on_original_printed": 0.9996,
+          "dc_centered": true
+        }
+      },
+      {
+        "lead": "III",
+        "status": "returned",
+        "coverage_definition": "finite returned predictions on original printed times, not physical visibility or confidence",
+        "printed_samples": 5000,
+        "returned_samples": 4996,
+        "coverage": 0.9992,
+        "entirely_missing": false,
+        "all_printed_zero_scoring_only": {
+          "rmse_mv": 0.02378997952922465,
+          "snr_db": 14.851702301094011,
+          "snr_status": "finite",
+          "pcc": 0.9836609520773688
+        },
+        "observed": {
+          "rmse_mv": 0.02123167806188636,
+          "snr_db": 15.814265073350962,
+          "snr_status": "finite",
+          "pcc": 0.9869393316883253
+        },
+        "aligned": {
+          "rmse_mv": 0.010808345550157318,
+          "snr_db": 21.699415844515173,
+          "snr_status": "finite",
+          "pcc": 0.9966143141175505,
+          "lag_samples": 3,
+          "coverage_on_original_printed": 0.9992,
+          "dc_centered": true
+        }
+      },
+      {
+        "lead": "aVR",
+        "status": "returned",
+        "coverage_definition": "finite returned predictions on original printed times, not physical visibility or confidence",
+        "printed_samples": 5000,
+        "returned_samples": 4998,
+        "coverage": 0.9996,
+        "entirely_missing": false,
+        "all_printed_zero_scoring_only": {
+          "rmse_mv": 0.016158342408973365,
+          "snr_db": 20.32577684143788,
+          "snr_status": "finite",
+          "pcc": 0.9960195705003729
+        },
+        "observed": {
+          "rmse_mv": 0.01610506686347803,
+          "snr_db": 20.355918594895094,
+          "snr_status": "finite",
+          "pcc": 0.9960580335682723
+        },
+        "aligned": {
+          "rmse_mv": 0.013234439797077923,
+          "snr_db": 22.055906381842675,
+          "snr_status": "finite",
+          "pcc": 0.9968811368298577,
+          "lag_samples": 1,
+          "coverage_on_original_printed": 0.9994,
+          "dc_centered": true
+        }
+      },
+      {
+        "lead": "aVL",
+        "status": "returned",
+        "coverage_definition": "finite returned predictions on original printed times, not physical visibility or confidence",
+        "printed_samples": 5000,
+        "returned_samples": 4998,
+        "coverage": 0.9996,
+        "entirely_missing": false,
+        "all_printed_zero_scoring_only": {
+          "rmse_mv": 0.007022522061765587,
+          "snr_db": 19.257449038777604,
+          "snr_status": "finite",
+          "pcc": 0.9945270226000009
+        },
+        "observed": {
+          "rmse_mv": 0.007006800568709535,
+          "snr_db": 19.27840269835282,
+          "snr_status": "finite",
+          "pcc": 0.9945513023782564
+        },
+        "aligned": {
+          "rmse_mv": 0.006719037142937148,
+          "snr_db": 19.6385029168157,
+          "snr_status": "finite",
+          "pcc": 0.9945513023782564,
+          "lag_samples": 0,
+          "coverage_on_original_printed": 0.9996,
+          "dc_centered": true
+        }
+      },
+      {
+        "lead": "aVF",
+        "status": "returned",
+        "coverage_definition": "finite returned predictions on original printed times, not physical visibility or confidence",
+        "printed_samples": 5000,
+        "returned_samples": 4998,
+        "coverage": 0.9996,
+        "entirely_missing": false,
+        "all_printed_zero_scoring_only": {
+          "rmse_mv": 0.02578445677823518,
+          "snr_db": 16.437601054588193,
+          "snr_status": "finite",
+          "pcc": 0.9889203370284931
+        },
+        "observed": {
+          "rmse_mv": 0.02436516110718313,
+          "snr_db": 16.92050475201335,
+          "snr_status": "finite",
+          "pcc": 0.9901058584410176
+        },
+        "aligned": {
+          "rmse_mv": 0.01322599371817819,
+          "snr_db": 22.235371113627878,
+          "snr_status": "finite",
+          "pcc": 0.9970071616429054,
+          "lag_samples": 3,
+          "coverage_on_original_printed": 0.9994,
+          "dc_centered": true
+        }
+      },
+      {
+        "lead": "V1",
+        "status": "not_printed"
+      },
+      {
+        "lead": "V2",
+        "status": "not_printed"
+      },
+      {
+        "lead": "V3",
+        "status": "not_printed"
+      },
+      {
+        "lead": "V4",
+        "status": "not_printed"
+      },
+      {
+        "lead": "V5",
+        "status": "not_printed"
+      },
+      {
+        "lead": "V6",
+        "status": "not_printed"
+      }
+    ]
+  },
+  {
+    "case_id": "D2_000001_l01",
+    "patient_id": "source-record:D2_000001",
+    "acquisition": "l01",
+    "status": "returned",
+    "error": null,
+    "coverage": 0.9994333333333333,
+    "leads": [
+      {
+        "lead": "I",
+        "status": "returned",
+        "coverage_definition": "finite returned predictions on original printed times, not physical visibility or confidence",
+        "printed_samples": 5000,
+        "returned_samples": 5000,
+        "coverage": 1.0,
+        "entirely_missing": false,
+        "all_printed_zero_scoring_only": {
+          "rmse_mv": 0.056816297632531376,
+          "snr_db": 6.857471246727292,
+          "snr_status": "finite",
+          "pcc": 0.8967026994094976
+        },
+        "observed": {
+          "rmse_mv": 0.056816297632531376,
+          "snr_db": 6.857471246727292,
+          "snr_status": "finite",
+          "pcc": 0.8967026994094976
+        },
+        "aligned": {
+          "rmse_mv": 0.04154865516583758,
+          "snr_db": 9.567040295273413,
+          "snr_status": "finite",
+          "pcc": 0.9442668095657006,
+          "lag_samples": -6,
+          "coverage_on_original_printed": 0.9988,
+          "dc_centered": true
+        }
+      },
+      {
+        "lead": "II",
+        "status": "returned",
+        "coverage_definition": "finite returned predictions on original printed times, not physical visibility or confidence",
+        "printed_samples": 5000,
+        "returned_samples": 4991,
+        "coverage": 0.9982,
+        "entirely_missing": false,
+        "all_printed_zero_scoring_only": {
+          "rmse_mv": 0.08391858036681454,
+          "snr_db": 8.447641113291969,
+          "snr_status": "finite",
+          "pcc": 0.9276995302410802
+        },
+        "observed": {
+          "rmse_mv": 0.0806623498120435,
+          "snr_db": 8.75065802608199,
+          "snr_status": "finite",
+          "pcc": 0.9327818825454353
+        },
+        "aligned": {
+          "rmse_mv": 0.06351172634315075,
+          "snr_db": 10.787494486898417,
+          "snr_status": "finite",
+          "pcc": 0.9579163764485877,
+          "lag_samples": -5,
+          "coverage_on_original_printed": 0.9972,
+          "dc_centered": true
+        }
+      },
+      {
+        "lead": "III",
+        "status": "returned",
+        "coverage_definition": "finite returned predictions on original printed times, not physical visibility or confidence",
+        "printed_samples": 5000,
+        "returned_samples": 4998,
+        "coverage": 0.9996,
+        "entirely_missing": false,
+        "all_printed_zero_scoring_only": {
+          "rmse_mv": 0.044799273874198346,
+          "snr_db": 9.354164171330156,
+          "snr_status": "finite",
+          "pcc": 0.9433116094717402
+        },
+        "observed": {
+          "rmse_mv": 0.044781061589094215,
+          "snr_db": 9.3588224057496,
+          "snr_status": "finite",
+          "pcc": 0.9433805767078091
+        },
+        "aligned": {
+          "rmse_mv": 0.043270581462945656,
+          "snr_db": 9.642846938697563,
+          "snr_status": "finite",
+          "pcc": 0.9470349229587023,
+          "lag_samples": -2,
+          "coverage_on_original_printed": 0.9996,
+          "dc_centered": true
+        }
+      },
+      {
+        "lead": "aVR",
+        "status": "returned",
+        "coverage_definition": "finite returned predictions on original printed times, not physical visibility or confidence",
+        "printed_samples": 5000,
+        "returned_samples": 5000,
+        "coverage": 1.0,
+        "entirely_missing": false,
+        "all_printed_zero_scoring_only": {
+          "rmse_mv": 0.06268599780832017,
+          "snr_db": 8.550302117373649,
+          "snr_status": "finite",
+          "pcc": 0.9297145454053601
+        },
+        "observed": {
+          "rmse_mv": 0.06268599780832017,
+          "snr_db": 8.550302117373649,
+          "snr_status": "finite",
+          "pcc": 0.9297145454053601
+        },
+        "aligned": {
+          "rmse_mv": 0.04485551518069191,
+          "snr_db": 11.440924514947442,
+          "snr_status": "finite",
+          "pcc": 0.9636545276544314,
+          "lag_samples": -5,
+          "coverage_on_original_printed": 0.999,
+          "dc_centered": true
+        }
+      },
+      {
+        "lead": "aVL",
+        "status": "returned",
+        "coverage_definition": "finite returned predictions on original printed times, not physical visibility or confidence",
+        "printed_samples": 5000,
+        "returned_samples": 4996,
+        "coverage": 0.9992,
+        "entirely_missing": false,
+        "all_printed_zero_scoring_only": {
+          "rmse_mv": 0.0329862034602686,
+          "snr_db": 5.820664615747345,
+          "snr_status": "finite",
+          "pcc": 0.8715127309907297
+        },
+        "observed": {
+          "rmse_mv": 0.032991971673092514,
+          "snr_db": 5.822109400848145,
+          "snr_status": "finite",
+          "pcc": 0.8715562354938038
+        },
+        "aligned": {
+          "rmse_mv": 0.026466331789554393,
+          "snr_db": 7.7162173713372155,
+          "snr_status": "finite",
+          "pcc": 0.9169665014294065,
+          "lag_samples": -5,
+          "coverage_on_original_printed": 0.999,
+          "dc_centered": true
+        }
+      },
+      {
+        "lead": "aVF",
+        "status": "returned",
+        "coverage_definition": "finite returned predictions on original printed times, not physical visibility or confidence",
+        "printed_samples": 5000,
+        "returned_samples": 4998,
+        "coverage": 0.9996,
+        "entirely_missing": false,
+        "all_printed_zero_scoring_only": {
+          "rmse_mv": 0.057385024075147756,
+          "snr_db": 9.488789415195434,
+          "snr_status": "finite",
+          "pcc": 0.9441504600895686
+        },
+        "observed": {
+          "rmse_mv": 0.05736666943452524,
+          "snr_db": 9.492797776428693,
+          "snr_status": "finite",
+          "pcc": 0.944210858427443
+        },
+        "aligned": {
+          "rmse_mv": 0.0509243046637273,
+          "snr_db": 10.504996508399326,
+          "snr_status": "finite",
+          "pcc": 0.9557099907614623,
+          "lag_samples": -4,
+          "coverage_on_original_printed": 0.9992,
+          "dc_centered": true
+        }
+      },
+      {
+        "lead": "V1",
+        "status": "not_printed"
+      },
+      {
+        "lead": "V2",
+        "status": "not_printed"
+      },
+      {
+        "lead": "V3",
+        "status": "not_printed"
+      },
+      {
+        "lead": "V4",
+        "status": "not_printed"
+      },
+      {
+        "lead": "V5",
+        "status": "not_printed"
+      },
+      {
+        "lead": "V6",
+        "status": "not_printed"
+      }
+    ]
+  },
+  {
+    "case_id": "D2_000001_l02",
+    "patient_id": "source-record:D2_000001",
+    "acquisition": "l02",
+    "status": "returned",
+    "error": null,
+    "coverage": 0.9995333333333334,
+    "leads": [
+      {
+        "lead": "I",
+        "status": "returned",
+        "coverage_definition": "finite returned predictions on original printed times, not physical visibility or confidence",
+        "printed_samples": 5000,
+        "returned_samples": 5000,
+        "coverage": 1.0,
+        "entirely_missing": false,
+        "all_printed_zero_scoring_only": {
+          "rmse_mv": 0.03707032952418875,
+          "snr_db": 10.566400915864381,
+          "snr_status": "finite",
+          "pcc": 0.9565310969788882
+        },
+        "observed": {
+          "rmse_mv": 0.03707032952418875,
+          "snr_db": 10.566400915864381,
+          "snr_status": "finite",
+          "pcc": 0.9565310969788882
+        },
+        "aligned": {
+          "rmse_mv": 0.03250343523945143,
+          "snr_db": 11.701000866848297,
+          "snr_status": "finite",
+          "pcc": 0.9658692573923774,
+          "lag_samples": -2,
+          "coverage_on_original_printed": 0.9996,
+          "dc_centered": true
+        }
+      },
+      {
+        "lead": "II",
+        "status": "returned",
+        "coverage_definition": "finite returned predictions on original printed times, not physical visibility or confidence",
+        "printed_samples": 5000,
+        "returned_samples": 4998,
+        "coverage": 0.9996,
+        "entirely_missing": false,
+        "all_printed_zero_scoring_only": {
+          "rmse_mv": 0.04108751259646815,
+          "snr_db": 14.650606676170629,
+          "snr_status": "finite",
+          "pcc": 0.983201524622427
+        },
+        "observed": {
+          "rmse_mv": 0.03999114662132313,
+          "snr_db": 14.879363202799539,
+          "snr_status": "finite",
+          "pcc": 0.9840713250309199
+        },
+        "aligned": {
+          "rmse_mv": 0.03355038003412438,
+          "snr_db": 16.393268212119814,
+          "snr_status": "finite",
+          "pcc": 0.9884614561390198,
+          "lag_samples": -2,
+          "coverage_on_original_printed": 0.9992,
+          "dc_centered": true
+        }
+      },
+      {
+        "lead": "III",
+        "status": "returned",
+        "coverage_definition": "finite returned predictions on original printed times, not physical visibility or confidence",
+        "printed_samples": 5000,
+        "returned_samples": 4994,
+        "coverage": 0.9988,
+        "entirely_missing": false,
+        "all_printed_zero_scoring_only": {
+          "rmse_mv": 0.024707755326178114,
+          "snr_db": 14.522917827955268,
+          "snr_status": "finite",
+          "pcc": 0.982382282771965
+        },
+        "observed": {
+          "rmse_mv": 0.02080965216446758,
+          "snr_db": 15.97458906549791,
+          "snr_status": "finite",
+          "pcc": 0.9874406831717213
+        },
+        "aligned": {
+          "rmse_mv": 0.01904412558899958,
+          "snr_db": 16.73715162171319,
+          "snr_status": "finite",
+          "pcc": 0.9894480393163562,
+          "lag_samples": -1,
+          "coverage_on_original_printed": 0.9986,
+          "dc_centered": true
+        }
+      },
+      {
+        "lead": "aVR",
+        "status": "returned",
+        "coverage_definition": "finite returned predictions on original printed times, not physical visibility or confidence",
+        "printed_samples": 5000,
+        "returned_samples": 5000,
+        "coverage": 1.0,
+        "entirely_missing": false,
+        "all_printed_zero_scoring_only": {
+          "rmse_mv": 0.03951799813486393,
+          "snr_db": 12.557814252729793,
+          "snr_status": "finite",
+          "pcc": 0.972620105865633
+        },
+        "observed": {
+          "rmse_mv": 0.03951799813486393,
+          "snr_db": 12.557814252729793,
+          "snr_status": "finite",
+          "pcc": 0.972620105865633
+        },
+        "aligned": {
+          "rmse_mv": 0.035561304601077266,
+          "snr_db": 13.465187522992979,
+          "snr_status": "finite",
+          "pcc": 0.977263483998416,
+          "lag_samples": -2,
+          "coverage_on_original_printed": 0.9996,
+          "dc_centered": true
+        }
+      },
+      {
+        "lead": "aVL",
+        "status": "returned",
+        "coverage_definition": "finite returned predictions on original printed times, not physical visibility or confidence",
+        "printed_samples": 5000,
+        "returned_samples": 5000,
+        "coverage": 1.0,
+        "entirely_missing": false,
+        "all_printed_zero_scoring_only": {
+          "rmse_mv": 0.02300960579608819,
+          "snr_db": 8.949127716925553,
+          "snr_status": "finite",
+          "pcc": 0.9377638976696095
+        },
+        "observed": {
+          "rmse_mv": 0.02300960579608819,
+          "snr_db": 8.949127716925553,
+          "snr_status": "finite",
+          "pcc": 0.9377638976696095
+        },
+        "aligned": {
+          "rmse_mv": 0.019967915839917028,
+          "snr_db": 10.167706342764,
+          "snr_status": "finite",
+          "pcc": 0.9527805952521629,
+          "lag_samples": -3,
+          "coverage_on_original_printed": 0.9994,
+          "dc_centered": true
+        }
+      },
+      {
+        "lead": "aVF",
+        "status": "returned",
+        "coverage_definition": "finite returned predictions on original printed times, not physical visibility or confidence",
+        "printed_samples": 5000,
+        "returned_samples": 4994,
+        "coverage": 0.9988,
+        "entirely_missing": false,
+        "all_printed_zero_scoring_only": {
+          "rmse_mv": 0.028219376021072946,
+          "snr_db": 15.653812648254707,
+          "snr_status": "finite",
+          "pcc": 0.986618632204608
+        },
+        "observed": {
+          "rmse_mv": 0.025340622715518245,
+          "snr_db": 16.57057981645298,
+          "snr_status": "finite",
+          "pcc": 0.9891988949656327
+        },
+        "aligned": {
+          "rmse_mv": 0.022690023991901377,
+          "snr_db": 17.521795807272955,
+          "snr_status": "finite",
+          "pcc": 0.9911181629756722,
+          "lag_samples": -1,
+          "coverage_on_original_printed": 0.9988,
+          "dc_centered": true
+        }
+      },
+      {
+        "lead": "V1",
+        "status": "not_printed"
+      },
+      {
+        "lead": "V2",
+        "status": "not_printed"
+      },
+      {
+        "lead": "V3",
+        "status": "not_printed"
+      },
+      {
+        "lead": "V4",
+        "status": "not_printed"
+      },
+      {
+        "lead": "V5",
+        "status": "not_printed"
+      },
+      {
+        "lead": "V6",
+        "status": "not_printed"
+      }
+    ]
+  }
+]

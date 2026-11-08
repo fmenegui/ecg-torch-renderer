@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "scheduled_cases": 24,
+  "methods": [
+    "baseline-cells",
+    "baseline-text-cells",
+    "consensus-cells",
+    "consensus-text-cells"
+  ],
+  "coordinate_count_checks": 1536,
+  "registration_and_binding_checks": 432,
+  "observed_cell_checks": 150558,
+  "original_RGB_sample_checks": 0,
+  "full_frame_cases": [],
+  "baseline_replay": [],
+  "source_sha256": "bdad0d2b5910a3956aa460d244a2b730719a5aa34b9cc2db4d276253399988d8",
+  "evaluation_protocol_sha256": "020821eca496aa2b9e3eb35348898a7c5539065a7ae54541193be439bad8ddec",
+  "scope": "Independent numerical recount and sampling audit, not independent physical truth or clinical validation"
+}

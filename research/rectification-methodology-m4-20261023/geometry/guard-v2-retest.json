@@ -1,0 +1,141 @@
+{
+  "schema": "m4-guard-v2-same-experiment-retest",
+  "old_geometry_source_sha256": "42737558261ca6f5f87a04be8e208dc5a779918a487f39b11d1e3f76aaf37239",
+  "new_geometry_source_sha256": "0ce6062797c5e25dd9ce3d7b26a6a9fabe7779ca72b5ea4e55fcda564bed9e87",
+  "guard_revision_sha256": "f05022b28db653a5e5c4fdd89ac9574ad1fe69436ac748722ce4a3f8e01a8c08",
+  "same_selected_candidate_all_19": true,
+  "same_full_fit_accepted_rejected_all_342": true,
+  "same_saved_arrays_including_all_candidates": true,
+  "same_scores_all_76_arms": true,
+  "array_differences": [],
+  "changed_rejection_reasons": [
+    {
+      "scene": "planar-outliers",
+      "candidate": "LS/global",
+      "before": "rejected: observed complex: positive-area overlap/ambiguous inverse",
+      "after": "rejected: observed complex: touching/crossing nonincident boundary edges"
+    },
+    {
+      "scene": "planar-outliers",
+      "candidate": "RANSAC/global",
+      "before": "rejected: observed complex: positive-area overlap/ambiguous inverse",
+      "after": "rejected: observed complex: touching/crossing nonincident boundary edges"
+    },
+    {
+      "scene": "planar-outliers",
+      "candidate": "LS/smooth-30-shrink-0.5",
+      "before": "rejected: observed complex: positive-area overlap/ambiguous inverse",
+      "after": "rejected: observed complex: touching/crossing nonincident boundary edges"
+    },
+    {
+      "scene": "planar-outliers",
+      "candidate": "RANSAC/smooth-30-shrink-0.5",
+      "before": "rejected: observed complex: positive-area overlap/ambiguous inverse",
+      "after": "rejected: observed complex: touching/crossing nonincident boundary edges"
+    },
+    {
+      "scene": "planar-outliers",
+      "candidate": "LS/smooth-30-shrink-1",
+      "before": "rejected: observed complex: positive-area overlap/ambiguous inverse",
+      "after": "rejected: observed complex: touching/crossing nonincident boundary edges"
+    },
+    {
+      "scene": "planar-outliers",
+      "candidate": "RANSAC/smooth-30-shrink-1",
+      "before": "rejected: observed complex: positive-area overlap/ambiguous inverse",
+      "after": "rejected: observed complex: touching/crossing nonincident boundary edges"
+    },
+    {
+      "scene": "planar-outliers",
+      "candidate": "LS/smooth-3-shrink-0.5",
+      "before": "rejected: observed complex: positive-area overlap/ambiguous inverse",
+      "after": "rejected: observed complex: touching/crossing nonincident boundary edges"
+    },
+    {
+      "scene": "planar-outliers",
+      "candidate": "RANSAC/smooth-3-shrink-0.5",
+      "before": "rejected: observed complex: positive-area overlap/ambiguous inverse",
+      "after": "rejected: observed complex: touching/crossing nonincident boundary edges"
+    },
+    {
+      "scene": "planar-outliers",
+      "candidate": "LS/smooth-3-shrink-1",
+      "before": "rejected: observed complex: positive-area overlap/ambiguous inverse",
+      "after": "rejected: observed complex: touching/crossing nonincident boundary edges"
+    },
+    {
+      "scene": "planar-outliers",
+      "candidate": "RANSAC/smooth-3-shrink-1",
+      "before": "rejected: observed complex: positive-area overlap/ambiguous inverse",
+      "after": "rejected: observed complex: touching/crossing nonincident boundary edges"
+    },
+    {
+      "scene": "planar-outliers",
+      "candidate": "LS/smooth-0.3-shrink-0.5",
+      "before": "rejected: observed complex: positive-area overlap/ambiguous inverse",
+      "after": "rejected: observed complex: touching/crossing nonincident boundary edges"
+    },
+    {
+      "scene": "planar-outliers",
+      "candidate": "RANSAC/smooth-0.3-shrink-0.5",
+      "before": "rejected: observed complex: positive-area overlap/ambiguous inverse",
+      "after": "rejected: observed complex: touching/crossing nonincident boundary edges"
+    },
+    {
+      "scene": "planar-outliers",
+      "candidate": "LS/smooth-0.3-shrink-1",
+      "before": "rejected: observed complex: positive-area overlap/ambiguous inverse",
+      "after": "rejected: observed complex: touching/crossing nonincident boundary edges"
+    },
+    {
+      "scene": "planar-outliers",
+      "candidate": "RANSAC/smooth-0.3-shrink-1",
+      "before": "rejected: observed complex: positive-area overlap/ambiguous inverse",
+      "after": "rejected: observed complex: touching/crossing nonincident boundary edges"
+    },
+    {
+      "scene": "planar-outliers",
+      "candidate": "LS/smooth-0.03-shrink-0.5",
+      "before": "rejected: observed complex: positive-area overlap/ambiguous inverse",
+      "after": "rejected: observed complex: touching/crossing nonincident boundary edges"
+    },
+    {
+      "scene": "planar-outliers",
+      "candidate": "RANSAC/smooth-0.03-shrink-0.5",
+      "before": "rejected: observed complex: positive-area overlap/ambiguous inverse",
+      "after": "rejected: observed complex: touching/crossing nonincident boundary edges"
+    },
+    {
+      "scene": "planar-outliers",
+      "candidate": "LS/smooth-0.03-shrink-1",
+      "before": "rejected: observed complex: positive-area overlap/ambiguous inverse",
+      "after": "rejected: observed complex: touching/crossing nonincident boundary edges"
+    },
+    {
+      "scene": "planar-outliers",
+      "candidate": "RANSAC/smooth-0.03-shrink-1",
+      "before": "rejected: observed complex: positive-area overlap/ambiguous inverse",
+      "after": "rejected: observed complex: touching/crossing nonincident boundary edges"
+    }
+  ],
+  "controls": {
+    "collinear_rejected": true,
+    "horizon_rejected": true,
+    "positive_area_overlap_rejected": true,
+    "multiple_interior_inverse_returns_missing": true,
+    "nonincident_boundary_contact_rejected": true,
+    "annulus_rejection_reason": "annulus control: coincident nonincident vertices/non-simple boundary",
+    "strict_observed_exterior_returned": 0,
+    "strict_observed_exterior_all_missing": true,
+    "central_missing_cells_not_bridged": true,
+    "selector_accepts_only_observations_ids_cells_pitch": true,
+    "projective_plane_precision_mm": 1.0264876487296997e-08,
+    "projective_plane_precision_pass": true,
+    "seam_max_mm": 2.929642751054232e-14,
+    "seam_pass": true,
+    "decision_seal_unchanged": true,
+    "coherent_pitch_alias_retained_as_failure": true
+  },
+  "source_sha256": "520ac95ee55bbc1fb8d62aef4f26408babf646385929391e1e20d78e5c55e7f6",
+  "pass": true
+}

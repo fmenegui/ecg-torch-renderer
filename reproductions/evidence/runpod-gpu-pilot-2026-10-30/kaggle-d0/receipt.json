@@ -1,0 +1,44 @@
+{
+  "schema": "kaggle-native-replay-v1",
+  "method": "second-place-final-six",
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.39",
+    "packages": {
+      "numpy": "2.5.4",
+      "scipy": "1.18.1",
+      "torch": "2.7.0+cu128",
+      "torchvision": "0.22.0+cu128",
+      "pillow": "13.0.0",
+      "opencv-python-headless": "4.11.0.86",
+      "timm": "1.0.22",
+      "albumentations": "1.4.24"
+    },
+    "cuda_available": true,
+    "cuda_build": "12.8",
+    "gpu": "NVIDIA L4"
+  },
+  "assets_lock_sha256": "f7e0d87b92187e397843dadf00fdff45278df434151ee12cf8a1a3a75a6fce2b",
+  "images_sha256": {
+    "D0_000022_02": "d6937484744c62aab24d627707aa7a056216671909e4c57d0bc9c5df3761625d"
+  },
+  "scheduled_images": 1,
+  "native_submission_zeros_are_not_observed_samples": true,
+  "notebook_source_sha256": "f77d7d7b3a7afea6acc3973993568cd1efdcaafe94ee0377c4afcaac7ff68ccb",
+  "adaptations": [
+    "mount path substitution",
+    "serial GPU-0 execution of native stages",
+    "retain native intermediate outputs",
+    "headless diagnostic plotting",
+    "refuse missing or unexpected native checkpoint keys"
+  ],
+  "adapted_script_sha256": "1491dc555f243d72a81fd132c461a5422ca1503965ed89184b86448612ff4d62",
+  "status": "failed",
+  "returncode": 1,
+  "cases": [
+    {
+      "case_id": "D0_000022_02",
+      "native_signal_file_present": false
+    }
+  ]
+}

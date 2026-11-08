@@ -1,0 +1,75 @@
+{
+  "schema": "npj-native-inference-v1",
+  "source": {
+    "commit": "97a15087d4abcda843da8c58ee74b1d8f47e6f9a",
+    "tracked_files_clean": true
+  },
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.39",
+    "packages": {
+      "numpy": "2.5.4",
+      "scipy": "1.18.1",
+      "torch": "2.7.0+cu128",
+      "torchvision": "0.22.0+cu128",
+      "pillow": "13.0.0",
+      "opencv-python-headless": "4.11.0.86",
+      "timm": "1.0.30",
+      "albumentations": "1.4.24"
+    },
+    "cuda_available": true,
+    "cuda_build": "12.8",
+    "gpu": "NVIDIA L4"
+  },
+  "preset": "ahus",
+  "layout_hint": "precordial",
+  "active_weight_sha256": {
+    "segmentation": "17fe7071ef270102631306127262fc08c250d79d4e3aeb572ab1719dd34d320b",
+    "lead_names": "840bd6bf2433ee6c22db67f57c861d9d427f29e10a32eeb334f0bcf061b175a2"
+  },
+  "retrained_weight_ablation": false,
+  "output_unit": "uV",
+  "results": [
+    {
+      "case_id": "D2_000001_p00",
+      "image_sha256": "de33cda98547b81e287a771d8569462420b5e45d0803de0964d13ad0fab76073",
+      "status": "returned",
+      "shape": [
+        12,
+        5000
+      ],
+      "finite_fraction": 0.40325,
+      "output_sha256": "06a5463bece2fb676176edd1ea8103f7b81d7856a3821a7d8098aa70f96044d5",
+      "predicted_layout": "precordial_6x1",
+      "seconds_including_native_forward": 21.33173022000119
+    },
+    {
+      "case_id": "D2_000001_p01",
+      "image_sha256": "5d1d329242f46c6999dfb4afd3196df3c360c6354e9720e5bfde8eb05f209ceb",
+      "status": "returned",
+      "shape": [
+        12,
+        5000
+      ],
+      "finite_fraction": 0.36345,
+      "output_sha256": "5ce98661722f9e0d2bb75fa72fed50df6d82a90051df9b91ff17d3ae55bff994",
+      "predicted_layout": "precordial_6x1",
+      "seconds_including_native_forward": 22.876231112983078
+    },
+    {
+      "case_id": "D2_000001_p02",
+      "image_sha256": "515ac5cb4bc50d74df27d006c1db8e3fc5d14353301f1564f956ff66c60b4a23",
+      "status": "returned",
+      "shape": [
+        12,
+        5000
+      ],
+      "finite_fraction": 0.3997,
+      "output_sha256": "0d8bd534b61b4b0f22114a210cd633de132e7a2a156ceac8041e4a2b3532d5ca",
+      "predicted_layout": "precordial_6x1",
+      "seconds_including_native_forward": 24.484705554088578
+    }
+  ],
+  "scheduled_images": 3,
+  "paper_cohort_reproduction_completed": false
+}

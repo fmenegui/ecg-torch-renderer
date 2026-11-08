@@ -1,0 +1,29 @@
+{
+  "schema": "kaggle-author-source-audit-v1",
+  "source": {
+    "commit": "9a7ce35b6cb80529c3555efdee434bbbf76a9baf",
+    "tracked_files_clean": true
+  },
+  "notebook_version": 6,
+  "notebook_source_sha256": "f77d7d7b3a7afea6acc3973993568cd1efdcaafe94ee0377c4afcaac7ff68ccb",
+  "public_predict_sha256": "782c7a12326378ab2d154735dbaebd3c8a751faf9ec4b556d22fe7e3a47a1121",
+  "native_decoder_bimodal_probe": {
+    "notebook_mean_y": 8.5,
+    "refactor_mean_y": 8.0,
+    "equal": false
+  },
+  "native_notebook_adaptation_contract": {
+    "notebook_source_sha256": "f77d7d7b3a7afea6acc3973993568cd1efdcaafe94ee0377c4afcaac7ff68ccb",
+    "adaptations": [
+      "mount path substitution",
+      "serial GPU-0 execution of native stages",
+      "retain native intermediate outputs",
+      "headless diagnostic plotting",
+      "refuse missing or unexpected native checkpoint keys"
+    ]
+  },
+  "interpretation": "The later public predict.py and original final notebook do not implement identical waveform decoding on this finite control. This does not establish a leaderboard-score change.",
+  "gpu_inference_completed": false,
+  "training_completed": false,
+  "leaderboard_reproduced": false
+}

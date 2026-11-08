@@ -1,0 +1,31 @@
+{
+  "schema": "verified-npj-training-checkpoint-progress-v1",
+  "workflow_run": 41070920613,
+  "checkpoint_artifact_id": 13003918328,
+  "artifact_sha256": "0d285c51e3d7a6378d219cd6e65f953ef43d8df6e5c470f73f2112e31d2d13a7",
+  "source_commit": "97a15087d4abcda843da8c58ee74b1d8f47e6f9a",
+  "profile": "paper_table4",
+  "engineering_smoke": false,
+  "completed_main_epochs": 13,
+  "target_main_epochs": 45,
+  "last_completed_epoch": {
+    "epoch": 13,
+    "train_loss": 0.09851125366170041,
+    "validation_loss": 0.0759124243631959
+  },
+  "complete_public_data_release": true,
+  "data_receipt_sha256": "ce7d621bd1cd4fb4a2525a5459dd8736ad4324eb8e96e289d072055f4d699697",
+  "safe_checkpoint_metadata_verified": true,
+  "checkpoint_completed_epochs": 13,
+  "checkpoint_resume_components": [
+    "optimizer",
+    "scheduler",
+    "scaler",
+    "python_rng",
+    "numpy_rng",
+    "torch_rng",
+    "cuda_rng"
+  ],
+  "paper_cohort_reproduction_completed": false,
+  "next_segment_running_when_checked": true
+}

@@ -1,0 +1,16 @@
+{
+  "material_safety_change_from_rejected_1GB_bundle": "Source code plus 77 public PTB-XL pseudonymous exclusion identifiers only. No waveforms, images, demographic columns, diagnostic columns or pretrained assets are uploaded.",
+  "public_source": "https://physionet.org/content/ptb-xl/1.0.3/",
+  "source_license": "CC BY 4.0",
+  "official_metadata_rows_verified": 21799,
+  "every_exclusion_id_exists_in_public_metadata": true,
+  "exclusion_id_count": 77,
+  "waveforms_uploaded": false,
+  "private_images_uploaded": false,
+  "pretrained_weights_uploaded": false,
+  "clinical_or_demographic_fields_uploaded": false,
+  "uploaded_public_experiment_identifiers": true,
+  "bundle_bytes": 318367,
+  "prior_explicit_user_authorization": "GPU experiments and training with a larger ECG source database, synthetic image generation and noise/point detection.",
+  "source_acquisition": "Public publisher S3, no credentials, persistent cache"
+}

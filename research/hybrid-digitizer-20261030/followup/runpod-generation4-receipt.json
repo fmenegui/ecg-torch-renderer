@@ -1,0 +1,44 @@
+{
+  "schema": "hybrid-runpod-generation4-receipt-v1",
+  "run_id": 41105577589,
+  "source_commit": "7a78f0d8f6feed07858f123b32737333882af35b",
+  "recovery": {
+    "artifact_id": 13000678794,
+    "archive_sha256": "2a5155186374cd64a11362439bdf6564a157e8d271b5d47c92884c4f45d5c3c5",
+    "pod_id": "ps2gv2n3q556gr",
+    "created_pod_price_per_hour": 0.59,
+    "checkpoint_sha256": "8115e99c3517dc0b99974b9e64744aab9eb961fd0da06f1e84a65a1e45c3dbf8",
+    "results_copied_and_verified": true,
+    "pod_absent_verified": true,
+    "borrowed_volume_present_verified": true,
+    "borrowed_volume_write": false,
+    "local_strict_state_dict_load_passed": true,
+    "new_local_inference": false
+  },
+  "benchmark": {
+    "pod_created": false,
+    "volume_created": false,
+    "inference_executed": false,
+    "failure": "Runpod HTTP 400: {\"detail\":\"You must have at least $5 in your account to create a network volume\",\"status\":400,\"title\":\"Bad Request\"}",
+    "cleanup_artifact_id": 13002350305,
+    "cleanup_archive_sha256": "0065df310597ad21de0bd68e94f00b7860ffba1845bf6198211624b1be3c698e"
+  },
+  "next_attempt": {
+    "generation": 5,
+    "reuse_recovery_artifact": true,
+    "new_recovery_pod": false,
+    "storage_mode": "container_disk",
+    "container_disk_gb": 40,
+    "network_volume_gb": 0,
+    "maximum_benchmark_gpu_seconds": 1800,
+    "maximum_gpu_price_per_hour": 0.6,
+    "prior_recovery_and_next_benchmark_gpu_envelope_usd": 0.45,
+    "scientific_profile_changed": false
+  },
+  "reproduction_tests": {
+    "count": 72,
+    "passed": true,
+    "native_source_enabled": true,
+    "log_sha256": "248282569cfb148ff77c5ccc33fa083cd02d993f4050b0cf88c4980d8981074c"
+  }
+}

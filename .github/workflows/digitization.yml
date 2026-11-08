@@ -1,0 +1,52 @@
+name: Digitization reference
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: digitization-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  reference:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      OMP_NUM_THREADS: '2'
+      MKL_NUM_THREADS: '2'
+      ECG_DIGITIZATION_ASSETS: build/reference-assets
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Install matched CPU Torch and image stack
+        run: |
+          python -m pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install -e '.[digitization,dev]'
+      - uses: actions/cache@v4
+        with:
+          path: build/reference-assets
+          key: digitization-single-${{ hashFiles('ecg_gpu/digitization/reference-lock.json') }}
+      - name: Fetch and verify pinned public research artifacts
+        run: ecg-digitize fetch --assets build/reference-assets
+      - name: Independent contract and failure-accounting tests
+        run: |
+          python -m coverage run --branch -m unittest discover -s tests -p 'test_digitization*.py' -v
+          python -m ruff check ecg_gpu/digitization tests/test_digitization*.py examples/*digitization*.py examples/run_paper_experiment.py examples/report_paper_experiment.py --select E,F --ignore E501
+      - name: Download one declared development fixture and waveform reference
+        run: python examples/prepare_digitization_reference.py --out build/digitization-fixture --records 22 --kinds digital --metadata research/digitization-reference/patients.csv
+      - name: Execute actual checkpoints through the full image-to-signal chain
+        run: |
+          python -m coverage run --branch --append examples/digitization_smoke.py --assets build/reference-assets --manifest build/digitization-fixture/manifest.json --out build/digitization-smoke
+          python -m coverage report --include='*/ecg_gpu/digitization/*'
+          python -m coverage json -o build/digitization-coverage.json --include='*/ecg_gpu/digitization/*'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: digitization-measurements
+          path: |
+            build/digitization-smoke/report.json
+            build/digitization-coverage.json

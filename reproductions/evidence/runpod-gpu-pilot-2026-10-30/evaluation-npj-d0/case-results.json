@@ -1,0 +1,276 @@
+[
+  {
+    "case_id": "D0_000022_02",
+    "patient_id": "source-record:D0_000022",
+    "acquisition": "02",
+    "status": "missing_or_incompatible",
+    "error": "Incompatible time axes. Explicit source preparation is required.",
+    "coverage": 0.0,
+    "leads": [
+      {
+        "lead": "I",
+        "status": "missing_or_incompatible",
+        "coverage_definition": "finite returned predictions on original printed times, not physical visibility or confidence",
+        "printed_samples": 1250,
+        "returned_samples": 0,
+        "coverage": 0.0,
+        "entirely_missing": true,
+        "all_printed_zero_scoring_only": {
+          "rmse_mv": 0.14225530007700943,
+          "snr_db": 0.0,
+          "snr_status": "finite",
+          "pcc": null
+        },
+        "observed": {
+          "rmse_mv": null,
+          "snr_db": null,
+          "snr_status": "no_support",
+          "pcc": null
+        },
+        "aligned": null
+      },
+      {
+        "lead": "II",
+        "status": "missing_or_incompatible",
+        "coverage_definition": "finite returned predictions on original printed times, not physical visibility or confidence",
+        "printed_samples": 5000,
+        "returned_samples": 0,
+        "coverage": 0.0,
+        "entirely_missing": true,
+        "all_printed_zero_scoring_only": {
+          "rmse_mv": 0.10608859505149458,
+          "snr_db": 0.0,
+          "snr_status": "finite",
+          "pcc": null
+        },
+        "observed": {
+          "rmse_mv": null,
+          "snr_db": null,
+          "snr_status": "no_support",
+          "pcc": null
+        },
+        "aligned": null
+      },
+      {
+        "lead": "III",
+        "status": "missing_or_incompatible",
+        "coverage_definition": "finite returned predictions on original printed times, not physical visibility or confidence",
+        "printed_samples": 1250,
+        "returned_samples": 0,
+        "coverage": 0.0,
+        "entirely_missing": true,
+        "all_printed_zero_scoring_only": {
+          "rmse_mv": 0.11862977029396964,
+          "snr_db": 0.0,
+          "snr_status": "finite",
+          "pcc": null
+        },
+        "observed": {
+          "rmse_mv": null,
+          "snr_db": null,
+          "snr_status": "no_support",
+          "pcc": null
+        },
+        "aligned": null
+      },
+      {
+        "lead": "aVR",
+        "status": "missing_or_incompatible",
+        "coverage_definition": "finite returned predictions on original printed times, not physical visibility or confidence",
+        "printed_samples": 1250,
+        "returned_samples": 0,
+        "coverage": 0.0,
+        "entirely_missing": true,
+        "all_printed_zero_scoring_only": {
+          "rmse_mv": 0.09506762645611806,
+          "snr_db": 0.0,
+          "snr_status": "finite",
+          "pcc": null
+        },
+        "observed": {
+          "rmse_mv": null,
+          "snr_db": null,
+          "snr_status": "no_support",
+          "pcc": null
+        },
+        "aligned": null
+      },
+      {
+        "lead": "aVL",
+        "status": "missing_or_incompatible",
+        "coverage_definition": "finite returned predictions on original printed times, not physical visibility or confidence",
+        "printed_samples": 1250,
+        "returned_samples": 0,
+        "coverage": 0.0,
+        "entirely_missing": true,
+        "all_printed_zero_scoring_only": {
+          "rmse_mv": 0.0934007023528196,
+          "snr_db": 0.0,
+          "snr_status": "finite",
+          "pcc": null
+        },
+        "observed": {
+          "rmse_mv": null,
+          "snr_db": null,
+          "snr_status": "no_support",
+          "pcc": null
+        },
+        "aligned": null
+      },
+      {
+        "lead": "aVF",
+        "status": "missing_or_incompatible",
+        "coverage_definition": "finite returned predictions on original printed times, not physical visibility or confidence",
+        "printed_samples": 1250,
+        "returned_samples": 0,
+        "coverage": 0.0,
+        "entirely_missing": true,
+        "all_printed_zero_scoring_only": {
+          "rmse_mv": 0.09043656782518894,
+          "snr_db": 0.0,
+          "snr_status": "finite",
+          "pcc": null
+        },
+        "observed": {
+          "rmse_mv": null,
+          "snr_db": null,
+          "snr_status": "no_support",
+          "pcc": null
+        },
+        "aligned": null
+      },
+      {
+        "lead": "V1",
+        "status": "missing_or_incompatible",
+        "coverage_definition": "finite returned predictions on original printed times, not physical visibility or confidence",
+        "printed_samples": 1250,
+        "returned_samples": 0,
+        "coverage": 0.0,
+        "entirely_missing": true,
+        "all_printed_zero_scoring_only": {
+          "rmse_mv": 0.20474449247781978,
+          "snr_db": 0.0,
+          "snr_status": "finite",
+          "pcc": null
+        },
+        "observed": {
+          "rmse_mv": null,
+          "snr_db": null,
+          "snr_status": "no_support",
+          "pcc": null
+        },
+        "aligned": null
+      },
+      {
+        "lead": "V2",
+        "status": "missing_or_incompatible",
+        "coverage_definition": "finite returned predictions on original printed times, not physical visibility or confidence",
+        "printed_samples": 1250,
+        "returned_samples": 0,
+        "coverage": 0.0,
+        "entirely_missing": true,
+        "all_printed_zero_scoring_only": {
+          "rmse_mv": 0.3278717346768397,
+          "snr_db": 0.0,
+          "snr_status": "finite",
+          "pcc": null
+        },
+        "observed": {
+          "rmse_mv": null,
+          "snr_db": null,
+          "snr_status": "no_support",
+          "pcc": null
+        },
+        "aligned": null
+      },
+      {
+        "lead": "V3",
+        "status": "missing_or_incompatible",
+        "coverage_definition": "finite returned predictions on original printed times, not physical visibility or confidence",
+        "printed_samples": 1250,
+        "returned_samples": 0,
+        "coverage": 0.0,
+        "entirely_missing": true,
+        "all_printed_zero_scoring_only": {
+          "rmse_mv": 0.14288749420435645,
+          "snr_db": 0.0,
+          "snr_status": "finite",
+          "pcc": null
+        },
+        "observed": {
+          "rmse_mv": null,
+          "snr_db": null,
+          "snr_status": "no_support",
+          "pcc": null
+        },
+        "aligned": null
+      },
+      {
+        "lead": "V4",
+        "status": "missing_or_incompatible",
+        "coverage_definition": "finite returned predictions on original printed times, not physical visibility or confidence",
+        "printed_samples": 1250,
+        "returned_samples": 0,
+        "coverage": 0.0,
+        "entirely_missing": true,
+        "all_printed_zero_scoring_only": {
+          "rmse_mv": 0.12617406706609724,
+          "snr_db": 0.0,
+          "snr_status": "finite",
+          "pcc": null
+        },
+        "observed": {
+          "rmse_mv": null,
+          "snr_db": null,
+          "snr_status": "no_support",
+          "pcc": null
+        },
+        "aligned": null
+      },
+      {
+        "lead": "V5",
+        "status": "missing_or_incompatible",
+        "coverage_definition": "finite returned predictions on original printed times, not physical visibility or confidence",
+        "printed_samples": 1250,
+        "returned_samples": 0,
+        "coverage": 0.0,
+        "entirely_missing": true,
+        "all_printed_zero_scoring_only": {
+          "rmse_mv": 0.10289852865809111,
+          "snr_db": 0.0,
+          "snr_status": "finite",
+          "pcc": null
+        },
+        "observed": {
+          "rmse_mv": null,
+          "snr_db": null,
+          "snr_status": "no_support",
+          "pcc": null
+        },
+        "aligned": null
+      },
+      {
+        "lead": "V6",
+        "status": "missing_or_incompatible",
+        "coverage_definition": "finite returned predictions on original printed times, not physical visibility or confidence",
+        "printed_samples": 1250,
+        "returned_samples": 0,
+        "coverage": 0.0,
+        "entirely_missing": true,
+        "all_printed_zero_scoring_only": {
+          "rmse_mv": 0.09016041259887844,
+          "snr_db": 0.0,
+          "snr_status": "finite",
+          "pcc": null
+        },
+        "observed": {
+          "rmse_mv": null,
+          "snr_db": null,
+          "snr_status": "no_support",
+          "pcc": null
+        },
+        "aligned": null
+      }
+    ]
+  }
+]

@@ -1,0 +1,52 @@
+{
+  "schema": "m4-streaming-sampling-v1",
+  "date": "2026-10-23",
+  "status": "frozen_before_implementation_and_new_scores",
+  "purpose": "Engineering and exact numerical parity of fixed midpoint area sampling from the original RGB or RGBA, bounded coordinate memory and verified PNG publication. No geometric-estimator change and no new image-quality winner selection.",
+  "source_baseline": "m3/sampling/sampling_component.py, frozen protocol 85adf1e4fe3f37b14fff7d6f32aea98e1db2828917e732bd7e3404653e5cd58a",
+  "arms": ["area-bilinear-2", "area-bilinear-4", "area-bilinear-8", "area-boxhold-2", "area-boxhold-4", "area-boxhold-8"],
+  "numerics": "OutputGrid.origin_mm denotes the physical centre of output pixel (0,0). Each output pixel has independent x and y spacing. Equal midpoint offsets ((k+0.5)/n-0.5)*spacing, ordered y then x, are composed through the inverse map directly to original source pixel centres. Float32 OpenCV reconstruction and ordered float32 accumulation, then one rounding to uint8. No intermediate warped image. Fixed n in {2,4,8}, no per-case selection. Encoded RGB arithmetic, no radiometric claim.",
+  "coordinate_memory": "Iterate rectangular tiles of at most max_tile_pixels. Evaluate one subpoint plane at a time. No n*n*H*W coordinate cache. Source conversion and collected output are separate image-storage costs. Iterator supports a consumer without collected output. The inverse and optional trust callbacks must be deterministic per point, independent of batch size.",
+  "support": "Non-finite inverse points are explicitly invalid and forced to fill by their Boolean mask. Never rely on a finite sentinel. RGB uses explicit constant fill (default white). RGBA uses premultiplied encoded colour with transparent fill, then unpremultiplies once at output, with zero RGB when rounded alpha is zero. Source-pixel-cell domain is [-0.5,W-0.5) x [-0.5,H-0.5). Full bilinear reconstruction support uses source centre bounds, nearest uses rounded source centre indices. Geometry trust is reported separately and cannot change any image value. None means trust unknown.",
+  "parity": {
+    "cases": 280,
+    "source": "All archived m3/sampling/results/{affine-isotropic,affine-anisotropic-shear}.npz source_gray_u8 arrays, all 140 cases each. Original exact CompleteMap inverse, hashes checked.",
+    "domain": "All 41x41 ROI pixels at physical centres [2,12]mm in each axis, as in M3. These source footprints are interior. This tests archived scored pixels, not a hidden full-frame parity claim.",
+    "tile_budgets": [512, 1681],
+    "comparisons": "Both tile budgets for all 280 cases and all six arms, exact uint8 equality against archived M3 predictions. Keep all failures. Report total scenes, outputs, bytes, maximum difference and mismatch count.",
+    "reference": "Archived predictions, not predictions regenerated from the new implementation. Existing M3 ideal strip reference remains unchanged and quality summaries are reproduced without parameter tuning."
+  },
+  "adversarial_controls": [
+    "Constant RGB exactly preserved for all n and both reconstructions on an interior affine grid",
+    "Identity boxhold returns original RGB exactly including border pixels",
+    "Identity bilinear agrees with an independent nested-loop midpoint reference, including disclosed edge fill and blur",
+    "Anisotropic and shear affine grid agrees exactly with full coordinate-cache reference at each n",
+    "Tile-size invariance for partial final tiles, narrow and wide grids",
+    "Non-finite and enormous coordinates never borrow valid source pixel (0,0)",
+    "Finite points outside source retain fill and report support separately",
+    "All-false geometry trust changes no RGB or RGBA bytes",
+    "RGBA premultiplication prevents hidden transparent RGB bleeding and carries alpha separately from geometry trust",
+    "Adversarial one-source-pixel thin trace at 4 px/mm preserves the old candidate including any failures, no general preservation theorem",
+    "PNG RGB/RGBA complete decode and exact pixel verification, existing destination unchanged by default, truncated temporary file rejected, cleanup after failures"
+  ],
+  "cost": {
+    "threads": "OpenCV 1, OPENBLAS_NUM_THREADS=1, OMP_NUM_THREADS=1, MKL_NUM_THREADS=1",
+    "scope": "CPU only. Measure end-to-end source conversion, coordinate evaluation, sampling and collection, plus isolated process peak RSS. Record named CPU, quotas and versions. Do not compare a cached application time to a full geometry time.",
+    "output_shape": [768, 1024],
+    "source_shape": [1100, 1400, 3],
+    "subgrids": [2, 4, 8],
+    "tile_pixels": 16384,
+    "repeats": 3,
+    "baseline": "Old prepare-all-coordinate-planes then sample, same affine callback, same source and output grid. Include map preparation in total. Memory formula and measured peak RSS are both reported. Run each arm in a separate process."
+  },
+  "export": "Write a unique temporary PNG beside the destination, fsync it, verify PNG CRC/integrity and fully decode all pixels with exact mode, shape and value equality, then atomically publish. Default no-clobber publication. Existing-file replacement requires an explicit expected existing SHA256 and a cooperative destination lock. Recheck target before replace. No recovery fixture changed.",
+  "limits": [
+    "Offline NumPy/OpenCV component only, no training-hot-path integration or production default change",
+    "No new clinical, waveform, real-capture benchmark or geometric-detector comparison",
+    "M3 parity preserves the same blur, finite quadrature aliases, quantization and encoded-colour assumptions",
+    "More subpoints cost more and do not monotonically improve peak sharpness or pixel MAE",
+    "No claim that any fixed 8x8 quadrature or 8 px/mm output is universally sufficient",
+    "Coordinate-working-set bounds exclude caller callback internal allocations and retained consumer output",
+    "Atomic publication and verified bytes do not imply immunity to later external truncation or storage failure"
+  ]
+}

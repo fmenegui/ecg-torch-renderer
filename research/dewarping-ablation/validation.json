@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-21",
+  "device": "cpu",
+  "full_suite": {
+    "total": 348,
+    "passed": 340,
+    "skipped": 6,
+    "errors": 2,
+    "failures": 0,
+    "seconds": 68.388,
+    "missing_original_fixture": "tests/fixtures/raster-v021.npz"
+  },
+  "initial_suite_image_equality_failure": "Passed isolated 13-test module and complete rerun, renderer unchanged",
+  "new_paired_integrity_tests": 3,
+  "ruff_E_F": "passed",
+  "cuda_validation": "not executed",
+  "renderer_source_changed": false,
+  "frozen_fixture_regenerated": false
+}

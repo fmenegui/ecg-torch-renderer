@@ -1,0 +1,13 @@
+{
+  "lock_sha256": "f159a721daea3a41eb53fed4a341aaf13b4d37080c09086dcb6a693bdf69f875",
+  "verified_paths": [
+    "heng/640106434-0001.gridpoint_xy.npy",
+    "heng/stage0_common.py",
+    "heng/stage0_model.py",
+    "heng/stage1_common.py",
+    "heng/stage1_model.py",
+    "heng/weight/stage0-last.checkpoint.pth",
+    "heng/weight/stage1-last.checkpoint.pth"
+  ],
+  "verification_scope": "rectification"
+}
