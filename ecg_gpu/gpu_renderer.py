@@ -549,6 +549,9 @@ class ECGRenderer(nn.Module):
             p.update(scan_mode=((choice > .5).long() + (choice > .8).long()) * (p['photo'] == 0).long(),
                      scan_dpi=torch.exp(math.log(72.) + rand() * math.log(600. / 72.)),
                      scan_threshold=.45 + rand() * .25)
+            # Drawn after the other scan controls: a lid shadow on 30 % of flatbed scans.
+            p.update(scan_lid_strength=(rand() < .3).float() * (.1 + rand() * .35) * (p['photo'] == 0).float(),
+                     scan_lid_edge=integer(4), scan_lid_width=.02 + rand() * .1)
         if self.config.device_filters:
             # Common recorder settings: 0.05/0.15/0.5 Hz, 40/100/150 Hz, none/50/60 Hz.
             pick = lambda values: torch.tensor(values, device=d)[integer(len(values))]
@@ -1105,6 +1108,10 @@ class ECGRenderer(nn.Module):
                 torch._assert_async(((p['scan_dpi']>=25)&(p['scan_dpi']<=2400)).all(), 'scan_dpi must be in [25,2400]')
                 torch._assert_async(((p['scan_threshold']>0)&(p['scan_threshold']<1)).all(),
                                     'scan_threshold must be in (0,1)')
+                torch._assert_async(((p['scan_lid_strength']>=0)&(p['scan_lid_strength']<=1)).all(),
+                                    'scan_lid_strength must be in [0,1]')
+                torch._assert_async(((p['scan_lid_edge']>=0)&(p['scan_lid_edge']<=3)).all(), 'scan_lid_edge must be 0..3')
+                torch._assert_async((p['scan_lid_width']>0).all(), 'scan_lid_width must be positive')
             if self.config.lead_marks:
                 torch._assert_async(((p['mark_present']==0)|(p['mark_present']==1)).all(), 'mark_present must be binary')
                 torch._assert_async(((p['mark_height_mm']>0)&(p['mark_height_mm']<=20)).all(),
@@ -1391,7 +1398,8 @@ class ECGRenderer(nn.Module):
         if self.config.phone_isp:
             image = phone_observation(image, p)
         if self.config.scan_modes:
-            image = scan_observation(image, instances['ppm'], p['scan_mode'], p['scan_dpi'], p['scan_threshold'])
+            image = scan_observation(image, instances['ppm'], p['scan_mode'], p['scan_dpi'], p['scan_threshold'],
+                                     lid=(p['scan_lid_strength'], p['scan_lid_edge'], p['scan_lid_width']))
         metadata = {**instances, 'rectified_mode': 'texture' if as_texture else 'document',
                     'sample_rate_hz': rates, 'source_length': lengths, 'duration_s': duration,
                     'canonical_pixels_per_second': instances['ppm'] * instances.get('trace_speed', instances['speed']),

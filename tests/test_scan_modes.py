@@ -59,3 +59,25 @@ class ScanRendererTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+@unittest.skipUnless(TORCH, 'Torch required')
+class LidShadowTests(unittest.TestCase):
+    def test_shadow_darkens_the_chosen_edge_only(self):
+        from ecg_gpu.scan_modes import lid_shadow
+        image = torch.ones(4, 3, 40, 60)
+        out = lid_shadow(image, torch.tensor([.4, .4, .4, 0.]), torch.tensor([0, 1, 2, 0]), torch.full((4,), .05))
+        self.assertLess(float(out[0, 0, 20, 0]), .65)
+        self.assertGreater(float(out[0, 0, 20, -1]), .99)
+        self.assertLess(float(out[1, 0, 0, 30]), .65)
+        self.assertGreater(float(out[1, 0, -1, 30]), .99)
+        self.assertLess(float(out[2, 0, 20, -1]), .65)
+        torch.testing.assert_close(out[3], image[3])
+        self.assertTrue(bool((out <= image).all()))
+
+    def test_lid_controls_only_on_flatbed_records(self):
+        renderer = ECGRenderer(RenderConfig(height=64, width=96, profile='mixed', scan_modes=True))
+        p = renderer.sample_parameters(128, generator=torch.Generator().manual_seed(7))
+        self.assertTrue(bool((p['scan_lid_strength'][p['photo'] > 0] == 0).all()))
+        flatbed = p['scan_lid_strength'][p['photo'] == 0]
+        self.assertGreater(int((flatbed > 0).sum()), 0)

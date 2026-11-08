@@ -146,7 +146,7 @@ Shadowed or blurred pixels remain geometrically valid. Visibility does not mean 
 
 ## Scanner modes
 
-`RenderConfig(scan_modes=True)` adds flatbed scanner observation to records captured without photographic geometry. `scan_mode` selects color (0), grayscale (1) or bilevel black-and-white (2), sampled at 50/30/20 %. `scan_dpi` (log-uniform 72–600) sets the scanner resolution: when it is below the page's pixel density, each scanner pixel is integrated and held, as in an upscaled low-resolution scan. `scan_threshold` (0.45–0.70) is the bilevel luminance cut. Targets are unchanged.
+`RenderConfig(scan_modes=True)` adds flatbed scanner observation to records captured without photographic geometry. `scan_mode` selects color (0), grayscale (1) or bilevel black-and-white (2), sampled at 50/30/20 %. `scan_dpi` (log-uniform 72–600) sets the scanner resolution: when it is below the page's pixel density, each scanner pixel is integrated and held, as in an upscaled low-resolution scan. `scan_threshold` (0.45–0.70) is the bilevel luminance cut. Targets are unchanged. A lid shadow darkens one edge of 30 % of flatbed scans (`scan_lid_strength`, `scan_lid_edge` 0–3 for left, top, right, bottom, `scan_lid_width`).
 
 ```python
 from ecg_gpu import ECGImageLayer, RenderConfig

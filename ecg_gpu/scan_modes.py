@@ -54,13 +54,30 @@ def scan_resolution(image, scale, kernel_size):
     return torch.where((scale >= 1)[:, None, None, None], image, held)
 
 
-def scan_observation(image, ppm, mode, dpi, threshold, kernel_size=15):
+def lid_shadow(image, strength, edge, width):
+    """Darken toward one page edge, as when the scanner lid does not press the page flat.
+
+    ``edge`` 0/1/2/3 is left/top/right/bottom, ``width`` the falloff as a
+    fraction of the image width, ``strength`` the darkening at the edge.
+    """
+    b, _, h, w = image.shape
+    ys = (torch.arange(h, device=image.device, dtype=image.dtype)[None, :, None] + .5) / w
+    xs = (torch.arange(w, device=image.device, dtype=image.dtype)[None, None, :] + .5) / w
+    edge = edge.long()[:, None, None]
+    distance = torch.where(edge == 0, xs, torch.where(edge == 1, ys, torch.where(edge == 2, 1 - xs, h / w - ys)))
+    falloff = torch.exp(-distance / width.clamp_min(1e-3)[:, None, None])
+    return image * (1 - strength[:, None, None, None] * falloff[:, None])
+
+
+def scan_observation(image, ppm, mode, dpi, threshold, kernel_size=15, lid=None):
     """Apply per-record scanner mode and resolution to sRGB ``image`` in [0,1].
 
     ``ppm`` is output pixels per paper millimeter, ``mode`` 0/1/2 is
     color/grayscale/bilevel, ``dpi`` the scanner resolution and ``threshold``
     the bilevel luminance cut. All are ``[B]`` tensors on the image device.
     """
+    if lid is not None:
+        image = lid_shadow(image, *lid)
     scale = (dpi / 25.4 / ppm).clamp(max=1)
     resampled = scan_resolution(image, scale, kernel_size)
     gray = (LUMA[0] * resampled[:, :1] + LUMA[1] * resampled[:, 1:2]

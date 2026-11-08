@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.30.0
+
+- With `scan_modes=True`, add a scanner lid shadow on 30 % of flatbed scans:
+  darkening toward one page edge (`scan_lid_edge`), as when the lid does not
+  press the page flat, with `scan_lid_strength` (0.1-0.45) and
+  `scan_lid_width`. Applied before grayscale or bilevel conversion.
+
 ## 0.29.0
 
 - Add `RenderConfig(office_marks=True)`: patient barcodes (30 %), QR-style
