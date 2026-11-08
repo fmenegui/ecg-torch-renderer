@@ -54,7 +54,7 @@ criterion; "done" means the criterion was measured, not that code exists.
 | --- | --- | --- | --- |
 | 18 | Content-displacing deformation in the training path from simulated sheet banks | Grid lines measurably bend; target alignment tests | planned |
 | 19 | Held pages, stacks, overlaps, curved supports | Recipes with aligned targets | planned |
-| 20 | Mold, scorch, scanner-jam damage, tape, staples | Recipes referenced to ECG-Image-Database | planned |
+| 20 | Mold, scorch, scanner-jam damage, tape, staples | Recipes referenced to ECG-Image-Database | in progress: mold and scorch in 0.26.0 `archive_damage=True`; scanner jam, tape, staples planned |
 
 ## 5. Capture
 
