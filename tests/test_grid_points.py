@@ -203,7 +203,11 @@ class GridPointTests(unittest.TestCase):
     def test_offline_frontoparallel_points_match_independent_pinhole_projection(self):
         import drjit as dr
         from ecg_gpu.pathtrace import pathtrace_capture, PathTraceConfig
-        dr.set_thread_count(2)
+        # Bit-exact comparison of two renders: with several threads the order
+        # of floating-point accumulation into pixels varies between runs.
+        previous_threads = dr.thread_count()
+        dr.set_thread_count(1)
+        self.addCleanup(dr.set_thread_count, previous_threads)
         source = torch.zeros(1, 12, 1001)
         layer = self.layer()
         canonical = layer.render_batch(source, stage='all', photo=False, as_texture=True, return_instances=True)
