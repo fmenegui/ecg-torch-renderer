@@ -142,7 +142,8 @@ class TraceSkewTests(unittest.TestCase):
     def test_flat_trace_drifts_against_grid_by_the_skew(self):
         renderer = ECGRenderer(RenderConfig(height=480, width=640, profile='clean', antialias_samples=2,
                                             page_model='physical', coordinate_targets=True))
-        parameters = {'layout': '3x4+r1', 'trace_width_mm': .3, 'feed_error': 0., 'trace_skew': .01,
+        # A 1 mm trace is about 2.4 px wide here, so its core pixels are fully covered.
+        parameters = {'layout': '3x4+r1', 'trace_width_mm': 1., 'feed_error': 0., 'trace_skew': .01,
                       'speed_index': 1, 'gain_index': 1, 'lead_present': 1., 'sequential': True}
         batch = renderer(torch.zeros(1, 12, 1000), 100, photo=False, stage='trace', parameters=parameters,
                          generator=torch.Generator().manual_seed(0))
@@ -155,6 +156,7 @@ class TraceSkewTests(unittest.TestCase):
             return float((column * rows).sum() / column.sum())
         x1, x2 = int(meta['x0'][0, 12]) + 20, int(meta['x1'][0, 12]) - 20
         self.assertAlmostEqual(centroid(x2) - centroid(x1), .01 * (x2 - x1), delta=.6)
-        on_trace = (batch.targets['traces'][0, 1] > .9) & lower[:, None]
+        on_trace = (batch.targets['traces'][0, 1] > .5) & lower[:, None] & (batch.targets['coordinate_valid'][0, 0] > 0)
+        self.assertGreater(int(on_trace.sum()), 100)
         self.assertLess(float(batch.targets['voltage_mv'][0, 0][on_trace].abs().max()), .2)
         torch.testing.assert_close(meta['trace_skew'], torch.tensor([.01]))
