@@ -52,7 +52,8 @@ class RendererFilterTests(unittest.TestCase):
         t = torch.arange(1000) / 100
         signals = (torch.sin(2 * math.pi * 1.2 * t) * .5 + 1.)[None, None].expand(1, 12, -1).contiguous()
         renderer = ECGRenderer(RenderConfig(**base, device_filters=True))
-        parameters = {'filter_highpass_hz': .5, 'filter_lowpass_hz': 40., 'filter_notch_hz': 0., 'layout': '3x4'}
+        parameters = {'filter_highpass_hz': .5, 'filter_lowpass_hz': 40., 'filter_notch_hz': 0., 'filter_clip_mv': 0.,
+                      'layout': '3x4'}
         batch = renderer(signals, 100, photo=False, stage='trace', parameters=parameters,
                          generator=torch.Generator().manual_seed(0))
         printed = batch.metadata['printed_signals']
@@ -71,3 +72,33 @@ class RendererFilterTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+@unittest.skipUnless(TORCH, 'Torch required')
+class ClippingAndPulseTests(unittest.TestCase):
+    def test_clip_printed_per_record(self):
+        from ecg_gpu.device_filters import clip_printed
+        x = torch.linspace(-4, 4, 81)[None, None].expand(2, 1, -1)
+        y = clip_printed(x, torch.tensor([0., 2.]))
+        torch.testing.assert_close(y[0], x[0])
+        self.assertAlmostEqual(float(y[1].max()), 2.)
+        self.assertAlmostEqual(float(y[1].min()), -2.)
+
+    def test_renderer_clips_print_not_reference_and_returns_pulses(self):
+        t = torch.arange(1000) / 100
+        signals = (3 * torch.sin(2 * math.pi * 1.2 * t))[None, None].expand(1, 12, -1).contiguous()
+        renderer = ECGRenderer(RenderConfig(height=96, width=128, profile='clean', antialias_samples=1,
+                                            device_filters=True, calibration_target=True))
+        parameters = {'filter_highpass_hz': .05, 'filter_lowpass_hz': 150., 'filter_notch_hz': 0.,
+                      'filter_clip_mv': 1.5, 'pulse_present': 1., 'layout': '3x4'}
+        batch = renderer(signals, 100, photo=False, stage='trace', parameters=parameters,
+                         generator=torch.Generator().manual_seed(0))
+        self.assertLessEqual(float(batch.metadata['printed_signals'].abs().max()), 1.5 + 1e-6)
+        torch.testing.assert_close(batch.reference, signals)
+        pulses = batch.targets['calibration_pulses']
+        self.assertGreater(float(pulses.sum()), 0)
+        # Pulses sit left of the first column's trace start.
+        first_x0 = float(batch.metadata['x0'][0, 0])
+        columns = (pulses[0, 0] > .5).any(0).nonzero().flatten()
+        self.assertTrue(bool((columns.float() < first_x0 + 1).all()))
+        self.assertNotIn('calibration_target', ECGRenderer(RenderConfig(height=64, width=96)).specification()['config'])

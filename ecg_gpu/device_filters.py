@@ -46,3 +46,10 @@ def printed_signal(signals, rates, highpass_hz, lowpass_hz, notch_hz):
                                notch_hz.to(freqs.dtype))
     filtered = torch.fft.irfft(spectrum * response[:, None, :], n=2 * length, dim=-1)
     return filtered[..., :length].to(signals.dtype)
+
+
+def clip_printed(signals, clip_mv):
+    """Clip ``[B,C,T]`` printed signals to ``±clip_mv`` per record; 0 leaves a record unclipped."""
+    limit = clip_mv[:, None, None].to(signals.dtype)
+    clipped = signals.clamp(-limit, limit)
+    return torch.where(limit > 0, clipped, signals)

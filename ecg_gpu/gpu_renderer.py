@@ -28,7 +28,7 @@ from .schema_v05 import LEADS, SPEEDS, GAINS, LAYOUTS
 from .grid_points import GridPointConfig, grid_point_targets, identity_field
 from .convenience import did_you_mean, lead_index
 from .scan_modes import scan_observation
-from .device_filters import HIGHPASS_HZ, LOWPASS_HZ, NOTCH_HZ, printed_signal
+from .device_filters import HIGHPASS_HZ, LOWPASS_HZ, NOTCH_HZ, clip_printed, printed_signal
 from .report_text import ReportText, ventricular_rate
 from .phone_isp import phone_observation
 from .print_reproduction import LASER, halftone, reproduce
@@ -108,6 +108,8 @@ class RenderConfig:
     archive_damage: bool = False
     # Report observed page-corner positions for rectification models.
     page_corners: bool = False
+    # Return the calibration pulses as their own target.
+    calibration_target: bool = False
 
     def __post_init__(self):
         for name in ('height', 'width', 'antialias_samples', 'lead_chunk_size',
@@ -117,7 +119,7 @@ class RenderConfig:
         for name in ('preserve_extrema', 'validate_inputs', 'jpeg_enabled', 'lead_marks', 'scan_modes',
                      'device_filters', 'report_text', 'phone_isp',
                      'coordinate_targets', 'print_technology',
-                     'archive_damage', 'page_corners'):
+                     'archive_damage', 'page_corners', 'calibration_target'):
             if type(getattr(self, name)) is not bool:
                 raise ValueError(f'{name} must be bool')
         if self.camera_mode not in {'full', 'direct', 'sensor'}:
@@ -373,6 +375,8 @@ class ECGRenderer(nn.Module):
             config.pop('archive_damage')
         if not self.config.page_corners:
             config.pop('page_corners')
+        if not self.config.calibration_target:
+            config.pop('calibration_target')
         return {'schema': 'ecg-replot-torch-renderer-v3', 'config': config, 'fonts': self.fonts,
                 'signal_units': 'mV', 'signal_order': LEADS, 'font_initialization': 'CPU once',
                 'hot_path': 'torch on input device', 'jpeg': 'DCT simulation, not a JPEG bitstream',
@@ -545,6 +549,8 @@ class ECGRenderer(nn.Module):
             pick = lambda values: torch.tensor(values, device=d)[integer(len(values))]
             p.update(filter_highpass_hz=pick(HIGHPASS_HZ), filter_lowpass_hz=pick(LOWPASS_HZ),
                      filter_notch_hz=pick(NOTCH_HZ))
+            # Some recorders clip printed amplitude so leads stay in their row; 0 disables.
+            p['filter_clip_mv'] = (rand() < .25).float() * (1.5 + rand() * 2)
         if self.report_text is not None:
             p.update(self.report_text.sample(b, rand))
         if self.config.print_technology:
@@ -700,6 +706,9 @@ class ECGRenderer(nn.Module):
             targets['baselines']=baseline_target
         if instance_target is not None:
             targets['instances']=instance_target
+        if self.config.calibration_target and trace_target is not None:
+            # Pulses only, before lead marks share the calibration ink.
+            targets['calibration_pulses']=calibration.clone()
         if self.config.coordinate_targets and trace_target is not None:
             targets.update(self._coordinate_maps(instances, slope_time, scale, tilt))
         if self.config.lead_marks:
@@ -1076,6 +1085,8 @@ class ECGRenderer(nn.Module):
                                     'filter_lowpass_hz must be in [5,1000]')
                 torch._assert_async(((p['filter_notch_hz']>=0)&(p['filter_notch_hz']<=100)).all(),
                                     'filter_notch_hz must be in [0,100]')
+                torch._assert_async(((p['filter_clip_mv']==0)|((p['filter_clip_mv']>=.5)&(p['filter_clip_mv']<=10))).all(),
+                                    'filter_clip_mv must be 0 or in [0.5,10]')
             if self.config.scan_modes:
                 torch._assert_async(((p['scan_mode']>=0)&(p['scan_mode']<=2)).all(), 'scan_mode must be 0, 1 or 2')
                 torch._assert_async(((p['scan_dpi']>=25)&(p['scan_dpi']<=2400)).all(), 'scan_dpi must be in [25,2400]')
@@ -1153,6 +1164,7 @@ class ECGRenderer(nn.Module):
             # The image shows what a recorder prints; the source reference is untouched.
             printed = printed_signal(working_signals, rates, p['filter_highpass_hz'],
                                      p['filter_lowpass_hz'], p['filter_notch_hz'])
+            printed = clip_printed(printed, p['filter_clip_mv'])
             working_signals = printed
         duration = (lengths - 1) / rates
         if self.config.page_model == 'legacy':
