@@ -39,7 +39,7 @@ criterion; "done" means the criterion was measured, not that code exists.
 | 12 | Vendor-style layouts, calibration pulse variants | At least 8 generic styles | planned |
 | 13 | Multi-page prints | Page index and cross-page time mapping | planned |
 | 14 | Print technologies: laser halftone, inkjet, dot matrix, fax, photocopy generations | Visual references per technology | in progress: laser halftone, photocopy, fax in 0.23.0 `print_technology=True`; inkjet, dot matrix planned |
-| 15 | Handwriting, stamps, stickers, barcodes | Separate occlusion target | planned |
+| 15 | Handwriting, stamps, stickers, barcodes | Separate occlusion target | in progress: barcodes, QR, stamps in 0.29.0 `office_marks=True`; handwriting with words, stickers planned |
 
 ## 3. Signal
 

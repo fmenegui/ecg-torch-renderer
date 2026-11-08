@@ -34,6 +34,7 @@ from .phone_isp import phone_observation
 from .print_reproduction import LASER, halftone, reproduce
 from .archive_damage import mold, scorch
 from .page_geometry import page_corners
+from .office_marks import apply_office_marks, sample_office_marks
 
 
 def _conditional_visibility(valid, frame_coverage=None):
@@ -110,6 +111,8 @@ class RenderConfig:
     page_corners: bool = False
     # Return the calibration pulses as their own target.
     calibration_target: bool = False
+    # Patient barcodes, QR-style labels and translucent ink stamps.
+    office_marks: bool = False
 
     def __post_init__(self):
         for name in ('height', 'width', 'antialias_samples', 'lead_chunk_size',
@@ -119,7 +122,7 @@ class RenderConfig:
         for name in ('preserve_extrema', 'validate_inputs', 'jpeg_enabled', 'lead_marks', 'scan_modes',
                      'device_filters', 'report_text', 'phone_isp',
                      'coordinate_targets', 'print_technology',
-                     'archive_damage', 'page_corners', 'calibration_target'):
+                     'archive_damage', 'page_corners', 'calibration_target', 'office_marks'):
             if type(getattr(self, name)) is not bool:
                 raise ValueError(f'{name} must be bool')
         if self.camera_mode not in {'full', 'direct', 'sensor'}:
@@ -377,6 +380,8 @@ class ECGRenderer(nn.Module):
             config.pop('page_corners')
         if not self.config.calibration_target:
             config.pop('calibration_target')
+        if not self.config.office_marks:
+            config.pop('office_marks')
         return {'schema': 'ecg-replot-torch-renderer-v3', 'config': config, 'fonts': self.fonts,
                 'signal_units': 'mV', 'signal_order': LEADS, 'font_initialization': 'CPU once',
                 'hot_path': 'torch on input device', 'jpeg': 'DCT simulation, not a JPEG bitstream',
@@ -565,6 +570,8 @@ class ECGRenderer(nn.Module):
                      scorch_active=(rand() < .08).float() * adverse, scorch_x=.15 + rand() * .7,
                      scorch_y=.15 + rand() * .7, scorch_width=.08 + rand() * .12, scorch_height=.05 + rand() * .08,
                      scorch_angle=rand() * (2 * math.pi), scorch_strength=.3 + rand() * .5)
+        if self.config.office_marks:
+            p.update(sample_office_marks(b, rand))
         if self.config.phone_isp:
             phone = (p['photo'] > 0).float()
             p.update(ca_px=rand() * 1.5 * phone, sharpen_amount=rand() * .8 * phone,
@@ -1050,6 +1057,12 @@ class ECGRenderer(nn.Module):
                                     'grid_line_mm must be in (0,1]')
                 torch._assert_async((p['feed_error'].abs()<=.1).all(), 'feed_error must be in [-0.1,0.1]')
                 torch._assert_async((p['trace_skew'].abs()<=.05).all(), 'trace_skew must be in [-0.05,0.05]')
+            if self.config.office_marks:
+                for key in ('barcode_active', 'qr_active', 'stamp_active'):
+                    torch._assert_async(((p[key]==0)|(p[key]==1)).all(), f'{key} must be binary')
+                for key in ('barcode_width_mm', 'barcode_height_mm', 'qr_size_mm', 'stamp_radius_mm'):
+                    torch._assert_async(((p[key]>0)&(p[key]<=200)).all(), f'{key} must be in (0,200]')
+                torch._assert_async(((p['stamp_ink']>=0)&(p['stamp_ink']<=2)).all(), 'stamp_ink must be 0..2')
             if self.config.archive_damage:
                 for key in ('mold_active', 'scorch_active'):
                     torch._assert_async(((p[key]==0)|(p[key]==1)).all(), f'{key} must be binary')
@@ -1255,6 +1268,10 @@ class ECGRenderer(nn.Module):
                                 p['mold_density'], generator)
             canonical, _ = scorch(canonical, p['scorch_active'], p['scorch_x'], p['scorch_y'], p['scorch_width'],
                                   p['scorch_height'], p['scorch_angle'], p['scorch_strength'])
+        if self.config.office_marks:
+            canonical, marks = apply_office_marks(canonical, p, instances['ppm'], generator)
+            if 'traces' in targets:
+                targets['office_marks'] = marks
         if self.config.print_technology:
             canonical = reproduce(canonical, p['print_tech'], instances['ppm'], p['copy_generations'], generator)
         # This chronology models liquid deposited after ECG printing and marks.

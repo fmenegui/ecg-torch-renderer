@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.29.0
+
+- Add `RenderConfig(office_marks=True)`: patient barcodes (30 %), QR-style
+  labels with finder patterns (15 %) and translucent red, blue or violet ink
+  stamps (25 %) that can cross the traces, sized in millimeters and painted on
+  the canonical page before reproduction and capture. Codes hold random bits
+  and are not decodable. Adds an `office_marks` target; waveform targets are
+  unchanged. New module `ecg_gpu.office_marks`.
+
 ## 0.28.0
 
 - With `device_filters=True`, add printed amplitude clipping
