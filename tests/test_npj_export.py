@@ -60,7 +60,9 @@ class NpjMaskTests(unittest.TestCase):
         renderer = ECGRenderer(RenderConfig(height=96, width=128, profile='photo', antialias_samples=1,
                                             text_target=True, calibration_target=True))
         signals = torch.sin(torch.arange(800) / 9)[None, None].expand(1, 12, -1) * .3
-        batch = renderer(signals, 100, stage='all', generator=torch.Generator().manual_seed(0))
+        # Grid style 1 prints no grid; use ruled lines so every channel is exercised.
+        batch = renderer(signals, 100, stage='all', parameters={'grid_style': 0},
+                         generator=torch.Generator().manual_seed(0))
         mask = npj_mask(batch.targets)
         self.assertEqual(tuple(mask.shape), (1, 3, 96, 128))
         self.assertGreater(float(mask[:, 2].sum()), 0)
