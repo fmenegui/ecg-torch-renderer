@@ -20,8 +20,8 @@ criterion; "done" means the criterion was measured, not that code exists.
 
 | # | Item | Acceptance | Status |
 | --- | --- | --- | --- |
-| 1 | Sim-to-real waveform benchmark: train on synthetic only, SNR on real | Reproducible script, patient-disjoint, 3 seeds, CIs | in progress: scorer and protocol in 0.22.0; needs real images and a trained digitizer |
-| 2 | Same-budget comparison with ECG-Image-Kit and GenECG-style captures | Same network, signals and steps | planned |
+| 1 | Sim-to-real waveform benchmark: train on synthetic only, SNR on real | Reproducible script, patient-disjoint, 3 seeds, CIs | in progress: scorer 0.22.0, end-to-end Colab run 0.32.0; awaiting the first GPU run |
+| 2 | Same-budget comparison with ECG-Image-Kit and GenECG-style captures | Same network, signals and steps | in progress: npj equal-budget harness and notebook 0.32.0 (generator recipes and published-weights control); ECG-Image-Kit arm planned |
 | 3 | Ablation per realism factor | Each factor's SNR delta with CI | planned |
 | 4 | Clinician test and patch KID per release | Protocol and results in `research/` | planned |
 | 5 | Paired real dataset: print signals on real devices, photograph and scan | Consent, licence, device list, ground truth | planned |

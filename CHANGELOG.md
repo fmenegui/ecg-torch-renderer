@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.32.0
+
+- Add `notebooks/sim2real_benchmark.ipynb`: a Colab run that trains the
+  Open-ECG-Digitizer segmentation network (pinned in `reproductions/npj`)
+  with the same budget on pairs from each generator recipe, digitizes the same
+  real ECG-Image-Database D0 images with the native npj pipeline and scores
+  them against PTB-XL printed windows, with results saved to Google Drive.
+- Add `examples/sim2real_npj.py` (`select`, `render`, `train`, `score`):
+  patient-disjoint selection of PTB-XL training records and D0 test records
+  that have every requested capture kind, rendering of npj training pairs per
+  recipe, fixed-step training with the upstream UNet, loss, optimizer and
+  augmentations, and scoring with `external_evaluation` plus patient bootstrap.
+- Add `ecg_gpu.npj_export` (`npj_mask`, `write_npj_pairs`) and
+  `RenderConfig(text_target=True)`, which returns all printed text as a
+  `text` target.
+- Add `research/HANDOFF.md` for continuing the work in a new session.
+
 ## 0.31.0
 
 - Add `RenderConfig(perspective_relief=True)`: lifted paper in photographed

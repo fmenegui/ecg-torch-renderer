@@ -116,6 +116,8 @@ class RenderConfig:
     # Pinhole parallax for lifted paper: points move radially from the
     # camera axis in proportion to their height, not only along one direction.
     perspective_relief: bool = False
+    # Return all printed text ink (labels, headers, report text) as one target.
+    text_target: bool = False
 
     def __post_init__(self):
         for name in ('height', 'width', 'antialias_samples', 'lead_chunk_size',
@@ -126,7 +128,7 @@ class RenderConfig:
                      'device_filters', 'report_text', 'phone_isp',
                      'coordinate_targets', 'print_technology',
                      'archive_damage', 'page_corners', 'calibration_target', 'office_marks',
-                     'perspective_relief'):
+                     'perspective_relief', 'text_target'):
             if type(getattr(self, name)) is not bool:
                 raise ValueError(f'{name} must be bool')
         if self.camera_mode not in {'full', 'direct', 'sensor'}:
@@ -388,6 +390,8 @@ class ECGRenderer(nn.Module):
             config.pop('office_marks')
         if not self.config.perspective_relief:
             config.pop('perspective_relief')
+        if not self.config.text_target:
+            config.pop('text_target')
         return {'schema': 'ecg-replot-torch-renderer-v3', 'config': config, 'fonts': self.fonts,
                 'signal_units': 'mV', 'signal_order': LEADS, 'font_initialization': 'CPU once',
                 'hot_path': 'torch on input device', 'jpeg': 'DCT simulation, not a JPEG bitstream',
@@ -1250,6 +1254,8 @@ class ECGRenderer(nn.Module):
             text = torch.maximum(text, report_ink)
             if 'traces' in targets:
                 targets['report_text'] = report_ink
+        if self.config.text_target and 'traces' in targets:
+            targets['text'] = text
         paper, paper_id = self._texture(self.paper_textures, b, generator, True)
         paper *= self.document.paper_colors[p['paper_palette'].long()][:,:,None,None]*p['paper_color'][:,:,None,None]
         paper = paper - p['paper_tint'][:, :, None, None]
