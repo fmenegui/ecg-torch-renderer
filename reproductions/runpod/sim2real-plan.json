@@ -1,0 +1,57 @@
+{
+  "schema": "ecg-runpod-pilot-plan-v1",
+  "generation": 1,
+  "worker_module": "reproductions.runpod.worker_sim2real",
+  "source_paths": [
+    "reproductions",
+    "ecg_gpu",
+    "examples"
+  ],
+  "gpu_candidates": [
+    "NVIDIA RTX 2000 Ada Generation",
+    "NVIDIA RTX A4000",
+    "NVIDIA RTX A4500",
+    "NVIDIA RTX A5000",
+    "NVIDIA RTX 4000 Ada Generation",
+    "NVIDIA GeForce RTX 3090",
+    "NVIDIA RTX PRO 4000 Blackwell",
+    "NVIDIA A40",
+    "NVIDIA L4",
+    "NVIDIA RTX A6000"
+  ],
+  "gpu_id": "NVIDIA RTX A4000",
+  "minimum_gpu_memory_gb": 16,
+  "maximum_gpu_price_per_hour": 0.7,
+  "template_id": "runpod-torch-v280",
+  "storage_mode": "container_disk",
+  "volume_gb": 0,
+  "container_disk_gb": 40,
+  "maximum_pod_seconds": 5400,
+  "gpu_time_cost_cap_usd": 1.05,
+  "new_training": true,
+  "sim2real": {
+    "arms": [
+      "legacy",
+      "full"
+    ],
+    "published_control": true,
+    "train_records": 600,
+    "val_records": 60,
+    "test_records": 25,
+    "kinds": [
+      "digital",
+      "color-scan",
+      "gray-scan",
+      "phone-photo"
+    ],
+    "height": 1200,
+    "width": 1600,
+    "steps": 1500,
+    "batch": 4,
+    "crop": 1024,
+    "seed": 1973,
+    "kid_images": 200,
+    "minimum_seconds_per_arm": 1200
+  },
+  "purpose": "Baseline before renderer changes: train the pinned Open-ECG-Digitizer UNet with the same budget on pairs from each generator recipe, digitize the same real ECG-Image-Database D0 images and score against PTB-XL printed windows, plus KID between rendered and real images. Pilot size: one seed, 25 test patients."
+}

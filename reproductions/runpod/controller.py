@@ -26,7 +26,7 @@ def validate_plan(plan):
     if storage not in ["network_volume", "container_disk"]:
         raise ValueError("Unknown storage mode")
     inference_workers = {"reproductions.hybrid.worker", "reproductions.hybrid.worker_completion", "reproductions.pm_benchmark.worker_clock",
-                         "reproductions.runpod.worker_renderer"}
+                         "reproductions.runpod.worker_renderer", "reproductions.runpod.worker_sim2real"}
     if storage == "container_disk" and (full or plan.get("schema") != "ecg-runpod-pilot-plan-v1"
             or plan.get("worker_module") not in inference_workers or plan.get("container_disk_gb") != 40):
         raise ValueError("Ephemeral storage is limited to the bounded hybrid inference pilot")
@@ -43,13 +43,20 @@ def validate_plan(plan):
                 or plan['maximum_gpu_price_per_hour'] > .70 or plan.get('new_training') is not False
                 or plan.get('patient_data') is not False or storage != 'container_disk'):
             raise ValueError('Renderer profile exceeds its independent USD 0.35 GPU-time cap')
+    if plan.get('worker_module') == 'reproductions.runpod.worker_sim2real':
+        # Equal-budget generator comparison on public PTB-XL / ECG-Image-Database D0.
+        total = plan['maximum_pod_seconds'] * plan['maximum_gpu_price_per_hour'] / 3600
+        if (plan.get('gpu_time_cost_cap_usd') != 1.05 or not 0 < total <= 1.05
+                or plan['maximum_gpu_price_per_hour'] > .70 or storage != 'container_disk'
+                or not plan.get('sim2real', {}).get('arms')):
+            raise ValueError('Sim-to-real run exceeds its independent USD 1.05 GPU-time cap')
     if plan.get("worker_module") == "reproductions.hybrid.worker_completion":
         prior = plan.get("prior_gpu_time_cost_upper_bound_usd", -1)
         minimum_prior = .3337 if plan.get("reuse_repair_from_run") == 41113820943 else .2782
         total = prior + plan["maximum_pod_seconds"] * plan["maximum_gpu_price_per_hour"] / 3600
         if not minimum_prior <= prior <= .45 or not 0 < total <= .45 or plan.get("combined_gpu_cost_cap_usd") != .45:
             raise ValueError("Completion must fit the remaining original GPU envelope")
-    maximum = 18000 if full else 1800
+    maximum = 18000 if full else (5400 if plan.get('worker_module') == 'reproductions.runpod.worker_sim2real' else 1800)
     volume = 0 if storage == "container_disk" else (220 if full else 30)
     if not 0 < plan["maximum_pod_seconds"] <= maximum or plan["volume_gb"] != volume:
         raise ValueError("Execution exceeds its bounded resource envelope")

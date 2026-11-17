@@ -1,0 +1,80 @@
+name: Sim-to-real baseline on Runpod
+on:
+  push:
+    branches: ['research/renderer-gpu-*']
+    paths:
+      - '.github/workflows/sim2real-runpod.yml'
+      - 'reproductions/runpod/sim2real-plan.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: ecg-hybrid-runpod-control
+  cancel-in-progress: false
+jobs:
+  admit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      admitted: ${{ steps.admission.outputs.admitted }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - id: admission
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python -m reproductions.runpod.admission --workflow sim2real-runpod.yml --plan reproductions/runpod/sim2real-plan.json
+  validate:
+    needs: admit
+    if: needs.admit.outputs.admitted == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      OMP_NUM_THREADS: '2'
+      MKL_NUM_THREADS: '2'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install CPU verification dependencies
+        run: |
+          python -m pip install torch==2.7.0 --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install -e . numpy==2.5.4 Pillow==13.0.0
+      - name: Check the bounded plan and the renderer contracts before allocating
+        run: |
+          python -c "import json; from reproductions.runpod.controller import validate_plan; validate_plan(json.load(open('reproductions/runpod/sim2real-plan.json')))"
+          python -m unittest reproductions.tests.test_runpod_control tests.test_renderer tests.test_supervision -v
+  benchmark:
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 110
+    env:
+      RUNPOD_API_KEY: ${{ secrets.RUNPOD_API }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Install hash-verified Runpod CLI
+        run: |
+          curl --fail --location --silent --show-error https://github.com/runpod/runpodctl/releases/download/v3.0.1/runpodctl-linux-amd64 --output /tmp/runpodctl
+          echo 'b66d11eca8cacbf18a2de6943c6e18a79ffbdc8a3c30aa13a49dc6cfc15d4239  /tmp/runpodctl' | sha256sum --check
+          chmod 755 /tmp/runpodctl
+      - name: Read live price and stock, then provision one cheap GPU
+        run: python -u -m reproductions.runpod.controller --cli /tmp/runpodctl --plan reproductions/runpod/sim2real-plan.json --out build/sim2real provision
+      - name: Render, train, digitize and score every arm
+        run: python -u -m reproductions.runpod.controller --cli /tmp/runpodctl --plan reproductions/runpod/sim2real-plan.json --out build/sim2real execute
+      - name: Delete the owned pod and verify absence
+        if: always()
+        run: python -u -m reproductions.runpod.controller --cli /tmp/runpodctl --plan reproductions/runpod/sim2real-plan.json --out build/sim2real cleanup
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sim2real-results
+          path: |
+            build/sim2real/control.json
+            build/sim2real/results.tar.gz
