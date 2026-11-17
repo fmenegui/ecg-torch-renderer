@@ -1,6 +1,6 @@
 {
   "schema": "ecg-runpod-pilot-plan-v1",
-  "generation": 1,
+  "generation": 2,
   "worker_module": "reproductions.runpod.worker_renderer",
   "source_paths": ["reproductions", "ecg_gpu", "examples"],
   "gpu_candidates": ["NVIDIA RTX A4000", "NVIDIA RTX A4500", "NVIDIA RTX A5000", "NVIDIA A40", "NVIDIA L4", "NVIDIA GeForce RTX 3090"],

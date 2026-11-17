@@ -81,7 +81,14 @@ def choice(plan, gpus, templates, datacenters):
                 dc = next((d for d in datacenters if d["id"] == availability["dataCenterId"]), None)
                 if dc and (plan.get("storage_mode") == "container_disk" or "STANDARD" in dc.get("networkVolumeTypes", [])):
                     return {"gpu": gpu, "template": template, "data_center": dc["id"], "data_center_metadata": dc, "gpu_price_per_hour": price, "read_at": datetime.now(timezone.utc).isoformat()}
-    raise ValueError("No observed candidate has acceptable GPU capacity, price and requested storage in the same data center")
+    observed = sorted(
+        ({"id": g.get("gpuId"), "memory_gb": g.get("memoryInGb"), "secure_usd_h": g.get("securePricePerHr"),
+          "in_stock_dcs": sum(1 for a in g.get("dataCenterAvailability", [])
+                              if a.get("stockStatus", "").lower() in ["low", "medium", "high"])}
+         for g in gpus if isinstance(g.get("securePricePerHr"), (int, float)) and g["securePricePerHr"] <= 1),
+        key=lambda row: row["secure_usd_h"])
+    raise ValueError("No observed candidate has acceptable GPU capacity, price and requested storage in the same data center. "
+                     "Observed secure GPUs up to USD 1/h: " + json.dumps(observed)[:3000])
 
 
 def pod_creation_args(plan, selected, name, volume_id=None):
