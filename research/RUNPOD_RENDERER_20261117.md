@@ -2,7 +2,7 @@
 
 Branch `research/renderer-gpu-20261117`. Artificial signals for profiling;
 public PTB-XL and ECG-Image-Database D0 for sim-to-real. Every pod was deleted
-and its absence verified by the controller. GPU spend ≈ USD 1.39.
+and its absence verified by the controller. GPU spend ≈ USD 1.92.
 
 ## 1. GPU profile (run 44093688811)
 
