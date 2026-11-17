@@ -234,7 +234,13 @@ def train(upstream, train_dir, val_dir, out, *, steps=3000, batch_size=4, crop=1
         for key in ('state_dict', 'model_state_dict', 'model'):
             if isinstance(state, dict) and isinstance(state.get(key), dict):
                 state = state[key]
-        state = {k[7:] if k.startswith('module.') else k: v for k, v in state.items()}
+        # Published weights come from a torch.compile'd model ('_orig_mod.' keys).
+        def bare(key):
+            for prefix in ('_orig_mod.', 'module.'):
+                while key.startswith(prefix):
+                    key = key[len(prefix):]
+            return key
+        state = {bare(k): v for k, v in state.items()}
         model.load_state_dict(state, strict=True)
     criterion = DiceFocalLoss(**config['TRAIN']['CRITERION']['KWARGS'])
     optimizer = AdamMuon(model.parameters(), lr=lr, weight_decay=weight_decay)
