@@ -35,6 +35,7 @@ from .print_reproduction import LASER, halftone, reproduce
 from .archive_damage import mold, scorch
 from .page_geometry import page_corners
 from .office_marks import apply_office_marks, sample_office_marks
+from .prefilter import prefiltered_sample
 
 
 def _conditional_visibility(valid, frame_coverage=None):
@@ -118,6 +119,9 @@ class RenderConfig:
     perspective_relief: bool = False
     # Return all printed text ink (labels, headers, report text) as one target.
     text_target: bool = False
+    # Integrate each camera pixel's footprint on the page (trilinear mip
+    # pyramid) instead of point-sampling it, so minified grids do not alias.
+    prefilter_warp: bool = False
 
     def __post_init__(self):
         for name in ('height', 'width', 'antialias_samples', 'lead_chunk_size',
@@ -128,7 +132,7 @@ class RenderConfig:
                      'device_filters', 'report_text', 'phone_isp',
                      'coordinate_targets', 'print_technology',
                      'archive_damage', 'page_corners', 'calibration_target', 'office_marks',
-                     'perspective_relief', 'text_target'):
+                     'perspective_relief', 'text_target', 'prefilter_warp'):
             if type(getattr(self, name)) is not bool:
                 raise ValueError(f'{name} must be bool')
         if self.camera_mode not in {'full', 'direct', 'sensor'}:
@@ -392,6 +396,8 @@ class ECGRenderer(nn.Module):
             config.pop('perspective_relief')
         if not self.config.text_target:
             config.pop('text_target')
+        if not self.config.prefilter_warp:
+            config.pop('prefilter_warp')
         return {'schema': 'ecg-replot-torch-renderer-v3', 'config': config, 'fonts': self.fonts,
                 'signal_units': 'mV', 'signal_order': LEADS, 'font_initialization': 'CPU once',
                 'hot_path': 'torch on input device', 'jpeg': 'DCT simulation, not a JPEG bitstream',
@@ -1353,7 +1359,10 @@ class ECGRenderer(nn.Module):
             # coverage gates targets, cast shadows and RGB compositing.
             valid = F.grid_sample(torch.ones_like(ink), field, align_corners=False)
             frame_coverage = valid.clone() if stage != 'image' or return_instances or return_name_instances else None
-            image = F.grid_sample(srgb_to_linear(canonical), field, align_corners=False, padding_mode='border')
+            if self.config.prefilter_warp:
+                image = prefiltered_sample(srgb_to_linear(canonical), field)
+            else:
+                image = F.grid_sample(srgb_to_linear(canonical), field, align_corners=False, padding_mode='border')
             if scene is None:
                 scene = {'field':field,'solver_valid':torch.ones_like(valid),
                          'normals':torch.cat([torch.zeros_like(valid),torch.zeros_like(valid),torch.ones_like(valid)],1),

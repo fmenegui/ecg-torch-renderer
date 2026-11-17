@@ -110,6 +110,14 @@ def recipe_config(name, height, width):
         return RenderConfig(**base, page_model='physical', stroke='isotropic', lead_marks=True, scan_modes=True,
                             device_filters=True, report_text=True, phone_isp=True, print_technology=True,
                             archive_damage=True, office_marks=True, perspective_relief=True)
+    if name == 'full-v2':
+        # Footprint-integrated page warp. The Mitsuba geometry bank is passed
+        # separately to the renderer (see renderer_assets).
+        from dataclasses import replace
+        return replace(recipe_config('full', height, width), prefilter_warp=True)
+    if name == 'full-prefilter':
+        from dataclasses import replace
+        return replace(recipe_config('full', height, width), prefilter_warp=True)
     if name.startswith('full-no-'):
         flag = name[len('full-no-'):].replace('-', '_')
         config = recipe_config('full', height, width)
@@ -118,7 +126,19 @@ def recipe_config(name, height, width):
             raise ValueError(f'Unknown ablation flag {flag!r}')
         from dataclasses import replace
         return replace(config, **{flag: values.get(flag, False)})
-    raise ValueError(f'Unknown recipe {name!r}. Use legacy, full or full-no-<flag>')
+    raise ValueError(f'Unknown recipe {name!r}. Use legacy, full, full-prefilter, full-v2 or full-no-<flag>')
+
+
+def renderer_assets(name):
+    """Optional construction-time assets per recipe (never in the batch loop)."""
+    if name != 'full-v2':
+        return {}
+    import os
+    from ecg_gpu import DocumentAssets
+    path = os.environ.get('ECG_GEOMETRY_BANK')
+    if not path:
+        raise ValueError('full-v2 needs ECG_GEOMETRY_BANK=<bank.npz> from examples/build_geometry_bank.py')
+    return {'document_assets': DocumentAssets.from_npz(path)}
 
 
 def load_ptbxl(root, relative):
@@ -136,7 +156,7 @@ def render(split_json, ptbxl_root, recipe, out, *, height=1200, width=1600, batc
     from ecg_gpu.npj_export import npj_mask, write_npj_pairs
     split = json.loads(Path(split_json).read_text())
     device = device or ('cuda' if torch.cuda.is_available() else 'cpu')
-    renderer = ECGRenderer(recipe_config(recipe, height, width)).to(device)
+    renderer = ECGRenderer(recipe_config(recipe, height, width), **renderer_assets(recipe)).to(device)
     generator = torch.Generator(device=device).manual_seed(seed)
     out = Path(out)
     receipt = {'schema': 'sim2real-npj-render-v1', 'recipe': recipe, 'height': height, 'width': width,

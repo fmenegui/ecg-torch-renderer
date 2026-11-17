@@ -9,6 +9,7 @@ written as they arrive, so a deadline still leaves every finished arm.
 
 import argparse
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -88,6 +89,19 @@ class Run:
         self.report['real_images'] = len(self.manifest['cases'])
         self.report['real_patients'] = len({case['patient_id'] for case in self.manifest['cases']})
         self.save()
+
+    def geometry_bank(self):
+        """Offline Mitsuba geometry for the full-v2 recipe, built once on this pod's CPUs."""
+        c = self.plan['sim2real']
+        bank = self.data / 'geometry-bank.npz'
+        if self.sh([sys.executable, '-m', 'pip', 'install', '--disable-pip-version-check', '-q', 'mitsuba==3.9.1'],
+                   'install-mitsuba').returncode:
+            raise RuntimeError('mitsuba install failed')
+        if self.sh([sys.executable, 'examples/build_geometry_bank.py', '--out', bank, '--count', c.get('bank_entries', 64),
+                    '--width', 640, '--height', 480, '--seed', c['seed']], 'geometry-bank').returncode:
+            raise RuntimeError('geometry bank failed')
+        shutil.copy(bank.with_suffix('.json'), self.out / 'geometry-bank.json')
+        os.environ['ECG_GEOMETRY_BANK'] = str(bank)
 
     def infer_and_score(self, arm, checkpoint=None):
         images = [str(self.data / 'real' / case['image']) for case in self.manifest['cases']]
@@ -209,6 +223,8 @@ def main():
     run = Run(args.workspace, plan, execution['deadline'] - 120)
     try:
         run.prepare()
+        if 'full-v2' in plan['sim2real']['arms']:
+            run.geometry_bank()
         if plan['sim2real'].get('published_control', True):
             run.infer_and_score('published')
         for arm in plan['sim2real']['arms']:
