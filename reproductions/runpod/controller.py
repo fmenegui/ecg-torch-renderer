@@ -25,7 +25,8 @@ def validate_plan(plan):
     storage = plan.get("storage_mode", "network_volume")
     if storage not in ["network_volume", "container_disk"]:
         raise ValueError("Unknown storage mode")
-    inference_workers = {"reproductions.hybrid.worker", "reproductions.hybrid.worker_completion", "reproductions.pm_benchmark.worker_clock"}
+    inference_workers = {"reproductions.hybrid.worker", "reproductions.hybrid.worker_completion", "reproductions.pm_benchmark.worker_clock",
+                         "reproductions.runpod.worker_renderer"}
     if storage == "container_disk" and (full or plan.get("schema") != "ecg-runpod-pilot-plan-v1"
             or plan.get("worker_module") not in inference_workers or plan.get("container_disk_gb") != 40):
         raise ValueError("Ephemeral storage is limited to the bounded hybrid inference pilot")
@@ -35,6 +36,13 @@ def validate_plan(plan):
                 or plan['maximum_gpu_price_per_hour'] > .60 or plan.get('scheduled_pages') != 22
                 or plan.get('new_training') is not False or storage != 'container_disk'):
             raise ValueError('Physical-clock ablation exceeds its independent USD 0.30 GPU-time cap')
+    if plan.get('worker_module') == 'reproductions.runpod.worker_renderer':
+        # Renderer profiling uses artificial signals only, on one cheap card.
+        total = plan['maximum_pod_seconds'] * plan['maximum_gpu_price_per_hour'] / 3600
+        if (plan.get('gpu_time_cost_cap_usd') != .25 or not 0 < total <= .25
+                or plan['maximum_gpu_price_per_hour'] > .45 or plan.get('new_training') is not False
+                or plan.get('patient_data') is not False or storage != 'container_disk'):
+            raise ValueError('Renderer profile exceeds its independent USD 0.25 GPU-time cap')
     if plan.get("worker_module") == "reproductions.hybrid.worker_completion":
         prior = plan.get("prior_gpu_time_cost_upper_bound_usd", -1)
         minimum_prior = .3337 if plan.get("reuse_repair_from_run") == 41113820943 else .2782

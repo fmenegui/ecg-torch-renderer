@@ -1,0 +1,19 @@
+{
+  "schema": "ecg-runpod-pilot-plan-v1",
+  "generation": 1,
+  "worker_module": "reproductions.runpod.worker_renderer",
+  "source_paths": ["reproductions", "ecg_gpu", "examples"],
+  "gpu_candidates": ["NVIDIA RTX A4000", "NVIDIA RTX A4500", "NVIDIA RTX A5000", "NVIDIA A40", "NVIDIA L4", "NVIDIA GeForce RTX 3090"],
+  "gpu_id": "NVIDIA RTX A4000",
+  "minimum_gpu_memory_gb": 16,
+  "maximum_gpu_price_per_hour": 0.45,
+  "template_id": "runpod-torch-v280",
+  "storage_mode": "container_disk",
+  "volume_gb": 0,
+  "container_disk_gb": 40,
+  "maximum_pod_seconds": 1800,
+  "gpu_time_cost_cap_usd": 0.25,
+  "new_training": false,
+  "patient_data": false,
+  "purpose": "Profile the current training renderer on one cheap GPU: warm latency per preset and batch, eager versus compiled, cold compilation, peak memory, CUDA kernel launches per forward, CPU/GPU parity with fixed parameters, TF32 effect and on-device validation failure behaviour. Artificial signals only."
+}
