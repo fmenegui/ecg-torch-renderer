@@ -267,9 +267,29 @@ class Controller:
         if not ephemeral:
             volume = existing_volume or self.rest("POST", "/network-volumes", {"name": self.ledger["name"], "size": plan["volume_gb"], "dataCenter": selected["data_center"], "type": "STANDARD"})
             self.ledger["volume_id"] = volume["id"]
-        self.ledger["deadline"] = time.time() + plan["maximum_pod_seconds"]
-        self.save()
-        pod = self.call(pod_creation_args(plan, selected, self.ledger["name"], self.ledger.get("volume_id")))
+        while True:
+            self.ledger["deadline"] = time.time() + plan["maximum_pod_seconds"]
+            self.save()
+            try:
+                pod = self.call(pod_creation_args(plan, selected, self.ledger["name"], self.ledger.get("volume_id")))
+                break
+            except RuntimeError as error:
+                # Stock observed in the listing can be taken before creation. Nothing was allocated.
+                if "no longer any instances available" not in str(error) or waited >= wait_limit:
+                    raise
+                print(json.dumps({"creation_race_retry_after_seconds": waited}), flush=True)
+                time.sleep(60)
+                waited += 60
+                while True:
+                    try:
+                        selected = choice(plan, self.call(["gpu", "list", "--include-unavailable"]), templates, raw_catalog["dataCenters"])
+                        break
+                    except ValueError as retry_error:
+                        if waited >= wait_limit or "No observed candidate" not in str(retry_error):
+                            raise
+                        time.sleep(60)
+                        waited += 60
+                self.ledger.update(selection=selected, stock_wait_seconds=waited)
         self.ledger.update(pod_id=pod["id"], status="booting")
         actual_price = pod.get("costPerHr")
         self.ledger["created_pod_price_per_hour"] = actual_price
