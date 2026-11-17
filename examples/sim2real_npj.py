@@ -161,22 +161,34 @@ def render(split_json, ptbxl_root, recipe, out, *, height=1200, width=1600, batc
     out = Path(out)
     receipt = {'schema': 'sim2real-npj-render-v1', 'recipe': recipe, 'height': height, 'width': width,
                'pulse_class': pulse_class, 'seed': seed, 'specification': renderer.specification(), 'splits': {}}
+    from concurrent.futures import ThreadPoolExecutor
+    # PNG encoding and WFDB reads are CPU work; overlap them with GPU rendering.
+    # The rendered pixels and their order are unchanged.
+    pool = ThreadPoolExecutor(max_workers=6)
     for name in ('train', 'val'):
         rows = split[name]
         index = 1
         start = time.time()
-        for offset in range(0, len(rows), batch):
-            chunk = rows[offset:offset + batch]
-            loaded = [load_ptbxl(ptbxl_root, row['path']) for row in chunk]
+        writes = []
+        chunks = [rows[offset:offset + batch] for offset in range(0, len(rows), batch)]
+        loading = pool.submit(lambda chunk: [load_ptbxl(ptbxl_root, row['path']) for row in chunk], chunks[0]) if chunks else None
+        for number, chunk in enumerate(chunks):
+            loaded = loading.result()
+            if number + 1 < len(chunks):
+                loading = pool.submit(lambda chunk: [load_ptbxl(ptbxl_root, row['path']) for row in chunk], chunks[number + 1])
             fs = {value for _, value in loaded}
             if len(fs) != 1:
                 raise ValueError('Mixed sampling rates in one batch')
             signals = torch.tensor(np.stack([value for value, _ in loaded]), device=device)
             result = renderer(signals, fs.pop(), stage='all', generator=generator)
-            write_npj_pairs(result.image, npj_mask(result.targets, pulse_class=pulse_class), out / name, index)
+            image, mask = result.image.cpu(), npj_mask(result.targets, pulse_class=pulse_class).cpu()
+            writes.append(pool.submit(write_npj_pairs, image, mask, out / name, index, 1))
             index += len(chunk)
+        for write in writes:
+            write.result()
         receipt['splits'][name] = {'pairs': index - 1, 'seconds': time.time() - start}
         print(json.dumps({'recipe': recipe, 'split': name, 'pairs': index - 1}), flush=True)
+    pool.shutdown()
     (out / 'render-receipt.json').write_text(json.dumps(receipt, indent=2, default=str) + '\n')
     return receipt
 

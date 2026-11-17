@@ -1,6 +1,6 @@
 {
   "schema": "ecg-runpod-pilot-plan-v1",
-  "generation": 1,
+  "generation": 2,
   "worker_module": "reproductions.runpod.worker_sim2real",
   "source_paths": [
     "reproductions",
@@ -26,15 +26,16 @@
   "storage_mode": "container_disk",
   "volume_gb": 0,
   "container_disk_gb": 40,
-  "maximum_pod_seconds": 5400,
-  "gpu_time_cost_cap_usd": 1.05,
+  "maximum_pod_seconds": 6600,
+  "gpu_time_cost_cap_usd": 1.3,
   "new_training": true,
   "sim2real": {
     "arms": [
-      "legacy",
-      "full"
+      "full",
+      "full-v2",
+      "legacy"
     ],
-    "published_control": true,
+    "published_control": false,
     "train_records": 600,
     "val_records": 60,
     "test_records": 25,
@@ -51,7 +52,9 @@
     "crop": 1024,
     "seed": 1973,
     "kid_images": 200,
-    "minimum_seconds_per_arm": 1200
+    "minimum_seconds_per_arm": 1200,
+    "infer_shards": 6,
+    "bank_entries": 64
   },
-  "purpose": "Baseline before renderer changes: train the pinned Open-ECG-Digitizer UNet with the same budget on pairs from each generator recipe, digitize the same real ECG-Image-Database D0 images and score against PTB-XL printed windows, plus KID between rendered and real images. Pilot size: one seed, 25 test patients."
+  "purpose": "Equal-budget sim-to-real comparison on one pod: current full recipe, full-v2 (footprint-prefiltered warp plus an offline Mitsuba geometry bank with baked occlusion) and legacy. The published-weight control was scored in run 44096808365 on the same deterministic split. Pilot size: one seed, 25 test patients, 100 real images."
 }

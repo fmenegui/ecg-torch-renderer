@@ -46,17 +46,17 @@ def validate_plan(plan):
     if plan.get('worker_module') == 'reproductions.runpod.worker_sim2real':
         # Equal-budget generator comparison on public PTB-XL / ECG-Image-Database D0.
         total = plan['maximum_pod_seconds'] * plan['maximum_gpu_price_per_hour'] / 3600
-        if (plan.get('gpu_time_cost_cap_usd') != 1.05 or not 0 < total <= 1.05
+        if (plan.get('gpu_time_cost_cap_usd') != 1.30 or not 0 < total <= 1.30
                 or plan['maximum_gpu_price_per_hour'] > .70 or storage != 'container_disk'
                 or not plan.get('sim2real', {}).get('arms')):
-            raise ValueError('Sim-to-real run exceeds its independent USD 1.05 GPU-time cap')
+            raise ValueError('Sim-to-real run exceeds its independent USD 1.30 GPU-time cap')
     if plan.get("worker_module") == "reproductions.hybrid.worker_completion":
         prior = plan.get("prior_gpu_time_cost_upper_bound_usd", -1)
         minimum_prior = .3337 if plan.get("reuse_repair_from_run") == 41113820943 else .2782
         total = prior + plan["maximum_pod_seconds"] * plan["maximum_gpu_price_per_hour"] / 3600
         if not minimum_prior <= prior <= .45 or not 0 < total <= .45 or plan.get("combined_gpu_cost_cap_usd") != .45:
             raise ValueError("Completion must fit the remaining original GPU envelope")
-    maximum = 18000 if full else (5400 if plan.get('worker_module') == 'reproductions.runpod.worker_sim2real' else 1800)
+    maximum = 18000 if full else (6600 if plan.get('worker_module') == 'reproductions.runpod.worker_sim2real' else 1800)
     volume = 0 if storage == "container_disk" else (220 if full else 30)
     if not 0 < plan["maximum_pod_seconds"] <= maximum or plan["volume_gb"] != volume:
         raise ValueError("Execution exceeds its bounded resource envelope")

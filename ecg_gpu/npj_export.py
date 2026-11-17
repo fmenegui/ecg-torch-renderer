@@ -52,7 +52,7 @@ def _to_uint8(array):
     return np.rint(np.clip(array, 0, 1) * 255).astype(np.uint8)
 
 
-def write_npj_pairs(images, masks, out, start_index=1):
+def write_npj_pairs(images, masks, out, start_index=1, compress_level=None):
     """Write ``[B,3,H,W]`` images and masks as ``NNNNNN.png`` / ``NNNNNN_mask.png``.
 
     Returns the written stems. Existing files are never overwritten.
@@ -70,7 +70,8 @@ def write_npj_pairs(images, masks, out, start_index=1):
         image_path, mask_path = out / f'{stem}.png', out / f'{stem}_mask.png'
         if image_path.exists() or mask_path.exists():
             raise FileExistsError(f'Refusing to overwrite {image_path}')
-        Image.fromarray(_to_uint8(image.transpose(1, 2, 0))).save(image_path)
-        Image.fromarray(_to_uint8(mask.transpose(1, 2, 0))).save(mask_path)
+        options = {} if compress_level is None else {'compress_level': compress_level}
+        Image.fromarray(_to_uint8(image.transpose(1, 2, 0))).save(image_path, **options)
+        Image.fromarray(_to_uint8(mask.transpose(1, 2, 0))).save(mask_path, **options)
         stems.append(stem)
     return stems

@@ -1,4 +1,4 @@
-name: Sim-to-real baseline on Runpod
+name: Sim-to-real comparison on Runpod
 on:
   push:
     branches: ['research/renderer-gpu-*']
@@ -52,7 +52,7 @@ jobs:
   benchmark:
     needs: validate
     runs-on: ubuntu-latest
-    timeout-minutes: 110
+    timeout-minutes: 135
     env:
       RUNPOD_API_KEY: ${{ secrets.RUNPOD_API }}
     steps:

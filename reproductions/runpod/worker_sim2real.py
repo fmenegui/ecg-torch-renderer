@@ -104,15 +104,43 @@ class Run:
         os.environ['ECG_GEOMETRY_BANK'] = str(bank)
 
     def infer_and_score(self, arm, checkpoint=None):
+        """Native npj inference is CPU-bound per image; run disjoint shards concurrently."""
         images = [str(self.data / 'real' / case['image']) for case in self.manifest['cases']]
         predictions = self.runs / arm / 'infer'
         shutil.rmtree(predictions, ignore_errors=True)
-        command = [sys.executable, '-m', 'reproductions.npj.infer', '--upstream', self.workspace / 'sources' / 'npj',
-                   '--preset', 'george-moody-2024', '--out', predictions]
-        command += [arg for image in images for arg in ('--image', image)]
-        if checkpoint:
-            command += ['--segmentation-checkpoint', checkpoint]
-        self.sh(command, f'{arm}/infer')
+        predictions.mkdir(parents=True)
+        shards = max(1, min(self.plan['sim2real'].get('infer_shards', 4), (os.cpu_count() or 2) // 2, len(images)))
+        processes = []
+        begin = time.time()
+        for index in range(shards):
+            command = [sys.executable, '-m', 'reproductions.npj.infer', '--upstream', self.workspace / 'sources' / 'npj',
+                       '--preset', 'george-moody-2024', '--out', predictions / f'shard-{index}', '--threads', 2]
+            command += [arg for image in images[index::shards] for arg in ('--image', image)]
+            if checkpoint:
+                command += ['--segmentation-checkpoint', checkpoint]
+            log = (self.out / 'logs' / f'{arm}_infer_{index}.log')
+            log.parent.mkdir(exist_ok=True)
+            processes.append((subprocess.Popen([str(a) for a in command], cwd=self.code, stdout=log.open('w'),
+                                               stderr=subprocess.STDOUT), log))
+        limit = max(60, self.left() - 180)
+        codes = []
+        for process, _ in processes:
+            try:
+                codes.append(process.wait(timeout=max(1, limit - (time.time() - begin))))
+            except subprocess.TimeoutExpired:
+                process.kill()
+                codes.append('timeout')
+        receipts = []
+        for index in range(shards):
+            shard = predictions / f'shard-{index}'
+            for file in shard.glob('*.npz'):
+                shutil.move(str(file), predictions / file.name)
+            if (shard / 'receipt.json').exists():
+                receipts.append(json.loads((shard / 'receipt.json').read_text()))
+        (predictions / 'receipt.json').write_text(json.dumps({'shards': receipts}, default=str))
+        self.report['steps'].append({'name': f'{arm}/infer', 'returncode': codes, 'shards': shards,
+                                     'cpu_count': os.cpu_count(), 'seconds': time.time() - begin})
+        self.save()
         target = self.out / arm / 'scores.json'
         target.parent.mkdir(exist_ok=True)
         self.sh([sys.executable, 'examples/sim2real_npj.py', 'score', '--manifest', self.data / 'real' / 'manifest.json',
@@ -225,7 +253,7 @@ def main():
         run.prepare()
         if 'full-v2' in plan['sim2real']['arms']:
             run.geometry_bank()
-        if plan['sim2real'].get('published_control', True):
+        if plan['sim2real'].get('published_control', False):
             run.infer_and_score('published')
         for arm in plan['sim2real']['arms']:
             if run.left() < plan['sim2real']['minimum_seconds_per_arm']:
