@@ -1,6 +1,6 @@
 {
   "schema": "ecg-runpod-pilot-plan-v1",
-  "generation": 3,
+  "generation": 4,
   "worker_module": "reproductions.runpod.worker_sim2real",
   "source_paths": [
     "reproductions",
@@ -55,5 +55,6 @@
     "infer_shards": 1,
     "bank_entries": 64
   },
-  "purpose": "Equal-budget sim-to-real comparison of the current full recipe and full-v2 (footprint-prefiltered warp plus an offline Mitsuba geometry bank with baked occlusion) on one pod and one deterministic D0 split, with serial native inference. Run 44114365619 is void for SNR: six concurrent inference processes exhausted GPU memory. Pilot size: one seed, 25 test patients, 100 real images."
+  "purpose": "Equal-budget sim-to-real comparison of the current full recipe and full-v2 (footprint-prefiltered warp plus an offline Mitsuba geometry bank with baked occlusion) on one pod and one deterministic D0 split, with serial native inference. Run 44114365619 is void for SNR: six concurrent inference processes exhausted GPU memory. Pilot size: one seed, 25 test patients, 100 real images.",
+  "stock_wait_seconds": 2700
 }

@@ -228,7 +228,20 @@ class Controller:
             if existing_volume.get("name") != self.ledger["name"] or existing_volume.get("size") != plan["volume_gb"] or existing_volume.get("dataCenter") != self.ledger.get("selection", {}).get("data_center"):
                 raise ValueError("Persisted training volume ownership or capacity changed")
             raw_catalog["dataCenters"] = [d for d in raw_catalog["dataCenters"] if d["id"] == existing_volume["dataCenter"]]
-        selected = choice(plan, self.call(["gpu", "list", "--include-unavailable"]), self.call(["template", "search", "pytorch", "--type", "official", "--limit", "20"]), raw_catalog["dataCenters"])
+        templates = self.call(["template", "search", "pytorch", "--type", "official", "--limit", "20"])
+        # Waiting for stock allocates nothing; the pod deadline starts only after creation.
+        waited, wait_limit = 0, int(plan.get("stock_wait_seconds", 0))
+        while True:
+            try:
+                selected = choice(plan, self.call(["gpu", "list", "--include-unavailable"]), templates, raw_catalog["dataCenters"])
+                break
+            except ValueError as error:
+                if waited >= wait_limit or "No observed candidate" not in str(error):
+                    raise
+                print(json.dumps({"waiting_for_stock_seconds": waited}), flush=True)
+                time.sleep(60)
+                waited += 60
+        self.ledger["stock_wait_seconds"] = waited
         ephemeral = plan.get("storage_mode") == "container_disk"
         if not ephemeral:
             selected["storage_price_reference"] = {"type": "STANDARD", "usd_per_gb_month": 0.07, "volume_gb": plan["volume_gb"], "source": "https://www.runpod.io/pricing"}
