@@ -109,7 +109,9 @@ class Run:
         predictions = self.runs / arm / 'infer'
         shutil.rmtree(predictions, ignore_errors=True)
         predictions.mkdir(parents=True)
-        shards = max(1, min(self.plan['sim2real'].get('infer_shards', 4), (os.cpu_count() or 2) // 2, len(images)))
+        # Each native npj process holds its own models on the one GPU: six shards
+        # on 24 GB ran out of memory (run 44114365619). Default to one.
+        shards = max(1, min(self.plan['sim2real'].get('infer_shards', 1), (os.cpu_count() or 2) // 2, len(images)))
         processes = []
         begin = time.time()
         for index in range(shards):
@@ -186,6 +188,9 @@ class Run:
             if (work / 'train' / name).exists():
                 shutil.copy(work / 'train' / name, self.out / arm / name)
         shutil.rmtree(work / 'pairs', ignore_errors=True)
+        # Keep the trained weights so a later inference-only run can re-score them.
+        if (work / 'train' / 'segmentation.pt').exists():
+            shutil.copy(work / 'train' / 'segmentation.pt', self.out / arm / 'segmentation.pt')
         self.infer_and_score(arm, work / 'train' / 'segmentation.pt')
 
     def kid(self, fake_paths):

@@ -1,6 +1,6 @@
 {
   "schema": "ecg-runpod-pilot-plan-v1",
-  "generation": 2,
+  "generation": 3,
   "worker_module": "reproductions.runpod.worker_sim2real",
   "source_paths": [
     "reproductions",
@@ -32,8 +32,7 @@
   "sim2real": {
     "arms": [
       "full",
-      "full-v2",
-      "legacy"
+      "full-v2"
     ],
     "published_control": false,
     "train_records": 600,
@@ -53,8 +52,8 @@
     "seed": 1973,
     "kid_images": 200,
     "minimum_seconds_per_arm": 1200,
-    "infer_shards": 6,
+    "infer_shards": 1,
     "bank_entries": 64
   },
-  "purpose": "Equal-budget sim-to-real comparison on one pod: current full recipe, full-v2 (footprint-prefiltered warp plus an offline Mitsuba geometry bank with baked occlusion) and legacy. The published-weight control was scored in run 44096808365 on the same deterministic split. Pilot size: one seed, 25 test patients, 100 real images."
+  "purpose": "Equal-budget sim-to-real comparison of the current full recipe and full-v2 (footprint-prefiltered warp plus an offline Mitsuba geometry bank with baked occlusion) on one pod and one deterministic D0 split, with serial native inference. Run 44114365619 is void for SNR: six concurrent inference processes exhausted GPU memory. Pilot size: one seed, 25 test patients, 100 real images."
 }
