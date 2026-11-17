@@ -103,7 +103,7 @@ class Run:
         shutil.copy(bank.with_suffix('.json'), self.out / 'geometry-bank.json')
         os.environ['ECG_GEOMETRY_BANK'] = str(bank)
 
-    def infer_and_score(self, arm, checkpoint=None):
+    def infer_and_score(self, arm, checkpoint=None, budget_seconds=None):
         """Native npj inference is CPU-bound per image; run disjoint shards concurrently."""
         images = [str(self.data / 'real' / case['image']) for case in self.manifest['cases']]
         predictions = self.runs / arm / 'infer'
@@ -117,6 +117,12 @@ class Run:
         for index in range(shards):
             command = [sys.executable, '-m', 'reproductions.npj.infer', '--upstream', self.workspace / 'sources' / 'npj',
                        '--preset', 'george-moody-2024', '--out', predictions / f'shard-{index}', '--threads', 2]
+            timeout = self.plan['sim2real'].get('per_image_timeout', 0)
+            if timeout:
+                command += ['--per-image-timeout', timeout]
+            if budget_seconds:
+                # Stop starting new images in time to finish the last one and score.
+                command += ['--deadline', time.time() + budget_seconds - timeout - 30]
             command += [arg for image in images[index::shards] for arg in ('--image', image)]
             if checkpoint:
                 command += ['--segmentation-checkpoint', checkpoint]
@@ -180,7 +186,9 @@ class Run:
         begin = time.time()
         if self.sh([python, 'examples/sim2real_npj.py', 'train', '--upstream', self.workspace / 'sources' / 'npj',
                     '--train-dir', work / 'pairs' / 'train', '--val-dir', work / 'pairs' / 'val', '--out', work / 'train',
-                    '--steps', c['steps'], '--batch-size', c['batch'], '--crop', c['crop'], '--seed', c['seed']],
+                    '--steps', c['steps'], '--batch-size', c['batch'], '--crop', c['crop'], '--seed', c['seed'],
+                    '--lr', c.get('lr', .0037)] + (['--init', self.workspace / 'sources' / 'npj' / 'weights' / 'unet_weights_07072025.pt']
+                                                   if c.get('init') == 'published' else []),
                    f'{arm}/train').returncode:
             raise RuntimeError(f'{arm} training failed')
         self.report['arms'][arm]['train_seconds'] = time.time() - begin
@@ -191,7 +199,7 @@ class Run:
         # Keep the trained weights so a later inference-only run can re-score them.
         if (work / 'train' / 'segmentation.pt').exists():
             shutil.copy(work / 'train' / 'segmentation.pt', self.out / arm / 'segmentation.pt')
-        self.infer_and_score(arm, work / 'train' / 'segmentation.pt')
+        return work / 'train' / 'segmentation.pt'
 
     def kid(self, fake_paths):
         """Kernel Inception Distance, overall and per real capture kind."""
@@ -260,15 +268,28 @@ def main():
             run.geometry_bank()
         if plan['sim2real'].get('published_control', False):
             run.infer_and_score('published')
+        # Phase 1: render and train every arm. Phase 2: split the remaining time
+        # equally across inference, so a slow arm cannot starve the next one.
+        checkpoints = {}
         for arm in plan['sim2real']['arms']:
             if run.left() < plan['sim2real']['minimum_seconds_per_arm']:
-                run.report['arms'][arm] = {'skipped': 'deadline'}
+                run.report['arms'][arm] = {'skipped': 'deadline before training'}
                 run.save()
                 continue
             try:
-                run.arm(arm)
+                checkpoints[arm] = run.arm(arm)
             except Exception:
                 run.report['arms'].setdefault(arm, {})['error'] = traceback.format_exc()[-3000:]
+                run.save()
+        pending = list(checkpoints)
+        while pending:
+            arm = pending.pop(0)
+            budget = (run.left() - 240) / (len(pending) + 1)
+            run.report['arms'][arm]['inference_budget_seconds'] = budget
+            try:
+                run.infer_and_score(arm, checkpoints[arm], budget_seconds=budget)
+            except Exception:
+                run.report['arms'][arm]['error'] = traceback.format_exc()[-3000:]
                 run.save()
     except Exception:
         run.report['error'] = traceback.format_exc()[-4000:]

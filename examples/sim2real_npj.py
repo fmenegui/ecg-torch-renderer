@@ -196,7 +196,7 @@ def render(split_json, ptbxl_root, recipe, out, *, height=1200, width=1600, batc
 # ---------------------------------------------------------------- train
 
 def train(upstream, train_dir, val_dir, out, *, steps=3000, batch_size=4, crop=1024, lr=.0037,
-          weight_decay=.001, seed=1973, device='cuda', log_every=50):
+          weight_decay=.001, seed=1973, device='cuda', log_every=50, init=None):
     """Fixed-step training with the upstream UNet, DiceFocalLoss, optimizer and augmentations.
 
     Native transforms come from the upstream ``unet.yml``; only the crop size,
@@ -228,6 +228,14 @@ def train(upstream, train_dir, val_dir, out, *, steps=3000, batch_size=4, crop=1
                                          drop_last=True, pin_memory=device == 'cuda')
     val_loader = torch.utils.data.DataLoader(val_set, batch_size=batch_size, num_workers=2)
     model = UNet(**config['MODEL']['KWARGS']).to(device)
+    if init:
+        # Fine-tuning arm: start every recipe from the same published weights.
+        state = torch.load(init, map_location=device, weights_only=False)
+        for key in ('state_dict', 'model_state_dict', 'model'):
+            if isinstance(state, dict) and isinstance(state.get(key), dict):
+                state = state[key]
+        state = {k[7:] if k.startswith('module.') else k: v for k, v in state.items()}
+        model.load_state_dict(state, strict=True)
     criterion = DiceFocalLoss(**config['TRAIN']['CRITERION']['KWARGS'])
     optimizer = AdamMuon(model.parameters(), lr=lr, weight_decay=weight_decay)
     scheduler = CosineToConstantLR(optimizer, T_max=steps, eta_min_divisor=10)
@@ -261,6 +269,7 @@ def train(upstream, train_dir, val_dir, out, *, steps=3000, batch_size=4, crop=1
     receipt = {'schema': 'sim2real-npj-train-v1', 'steps': steps, 'batch_size': batch_size, 'crop': crop,
                'lr': lr, 'weight_decay': weight_decay, 'seed': seed, 'train_pairs': len(train_set),
                'val_pairs': len(val_set), 'val_loss': float(np.mean(losses)) if losses else None,
+               'init': str(init) if init else None,
                'seconds': time.time() - start, 'log': log}
     (out / 'train-receipt.json').write_text(json.dumps(receipt, indent=2) + '\n')
     return receipt
@@ -401,6 +410,8 @@ def main(argv=None):
     t.add_argument('--crop', type=int, default=1024)
     t.add_argument('--seed', type=int, default=1973)
     t.add_argument('--device', default='cuda')
+    t.add_argument('--lr', type=float, default=.0037)
+    t.add_argument('--init', help='Fine-tune from these segmentation weights instead of a random start')
     c = commands.add_parser('score')
     c.add_argument('--manifest', required=True)
     c.add_argument('--predictions', required=True)
@@ -417,7 +428,8 @@ def main(argv=None):
                batch=args.batch, seed=args.seed, pulse_class=args.pulse_class)
     elif args.command == 'train':
         train(args.upstream, args.train_dir, args.val_dir, args.out, steps=args.steps,
-              batch_size=args.batch_size, crop=args.crop, seed=args.seed, device=args.device)
+              batch_size=args.batch_size, crop=args.crop, seed=args.seed, device=args.device, lr=args.lr,
+              init=args.init)
     else:
         report = score(args.manifest, args.predictions, args.out, arm=args.arm)
         for kind, values in report['summary'].items():

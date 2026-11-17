@@ -1,6 +1,6 @@
 {
   "schema": "ecg-runpod-pilot-plan-v1",
-  "generation": 5,
+  "generation": 6,
   "worker_module": "reproductions.runpod.worker_sim2real",
   "source_paths": [
     "reproductions",
@@ -12,22 +12,17 @@
     "NVIDIA RTX A4000",
     "NVIDIA RTX A4500",
     "NVIDIA RTX A5000",
-    "NVIDIA RTX 4000 Ada Generation",
-    "NVIDIA GeForce RTX 3090",
-    "NVIDIA RTX PRO 4000 Blackwell",
-    "NVIDIA A40",
-    "NVIDIA L4",
-    "NVIDIA RTX A6000"
+    "NVIDIA RTX 4000 Ada Generation"
   ],
   "gpu_id": "NVIDIA RTX A4000",
   "minimum_gpu_memory_gb": 16,
-  "maximum_gpu_price_per_hour": 0.7,
+  "maximum_gpu_price_per_hour": 0.45,
   "template_id": "runpod-torch-v280",
   "storage_mode": "container_disk",
   "volume_gb": 0,
   "container_disk_gb": 40,
   "maximum_pod_seconds": 6600,
-  "gpu_time_cost_cap_usd": 1.3,
+  "gpu_time_cost_cap_usd": 0.83,
   "new_training": true,
   "sim2real": {
     "arms": [
@@ -46,15 +41,18 @@
     ],
     "height": 1200,
     "width": 1600,
-    "steps": 1500,
+    "steps": 800,
     "batch": 4,
     "crop": 1024,
     "seed": 1973,
     "kid_images": 200,
-    "minimum_seconds_per_arm": 1200,
+    "minimum_seconds_per_arm": 1500,
     "infer_shards": 1,
-    "bank_entries": 64
+    "bank_entries": 64,
+    "init": "published",
+    "lr": 0.00037,
+    "per_image_timeout": 40
   },
-  "purpose": "Equal-budget sim-to-real comparison of the current full recipe and full-v2 (footprint-prefiltered warp plus an offline Mitsuba geometry bank with baked occlusion) on one pod and one deterministic D0 split, with serial native inference. Run 44114365619 is void for SNR: six concurrent inference processes exhausted GPU memory. Pilot size: one seed, 25 test patients, 100 real images.",
+  "purpose": "Fine-tuning comparison: start the published Open-ECG-Digitizer segmentation weights, fine-tune 800 steps on pairs from each recipe (current full; full-v2 = prefiltered warp plus Mitsuba geometry bank), then digitize the same 100 real D0 images with a 40 s per-image limit. Published weights on this split: 3.50 dB, max 24.7 s per image (run 44096808365).",
   "stock_wait_seconds": 2700
 }

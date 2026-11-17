@@ -6,6 +6,7 @@ Native presets are preserved, including layout hints when explicitly supplied.
 
 import argparse
 from pathlib import Path
+import signal
 import sys
 import time
 
@@ -13,6 +14,14 @@ import numpy as np
 
 from reproductions.common import environment, new_run, require_cuda, sha256, verify_source, write_json
 from reproductions.npj.protocol import COMMIT, WEIGHTS, inference_config
+
+
+class ImageTimeout(BaseException):
+    """BaseException so upstream ``except Exception`` blocks cannot swallow it."""
+
+
+def _alarm(signum, frame):
+    raise ImageTimeout()
 
 
 def main():
@@ -27,6 +36,8 @@ def main():
     parser.add_argument("--segmentation-checkpoint", help="Explicit retrained main-network ablation")
     parser.add_argument("--lead-checkpoint", help="Explicit retrained lead-name-network ablation")
     parser.add_argument("--target-num-samples", type=int, help="Explicit public sampling metadata override, native preset is retained by default")
+    parser.add_argument("--per-image-timeout", type=int, default=0, help="Seconds; a slower image is recorded as timeout (0 disables)")
+    parser.add_argument("--deadline", type=float, default=0, help="Unix time after which no new image is started")
     args = parser.parse_args()
     upstream = Path(args.upstream).resolve()
     source = verify_source(upstream, COMMIT)
@@ -62,6 +73,13 @@ def main():
         used.add(name)
         row = {"case_id": name, "image_sha256": sha256(image_path), "status": "scheduled"}
         start = time.perf_counter()
+        if args.deadline and time.time() > args.deadline:
+            row["status"] = "not_attempted_deadline"
+            results.append(row)
+            continue
+        if args.per_image_timeout:
+            signal.signal(signal.SIGALRM, _alarm)
+            signal.alarm(args.per_image_timeout)
         try:
             array = np.array(Image.open(image_path).convert("RGB"), copy=True)
             tensor = torch.from_numpy(array).permute(2, 0, 1).unsqueeze(0)
@@ -77,11 +95,18 @@ def main():
             row["predicted_layout"] = result["layout_name"]
             aligned = result["aligned"]["image"].squeeze().cpu().numpy().transpose(1, 2, 0)
             Image.fromarray(np.rint(np.clip(aligned, 0, 1) * 255).astype(np.uint8)).save(out / (name + ".aligned.png"))
+        except ImageTimeout:
+            row["status"] = "timeout"
+            if args.device == "cuda":
+                torch.cuda.empty_cache()
         except Exception as error:
             row.update(status="exception", error_type=type(error).__name__, error=str(error))
+        finally:
+            if args.per_image_timeout:
+                signal.alarm(0)
         row["seconds_including_native_forward"] = time.perf_counter() - start
         results.append(row)
-        write_json(out / "receipt.json", {"schema": "npj-native-inference-v1", "source": source, "environment": environment(), "preset": args.preset, "layout_hint": args.layout_hint, "public_output_sample_count_override": args.target_num_samples, "active_weight_sha256": active_weights, "retrained_weight_ablation": bool(args.segmentation_checkpoint or args.lead_checkpoint), "output_unit": "uV", "results": results, "scheduled_images": len(args.image), "paper_cohort_reproduction_completed": False})
+        write_json(out / "receipt.json", {"schema": "npj-native-inference-v1", "source": source, "environment": environment(), "preset": args.preset, "layout_hint": args.layout_hint, "public_output_sample_count_override": args.target_num_samples, "active_weight_sha256": active_weights, "retrained_weight_ablation": bool(args.segmentation_checkpoint or args.lead_checkpoint), "output_unit": "uV", "results": results, "scheduled_images": len(args.image), "per_image_timeout_s": args.per_image_timeout, "paper_cohort_reproduction_completed": False})
     if any(r["status"] == "exception" for r in results):
         raise SystemExit(2)
 

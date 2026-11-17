@@ -46,7 +46,7 @@ def validate_plan(plan):
     if plan.get('worker_module') == 'reproductions.runpod.worker_sim2real':
         # Equal-budget generator comparison on public PTB-XL / ECG-Image-Database D0.
         total = plan['maximum_pod_seconds'] * plan['maximum_gpu_price_per_hour'] / 3600
-        if (plan.get('gpu_time_cost_cap_usd') != 1.30 or not 0 < total <= 1.30
+        if (not plan.get('gpu_time_cost_cap_usd', 0) <= 1.30 or not 0 < total <= plan['gpu_time_cost_cap_usd']
                 or plan['maximum_gpu_price_per_hour'] > .70 or storage != 'container_disk'
                 or not plan.get('sim2real', {}).get('arms')):
             raise ValueError('Sim-to-real run exceeds its independent USD 1.30 GPU-time cap')
