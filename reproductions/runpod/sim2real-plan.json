@@ -1,6 +1,6 @@
 {
   "schema": "ecg-runpod-pilot-plan-v1",
-  "generation": 8,
+  "generation": 9,
   "worker_module": "reproductions.runpod.worker_sim2real",
   "source_paths": [
     "reproductions",
@@ -8,27 +8,26 @@
     "examples"
   ],
   "gpu_candidates": [
-    "NVIDIA RTX 2000 Ada Generation",
-    "NVIDIA RTX A4000",
-    "NVIDIA RTX A4500",
     "NVIDIA RTX A5000",
-    "NVIDIA RTX 4000 Ada Generation"
+    "NVIDIA RTX A4500",
+    "NVIDIA RTX 4000 Ada Generation",
+    "NVIDIA RTX A4000",
+    "NVIDIA RTX 2000 Ada Generation"
   ],
-  "gpu_id": "NVIDIA RTX A4000",
+  "gpu_id": "NVIDIA RTX A5000",
   "minimum_gpu_memory_gb": 16,
-  "maximum_gpu_price_per_hour": 0.45,
+  "maximum_gpu_price_per_hour": 0.3,
   "template_id": "runpod-torch-v280",
   "storage_mode": "container_disk",
   "volume_gb": 0,
   "container_disk_gb": 40,
-  "maximum_pod_seconds": 7800,
-  "gpu_time_cost_cap_usd": 0.98,
+  "maximum_pod_seconds": 6600,
+  "gpu_time_cost_cap_usd": 0.55,
   "new_training": true,
   "sim2real": {
     "arms": [
       "npj-only",
-      "full",
-      "full-v2"
+      "full"
     ],
     "published_control": false,
     "train_records": 600,
@@ -75,6 +74,6 @@
     },
     "render_batch": 2
   },
-  "purpose": "Corrected protocol: render at the native npj inference scale (3000 px), label off-sheet pixels as the npj text/background class, and fine-tune the published weights on a mixture of its own development data with ours. Arms: npj-only control, npj+full, npj+full-v2; same 100 real D0 images, 40 s per-image limit, inference time split equally.",
+  "purpose": "Corrected protocol, two arms: does adding our full-recipe pairs (3000 px, npj label conventions) to the published model's own development data help on real D0 images versus fine-tuning on its data alone? Same 100 real images, 40 s per image, inference time split equally. Run 44279013642 ran out of inference time after 3000 px rendering on an RTX 2000 Ada.",
   "stock_wait_seconds": 2700
 }

@@ -307,6 +307,10 @@ class Run:
         result = {'fake_images': len(fake_paths), 'all_real': kid_value(fake, real_all)}
         for kind, value in self.real_features.items():
             result[kind] = kid_value(fake, value)
+        # Release the Inception model: training runs next in a subprocess on the
+        # same card (run 44279013642 hit a cuBLAS failure on 16 GB).
+        del self.inception
+        torch.cuda.empty_cache()
         return result
 
 
