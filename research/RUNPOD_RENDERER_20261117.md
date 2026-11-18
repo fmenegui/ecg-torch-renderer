@@ -89,6 +89,30 @@ neither difference is established. Next measurements: larger test cohort and
 multiple seeds, mixing synthetic with the original training data instead of
 replacing it, and per-change ablations (prefilter alone, bank alone).
 
+## 4. Why fine-tuning degraded the published digitizer (diagnosis, 2026-11-18)
+
+Checked against the pinned Open-ECG-Digitizer code and samples of its public
+development dataset (Ahus-AIM/Open-ECG-Digitizer-Development-Dataset, val
+shard 0):
+
+1. **Scale.** Native inference resamples every image so its longer side is
+   3000 px (`resample_size: 3000`) before the UNet. The npj training images are
+   ~2600–3200 px wide. Our pairs were 1600×1200, so fine-tuning taught the UNet
+   grid and trace sizes at ~half the pixels per mm it sees at inference.
+2. **Outside-paper label.** In npj masks the green channel (class 1,
+   `text_background_class`) covers text *and everything outside the sheet*.
+   `npj_mask` zeroes outside the sheet, i.e. class 3. Off-sheet area is 11–34 %
+   of our training pixels.
+3. **Trace label profile.** npj trace labels are soft (mean 0.21–0.24 on
+   labelled pixels); ours are 0.47 and cover 2–3× the pixel fraction at our
+   lower resolution.
+4. **Replacement, not mixture.** Every arm trained only on our pairs; the
+   published model's own data distribution was dropped.
+
+These protocol mismatches can explain the −3 dB drop (−8 dB on digital images)
+without any statement about photographic realism. The recipe comparison must
+be repeated after fixing them.
+
 ## Limitations
 
 One seed, 25 patients and a short training budget. KID uses ImageNet features
