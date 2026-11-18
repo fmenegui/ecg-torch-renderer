@@ -103,6 +103,42 @@ class Run:
         shutil.copy(bank.with_suffix('.json'), self.out / 'geometry-bank.json')
         os.environ['ECG_GEOMETRY_BANK'] = str(bank)
 
+    def npj_original(self):
+        """Pairs from the published npj development set, written as stored (no re-encoding)."""
+        mix = self.plan['sim2real']['mix_npj_original']
+        begin = time.time()
+        if self.sh([sys.executable, '-m', 'pip', 'install', '--disable-pip-version-check', '-q', 'pyarrow', 'huggingface_hub'],
+                   'install-pyarrow').returncode:
+            raise RuntimeError('pyarrow install failed')
+        import pyarrow.parquet as pq
+        from huggingface_hub import hf_hub_download
+        root = self.data / 'npj-original'
+        counts = {}
+        for split, files, limit in [('train', [f'data/train-{i:05d}-of-00068.parquet' for i in mix['train_shards']], None),
+                                    ('val', ['data/val-00000-of-00004.parquet'], mix.get('val_rows', 20))]:
+            out = root / split
+            out.mkdir(parents=True, exist_ok=True)
+            index = 0
+            for name in files:
+                path = hf_hub_download('Ahus-AIM/Open-ECG-Digitizer-Development-Dataset', name, repo_type='dataset',
+                                       local_dir=self.data / 'hf')
+                parquet = pq.ParquetFile(path)
+                for group in range(parquet.num_row_groups):
+                    table = parquet.read_row_group(group, columns=[c for pair in mix['pairs'] for c in pair])
+                    for row in range(table.num_rows):
+                        for image_column, mask_column in mix['pairs']:
+                            if limit is not None and index >= limit:
+                                break
+                            index += 1
+                            stem = out / f'npj_{index:06d}'
+                            stem.with_suffix('.png').write_bytes(table.column(image_column)[row].as_py()['bytes'])
+                            Path(str(stem) + '_mask.png').write_bytes(table.column(mask_column)[row].as_py()['bytes'])
+                Path(path).unlink()
+            counts[split] = index
+        self.npj_dirs = {split: root / split for split in ('train', 'val')}
+        self.report['npj_original'] = {**mix, 'pair_counts': counts, 'seconds': time.time() - begin}
+        self.save()
+
     def infer_and_score(self, arm, checkpoint=None, budget_seconds=None):
         """Native npj inference is CPU-bound per image; run disjoint shards concurrently."""
         images = [str(self.data / 'real' / case['image']) for case in self.manifest['cases']]
@@ -166,9 +202,18 @@ class Run:
         (self.out / arm).mkdir(exist_ok=True)
         python = sys.executable
         begin = time.time()
+        if arm == 'npj-only':
+            # Control: fine-tune on the published model's own development data only.
+            train_dir, val_dir = self.npj_dirs['train'], self.npj_dirs['val']
+            self.report['arms'].setdefault(arm, {})['kid'] = self.kid(
+                sorted(p for p in train_dir.glob('npj_*.png') if not p.name.endswith('_mask.png'))[:c['kid_images']])
+            self.save()
+            return self.train_arm(arm, work, train_dir, val_dir)
         if self.sh([python, 'examples/sim2real_npj.py', 'render', '--split', self.data / 'split.json',
                     '--ptbxl-root', self.data / 'ptbxl', '--recipe', arm, '--out', work / 'pairs',
-                    '--height', c['height'], '--width', c['width'], '--seed', c['seed']], f'{arm}/render').returncode:
+                    '--height', c['height'], '--width', c['width'], '--seed', c['seed'],
+                    '--off-sheet', c.get('off_sheet', 'background'), '--batch', c.get('render_batch', 4)],
+                   f'{arm}/render').returncode:
             raise RuntimeError(f'{arm} render failed')
         self.report['arms'].setdefault(arm, {})['render_seconds'] = time.time() - begin
         samples = self.out / arm / 'samples'
@@ -183,15 +228,25 @@ class Run:
                 shutil.copy(work / 'pairs' / name, self.out / arm / name)
         self.report['arms'][arm]['kid'] = self.kid(sorted((work / 'pairs' / 'train').glob('[0-9]*[0-9].png'))[:c['kid_images']])
         self.save()
+        train_dir, val_dir = work / 'pairs' / 'train', work / 'pairs' / 'val'
+        if c.get('mix_npj_original'):
+            # Mixture, not replacement: keep the published model's data alongside ours.
+            for source in self.npj_dirs['train'].glob('npj_*.png'):
+                os.symlink(source, train_dir / source.name)
+        return self.train_arm(arm, work, train_dir, val_dir)
+
+    def train_arm(self, arm, work, train_dir, val_dir):
+        c = self.plan['sim2real']
         begin = time.time()
-        if self.sh([python, 'examples/sim2real_npj.py', 'train', '--upstream', self.workspace / 'sources' / 'npj',
-                    '--train-dir', work / 'pairs' / 'train', '--val-dir', work / 'pairs' / 'val', '--out', work / 'train',
+        if self.sh([sys.executable, 'examples/sim2real_npj.py', 'train', '--upstream', self.workspace / 'sources' / 'npj',
+                    '--train-dir', train_dir, '--val-dir', val_dir, '--out', work / 'train',
                     '--steps', c['steps'], '--batch-size', c['batch'], '--crop', c['crop'], '--seed', c['seed'],
                     '--lr', c.get('lr', .0037)] + (['--init', self.workspace / 'sources' / 'npj' / 'weights' / 'unet_weights_07072025.pt']
                                                    if c.get('init') == 'published' else []),
                    f'{arm}/train').returncode:
             raise RuntimeError(f'{arm} training failed')
-        self.report['arms'][arm]['train_seconds'] = time.time() - begin
+        self.report['arms'].setdefault(arm, {})['train_seconds'] = time.time() - begin
+        self.report['arms'][arm]['train_pairs'] = sum(1 for p in Path(train_dir).glob('*_mask.png'))
         for name in ['train-receipt.json']:
             if (work / 'train' / name).exists():
                 shutil.copy(work / 'train' / name, self.out / arm / name)
@@ -266,6 +321,8 @@ def main():
         run.prepare()
         if 'full-v2' in plan['sim2real']['arms']:
             run.geometry_bank()
+        if plan['sim2real'].get('mix_npj_original'):
+            run.npj_original()
         if plan['sim2real'].get('published_control', False):
             run.infer_and_score('published')
         # Phase 1: render and train every arm. Phase 2: split the remaining time

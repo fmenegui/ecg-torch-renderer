@@ -37,6 +37,10 @@ class NpjMaskTests(unittest.TestCase):
         self.assertEqual(float(npj_mask(targets, pulse_class='background')[0, :, 2, 0].sum()), 0.)
         targets['valid'] = torch.zeros(1, 1, 4, 4)
         self.assertEqual(float(npj_mask(targets).sum()), 0.)
+        # npj development masks label off-sheet pixels as text/background.
+        off = npj_mask(targets, off_sheet='text')
+        self.assertEqual(float(off[:, 0].sum() + off[:, 2].sum()), 0.)
+        self.assertTrue(torch.equal(off[:, 1], 1 - targets['valid'][:, 0].clamp(0, 1)))
 
     def test_missing_targets_name_the_config(self):
         with self.assertRaisesRegex(ValueError, 'text_target=True'):

@@ -56,7 +56,7 @@ def validate_plan(plan):
         total = prior + plan["maximum_pod_seconds"] * plan["maximum_gpu_price_per_hour"] / 3600
         if not minimum_prior <= prior <= .45 or not 0 < total <= .45 or plan.get("combined_gpu_cost_cap_usd") != .45:
             raise ValueError("Completion must fit the remaining original GPU envelope")
-    maximum = 18000 if full else (6600 if plan.get('worker_module') == 'reproductions.runpod.worker_sim2real' else 1800)
+    maximum = 18000 if full else (7800 if plan.get('worker_module') == 'reproductions.runpod.worker_sim2real' else 1800)
     volume = 0 if storage == "container_disk" else (220 if full else 30)
     if not 0 < plan["maximum_pod_seconds"] <= maximum or plan["volume_gb"] != volume:
         raise ValueError("Execution exceeds its bounded resource envelope")

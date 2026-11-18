@@ -22,11 +22,18 @@ import numpy as np
 PULSE_CLASSES = ('signal', 'text', 'background')
 
 
-def npj_mask(targets, *, pulse_class='signal'):
-    """Return a ``[B,3,H,W]`` float mask (grid, text, signal) from renderer targets."""
+def npj_mask(targets, *, pulse_class='signal', off_sheet='background'):
+    """Return a ``[B,3,H,W]`` float mask (grid, text, signal) from renderer targets.
+
+    ``off_sheet='text'`` follows the published Open-ECG-Digitizer development
+    masks, whose green channel (``text_background_class``) also covers
+    everything outside the sheet. ``'background'`` leaves it unlabelled.
+    """
     import torch
     if pulse_class not in PULSE_CLASSES:
         raise ValueError(f'pulse_class must be one of {PULSE_CLASSES}')
+    if off_sheet not in ('background', 'text'):
+        raise ValueError("off_sheet must be 'background' or 'text'")
     required = ['traces', 'grid', 'text']
     if pulse_class != 'background':
         required.append('calibration_pulses')
@@ -43,8 +50,11 @@ def npj_mask(targets, *, pulse_class='signal'):
         text = torch.maximum(text, targets['calibration_pulses'])
     mask = torch.cat([grid, text, signal], 1).clamp(0, 1)
     if 'valid' in targets:
-        # Outside the visible sheet everything is background.
-        mask = mask * targets['valid'][:, :1].clamp(0, 1)
+        # Outside the visible sheet everything is background (or text/background).
+        valid = targets['valid'][:, :1].clamp(0, 1)
+        mask = mask * valid
+        if off_sheet == 'text':
+            mask[:, 1:2] = torch.maximum(mask[:, 1:2], 1 - valid)
     return mask
 
 

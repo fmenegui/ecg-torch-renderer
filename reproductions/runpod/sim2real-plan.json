@@ -1,6 +1,6 @@
 {
   "schema": "ecg-runpod-pilot-plan-v1",
-  "generation": 7,
+  "generation": 8,
   "worker_module": "reproductions.runpod.worker_sim2real",
   "source_paths": [
     "reproductions",
@@ -21,11 +21,12 @@
   "storage_mode": "container_disk",
   "volume_gb": 0,
   "container_disk_gb": 40,
-  "maximum_pod_seconds": 6600,
-  "gpu_time_cost_cap_usd": 0.83,
+  "maximum_pod_seconds": 7800,
+  "gpu_time_cost_cap_usd": 0.98,
   "new_training": true,
   "sim2real": {
     "arms": [
+      "npj-only",
       "full",
       "full-v2"
     ],
@@ -39,20 +40,41 @@
       "gray-scan",
       "phone-photo"
     ],
-    "height": 1200,
-    "width": 1600,
+    "height": 2250,
+    "width": 3000,
     "steps": 800,
     "batch": 4,
     "crop": 1024,
     "seed": 1973,
     "kid_images": 200,
-    "minimum_seconds_per_arm": 1500,
+    "minimum_seconds_per_arm": 900,
     "infer_shards": 1,
     "bank_entries": 64,
     "init": "published",
     "lr": 0.00037,
-    "per_image_timeout": 40
+    "per_image_timeout": 40,
+    "off_sheet": "text",
+    "mix_npj_original": {
+      "train_shards": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "pairs": [
+        [
+          "img_T0",
+          "mask_T0"
+        ],
+        [
+          "img",
+          "mask"
+        ]
+      ],
+      "val_rows": 20
+    },
+    "render_batch": 2
   },
-  "purpose": "Fine-tuning comparison: start the published Open-ECG-Digitizer segmentation weights, fine-tune 800 steps on pairs from each recipe (current full; full-v2 = prefiltered warp plus Mitsuba geometry bank), then digitize the same 100 real D0 images with a 40 s per-image limit. Published weights on this split: 3.50 dB, max 24.7 s per image (run 44096808365).",
+  "purpose": "Corrected protocol: render at the native npj inference scale (3000 px), label off-sheet pixels as the npj text/background class, and fine-tune the published weights on a mixture of its own development data with ours. Arms: npj-only control, npj+full, npj+full-v2; same 100 real D0 images, 40 s per-image limit, inference time split equally.",
   "stock_wait_seconds": 2700
 }

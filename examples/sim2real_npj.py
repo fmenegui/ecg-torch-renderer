@@ -150,7 +150,7 @@ def load_ptbxl(root, relative):
 
 
 def render(split_json, ptbxl_root, recipe, out, *, height=1200, width=1600, batch=4, seed=1973,
-           pulse_class='signal', device=None):
+           pulse_class='signal', device=None, off_sheet='background'):
     import torch
     from ecg_gpu import ECGRenderer
     from ecg_gpu.npj_export import npj_mask, write_npj_pairs
@@ -160,7 +160,7 @@ def render(split_json, ptbxl_root, recipe, out, *, height=1200, width=1600, batc
     generator = torch.Generator(device=device).manual_seed(seed)
     out = Path(out)
     receipt = {'schema': 'sim2real-npj-render-v1', 'recipe': recipe, 'height': height, 'width': width,
-               'pulse_class': pulse_class, 'seed': seed, 'specification': renderer.specification(), 'splits': {}}
+               'pulse_class': pulse_class, 'off_sheet': off_sheet, 'seed': seed, 'specification': renderer.specification(), 'splits': {}}
     from concurrent.futures import ThreadPoolExecutor
     # PNG encoding and WFDB reads are CPU work; overlap them with GPU rendering.
     # The rendered pixels and their order are unchanged.
@@ -181,7 +181,7 @@ def render(split_json, ptbxl_root, recipe, out, *, height=1200, width=1600, batc
                 raise ValueError('Mixed sampling rates in one batch')
             signals = torch.tensor(np.stack([value for value, _ in loaded]), device=device)
             result = renderer(signals, fs.pop(), stage='all', generator=generator)
-            image, mask = result.image.cpu(), npj_mask(result.targets, pulse_class=pulse_class).cpu()
+            image, mask = result.image.cpu(), npj_mask(result.targets, pulse_class=pulse_class, off_sheet=off_sheet).cpu()
             writes.append(pool.submit(write_npj_pairs, image, mask, out / name, index, 1))
             index += len(chunk)
         for write in writes:
@@ -406,6 +406,8 @@ def main(argv=None):
     r.add_argument('--batch', type=int, default=4)
     r.add_argument('--seed', type=int, default=1973)
     r.add_argument('--pulse-class', choices=('signal', 'text', 'background'), default='signal')
+    r.add_argument('--off-sheet', choices=('background', 'text'), default='background',
+                   help="'text' matches the published npj masks (off-sheet = text/background class)")
     t = commands.add_parser('train')
     t.add_argument('--upstream', required=True)
     t.add_argument('--train-dir', required=True)
@@ -431,7 +433,7 @@ def main(argv=None):
         print(json.dumps({k: len(v) if isinstance(v, list) else v for k, v in result.items()}))
     elif args.command == 'render':
         render(args.split, args.ptbxl_root, args.recipe, args.out, height=args.height, width=args.width,
-               batch=args.batch, seed=args.seed, pulse_class=args.pulse_class)
+               batch=args.batch, seed=args.seed, pulse_class=args.pulse_class, off_sheet=args.off_sheet)
     elif args.command == 'train':
         train(args.upstream, args.train_dir, args.val_dir, args.out, steps=args.steps,
               batch_size=args.batch_size, crop=args.crop, seed=args.seed, device=args.device, lr=args.lr,
