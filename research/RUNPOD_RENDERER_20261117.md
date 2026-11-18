@@ -2,7 +2,7 @@
 
 Branch `research/renderer-gpu-20261117`. Artificial signals for profiling;
 public PTB-XL and ECG-Image-Database D0 for sim-to-real. Every pod was deleted
-and its absence verified by the controller. GPU spend ≈ USD 1.92.
+and its absence verified by the controller. GPU spend ≈ USD 2.52.
 
 ## 1. GPU profile (run 44093688811)
 
@@ -58,6 +58,36 @@ inference (13 s/image serially). Run 44114365619 ran six inference processes
 on one 24 GB GPU: 83 of 100 images failed with CUDA OOM in each arm, so its
 SNR rows are void. The fix (serial inference, saved checkpoints) is in
 d2b0484; its run 44137343645 found no secure GPU in stock and allocated nothing.
+
+## 3. Fine-tuning comparison (run 44195924404)
+
+RTX A5000, USD 0.27/h, ~108 min. Each recipe fine-tunes the published
+segmentation weights for 800 steps (lr 3.7e-4) on its own 600 pairs; the same
+100 real D0 images, 40 s per-image limit (published weights never exceeded
+24.7 s). Run 44191110758 failed before training (`_orig_mod.` keys) and is
+excluded.
+
+| Arm | All dB [patient 95 %] | Digital | Color scan | Gray scan | Phone | Returned |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| published (no fine-tuning) | 3.50 [2.89, 4.17] | 12.31 | 0.44 | 0.77 | 0.48 | 100 |
+| full fine-tuned | 0.47 [−0.51, 1.46] | 4.12 | −1.02 | −0.31 | −0.91 | 94 |
+| full-v2 fine-tuned | 0.84 [−0.11, 1.87] | 5.16 | −1.07 | 0.05 | −0.77 | 92 |
+
+Paired by patient (bootstrap 95 %):
+- full-v2 − full: +0.37 dB [−0.42, +1.19]; gray scan +0.36 [−0.10, +0.94];
+  digital +1.04 [−1.89, +3.98]. Not significant.
+- full − published: −3.03 dB [−3.90, −2.18]; full-v2 − published: −2.66 dB
+  [−3.51, −1.79]. Fine-tuning on either recipe's synthetic pairs makes the
+  published digitizer worse on real images, most on digital images (−7 to −8 dB).
+
+KID in this run: full 0.137, full-v2 0.149.
+
+**Reading.** Neither recipe yet produces training data that helps a digitizer
+already trained on ECG-Image-Kit-style data; at this scale both degrade it.
+full-v2 trends better than full on downstream SNR but worse on KID, and
+neither difference is established. Next measurements: larger test cohort and
+multiple seeds, mixing synthetic with the original training data instead of
+replacing it, and per-change ablations (prefilter alone, bank alone).
 
 ## Limitations
 
