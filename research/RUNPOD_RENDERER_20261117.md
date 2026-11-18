@@ -2,7 +2,7 @@
 
 Branch `research/renderer-gpu-20261117`. Artificial signals for profiling;
 public PTB-XL and ECG-Image-Database D0 for sim-to-real. Every pod was deleted
-and its absence verified by the controller. GPU spend ≈ USD 2.52.
+and its absence verified by the controller. GPU spend ≈ USD 3.37.
 
 ## 1. GPU profile (run 44093688811)
 
@@ -112,6 +112,41 @@ shard 0):
 These protocol mismatches can explain the −3 dB drop (−8 dB on digital images)
 without any statement about photographic realism. The recipe comparison must
 be repeated after fixing them.
+
+## 5. Corrected protocol (runs 44279013642 and 44305448463, 2026-11-18)
+
+Pairs rendered at 3000×2250 (npj inference scale), off-sheet pixels labelled
+as the npj text/background class (`npj_mask(off_sheet='text')`), and the
+published weights fine-tuned 800 steps on a **mixture**: 488 pairs from four
+shards of the npj development set, plus our 600 pairs in the mixed arm.
+
+Run 44279013642 (RTX 2000 Ada) rendered too slowly to finish inference and
+`full-v2` training failed with a cuBLAS error while the KID Inception model
+still held GPU memory; only its KID values are used. Run 44305448463 (RTX
+A5000, USD 0.27/h, ~77 min) completed both arms on all 100 images:
+
+| Arm | All dB [patient 95 %] | Digital | Color scan | Gray scan | Phone |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| published | 3.50 [2.89, 4.17] | 12.31 | 0.44 | 0.77 | 0.48 |
+| npj-only fine-tune | 3.27 [2.68, 3.88] | 11.41 | 0.42 | 0.62 | 0.61 |
+| npj + full fine-tune | **3.84 [3.20, 4.53]** | 13.54 | 0.69 | 0.72 | 0.41 |
+
+Paired by patient (bootstrap 95 %):
+- npj+full − npj-only: **+0.57 dB [+0.30, +0.87]**, 19/25 patients better;
+  digital +2.13 [+1.24, +2.98]; color scan +0.26 [−0.02, +0.72]; gray scan
+  +0.10 [−0.02, +0.27]; phone −0.20 [−0.64, +0.11].
+- npj+full − published: +0.34 dB [+0.12, +0.55].
+- npj-only − published: −0.24 dB [−0.46, −0.04] (the fine-tuning itself).
+
+KID against the same real images: npj development data 0.051 (digital 0.141,
+color 0.099, gray 0.153, phone 0.077); our full 0.144–0.148; full-v2 0.152.
+D0 printouts were produced with ECG-Image-Kit, so KID also rewards that
+document style, not only capture realism.
+
+**Reading.** Once the protocol matches the digitizer, adding our renderer's
+pairs to the original data improves real-image SNR, almost entirely on
+digital and color-scan images; photos show no gain. The full-v2 changes are
+still unmeasured on SNR. One seed and 25 patients.
 
 ## Limitations
 
